@@ -5,7 +5,7 @@ import os
 from newspaper import Article
 
 # === CONFIG ===
-scrape_content = True  # Set to False if you want to skip full article scraping
+scrape_content = False  # Set to False if you want to skip full article scraping
 csv_path = "data/articles.csv"
 
 # === RSS Feed List ===
