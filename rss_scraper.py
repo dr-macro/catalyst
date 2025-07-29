@@ -5,8 +5,7 @@ import os
 from newspaper import Article
 
 # === CONFIG ===
-scrape_content = False  # Set to False if you want to skip full article scraping
-
+scrape_content = False  # Set to True if you want full article scraping
 today = datetime.today().strftime("%Y-%m-%d")
 csv_path = f"data/articles_{today}.csv"
 
@@ -35,7 +34,7 @@ def scrape_article_content(url):
 def main():
     os.makedirs("data", exist_ok=True)
 
-    # Load existing articles
+    # Load existing articles (if today's CSV exists)
     if os.path.exists(csv_path):
         seen_df = pd.read_csv(csv_path)
         seen_links = set(seen_df['link'])
