@@ -6,7 +6,9 @@ from newspaper import Article
 
 # === CONFIG ===
 scrape_content = False  # Set to False if you want to skip full article scraping
-csv_path = "data/articles.csv"
+
+today = datetime.today().strftime("%Y-%m-%d")
+csv_path = f"data/articles_{today}.csv"
 
 # === RSS Feed List ===
 rss_feeds = {
