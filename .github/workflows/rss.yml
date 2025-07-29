@@ -3,15 +3,17 @@ name: Scrape RSS and commit CSV
 on:
   schedule:
     - cron: '*/10 * * * *'  # every 10 minutes
-  workflow_dispatch:
+  workflow_dispatch:         # allows manual triggering from the Actions tab
 
 jobs:
   run-scraper:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
+    - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        persist-credentials: false  # we'll handle auth ourselves
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -20,15 +22,21 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pandas feedparser newspaper3k lxml_html_clean 
+        pip install pandas feedparser newspaper3k
 
     - name: Run scraper
       run: python rss_scraper.py
 
     - name: Commit CSV to repo
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
+
         git add data/articles.csv
         git commit -m "📰 Update articles.csv [skip ci]" || echo "No changes to commit"
-        git push
+
+        # Authenticated push using GitHub Actions token
+        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+        git push origin HEAD:${{ github.ref }}
