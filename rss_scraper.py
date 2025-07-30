@@ -11,7 +11,6 @@ csv_path = f"data/articles_{today}.csv"
 
 # === RSS Feed List ===
 rss_feeds = {
-    "Reuters Business": "https://ir.thomsonreuters.com/rss/news-releases.xml?items=15",
     "MarketWatch Top": "https://www.marketwatch.com/rss/topstories",
     "CNBC Top News": "https://www.cnbc.com/id/100003114/device/rss/rss.html",
     "Investing.com All News": "https://uk.investing.com/rss/news.rss",
