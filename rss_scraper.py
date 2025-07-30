@@ -15,7 +15,9 @@ rss_feeds = {
     "CNBC Top News": "https://www.cnbc.com/id/100003114/device/rss/rss.html",
     "Investing.com All News": "https://uk.investing.com/rss/news.rss",
     "Investing.com Bond News": "https://uk.investing.com/rss/bonds.rss",
-    "Google News Reuters" : "https://news.google.com/rss/search?q=site%3Areuters.com&hl=en-US&gl=US&ceid=US%3Aen"
+    "Google News Reuters" : "https://news.google.com/rss/search?q=site%3Areuters.com&hl=en-US&gl=US&ceid=US%3Aen",
+    "Google News WSJ" : "https://news.google.com/rss/search?q=site:wsj.com&hl=en-US&gl=US&ceid=US:en",
+    "Google News FT" : "https://news.google.com/rss/search?q=site:ft.com&hl=en-US&gl=US&ceid=US:en",
 }
 
 # === Scraping Function ===
