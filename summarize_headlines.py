@@ -37,7 +37,8 @@ def chunk_headlines(headlines, max_chars=250000):
 def summarize_chunk(text):
     prompt = (
         "you are a macro hedge fund analyst; below are newsheadlines from today. please summarize the main themes."
-        "dont mind if you also include some numbers from the headlines; make it quite detailed and comprehensive. \n\n"
+        "dont mind if you also include some numbers from the headlines; make it quite detailed and comprehensive."
+        "at the end provide a description of the current macro/markets regime we are in. \n\n"
         f"{text}\n\nSummarize:"
     )
     completion = client.chat.completions.create(
@@ -54,7 +55,8 @@ def summarize_chunk(text):
 
 def overarching_summary(text):
     prompt = (
-        "you are a macro hedge fund analyst; here are a few summaries of different sets of newheadlines; please provide an overarching summary dont mind if you also include some numbers from the summaries; make it quite detailed and comprehensive.\n\n"
+        "you are a macro hedge fund analyst; here are a few summaries of different sets of newheadlines; please provide an overarching summary dont mind if you also include some numbers from the summaries; make it quite detailed and comprehensive."
+        "at the end provide a description of the current macro/markets regime we are in. \n\n"
         f"{text}\n\nSummary:"
     )
     completion = client.chat.completions.create(
