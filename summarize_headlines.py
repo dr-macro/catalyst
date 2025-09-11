@@ -8,8 +8,6 @@ from textwrap import wrap
 today = datetime.today().strftime("%Y-%m-%d")
 csv_path = f"data/articles_{today}.csv"
 
-csv_path = f"data/articles_2025-09-10.csv"
-
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def load_headlines(csv_path):
@@ -88,7 +86,7 @@ def summarize_all():
     
     summary_of_summaries = overarching_summary(full_summary)
     
-    summary_path = f"data/summary_{today}.txt"
+    summary_path = f"summaries/summary_{today}.txt"
     with open(summary_path, "w") as f:
         f.write(summary_of_summaries)
 
