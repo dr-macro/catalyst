@@ -1,0 +1,29 @@
+name: 📩 Daily Financial Summary Email
+
+on:
+  schedule:
+    - cron: "55 23 * * *"  # Every day at 23:55 UTC
+  workflow_dispatch:
+
+jobs:
+  summarize_and_email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 📦 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: 🔧 Install dependencies
+        run: |
+          pip install pandas feedparser newspaper3k openai
+
+      - name: 🧠 Summarize headlines
+        run: python summarize_headlines.py
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
