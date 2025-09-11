@@ -8,7 +8,7 @@ from textwrap import wrap
 today = datetime.today().strftime("%Y-%m-%d")
 csv_path = f"data/articles_{today}.csv"
 
-csv_path = f"articles_2025-09-10.csv"
+csv_path = f"data/articles_2025-09-10.csv"
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
