@@ -2,7 +2,7 @@ name: 📩 Daily Financial Summary Email
 
 on:
   schedule:
-    - cron: "30 23 * * *"  # Every day at 23:55 UTC
+    - cron: "40 23 * * *"  # Every day at 23:55 UTC
   workflow_dispatch:
 
 jobs:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0                   # <--- important for pull/rebase
 
       - name: 📦 Set up Python
         uses: actions/setup-python@v4
@@ -28,10 +30,14 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       - name: Commit and push summary to GitHub
-        run: |
-          git config --global user.name "github-actions"
+        run: |        
+          git config --global user.name  "github-actions"
           git config --global user.email "github-actions@github.com"
-        
+      
           git add summaries/*.txt
           git commit -m "📄 Add daily summary [skip ci]" || echo "No changes to commit"
-          git push
+      
+          # Pull any new commits on main and rebase our commit on top
+          git pull --rebase origin main
+      
+          git push origin main
