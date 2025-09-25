@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from openai import OpenAI
 import os
 import pandas as pd
@@ -97,3 +100,5 @@ def summarize_all():
 
 if __name__ == "__main__":
     summarize_all()
+
+
