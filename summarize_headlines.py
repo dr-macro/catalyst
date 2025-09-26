@@ -33,7 +33,7 @@ def load_headlines(path):
     df = pd.read_csv(path)
     return [f"{row['source']}: {row['title']}" for _, row in df.iterrows()]
 
-def chunk_headlines(headlines, max_chars=250000):
+def chunk_headlines(headlines, max_chars=10000000):
     chunks, chunk, total_chars = [], [], 0
     for h in headlines:
         if total_chars + len(h) > max_chars:
@@ -48,14 +48,14 @@ def chunk_headlines(headlines, max_chars=250000):
 
 def summarize_chunk(text):
     prompt = (
-        "you are a macro hedge fund analyst; below are newsheadlines from today. "
-        "please summarize the main themes. dont mind if you also include some numbers "
-        "from the headlines; make it quite detailed and comprehensive. "
-        "at the end provide a description of the current macro/markets regime we are in.\n\n"
-        f"{text}\n\nSummarize:"
+        "You are a macro hedge fund analyst; please avoid using spammy words."
+        "Please summarize the main themes in brief numbered bullet points (1 short comprehensive sentence to explain). include the numbers and hard facts from the headlines as smaller sub-bullet points (put them ONLY under the corresponding bullet points and just state them as briefly as possible, no need to write sentences, just put the facts), but no need to name the newssource."
+        #"from the headlines; make it quite detailed and comprehensive. "
+        "At the end provide a description (in 2-3 lines) of the current macro/markets regime we are in.\n\n"
+        f"{text}\n\nBelow are newsheadlines from today. Summarize:"
     )
     completion = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-5-mini",
         messages=[{"role": "user", "content": prompt}]
     )
     return completion.choices[0].message.content
@@ -68,7 +68,7 @@ def overarching_summary(text):
         f"{text}\n\nSummary:"
     )
     completion = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-4.1",
         messages=[{"role": "user", "content": prompt}]
     )
     return completion.choices[0].message.content
@@ -88,11 +88,17 @@ def summarize_all():
         summaries.append(summarize_chunk(chunk))
 
     full_summary = "\n\n".join(summaries)
-    summary_of_summaries = overarching_summary(full_summary)
+    if len(summaries) > 1:
+        print("Creating overarching summary...")
+        summary_of_summaries = overarching_summary(full_summary)
+    else:
+        print("No need for creating overarching summary...")
+        summary_of_summaries = full_summary
+        
 
     # Save under summaries/summary_<date-used>.txt
     summary_path = f"summaries/summary_{date_str}.txt"
-    with open(summary_path, "w") as f:
+    with open(summary_path, "w", encoding="utf-8") as f:
         f.write(summary_of_summaries)
 
     print(f"✅ Summary saved to {summary_path}")
