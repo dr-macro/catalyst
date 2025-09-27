@@ -2,29 +2,36 @@ name: 📅 TradingEconomics Calendar Scraper
 
 on:
   schedule:
-    # 07:00 UTC daily
     - cron: '0 7 * * *'
-    # 23:50 UTC daily
     - cron: '50 23 * * *'
-  workflow_dispatch:    # allow manual trigger
+  workflow_dispatch:
 
 jobs:
   scrape-calendar:
     runs-on: ubuntu-latest
-
     steps:
-      - name: ⬇️ Checkout repository
-        uses: actions/checkout@v4
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: 🐍 Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: 📦 Install dependencies
         run: |
-          pip install requests beautifulsoup4 pandas
+          pip install requests beautifulsoup4 pandas python-dotenv
 
       - name: ▶️ Run scraper
-        run: python path/to/your_script.py
-        # e.g. python scripts/te_calendar_scraper.py
+        run: python calendar_scraper.py
+
+      - name: Commit & push updated calendar
+        run: |
+          git config --global user.name  "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add calendar/tradingeconomics_calendar_master.csv
+          git commit -m "📄 Update calendar [skip ci]" || echo "No changes to commit"
+          git pull --rebase origin main
+          git push origin main
