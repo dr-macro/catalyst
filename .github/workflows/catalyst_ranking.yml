@@ -1,0 +1,30 @@
+name: 🌟 Catalyst Ranking
+
+on:
+  schedule:
+    # 23:00 UTC every day
+    - cron: '0 23 * * *'
+  workflow_dispatch:    # manual trigger if needed
+
+jobs:
+  rank-catalysts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install pandas python-dotenv openai
+
+      - name: ▶️ Run catalyst ranking script
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python path/to/your_script.py
+        # e.g. python scripts/catalyst_ranking.py
