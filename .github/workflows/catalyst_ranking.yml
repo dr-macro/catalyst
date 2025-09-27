@@ -28,3 +28,13 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python path/to/your_script.py
         # e.g. python scripts/catalyst_ranking.py
+
+      - name: Commit & push catalyst rankings
+        run: |
+          git config --global user.name  "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add incoming_catalysts/*.txt
+          git commit -m "📄 Add catalyst rankings [skip ci]" || echo "No changes to commit"
+          git pull --rebase origin main
+          git push origin main
+
