@@ -1,0 +1,30 @@
+name: 📅 TradingEconomics Calendar Scraper
+
+on:
+  schedule:
+    # 07:00 UTC daily
+    - cron: '0 7 * * *'
+    # 23:50 UTC daily
+    - cron: '50 23 * * *'
+  workflow_dispatch:    # allow manual trigger
+
+jobs:
+  scrape-calendar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install requests beautifulsoup4 pandas
+
+      - name: ▶️ Run scraper
+        run: python path/to/your_script.py
+        # e.g. python scripts/te_calendar_scraper.py
