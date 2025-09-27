@@ -1,0 +1,31 @@
+name: 📧 Daily Macro Email
+
+on:
+  schedule:
+    # run every day at 23:59 UTC
+    - cron: '59 23 * * *'
+  workflow_dispatch:    # allow manual trigger if desired
+
+jobs:
+  send-daily-email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install python-dotenv
+
+      - name: ▶️ Run email sender
+        env:
+          SMTP_EMAIL_TOKEN: ${{ secrets.SMTP_EMAIL_TOKEN }}
+          DESTINATARIES: ${{ secrets.DESTINATARIES }}
+        run: python path/to/your_script.py
+        # e.g. python scripts/send_daily_email.py
