@@ -1,8 +1,8 @@
-name: 📩 Daily Financial Summary Email
+name: 📩 Daily Financial Summary
 
 on:
   schedule:
-    - cron: "40 23 * * *"  # Every day at 23:55 UTC
+    - cron: "34 23 * * *"  # Every day at 23:55 UTC
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
 
       - name: 🔧 Install dependencies
         run: |
-          pip install pandas feedparser newspaper3k openai
+          pip install pandas feedparser newspaper3k openai python-dotenv
 
       - name: 🧠 Summarize headlines
         run: python summarize_headlines.py
