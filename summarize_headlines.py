@@ -33,7 +33,7 @@ def load_headlines(path):
     df = pd.read_csv(path)
     return [f"{row['source']}: {row['title']}" for _, row in df.iterrows()]
 
-def chunk_headlines(headlines, max_chars=10000000):
+def chunk_headlines(headlines, max_chars=20000000):
     chunks, chunk, total_chars = [], [], 0
     for h in headlines:
         if total_chars + len(h) > max_chars:
@@ -64,11 +64,13 @@ def overarching_summary(text):
     prompt = (
         "you are a macro hedge fund analyst; here are a few summaries of different sets of headlines; "
         "please provide an overarching summary with numbers if useful. "
-        "at the end provide a description of the current macro/markets regime we are in.\n\n"
+        "Please summarize the main themes in brief numbered bullet points (1 short comprehensive sentence to explain). include the numbers and hard facts from the headlines as smaller sub-bullet points (put them ONLY under the corresponding bullet points and just state them as briefly as possible, no need to write sentences, just put the facts), but no need to name the newssource."
+        #"from the headlines; make it quite detailed and comprehensive. "
+        "At the end provide a description (in 2-3 lines) of the current macro/markets regime we are in.\n\n"
         f"{text}\n\nSummary:"
     )
     completion = client.chat.completions.create(
-        model="gpt-4.1",
+        model="gpt-5-mini",
         messages=[{"role": "user", "content": prompt}]
     )
     return completion.choices[0].message.content
