@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime
 import os
 from newspaper import Article
+from pathlib import Path
 
 # === CONFIG ===
 scrape_content = False  # Set to True if you want full article scraping
@@ -35,20 +36,31 @@ def scrape_article_content(url):
 def main():
     os.makedirs("data", exist_ok=True)
 
-    # Load existing articles (if today's CSV exists)
-    if os.path.exists(csv_path):
-        seen_df = pd.read_csv(csv_path)
-        seen_links = set(seen_df['link'])
-    else:
-        seen_df = pd.DataFrame()
-        seen_links = set()
+    # Load existing articles from ALL CSV files to prevent cross-file duplicates
+    seen_links = set()
+    seen_titles = set()
+    
+    # Check all existing CSV files for duplicates
+    data_folder = Path("data")
+    csv_files = sorted(data_folder.glob("articles_*.csv"))
+    
+    for csv_file in csv_files:
+        try:
+            df = pd.read_csv(csv_file)
+            seen_links.update(df['link'].tolist())
+            seen_titles.update(df['title'].tolist())
+        except Exception as e:
+            print(f"Warning: Could not read {csv_file.name}: {e}")
+    
+    print(f"Loaded {len(seen_links)} existing links and {len(seen_titles)} existing titles")
 
     new_articles = []
 
     for source, url in rss_feeds.items():
         feed = feedparser.parse(url)
         for entry in feed.entries:
-            if entry.link not in seen_links:
+            # Check both link AND title to prevent duplicates
+            if entry.link not in seen_links and entry.title not in seen_titles:
                 content = scrape_article_content(entry.link) if scrape_content else ""
                 new_articles.append({
                     "timestamp": datetime.now().isoformat(timespec='seconds'),
@@ -59,12 +71,20 @@ def main():
                     "content": content
                 })
                 seen_links.add(entry.link)
+                seen_titles.add(entry.title)
 
     if new_articles:
         df_new = pd.DataFrame(new_articles)
-        df_combined = pd.concat([seen_df, df_new], ignore_index=True)
+        
+        # Load today's existing file if it exists
+        if os.path.exists(csv_path):
+            df_existing = pd.read_csv(csv_path)
+            df_combined = pd.concat([df_existing, df_new], ignore_index=True)
+        else:
+            df_combined = df_new
+            
         df_combined.to_csv(csv_path, index=False)
-        print(f"✅ {len(new_articles)} new articles saved.")
+        print(f"✅ {len(new_articles)} new articles saved to {csv_path}")
     else:
         print("No new articles found.")
 

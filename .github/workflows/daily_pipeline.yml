@@ -1,0 +1,39 @@
+name: Daily Pipeline (Calendar + Summary + Catalysts + Email)
+
+on:
+  schedule:
+    - cron: '10 23 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas python-dotenv openai feedparser newspaper3k requests beautifulsoup4
+
+      - name: Run daily pipeline
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SMTP_EMAIL_TOKEN: ${{ secrets.SMTP_EMAIL_TOKEN }}
+          DESTINATARIES: ${{ secrets.DESTINATARIES }}
+        run: python run_daily_pipeline.py
+
+      - name: Commit and push outputs
+        run: |
+          git config --global user.name  "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add calendar/ summaries/ incoming_catalysts/
+          git diff --staged --quiet || (git commit -m "Daily pipeline: calendar + summary + catalysts [skip ci]" && git pull --rebase origin main && git push origin main)
