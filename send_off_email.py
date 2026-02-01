@@ -1,9 +1,12 @@
+import html
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
 from datetime import datetime, timedelta
 import csv
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -100,13 +103,25 @@ def get_calendar_of_the_day_html():
     html.append("</table>")
     return "\n".join(html)
 
-def send_email(subject, body):
+def send_email(subject, body, inline_images=None):
+    """
+    inline_images: optional list of (file_path, content_id) e.g. [("summaries/summary_tsne_chart.png", "summary_tsne_chart")]
+    """
     for recipient in TO_EMAIL:
         msg = MIMEMultipart()
         msg["From"] = FROM_EMAIL
         msg["To"] = recipient
         msg["Subject"] = subject
         msg.attach(MIMEText(body, "html"))
+        if inline_images:
+            for file_path, cid in inline_images:
+                path = Path(file_path)
+                if path.exists():
+                    with open(path, "rb") as f:
+                        img = MIMEImage(f.read())
+                    img.add_header("Content-ID", f"<{cid}>")
+                    img.add_header("Content-Disposition", "inline", filename=path.name)
+                    msg.attach(img)
 
         with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
             server.ehlo()
@@ -138,9 +153,46 @@ if __name__ == "__main__":
 
     calendar_html = get_calendar_of_the_day_html()
 
+    # Summary embeddings t-SNE chart and drift histogram
+    from summary_tsne_chart import build_summary_tsne_chart, build_drift_histogram
+    chart_path = build_summary_tsne_chart()
+    drift_path, drift_rankings = build_drift_histogram()
+    inline_images = []
+    chart_block = ""
+    if chart_path:
+        inline_images.append((str(chart_path), "summary_tsne_chart"))
+        chart_block = (
+            '<h2>Summary embeddings (t-SNE)</h2>'
+            '<p><img src="cid:summary_tsne_chart" alt="Summary embeddings 2D t-SNE" style="max-width:100%;" /></p>'
+        )
+        print(f"Summary t-SNE chart attached: {chart_path}")
+    if drift_path:
+        inline_images.append((str(drift_path), "summary_drift_histogram"))
+        chart_block += (
+            '<h2>Daily narrative drift</h2>'
+            '<p><img src="cid:summary_drift_histogram" alt="Drift histogram" style="max-width:100%;" /></p>'
+        )
+        if drift_rankings:
+            chart_block += (
+                '<h3>Top narrative shifts (by drift magnitude)</h3>'
+                '<table border="1" cellpadding="4" cellspacing="0">'
+                '<tr><th>Rank</th><th>From → To</th><th>Drift</th><th>σ</th><th>Explanation</th></tr>'
+            )
+            for r in drift_rankings:
+                chart_block += (
+                    f'<tr><td>{r["rank"]}</td>'
+                    f'<td>{r["date_before"]} → {r["date_after"]}</td>'
+                    f'<td>{r["drift"]:.3f}</td>'
+                    f'<td>{r["z_score"]:+.2f}</td>'
+                    f'<td>{html.escape(r["explanation"])}</td></tr>'
+                )
+            chart_block += '</table>'
+        print(f"Drift histogram attached: {drift_path}")
+
     email_body = (
         "<p>Greetings,</p>"
         "<p>Please enjoy the automated doom scrolling content.</p>"
+        f"{chart_block}"
         f"<h2>LLM Politics-Headlines Catalysts</h2><pre>{news_catalysts}</pre>"
         f"<h2>LLM Eco-Calendar Catalysts</h2><pre>{calendar_catalysts}</pre>"
         f"<h2>Summary of Today's Headlines</h2><pre>{summary[:10000]}</pre>"
@@ -150,5 +202,6 @@ if __name__ == "__main__":
 
     send_email(
         subject="Daily Macro Summary, Catalysts, and Calendar",
-        body=email_body
+        body=email_body,
+        inline_images=inline_images if inline_images else None,
     )

@@ -1,10 +1,19 @@
 #!/usr/bin/env python3
 """
 Daily pipeline: runs in order
-  1. TradingEconomics calendar scraper
-  2. Daily financial summary (summarize_headlines)
-  3. Catalyst ranking (identify_catalysts)
-  4. Daily macro email (send_off_email)
+  1. TradingEconomics calendar scraper (calendar_scraper.py)
+     - Scrapes TradingEconomics for economic calendar events (dates, country, event, actual/prev/consensus/forecast).
+     - Writes calendar/tradingeconomics_calendar_master.csv.
+  2. Daily financial summary (summarize_headlines.py)
+     - Loads today’s (or yesterday’s) headlines from data/articles_<date>.csv.
+     - Uses OpenAI to summarize in chunks, then produces one overarching summary.
+     - Writes summaries/summary_<date>.txt.
+  3. Catalyst ranking (identify_catalysts.py)
+     - Loads headlines and calendar events; uses OpenAI to rank top upcoming catalysts by market importance.
+     - Writes incoming_catalysts/ (ranked list of events that could move markets).
+  4. Daily macro email (send_off_email.py)
+     - Builds HTML email from calendar (today + 2 weeks), daily summary, and catalyst list.
+     - Sends to DESTINATARIES via SMTP.
 
 Designed to be the single entry point for a scheduled GitHub Action.
 Exits on first failure (non-zero exit from any step).

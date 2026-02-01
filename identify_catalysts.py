@@ -27,8 +27,8 @@ def load_headlines():
         return [str(row) for _, row in df.iterrows()]
 
 def load_calendar_events():
-    today = datetime.now()
-    end_date = today + timedelta(days=14)
+    now = datetime.now()
+    end_date = now + timedelta(days=14)
     calendar_path = "calendar/tradingeconomics_calendar_master.csv"
     if not os.path.exists(calendar_path):
         print(f"No calendar file found: {calendar_path}")
@@ -41,7 +41,8 @@ def load_calendar_events():
                 event_date = datetime.strptime(row["Datetime"], "%Y-%m-%d %H:%M:%S")
             except Exception:
                 continue
-            if today.date() <= event_date.date() <= end_date.date():
+            # Only include events that haven't happened yet (exclude past events from today)
+            if now < event_date <= end_date:
                 events.append(
                     f"{event_date.strftime('%Y-%m-%d %H:%M')} | {row.get('Country', '')} | {row.get('Event', '')}"
                 )
