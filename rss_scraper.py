@@ -3,8 +3,6 @@ import pandas as pd
 from datetime import datetime
 import os
 from newspaper import Article
-from pathlib import Path
-
 # === CONFIG ===
 scrape_content = False  # Set to True if you want full article scraping
 today = datetime.today().strftime("%Y-%m-%d")
@@ -36,23 +34,17 @@ def scrape_article_content(url):
 def main():
     os.makedirs("data", exist_ok=True)
 
-    # Load existing articles from ALL CSV files to prevent cross-file duplicates
+    # Only avoid duplicates within today's file (day-to-day); do not check history
     seen_links = set()
     seen_titles = set()
-    
-    # Check all existing CSV files for duplicates
-    data_folder = Path("data")
-    csv_files = sorted(data_folder.glob("articles_*.csv"))
-    
-    for csv_file in csv_files:
+    if os.path.exists(csv_path):
         try:
-            df = pd.read_csv(csv_file)
-            seen_links.update(df['link'].tolist())
-            seen_titles.update(df['title'].tolist())
+            df = pd.read_csv(csv_path)
+            seen_links.update(df["link"].tolist())
+            seen_titles.update(df["title"].tolist())
         except Exception as e:
-            print(f"Warning: Could not read {csv_file.name}: {e}")
-    
-    print(f"Loaded {len(seen_links)} existing links and {len(seen_titles)} existing titles")
+            print(f"Warning: Could not read {csv_path}: {e}")
+    print(f"Loaded {len(seen_links)} existing links and {len(seen_titles)} existing titles (today only)")
 
     new_articles = []
 

@@ -1,10 +1,11 @@
 from dotenv import load_dotenv
 load_dotenv()
 
+from email.utils import parsedate_to_datetime
 from openai import OpenAI
 import os
 import pandas as pd
-from datetime import datetime, timedelta   # <-- add timedelta
+from datetime import datetime, timedelta
 from textwrap import wrap
 
 # --- NEW: helper to get today or fallback to yesterday ---
@@ -27,11 +28,33 @@ def get_csv_path():
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+def _parse_published(s):
+    """Parse RSS 'published' string to datetime; return None on failure."""
+    if pd.isna(s) or s == "N/A" or not str(s).strip():
+        return None
+    try:
+        return parsedate_to_datetime(str(s))
+    except (ValueError, TypeError):
+        return None
+
+
 def load_headlines(path):
+    """Load headlines from CSV, ordered by publication date, each line prefixed with publication date."""
     if not path or not os.path.exists(path):
         return []
     df = pd.read_csv(path)
-    return [f"{row['source']}: {row['title']}" for _, row in df.iterrows()]
+    if df.empty or "published" not in df.columns:
+        return [f"{row['source']}: {row['title']}" for _, row in df.iterrows()]
+    # Parse publication date and sort ascending (oldest first)
+    df["_pub_dt"] = df["published"].map(_parse_published)
+    df = df.sort_values("_pub_dt", na_position="last")
+    # Format: date | source: title (use YYYY-MM-DD HH:MM for readability)
+    lines = []
+    for _, row in df.iterrows():
+        pub = row["_pub_dt"]
+        date_str = pub.strftime("%Y-%m-%d %H:%M") if pd.notna(pub) else "unknown"
+        lines.append(f"[{date_str}] {row['source']}: {row['title']}")
+    return lines
 
 def chunk_headlines(headlines, max_chars=20000000):
     chunks, chunk, total_chars = [], [], 0
@@ -47,12 +70,15 @@ def chunk_headlines(headlines, max_chars=20000000):
     return chunks
 
 def summarize_chunk(text):
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
     prompt = (
-        "You are a macro hedge fund analyst; please avoid using spammy words."
-        "Please summarize the main themes in brief numbered bullet points (1 short comprehensive sentence to explain). include the numbers and hard facts from the headlines as smaller sub-bullet points (put them ONLY under the corresponding bullet points and just state them as briefly as possible, no need to write sentences, just put the facts), but no need to name the newssource."
-        #"from the headlines; make it quite detailed and comprehensive. "
+        f"Current date and time (at time of summarization): {now}\n\n"
+        "You are a macro hedge fund analyst; please avoid using spammy words. "
+        "Below are news headlines ordered by publication date; each line starts with [YYYY-MM-DD HH:MM]. "
+        "Please summarize the main themes in brief numbered bullet points (1 short comprehensive sentence to explain). "
+        "Include the numbers and hard facts from the headlines as smaller sub-bullet points (put them ONLY under the corresponding bullet points and just state them as briefly as possible, no need to write sentences, just put the facts), but no need to name the newssource. "
         "At the end provide a description (in 2-3 lines) of the current macro/markets regime we are in.\n\n"
-        f"{text}\n\nBelow are newsheadlines from today. Summarize:"
+        f"{text}\n\nSummarize:"
     )
     completion = client.chat.completions.create(
         model="gpt-5-mini",
@@ -61,11 +87,13 @@ def summarize_chunk(text):
     return completion.choices[0].message.content
 
 def overarching_summary(text):
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
     prompt = (
-        "you are a macro hedge fund analyst; here are a few summaries of different sets of headlines; "
-        "please provide an overarching summary with numbers if useful. "
-        "Please summarize the main themes in brief numbered bullet points (1 short comprehensive sentence to explain). include the numbers and hard facts from the headlines as smaller sub-bullet points (put them ONLY under the corresponding bullet points and just state them as briefly as possible, no need to write sentences, just put the facts), but no need to name the newssource."
-        #"from the headlines; make it quite detailed and comprehensive. "
+        f"Current date and time (at time of summarization): {now}\n\n"
+        "You are a macro hedge fund analyst; here are a few summaries of different sets of headlines. "
+        "Please provide an overarching summary with numbers if useful. "
+        "Please summarize the main themes in brief numbered bullet points (1 short comprehensive sentence to explain). "
+        "Include the numbers and hard facts from the headlines as smaller sub-bullet points (put them ONLY under the corresponding bullet points and just state them as briefly as possible, no need to write sentences, just put the facts), but no need to name the newssource. "
         "At the end provide a description (in 2-3 lines) of the current macro/markets regime we are in.\n\n"
         f"{text}\n\nSummary:"
     )
