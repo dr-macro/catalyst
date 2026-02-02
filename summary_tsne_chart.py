@@ -282,6 +282,81 @@ def _get_cluster_theme_name(summary_texts: list[str]) -> str:
         return "Cluster"
 
 
+# Max chars per summary when sending to LLM for axis interpretation (keep prompt small)
+AXIS_INTERPRET_SUMMARY_CHARS = 10000
+AXIS_INTERPRET_N_EXTREMES = 3
+
+
+def _interpret_axis_llm(
+    xy: np.ndarray,
+    dates: list[datetime],
+    axis_index: int,
+    n_extremes: int = AXIS_INTERPRET_N_EXTREMES,
+) -> str:
+    """
+    Ask LLM: summaries at one end of an axis vs the other — what theme separates them?
+    Returns a short phrase for the axis (e.g. for xlabel/ylabel).
+    """
+    if not client or axis_index not in (0, 1):
+        return ""
+    coords = xy[:, axis_index]
+    n = len(coords)
+    if n < 2 * n_extremes:
+        return ""
+    # Indices of low end and high end of axis
+    order = np.argsort(coords)
+    low_indices = order[:n_extremes]
+    high_indices = order[-n_extremes:]
+    texts_low: list[str] = []
+    texts_high: list[str] = []
+    for i in low_indices:
+        d = dates[i]
+        path = SUMMARIES_DIR / f"summary_{d.strftime('%Y-%m-%d')}.txt"
+        if path.exists():
+            try:
+                texts_low.append(path.read_text(encoding="utf-8")[:AXIS_INTERPRET_SUMMARY_CHARS])
+            except Exception:
+                pass
+    for i in high_indices:
+        d = dates[i]
+        path = SUMMARIES_DIR / f"summary_{d.strftime('%Y-%m-%d')}.txt"
+        if path.exists():
+            try:
+                texts_high.append(path.read_text(encoding="utf-8")[:AXIS_INTERPRET_SUMMARY_CHARS])
+            except Exception:
+                pass
+    if not texts_low or not texts_high:
+        return ""
+    collated_low = "\n---\n".join(texts_low)
+    collated_high = "\n---\n".join(texts_high)
+    prompt = (
+        "In a narrative-drift map, daily summaries are placed in 2D. "
+        "Below are summaries at one end of an axis (Group A) and at the other end (Group B). "
+        "In max 3-4 words, what theme or dimension separates Group A from Group B? Describe it such a way that the axis becomes readable (ie what a more negative or more positive number mean)"
+        "Reply with only those 3-4 words, no preamble.\n\n"
+        "Group A (one end):\n" + collated_low + "\n\n"
+        "Group B (other end):\n" + collated_high
+    )
+    print(prompt)
+    try:
+        response = client.chat.completions.create(
+            model="gpt-5.2-2025-12-11",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3,
+        )
+        label = (response.choices[0].message.content or "").strip()
+        return label[:80] if label else ""
+    except Exception:
+        return ""
+
+
+def _get_axis_interpretations(xy: np.ndarray, dates: list[datetime]) -> tuple[str, str]:
+    """Get LLM-based human-readable labels for axis 0 (x) and axis 1 (y). Returns (label_x, label_y)."""
+    label_x = _interpret_axis_llm(xy, dates, 0) if client else ""
+    label_y = _interpret_axis_llm(xy, dates, 1) if client else ""
+    return (label_x, label_y)
+
+
 def _plot_embedding_2d(
     xy: np.ndarray,
     dates: list[datetime],
@@ -290,8 +365,9 @@ def _plot_embedding_2d(
     title: str | None = None,
     cluster_labels: np.ndarray | None = None,
     cluster_theme_names: list[str] | None = None,
+    axis_labels: tuple[str | None, str | None] | None = None,
 ) -> Path:
-    """Scatter: color by date, marker per cluster; legend outside."""
+    """Scatter: color by date, marker per cluster; legend outside. axis_labels = (xlabel, ylabel) from LLM if available."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -359,10 +435,21 @@ def _plot_embedding_2d(
             textcoords="offset points",
         )
     if title is None:
-        title = f"Narrative Drift"
-    ax.set_title(f"{title}\nSimilar summaries sit closer; axes have no units.", fontsize=10)
-    ax.set_xlabel(f"{method_name} 1")
-    ax.set_ylabel(f"{method_name} 2")
+        title = "Narrative Drift"
+    subtitle = "Similar summaries sit closer"
+    if axis_labels and (axis_labels[0] or axis_labels[1]):
+        bits = []
+        if axis_labels[0]:
+            bits.append("X: " + axis_labels[0][:50])
+        if axis_labels[1]:
+            bits.append("Y: " + axis_labels[1][:50])
+        if bits:
+            subtitle += " - tentative interpretations of axes."
+    else:
+        subtitle += " Axes have no units."
+    ax.set_title(f"{title}\n{subtitle}", fontsize=10)
+    ax.set_xlabel(axis_labels[0] if axis_labels and axis_labels[0] else f"{method_name} 1")
+    ax.set_ylabel(axis_labels[1] if axis_labels and axis_labels[1] else f"{method_name} 2")
     mappable = ScalarMappable(norm=norm, cmap=cmap)
     mappable.set_array([])
     cbar = fig.colorbar(mappable, ax=ax)
@@ -420,12 +507,19 @@ def build_summary_tsne_chart(
                     pass
         name = _get_cluster_theme_name(texts) if texts else f"Cluster {k + 1}"
         cluster_theme_names.append(name)
+    # LLM-based axis interpretations (human-readable labels for X and Y)
+    print("Interpreting axes (LLM)...")
+    axis_labels = _get_axis_interpretations(xy, dates_sorted)
+    if axis_labels[0] or axis_labels[1]:
+        print(f"  X: {axis_labels[0] or '(none)'}")
+        print(f"  Y: {axis_labels[1] or '(none)'}")
     output_path = SUMMARIES_DIR / CHART_FILENAME
     _plot_embedding_2d(
         xy, dates_sorted, output_path,
         method_name=method_name,
         cluster_labels=cluster_labels,
         cluster_theme_names=cluster_theme_names,
+        axis_labels=axis_labels,
     )
     return output_path
 
@@ -445,7 +539,7 @@ Summary {date_after.strftime('%Y-%m-%d')}:
 In one short phrase (max 10 words), describe the main narrative shift. No preamble."""
     try:
         response = client.chat.completions.create(
-            model=CLUSTER_LLM_MODEL,
+            model="gpt-5.2-2025-12-11",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
         )

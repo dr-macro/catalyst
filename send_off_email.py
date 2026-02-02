@@ -134,9 +134,18 @@ def send_email(subject, body, inline_images=None):
 if __name__ == "__main__":
     today_str = datetime.now().strftime("%Y-%m-%d")
 
-    # Load summary
-    with open(f"summaries/summary_{today_str}.txt", "r", encoding="utf-8") as f:
-        summary = f.read()
+    # Load summary (today's file or most recent available)
+    summary_path = Path(f"summaries/summary_{today_str}.txt")
+    if not summary_path.exists():
+        candidates = sorted(Path("summaries").glob("summary_*.txt"), key=lambda p: p.name, reverse=True)
+        summary_path = candidates[0] if candidates else None
+    if summary_path and summary_path.exists():
+        with open(summary_path, "r", encoding="utf-8") as f:
+            summary = f.read()
+        if summary_path.name != f"summary_{today_str}.txt":
+            summary = f"(Summary from {summary_path.stem.replace('summary_', '')} — no summary for today yet.)\n\n{summary}"
+    else:
+        summary = "(No summary file found.)"
 
     # Load catalysts if available
     news_catalysts_path = f"incoming_catalysts/news_catalysts_{today_str}.txt"
@@ -151,7 +160,16 @@ if __name__ == "__main__":
         with open(calendar_catalysts_path, "r", encoding="utf-8") as f:
             calendar_catalysts = f.read()
 
-    calendar_html = get_calendar_of_the_day_html()
+    # Catalyst table (HTML table in email body)
+    from catalyst_timeline import build_catalyst_timeline
+    timeline_html = build_catalyst_timeline()
+    if timeline_html:
+        timeline_block = (
+            '<h2>Catalyst table: past 2 weeks | next 2 weeks</h2>'
+            f'<p>{timeline_html}</p>'
+        )
+    else:
+        timeline_block = "<p>No catalyst table data available.</p>"
 
     # Summary embeddings t-SNE chart and drift histogram
     from summary_tsne_chart import build_summary_tsne_chart, build_drift_histogram
@@ -162,14 +180,14 @@ if __name__ == "__main__":
     if chart_path:
         inline_images.append((str(chart_path), "summary_tsne_chart"))
         chart_block = (
-            '<h2>Summary embeddings (t-SNE)</h2>'
+            '<h2>Narrative Drift Map</h2>'
             '<p><img src="cid:summary_tsne_chart" alt="Summary embeddings 2D t-SNE" style="max-width:100%;" /></p>'
         )
         print(f"Summary t-SNE chart attached: {chart_path}")
     if drift_path:
         inline_images.append((str(drift_path), "summary_drift_histogram"))
         chart_block += (
-            '<h2>Daily narrative drift</h2>'
+            '<h2>Drifts VS Jumps</h2>'
             '<p><img src="cid:summary_drift_histogram" alt="Drift histogram" style="max-width:100%;" /></p>'
         )
         if drift_rankings:
@@ -196,7 +214,7 @@ if __name__ == "__main__":
         f"<h2>LLM Politics-Headlines Catalysts</h2><pre>{news_catalysts}</pre>"
         f"<h2>LLM Eco-Calendar Catalysts</h2><pre>{calendar_catalysts}</pre>"
         f"<h2>Summary of Today's Headlines</h2><pre>{summary[:10000]}</pre>"
-        f"{calendar_html}<hr>"
+        f"{timeline_block}<hr>"
         "<p>Best regards,<br>MacroDoomscrolling</p>"
     )
 
