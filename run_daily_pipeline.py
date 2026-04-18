@@ -11,8 +11,14 @@ Daily pipeline: runs in order
   3. Catalyst ranking (identify_catalysts.py)
      - Loads headlines and calendar events; uses OpenAI to rank top upcoming catalysts by market importance.
      - Writes incoming_catalysts/ (ranked list of events that could move markets).
-  4. Daily macro email (send_off_email.py)
-     - Builds HTML email from calendar (today + 2 weeks), daily summary, and catalyst list.
+  4. Narrative ontology (build_ontology.py)
+     - Extracts a knowledge graph (entities, relationships, themes) from headlines + PDFs.
+     - Diffs today’s ontology vs yesterday’s; produces network and theme-drift charts.
+     - Writes ontologies/ontology_<date>.json, ontologies/diff_<date>.txt,
+       summaries/ontology_diff_<date>.png, summaries/ontology_themes_<date>.png.
+  5. Daily macro email (send_off_email.py)
+     - Builds HTML email from calendar (today + 2 weeks), daily summary, catalyst list,
+       and ontology diff visualisations.
      - Sends to DESTINATARIES via SMTP.
 
 Designed to be the single entry point for a scheduled GitHub Action.
@@ -23,11 +29,12 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Order matters: calendar → summary → catalyst → email
+# Order matters: calendar → summary → catalyst → ontology → email
 STEPS = [
     ("TradingEconomics calendar", "calendar_scraper.py"),
     ("Daily financial summary", "summarize_headlines.py"),
     ("Catalyst ranking", "identify_catalysts.py"),
+    ("Narrative ontology", "build_ontology.py"),
     ("Daily macro email", "send_off_email.py"),
 ]
 
