@@ -170,7 +170,11 @@ def _tsne_2d(embeddings: np.ndarray, random_state: int = 42) -> np.ndarray:
     """Reduce (n, dim) to (n, 2) using t-SNE. Perplexity scales with n, capped at 50."""
     from sklearn.manifold import TSNE
     n = len(embeddings)
-    perplexity = min(50, max(5, (n - 1) // 3)) if n > 1 else 1
+    if n < 2:
+        raise ValueError("t-SNE requires at least 2 samples")
+    # sklearn requires perplexity < n_samples; floor of 5 breaks when n is small (e.g. CI with 3 summaries)
+    perplexity = min(50, max(5, (n - 1) // 3))
+    perplexity = min(perplexity, n - 1)
     tsne = TSNE(n_components=2, random_state=random_state, perplexity=perplexity)
     return tsne.fit_transform(embeddings)
 
