@@ -8,6 +8,8 @@ Daily pipeline: runs in order
      - Loads today’s (or yesterday’s) headlines from data/articles_<date>.csv.
      - Uses OpenAI to summarize in chunks, then produces one overarching summary.
      - Writes summaries/summary_<date>.txt.
+  2b. Summary backfill (backfill_summaries.py), if fewer than 15 summaries in the last 15 days
+     - Regenerates missing summaries from data/articles_<date>.csv for the t-SNE chart.
   3. Catalyst ranking (identify_catalysts.py)
      - Loads headlines and calendar events; uses OpenAI to rank top upcoming catalysts by market importance.
      - Writes incoming_catalysts/ (ranked list of events that could move markets).
@@ -27,6 +29,7 @@ from pathlib import Path
 STEPS = [
     ("TradingEconomics calendar", "calendar_scraper.py"),
     ("Daily financial summary", "summarize_headlines.py"),
+    ("Summary backfill (if needed)", "backfill_summaries.py"),
     ("Catalyst ranking", "identify_catalysts.py"),
     ("Daily macro email", "send_off_email.py"),
 ]

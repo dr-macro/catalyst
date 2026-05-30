@@ -6,6 +6,7 @@ from openai import OpenAI
 import os
 import pandas as pd
 from datetime import datetime, timedelta
+from pathlib import Path
 from textwrap import wrap
 
 # --- NEW: helper to get today or fallback to yesterday ---
@@ -69,8 +70,8 @@ def chunk_headlines(headlines, max_chars=20000000):
         chunks.append("\n".join(chunk))
     return chunks
 
-def summarize_chunk(text):
-    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+def summarize_chunk(text, as_of: datetime | None = None):
+    now = (as_of or datetime.now()).strftime("%Y-%m-%d %H:%M")
     prompt = (
         f"Current date and time (at time of summarization): {now}\n\n"
         "You are a macro hedge fund analyst; please avoid using spammy words. "
@@ -86,8 +87,8 @@ def summarize_chunk(text):
     )
     return completion.choices[0].message.content
 
-def overarching_summary(text):
-    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+def overarching_summary(text, as_of: datetime | None = None):
+    now = (as_of or datetime.now()).strftime("%Y-%m-%d %H:%M")
     prompt = (
         f"Current date and time (at time of summarization): {now}\n\n"
         "You are a macro hedge fund analyst; here are a few summaries of different sets of headlines. "
@@ -103,36 +104,62 @@ def overarching_summary(text):
     )
     return completion.choices[0].message.content
 
-def summarize_all():
-    csv_path, date_str = get_csv_path()
+def summarize_for_date(date_str: str, *, skip_if_exists: bool = True) -> str | None:
+    """
+    Generate summaries/summary_<date_str>.txt from data/articles_<date_str>.csv.
+    Returns path to summary file, or None if skipped or failed.
+    """
+    summary_path = Path("summaries") / f"summary_{date_str}.txt"
+    if skip_if_exists and summary_path.exists():
+        try:
+            if summary_path.read_text(encoding="utf-8").strip():
+                print(f"Summary already exists for {date_str}; skipping.")
+                return str(summary_path)
+        except OSError:
+            pass
+
+    csv_path = f"data/articles_{date_str}.csv"
+    if not os.path.exists(csv_path):
+        print(f"❌ No articles CSV for {date_str}.")
+        return None
+
     headlines = load_headlines(csv_path)
     if not headlines:
-        print("❌ No headlines found for today or yesterday.")
-        return
+        print(f"❌ No headlines in {csv_path}.")
+        return None
+
+    try:
+        as_of = datetime.strptime(date_str, "%Y-%m-%d")
+    except ValueError:
+        as_of = None
 
     print(f"Loaded {len(headlines)} headlines from {csv_path}.")
     chunks = chunk_headlines(headlines)
     summaries = []
     for i, chunk in enumerate(chunks):
         print(f"Summarizing chunk {i+1}/{len(chunks)}...")
-        summaries.append(summarize_chunk(chunk))
+        summaries.append(summarize_chunk(chunk, as_of=as_of))
 
     full_summary = "\n\n".join(summaries)
     if len(summaries) > 1:
         print("Creating overarching summary...")
-        summary_of_summaries = overarching_summary(full_summary)
+        summary_of_summaries = overarching_summary(full_summary, as_of=as_of)
     else:
         print("No need for creating overarching summary...")
         summary_of_summaries = full_summary
-        
 
-    # Save under summaries/summary_<date-used>.txt
-    summary_path = f"summaries/summary_{date_str}.txt"
-    with open(summary_path, "w", encoding="utf-8") as f:
-        f.write(summary_of_summaries)
-
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    summary_path.write_text(summary_of_summaries, encoding="utf-8")
     print(f"✅ Summary saved to {summary_path}")
-    return summary_path, summary_of_summaries
+    return str(summary_path)
+
+
+def summarize_all():
+    csv_path, date_str = get_csv_path()
+    if not csv_path:
+        print("❌ No headlines found for today or yesterday.")
+        return None
+    return summarize_for_date(date_str, skip_if_exists=False)
 
 if __name__ == "__main__":
     summarize_all()
