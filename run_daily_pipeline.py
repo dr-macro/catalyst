@@ -5,8 +5,9 @@ Daily pipeline: runs in order
   2. Daily financial summary (summarize_headlines.py)
   2b. Summary backfill (backfill_summaries.py), if needed
   3. Catalyst ranking (identify_catalysts.py)
-  4. CoC email assets from latest kg sub-cores (coc_email_assets.py)
-  5. Daily macro email (send_off_email.py)
+  4. Refresh sub-core catalysts from recent headlines (refresh_coc_subcores.py)
+  5. CoC email assets from latest kg sub-cores (coc_email_assets.py)
+  6. Daily macro email (send_off_email.py)
 
 Designed to be the single entry point for a scheduled GitHub Action.
 Exits on first failure (non-zero exit from any step).
@@ -24,6 +25,7 @@ STEPS = [
     ("Daily financial summary", "summarize_headlines.py"),
     ("Summary backfill (if needed)", "backfill_summaries.py"),
     ("Catalyst ranking", "identify_catalysts.py"),
+    ("CoC catalyst refresh", "refresh_coc_subcores.py"),
     ("Core-of-cores email assets", "coc_email_assets.py"),
     ("Daily macro email", "send_off_email.py"),
 ]

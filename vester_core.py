@@ -29,7 +29,7 @@ import json
 import os
 import re
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Callable, Optional, Sequence
@@ -1004,6 +1004,47 @@ def build_core_ontology(
         med_PS=med_PS,
         roles=roles,
         graph=graph,
+        catalysts=catalysts,
+        catalysts_df=catalysts_df,
+    )
+
+
+def refresh_catalysts(
+    core: CoreOntology,
+    *,
+    dated_headlines: Optional[Sequence[tuple]] = None,
+    headlines: Optional[Sequence[str]] = None,
+    as_of: Optional[date] = None,
+    lookback_days: int = 7,
+    model: Optional[str] = None,
+    prompts: PromptSet = DEFAULT_PROMPTS,
+    client: Optional[OpenAI] = None,
+) -> CoreOntology:
+    """Re-run Step 7 on a saved core; variables, roles, and effect graph unchanged."""
+    if client is None:
+        client = _make_client()
+    model = model or core.model or DEFAULT_MODEL
+    hl = [str(h) for h in (headlines or []) if str(h).strip()]
+    recent_block, resolved_as_of = _recent_block(dated_headlines, hl, as_of, lookback_days)
+    if not recent_block.strip():
+        print(f"[{core.label}] No recent headlines for catalyst refresh; keeping existing.")
+        return core
+    catalysts = _step7_catalysts(
+        client,
+        model,
+        prompts,
+        core.variables,
+        core.var_ids,
+        core.system_description,
+        recent_block,
+        resolved_as_of,
+        lookback_days,
+    )
+    catalysts_df = _score_catalysts(catalysts, core.var_ids, core.AS, core.PS)
+    return replace(
+        core,
+        as_of=resolved_as_of,
+        model=model,
         catalysts=catalysts,
         catalysts_df=catalysts_df,
     )

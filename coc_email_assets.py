@@ -381,7 +381,8 @@ def build_coc_email_assets(
     inline_images: list[tuple[str, str]] = [(str(p), cid) for p, cid, _ in graph_assets]
     graphs_html_parts = [
         "<h2>Geopolitical sub-cores (role compass + effect system)</h2>",
-        f"<p>{len(graph_assets)} themes from core-of-cores run dated {stamp}.</p>",
+        f"<p>{len(graph_assets)} themes; catalysts refreshed {stamp} "
+        f"(core structure from saved sub-core snapshots).</p>",
     ]
     for path, cid, title in graph_assets:
         graphs_html_parts.append(f"<h3>{title}</h3>")

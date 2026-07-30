@@ -166,17 +166,12 @@ def _load_summary(today_str: str) -> str:
 
 def build_email_payload(
     today_str: str | None = None,
-    *,
-    fast: bool = False,
 ) -> tuple[str, list[tuple[str, str]]]:
-    """Assemble HTML body + inline image list for the daily email.
-
-    fast=True still includes t-SNE + drift, but skips the news-KG build.
-    """
+    """Assemble HTML body + inline image list for the daily email."""
     today_str = today_str or os.environ.get("PIPELINE_DATE") or datetime.now().strftime(
         "%Y-%m-%d"
     )
-    print(f"Building email for report date: {today_str} (fast={fast})")
+    print(f"Building email for report date: {today_str}")
 
     summary = _load_summary(today_str)
     news_catalysts = _load_catalyst_text("news_catalysts", today_str)
@@ -240,21 +235,6 @@ def build_email_payload(
             chart_block += "</table>"
         print(f"Drift histogram attached: {drift_path}")
 
-    if not fast:
-        from build_news_kg import build_news_kg
-
-        kg_path = build_news_kg()
-        if kg_path:
-            inline_images.append((str(kg_path), "news_kg"))
-            chart_block += (
-                "<h2>News Landscape Knowledge Graph (last 3 days)</h2>"
-                '<p><img src="cid:news_kg" alt="News knowledge graph" '
-                'style="max-width:100%;" /></p>'
-            )
-            print(f"News KG attached: {kg_path}")
-    else:
-        print("fast mode: skipping news KG only")
-
     # Core-of-cores sub-core graphs + compact catalyst timeline (replaces old HTML table)
     from coc_email_assets import build_coc_email_assets
 
@@ -291,18 +271,13 @@ def main(argv: list[str] | None = None) -> int:
         help="Write summaries/email_preview.html and assets; do not send.",
     )
     parser.add_argument(
-        "--fast",
-        action="store_true",
-        help="Skip news-KG only (still includes t-SNE + drift + CoC graphs).",
-    )
-    parser.add_argument(
         "--date",
         default=None,
         help="Report date YYYY-MM-DD (default: PIPELINE_DATE or today).",
     )
     args = parser.parse_args(argv)
 
-    body, inline_images = build_email_payload(args.date, fast=args.fast)
+    body, inline_images = build_email_payload(args.date)
 
     if args.preview:
         preview_path = Path("summaries/email_preview.html")
