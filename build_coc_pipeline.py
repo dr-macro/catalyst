@@ -18,6 +18,7 @@ import argparse
 import json
 import os
 import sys
+import time
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 from itertools import permutations
@@ -52,6 +53,8 @@ TOPICS_PER_ISSUE_MAX = 4
 SUB_CORE_N = 16
 SUB_LOOKBACK_DAYS = 10
 MIN_ISSUE_HEADLINES = 5
+MAX_ISSUE_HEADLINES = 200
+SUB_CORE_BUILD_ATTEMPTS = 3
 N_INTERFACE = 5
 MAX_BRIDGES = 4
 MIN_CONF = 0.55
@@ -348,6 +351,10 @@ TOPICS:
     return issue_to_topics
 
 
+def _subcore_path(iid: str, stamp: str) -> Path:
+    return KG_DIR / f"{vc._slugify(iid)}_core_{stamp}.json"
+
+
 def build_sub_cores(
     issue_variables: list[dict],
     issue_to_topics: dict[str, list[int]],
@@ -357,9 +364,20 @@ def build_sub_cores(
     client,
     stamp: str,
 ) -> dict[str, vc.CoreOntology]:
+    from openai import APIConnectionError, APITimeoutError, RateLimitError
+
     sub_cores: dict[str, vc.CoreOntology] = {}
     for v in tqdm(issue_variables, desc="sub-cores"):
         iid = v["id"]
+        existing = _subcore_path(iid, stamp)
+        if existing.exists():
+            try:
+                sub_cores[iid] = vc.CoreOntology.load(existing)
+                print(f"  {iid}: reusing {existing.name}")
+                continue
+            except Exception as e:
+                print(f"  {iid}: could not load {existing.name} ({e}); rebuilding")
+
         tids = issue_to_topics.get(iid, [])
         sel = articles[articles["topic"].isin(tids)] if tids else articles.iloc[0:0]
         sel = sel.drop_duplicates(subset=["_clean"]).sort_values("file_date")
@@ -367,21 +385,51 @@ def build_sub_cores(
         if len(issue_headlines) < MIN_ISSUE_HEADLINES:
             print(f"  skip {iid}: only {len(issue_headlines)} headlines")
             continue
+        if len(issue_headlines) > MAX_ISSUE_HEADLINES:
+            sel = sel.tail(MAX_ISSUE_HEADLINES)
+            issue_headlines = sel["_clean"].tolist()
         dated = list(zip(sel["file_date"].tolist(), sel["_clean"].tolist()))
-        sub = vc.build_core_ontology(
-            issue_headlines,
-            dated_headlines=dated,
-            with_catalysts=True,
-            core_n=SUB_CORE_N,
-            lookback_days=SUB_LOOKBACK_DAYS,
-            label=iid,
-            window_label=(str(window_days[0]), str(window_days[1])),
-            client=client,
-            show_progress=False,
-        )
+
+        sub: vc.CoreOntology | None = None
+        last_err: Exception | None = None
+        for attempt in range(1, SUB_CORE_BUILD_ATTEMPTS + 1):
+            try:
+                sub = vc.build_core_ontology(
+                    issue_headlines,
+                    dated_headlines=dated,
+                    with_catalysts=True,
+                    core_n=SUB_CORE_N,
+                    lookback_days=SUB_LOOKBACK_DAYS,
+                    label=iid,
+                    window_label=(str(window_days[0]), str(window_days[1])),
+                    client=client,
+                    show_progress=False,
+                    max_headlines=MAX_ISSUE_HEADLINES,
+                )
+                break
+            except (APITimeoutError, APIConnectionError, RateLimitError) as e:
+                last_err = e
+                if attempt >= SUB_CORE_BUILD_ATTEMPTS:
+                    break
+                wait = 30 * attempt
+                print(
+                    f"  {iid}: {type(e).__name__} on attempt {attempt}/"
+                    f"{SUB_CORE_BUILD_ATTEMPTS}; retry in {wait}s …"
+                )
+                time.sleep(wait)
+                client = vc._make_client()
+
+        if sub is None:
+            print(
+                f"  FAILED {iid}: {type(last_err).__name__}: {last_err}",
+                file=sys.stderr,
+            )
+            continue
+
         sub.save(KG_DIR, stamp=stamp)
         sub_cores[iid] = sub
         print(f"  {iid}: {sub.N} vars, {len(sub.catalysts)} catalysts")
+
     if len(sub_cores) < 2:
         raise RuntimeError(
             f"Only {len(sub_cores)} sub-core(s) built; need at least 2 for CoC email."

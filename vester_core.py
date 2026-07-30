@@ -458,9 +458,10 @@ _LLM_RETRY_EXC = (APIConnectionError, APITimeoutError)
 
 
 def _make_client(api_key: Optional[str] = None) -> OpenAI:
+    timeout = float(os.getenv("OPENAI_TIMEOUT_SECONDS", "600"))
     return OpenAI(
         api_key=api_key or os.getenv("OPENAI_API_KEY"),
-        timeout=180.0,
+        timeout=timeout,
         max_retries=0,  # explicit backoff in _call_with_retry
     )
 
@@ -468,8 +469,8 @@ def _make_client(api_key: Optional[str] = None) -> OpenAI:
 def _call_with_retry(
     fn: Callable[[], object],
     *,
-    attempts: int = 5,
-    base_delay: float = 3.0,
+    attempts: int = 8,
+    base_delay: float = 5.0,
     label: str = "OpenAI API",
 ):
     """Retry transient connection/timeouts/rate limits with exponential backoff."""
@@ -868,6 +869,7 @@ def build_core_ontology(
     show_progress: bool = True,
     seed_variables: Optional[Sequence[dict]] = None,
     run_retention: bool = True,
+    max_headlines: Optional[int] = None,
 ) -> CoreOntology:
     """Build a Vester core ontology from a list of headlines.
 
@@ -903,6 +905,9 @@ def build_core_ontology(
         list) and skip the Step 3 LLM call.
     """
     headlines = [str(h) for h in headlines if str(h).strip()]
+    if max_headlines is not None and len(headlines) > max_headlines:
+        print(f"[{label}] Truncating {len(headlines)} headlines → {max_headlines} (most recent)")
+        headlines = headlines[-max_headlines:]
     if not headlines:
         raise ValueError("build_core_ontology: `headlines` is empty.")
     if client is None:
