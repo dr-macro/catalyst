@@ -5,7 +5,7 @@ Daily pipeline: runs in order
   2. Daily financial summary (summarize_headlines.py)
   2b. Summary backfill (backfill_summaries.py), if needed
   3. Catalyst ranking (identify_catalysts.py)
-  4. Refresh sub-core catalysts from recent headlines (refresh_coc_subcores.py)
+  4. Full core-of-cores build (build_coc_pipeline.py)
   5. CoC email assets from latest kg sub-cores (coc_email_assets.py)
   6. Daily macro email (send_off_email.py)
 
@@ -25,7 +25,7 @@ STEPS = [
     ("Daily financial summary", "summarize_headlines.py"),
     ("Summary backfill (if needed)", "backfill_summaries.py"),
     ("Catalyst ranking", "identify_catalysts.py"),
-    ("CoC catalyst refresh", "refresh_coc_subcores.py"),
+    ("Full core-of-cores build", "build_coc_pipeline.py"),
     ("Core-of-cores email assets", "coc_email_assets.py"),
     ("Daily macro email", "send_off_email.py"),
 ]
