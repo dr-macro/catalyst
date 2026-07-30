@@ -1,0 +1,1557 @@
+{
+  "label": "us_iran_escalation",
+  "as_of": "2026-07-27",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-07-27T23:14:32",
+  "system_description": {
+    "narrative_title": "Middle East hostilities drive oil-market volatility and market ripples",
+    "narrative_summary": "News in this window coalesces around swings in global oil prices driven by episodic U.S.–Iran hostilities and pauses, with cascading effects across financial markets, inflation expectations, and fuel supply chains. Treated as an open system, geopolitical shocks (attacks, pauses, diplomatic signals) inject supply-side stress and uncertainty that flow into physical markets (cargoes, refineries, terminals), price signals, and capital flows; those price signals feed back into policy expectations, bond yields, equity valuations, and consumer fuel margins. The boundaries include traded hydrocarbon markets, physical infrastructure, financial markets and policy actors, with cross-border flows and adaptive responses (diplomacy, refinery throughput, inventory drawdowns) shaping system dynamics.",
+    "scope": "Inside: global crude and refined fuel markets (spot and futures prices, physical cargoes), production and export infrastructure (fields, terminals, refineries), key geopolitical actors and events (U.S., Iran, Russia, Ukraine, Venezuela, China; pauses/strikes), financial market responses (stocks, bond yields, gold), and downstream consumer fuel prices/margins.",
+    "super_system": "Global economic-financial-geopolitical system (energy-finance nexus)",
+    "adjacent_subsystems": [
+      "Middle East geopolitics and conflict dynamics",
+      "Global financial markets (equities, bonds, safe havens)",
+      "Energy supply chain and infrastructure (production, shipping, refineries)",
+      "Consumer fuel and retail markets (gasoline prices, margins)"
+    ],
+    "evidence_headlines": [
+      "Oil tumbles over 5% as US-Iran pause sparks hopes for diplomatic breakthrough",
+      "Oil falls more than 4% as Iran and US pause strikes over Strait of Hormuz",
+      "Physical oil prices jump with some nearing $110 as Iran, Ukraine wars hit supply",
+      "Stagflation talk returns to rattle markets as oil rebounds to $100",
+      "US oil refineries run at breakneck speeds as wars choke fuel supplies",
+      "Oil prices may fall, but gasoline prices won’t. Look at the trap we’re in."
+    ]
+  },
+  "variables": [
+    {
+      "id": "global_oil_spot_price",
+      "name": "Global oil spot price",
+      "description": "The prevailing cash price per barrel for crude oil in global physical markets at a given time.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "description": "The magnitude and frequency of short-term fluctuations in oil prices reflecting market uncertainty and risk perceptions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_physical_supply_ra",
+      "name": "Crude physical supply rate",
+      "description": "The flow volume of crude oil made available for export or sale from producing locations into global markets per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_throughput_util",
+      "name": "Refinery throughput utilization",
+      "description": "The proportion of installed refinery processing capacity being used to convert crude into refined products at a point in time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "seaborne_transport_disru",
+      "name": "Seaborne transport disruption index",
+      "description": "A continuous measure of delays, route closures, and capacity reductions affecting maritime oil and product shipments.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commercial_oil_inventori",
+      "name": "Commercial oil inventories",
+      "description": "The total stockpile of crude and refined products held by commercial entities available to meet near-term demand.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "spare_production_capacit",
+      "name": "Spare production capacity",
+      "description": "The excess sustainable production capability that can be brought online within a defined timeframe if required.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refined_product_margin_l",
+      "name": "Refined product margin level",
+      "description": "The spread between refined product prices and crude input costs, reflecting profitability across refining and distribution.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fuel_retail_price_level",
+      "name": "Fuel retail price level",
+      "description": "The end‑consumer price of automotive fuels at retail points, inclusive of taxes, distribution, and margin components.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and consumer anticipations about future general price level changes over policy-relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_yield_level",
+      "name": "Bond yield level",
+      "description": "The prevailing nominal interest rates on government or risk‑free debt instruments that influence discounting and financing costs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_market_valuation_",
+      "name": "Equity market valuation level",
+      "description": "Aggregate price-to-earnings or comparable valuation metrics representing equity market pricing relative to fundamentals.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "capital_flow_volatility",
+      "name": "Capital flow volatility",
+      "description": "The rate and variability of reallocations of financial capital across asset classes in response to market signals.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "geopolitical_conflict_in",
+      "name": "Geopolitical conflict intensity",
+      "description": "The aggregate level of hostile actions and kinetic or strategic pressure that can disrupt cross-border economic flows.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diplomatic_deescalation_",
+      "name": "Diplomatic de‑escalation signal strength",
+      "description": "The continuous strength and credibility of non-kinetic signals (negotiations, pauses, agreements) that reduce conflict-driven risk perceptions.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_adaptive_capacity",
+      "name": "Market adaptive capacity",
+      "description": "The systemic ability of supply chains, storage, logistics, and market participants to reallocate resources and restore equilibrium after shocks.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "global_oil_spot_price",
+    "oil_price_volatility",
+    "crude_physical_supply_ra",
+    "refinery_throughput_util",
+    "seaborne_transport_disru",
+    "commercial_oil_inventori",
+    "spare_production_capacit",
+    "refined_product_margin_l",
+    "fuel_retail_price_level",
+    "inflation_expectations",
+    "bond_yield_level",
+    "equity_market_valuation_",
+    "capital_flow_volatility",
+    "geopolitical_conflict_in",
+    "diplomatic_deescalation_",
+    "market_adaptive_capacity"
+  ],
+  "var_names": {
+    "global_oil_spot_price": "Global oil spot price",
+    "oil_price_volatility": "Oil price volatility",
+    "crude_physical_supply_ra": "Crude physical supply rate",
+    "refinery_throughput_util": "Refinery throughput utilization",
+    "seaborne_transport_disru": "Seaborne transport disruption index",
+    "commercial_oil_inventori": "Commercial oil inventories",
+    "spare_production_capacit": "Spare production capacity",
+    "refined_product_margin_l": "Refined product margin level",
+    "fuel_retail_price_level": "Fuel retail price level",
+    "inflation_expectations": "Inflation expectations",
+    "bond_yield_level": "Bond yield level",
+    "equity_market_valuation_": "Equity market valuation level",
+    "capital_flow_volatility": "Capital flow volatility",
+    "geopolitical_conflict_in": "Geopolitical conflict intensity",
+    "diplomatic_deescalation_": "Diplomatic de‑escalation signal strength",
+    "market_adaptive_capacity": "Market adaptive capacity"
+  },
+  "impact_matrix": {
+    "global_oil_spot_price": {
+      "global_oil_spot_price": 0,
+      "oil_price_volatility": 1,
+      "crude_physical_supply_ra": 0,
+      "refinery_throughput_util": 1,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 1,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 2,
+      "fuel_retail_price_level": 3,
+      "inflation_expectations": 2,
+      "bond_yield_level": 1,
+      "equity_market_valuation_": 1,
+      "capital_flow_volatility": 2,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 0
+    },
+    "oil_price_volatility": {
+      "global_oil_spot_price": 1,
+      "oil_price_volatility": 0,
+      "crude_physical_supply_ra": 0,
+      "refinery_throughput_util": 1,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 1,
+      "spare_production_capacit": 1,
+      "refined_product_margin_l": 1,
+      "fuel_retail_price_level": 1,
+      "inflation_expectations": 1,
+      "bond_yield_level": 1,
+      "equity_market_valuation_": 2,
+      "capital_flow_volatility": 3,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 0
+    },
+    "crude_physical_supply_ra": {
+      "global_oil_spot_price": 3,
+      "oil_price_volatility": 2,
+      "crude_physical_supply_ra": 0,
+      "refinery_throughput_util": 2,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 2,
+      "spare_production_capacit": 1,
+      "refined_product_margin_l": 2,
+      "fuel_retail_price_level": 2,
+      "inflation_expectations": 1,
+      "bond_yield_level": 0,
+      "equity_market_valuation_": 1,
+      "capital_flow_volatility": 1,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 1
+    },
+    "refinery_throughput_util": {
+      "global_oil_spot_price": 1,
+      "oil_price_volatility": 1,
+      "crude_physical_supply_ra": 0,
+      "refinery_throughput_util": 0,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 2,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 2,
+      "fuel_retail_price_level": 1,
+      "inflation_expectations": 0,
+      "bond_yield_level": 0,
+      "equity_market_valuation_": 1,
+      "capital_flow_volatility": 0,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 1
+    },
+    "seaborne_transport_disru": {
+      "global_oil_spot_price": 3,
+      "oil_price_volatility": 3,
+      "crude_physical_supply_ra": 3,
+      "refinery_throughput_util": 2,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 2,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 2,
+      "fuel_retail_price_level": 2,
+      "inflation_expectations": 1,
+      "bond_yield_level": 1,
+      "equity_market_valuation_": 1,
+      "capital_flow_volatility": 2,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 2
+    },
+    "commercial_oil_inventori": {
+      "global_oil_spot_price": 3,
+      "oil_price_volatility": 2,
+      "crude_physical_supply_ra": 1,
+      "refinery_throughput_util": 1,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 0,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 2,
+      "fuel_retail_price_level": 1,
+      "inflation_expectations": 1,
+      "bond_yield_level": 0,
+      "equity_market_valuation_": 1,
+      "capital_flow_volatility": 1,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 2
+    },
+    "spare_production_capacit": {
+      "global_oil_spot_price": 3,
+      "oil_price_volatility": 2,
+      "crude_physical_supply_ra": 2,
+      "refinery_throughput_util": 0,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 1,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 1,
+      "fuel_retail_price_level": 1,
+      "inflation_expectations": 1,
+      "bond_yield_level": 0,
+      "equity_market_valuation_": 1,
+      "capital_flow_volatility": 1,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 1
+    },
+    "refined_product_margin_l": {
+      "global_oil_spot_price": 1,
+      "oil_price_volatility": 1,
+      "crude_physical_supply_ra": 0,
+      "refinery_throughput_util": 2,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 1,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 0,
+      "fuel_retail_price_level": 2,
+      "inflation_expectations": 1,
+      "bond_yield_level": 0,
+      "equity_market_valuation_": 1,
+      "capital_flow_volatility": 1,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 0
+    },
+    "fuel_retail_price_level": {
+      "global_oil_spot_price": 0,
+      "oil_price_volatility": 0,
+      "crude_physical_supply_ra": 0,
+      "refinery_throughput_util": 0,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 0,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 0,
+      "fuel_retail_price_level": 0,
+      "inflation_expectations": 2,
+      "bond_yield_level": 0,
+      "equity_market_valuation_": 0,
+      "capital_flow_volatility": 0,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 0
+    },
+    "inflation_expectations": {
+      "global_oil_spot_price": 0,
+      "oil_price_volatility": 0,
+      "crude_physical_supply_ra": 0,
+      "refinery_throughput_util": 0,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 0,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 0,
+      "fuel_retail_price_level": 0,
+      "inflation_expectations": 0,
+      "bond_yield_level": 3,
+      "equity_market_valuation_": 2,
+      "capital_flow_volatility": 1,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 0
+    },
+    "bond_yield_level": {
+      "global_oil_spot_price": 0,
+      "oil_price_volatility": 0,
+      "crude_physical_supply_ra": 0,
+      "refinery_throughput_util": 0,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 0,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 0,
+      "fuel_retail_price_level": 0,
+      "inflation_expectations": 1,
+      "bond_yield_level": 0,
+      "equity_market_valuation_": 2,
+      "capital_flow_volatility": 2,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 0
+    },
+    "equity_market_valuation_": {
+      "global_oil_spot_price": 0,
+      "oil_price_volatility": 1,
+      "crude_physical_supply_ra": 0,
+      "refinery_throughput_util": 0,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 0,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 0,
+      "fuel_retail_price_level": 0,
+      "inflation_expectations": 0,
+      "bond_yield_level": 0,
+      "equity_market_valuation_": 0,
+      "capital_flow_volatility": 1,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 0
+    },
+    "capital_flow_volatility": {
+      "global_oil_spot_price": 1,
+      "oil_price_volatility": 1,
+      "crude_physical_supply_ra": 0,
+      "refinery_throughput_util": 0,
+      "seaborne_transport_disru": 0,
+      "commercial_oil_inventori": 0,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 0,
+      "fuel_retail_price_level": 0,
+      "inflation_expectations": 0,
+      "bond_yield_level": 2,
+      "equity_market_valuation_": 2,
+      "capital_flow_volatility": 0,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 0
+    },
+    "geopolitical_conflict_in": {
+      "global_oil_spot_price": 3,
+      "oil_price_volatility": 3,
+      "crude_physical_supply_ra": 3,
+      "refinery_throughput_util": 2,
+      "seaborne_transport_disru": 3,
+      "commercial_oil_inventori": 1,
+      "spare_production_capacit": 2,
+      "refined_product_margin_l": 2,
+      "fuel_retail_price_level": 2,
+      "inflation_expectations": 2,
+      "bond_yield_level": 2,
+      "equity_market_valuation_": 2,
+      "capital_flow_volatility": 3,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 3,
+      "market_adaptive_capacity": 2
+    },
+    "diplomatic_deescalation_": {
+      "global_oil_spot_price": 2,
+      "oil_price_volatility": 2,
+      "crude_physical_supply_ra": 1,
+      "refinery_throughput_util": 1,
+      "seaborne_transport_disru": 2,
+      "commercial_oil_inventori": 0,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 1,
+      "fuel_retail_price_level": 1,
+      "inflation_expectations": 1,
+      "bond_yield_level": 1,
+      "equity_market_valuation_": 1,
+      "capital_flow_volatility": 1,
+      "geopolitical_conflict_in": 3,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 1
+    },
+    "market_adaptive_capacity": {
+      "global_oil_spot_price": 2,
+      "oil_price_volatility": 2,
+      "crude_physical_supply_ra": 1,
+      "refinery_throughput_util": 1,
+      "seaborne_transport_disru": 1,
+      "commercial_oil_inventori": 1,
+      "spare_production_capacit": 0,
+      "refined_product_margin_l": 1,
+      "fuel_retail_price_level": 1,
+      "inflation_expectations": 1,
+      "bond_yield_level": 0,
+      "equity_market_valuation_": 0,
+      "capital_flow_volatility": 1,
+      "geopolitical_conflict_in": 0,
+      "diplomatic_deescalation_": 0,
+      "market_adaptive_capacity": 0
+    }
+  },
+  "AS": {
+    "global_oil_spot_price": 14,
+    "oil_price_volatility": 13,
+    "crude_physical_supply_ra": 18,
+    "refinery_throughput_util": 9,
+    "seaborne_transport_disru": 24,
+    "commercial_oil_inventori": 15,
+    "spare_production_capacit": 14,
+    "refined_product_margin_l": 10,
+    "fuel_retail_price_level": 2,
+    "inflation_expectations": 6,
+    "bond_yield_level": 5,
+    "equity_market_valuation_": 2,
+    "capital_flow_volatility": 6,
+    "geopolitical_conflict_in": 35,
+    "diplomatic_deescalation_": 18,
+    "market_adaptive_capacity": 12
+  },
+  "PS": {
+    "global_oil_spot_price": 23,
+    "oil_price_volatility": 21,
+    "crude_physical_supply_ra": 11,
+    "refinery_throughput_util": 13,
+    "seaborne_transport_disru": 6,
+    "commercial_oil_inventori": 12,
+    "spare_production_capacit": 4,
+    "refined_product_margin_l": 16,
+    "fuel_retail_price_level": 17,
+    "inflation_expectations": 15,
+    "bond_yield_level": 11,
+    "equity_market_valuation_": 18,
+    "capital_flow_volatility": 20,
+    "geopolitical_conflict_in": 3,
+    "diplomatic_deescalation_": 3,
+    "market_adaptive_capacity": 10
+  },
+  "med_AS": 12.5,
+  "med_PS": 12.5,
+  "roles": [
+    {
+      "variable": "global_oil_spot_price",
+      "name": "Global oil spot price",
+      "AS": 14,
+      "PS": 23,
+      "Q=AS/PS": 0.61,
+      "P=AS*PS": 322,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "AS": 13,
+      "PS": 21,
+      "Q=AS/PS": 0.62,
+      "P=AS*PS": 273,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crude_physical_supply_ra",
+      "name": "Crude physical supply rate",
+      "AS": 18,
+      "PS": 11,
+      "Q=AS/PS": 1.64,
+      "P=AS*PS": 198,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "commercial_oil_inventori",
+      "name": "Commercial oil inventories",
+      "AS": 15,
+      "PS": 12,
+      "Q=AS/PS": 1.25,
+      "P=AS*PS": 180,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refined_product_margin_l",
+      "name": "Refined product margin level",
+      "AS": 10,
+      "PS": 16,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 160,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "seaborne_transport_disru",
+      "name": "Seaborne transport disruption index",
+      "AS": 24,
+      "PS": 6,
+      "Q=AS/PS": 4.0,
+      "P=AS*PS": 144,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "capital_flow_volatility",
+      "name": "Capital flow volatility",
+      "AS": 6,
+      "PS": 20,
+      "Q=AS/PS": 0.3,
+      "P=AS*PS": 120,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_adaptive_capacity",
+      "name": "Market adaptive capacity",
+      "AS": 12,
+      "PS": 10,
+      "Q=AS/PS": 1.2,
+      "P=AS*PS": 120,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "refinery_throughput_util",
+      "name": "Refinery throughput utilization",
+      "AS": 9,
+      "PS": 13,
+      "Q=AS/PS": 0.69,
+      "P=AS*PS": 117,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "geopolitical_conflict_in",
+      "name": "Geopolitical conflict intensity",
+      "AS": 35,
+      "PS": 3,
+      "Q=AS/PS": 11.67,
+      "P=AS*PS": 105,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 6,
+      "PS": 15,
+      "Q=AS/PS": 0.4,
+      "P=AS*PS": 90,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "spare_production_capacit",
+      "name": "Spare production capacity",
+      "AS": 14,
+      "PS": 4,
+      "Q=AS/PS": 3.5,
+      "P=AS*PS": 56,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "bond_yield_level",
+      "name": "Bond yield level",
+      "AS": 5,
+      "PS": 11,
+      "Q=AS/PS": 0.45,
+      "P=AS*PS": 55,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "diplomatic_deescalation_",
+      "name": "Diplomatic de‑escalation signal strength",
+      "AS": 18,
+      "PS": 3,
+      "Q=AS/PS": 6.0,
+      "P=AS*PS": 54,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "equity_market_valuation_",
+      "name": "Equity market valuation level",
+      "AS": 2,
+      "PS": 18,
+      "Q=AS/PS": 0.11,
+      "P=AS*PS": 36,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fuel_retail_price_level",
+      "name": "Fuel retail price level",
+      "AS": 2,
+      "PS": 17,
+      "Q=AS/PS": 0.12,
+      "P=AS*PS": 34,
+      "role": "reactive (sensor)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "global_oil_spot_price",
+        "name": "Global oil spot price",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 23
+      },
+      {
+        "id": "oil_price_volatility",
+        "name": "Oil price volatility",
+        "kind": "perception",
+        "AS": 13,
+        "PS": 21
+      },
+      {
+        "id": "crude_physical_supply_ra",
+        "name": "Crude physical supply rate",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 11
+      },
+      {
+        "id": "refinery_throughput_util",
+        "name": "Refinery throughput utilization",
+        "kind": "flow",
+        "AS": 9,
+        "PS": 13
+      },
+      {
+        "id": "seaborne_transport_disru",
+        "name": "Seaborne transport disruption index",
+        "kind": "environment",
+        "AS": 24,
+        "PS": 6
+      },
+      {
+        "id": "commercial_oil_inventori",
+        "name": "Commercial oil inventories",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 12
+      },
+      {
+        "id": "spare_production_capacit",
+        "name": "Spare production capacity",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 4
+      },
+      {
+        "id": "refined_product_margin_l",
+        "name": "Refined product margin level",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 16
+      },
+      {
+        "id": "fuel_retail_price_level",
+        "name": "Fuel retail price level",
+        "kind": "stock",
+        "AS": 2,
+        "PS": 17
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 6,
+        "PS": 15
+      },
+      {
+        "id": "bond_yield_level",
+        "name": "Bond yield level",
+        "kind": "stock",
+        "AS": 5,
+        "PS": 11
+      },
+      {
+        "id": "equity_market_valuation_",
+        "name": "Equity market valuation level",
+        "kind": "stock",
+        "AS": 2,
+        "PS": 18
+      },
+      {
+        "id": "capital_flow_volatility",
+        "name": "Capital flow volatility",
+        "kind": "flow",
+        "AS": 6,
+        "PS": 20
+      },
+      {
+        "id": "geopolitical_conflict_in",
+        "name": "Geopolitical conflict intensity",
+        "kind": "environment",
+        "AS": 35,
+        "PS": 3
+      },
+      {
+        "id": "diplomatic_deescalation_",
+        "name": "Diplomatic de‑escalation signal strength",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 3
+      },
+      {
+        "id": "market_adaptive_capacity",
+        "name": "Market adaptive capacity",
+        "kind": "institution_field",
+        "AS": 12,
+        "PS": 10
+      }
+    ],
+    "edges": [
+      {
+        "source": "global_oil_spot_price",
+        "target": "refined_product_margin_l",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "global_oil_spot_price",
+        "target": "fuel_retail_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_spot_price",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_spot_price",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "equity_market_valuation_",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "capital_flow_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_physical_supply_ra",
+        "target": "global_oil_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_physical_supply_ra",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_physical_supply_ra",
+        "target": "refinery_throughput_util",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_physical_supply_ra",
+        "target": "commercial_oil_inventori",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_physical_supply_ra",
+        "target": "refined_product_margin_l",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_physical_supply_ra",
+        "target": "fuel_retail_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_throughput_util",
+        "target": "commercial_oil_inventori",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_throughput_util",
+        "target": "refined_product_margin_l",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_transport_disru",
+        "target": "global_oil_spot_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_transport_disru",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_transport_disru",
+        "target": "crude_physical_supply_ra",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_transport_disru",
+        "target": "refinery_throughput_util",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_transport_disru",
+        "target": "commercial_oil_inventori",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_transport_disru",
+        "target": "refined_product_margin_l",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_transport_disru",
+        "target": "fuel_retail_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_transport_disru",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_transport_disru",
+        "target": "market_adaptive_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_oil_inventori",
+        "target": "global_oil_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_oil_inventori",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_oil_inventori",
+        "target": "refined_product_margin_l",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_oil_inventori",
+        "target": "market_adaptive_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "global_oil_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "crude_physical_supply_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_product_margin_l",
+        "target": "refinery_throughput_util",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_product_margin_l",
+        "target": "fuel_retail_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_retail_price_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "bond_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_market_valuation_",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_level",
+        "target": "equity_market_valuation_",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_level",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_volatility",
+        "target": "bond_yield_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "capital_flow_volatility",
+        "target": "equity_market_valuation_",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "global_oil_spot_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "crude_physical_supply_ra",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "refinery_throughput_util",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "seaborne_transport_disru",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "spare_production_capacit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "refined_product_margin_l",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "fuel_retail_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "bond_yield_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "equity_market_valuation_",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "capital_flow_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "diplomatic_deescalation_",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_conflict_in",
+        "target": "market_adaptive_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_deescalation_",
+        "target": "global_oil_spot_price",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "diplomatic_deescalation_",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "diplomatic_deescalation_",
+        "target": "seaborne_transport_disru",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "diplomatic_deescalation_",
+        "target": "geopolitical_conflict_in",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "market_adaptive_capacity",
+        "target": "global_oil_spot_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_adaptive_capacity",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_iran_pause_holds",
+      "title": "Sustained US–Iran pause in strikes",
+      "description": "An extended pause in U.S.–Iran kinetic actions that reduces immediate supply‑risk sentiment and eases market risk premia.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-27",
+        "end": "2026-08-10",
+        "label": "1-2 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_spot_price",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diplomatic_deescalation_",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_yield_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_market_valuation_",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "capital_flow_volatility",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Oil slips... after US pauses strikes', 'Oil tumbles... pause sparks hopes', 'Wall St futures gain as pause lifts sentiment'."
+    },
+    {
+      "id": "resumption_of_hostilities",
+      "title": "Resumption of US–Iran hostilities",
+      "description": "Renewed strikes or escalation between the U.S. and Iran that would quickly re‑inject high risk premia into oil markets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-27",
+        "end": "2026-08-10",
+        "label": "1-2 weeks"
+      },
+      "probability": 0.35,
+      "affected": [
+        {
+          "variable_id": "geopolitical_conflict_in",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_spot_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "seaborne_transport_disru",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_physical_supply_ra",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "spare_production_capacit",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Oil falls back below $100 as Trump weighs ‘massive attack’', 'Oil slips... after US pauses strikes' (implying risk of reversal)."
+    },
+    {
+      "id": "china_pakistan_diplomatic_push",
+      "title": "China/Pakistan diplomatic push to end conflict",
+      "description": "Active third‑party diplomatic efforts (China, Pakistan) to broker pauses or de‑escalation between U.S. and Iran.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-27",
+        "end": "2026-08-24",
+        "label": "by month"
+      },
+      "probability": 0.45,
+      "affected": [
+        {
+          "variable_id": "diplomatic_deescalation_",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "geopolitical_conflict_in",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_spot_price",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'China pushing for end US-Iran war' and 'Pakistan is pushing for new U.S.' indicate active diplomatic initiatives."
+    },
+    {
+      "id": "kazakhstan_terminal_closure",
+      "title": "Continued Kazakhstan export terminal disruption",
+      "description": "Ongoing closure of a Kazakh export terminal that materially cuts daily oil outflows and tightens supply.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-27",
+        "end": "2026-08-17",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "crude_physical_supply_ra",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_spot_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "seaborne_transport_disru",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commercial_oil_inventori",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Kazakhstan's daily oil output halves after export terminal closure, source says'."
+    },
+    {
+      "id": "refineries_running_hot",
+      "title": "Sustained high U.S. refinery utilization",
+      "description": "U.S. refiners running at elevated throughput to meet tight product supplies, drawing inventories and lifting product margins.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-27",
+        "end": "2026-08-24",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "refinery_throughput_util",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commercial_oil_inventori",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refined_product_margin_l",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fuel_retail_price_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'U.S. oil refineries run at breakneck speeds as wars choke fuel supplies'; margins also jumping in Europe."
+    },
+    {
+      "id": "winter_supply_worries",
+      "title": "Heightening winter‑supply risks in Europe",
+      "description": "Growing concern about European gas and fuel availability ahead of winter, prompting precautionary market behavior and inventory draws.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-12-31",
+        "label": "by winter"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_spot_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commercial_oil_inventori",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refined_product_margin_l",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_adaptive_capacity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'European gas prices approach Iran war highs as traders fret over winter supplies'."
+    },
+    {
+      "id": "fomc_policy_decision",
+      "title": "Upcoming Fed policy decision",
+      "description": "A near‑term Federal Reserve rate/statement decision that will influence yields, capital flows and risk asset prices.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-27",
+        "end": "2026-08-04",
+        "label": "this week"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "bond_yield_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "capital_flow_volatility",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "equity_market_valuation_",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Gold gains... Fed decision looms' and 'earnings, Fed in focus' show an imminent policy event affecting markets."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "resumption_of_hostilities",
+      "title": "Resumption of US–Iran hostilities",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-2 weeks",
+      "date": null,
+      "start": "2026-07-27",
+      "end": "2026-08-10",
+      "probability": 0.35,
+      "impact_score": 284.0,
+      "expected_impact": 99.4,
+      "event_PS": 12.786,
+      "event_AS": 20.286,
+      "n_vars": 6,
+      "affected_ids": "geopolitical_conflict_in, oil_price_volatility, global_oil_spot_price, seaborne_transport_disru, crude_physical_supply_ra, spare_production_capacit",
+      "rationale": "Headlines: 'Oil falls back below $100 as Trump weighs ‘massive attack’', 'Oil slips... after US pauses strikes' (implying risk of reversal)."
+    },
+    {
+      "id": "china_pakistan_diplomatic_push",
+      "title": "China/Pakistan diplomatic push to end conflict",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by month",
+      "date": null,
+      "start": "2026-07-27",
+      "end": "2026-08-24",
+      "probability": 0.45,
+      "impact_score": 178.0,
+      "expected_impact": 80.1,
+      "event_PS": 11.444,
+      "event_AS": 19.778,
+      "n_vars": 4,
+      "affected_ids": "diplomatic_deescalation_, geopolitical_conflict_in, global_oil_spot_price, oil_price_volatility",
+      "rationale": "Headlines: 'China pushing for end US-Iran war' and 'Pakistan is pushing for new U.S.' indicate active diplomatic initiatives."
+    },
+    {
+      "id": "us_iran_pause_holds",
+      "title": "Sustained US–Iran pause in strikes",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-2 weeks",
+      "date": null,
+      "start": "2026-07-27",
+      "end": "2026-08-10",
+      "probability": 0.6,
+      "impact_score": 156.0,
+      "expected_impact": 93.6,
+      "event_PS": 16.286,
+      "event_AS": 11.143,
+      "n_vars": 6,
+      "affected_ids": "oil_price_volatility, global_oil_spot_price, diplomatic_deescalation_, bond_yield_level, equity_market_valuation_, capital_flow_volatility",
+      "rationale": "Headlines: 'Oil slips... after US pauses strikes', 'Oil tumbles... pause sparks hopes', 'Wall St futures gain as pause lifts sentiment'."
+    },
+    {
+      "id": "kazakhstan_terminal_closure",
+      "title": "Continued Kazakhstan export terminal disruption",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-07-27",
+      "end": "2026-08-17",
+      "probability": 0.7,
+      "impact_score": 147.0,
+      "expected_impact": 102.9,
+      "event_PS": 15.444,
+      "event_AS": 16.333,
+      "n_vars": 5,
+      "affected_ids": "crude_physical_supply_ra, global_oil_spot_price, oil_price_volatility, seaborne_transport_disru, commercial_oil_inventori",
+      "rationale": "Headline: 'Kazakhstan's daily oil output halves after export terminal closure, source says'."
+    },
+    {
+      "id": "winter_supply_worries",
+      "title": "Heightening winter‑supply risks in Europe",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by winter",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-12-31",
+      "probability": 0.5,
+      "impact_score": 116.0,
+      "expected_impact": 58.0,
+      "event_PS": 17.111,
+      "event_AS": 12.889,
+      "n_vars": 5,
+      "affected_ids": "oil_price_volatility, global_oil_spot_price, commercial_oil_inventori, refined_product_margin_l, market_adaptive_capacity",
+      "rationale": "Headline: 'European gas prices approach Iran war highs as traders fret over winter supplies'."
+    },
+    {
+      "id": "refineries_running_hot",
+      "title": "Sustained high U.S. refinery utilization",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-07-27",
+      "end": "2026-08-24",
+      "probability": 0.8,
+      "impact_score": 79.0,
+      "expected_impact": 63.2,
+      "event_PS": 14.0,
+      "event_AS": 9.875,
+      "n_vars": 4,
+      "affected_ids": "refinery_throughput_util, commercial_oil_inventori, refined_product_margin_l, fuel_retail_price_level",
+      "rationale": "Headline: 'U.S. oil refineries run at breakneck speeds as wars choke fuel supplies'; margins also jumping in Europe."
+    },
+    {
+      "id": "fomc_policy_decision",
+      "title": "Upcoming Fed policy decision",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-07-27",
+      "end": "2026-08-04",
+      "probability": 0.95,
+      "impact_score": 30.0,
+      "expected_impact": 28.5,
+      "event_PS": 15.833,
+      "event_AS": 5.0,
+      "n_vars": 4,
+      "affected_ids": "bond_yield_level, capital_flow_volatility, equity_market_valuation_, inflation_expectations",
+      "rationale": "Headlines: 'Gold gains... Fed decision looms' and 'earnings, Fed in focus' show an imminent policy event affecting markets."
+    }
+  ]
+}

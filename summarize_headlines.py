@@ -9,22 +9,43 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from textwrap import wrap
 
-# --- NEW: helper to get today or fallback to yesterday ---
+def get_pipeline_date() -> str:
+    """Report date for the daily pipeline (pinned at pipeline start in CI)."""
+    return os.environ.get("PIPELINE_DATE") or datetime.now().strftime("%Y-%m-%d")
+
+
+def _csv_has_rows(path: str) -> bool:
+    """True if path exists and has at least one data row (not just a header)."""
+    if not path or not os.path.exists(path):
+        return False
+    try:
+        df = pd.read_csv(path, nrows=1)
+        return len(df) > 0
+    except Exception:
+        return False
+
+
 def get_csv_path():
-    today = datetime.today()
-    # path for today
-    today_str = today.strftime("%Y-%m-%d")
+    """Resolve articles CSV for the pipeline date, falling back to the previous day.
+
+    Returns (path, file_date_str) where file_date_str is the date of the CSV
+    actually used (important when CI starts after midnight and today's file
+    is missing or still empty).
+    """
+    try:
+        ref = datetime.strptime(get_pipeline_date(), "%Y-%m-%d")
+    except ValueError:
+        ref = datetime.today()
+    today_str = ref.strftime("%Y-%m-%d")
     csv_path = f"data/articles_{today_str}.csv"
-    if os.path.exists(csv_path):
+    if _csv_has_rows(csv_path):
         return csv_path, today_str
-    # fallback to yesterday
-    yesterday = today - timedelta(days=1)
-    yest_str = yesterday.strftime("%Y-%m-%d")
+    yest_str = (ref - timedelta(days=1)).strftime("%Y-%m-%d")
     yest_path = f"data/articles_{yest_str}.csv"
-    if os.path.exists(yest_path):
-        print(f"⚠️ No CSV for today, using yesterday’s file {yest_path}")
+    if _csv_has_rows(yest_path):
+        reason = "missing" if not os.path.exists(csv_path) else "empty"
+        print(f"WARNING: CSV for {today_str} is {reason}; using {yest_path}")
         return yest_path, yest_str
-    # nothing found
     return None, today_str
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -120,12 +141,12 @@ def summarize_for_date(date_str: str, *, skip_if_exists: bool = True) -> str | N
 
     csv_path = f"data/articles_{date_str}.csv"
     if not os.path.exists(csv_path):
-        print(f"❌ No articles CSV for {date_str}.")
+        print(f"ERROR: No articles CSV for {date_str}.")
         return None
 
     headlines = load_headlines(csv_path)
     if not headlines:
-        print(f"❌ No headlines in {csv_path}.")
+        print(f"ERROR: No headlines in {csv_path}.")
         return None
 
     try:
@@ -150,15 +171,16 @@ def summarize_for_date(date_str: str, *, skip_if_exists: bool = True) -> str | N
 
     summary_path.parent.mkdir(parents=True, exist_ok=True)
     summary_path.write_text(summary_of_summaries, encoding="utf-8")
-    print(f"✅ Summary saved to {summary_path}")
+    print(f"OK: Summary saved to {summary_path}")
     return str(summary_path)
 
 
 def summarize_all():
     csv_path, date_str = get_csv_path()
     if not csv_path:
-        print("❌ No headlines found for today or yesterday.")
+        print("ERROR: No headlines found for today or yesterday.")
         return None
+    # date_str is the CSV's own date (may be yesterday after midnight fallback)
     return summarize_for_date(date_str, skip_if_exists=False)
 
 if __name__ == "__main__":

@@ -1,64 +1,37 @@
+"""
+Daily macro email: summary, LLM catalysts, CoC graphs, compact catalyst timeline.
+
+Usage:
+  python send_off_email.py              # send email
+  python send_off_email.py --preview    # write HTML + images, do not send
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
 import html
+import os
 import smtplib
+from datetime import datetime, timedelta
+from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from email.mime.image import MIMEImage
-from datetime import datetime, timedelta
-import csv
-import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv()
 smtp_token = os.getenv("SMTP_EMAIL_TOKEN")
-destinataries = os.getenv("DESTINATARIES")
+destinataries = os.getenv("DESTINATARIES") or ""
 TO_EMAIL = [email.strip() for email in destinataries.split(",") if email.strip()]
 
-# --- CONFIGURATION ---
-SMTP_SERVER = "smtp.protonmail.ch"  # Proton Mail Bridge default
-SMTP_PORT = 587           # Proton Mail Bridge default
+SMTP_SERVER = "smtp.protonmail.ch"
+SMTP_PORT = 587
 USERNAME = "mm@macrodoomscrolling.org"
 PASSWORD = smtp_token
 FROM_EMAIL = "mm@macrodoomscrolling.org"
-TO_EMAIL = TO_EMAIL
 
-def get_calendar_of_the_day():
-    today = datetime.now()
-    end_date = today + timedelta(days=14)
-    calendar_path = "calendar/tradingeconomics_calendar_master.csv"
-    if not os.path.exists(calendar_path):
-        return f"Today's date: {today.strftime('%Y-%m-%d')}\nNo calendar file found."
-    events = []
-    with open(calendar_path, newline='', encoding="utf-8") as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            # Parse the date from the Datetime column
-            try:
-                event_date = datetime.strptime(row["Datetime"], "%Y-%m-%d %H:%M:%S")
-            except Exception:
-                continue
-            if today.date() <= event_date.date() <= end_date.date():
-                events.append({
-                    "Date": event_date.strftime("%Y-%m-%d"),
-                    "Time": event_date.strftime("%H:%M"),
-                    "Country": row.get("Country", ""),
-                    "Event": row.get("Event", ""),
-                    "Actual": row.get("Actual", ""),
-                    "Previous": row.get("Previous", ""),
-                    "Consensus": row.get("Consensus", ""),
-                    "Forecast": row.get("Forecast", "")
-                })
-    if not events:
-        return f"Today's date: {today.strftime('%Y-%m-%d')}\nNo events found in calendar."
-
-    # Build a simple text table
-    header = f"{'Date':<10} {'Time':<5} {'Country':<6} {'Event':<40} {'Actual':<10} {'Prev':<10} {'Cons':<10} {'Fcst':<10}"
-    lines = [header, "-" * len(header)]
-    for e in events:
-        lines.append(
-            f"{e['Date']:<10} {e['Time']:<5} {e['Country']:<6} {e['Event'][:38]:<40} {e['Actual']:<10} {e['Previous']:<10} {e['Consensus']:<10} {e['Forecast']:<10}"
-        )
-    return f"Calendar: Today + Next 2 Weeks\n" + "\n".join(lines)
 
 def get_calendar_of_the_day_html():
     today = datetime.now()
@@ -67,7 +40,7 @@ def get_calendar_of_the_day_html():
     if not os.path.exists(calendar_path):
         return f"<p>Today's date: {today.strftime('%Y-%m-%d')}<br>No calendar file found.</p>"
     events = []
-    with open(calendar_path, newline='', encoding="utf-8") as csvfile:
+    with open(calendar_path, newline="", encoding="utf-8") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             try:
@@ -75,38 +48,50 @@ def get_calendar_of_the_day_html():
             except Exception:
                 continue
             if today.date() <= event_date.date() <= end_date.date():
-                events.append({
-                    "Date": event_date.strftime("%Y-%m-%d"),
-                    "Time": event_date.strftime("%H:%M"),
-                    "Country": row.get("Country", ""),
-                    "Event": row.get("Event", ""),
-                    "Actual": row.get("Actual", ""),
-                    "Previous": row.get("Previous", ""),
-                    "Consensus": row.get("Consensus", ""),
-                    "Forecast": row.get("Forecast", "")
-                })
+                events.append(
+                    {
+                        "Date": event_date.strftime("%Y-%m-%d"),
+                        "Time": event_date.strftime("%H:%M"),
+                        "Country": row.get("Country", ""),
+                        "Event": row.get("Event", ""),
+                        "Actual": row.get("Actual", ""),
+                        "Previous": row.get("Previous", ""),
+                        "Consensus": row.get("Consensus", ""),
+                        "Forecast": row.get("Forecast", ""),
+                    }
+                )
     if not events:
-        return f"<p>Today's date: {today.strftime('%Y-%m-%d')}<br>No events found in calendar.</p>"
+        return (
+            f"<p>Today's date: {today.strftime('%Y-%m-%d')}<br>"
+            "No events found in calendar.</p>"
+        )
 
-    # Build HTML table
-    html = [
+    parts = [
         "<h2>Calendar: Today + Next 2 Weeks</h2>",
         "<table border='1' cellpadding='4' cellspacing='0'>",
-        "<tr><th>Date</th><th>Time</th><th>Country</th><th>Event</th><th>Actual</th><th>Prev</th><th>Cons</th><th>Fcst</th></tr>"
+        "<tr><th>Date</th><th>Time</th><th>Country</th><th>Event</th>"
+        "<th>Actual</th><th>Prev</th><th>Cons</th><th>Fcst</th></tr>",
     ]
     for e in events:
-        html.append(
+        parts.append(
             f"<tr><td>{e['Date']}</td><td>{e['Time']}</td><td>{e['Country']}</td>"
-            f"<td>{e['Event']}</td><td>{e['Actual']}</td><td>{e['Previous']}</td>"
-            f"<td>{e['Consensus']}</td><td>{e['Forecast']}</td></tr>"
+            f"<td>{html.escape(e['Event'])}</td><td>{e['Actual']}</td>"
+            f"<td>{e['Previous']}</td><td>{e['Consensus']}</td>"
+            f"<td>{e['Forecast']}</td></tr>"
         )
-    html.append("</table>")
-    return "\n".join(html)
+    parts.append("</table>")
+    return "\n".join(parts)
+
 
 def send_email(subject, body, inline_images=None):
     """
-    inline_images: optional list of (file_path, content_id) e.g. [("summaries/summary_tsne_chart.png", "summary_tsne_chart")]
+    inline_images: optional list of (file_path, content_id)
     """
+    if not TO_EMAIL:
+        raise RuntimeError("DESTINATARIES is empty; set it in .env before sending.")
+    if not PASSWORD:
+        raise RuntimeError("SMTP_EMAIL_TOKEN is empty; set it in .env before sending.")
+
     for recipient in TO_EMAIL:
         msg = MIMEMultipart()
         msg["From"] = FROM_EMAIL
@@ -122,6 +107,8 @@ def send_email(subject, body, inline_images=None):
                     img.add_header("Content-ID", f"<{cid}>")
                     img.add_header("Content-Disposition", "inline", filename=path.name)
                     msg.attach(img)
+                else:
+                    print(f"WARNING: Missing inline image: {path}")
 
         with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
             server.ehlo()
@@ -129,72 +116,118 @@ def send_email(subject, body, inline_images=None):
             server.ehlo()
             server.login(USERNAME, PASSWORD)
             server.send_message(msg, from_addr=FROM_EMAIL, to_addrs=[recipient])
-        print(f"✅ Email sent to {recipient}.")
+        print(f"OK: Email sent to {recipient}.")
 
-if __name__ == "__main__":
-    today_str = datetime.now().strftime("%Y-%m-%d")
 
-    # Load summary (today's file or most recent available)
+def _load_catalyst_text(name: str, report_date: str) -> str:
+    """Load catalyst file for report date, or the most recent non-empty file."""
+    path = Path(f"incoming_catalysts/{name}_{report_date}.txt")
+    if path.exists():
+        text = path.read_text(encoding="utf-8").strip()
+        if text:
+            return text
+        print(f"WARNING: {path.name} exists but is empty; trying older files")
+
+    candidates = sorted(
+        Path("incoming_catalysts").glob(f"{name}_*.txt"),
+        key=lambda p: p.name,
+        reverse=True,
+    )
+    for fallback in candidates:
+        try:
+            text = fallback.read_text(encoding="utf-8").strip()
+        except OSError:
+            continue
+        if text:
+            print(f"WARNING: No usable {name} for {report_date}; using {fallback.name}")
+            return text
+    return ""
+
+
+def _load_summary(today_str: str) -> str:
     summary_path = Path(f"summaries/summary_{today_str}.txt")
     if not summary_path.exists():
-        candidates = sorted(Path("summaries").glob("summary_*.txt"), key=lambda p: p.name, reverse=True)
+        candidates = sorted(
+            Path("summaries").glob("summary_*.txt"),
+            key=lambda p: p.name,
+            reverse=True,
+        )
         summary_path = candidates[0] if candidates else None
     if summary_path and summary_path.exists():
-        with open(summary_path, "r", encoding="utf-8") as f:
-            summary = f.read()
+        summary = summary_path.read_text(encoding="utf-8")
         if summary_path.name != f"summary_{today_str}.txt":
-            summary = f"(Summary from {summary_path.stem.replace('summary_', '')} — no summary for today yet.)\n\n{summary}"
-    else:
-        summary = "(No summary file found.)"
+            stamp = summary_path.stem.replace("summary_", "")
+            summary = (
+                f"(Summary from {stamp} — no summary for today yet.)\n\n{summary}"
+            )
+        return summary
+    return "(No summary file found.)"
 
-    # Load catalysts if available
-    news_catalysts_path = f"incoming_catalysts/news_catalysts_{today_str}.txt"
-    calendar_catalysts_path = f"incoming_catalysts/calendar_catalysts_{today_str}.txt"
-    news_catalysts = ""
-    calendar_catalysts = ""
 
-    if os.path.exists(news_catalysts_path):
-        with open(news_catalysts_path, "r", encoding="utf-8") as f:
-            news_catalysts = f.read()
-    if os.path.exists(calendar_catalysts_path):
-        with open(calendar_catalysts_path, "r", encoding="utf-8") as f:
-            calendar_catalysts = f.read()
+def build_email_payload(
+    today_str: str | None = None,
+    *,
+    fast: bool = False,
+) -> tuple[str, list[tuple[str, str]]]:
+    """Assemble HTML body + inline image list for the daily email.
 
-    # Catalyst table (HTML table in email body)
-    from catalyst_timeline import build_catalyst_timeline
-    timeline_html = build_catalyst_timeline()
-    if timeline_html:
-        timeline_block = (
-            '<h2>Catalyst table: past 2 weeks | next 2 weeks</h2>'
-            f'<p>{timeline_html}</p>'
-        )
-    else:
-        timeline_block = "<p>No catalyst table data available.</p>"
+    fast=True still includes t-SNE + drift, but skips the news-KG build.
+    """
+    today_str = today_str or os.environ.get("PIPELINE_DATE") or datetime.now().strftime(
+        "%Y-%m-%d"
+    )
+    print(f"Building email for report date: {today_str} (fast={fast})")
+
+    summary = _load_summary(today_str)
+    news_catalysts = _load_catalyst_text("news_catalysts", today_str)
+    calendar_catalysts = _load_catalyst_text("calendar_catalysts", today_str)
+
+    if not news_catalysts:
+        news_catalysts = "(No news catalysts available — identify_catalysts may have skipped headlines.)"
+        print("WARNING: News catalysts section will show a placeholder.")
+    if not calendar_catalysts:
+        calendar_catalysts = "(No calendar catalysts available.)"
+        print("WARNING: Calendar catalysts section will show a placeholder.")
+
+    inline_images: list[tuple[str, str]] = []
+    chart_block = ""
 
     # Summary embeddings t-SNE chart and drift histogram
-    from summary_tsne_chart import build_summary_tsne_chart, build_drift_histogram
+    from summary_tsne_chart import (
+        build_summary_tsne_chart,
+        build_drift_histogram,
+        build_day_over_day_narrative_blurb,
+    )
+
     chart_path = build_summary_tsne_chart()
     drift_path, drift_rankings = build_drift_histogram()
-    inline_images = []
-    chart_block = ""
     if chart_path:
         inline_images.append((str(chart_path), "summary_tsne_chart"))
-        chart_block = (
-            '<h2>Narrative Drift Map</h2>'
-            '<p><img src="cid:summary_tsne_chart" alt="Summary embeddings 2D t-SNE" style="max-width:100%;" /></p>'
+        chart_block += (
+            "<h2>Narrative Drift Map</h2>"
+            '<p><img src="cid:summary_tsne_chart" alt="Summary embeddings 2D t-SNE" '
+            'style="max-width:100%;" /></p>'
         )
         print(f"Summary t-SNE chart attached: {chart_path}")
     if drift_path:
         inline_images.append((str(drift_path), "summary_drift_histogram"))
         chart_block += (
-            '<h2>Drifts VS Jumps</h2>'
-            '<p><img src="cid:summary_drift_histogram" alt="Drift histogram" style="max-width:100%;" /></p>'
+            "<h2>Drifts VS Jumps</h2>"
+            '<p><img src="cid:summary_drift_histogram" alt="Drift histogram" '
+            'style="max-width:100%;" /></p>'
         )
+        day_shift_blurb = build_day_over_day_narrative_blurb(today_str)
+        if day_shift_blurb:
+            chart_block += (
+                "<h3>Day-over-day narrative shift</h3>"
+                f"<p>{html.escape(day_shift_blurb)}</p>"
+            )
         if drift_rankings:
             chart_block += (
-                '<h3>Top narrative shifts (by drift magnitude)</h3>'
+                "<h3>Top narrative shifts (by drift magnitude)</h3>"
                 '<table border="1" cellpadding="4" cellspacing="0">'
-                '<tr><th>Rank</th><th>From → To</th><th>Drift</th><th>σ</th><th>Explanation</th></tr>'
+                "<tr><th>Rank</th><th>From → To</th><th>Drift</th>"
+                "<th>σ</th><th>Explanation</th></tr>"
             )
             for r in drift_rankings:
                 chart_block += (
@@ -204,22 +237,99 @@ if __name__ == "__main__":
                     f'<td>{r["z_score"]:+.2f}</td>'
                     f'<td>{html.escape(r["explanation"])}</td></tr>'
                 )
-            chart_block += '</table>'
+            chart_block += "</table>"
         print(f"Drift histogram attached: {drift_path}")
+
+    if not fast:
+        from build_news_kg import build_news_kg
+
+        kg_path = build_news_kg()
+        if kg_path:
+            inline_images.append((str(kg_path), "news_kg"))
+            chart_block += (
+                "<h2>News Landscape Knowledge Graph (last 3 days)</h2>"
+                '<p><img src="cid:news_kg" alt="News knowledge graph" '
+                'style="max-width:100%;" /></p>'
+            )
+            print(f"News KG attached: {kg_path}")
+    else:
+        print("fast mode: skipping news KG only")
+
+    # Core-of-cores sub-core graphs + compact catalyst timeline (replaces old HTML table)
+    from coc_email_assets import build_coc_email_assets
+
+    coc = build_coc_email_assets()
+    inline_images.extend(coc["inline_images"])
+    coc_graphs_html = coc.get("graphs_html") or ""
+    timeline_html = coc.get("timeline_html") or (
+        "<p>No core-of-cores catalyst timeline available "
+        "(run core_of_cores_v2 / ensure kg/*_core_*.json exist).</p>"
+    )
 
     email_body = (
         "<p>Greetings,</p>"
         "<p>Please enjoy the automated doom scrolling content.</p>"
         f"{chart_block}"
-        f"<h2>LLM Politics-Headlines Catalysts</h2><pre>{news_catalysts}</pre>"
-        f"<h2>LLM Eco-Calendar Catalysts</h2><pre>{calendar_catalysts}</pre>"
-        f"<h2>Summary of Today's Headlines</h2><pre>{summary[:10000]}</pre>"
-        f"{timeline_block}<hr>"
+        f"{coc_graphs_html}"
+        f"<h2>LLM Politics-Headlines Catalysts</h2>"
+        f"<pre>{html.escape(news_catalysts)}</pre>"
+        f"<h2>LLM Eco-Calendar Catalysts</h2>"
+        f"<pre>{html.escape(calendar_catalysts)}</pre>"
+        f"<h2>Summary of Today's Headlines</h2>"
+        f"<pre>{html.escape(summary[:10000])}</pre>"
+        f"{timeline_html}<hr>"
         "<p>Best regards,<br>MacroDoomscrolling</p>"
     )
+    return email_body, inline_images
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Send (or preview) the daily macro email.")
+    parser.add_argument(
+        "--preview",
+        action="store_true",
+        help="Write summaries/email_preview.html and assets; do not send.",
+    )
+    parser.add_argument(
+        "--fast",
+        action="store_true",
+        help="Skip news-KG only (still includes t-SNE + drift + CoC graphs).",
+    )
+    parser.add_argument(
+        "--date",
+        default=None,
+        help="Report date YYYY-MM-DD (default: PIPELINE_DATE or today).",
+    )
+    args = parser.parse_args(argv)
+
+    body, inline_images = build_email_payload(args.date, fast=args.fast)
+
+    if args.preview:
+        preview_path = Path("summaries/email_preview.html")
+        preview_path.parent.mkdir(parents=True, exist_ok=True)
+        # Rewrite cid: refs to relative file paths for local browser preview
+        preview_html = body
+        for file_path, cid in inline_images:
+            rel = Path(file_path)
+            parts = rel.as_posix().replace("\\", "/")
+            # preview lives in summaries/; sibling PNGs use basename
+            if parts.startswith("summaries/") or rel.parent.name == "summaries":
+                href = rel.name
+            else:
+                href = f"../{parts}"
+            preview_html = preview_html.replace(f"cid:{cid}", href)
+        preview_path.write_text(preview_html, encoding="utf-8")
+        print(f"Preview written to {preview_path} ({len(inline_images)} images)")
+        print("Open that HTML file in a browser to review.")
+        return 0
 
     send_email(
         subject="Daily Macro Summary, Catalysts, and Calendar",
-        body=email_body,
+        body=body,
         inline_images=inline_images if inline_images else None,
     )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

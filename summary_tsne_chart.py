@@ -481,7 +481,14 @@ def build_summary_tsne_chart(
     """
     dates_sorted, embeddings = _load_embeddings(days)
     if dates_sorted is None or embeddings is None:
-        print("Not enough summaries or no OPENAI_API_KEY; skipping summary embedding chart.")
+        if not client:
+            print("No OPENAI_API_KEY; skipping summary embedding chart.")
+        else:
+            n = len(_discover_summary_files())
+            print(
+                f"Not enough summaries for embedding chart "
+                f"(have {n}, need >= {MIN_SUMMARIES_FOR_CHART}); skipping."
+            )
         return None
     reducer_lower = reducer.lower()
     if reducer_lower == "umap":
@@ -550,6 +557,113 @@ In one short phrase (max 10 words), describe the main narrative shift. No preamb
         return response.choices[0].message.content.strip()
     except Exception as e:
         return f"Error: {e}"
+
+
+def _load_headline_titles_for_date(day: datetime, *, max_headlines: int = 120) -> list[str]:
+    """Load title lines from data/articles_YYYY-MM-DD.csv (capped)."""
+    import pandas as pd
+
+    path = Path("data") / f"articles_{day.strftime('%Y-%m-%d')}.csv"
+    if not path.exists():
+        return []
+    try:
+        df = pd.read_csv(path)
+    except Exception:
+        return []
+    if df.empty or "title" not in df.columns:
+        return []
+    titles = [str(t).strip() for t in df["title"].tolist() if str(t).strip()]
+    if len(titles) > max_headlines:
+        titles = titles[-max_headlines:]
+    return titles
+
+
+def _resolve_latest_article_pair(
+    report_date: str | None = None,
+) -> tuple[datetime, datetime] | None:
+    """
+    Return (previous_available_day, latest_day) with existing articles CSVs.
+
+    Uses the two most recent dated CSVs on disk (optionally capped at report_date),
+    so gaps / weekends still get a real prior day instead of an empty calendar yesterday.
+    """
+    data_dir = Path("data")
+    files = sorted(data_dir.glob("articles_????-??-??.csv"))
+    dates: list[datetime] = []
+    for f in files:
+        try:
+            d = datetime.strptime(f.stem.replace("articles_", ""), "%Y-%m-%d")
+        except ValueError:
+            continue
+        # skip empty files
+        try:
+            if f.stat().st_size < 50:
+                continue
+        except OSError:
+            continue
+        dates.append(d)
+
+    if report_date:
+        try:
+            ref = datetime.strptime(report_date, "%Y-%m-%d")
+            capped = [d for d in dates if d <= ref]
+            if capped:
+                dates = capped
+        except ValueError:
+            pass
+
+    if len(dates) < 2:
+        return None
+    return dates[-2], dates[-1]
+
+
+def build_day_over_day_narrative_blurb(report_date: str | None = None) -> str:
+    """
+    2–3 sentence LLM blurb: major narrative shifts between prior-day vs latest-day headlines.
+    """
+    if not client:
+        return ""
+    pair = _resolve_latest_article_pair(report_date)
+    if not pair:
+        print("No consecutive article CSVs for day-over-day narrative blurb.")
+        return ""
+    day_before, latest = pair
+    before_titles = _load_headline_titles_for_date(day_before)
+    latest_titles = _load_headline_titles_for_date(latest)
+    if not before_titles or not latest_titles:
+        print("Missing headlines for day-over-day narrative blurb.")
+        return ""
+
+    before_block = "\n".join(f"- {t}" for t in before_titles)
+    latest_block = "\n".join(f"- {t}" for t in latest_titles)
+    prompt = f"""You are a macro/geopolitics narrative analyst.
+
+Compare headlines from {day_before.strftime('%Y-%m-%d')} (day before) with headlines from {latest.strftime('%Y-%m-%d')} (latest day).
+
+Write exactly 2–3 short sentences on what major narrative shifts occurred (or say clearly if there was no meaningful shift — continuity is fine to report). Focus on themes that newly dominated, faded, or flipped. No bullet points, no preamble, no headings.
+
+DAY BEFORE ({day_before.strftime('%Y-%m-%d')}):
+{before_block[:12000]}
+
+LATEST DAY ({latest.strftime('%Y-%m-%d')}):
+{latest_block[:12000]}
+"""
+    try:
+        response = client.chat.completions.create(
+            model=os.getenv("NARRATIVE_SHIFT_LLM_MODEL", CLUSTER_LLM_MODEL),
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3,
+        )
+        content = (response.choices[0].message.content or "").strip()
+        if content:
+            print(
+                f"Day-over-day narrative blurb: "
+                f"{day_before.strftime('%Y-%m-%d')} → {latest.strftime('%Y-%m-%d')}"
+            )
+        return content
+    except Exception as e:
+        print(f"Day-over-day narrative blurb failed: {type(e).__name__}: {e}")
+        return ""
 
 
 def build_drift_histogram(top_n: int = 7) -> tuple[Path | None, list[dict]]:

@@ -2,35 +2,29 @@
 """
 Daily pipeline: runs in order
   1. TradingEconomics calendar scraper (calendar_scraper.py)
-     - Scrapes TradingEconomics for economic calendar events (dates, country, event, actual/prev/consensus/forecast).
-     - Writes calendar/tradingeconomics_calendar_master.csv.
   2. Daily financial summary (summarize_headlines.py)
-     - Loads today’s (or yesterday’s) headlines from data/articles_<date>.csv.
-     - Uses OpenAI to summarize in chunks, then produces one overarching summary.
-     - Writes summaries/summary_<date>.txt.
-  2b. Summary backfill (backfill_summaries.py), if fewer than 15 summaries in the last 15 days
-     - Regenerates missing summaries from data/articles_<date>.csv for the t-SNE chart.
+  2b. Summary backfill (backfill_summaries.py), if needed
   3. Catalyst ranking (identify_catalysts.py)
-     - Loads headlines and calendar events; uses OpenAI to rank top upcoming catalysts by market importance.
-     - Writes incoming_catalysts/ (ranked list of events that could move markets).
-  4. Daily macro email (send_off_email.py)
-     - Builds HTML email from calendar (today + 2 weeks), daily summary, and catalyst list.
-     - Sends to DESTINATARIES via SMTP.
+  4. CoC email assets from latest kg sub-cores (coc_email_assets.py)
+  5. Daily macro email (send_off_email.py)
 
 Designed to be the single entry point for a scheduled GitHub Action.
 Exits on first failure (non-zero exit from any step).
 """
 
+import os
 import subprocess
 import sys
+from datetime import datetime
 from pathlib import Path
 
-# Order matters: calendar → summary → catalyst → email
+# Order matters: calendar → summary → catalyst → CoC assets → email
 STEPS = [
     ("TradingEconomics calendar", "calendar_scraper.py"),
     ("Daily financial summary", "summarize_headlines.py"),
     ("Summary backfill (if needed)", "backfill_summaries.py"),
     ("Catalyst ranking", "identify_catalysts.py"),
+    ("Core-of-cores email assets", "coc_email_assets.py"),
     ("Daily macro email", "send_off_email.py"),
 ]
 
@@ -39,8 +33,12 @@ def main():
     repo_root = Path(__file__).resolve().parent
     if repo_root != Path.cwd():
         print(f"Running from repo root: {repo_root}")
-        # Allow running from repo root when invoked as python run_daily_pipeline.py
-        pass
+
+    # Pin report date at pipeline start so later steps (after midnight UTC) still
+    # use the same headlines CSV and output filenames.
+    env = os.environ.copy()
+    env.setdefault("PIPELINE_DATE", datetime.now().strftime("%Y-%m-%d"))
+    print(f"Pipeline date: {env['PIPELINE_DATE']}")
 
     for label, script in STEPS:
         script_path = repo_root / script
@@ -51,14 +49,15 @@ def main():
         result = subprocess.run(
             [sys.executable, str(script_path)],
             cwd=str(repo_root),
+            env=env,
         )
         if result.returncode != 0:
             print(f"Pipeline failed at: {label} ({script})", file=sys.stderr)
             sys.exit(result.returncode)
 
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("Pipeline completed successfully.")
-    print("="*60)
+    print("=" * 60)
 
 
 if __name__ == "__main__":
