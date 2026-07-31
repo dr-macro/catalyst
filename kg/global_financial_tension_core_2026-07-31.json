@@ -1,0 +1,1790 @@
+{
+  "label": "global_financial_tension",
+  "as_of": "2026-07-30",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-07-31T00:46:22",
+  "system_description": {
+    "narrative_title": "Bond market vs. central banks: credibility, yields and market stress",
+    "narrative_summary": "An open system of interacting central-bank decisions, bond markets, commodity shocks and investor positioning is driving sharp moves in yields, currencies and risk assets. Inputs (inflation data, oil/El Niño shocks, geopolitical events, Fed communication) change expectations; the bond market reacts by repricing long and short rates and forces feedback onto central-bank credibility and policy signaling, which in turn reshapes flows into bonds, gold, equities and hedge funds. The system exhibits reinforcing loops (rising yields → higher hedging/speculation → more volatility → tighter financial conditions) and balancing loops (central‑bank restraint or intervention → yield moderation), creating persistent uncertainty for investors and the real economy.",
+    "scope": "US Federal Reserve policy stance and communications; US Treasury yield curve and long‑term bond market; investor flows (mutual funds, hedge funds, ETFs); related asset reactions including currencies (dollar, yen), gold and oil; market indicators of inflation expectations and credit spreads.",
+    "super_system": "Global macro-financial system (global monetary policy, cross-border capital flows, commodity markets and geopolitics)",
+    "adjacent_subsystems": [
+      "Commodity markets (oil, gas, gold) and weather/geopolitical shocks",
+      "Emerging markets and FX/capital flow dynamics",
+      "Equity markets and leveraged/ETF structures",
+      "Real economy (growth, investment, housing) and inflation transmission"
+    ],
+    "evidence_headlines": [
+      "Bond market is calling Warsh’s bluff on inflation fight as yields surge",
+      "Divided Fed holds interest rates steady, but three members voted to hike",
+      "The Bond Market Is Forcing the Fed’s Hand",
+      "US borrowing costs hit 19-year high as Fed defies inflation fears",
+      "Gold Back Below $4,100 As Investors Await Fed Speech",
+      "Dollar hits one-month high on lingering chances of Fed hike"
+    ]
+  },
+  "variables": [
+    {
+      "id": "policy_interest_rate",
+      "name": "Policy interest rate level",
+      "description": "The prevailing short‑term policy interest rate set as the reference cost of borrowing in the monetary policy framework.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "Market and investor expectations about the future path of the policy interest rate over relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_credibility",
+      "name": "Monetary authority credibility",
+      "description": "The perceived reliability of monetary authorities to achieve announced objectives such as inflation control and financial stability.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "communication_clarity",
+      "name": "Policy communication clarity",
+      "description": "The degree of clarity, consistency and predictability in public monetary and macrofinancial communications.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_yield",
+      "name": "Short-term bond yield",
+      "description": "The market yield prevailing on short‑maturity fixed‑income instruments reflecting near‑term interest rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "long_term_yield",
+      "name": "Long-term bond yield",
+      "description": "The market yield prevailing on long‑maturity fixed‑income instruments that reflects longer‑run rate expectations and risk premia.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The difference between long‑term and short‑term bond yields, indicating term structure steepness or inversion.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The component of long‑term yields attributable to compensation for interest‑rate risk and uncertainty beyond expectations of policy rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_volatility",
+      "name": "Yield volatility",
+      "description": "The magnitude and frequency of fluctuations in bond yields across maturities, capturing market turbulence in fixed income.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity conditions",
+      "description": "The ease and cost of executing trades in financial markets, measured by bid‑ask spreads, depth and immediacy.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_bond_positions",
+      "name": "Investor bond positioning",
+      "description": "The aggregate stock of investors' net exposures to bonds and fixed‑income strategies across funds and accounts.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "hedge_leverage_flow",
+      "name": "Hedging and leverage flow",
+      "description": "The rate of derivative and financing activity used for hedging or leveraged speculative positions that changes exposures over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross‑border capital flows",
+      "description": "The net flow of capital across jurisdictions into and out of domestic financial assets and liabilities per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread_level",
+      "name": "Credit spread level",
+      "description": "The average premium demanded over risk‑free yields to compensate investors for credit and default risk in non‑sovereign debt.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and survey‑based anticipations of future inflation rates over short and medium horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "real_gdp_growth_rate",
+      "name": "Real economic growth rate",
+      "description": "The continuous rate of change in real economic output, reflecting underlying demand and supply dynamics.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "policy_interest_rate",
+    "policy_rate_expectations",
+    "central_bank_credibility",
+    "communication_clarity",
+    "short_term_yield",
+    "long_term_yield",
+    "yield_curve_slope",
+    "term_premium",
+    "yield_volatility",
+    "market_liquidity",
+    "investor_bond_positions",
+    "hedge_leverage_flow",
+    "cross_border_flows",
+    "credit_spread_level",
+    "inflation_expectations",
+    "real_gdp_growth_rate"
+  ],
+  "var_names": {
+    "policy_interest_rate": "Policy interest rate level",
+    "policy_rate_expectations": "Policy rate expectations",
+    "central_bank_credibility": "Monetary authority credibility",
+    "communication_clarity": "Policy communication clarity",
+    "short_term_yield": "Short-term bond yield",
+    "long_term_yield": "Long-term bond yield",
+    "yield_curve_slope": "Yield curve slope",
+    "term_premium": "Term premium",
+    "yield_volatility": "Yield volatility",
+    "market_liquidity": "Market liquidity conditions",
+    "investor_bond_positions": "Investor bond positioning",
+    "hedge_leverage_flow": "Hedging and leverage flow",
+    "cross_border_flows": "Cross‑border capital flows",
+    "credit_spread_level": "Credit spread level",
+    "inflation_expectations": "Inflation expectations",
+    "real_gdp_growth_rate": "Real economic growth rate"
+  },
+  "impact_matrix": {
+    "policy_interest_rate": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 3,
+      "central_bank_credibility": 1,
+      "communication_clarity": 0,
+      "short_term_yield": 3,
+      "long_term_yield": 2,
+      "yield_curve_slope": 2,
+      "term_premium": 1,
+      "yield_volatility": 2,
+      "market_liquidity": 1,
+      "investor_bond_positions": 1,
+      "hedge_leverage_flow": 1,
+      "cross_border_flows": 2,
+      "credit_spread_level": 1,
+      "inflation_expectations": 2,
+      "real_gdp_growth_rate": 2
+    },
+    "policy_rate_expectations": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 0,
+      "central_bank_credibility": 2,
+      "communication_clarity": 1,
+      "short_term_yield": 3,
+      "long_term_yield": 3,
+      "yield_curve_slope": 3,
+      "term_premium": 1,
+      "yield_volatility": 2,
+      "market_liquidity": 1,
+      "investor_bond_positions": 2,
+      "hedge_leverage_flow": 2,
+      "cross_border_flows": 2,
+      "credit_spread_level": 1,
+      "inflation_expectations": 3,
+      "real_gdp_growth_rate": 1
+    },
+    "central_bank_credibility": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 3,
+      "central_bank_credibility": 0,
+      "communication_clarity": 1,
+      "short_term_yield": 2,
+      "long_term_yield": 3,
+      "yield_curve_slope": 2,
+      "term_premium": 2,
+      "yield_volatility": 2,
+      "market_liquidity": 1,
+      "investor_bond_positions": 1,
+      "hedge_leverage_flow": 1,
+      "cross_border_flows": 2,
+      "credit_spread_level": 2,
+      "inflation_expectations": 3,
+      "real_gdp_growth_rate": 1
+    },
+    "communication_clarity": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 3,
+      "central_bank_credibility": 2,
+      "communication_clarity": 0,
+      "short_term_yield": 2,
+      "long_term_yield": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "yield_volatility": 2,
+      "market_liquidity": 1,
+      "investor_bond_positions": 1,
+      "hedge_leverage_flow": 1,
+      "cross_border_flows": 1,
+      "credit_spread_level": 1,
+      "inflation_expectations": 2,
+      "real_gdp_growth_rate": 0
+    },
+    "short_term_yield": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 2,
+      "central_bank_credibility": 1,
+      "communication_clarity": 0,
+      "short_term_yield": 0,
+      "long_term_yield": 2,
+      "yield_curve_slope": 3,
+      "term_premium": 1,
+      "yield_volatility": 2,
+      "market_liquidity": 1,
+      "investor_bond_positions": 2,
+      "hedge_leverage_flow": 2,
+      "cross_border_flows": 1,
+      "credit_spread_level": 1,
+      "inflation_expectations": 1,
+      "real_gdp_growth_rate": 1
+    },
+    "long_term_yield": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 2,
+      "central_bank_credibility": 2,
+      "communication_clarity": 0,
+      "short_term_yield": 2,
+      "long_term_yield": 0,
+      "yield_curve_slope": 3,
+      "term_premium": 2,
+      "yield_volatility": 2,
+      "market_liquidity": 1,
+      "investor_bond_positions": 2,
+      "hedge_leverage_flow": 2,
+      "cross_border_flows": 2,
+      "credit_spread_level": 2,
+      "inflation_expectations": 2,
+      "real_gdp_growth_rate": 1
+    },
+    "yield_curve_slope": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 2,
+      "central_bank_credibility": 1,
+      "communication_clarity": 0,
+      "short_term_yield": 2,
+      "long_term_yield": 2,
+      "yield_curve_slope": 0,
+      "term_premium": 2,
+      "yield_volatility": 1,
+      "market_liquidity": 1,
+      "investor_bond_positions": 2,
+      "hedge_leverage_flow": 2,
+      "cross_border_flows": 1,
+      "credit_spread_level": 1,
+      "inflation_expectations": 1,
+      "real_gdp_growth_rate": 1
+    },
+    "term_premium": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 0,
+      "central_bank_credibility": 0,
+      "communication_clarity": 0,
+      "short_term_yield": 0,
+      "long_term_yield": 3,
+      "yield_curve_slope": 3,
+      "term_premium": 0,
+      "yield_volatility": 1,
+      "market_liquidity": 1,
+      "investor_bond_positions": 1,
+      "hedge_leverage_flow": 1,
+      "cross_border_flows": 1,
+      "credit_spread_level": 1,
+      "inflation_expectations": 0,
+      "real_gdp_growth_rate": 0
+    },
+    "yield_volatility": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 0,
+      "central_bank_credibility": 1,
+      "communication_clarity": 0,
+      "short_term_yield": 2,
+      "long_term_yield": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 2,
+      "yield_volatility": 0,
+      "market_liquidity": 3,
+      "investor_bond_positions": 2,
+      "hedge_leverage_flow": 2,
+      "cross_border_flows": 1,
+      "credit_spread_level": 2,
+      "inflation_expectations": 0,
+      "real_gdp_growth_rate": 1
+    },
+    "market_liquidity": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 0,
+      "central_bank_credibility": 0,
+      "communication_clarity": 0,
+      "short_term_yield": 1,
+      "long_term_yield": 1,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "yield_volatility": 2,
+      "market_liquidity": 0,
+      "investor_bond_positions": 1,
+      "hedge_leverage_flow": 2,
+      "cross_border_flows": 1,
+      "credit_spread_level": 2,
+      "inflation_expectations": 0,
+      "real_gdp_growth_rate": 1
+    },
+    "investor_bond_positions": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 1,
+      "central_bank_credibility": 0,
+      "communication_clarity": 0,
+      "short_term_yield": 2,
+      "long_term_yield": 2,
+      "yield_curve_slope": 2,
+      "term_premium": 1,
+      "yield_volatility": 2,
+      "market_liquidity": 1,
+      "investor_bond_positions": 0,
+      "hedge_leverage_flow": 2,
+      "cross_border_flows": 1,
+      "credit_spread_level": 1,
+      "inflation_expectations": 0,
+      "real_gdp_growth_rate": 0
+    },
+    "hedge_leverage_flow": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 0,
+      "central_bank_credibility": 0,
+      "communication_clarity": 0,
+      "short_term_yield": 2,
+      "long_term_yield": 2,
+      "yield_curve_slope": 2,
+      "term_premium": 1,
+      "yield_volatility": 3,
+      "market_liquidity": 2,
+      "investor_bond_positions": 2,
+      "hedge_leverage_flow": 0,
+      "cross_border_flows": 1,
+      "credit_spread_level": 2,
+      "inflation_expectations": 0,
+      "real_gdp_growth_rate": 0
+    },
+    "cross_border_flows": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 1,
+      "central_bank_credibility": 1,
+      "communication_clarity": 0,
+      "short_term_yield": 2,
+      "long_term_yield": 2,
+      "yield_curve_slope": 2,
+      "term_premium": 1,
+      "yield_volatility": 1,
+      "market_liquidity": 2,
+      "investor_bond_positions": 2,
+      "hedge_leverage_flow": 1,
+      "cross_border_flows": 0,
+      "credit_spread_level": 1,
+      "inflation_expectations": 0,
+      "real_gdp_growth_rate": 0
+    },
+    "credit_spread_level": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 1,
+      "central_bank_credibility": 1,
+      "communication_clarity": 0,
+      "short_term_yield": 1,
+      "long_term_yield": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "yield_volatility": 2,
+      "market_liquidity": 2,
+      "investor_bond_positions": 1,
+      "hedge_leverage_flow": 1,
+      "cross_border_flows": 1,
+      "credit_spread_level": 0,
+      "inflation_expectations": 0,
+      "real_gdp_growth_rate": 2
+    },
+    "inflation_expectations": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 3,
+      "central_bank_credibility": 2,
+      "communication_clarity": 0,
+      "short_term_yield": 3,
+      "long_term_yield": 3,
+      "yield_curve_slope": 2,
+      "term_premium": 1,
+      "yield_volatility": 1,
+      "market_liquidity": 0,
+      "investor_bond_positions": 2,
+      "hedge_leverage_flow": 1,
+      "cross_border_flows": 1,
+      "credit_spread_level": 1,
+      "inflation_expectations": 0,
+      "real_gdp_growth_rate": 1
+    },
+    "real_gdp_growth_rate": {
+      "policy_interest_rate": 0,
+      "policy_rate_expectations": 2,
+      "central_bank_credibility": 0,
+      "communication_clarity": 0,
+      "short_term_yield": 1,
+      "long_term_yield": 1,
+      "yield_curve_slope": 1,
+      "term_premium": 0,
+      "yield_volatility": 1,
+      "market_liquidity": 1,
+      "investor_bond_positions": 1,
+      "hedge_leverage_flow": 0,
+      "cross_border_flows": 1,
+      "credit_spread_level": 2,
+      "inflation_expectations": 2,
+      "real_gdp_growth_rate": 0
+    }
+  },
+  "AS": {
+    "policy_interest_rate": 24,
+    "policy_rate_expectations": 27,
+    "central_bank_credibility": 26,
+    "communication_clarity": 20,
+    "short_term_yield": 20,
+    "long_term_yield": 25,
+    "yield_curve_slope": 19,
+    "term_premium": 12,
+    "yield_volatility": 19,
+    "market_liquidity": 13,
+    "investor_bond_positions": 15,
+    "hedge_leverage_flow": 17,
+    "cross_border_flows": 16,
+    "credit_spread_level": 16,
+    "inflation_expectations": 21,
+    "real_gdp_growth_rate": 13
+  },
+  "PS": {
+    "policy_interest_rate": 0,
+    "policy_rate_expectations": 23,
+    "central_bank_credibility": 14,
+    "communication_clarity": 2,
+    "short_term_yield": 28,
+    "long_term_yield": 32,
+    "yield_curve_slope": 29,
+    "term_premium": 18,
+    "yield_volatility": 26,
+    "market_liquidity": 19,
+    "investor_bond_positions": 23,
+    "hedge_leverage_flow": 21,
+    "cross_border_flows": 19,
+    "credit_spread_level": 21,
+    "inflation_expectations": 16,
+    "real_gdp_growth_rate": 12
+  },
+  "med_AS": 19.0,
+  "med_PS": 20.0,
+  "roles": [
+    {
+      "variable": "long_term_yield",
+      "name": "Long-term bond yield",
+      "AS": 25,
+      "PS": 32,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 800,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 27,
+      "PS": 23,
+      "Q=AS/PS": 1.17,
+      "P=AS*PS": 621,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "short_term_yield",
+      "name": "Short-term bond yield",
+      "AS": 20,
+      "PS": 28,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 560,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 19,
+      "PS": 29,
+      "Q=AS/PS": 0.66,
+      "P=AS*PS": 551,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "yield_volatility",
+      "name": "Yield volatility",
+      "AS": 19,
+      "PS": 26,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 494,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "central_bank_credibility",
+      "name": "Monetary authority credibility",
+      "AS": 26,
+      "PS": 14,
+      "Q=AS/PS": 1.86,
+      "P=AS*PS": 364,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "hedge_leverage_flow",
+      "name": "Hedging and leverage flow",
+      "AS": 17,
+      "PS": 21,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 357,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "investor_bond_positions",
+      "name": "Investor bond positioning",
+      "AS": 15,
+      "PS": 23,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 345,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 21,
+      "PS": 16,
+      "Q=AS/PS": 1.31,
+      "P=AS*PS": 336,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "credit_spread_level",
+      "name": "Credit spread level",
+      "AS": 16,
+      "PS": 21,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 336,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross‑border capital flows",
+      "AS": 16,
+      "PS": 19,
+      "Q=AS/PS": 0.84,
+      "P=AS*PS": 304,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity conditions",
+      "AS": 13,
+      "PS": 19,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 247,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 12,
+      "PS": 18,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 216,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "real_gdp_growth_rate",
+      "name": "Real economic growth rate",
+      "AS": 13,
+      "PS": 12,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 156,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "communication_clarity",
+      "name": "Policy communication clarity",
+      "AS": 20,
+      "PS": 2,
+      "Q=AS/PS": 10.0,
+      "P=AS*PS": 40,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "policy_interest_rate",
+      "name": "Policy interest rate level",
+      "AS": 24,
+      "PS": 0,
+      "Q=AS/PS": 24000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "policy_interest_rate",
+        "name": "Policy interest rate level",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 0
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 27,
+        "PS": 23
+      },
+      {
+        "id": "central_bank_credibility",
+        "name": "Monetary authority credibility",
+        "kind": "perception",
+        "AS": 26,
+        "PS": 14
+      },
+      {
+        "id": "communication_clarity",
+        "name": "Policy communication clarity",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 2
+      },
+      {
+        "id": "short_term_yield",
+        "name": "Short-term bond yield",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 28
+      },
+      {
+        "id": "long_term_yield",
+        "name": "Long-term bond yield",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 32
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "driver",
+        "AS": 19,
+        "PS": 29
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 18
+      },
+      {
+        "id": "yield_volatility",
+        "name": "Yield volatility",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 26
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity conditions",
+        "kind": "environment",
+        "AS": 13,
+        "PS": 19
+      },
+      {
+        "id": "investor_bond_positions",
+        "name": "Investor bond positioning",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 23
+      },
+      {
+        "id": "hedge_leverage_flow",
+        "name": "Hedging and leverage flow",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 21
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross‑border capital flows",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 19
+      },
+      {
+        "id": "credit_spread_level",
+        "name": "Credit spread level",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 21
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 16
+      },
+      {
+        "id": "real_gdp_growth_rate",
+        "name": "Real economic growth rate",
+        "kind": "environment",
+        "AS": 13,
+        "PS": 12
+      }
+    ],
+    "edges": [
+      {
+        "source": "policy_interest_rate",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "short_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "real_gdp_growth_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "central_bank_credibility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "short_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "investor_bond_positions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "hedge_leverage_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "short_term_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "central_bank_credibility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "short_term_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_yield",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_yield",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_yield",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_yield",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_yield",
+        "target": "investor_bond_positions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_yield",
+        "target": "hedge_leverage_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "central_bank_credibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "short_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "investor_bond_positions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "hedge_leverage_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "short_term_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "investor_bond_positions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "hedge_leverage_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "short_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "investor_bond_positions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "hedge_leverage_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "hedge_leverage_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_bond_positions",
+        "target": "short_term_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_bond_positions",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_bond_positions",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_bond_positions",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_bond_positions",
+        "target": "hedge_leverage_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hedge_leverage_flow",
+        "target": "short_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hedge_leverage_flow",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "hedge_leverage_flow",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "hedge_leverage_flow",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "hedge_leverage_flow",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hedge_leverage_flow",
+        "target": "investor_bond_positions",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hedge_leverage_flow",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "short_term_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "investor_bond_positions",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "real_gdp_growth_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "central_bank_credibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_bond_positions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_gdp_growth_rate",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_gdp_growth_rate",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_gdp_growth_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_september_hike",
+      "title": "Potential September Fed rate hike",
+      "description": "Market pricing and Fed dissent make a September policy-rate increase a credible near-term catalyst that would re-price short rates and influence the curve.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September FOMC window"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "central_bank_credibility",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'The big focus now is on the potential for a September rate hike', 'three members voted to hike', 'Fed holds rates steady'."
+    },
+    {
+      "id": "warsh_communications",
+      "title": "Kevin Warsh communication flurry",
+      "description": "Ongoing speeches, press conferences and terse messaging from Fed chair Warsh will continue to move expectations and market volatility in the near term.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-30",
+        "end": "2026-08-31",
+        "label": "next 4–6 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "communication_clarity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "central_bank_credibility",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Warsh is confusing markets', 'stripped-back Fed communication already backfiring', 'Warsh’s posture sparks market inflation fears'."
+    },
+    {
+      "id": "bond_long_end_selloff",
+      "title": "Continuation of long‑end Treasury sell‑off",
+      "description": "Ongoing market interpretation of Fed signals is driving long‑end yield increases and heightened fixed‑income volatility that can persist short term.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-30",
+        "end": "2026-08-31",
+        "label": "next 2–4 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'U.S. Treasury Yields Soar', '30‑Year Yield at 19‑Year High', 'The Long End Gets Nervous'."
+    },
+    {
+      "id": "middle_east_escalation",
+      "title": "Mideast escalation / oil shock",
+      "description": "Escalating Middle East tensions and resultant oil-price moves are likely to raise inflation expectations and risk premia across bond markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-30",
+        "end": "2026-10-31",
+        "label": "next 1–3 months"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Stocks Fall on Mideast Escalation', 'oil prices', 'inflation reversal likely amid Middle East conflict'."
+    },
+    {
+      "id": "us_pce_rebench",
+      "title": "US stats change to PCE inflation gauge",
+      "description": "Planned methodological changes to US statistics that lower the Fed’s preferred inflation gauge will alter reported inflation and policy pressure.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-12-31",
+        "label": "by end of 2026"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "central_bank_credibility",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'US stats agency change set to lower Fed’s preferred inflation gauge'."
+    },
+    {
+      "id": "el_nino_commodity_shock",
+      "title": "El Niño commodity / inflation pressure",
+      "description": "A strong El Niño season threatens commodity and food-price shocks that could impede prospective Fed easing and lift inflation expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-30",
+        "end": "2027-03-31",
+        "label": "El Niño season (months)"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'surging El Niño could kill Fed rate cuts', 'Emerging markets stare at inflation risks as powerful El Niño looms'."
+    },
+    {
+      "id": "boj_policy_signal",
+      "title": "Bank of Japan hold and signaling path",
+      "description": "BOJ meetings where officials hold now but signal further tightening will drive global rate expectations, yen moves and cross‑border flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-30",
+        "end": "2026-10-31",
+        "label": "next 1–3 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "central_bank_credibility",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Bank of Japan Set to Hold', 'Bank of Japan to signal more rate hikes', 'investors warn BoJ faces test to credibility'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "fed_september_hike",
+      "title": "Potential September Fed rate hike",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September FOMC window",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.6,
+      "impact_score": 365.0,
+      "expected_impact": 219.0,
+      "event_PS": 20.062,
+      "event_AS": 22.812,
+      "n_vars": 7,
+      "affected_ids": "policy_interest_rate, policy_rate_expectations, short_term_yield, long_term_yield, yield_curve_slope, term_premium, central_bank_credibility",
+      "rationale": "Headlines: 'The big focus now is on the potential for a September rate hike', 'three members voted to hike', 'Fed holds rates steady'."
+    },
+    {
+      "id": "middle_east_escalation",
+      "title": "Mideast escalation / oil shock",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1–3 months",
+      "date": null,
+      "start": "2026-07-30",
+      "end": "2026-10-31",
+      "probability": 0.65,
+      "impact_score": 248.0,
+      "expected_impact": 161.2,
+      "event_PS": 22.667,
+      "event_AS": 20.667,
+      "n_vars": 5,
+      "affected_ids": "inflation_expectations, term_premium, long_term_yield, policy_rate_expectations, yield_volatility",
+      "rationale": "Headlines: 'Stocks Fall on Mideast Escalation', 'oil prices', 'inflation reversal likely amid Middle East conflict'."
+    },
+    {
+      "id": "bond_long_end_selloff",
+      "title": "Continuation of long‑end Treasury sell‑off",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2–4 weeks",
+      "date": null,
+      "start": "2026-07-30",
+      "end": "2026-08-31",
+      "probability": 0.8,
+      "impact_score": 247.0,
+      "expected_impact": 197.6,
+      "event_PS": 26.385,
+      "event_AS": 19.0,
+      "n_vars": 6,
+      "affected_ids": "long_term_yield, short_term_yield, yield_curve_slope, yield_volatility, term_premium, market_liquidity",
+      "rationale": "Headlines: 'U.S. Treasury Yields Soar', '30‑Year Yield at 19‑Year High', 'The Long End Gets Nervous'."
+    },
+    {
+      "id": "warsh_communications",
+      "title": "Kevin Warsh communication flurry",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4–6 weeks",
+      "date": null,
+      "start": "2026-07-30",
+      "end": "2026-08-31",
+      "probability": 0.9,
+      "impact_score": 230.0,
+      "expected_impact": 207.0,
+      "event_PS": 14.6,
+      "event_AS": 23.0,
+      "n_vars": 4,
+      "affected_ids": "communication_clarity, central_bank_credibility, policy_rate_expectations, yield_volatility",
+      "rationale": "Headlines: 'Warsh is confusing markets', 'stripped-back Fed communication already backfiring', 'Warsh’s posture sparks market inflation fears'."
+    },
+    {
+      "id": "el_nino_commodity_shock",
+      "title": "El Niño commodity / inflation pressure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "El Niño season (months)",
+      "date": null,
+      "start": "2026-07-30",
+      "end": "2027-03-31",
+      "probability": 0.6,
+      "impact_score": 211.0,
+      "expected_impact": 126.6,
+      "event_PS": 21.8,
+      "event_AS": 21.1,
+      "n_vars": 5,
+      "affected_ids": "inflation_expectations, policy_rate_expectations, long_term_yield, term_premium, credit_spread_level",
+      "rationale": "Headline: 'surging El Niño could kill Fed rate cuts', 'Emerging markets stare at inflation risks as powerful El Niño looms'."
+    },
+    {
+      "id": "boj_policy_signal",
+      "title": "Bank of Japan hold and signaling path",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1–3 months",
+      "date": null,
+      "start": "2026-07-30",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 163.0,
+      "expected_impact": 114.1,
+      "event_PS": 20.571,
+      "event_AS": 23.286,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, cross_border_flows, long_term_yield, central_bank_credibility",
+      "rationale": "Headlines: 'Bank of Japan Set to Hold', 'Bank of Japan to signal more rate hikes', 'investors warn BoJ faces test to credibility'."
+    },
+    {
+      "id": "us_pce_rebench",
+      "title": "US stats change to PCE inflation gauge",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of 2026",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-12-31",
+      "probability": 0.75,
+      "impact_score": 147.0,
+      "expected_impact": 110.25,
+      "event_PS": 20.667,
+      "event_AS": 24.5,
+      "n_vars": 4,
+      "affected_ids": "inflation_expectations, policy_rate_expectations, central_bank_credibility, long_term_yield",
+      "rationale": "Headline: 'US stats agency change set to lower Fed’s preferred inflation gauge'."
+    }
+  ]
+}
