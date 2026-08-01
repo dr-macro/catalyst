@@ -1,0 +1,1833 @@
+{
+  "label": "us_iran_confront",
+  "as_of": "2026-08-01",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-01T00:25:01",
+  "system_description": {
+    "narrative_title": "Iran–US war disrupts maritime routes and global oil markets",
+    "narrative_summary": "An escalating Iran–U.S. conflict and regional proxy strikes are disrupting key maritime chokepoints (Hormuz, Red Sea), triggering oil and LNG supply shocks, market volatility, and windfall profits for energy majors while prompting military buildups and new multinational security initiatives. Read as an open system, the situation links military actions (attacks, strikes, coalitions), physical flows (tankers, pipelines, inventories), market signals (prices, trading profits, inventories) and policy responses (defence procurement, shipping coalitions, rerouting and demand shifts), with reinforcing feedbacks between insecurity → higher prices → corporate/strategic shifts → further geopolitical maneuvering.",
+    "scope": "Inside: direct military engagements between the U.S., Iran and Iran-backed groups; Houthi attacks and Red Sea threats; transit through Strait of Hormuz and Bab el-Mandeb; oil and LNG production, tanker movements, inventories and refining; global oil and gas spot and futures markets; oil majors' earnings, trading desks and corporate actions; national economic impacts (Saudi, UAE, US, China) and defence procurements/coalitions.",
+    "super_system": "The global geopolitical-economy and energy system (interconnected security, trade, finance and energy supply chains).",
+    "adjacent_subsystems": [
+      "Maritime security and global shipping/logistics",
+      "Commodities and financial markets (oil, LNG, trading desks)",
+      "Energy industry value chain (producers, refiners, traders, majors)",
+      "Regional diplomatic-military architecture (Gulf states, US alliances)"
+    ],
+    "evidence_headlines": [
+      "U.S. strikes dozens of targets in Iran after intercepting missile attacks",
+      "Oil jumps to $99 after Houthis attack two Saudi Arabian tankers - ft.com",
+      "US oil inventories fall to ‘precariously low’ level as Iran war disrupts supply - ft.com",
+      "Shell profit more than doubles to $9.8 billion as Iran war boosts oil, gas prices",
+      "Saudi Arabia unveils plans for multinational maritime defence coalition - reuters.com",
+      "The Strait of Hormuz is just one trade chokepoint facing a new era of maritime warfare"
+    ]
+  },
+  "variables": [
+    {
+      "id": "maritime_security_level",
+      "name": "Maritime security level",
+      "description": "The overall degree of safety for commercial shipping across contested sea lanes and chokepoints measured by frequency and severity of hostile incidents and interdictions.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_access",
+      "name": "Chokepoint accessibility",
+      "description": "The functional openness of key maritime chokepoints to normal commercial transit, measured by the share of traffic able to use primary passages without diversion or delay.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_transit_flow",
+      "name": "Tanker transit flow",
+      "description": "The volumetric rate of crude and LNG tankers transiting regional routes and chokepoints per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "ship_rerouting_rate",
+      "name": "Ship rerouting rate",
+      "description": "The rate at which commercial vessels alter planned routes to avoid high-risk zones, measured as proportion of voyages rerouted per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "oil_lng_prod_rate",
+      "name": "Oil & LNG production rate",
+      "description": "The combined rate of upstream production of crude oil and liquefied natural gas across producing regions measured in volume per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "pipeline_flow_rate",
+      "name": "Pipeline flow rate",
+      "description": "The volumetric throughput of oil and gas transported via pipelines per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "global_fossil_stocks",
+      "name": "Global fossil fuel inventories",
+      "description": "The aggregated stock of commercial crude oil and natural gas stored in strategic and commercial facilities worldwide.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_throughput",
+      "name": "Refinery throughput rate",
+      "description": "The rate at which refineries process crude into refined products measured in barrels (or equivalent) per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "global_oil_price",
+      "name": "Global oil price level",
+      "description": "The prevailing market price level for benchmark crude oil expressed as an index or nominal price.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "price_volatility",
+      "name": "Market price volatility",
+      "description": "The short-term variability of energy commodity prices measured by statistical dispersion or implied volatility metrics.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "trading_profit_rate",
+      "name": "Commodity trading profit rate",
+      "description": "The aggregate rate of profits being realized by market trading activity in energy commodities per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_alloc_tilt",
+      "name": "Corporate capital allocation tilt",
+      "description": "The prevailing bias in corporate allocation of capital across upstream production, trading, buybacks and dividends, measured as relative shares of new capital commitments.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "military_tempo",
+      "name": "Military operational tempo",
+      "description": "The intensity and frequency of military operations and kinetic engagements in the region measured as operational actions per unit time.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "defense_procure_rate",
+      "name": "Defense procurement rate",
+      "description": "The rate of acquisitions and deliveries of military equipment and munitions in response to perceived threats measured in contract value or physical units per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "coalition_security_effor",
+      "name": "Coalition security effort",
+      "description": "The aggregated level of coordinated multinational security activities to protect maritime commerce, measured by combined patrol presence, escorts and joint operations intensity.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_war_premium",
+      "name": "Maritime war risk premium",
+      "description": "The elevated insurance and routing cost premium applied to maritime shipping attributable to conflict-related risk perceptions and actual losses.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "maritime_security_level",
+    "chokepoint_access",
+    "tanker_transit_flow",
+    "ship_rerouting_rate",
+    "oil_lng_prod_rate",
+    "pipeline_flow_rate",
+    "global_fossil_stocks",
+    "refinery_throughput",
+    "global_oil_price",
+    "price_volatility",
+    "trading_profit_rate",
+    "corporate_alloc_tilt",
+    "military_tempo",
+    "defense_procure_rate",
+    "coalition_security_effor",
+    "maritime_war_premium"
+  ],
+  "var_names": {
+    "maritime_security_level": "Maritime security level",
+    "chokepoint_access": "Chokepoint accessibility",
+    "tanker_transit_flow": "Tanker transit flow",
+    "ship_rerouting_rate": "Ship rerouting rate",
+    "oil_lng_prod_rate": "Oil & LNG production rate",
+    "pipeline_flow_rate": "Pipeline flow rate",
+    "global_fossil_stocks": "Global fossil fuel inventories",
+    "refinery_throughput": "Refinery throughput rate",
+    "global_oil_price": "Global oil price level",
+    "price_volatility": "Market price volatility",
+    "trading_profit_rate": "Commodity trading profit rate",
+    "corporate_alloc_tilt": "Corporate capital allocation tilt",
+    "military_tempo": "Military operational tempo",
+    "defense_procure_rate": "Defense procurement rate",
+    "coalition_security_effor": "Coalition security effort",
+    "maritime_war_premium": "Maritime war risk premium"
+  },
+  "impact_matrix": {
+    "maritime_security_level": {
+      "maritime_security_level": 0,
+      "chokepoint_access": 3,
+      "tanker_transit_flow": 3,
+      "ship_rerouting_rate": 3,
+      "oil_lng_prod_rate": 1,
+      "pipeline_flow_rate": 1,
+      "global_fossil_stocks": 1,
+      "refinery_throughput": 1,
+      "global_oil_price": 2,
+      "price_volatility": 3,
+      "trading_profit_rate": 2,
+      "corporate_alloc_tilt": 1,
+      "military_tempo": 2,
+      "defense_procure_rate": 1,
+      "coalition_security_effor": 3,
+      "maritime_war_premium": 3
+    },
+    "chokepoint_access": {
+      "maritime_security_level": 2,
+      "chokepoint_access": 0,
+      "tanker_transit_flow": 3,
+      "ship_rerouting_rate": 3,
+      "oil_lng_prod_rate": 1,
+      "pipeline_flow_rate": 0,
+      "global_fossil_stocks": 1,
+      "refinery_throughput": 1,
+      "global_oil_price": 2,
+      "price_volatility": 2,
+      "trading_profit_rate": 2,
+      "corporate_alloc_tilt": 1,
+      "military_tempo": 1,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 2,
+      "maritime_war_premium": 3
+    },
+    "tanker_transit_flow": {
+      "maritime_security_level": 1,
+      "chokepoint_access": 2,
+      "tanker_transit_flow": 0,
+      "ship_rerouting_rate": 2,
+      "oil_lng_prod_rate": 1,
+      "pipeline_flow_rate": 0,
+      "global_fossil_stocks": 2,
+      "refinery_throughput": 2,
+      "global_oil_price": 3,
+      "price_volatility": 2,
+      "trading_profit_rate": 2,
+      "corporate_alloc_tilt": 1,
+      "military_tempo": 0,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 1,
+      "maritime_war_premium": 3
+    },
+    "ship_rerouting_rate": {
+      "maritime_security_level": 1,
+      "chokepoint_access": 2,
+      "tanker_transit_flow": 3,
+      "ship_rerouting_rate": 0,
+      "oil_lng_prod_rate": 1,
+      "pipeline_flow_rate": 0,
+      "global_fossil_stocks": 2,
+      "refinery_throughput": 1,
+      "global_oil_price": 2,
+      "price_volatility": 2,
+      "trading_profit_rate": 2,
+      "corporate_alloc_tilt": 1,
+      "military_tempo": 0,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 1,
+      "maritime_war_premium": 3
+    },
+    "oil_lng_prod_rate": {
+      "maritime_security_level": 0,
+      "chokepoint_access": 0,
+      "tanker_transit_flow": 2,
+      "ship_rerouting_rate": 0,
+      "oil_lng_prod_rate": 0,
+      "pipeline_flow_rate": 2,
+      "global_fossil_stocks": 3,
+      "refinery_throughput": 2,
+      "global_oil_price": 3,
+      "price_volatility": 2,
+      "trading_profit_rate": 2,
+      "corporate_alloc_tilt": 3,
+      "military_tempo": 0,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 0,
+      "maritime_war_premium": 0
+    },
+    "pipeline_flow_rate": {
+      "maritime_security_level": 0,
+      "chokepoint_access": 0,
+      "tanker_transit_flow": 1,
+      "ship_rerouting_rate": 0,
+      "oil_lng_prod_rate": 1,
+      "pipeline_flow_rate": 0,
+      "global_fossil_stocks": 2,
+      "refinery_throughput": 2,
+      "global_oil_price": 1,
+      "price_volatility": 1,
+      "trading_profit_rate": 1,
+      "corporate_alloc_tilt": 1,
+      "military_tempo": 0,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 0,
+      "maritime_war_premium": 0
+    },
+    "global_fossil_stocks": {
+      "maritime_security_level": 0,
+      "chokepoint_access": 0,
+      "tanker_transit_flow": 1,
+      "ship_rerouting_rate": 0,
+      "oil_lng_prod_rate": 1,
+      "pipeline_flow_rate": 1,
+      "global_fossil_stocks": 0,
+      "refinery_throughput": 1,
+      "global_oil_price": 3,
+      "price_volatility": 2,
+      "trading_profit_rate": 2,
+      "corporate_alloc_tilt": 1,
+      "military_tempo": 0,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 0,
+      "maritime_war_premium": 0
+    },
+    "refinery_throughput": {
+      "maritime_security_level": 0,
+      "chokepoint_access": 0,
+      "tanker_transit_flow": 1,
+      "ship_rerouting_rate": 0,
+      "oil_lng_prod_rate": 1,
+      "pipeline_flow_rate": 1,
+      "global_fossil_stocks": 1,
+      "refinery_throughput": 0,
+      "global_oil_price": 1,
+      "price_volatility": 1,
+      "trading_profit_rate": 1,
+      "corporate_alloc_tilt": 1,
+      "military_tempo": 0,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 0,
+      "maritime_war_premium": 0
+    },
+    "global_oil_price": {
+      "maritime_security_level": 0,
+      "chokepoint_access": 0,
+      "tanker_transit_flow": 2,
+      "ship_rerouting_rate": 0,
+      "oil_lng_prod_rate": 3,
+      "pipeline_flow_rate": 2,
+      "global_fossil_stocks": 2,
+      "refinery_throughput": 2,
+      "global_oil_price": 0,
+      "price_volatility": 2,
+      "trading_profit_rate": 3,
+      "corporate_alloc_tilt": 3,
+      "military_tempo": 0,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 0,
+      "maritime_war_premium": 2
+    },
+    "price_volatility": {
+      "maritime_security_level": 0,
+      "chokepoint_access": 0,
+      "tanker_transit_flow": 1,
+      "ship_rerouting_rate": 0,
+      "oil_lng_prod_rate": 1,
+      "pipeline_flow_rate": 0,
+      "global_fossil_stocks": 1,
+      "refinery_throughput": 0,
+      "global_oil_price": 2,
+      "price_volatility": 0,
+      "trading_profit_rate": 3,
+      "corporate_alloc_tilt": 1,
+      "military_tempo": 0,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 0,
+      "maritime_war_premium": 2
+    },
+    "trading_profit_rate": {
+      "maritime_security_level": 0,
+      "chokepoint_access": 0,
+      "tanker_transit_flow": 0,
+      "ship_rerouting_rate": 0,
+      "oil_lng_prod_rate": 0,
+      "pipeline_flow_rate": 0,
+      "global_fossil_stocks": 0,
+      "refinery_throughput": 0,
+      "global_oil_price": 0,
+      "price_volatility": 1,
+      "trading_profit_rate": 0,
+      "corporate_alloc_tilt": 2,
+      "military_tempo": 0,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 0,
+      "maritime_war_premium": 0
+    },
+    "corporate_alloc_tilt": {
+      "maritime_security_level": 0,
+      "chokepoint_access": 0,
+      "tanker_transit_flow": 0,
+      "ship_rerouting_rate": 0,
+      "oil_lng_prod_rate": 2,
+      "pipeline_flow_rate": 1,
+      "global_fossil_stocks": 0,
+      "refinery_throughput": 1,
+      "global_oil_price": 0,
+      "price_volatility": 0,
+      "trading_profit_rate": 1,
+      "corporate_alloc_tilt": 0,
+      "military_tempo": 0,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 0,
+      "maritime_war_premium": 0
+    },
+    "military_tempo": {
+      "maritime_security_level": 3,
+      "chokepoint_access": 3,
+      "tanker_transit_flow": 3,
+      "ship_rerouting_rate": 3,
+      "oil_lng_prod_rate": 1,
+      "pipeline_flow_rate": 1,
+      "global_fossil_stocks": 0,
+      "refinery_throughput": 1,
+      "global_oil_price": 3,
+      "price_volatility": 3,
+      "trading_profit_rate": 2,
+      "corporate_alloc_tilt": 1,
+      "military_tempo": 0,
+      "defense_procure_rate": 2,
+      "coalition_security_effor": 3,
+      "maritime_war_premium": 3
+    },
+    "defense_procure_rate": {
+      "maritime_security_level": 1,
+      "chokepoint_access": 1,
+      "tanker_transit_flow": 0,
+      "ship_rerouting_rate": 0,
+      "oil_lng_prod_rate": 0,
+      "pipeline_flow_rate": 0,
+      "global_fossil_stocks": 0,
+      "refinery_throughput": 0,
+      "global_oil_price": 0,
+      "price_volatility": 0,
+      "trading_profit_rate": 0,
+      "corporate_alloc_tilt": 0,
+      "military_tempo": 1,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 2,
+      "maritime_war_premium": 1
+    },
+    "coalition_security_effor": {
+      "maritime_security_level": 3,
+      "chokepoint_access": 3,
+      "tanker_transit_flow": 3,
+      "ship_rerouting_rate": 3,
+      "oil_lng_prod_rate": 0,
+      "pipeline_flow_rate": 0,
+      "global_fossil_stocks": 0,
+      "refinery_throughput": 0,
+      "global_oil_price": 2,
+      "price_volatility": 2,
+      "trading_profit_rate": 1,
+      "corporate_alloc_tilt": 0,
+      "military_tempo": 1,
+      "defense_procure_rate": 1,
+      "coalition_security_effor": 0,
+      "maritime_war_premium": 3
+    },
+    "maritime_war_premium": {
+      "maritime_security_level": 1,
+      "chokepoint_access": 0,
+      "tanker_transit_flow": 2,
+      "ship_rerouting_rate": 2,
+      "oil_lng_prod_rate": 0,
+      "pipeline_flow_rate": 0,
+      "global_fossil_stocks": 1,
+      "refinery_throughput": 0,
+      "global_oil_price": 2,
+      "price_volatility": 1,
+      "trading_profit_rate": 1,
+      "corporate_alloc_tilt": 1,
+      "military_tempo": 0,
+      "defense_procure_rate": 0,
+      "coalition_security_effor": 1,
+      "maritime_war_premium": 0
+    }
+  },
+  "AS": {
+    "maritime_security_level": 30,
+    "chokepoint_access": 24,
+    "tanker_transit_flow": 22,
+    "ship_rerouting_rate": 21,
+    "oil_lng_prod_rate": 19,
+    "pipeline_flow_rate": 10,
+    "global_fossil_stocks": 12,
+    "refinery_throughput": 8,
+    "global_oil_price": 21,
+    "price_volatility": 11,
+    "trading_profit_rate": 3,
+    "corporate_alloc_tilt": 5,
+    "military_tempo": 32,
+    "defense_procure_rate": 6,
+    "coalition_security_effor": 22,
+    "maritime_war_premium": 12
+  },
+  "PS": {
+    "maritime_security_level": 12,
+    "chokepoint_access": 14,
+    "tanker_transit_flow": 25,
+    "ship_rerouting_rate": 16,
+    "oil_lng_prod_rate": 14,
+    "pipeline_flow_rate": 9,
+    "global_fossil_stocks": 16,
+    "refinery_throughput": 14,
+    "global_oil_price": 26,
+    "price_volatility": 24,
+    "trading_profit_rate": 25,
+    "corporate_alloc_tilt": 18,
+    "military_tempo": 5,
+    "defense_procure_rate": 4,
+    "coalition_security_effor": 13,
+    "maritime_war_premium": 23
+  },
+  "med_AS": 15.5,
+  "med_PS": 15.0,
+  "roles": [
+    {
+      "variable": "tanker_transit_flow",
+      "name": "Tanker transit flow",
+      "AS": 22,
+      "PS": 25,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 550,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "global_oil_price",
+      "name": "Global oil price level",
+      "AS": 21,
+      "PS": 26,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 546,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "maritime_security_level",
+      "name": "Maritime security level",
+      "AS": 30,
+      "PS": 12,
+      "Q=AS/PS": 2.5,
+      "P=AS*PS": 360,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "chokepoint_access",
+      "name": "Chokepoint accessibility",
+      "AS": 24,
+      "PS": 14,
+      "Q=AS/PS": 1.71,
+      "P=AS*PS": 336,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "ship_rerouting_rate",
+      "name": "Ship rerouting rate",
+      "AS": 21,
+      "PS": 16,
+      "Q=AS/PS": 1.31,
+      "P=AS*PS": 336,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "coalition_security_effor",
+      "name": "Coalition security effort",
+      "AS": 22,
+      "PS": 13,
+      "Q=AS/PS": 1.69,
+      "P=AS*PS": 286,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "maritime_war_premium",
+      "name": "Maritime war risk premium",
+      "AS": 12,
+      "PS": 23,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 276,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "oil_lng_prod_rate",
+      "name": "Oil & LNG production rate",
+      "AS": 19,
+      "PS": 14,
+      "Q=AS/PS": 1.36,
+      "P=AS*PS": 266,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "price_volatility",
+      "name": "Market price volatility",
+      "AS": 11,
+      "PS": 24,
+      "Q=AS/PS": 0.46,
+      "P=AS*PS": 264,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "global_fossil_stocks",
+      "name": "Global fossil fuel inventories",
+      "AS": 12,
+      "PS": 16,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 192,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "military_tempo",
+      "name": "Military operational tempo",
+      "AS": 32,
+      "PS": 5,
+      "Q=AS/PS": 6.4,
+      "P=AS*PS": 160,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refinery_throughput",
+      "name": "Refinery throughput rate",
+      "AS": 8,
+      "PS": 14,
+      "Q=AS/PS": 0.57,
+      "P=AS*PS": 112,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "pipeline_flow_rate",
+      "name": "Pipeline flow rate",
+      "AS": 10,
+      "PS": 9,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 90,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "corporate_alloc_tilt",
+      "name": "Corporate capital allocation tilt",
+      "AS": 5,
+      "PS": 18,
+      "Q=AS/PS": 0.28,
+      "P=AS*PS": 90,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "trading_profit_rate",
+      "name": "Commodity trading profit rate",
+      "AS": 3,
+      "PS": 25,
+      "Q=AS/PS": 0.12,
+      "P=AS*PS": 75,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "defense_procure_rate",
+      "name": "Defense procurement rate",
+      "AS": 6,
+      "PS": 4,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 24,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "maritime_security_level",
+        "name": "Maritime security level",
+        "kind": "environment",
+        "AS": 30,
+        "PS": 12
+      },
+      {
+        "id": "chokepoint_access",
+        "name": "Chokepoint accessibility",
+        "kind": "environment",
+        "AS": 24,
+        "PS": 14
+      },
+      {
+        "id": "tanker_transit_flow",
+        "name": "Tanker transit flow",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 25
+      },
+      {
+        "id": "ship_rerouting_rate",
+        "name": "Ship rerouting rate",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 16
+      },
+      {
+        "id": "oil_lng_prod_rate",
+        "name": "Oil & LNG production rate",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 14
+      },
+      {
+        "id": "pipeline_flow_rate",
+        "name": "Pipeline flow rate",
+        "kind": "flow",
+        "AS": 10,
+        "PS": 9
+      },
+      {
+        "id": "global_fossil_stocks",
+        "name": "Global fossil fuel inventories",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 16
+      },
+      {
+        "id": "refinery_throughput",
+        "name": "Refinery throughput rate",
+        "kind": "flow",
+        "AS": 8,
+        "PS": 14
+      },
+      {
+        "id": "global_oil_price",
+        "name": "Global oil price level",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 26
+      },
+      {
+        "id": "price_volatility",
+        "name": "Market price volatility",
+        "kind": "perception",
+        "AS": 11,
+        "PS": 24
+      },
+      {
+        "id": "trading_profit_rate",
+        "name": "Commodity trading profit rate",
+        "kind": "flow",
+        "AS": 3,
+        "PS": 25
+      },
+      {
+        "id": "corporate_alloc_tilt",
+        "name": "Corporate capital allocation tilt",
+        "kind": "institution_field",
+        "AS": 5,
+        "PS": 18
+      },
+      {
+        "id": "military_tempo",
+        "name": "Military operational tempo",
+        "kind": "driver",
+        "AS": 32,
+        "PS": 5
+      },
+      {
+        "id": "defense_procure_rate",
+        "name": "Defense procurement rate",
+        "kind": "flow",
+        "AS": 6,
+        "PS": 4
+      },
+      {
+        "id": "coalition_security_effor",
+        "name": "Coalition security effort",
+        "kind": "institution_field",
+        "AS": 22,
+        "PS": 13
+      },
+      {
+        "id": "maritime_war_premium",
+        "name": "Maritime war risk premium",
+        "kind": "perception",
+        "AS": 12,
+        "PS": 23
+      }
+    ],
+    "edges": [
+      {
+        "source": "maritime_security_level",
+        "target": "chokepoint_access",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_level",
+        "target": "tanker_transit_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_level",
+        "target": "ship_rerouting_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_level",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_level",
+        "target": "price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_level",
+        "target": "trading_profit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_level",
+        "target": "military_tempo",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_level",
+        "target": "coalition_security_effor",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_level",
+        "target": "maritime_war_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_access",
+        "target": "maritime_security_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_access",
+        "target": "tanker_transit_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_access",
+        "target": "ship_rerouting_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_access",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_access",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_access",
+        "target": "trading_profit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_access",
+        "target": "coalition_security_effor",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_access",
+        "target": "maritime_war_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_flow",
+        "target": "chokepoint_access",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_flow",
+        "target": "ship_rerouting_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_flow",
+        "target": "global_fossil_stocks",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_transit_flow",
+        "target": "refinery_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_transit_flow",
+        "target": "global_oil_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_flow",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_flow",
+        "target": "trading_profit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_flow",
+        "target": "maritime_war_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "ship_rerouting_rate",
+        "target": "chokepoint_access",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "ship_rerouting_rate",
+        "target": "tanker_transit_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "ship_rerouting_rate",
+        "target": "global_fossil_stocks",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "ship_rerouting_rate",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ship_rerouting_rate",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ship_rerouting_rate",
+        "target": "trading_profit_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ship_rerouting_rate",
+        "target": "maritime_war_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_lng_prod_rate",
+        "target": "tanker_transit_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_lng_prod_rate",
+        "target": "pipeline_flow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_lng_prod_rate",
+        "target": "global_fossil_stocks",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_lng_prod_rate",
+        "target": "refinery_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_lng_prod_rate",
+        "target": "global_oil_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "oil_lng_prod_rate",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_lng_prod_rate",
+        "target": "trading_profit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_lng_prod_rate",
+        "target": "corporate_alloc_tilt",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_flow_rate",
+        "target": "global_fossil_stocks",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "pipeline_flow_rate",
+        "target": "refinery_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_fossil_stocks",
+        "target": "global_oil_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_fossil_stocks",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_fossil_stocks",
+        "target": "trading_profit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_price",
+        "target": "tanker_transit_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price",
+        "target": "oil_lng_prod_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price",
+        "target": "pipeline_flow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price",
+        "target": "global_fossil_stocks",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "global_oil_price",
+        "target": "refinery_throughput",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "global_oil_price",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price",
+        "target": "trading_profit_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price",
+        "target": "corporate_alloc_tilt",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price",
+        "target": "maritime_war_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "price_volatility",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "price_volatility",
+        "target": "trading_profit_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "price_volatility",
+        "target": "maritime_war_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trading_profit_rate",
+        "target": "corporate_alloc_tilt",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_alloc_tilt",
+        "target": "oil_lng_prod_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_tempo",
+        "target": "maritime_security_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "military_tempo",
+        "target": "chokepoint_access",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "military_tempo",
+        "target": "tanker_transit_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "military_tempo",
+        "target": "ship_rerouting_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_tempo",
+        "target": "global_oil_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_tempo",
+        "target": "price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_tempo",
+        "target": "trading_profit_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_tempo",
+        "target": "defense_procure_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_tempo",
+        "target": "coalition_security_effor",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_tempo",
+        "target": "maritime_war_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "defense_procure_rate",
+        "target": "coalition_security_effor",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "coalition_security_effor",
+        "target": "maritime_security_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "coalition_security_effor",
+        "target": "chokepoint_access",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "coalition_security_effor",
+        "target": "tanker_transit_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "coalition_security_effor",
+        "target": "ship_rerouting_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "coalition_security_effor",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "coalition_security_effor",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "coalition_security_effor",
+        "target": "maritime_war_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_war_premium",
+        "target": "tanker_transit_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_war_premium",
+        "target": "ship_rerouting_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_war_premium",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_strike_escalation_two_weeks",
+      "title": "Imminent US strike escalation (2-week plan)",
+      "description": "US orders fresh strikes and a two-week escalation plan against Iran; intensified strikes likely to unfold over the next fortnight.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-08-15",
+        "label": "2 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "military_tempo",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_security_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_transit_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "ship_rerouting_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Trump Orders Fresh Strikes on Iran' (2026-08-01); 'The U.S. Commander With a Two-Week Plan to Escalate Strikes in Iran' (2026-07-30)."
+    },
+    {
+      "id": "us_israel_energy_target_bombardment",
+      "title": "Planned US/Israel strikes on energy-related targets",
+      "description": "Reports that the US and Israel plan bombardment of Iran energy-related targets, risking damage to production and refining infrastructure in the near term.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-08-21",
+        "label": "3 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "oil_lng_prod_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refinery_throughput",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_security_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_transit_flow",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'US, Israel planning to bombard energy-related targets in Iran, CBS reports' (2026-08-01)."
+    },
+    {
+      "id": "iran_hormuz_interdiction",
+      "title": "Iran enforces interdictions in Strait of Hormuz",
+      "description": "Iran's statements and actions indicate continued stopping of ships and tighter control of the Strait of Hormuz, likely reducing normal transit access.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-10-01",
+        "label": "1-3 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "chokepoint_access",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_transit_flow",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "ship_rerouting_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_war_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "military_tempo",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Iran says it stops ships in Hormuz' (2026-07-31); 'Iran rules out regional management of Hormuz' (2026-07-30)."
+    },
+    {
+      "id": "saudi_multinational_coalition_buildout",
+      "title": "Saudi-led maritime defence coalition build-out",
+      "description": "Saudi Arabia's announced multinational maritime defence coalition will mobilize patrols and escorts, raising coordinated protection of shipping over coming weeks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-31",
+        "end": "2026-10-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "coalition_security_effor",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_security_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "chokepoint_access",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_war_premium",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_transit_flow",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Saudi Arabia unveils plans for multinational maritime defence coalition' (2026-07-30/07-31)."
+    },
+    {
+      "id": "houthis_fees_and_red_sea_attacks",
+      "title": "Houthis impose fees and continue Red Sea attacks",
+      "description": "Reports that Houthis are considering transit fees and are attacking ships, likely prompting diversions and increased costs for Red Sea transits.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-09-30",
+        "label": "1-2 months"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "chokepoint_access",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "ship_rerouting_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_war_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_transit_flow",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Houthis attack two Saudi Arabian tankers' (2026-07-30); 'EXCLUSIVE: Yemen's Houthis considering fees for ships sailing through Red Sea' (2026-07-30)."
+    },
+    {
+      "id": "qatarenergy_lng_reallocations",
+      "title": "QatarEnergy buys US LNG cargoes; reroutes flows",
+      "description": "QatarEnergy's purchase of 33 US LNG cargoes to offset Hormuz disruption will shift tanker movements and reroute supply chains in the near term.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-09-30",
+        "label": "weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "tanker_transit_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "ship_rerouting_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'EXCLUSIVE: QatarEnergy buys 33 US LNG cargoes to offset Hormuz disruption' (2026-07-30); 'QatarEnergy-controlled LNG tanker exits Hormuz' (2026-07-30)."
+    },
+    {
+      "id": "continued_us_inventory_draws",
+      "title": "Continued US oil inventory draws",
+      "description": "US crude stockpiles are at 'precariously low' levels and further draws are likely if supply disruptions persist, tightening global stocks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-09-30",
+        "label": "1-3 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "global_fossil_stocks",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "trading_profit_rate",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'US oil inventories fall to ‘precariously low’ level as Iran war disrupts supply' (2026-07-30/07-31)."
+    },
+    {
+      "id": "shadow_fleet_oil_spill_off_oman",
+      "title": "Oil spill from shadow-fleet tanker off Oman",
+      "description": "Satellite imagery shows an oil spill from a shadow-fleet tanker spreading off Oman, potentially forcing near-term route closures and slowdowns.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-08-15",
+        "label": "2 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "chokepoint_access",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_transit_flow",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "maritime_war_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Oil spill from shadow fleet tanker spreading off Oman, satellite images show' (2026-08-01)."
+    },
+    {
+      "id": "pentagon_procurement_spike",
+      "title": "Pentagon and allies procurement spike",
+      "description": "Large U.S. commitments for missiles, submarines and munitions signal an acceleration in defense procurement over coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-30",
+        "end": "2027-01-31",
+        "label": "6 months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "defense_procure_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "military_tempo",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "coalition_security_effor",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Pentagon Commits Over $120 Billion for Patriot Missiles, Submarines' (2026-07-30); 'US strikes $58.6 billion Patriot missile deal' (2026-07-30)."
+    },
+    {
+      "id": "oil_majors_buybacks_and_capital_shift",
+      "title": "Oil majors shift capital to buybacks/trading",
+      "description": "Major oil companies are reporting windfall profits and launching buybacks/trading plays, shifting corporate capital allocation away from upstream spending in coming quarter.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-10-31",
+        "label": "quarter"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "corporate_alloc_tilt",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "trading_profit_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_lng_prod_rate",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Shell launches $4.2 billion share buyback programme' and 'Shell's profit more than doubles' (2026-07-30/07-31); 'Glencore trading profits double' (2026-07-30)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_strike_escalation_two_weeks",
+      "title": "Imminent US strike escalation (2-week plan)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-08-15",
+      "probability": 0.85,
+      "impact_score": 347.0,
+      "expected_impact": 294.95,
+      "event_PS": 17.133,
+      "event_AS": 23.133,
+      "n_vars": 6,
+      "affected_ids": "military_tempo, maritime_security_level, tanker_transit_flow, ship_rerouting_rate, global_oil_price, price_volatility",
+      "rationale": "Headlines: 'Trump Orders Fresh Strikes on Iran' (2026-08-01); 'The U.S. Commander With a Two-Week Plan to Escalate Strikes in Iran' (2026-07-30)."
+    },
+    {
+      "id": "iran_hormuz_interdiction",
+      "title": "Iran enforces interdictions in Strait of Hormuz",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-3 months",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-10-01",
+      "probability": 0.7,
+      "impact_score": 343.0,
+      "expected_impact": 240.1,
+      "event_PS": 18.5,
+      "event_AS": 21.438,
+      "n_vars": 6,
+      "affected_ids": "chokepoint_access, tanker_transit_flow, ship_rerouting_rate, maritime_war_premium, global_oil_price, military_tempo",
+      "rationale": "Headlines: 'Iran says it stops ships in Hormuz' (2026-07-31); 'Iran rules out regional management of Hormuz' (2026-07-30)."
+    },
+    {
+      "id": "us_israel_energy_target_bombardment",
+      "title": "Planned US/Israel strikes on energy-related targets",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "3 weeks",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-08-21",
+      "probability": 0.6,
+      "impact_score": 281.0,
+      "expected_impact": 168.6,
+      "event_PS": 19.25,
+      "event_AS": 17.562,
+      "n_vars": 6,
+      "affected_ids": "oil_lng_prod_rate, refinery_throughput, global_oil_price, price_volatility, maritime_security_level, tanker_transit_flow",
+      "rationale": "Headline: 'US, Israel planning to bombard energy-related targets in Iran, CBS reports' (2026-08-01)."
+    },
+    {
+      "id": "houthis_fees_and_red_sea_attacks",
+      "title": "Houthis impose fees and continue Red Sea attacks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-2 months",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-09-30",
+      "probability": 0.65,
+      "impact_score": 191.0,
+      "expected_impact": 124.15,
+      "event_PS": 19.5,
+      "event_AS": 19.1,
+      "n_vars": 4,
+      "affected_ids": "chokepoint_access, ship_rerouting_rate, maritime_war_premium, tanker_transit_flow",
+      "rationale": "Headlines: 'Houthis attack two Saudi Arabian tankers' (2026-07-30); 'EXCLUSIVE: Yemen's Houthis considering fees for ships sailing through Red Sea' (2026-07-30)."
+    },
+    {
+      "id": "saudi_multinational_coalition_buildout",
+      "title": "Saudi-led maritime defence coalition build-out",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-07-31",
+      "end": "2026-10-31",
+      "probability": 0.75,
+      "impact_score": 184.0,
+      "expected_impact": 138.0,
+      "event_PS": 15.625,
+      "event_AS": 23.0,
+      "n_vars": 5,
+      "affected_ids": "coalition_security_effor, maritime_security_level, chokepoint_access, maritime_war_premium, tanker_transit_flow",
+      "rationale": "Headlines: 'Saudi Arabia unveils plans for multinational maritime defence coalition' (2026-07-30/07-31)."
+    },
+    {
+      "id": "continued_us_inventory_draws",
+      "title": "Continued US oil inventory draws",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-3 months",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-09-30",
+      "probability": 0.8,
+      "impact_score": 103.0,
+      "expected_impact": 82.4,
+      "event_PS": 21.625,
+      "event_AS": 12.875,
+      "n_vars": 4,
+      "affected_ids": "global_fossil_stocks, global_oil_price, price_volatility, trading_profit_rate",
+      "rationale": "Headlines: 'US oil inventories fall to ‘precariously low’ level as Iran war disrupts supply' (2026-07-30/07-31)."
+    },
+    {
+      "id": "qatarenergy_lng_reallocations",
+      "title": "QatarEnergy buys US LNG cargoes; reroutes flows",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-09-30",
+      "probability": 0.9,
+      "impact_score": 97.0,
+      "expected_impact": 87.3,
+      "event_PS": 21.2,
+      "event_AS": 19.4,
+      "n_vars": 3,
+      "affected_ids": "tanker_transit_flow, ship_rerouting_rate, price_volatility",
+      "rationale": "Headlines: 'EXCLUSIVE: QatarEnergy buys 33 US LNG cargoes to offset Hormuz disruption' (2026-07-30); 'QatarEnergy-controlled LNG tanker exits Hormuz' (2026-07-30)."
+    },
+    {
+      "id": "pentagon_procurement_spike",
+      "title": "Pentagon and allies procurement spike",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6 months",
+      "date": null,
+      "start": "2026-07-30",
+      "end": "2027-01-31",
+      "probability": 0.85,
+      "impact_score": 72.0,
+      "expected_impact": 61.2,
+      "event_PS": 6.0,
+      "event_AS": 14.4,
+      "n_vars": 3,
+      "affected_ids": "defense_procure_rate, military_tempo, coalition_security_effor",
+      "rationale": "Headlines: 'Pentagon Commits Over $120 Billion for Patriot Missiles, Submarines' (2026-07-30); 'US strikes $58.6 billion Patriot missile deal' (2026-07-30)."
+    },
+    {
+      "id": "shadow_fleet_oil_spill_off_oman",
+      "title": "Oil spill from shadow-fleet tanker off Oman",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-08-15",
+      "probability": 0.8,
+      "impact_score": 58.0,
+      "expected_impact": 46.4,
+      "event_PS": 20.667,
+      "event_AS": 19.333,
+      "n_vars": 3,
+      "affected_ids": "chokepoint_access, tanker_transit_flow, maritime_war_premium",
+      "rationale": "Headline: 'Oil spill from shadow fleet tanker spreading off Oman, satellite images show' (2026-08-01)."
+    },
+    {
+      "id": "oil_majors_buybacks_and_capital_shift",
+      "title": "Oil majors shift capital to buybacks/trading",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "quarter",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-10-31",
+      "probability": 0.75,
+      "impact_score": 40.0,
+      "expected_impact": 30.0,
+      "event_PS": 19.667,
+      "event_AS": 6.667,
+      "n_vars": 3,
+      "affected_ids": "corporate_alloc_tilt, trading_profit_rate, oil_lng_prod_rate",
+      "rationale": "Headlines: 'Shell launches $4.2 billion share buyback programme' and 'Shell's profit more than doubles' (2026-07-30/07-31); 'Glencore trading profits double' (2026-07-30)."
+    }
+  ]
+}

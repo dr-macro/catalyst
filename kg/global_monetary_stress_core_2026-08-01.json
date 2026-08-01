@@ -1,0 +1,1866 @@
+{
+  "label": "global_monetary_stress",
+  "as_of": "2026-08-01",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-01T00:40:08",
+  "system_description": {
+    "narrative_title": "Fed hold, bond-market revolt, and Asia market spillovers",
+    "narrative_summary": "Across this window markets priced a growing disconnect between the Federal Reserve’s decision to hold rates and signals from the bond market that higher policy is needed. Rising Treasury yields and a surge in front- and long-end rates pressured equities (notably Korean tech), weakened the dollar/strengthened the yen, and provoked currency intervention talk — putting the Fed’s credibility and global capital flows at the center of the shock. The interaction between central-bank communication, market expectations, and cross-border capital movements created reinforcing feedbacks and rapid spillovers into Asian markets and FX.",
+    "scope": "Inside the system boundary: US monetary policy decisions and communication (Fed/Chair Warsh), the bond market (yields, curve), investor positioning and sentiment, equity-market reactions (US and Asian, especially Korea and Japan), foreign-exchange moves and interventions (yen), and immediate macro data/commodity signals that inform policy expectations (inflation, energy).",
+    "super_system": "Global macro-financial system (cross-border capital flows, central banks, sovereigns, and international trade/real economy)",
+    "adjacent_subsystems": [
+      "Foreign-exchange markets and official currency intervention mechanisms",
+      "Asian equity markets and semiconductor/supply-chain sector dynamics",
+      "Inflation and real economy indicators (energy costs, growth outlook)"
+    ],
+    "evidence_headlines": [
+      "The Fed Holds and the Long End Gets Nervous",
+      "A divided Fed chose to keep rates unchanged. Here’s how Wall Street reacted.",
+      "Bond market is calling Warsh’s bluff on inflation fight as yields surge",
+      "Japan’s yen jumps 3% as speculation over intervention swirls",
+      "South Korea $2 trillion stock rout breaks records as SK Hynix results disappoint",
+      "U.S. Treasury Yields Rise, 30-Year Yield at 19-Year High; Dollar Falls"
+    ]
+  },
+  "variables": [
+    {
+      "id": "cb_communication_clarity",
+      "name": "Central bank communication clarity",
+      "description": "Degree of clarity and coherence in official monetary-policy messages and guidance as perceived by market participants.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_stance",
+      "name": "Monetary policy stance",
+      "description": "Current stance of monetary policy measured as the degree of monetary tightening or easing relative to neutral.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "implied_policy_path",
+      "name": "Market-implied policy path",
+      "description": "Market-implied trajectory of future policy rates and timing derived from interest-rate instruments and derivatives.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_yield_levels",
+      "name": "Bond yield levels",
+      "description": "Absolute levels of sovereign and benchmark bond yields across maturities.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "Spread between longer-term and shorter-term bond yields indicating term-structure steepness.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_risk_premium",
+      "name": "Bond market risk premium",
+      "description": "Incremental yield component investors demand over expected policy rates to hold bonds, reflecting risk and term premia.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_sentiment",
+      "name": "Investor sentiment",
+      "description": "Aggregate market participants' risk appetite and confidence levels across asset classes.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation_levels",
+      "name": "Equity valuation levels",
+      "description": "Price and valuation metrics of equity markets, capturing aggregate equity price levels relative to fundamentals.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_market_volatility",
+      "name": "Equity market volatility",
+      "description": "Observed and implied short- and medium-term volatility of equity prices.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "foreign_exchange_rates",
+      "name": "Foreign exchange rates",
+      "description": "Nominal cross-currency exchange rate levels and relative currency strengths.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fx_intervention_prob",
+      "name": "FX intervention probability",
+      "description": "Perceived likelihood and market expectation of official currency intervention actions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crossborder_capital",
+      "name": "Cross-border capital flows",
+      "description": "Net cross-border flows of capital into and out of markets and asset classes over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "Depth and ease of trading in financial markets, measured by bid-ask spreads, market depth, and transaction costs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflationary_pressure",
+      "name": "Inflationary pressure",
+      "description": "Underlying pressure on price levels from demand, wages, and supply-side constraints as reflected in core inflation trends.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_price_levels",
+      "name": "Commodity price levels",
+      "description": "Prices of key commodities (energy, metals, agricultural) that influence input costs and inflation expectations.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "leverage_concentration",
+      "name": "Leverage and concentration",
+      "description": "Aggregate degree of market leverage and concentration in specific assets or strategies that amplify systemic risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "cb_communication_clarity",
+    "monetary_policy_stance",
+    "implied_policy_path",
+    "bond_yield_levels",
+    "yield_curve_slope",
+    "bond_market_risk_premium",
+    "investor_sentiment",
+    "equity_valuation_levels",
+    "equity_market_volatility",
+    "foreign_exchange_rates",
+    "fx_intervention_prob",
+    "crossborder_capital",
+    "market_liquidity",
+    "inflationary_pressure",
+    "commodity_price_levels",
+    "leverage_concentration"
+  ],
+  "var_names": {
+    "cb_communication_clarity": "Central bank communication clarity",
+    "monetary_policy_stance": "Monetary policy stance",
+    "implied_policy_path": "Market-implied policy path",
+    "bond_yield_levels": "Bond yield levels",
+    "yield_curve_slope": "Yield curve slope",
+    "bond_market_risk_premium": "Bond market risk premium",
+    "investor_sentiment": "Investor sentiment",
+    "equity_valuation_levels": "Equity valuation levels",
+    "equity_market_volatility": "Equity market volatility",
+    "foreign_exchange_rates": "Foreign exchange rates",
+    "fx_intervention_prob": "FX intervention probability",
+    "crossborder_capital": "Cross-border capital flows",
+    "market_liquidity": "Market liquidity",
+    "inflationary_pressure": "Inflationary pressure",
+    "commodity_price_levels": "Commodity price levels",
+    "leverage_concentration": "Leverage and concentration"
+  },
+  "impact_matrix": {
+    "cb_communication_clarity": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 1,
+      "implied_policy_path": 3,
+      "bond_yield_levels": 2,
+      "yield_curve_slope": 2,
+      "bond_market_risk_premium": 2,
+      "investor_sentiment": 2,
+      "equity_valuation_levels": 1,
+      "equity_market_volatility": 2,
+      "foreign_exchange_rates": 1,
+      "fx_intervention_prob": 1,
+      "crossborder_capital": 1,
+      "market_liquidity": 1,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 0
+    },
+    "monetary_policy_stance": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 0,
+      "implied_policy_path": 3,
+      "bond_yield_levels": 3,
+      "yield_curve_slope": 3,
+      "bond_market_risk_premium": 2,
+      "investor_sentiment": 2,
+      "equity_valuation_levels": 2,
+      "equity_market_volatility": 2,
+      "foreign_exchange_rates": 2,
+      "fx_intervention_prob": 1,
+      "crossborder_capital": 3,
+      "market_liquidity": 1,
+      "inflationary_pressure": 1,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 2
+    },
+    "implied_policy_path": {
+      "cb_communication_clarity": 1,
+      "monetary_policy_stance": 0,
+      "implied_policy_path": 0,
+      "bond_yield_levels": 3,
+      "yield_curve_slope": 3,
+      "bond_market_risk_premium": 2,
+      "investor_sentiment": 2,
+      "equity_valuation_levels": 2,
+      "equity_market_volatility": 2,
+      "foreign_exchange_rates": 2,
+      "fx_intervention_prob": 1,
+      "crossborder_capital": 2,
+      "market_liquidity": 1,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 1
+    },
+    "bond_yield_levels": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 1,
+      "implied_policy_path": 3,
+      "bond_yield_levels": 0,
+      "yield_curve_slope": 3,
+      "bond_market_risk_premium": 3,
+      "investor_sentiment": 2,
+      "equity_valuation_levels": 2,
+      "equity_market_volatility": 2,
+      "foreign_exchange_rates": 2,
+      "fx_intervention_prob": 1,
+      "crossborder_capital": 3,
+      "market_liquidity": 1,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 2
+    },
+    "yield_curve_slope": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 1,
+      "implied_policy_path": 2,
+      "bond_yield_levels": 3,
+      "yield_curve_slope": 0,
+      "bond_market_risk_premium": 3,
+      "investor_sentiment": 2,
+      "equity_valuation_levels": 2,
+      "equity_market_volatility": 2,
+      "foreign_exchange_rates": 1,
+      "fx_intervention_prob": 1,
+      "crossborder_capital": 2,
+      "market_liquidity": 1,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 2
+    },
+    "bond_market_risk_premium": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 1,
+      "implied_policy_path": 2,
+      "bond_yield_levels": 3,
+      "yield_curve_slope": 3,
+      "bond_market_risk_premium": 0,
+      "investor_sentiment": 2,
+      "equity_valuation_levels": 2,
+      "equity_market_volatility": 2,
+      "foreign_exchange_rates": 1,
+      "fx_intervention_prob": 1,
+      "crossborder_capital": 2,
+      "market_liquidity": 2,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 2
+    },
+    "investor_sentiment": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 1,
+      "implied_policy_path": 2,
+      "bond_yield_levels": 2,
+      "yield_curve_slope": 1,
+      "bond_market_risk_premium": 2,
+      "investor_sentiment": 0,
+      "equity_valuation_levels": 3,
+      "equity_market_volatility": 3,
+      "foreign_exchange_rates": 2,
+      "fx_intervention_prob": 1,
+      "crossborder_capital": 3,
+      "market_liquidity": 2,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 1,
+      "leverage_concentration": 2
+    },
+    "equity_valuation_levels": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 0,
+      "implied_policy_path": 0,
+      "bond_yield_levels": 1,
+      "yield_curve_slope": 0,
+      "bond_market_risk_premium": 1,
+      "investor_sentiment": 2,
+      "equity_valuation_levels": 0,
+      "equity_market_volatility": 2,
+      "foreign_exchange_rates": 1,
+      "fx_intervention_prob": 0,
+      "crossborder_capital": 1,
+      "market_liquidity": 1,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 1
+    },
+    "equity_market_volatility": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 1,
+      "implied_policy_path": 1,
+      "bond_yield_levels": 2,
+      "yield_curve_slope": 1,
+      "bond_market_risk_premium": 2,
+      "investor_sentiment": 3,
+      "equity_valuation_levels": 2,
+      "equity_market_volatility": 0,
+      "foreign_exchange_rates": 1,
+      "fx_intervention_prob": 1,
+      "crossborder_capital": 2,
+      "market_liquidity": 2,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 2
+    },
+    "foreign_exchange_rates": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 2,
+      "implied_policy_path": 2,
+      "bond_yield_levels": 2,
+      "yield_curve_slope": 1,
+      "bond_market_risk_premium": 2,
+      "investor_sentiment": 2,
+      "equity_valuation_levels": 1,
+      "equity_market_volatility": 1,
+      "foreign_exchange_rates": 0,
+      "fx_intervention_prob": 3,
+      "crossborder_capital": 3,
+      "market_liquidity": 1,
+      "inflationary_pressure": 2,
+      "commodity_price_levels": 1,
+      "leverage_concentration": 1
+    },
+    "fx_intervention_prob": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 1,
+      "implied_policy_path": 1,
+      "bond_yield_levels": 1,
+      "yield_curve_slope": 1,
+      "bond_market_risk_premium": 1,
+      "investor_sentiment": 1,
+      "equity_valuation_levels": 0,
+      "equity_market_volatility": 1,
+      "foreign_exchange_rates": 2,
+      "fx_intervention_prob": 0,
+      "crossborder_capital": 2,
+      "market_liquidity": 1,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 0
+    },
+    "crossborder_capital": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 2,
+      "implied_policy_path": 2,
+      "bond_yield_levels": 3,
+      "yield_curve_slope": 2,
+      "bond_market_risk_premium": 2,
+      "investor_sentiment": 2,
+      "equity_valuation_levels": 2,
+      "equity_market_volatility": 2,
+      "foreign_exchange_rates": 3,
+      "fx_intervention_prob": 2,
+      "crossborder_capital": 0,
+      "market_liquidity": 2,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 1,
+      "leverage_concentration": 1
+    },
+    "market_liquidity": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 1,
+      "implied_policy_path": 1,
+      "bond_yield_levels": 2,
+      "yield_curve_slope": 1,
+      "bond_market_risk_premium": 2,
+      "investor_sentiment": 2,
+      "equity_valuation_levels": 1,
+      "equity_market_volatility": 2,
+      "foreign_exchange_rates": 1,
+      "fx_intervention_prob": 1,
+      "crossborder_capital": 1,
+      "market_liquidity": 0,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 2
+    },
+    "inflationary_pressure": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 3,
+      "implied_policy_path": 3,
+      "bond_yield_levels": 3,
+      "yield_curve_slope": 2,
+      "bond_market_risk_premium": 2,
+      "investor_sentiment": 1,
+      "equity_valuation_levels": 2,
+      "equity_market_volatility": 1,
+      "foreign_exchange_rates": 2,
+      "fx_intervention_prob": 1,
+      "crossborder_capital": 1,
+      "market_liquidity": 0,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 3,
+      "leverage_concentration": 1
+    },
+    "commodity_price_levels": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 1,
+      "implied_policy_path": 1,
+      "bond_yield_levels": 2,
+      "yield_curve_slope": 1,
+      "bond_market_risk_premium": 1,
+      "investor_sentiment": 1,
+      "equity_valuation_levels": 1,
+      "equity_market_volatility": 1,
+      "foreign_exchange_rates": 1,
+      "fx_intervention_prob": 0,
+      "crossborder_capital": 0,
+      "market_liquidity": 0,
+      "inflationary_pressure": 3,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 0
+    },
+    "leverage_concentration": {
+      "cb_communication_clarity": 0,
+      "monetary_policy_stance": 1,
+      "implied_policy_path": 1,
+      "bond_yield_levels": 2,
+      "yield_curve_slope": 1,
+      "bond_market_risk_premium": 2,
+      "investor_sentiment": 2,
+      "equity_valuation_levels": 1,
+      "equity_market_volatility": 2,
+      "foreign_exchange_rates": 1,
+      "fx_intervention_prob": 0,
+      "crossborder_capital": 1,
+      "market_liquidity": 2,
+      "inflationary_pressure": 0,
+      "commodity_price_levels": 0,
+      "leverage_concentration": 0
+    }
+  },
+  "AS": {
+    "cb_communication_clarity": 19,
+    "monetary_policy_stance": 27,
+    "implied_policy_path": 22,
+    "bond_yield_levels": 25,
+    "yield_curve_slope": 22,
+    "bond_market_risk_premium": 23,
+    "investor_sentiment": 25,
+    "equity_valuation_levels": 10,
+    "equity_market_volatility": 20,
+    "foreign_exchange_rates": 24,
+    "fx_intervention_prob": 12,
+    "crossborder_capital": 26,
+    "market_liquidity": 17,
+    "inflationary_pressure": 25,
+    "commodity_price_levels": 13,
+    "leverage_concentration": 16
+  },
+  "PS": {
+    "cb_communication_clarity": 1,
+    "monetary_policy_stance": 17,
+    "implied_policy_path": 27,
+    "bond_yield_levels": 34,
+    "yield_curve_slope": 25,
+    "bond_market_risk_premium": 29,
+    "investor_sentiment": 28,
+    "equity_valuation_levels": 24,
+    "equity_market_volatility": 27,
+    "foreign_exchange_rates": 23,
+    "fx_intervention_prob": 15,
+    "crossborder_capital": 27,
+    "market_liquidity": 18,
+    "inflationary_pressure": 6,
+    "commodity_price_levels": 6,
+    "leverage_concentration": 19
+  },
+  "med_AS": 22.0,
+  "med_PS": 23.5,
+  "roles": [
+    {
+      "variable": "bond_yield_levels",
+      "name": "Bond yield levels",
+      "AS": 25,
+      "PS": 34,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 850,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crossborder_capital",
+      "name": "Cross-border capital flows",
+      "AS": 26,
+      "PS": 27,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 702,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_sentiment",
+      "name": "Investor sentiment",
+      "AS": 25,
+      "PS": 28,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 700,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_market_risk_premium",
+      "name": "Bond market risk premium",
+      "AS": 23,
+      "PS": 29,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 667,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "implied_policy_path",
+      "name": "Market-implied policy path",
+      "AS": 22,
+      "PS": 27,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 594,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "foreign_exchange_rates",
+      "name": "Foreign exchange rates",
+      "AS": 24,
+      "PS": 23,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 552,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 22,
+      "PS": 25,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 550,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "equity_market_volatility",
+      "name": "Equity market volatility",
+      "AS": 20,
+      "PS": 27,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 540,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "monetary_policy_stance",
+      "name": "Monetary policy stance",
+      "AS": 27,
+      "PS": 17,
+      "Q=AS/PS": 1.59,
+      "P=AS*PS": 459,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 17,
+      "PS": 18,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 306,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "leverage_concentration",
+      "name": "Leverage and concentration",
+      "AS": 16,
+      "PS": 19,
+      "Q=AS/PS": 0.84,
+      "P=AS*PS": 304,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "equity_valuation_levels",
+      "name": "Equity valuation levels",
+      "AS": 10,
+      "PS": 24,
+      "Q=AS/PS": 0.42,
+      "P=AS*PS": 240,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fx_intervention_prob",
+      "name": "FX intervention probability",
+      "AS": 12,
+      "PS": 15,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 180,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflationary_pressure",
+      "name": "Inflationary pressure",
+      "AS": 25,
+      "PS": 6,
+      "Q=AS/PS": 4.17,
+      "P=AS*PS": 150,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "commodity_price_levels",
+      "name": "Commodity price levels",
+      "AS": 13,
+      "PS": 6,
+      "Q=AS/PS": 2.17,
+      "P=AS*PS": 78,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "cb_communication_clarity",
+      "name": "Central bank communication clarity",
+      "AS": 19,
+      "PS": 1,
+      "Q=AS/PS": 19.0,
+      "P=AS*PS": 19,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "cb_communication_clarity",
+        "name": "Central bank communication clarity",
+        "kind": "perception",
+        "AS": 19,
+        "PS": 1
+      },
+      {
+        "id": "monetary_policy_stance",
+        "name": "Monetary policy stance",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 17
+      },
+      {
+        "id": "implied_policy_path",
+        "name": "Market-implied policy path",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 27
+      },
+      {
+        "id": "bond_yield_levels",
+        "name": "Bond yield levels",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 34
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 25
+      },
+      {
+        "id": "bond_market_risk_premium",
+        "name": "Bond market risk premium",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 29
+      },
+      {
+        "id": "investor_sentiment",
+        "name": "Investor sentiment",
+        "kind": "perception",
+        "AS": 25,
+        "PS": 28
+      },
+      {
+        "id": "equity_valuation_levels",
+        "name": "Equity valuation levels",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 24
+      },
+      {
+        "id": "equity_market_volatility",
+        "name": "Equity market volatility",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 27
+      },
+      {
+        "id": "foreign_exchange_rates",
+        "name": "Foreign exchange rates",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 23
+      },
+      {
+        "id": "fx_intervention_prob",
+        "name": "FX intervention probability",
+        "kind": "perception",
+        "AS": 12,
+        "PS": 15
+      },
+      {
+        "id": "crossborder_capital",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 26,
+        "PS": 27
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 18
+      },
+      {
+        "id": "inflationary_pressure",
+        "name": "Inflationary pressure",
+        "kind": "environment",
+        "AS": 25,
+        "PS": 6
+      },
+      {
+        "id": "commodity_price_levels",
+        "name": "Commodity price levels",
+        "kind": "environment",
+        "AS": 13,
+        "PS": 6
+      },
+      {
+        "id": "leverage_concentration",
+        "name": "Leverage and concentration",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 19
+      }
+    ],
+    "edges": [
+      {
+        "source": "cb_communication_clarity",
+        "target": "implied_policy_path",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "cb_communication_clarity",
+        "target": "bond_yield_levels",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cb_communication_clarity",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cb_communication_clarity",
+        "target": "bond_market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_communication_clarity",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_communication_clarity",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "implied_policy_path",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "bond_yield_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "bond_market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "foreign_exchange_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "crossborder_capital",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "leverage_concentration",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "implied_policy_path",
+        "target": "bond_yield_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "implied_policy_path",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "implied_policy_path",
+        "target": "bond_market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "implied_policy_path",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "implied_policy_path",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "implied_policy_path",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "implied_policy_path",
+        "target": "foreign_exchange_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "implied_policy_path",
+        "target": "crossborder_capital",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_levels",
+        "target": "implied_policy_path",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_levels",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "bond_yield_levels",
+        "target": "bond_market_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_levels",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_levels",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_levels",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_levels",
+        "target": "foreign_exchange_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_levels",
+        "target": "crossborder_capital",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_levels",
+        "target": "leverage_concentration",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "implied_policy_path",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "bond_yield_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "bond_market_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "crossborder_capital",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "leverage_concentration",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_risk_premium",
+        "target": "implied_policy_path",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "bond_market_risk_premium",
+        "target": "bond_yield_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_risk_premium",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_risk_premium",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_risk_premium",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_risk_premium",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_risk_premium",
+        "target": "crossborder_capital",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_risk_premium",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_risk_premium",
+        "target": "leverage_concentration",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "implied_policy_path",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "bond_yield_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "bond_market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "equity_valuation_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "equity_market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "foreign_exchange_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "crossborder_capital",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "leverage_concentration",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation_levels",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation_levels",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_market_volatility",
+        "target": "bond_yield_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_market_volatility",
+        "target": "bond_market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_market_volatility",
+        "target": "investor_sentiment",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "equity_market_volatility",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_market_volatility",
+        "target": "crossborder_capital",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_market_volatility",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_market_volatility",
+        "target": "leverage_concentration",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "foreign_exchange_rates",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "foreign_exchange_rates",
+        "target": "implied_policy_path",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "foreign_exchange_rates",
+        "target": "bond_yield_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "foreign_exchange_rates",
+        "target": "bond_market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "foreign_exchange_rates",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "foreign_exchange_rates",
+        "target": "fx_intervention_prob",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "foreign_exchange_rates",
+        "target": "crossborder_capital",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "foreign_exchange_rates",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_intervention_prob",
+        "target": "foreign_exchange_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_intervention_prob",
+        "target": "crossborder_capital",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crossborder_capital",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "crossborder_capital",
+        "target": "implied_policy_path",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "crossborder_capital",
+        "target": "bond_yield_levels",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crossborder_capital",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crossborder_capital",
+        "target": "bond_market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crossborder_capital",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_capital",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_capital",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crossborder_capital",
+        "target": "foreign_exchange_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_capital",
+        "target": "fx_intervention_prob",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crossborder_capital",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "bond_yield_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "bond_market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "leverage_concentration",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "monetary_policy_stance",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "implied_policy_path",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "bond_yield_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "bond_market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "foreign_exchange_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "commodity_price_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_levels",
+        "target": "bond_yield_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_levels",
+        "target": "inflationary_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_concentration",
+        "target": "bond_yield_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_concentration",
+        "target": "bond_market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_concentration",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "leverage_concentration",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_concentration",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_follow_up_communications",
+      "title": "Fed follow-up communications and speeches",
+      "description": "Additional public remarks, pressers, and clarified guidance from Fed officials that could resolve or deepen market confusion about policy.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-08-31",
+        "label": "by end of August"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "cb_communication_clarity",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "implied_policy_path",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_sentiment",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_yield_levels",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Kevin Warsh is confusing markets'; 'Warsh’s stripped-back Fed communication already backfiring'; 'What to Watch for at the Fed Meeting'."
+    },
+    {
+      "id": "bond_market_repricing_pressures",
+      "title": "Bond-market repricing that pressures Fed to act",
+      "description": "Sustained rise in sovereign yields and front-end rates that force markets to price a tighter Fed path or prompt Fed tightening decisions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-10-31",
+        "label": "2-3 months"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_stance",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "implied_policy_path",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_yield_levels",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_sentiment",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'The Bond Market Is Forcing the Fed’s Hand'; 'Bond market is calling Warsh’s bluff'; '2-Year Treasury Yield Nears Key Breakout'."
+    },
+    {
+      "id": "fx_intervention_risk_yen",
+      "title": "Possible US/Japan (and rare joint) yen intervention",
+      "description": "Heightened odds of official FX intervention in the yen following sharp moves and US Treasury warnings to banks.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-08-07",
+        "label": "week ahead"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "fx_intervention_prob",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "foreign_exchange_rates",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_sentiment",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'US Treasury informed banks that it may intervene in yen'; 'Japan’s yen jumps... speculation over intervention'; 'Rare joint currency intervention sends strong message'."
+    },
+    {
+      "id": "boj_policy_and_govt_support",
+      "title": "BOJ policy signals and government actions to prop yen",
+      "description": "BOJ hawkish signals combined with government measures to support the yen could alter regional rates and FX dynamics.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-09-30",
+        "label": "1-2 months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_stance",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "foreign_exchange_rates",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_yield_levels",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'BOJ holds rates at 1%, warns of core inflation exceeding 2%'; 'BOJ keeps rates steady, delivers hawkish signal as government props up yen'."
+    },
+    {
+      "id": "japan_quake_supply_chain_disruption",
+      "title": "Japan quake halting auto and chip plants",
+      "description": "Damage and plant stoppages in Japan that disrupt auto and semiconductor supply chains, with knock-on commodity and inflation effects.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-30",
+        "end": "2026-09-30",
+        "label": "weeks to months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "commodity_price_levels",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflationary_pressure",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_valuation_levels",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Japan quake halts auto and chip plants'; 'Japan quake snarls auto and chip supply chains'."
+    },
+    {
+      "id": "korea_leveraged_etf_restrictions",
+      "title": "South Korea caps on single-stock leveraged ETFs",
+      "description": "Regulatory caps and interventions targeting leveraged single-stock ETFs that aim to curb extreme swings and speculation.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-08-31",
+        "label": "weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "leverage_concentration",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_market_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crossborder_capital",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'South Korea to cap investment in single-stock leveraged ETFs'; 'Top South Korean policy makers apologise...'."
+    },
+    {
+      "id": "sustained_high_borrowing_and_mortgage_rates",
+      "title": "Sustained high Treasury and mortgage rates",
+      "description": "Persistent elevation in Treasury yields and mortgage rates that feed through to borrowing costs and investor allocations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-10-31",
+        "label": "2-3 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "bond_yield_levels",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_sentiment",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "implied_policy_path",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Mortgage rates jump to their highest level in a year'; 'US borrowing costs hit 19-year high; U.S. Treasury Yields Rise'."
+    },
+    {
+      "id": "middle_east_conflict_inflation_risk",
+      "title": "Commodity/inflation upside from Middle East conflict",
+      "description": "Escalation or persistence of Middle East hostilities that could reverse recent inflation deceleration via energy and commodity shocks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-10-31",
+        "label": "2-3 months"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "commodity_price_levels",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflationary_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_sentiment",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_yield_levels",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'US inflation slows in June, but reversal likely amid Middle East conflict'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "bond_market_repricing_pressures",
+      "title": "Bond-market repricing that pressures Fed to act",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 months",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-10-31",
+      "probability": 0.5,
+      "impact_score": 318.0,
+      "expected_impact": 159.0,
+      "event_PS": 26.769,
+      "event_AS": 24.462,
+      "n_vars": 5,
+      "affected_ids": "monetary_policy_stance, implied_policy_path, bond_yield_levels, bond_market_risk_premium, investor_sentiment",
+      "rationale": "Headlines: 'The Bond Market Is Forcing the Fed’s Hand'; 'Bond market is calling Warsh’s bluff'; '2-Year Treasury Yield Nears Key Breakout'."
+    },
+    {
+      "id": "fed_follow_up_communications",
+      "title": "Fed follow-up communications and speeches",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of August",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-08-31",
+      "probability": 0.8,
+      "impact_score": 201.0,
+      "expected_impact": 160.8,
+      "event_PS": 20.111,
+      "event_AS": 22.333,
+      "n_vars": 4,
+      "affected_ids": "cb_communication_clarity, implied_policy_path, investor_sentiment, bond_yield_levels",
+      "rationale": "Headlines: 'Kevin Warsh is confusing markets'; 'Warsh’s stripped-back Fed communication already backfiring'; 'What to Watch for at the Fed Meeting'."
+    },
+    {
+      "id": "middle_east_conflict_inflation_risk",
+      "title": "Commodity/inflation upside from Middle East conflict",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 months",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-10-31",
+      "probability": 0.5,
+      "impact_score": 189.0,
+      "expected_impact": 94.5,
+      "event_PS": 14.0,
+      "event_AS": 21.0,
+      "n_vars": 4,
+      "affected_ids": "commodity_price_levels, inflationary_pressure, investor_sentiment, bond_yield_levels",
+      "rationale": "Headline: 'US inflation slows in June, but reversal likely amid Middle East conflict'."
+    },
+    {
+      "id": "sustained_high_borrowing_and_mortgage_rates",
+      "title": "Sustained high Treasury and mortgage rates",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 months",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 168.0,
+      "expected_impact": 134.4,
+      "event_PS": 30.714,
+      "event_AS": 24.0,
+      "n_vars": 4,
+      "affected_ids": "bond_yield_levels, bond_market_risk_premium, investor_sentiment, implied_policy_path",
+      "rationale": "Headlines: 'Mortgage rates jump to their highest level in a year'; 'US borrowing costs hit 19-year high; U.S. Treasury Yields Rise'."
+    },
+    {
+      "id": "boj_policy_and_govt_support",
+      "title": "BOJ policy signals and government actions to prop yen",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-2 months",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-09-30",
+      "probability": 0.75,
+      "impact_score": 151.0,
+      "expected_impact": 113.25,
+      "event_PS": 22.833,
+      "event_AS": 25.167,
+      "n_vars": 3,
+      "affected_ids": "monetary_policy_stance, foreign_exchange_rates, bond_yield_levels",
+      "rationale": "Headlines: 'BOJ holds rates at 1%, warns of core inflation exceeding 2%'; 'BOJ keeps rates steady, delivers hawkish signal as government props up yen'."
+    },
+    {
+      "id": "korea_leveraged_etf_restrictions",
+      "title": "South Korea caps on single-stock leveraged ETFs",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-08-31",
+      "probability": 0.85,
+      "impact_score": 114.0,
+      "expected_impact": 96.9,
+      "event_PS": 23.0,
+      "event_AS": 19.0,
+      "n_vars": 3,
+      "affected_ids": "leverage_concentration, equity_market_volatility, crossborder_capital",
+      "rationale": "Headlines: 'South Korea to cap investment in single-stock leveraged ETFs'; 'Top South Korean policy makers apologise...'."
+    },
+    {
+      "id": "fx_intervention_risk_yen",
+      "title": "Possible US/Japan (and rare joint) yen intervention",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "week ahead",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-08-07",
+      "probability": 0.7,
+      "impact_score": 109.0,
+      "expected_impact": 76.3,
+      "event_PS": 19.833,
+      "event_AS": 18.167,
+      "n_vars": 3,
+      "affected_ids": "fx_intervention_prob, foreign_exchange_rates, investor_sentiment",
+      "rationale": "Headlines: 'US Treasury informed banks that it may intervene in yen'; 'Japan’s yen jumps... speculation over intervention'; 'Rare joint currency intervention sends strong message'."
+    },
+    {
+      "id": "japan_quake_supply_chain_disruption",
+      "title": "Japan quake halting auto and chip plants",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks to months",
+      "date": null,
+      "start": "2026-07-30",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 86.0,
+      "expected_impact": 60.2,
+      "event_PS": 9.6,
+      "event_AS": 17.2,
+      "n_vars": 3,
+      "affected_ids": "commodity_price_levels, inflationary_pressure, equity_valuation_levels",
+      "rationale": "Headlines: 'Japan quake halts auto and chip plants'; 'Japan quake snarls auto and chip supply chains'."
+    }
+  ]
+}

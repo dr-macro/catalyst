@@ -1,0 +1,1900 @@
+{
+  "label": "maritime_chokepoints",
+  "as_of": "2026-07-31",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-01T00:29:38",
+  "system_description": {
+    "narrative_title": "Escalating drone attacks on energy and maritime infrastructure",
+    "narrative_summary": "A wave of drone strikes is targeting energy and port infrastructure across multiple theaters (Egypt, Russia, Kerch Strait), widening a conflict-space from kinetic fronts into global energy and shipping routes. As an open system, hostile unmanned aerial systems (inputs) exploit infrastructure vulnerabilities (states/processes) to disrupt flows (oil, grain), generate market and insurance shocks (outputs), and provoke layered security and military responses (feedback). The dynamic links tactical strikes to strategic energy-security and supply-chain consequences.",
+    "scope": "Energy and maritime infrastructure and flows at risk from drone attacks: refineries, storage tankers/terminals, grain export points, ports and chokepoints (Suez, Kerch), commercial shipping, on-site security and counter-UAS measures, insurers, commodity traders, and regional military/security actors directly responding.",
+    "super_system": "Global energy and commodity security embedded in geopolitics and international trade",
+    "adjacent_subsystems": [
+      "Regional military conflicts (Russia–Ukraine, Middle East/Iran–Israel dynamics)",
+      "Maritime shipping, ports and chokepoint operations (Suez Canal, Kerch Strait)",
+      "Global energy markets and insurance/finance",
+      "Drone proliferation and counter-UAS technology & defense logistics"
+    ],
+    "evidence_headlines": [
+      "Drone hits gas storage tanker at Egypt's Mediterranean port, Ambrey reports",
+      "Drone hits storage tanker at Egyptian port in major Middle East escalation, security firm says",
+      "Drone strike in Egypt sparks security concerns about Suez oil exports - reuters.com",
+      "Drone strike on Lukoil refinery causes fire, damages distillation unit, sources say",
+      "Ukrainian drones damage Russian grain export terminal on Kerch Strait, source says"
+    ]
+  },
+  "variables": [
+    {
+      "id": "drone_attack_rate",
+      "name": "Drone attack rate",
+      "description": "The frequency and aggregate intensity of hostile unmanned aerial system strikes against energy and maritime infrastructure per unit time.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "munition_severity",
+      "name": "Munition severity",
+      "description": "The average destructive potential of munitions and payloads carried by attacking unmanned systems.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "infra_vulnerability",
+      "name": "Infrastructure vulnerability",
+      "description": "The aggregate susceptibility of energy and maritime assets to damage or disruption from kinetic and non-kinetic attacks.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "security_effectiveness",
+      "name": "On-site security effectiveness",
+      "description": "The operational effectiveness of on-site physical security, access control, and immediate incident response at infrastructure sites.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "counteruas_deploy_rate",
+      "name": "Counter‑UAS deployment rate",
+      "description": "The rate at which counter-unmanned aerial systems and active mitigation measures are deployed and activated across at-risk sites and routes.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_transit_flow",
+      "name": "Maritime transit flow",
+      "description": "The volume and rate of commercial shipping transiting key sea routes and chokepoints relevant to energy and commodity transport.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "energy_export_flow",
+      "name": "Energy export flow",
+      "description": "The rate at which energy commodities (e.g., oil, refined products, gas) are shipped or exported from production/processing hubs.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "storage_utilization",
+      "name": "Storage utilization",
+      "description": "The proportion of available storage capacity for fuels and bulk commodities that is currently in use at terminals and tank farms.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_capacity",
+      "name": "Refinery processing capacity",
+      "description": "The active processing capacity of refining and conversion facilities available for producing refined energy products.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_delay_level",
+      "name": "Shipping delay level",
+      "description": "The aggregate delays and transit-time increases experienced by commercial shipping due to threat mitigation, inspections, and rerouting.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_premia_level",
+      "name": "Insurance premia level",
+      "description": "The prevailing level of insurance premiums and war-risk surcharges applied to vessels, cargoes, and energy assets in the affected domains.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_volatility",
+      "name": "Commodity price volatility",
+      "description": "The magnitude and frequency of price fluctuations in energy and bulk commodity markets driven by supply, demand, and risk perceptions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "trader_hedging_rate",
+      "name": "Trader hedging rate",
+      "description": "The rate at which market participants increase or alter hedging and risk-management positions in response to disruption signals.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "military_response",
+      "name": "Military response intensity",
+      "description": "The intensity and tempo of military and armed security operations directed at deterring, interdicting, or retaliating against attacks on infrastructure and routes.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "escalation_risk",
+      "name": "Escalation risk perception",
+      "description": "The perceived probability among actors that tactical attacks will broaden into wider geopolitical or kinetic escalation affecting trade and energy security.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "isr_coverage",
+      "name": "ISR coverage",
+      "description": "The geographic and temporal coverage level of intelligence, surveillance, and reconnaissance assets monitoring infrastructure, routes, and actor activity.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "drone_attack_rate",
+    "munition_severity",
+    "infra_vulnerability",
+    "security_effectiveness",
+    "counteruas_deploy_rate",
+    "maritime_transit_flow",
+    "energy_export_flow",
+    "storage_utilization",
+    "refinery_capacity",
+    "shipping_delay_level",
+    "insurance_premia_level",
+    "commodity_volatility",
+    "trader_hedging_rate",
+    "military_response",
+    "escalation_risk",
+    "isr_coverage"
+  ],
+  "var_names": {
+    "drone_attack_rate": "Drone attack rate",
+    "munition_severity": "Munition severity",
+    "infra_vulnerability": "Infrastructure vulnerability",
+    "security_effectiveness": "On-site security effectiveness",
+    "counteruas_deploy_rate": "Counter‑UAS deployment rate",
+    "maritime_transit_flow": "Maritime transit flow",
+    "energy_export_flow": "Energy export flow",
+    "storage_utilization": "Storage utilization",
+    "refinery_capacity": "Refinery processing capacity",
+    "shipping_delay_level": "Shipping delay level",
+    "insurance_premia_level": "Insurance premia level",
+    "commodity_volatility": "Commodity price volatility",
+    "trader_hedging_rate": "Trader hedging rate",
+    "military_response": "Military response intensity",
+    "escalation_risk": "Escalation risk perception",
+    "isr_coverage": "ISR coverage"
+  },
+  "impact_matrix": {
+    "drone_attack_rate": {
+      "drone_attack_rate": 0,
+      "munition_severity": 1,
+      "infra_vulnerability": 1,
+      "security_effectiveness": 2,
+      "counteruas_deploy_rate": 3,
+      "maritime_transit_flow": 3,
+      "energy_export_flow": 3,
+      "storage_utilization": 2,
+      "refinery_capacity": 2,
+      "shipping_delay_level": 3,
+      "insurance_premia_level": 3,
+      "commodity_volatility": 2,
+      "trader_hedging_rate": 2,
+      "military_response": 3,
+      "escalation_risk": 3,
+      "isr_coverage": 3
+    },
+    "munition_severity": {
+      "drone_attack_rate": 1,
+      "munition_severity": 0,
+      "infra_vulnerability": 3,
+      "security_effectiveness": 2,
+      "counteruas_deploy_rate": 2,
+      "maritime_transit_flow": 2,
+      "energy_export_flow": 2,
+      "storage_utilization": 1,
+      "refinery_capacity": 2,
+      "shipping_delay_level": 2,
+      "insurance_premia_level": 3,
+      "commodity_volatility": 2,
+      "trader_hedging_rate": 2,
+      "military_response": 3,
+      "escalation_risk": 3,
+      "isr_coverage": 2
+    },
+    "infra_vulnerability": {
+      "drone_attack_rate": 2,
+      "munition_severity": 1,
+      "infra_vulnerability": 0,
+      "security_effectiveness": 2,
+      "counteruas_deploy_rate": 2,
+      "maritime_transit_flow": 2,
+      "energy_export_flow": 2,
+      "storage_utilization": 1,
+      "refinery_capacity": 2,
+      "shipping_delay_level": 2,
+      "insurance_premia_level": 2,
+      "commodity_volatility": 1,
+      "trader_hedging_rate": 1,
+      "military_response": 1,
+      "escalation_risk": 1,
+      "isr_coverage": 1
+    },
+    "security_effectiveness": {
+      "drone_attack_rate": 2,
+      "munition_severity": 1,
+      "infra_vulnerability": 3,
+      "security_effectiveness": 0,
+      "counteruas_deploy_rate": 2,
+      "maritime_transit_flow": 2,
+      "energy_export_flow": 2,
+      "storage_utilization": 1,
+      "refinery_capacity": 2,
+      "shipping_delay_level": 3,
+      "insurance_premia_level": 2,
+      "commodity_volatility": 2,
+      "trader_hedging_rate": 1,
+      "military_response": 1,
+      "escalation_risk": 1,
+      "isr_coverage": 1
+    },
+    "counteruas_deploy_rate": {
+      "drone_attack_rate": 3,
+      "munition_severity": 1,
+      "infra_vulnerability": 2,
+      "security_effectiveness": 2,
+      "counteruas_deploy_rate": 0,
+      "maritime_transit_flow": 2,
+      "energy_export_flow": 2,
+      "storage_utilization": 1,
+      "refinery_capacity": 2,
+      "shipping_delay_level": 3,
+      "insurance_premia_level": 2,
+      "commodity_volatility": 2,
+      "trader_hedging_rate": 1,
+      "military_response": 2,
+      "escalation_risk": 2,
+      "isr_coverage": 2
+    },
+    "maritime_transit_flow": {
+      "drone_attack_rate": 1,
+      "munition_severity": 0,
+      "infra_vulnerability": 0,
+      "security_effectiveness": 1,
+      "counteruas_deploy_rate": 1,
+      "maritime_transit_flow": 0,
+      "energy_export_flow": 3,
+      "storage_utilization": 2,
+      "refinery_capacity": 2,
+      "shipping_delay_level": 3,
+      "insurance_premia_level": 2,
+      "commodity_volatility": 2,
+      "trader_hedging_rate": 2,
+      "military_response": 1,
+      "escalation_risk": 1,
+      "isr_coverage": 1
+    },
+    "energy_export_flow": {
+      "drone_attack_rate": 1,
+      "munition_severity": 0,
+      "infra_vulnerability": 0,
+      "security_effectiveness": 0,
+      "counteruas_deploy_rate": 1,
+      "maritime_transit_flow": 3,
+      "energy_export_flow": 0,
+      "storage_utilization": 3,
+      "refinery_capacity": 2,
+      "shipping_delay_level": 1,
+      "insurance_premia_level": 2,
+      "commodity_volatility": 3,
+      "trader_hedging_rate": 3,
+      "military_response": 1,
+      "escalation_risk": 1,
+      "isr_coverage": 1
+    },
+    "storage_utilization": {
+      "drone_attack_rate": 0,
+      "munition_severity": 0,
+      "infra_vulnerability": 1,
+      "security_effectiveness": 1,
+      "counteruas_deploy_rate": 1,
+      "maritime_transit_flow": 2,
+      "energy_export_flow": 2,
+      "storage_utilization": 0,
+      "refinery_capacity": 1,
+      "shipping_delay_level": 2,
+      "insurance_premia_level": 1,
+      "commodity_volatility": 2,
+      "trader_hedging_rate": 2,
+      "military_response": 1,
+      "escalation_risk": 1,
+      "isr_coverage": 1
+    },
+    "refinery_capacity": {
+      "drone_attack_rate": 0,
+      "munition_severity": 0,
+      "infra_vulnerability": 0,
+      "security_effectiveness": 0,
+      "counteruas_deploy_rate": 0,
+      "maritime_transit_flow": 2,
+      "energy_export_flow": 3,
+      "storage_utilization": 2,
+      "refinery_capacity": 0,
+      "shipping_delay_level": 1,
+      "insurance_premia_level": 1,
+      "commodity_volatility": 2,
+      "trader_hedging_rate": 2,
+      "military_response": 1,
+      "escalation_risk": 1,
+      "isr_coverage": 1
+    },
+    "shipping_delay_level": {
+      "drone_attack_rate": 1,
+      "munition_severity": 0,
+      "infra_vulnerability": 0,
+      "security_effectiveness": 1,
+      "counteruas_deploy_rate": 1,
+      "maritime_transit_flow": 3,
+      "energy_export_flow": 3,
+      "storage_utilization": 2,
+      "refinery_capacity": 2,
+      "shipping_delay_level": 0,
+      "insurance_premia_level": 2,
+      "commodity_volatility": 2,
+      "trader_hedging_rate": 2,
+      "military_response": 1,
+      "escalation_risk": 2,
+      "isr_coverage": 2
+    },
+    "insurance_premia_level": {
+      "drone_attack_rate": 0,
+      "munition_severity": 0,
+      "infra_vulnerability": 0,
+      "security_effectiveness": 1,
+      "counteruas_deploy_rate": 0,
+      "maritime_transit_flow": 2,
+      "energy_export_flow": 2,
+      "storage_utilization": 1,
+      "refinery_capacity": 0,
+      "shipping_delay_level": 0,
+      "insurance_premia_level": 0,
+      "commodity_volatility": 1,
+      "trader_hedging_rate": 2,
+      "military_response": 1,
+      "escalation_risk": 1,
+      "isr_coverage": 1
+    },
+    "commodity_volatility": {
+      "drone_attack_rate": 0,
+      "munition_severity": 0,
+      "infra_vulnerability": 0,
+      "security_effectiveness": 0,
+      "counteruas_deploy_rate": 0,
+      "maritime_transit_flow": 1,
+      "energy_export_flow": 1,
+      "storage_utilization": 2,
+      "refinery_capacity": 0,
+      "shipping_delay_level": 0,
+      "insurance_premia_level": 2,
+      "commodity_volatility": 0,
+      "trader_hedging_rate": 3,
+      "military_response": 1,
+      "escalation_risk": 1,
+      "isr_coverage": 1
+    },
+    "trader_hedging_rate": {
+      "drone_attack_rate": 0,
+      "munition_severity": 0,
+      "infra_vulnerability": 0,
+      "security_effectiveness": 0,
+      "counteruas_deploy_rate": 0,
+      "maritime_transit_flow": 0,
+      "energy_export_flow": 1,
+      "storage_utilization": 2,
+      "refinery_capacity": 0,
+      "shipping_delay_level": 0,
+      "insurance_premia_level": 1,
+      "commodity_volatility": 2,
+      "trader_hedging_rate": 0,
+      "military_response": 0,
+      "escalation_risk": 0,
+      "isr_coverage": 0
+    },
+    "military_response": {
+      "drone_attack_rate": 3,
+      "munition_severity": 1,
+      "infra_vulnerability": 2,
+      "security_effectiveness": 2,
+      "counteruas_deploy_rate": 3,
+      "maritime_transit_flow": 2,
+      "energy_export_flow": 2,
+      "storage_utilization": 1,
+      "refinery_capacity": 2,
+      "shipping_delay_level": 2,
+      "insurance_premia_level": 2,
+      "commodity_volatility": 2,
+      "trader_hedging_rate": 1,
+      "military_response": 0,
+      "escalation_risk": 3,
+      "isr_coverage": 3
+    },
+    "escalation_risk": {
+      "drone_attack_rate": 1,
+      "munition_severity": 1,
+      "infra_vulnerability": 0,
+      "security_effectiveness": 2,
+      "counteruas_deploy_rate": 2,
+      "maritime_transit_flow": 2,
+      "energy_export_flow": 2,
+      "storage_utilization": 2,
+      "refinery_capacity": 1,
+      "shipping_delay_level": 2,
+      "insurance_premia_level": 3,
+      "commodity_volatility": 3,
+      "trader_hedging_rate": 3,
+      "military_response": 3,
+      "escalation_risk": 0,
+      "isr_coverage": 3
+    },
+    "isr_coverage": {
+      "drone_attack_rate": 3,
+      "munition_severity": 1,
+      "infra_vulnerability": 2,
+      "security_effectiveness": 3,
+      "counteruas_deploy_rate": 3,
+      "maritime_transit_flow": 2,
+      "energy_export_flow": 2,
+      "storage_utilization": 1,
+      "refinery_capacity": 1,
+      "shipping_delay_level": 2,
+      "insurance_premia_level": 2,
+      "commodity_volatility": 2,
+      "trader_hedging_rate": 1,
+      "military_response": 2,
+      "escalation_risk": 1,
+      "isr_coverage": 0
+    }
+  },
+  "AS": {
+    "drone_attack_rate": 36,
+    "munition_severity": 32,
+    "infra_vulnerability": 23,
+    "security_effectiveness": 26,
+    "counteruas_deploy_rate": 29,
+    "maritime_transit_flow": 22,
+    "energy_export_flow": 22,
+    "storage_utilization": 18,
+    "refinery_capacity": 16,
+    "shipping_delay_level": 24,
+    "insurance_premia_level": 12,
+    "commodity_volatility": 12,
+    "trader_hedging_rate": 6,
+    "military_response": 31,
+    "escalation_risk": 30,
+    "isr_coverage": 28
+  },
+  "PS": {
+    "drone_attack_rate": 18,
+    "munition_severity": 7,
+    "infra_vulnerability": 14,
+    "security_effectiveness": 19,
+    "counteruas_deploy_rate": 21,
+    "maritime_transit_flow": 30,
+    "energy_export_flow": 32,
+    "storage_utilization": 24,
+    "refinery_capacity": 21,
+    "shipping_delay_level": 26,
+    "insurance_premia_level": 30,
+    "commodity_volatility": 30,
+    "trader_hedging_rate": 28,
+    "military_response": 22,
+    "escalation_risk": 22,
+    "isr_coverage": 23
+  },
+  "med_AS": 23.5,
+  "med_PS": 22.5,
+  "roles": [
+    {
+      "variable": "energy_export_flow",
+      "name": "Energy export flow",
+      "AS": 22,
+      "PS": 32,
+      "Q=AS/PS": 0.69,
+      "P=AS*PS": 704,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "military_response",
+      "name": "Military response intensity",
+      "AS": 31,
+      "PS": 22,
+      "Q=AS/PS": 1.41,
+      "P=AS*PS": 682,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "escalation_risk",
+      "name": "Escalation risk perception",
+      "AS": 30,
+      "PS": 22,
+      "Q=AS/PS": 1.36,
+      "P=AS*PS": 660,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "maritime_transit_flow",
+      "name": "Maritime transit flow",
+      "AS": 22,
+      "PS": 30,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 660,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "drone_attack_rate",
+      "name": "Drone attack rate",
+      "AS": 36,
+      "PS": 18,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 648,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "isr_coverage",
+      "name": "ISR coverage",
+      "AS": 28,
+      "PS": 23,
+      "Q=AS/PS": 1.22,
+      "P=AS*PS": 644,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "shipping_delay_level",
+      "name": "Shipping delay level",
+      "AS": 24,
+      "PS": 26,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 624,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "counteruas_deploy_rate",
+      "name": "Counter‑UAS deployment rate",
+      "AS": 29,
+      "PS": 21,
+      "Q=AS/PS": 1.38,
+      "P=AS*PS": 609,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "security_effectiveness",
+      "name": "On-site security effectiveness",
+      "AS": 26,
+      "PS": 19,
+      "Q=AS/PS": 1.37,
+      "P=AS*PS": 494,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "storage_utilization",
+      "name": "Storage utilization",
+      "AS": 18,
+      "PS": 24,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 432,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "insurance_premia_level",
+      "name": "Insurance premia level",
+      "AS": 12,
+      "PS": 30,
+      "Q=AS/PS": 0.4,
+      "P=AS*PS": 360,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "commodity_volatility",
+      "name": "Commodity price volatility",
+      "AS": 12,
+      "PS": 30,
+      "Q=AS/PS": 0.4,
+      "P=AS*PS": 360,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refinery_capacity",
+      "name": "Refinery processing capacity",
+      "AS": 16,
+      "PS": 21,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 336,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "infra_vulnerability",
+      "name": "Infrastructure vulnerability",
+      "AS": 23,
+      "PS": 14,
+      "Q=AS/PS": 1.64,
+      "P=AS*PS": 322,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "munition_severity",
+      "name": "Munition severity",
+      "AS": 32,
+      "PS": 7,
+      "Q=AS/PS": 4.57,
+      "P=AS*PS": 224,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "trader_hedging_rate",
+      "name": "Trader hedging rate",
+      "AS": 6,
+      "PS": 28,
+      "Q=AS/PS": 0.21,
+      "P=AS*PS": 168,
+      "role": "reactive (sensor)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "drone_attack_rate",
+        "name": "Drone attack rate",
+        "kind": "driver",
+        "AS": 36,
+        "PS": 18
+      },
+      {
+        "id": "munition_severity",
+        "name": "Munition severity",
+        "kind": "driver",
+        "AS": 32,
+        "PS": 7
+      },
+      {
+        "id": "infra_vulnerability",
+        "name": "Infrastructure vulnerability",
+        "kind": "environment",
+        "AS": 23,
+        "PS": 14
+      },
+      {
+        "id": "security_effectiveness",
+        "name": "On-site security effectiveness",
+        "kind": "institution_field",
+        "AS": 26,
+        "PS": 19
+      },
+      {
+        "id": "counteruas_deploy_rate",
+        "name": "Counter‑UAS deployment rate",
+        "kind": "driver",
+        "AS": 29,
+        "PS": 21
+      },
+      {
+        "id": "maritime_transit_flow",
+        "name": "Maritime transit flow",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 30
+      },
+      {
+        "id": "energy_export_flow",
+        "name": "Energy export flow",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 32
+      },
+      {
+        "id": "storage_utilization",
+        "name": "Storage utilization",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 24
+      },
+      {
+        "id": "refinery_capacity",
+        "name": "Refinery processing capacity",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 21
+      },
+      {
+        "id": "shipping_delay_level",
+        "name": "Shipping delay level",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 26
+      },
+      {
+        "id": "insurance_premia_level",
+        "name": "Insurance premia level",
+        "kind": "perception",
+        "AS": 12,
+        "PS": 30
+      },
+      {
+        "id": "commodity_volatility",
+        "name": "Commodity price volatility",
+        "kind": "perception",
+        "AS": 12,
+        "PS": 30
+      },
+      {
+        "id": "trader_hedging_rate",
+        "name": "Trader hedging rate",
+        "kind": "flow",
+        "AS": 6,
+        "PS": 28
+      },
+      {
+        "id": "military_response",
+        "name": "Military response intensity",
+        "kind": "driver",
+        "AS": 31,
+        "PS": 22
+      },
+      {
+        "id": "escalation_risk",
+        "name": "Escalation risk perception",
+        "kind": "perception",
+        "AS": 30,
+        "PS": 22
+      },
+      {
+        "id": "isr_coverage",
+        "name": "ISR coverage",
+        "kind": "institution_field",
+        "AS": 28,
+        "PS": 23
+      }
+    ],
+    "edges": [
+      {
+        "source": "drone_attack_rate",
+        "target": "security_effectiveness",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "counteruas_deploy_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "maritime_transit_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "energy_export_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "storage_utilization",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "refinery_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "shipping_delay_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "insurance_premia_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "trader_hedging_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "military_response",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "escalation_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "drone_attack_rate",
+        "target": "isr_coverage",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "munition_severity",
+        "target": "infra_vulnerability",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "munition_severity",
+        "target": "security_effectiveness",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "munition_severity",
+        "target": "counteruas_deploy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "munition_severity",
+        "target": "maritime_transit_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "munition_severity",
+        "target": "energy_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "munition_severity",
+        "target": "refinery_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "munition_severity",
+        "target": "shipping_delay_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "munition_severity",
+        "target": "insurance_premia_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "munition_severity",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "munition_severity",
+        "target": "trader_hedging_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "munition_severity",
+        "target": "military_response",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "munition_severity",
+        "target": "escalation_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "munition_severity",
+        "target": "isr_coverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "infra_vulnerability",
+        "target": "drone_attack_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "infra_vulnerability",
+        "target": "security_effectiveness",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "infra_vulnerability",
+        "target": "counteruas_deploy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "infra_vulnerability",
+        "target": "maritime_transit_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "infra_vulnerability",
+        "target": "energy_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "infra_vulnerability",
+        "target": "refinery_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "infra_vulnerability",
+        "target": "shipping_delay_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "infra_vulnerability",
+        "target": "insurance_premia_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_effectiveness",
+        "target": "drone_attack_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "security_effectiveness",
+        "target": "infra_vulnerability",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "security_effectiveness",
+        "target": "counteruas_deploy_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "security_effectiveness",
+        "target": "maritime_transit_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_effectiveness",
+        "target": "energy_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_effectiveness",
+        "target": "refinery_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_effectiveness",
+        "target": "shipping_delay_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "security_effectiveness",
+        "target": "insurance_premia_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "security_effectiveness",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "drone_attack_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "infra_vulnerability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "security_effectiveness",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "maritime_transit_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "energy_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "refinery_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "shipping_delay_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "insurance_premia_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "military_response",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "escalation_risk",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "counteruas_deploy_rate",
+        "target": "isr_coverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_flow",
+        "target": "energy_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_flow",
+        "target": "storage_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_flow",
+        "target": "refinery_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_flow",
+        "target": "shipping_delay_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_flow",
+        "target": "insurance_premia_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_flow",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_flow",
+        "target": "trader_hedging_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_export_flow",
+        "target": "maritime_transit_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_export_flow",
+        "target": "storage_utilization",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "energy_export_flow",
+        "target": "refinery_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_export_flow",
+        "target": "insurance_premia_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_export_flow",
+        "target": "commodity_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "energy_export_flow",
+        "target": "trader_hedging_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "storage_utilization",
+        "target": "maritime_transit_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "storage_utilization",
+        "target": "energy_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "storage_utilization",
+        "target": "shipping_delay_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "storage_utilization",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "storage_utilization",
+        "target": "trader_hedging_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_capacity",
+        "target": "maritime_transit_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_capacity",
+        "target": "energy_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_capacity",
+        "target": "storage_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_capacity",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_capacity",
+        "target": "trader_hedging_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_delay_level",
+        "target": "maritime_transit_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_delay_level",
+        "target": "energy_export_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_delay_level",
+        "target": "storage_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_delay_level",
+        "target": "refinery_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_delay_level",
+        "target": "insurance_premia_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_delay_level",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_delay_level",
+        "target": "trader_hedging_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_delay_level",
+        "target": "escalation_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_delay_level",
+        "target": "isr_coverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premia_level",
+        "target": "maritime_transit_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premia_level",
+        "target": "energy_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premia_level",
+        "target": "trader_hedging_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_volatility",
+        "target": "storage_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_volatility",
+        "target": "insurance_premia_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_volatility",
+        "target": "trader_hedging_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "trader_hedging_rate",
+        "target": "storage_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trader_hedging_rate",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "military_response",
+        "target": "drone_attack_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "military_response",
+        "target": "infra_vulnerability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "military_response",
+        "target": "security_effectiveness",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_response",
+        "target": "counteruas_deploy_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_response",
+        "target": "maritime_transit_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_response",
+        "target": "energy_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_response",
+        "target": "refinery_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_response",
+        "target": "shipping_delay_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_response",
+        "target": "insurance_premia_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "military_response",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "military_response",
+        "target": "escalation_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_response",
+        "target": "isr_coverage",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "escalation_risk",
+        "target": "security_effectiveness",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "escalation_risk",
+        "target": "counteruas_deploy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "escalation_risk",
+        "target": "maritime_transit_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "escalation_risk",
+        "target": "energy_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "escalation_risk",
+        "target": "storage_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "escalation_risk",
+        "target": "shipping_delay_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "escalation_risk",
+        "target": "insurance_premia_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "escalation_risk",
+        "target": "commodity_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "escalation_risk",
+        "target": "trader_hedging_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "escalation_risk",
+        "target": "military_response",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "escalation_risk",
+        "target": "isr_coverage",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "isr_coverage",
+        "target": "drone_attack_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "isr_coverage",
+        "target": "infra_vulnerability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "isr_coverage",
+        "target": "security_effectiveness",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "isr_coverage",
+        "target": "counteruas_deploy_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "isr_coverage",
+        "target": "maritime_transit_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "isr_coverage",
+        "target": "energy_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "isr_coverage",
+        "target": "shipping_delay_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "isr_coverage",
+        "target": "insurance_premia_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "isr_coverage",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "isr_coverage",
+        "target": "military_response",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "spread_to_suez_and_egypt_ports",
+      "title": "Geographic spread to Suez & Egyptian ports",
+      "description": "Attacks expand to major chokepoints and Egyptian Mediterranean ports, prompting transit risk and rerouting.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-31",
+        "end": "2026-08-31",
+        "label": "next 4 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "drone_attack_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_transit_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_delay_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_export_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "escalation_risk",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Egypt/Suez port strikes reported (2026-07-30, 2026-07-31) imply spread to chokepoints and transit disruption."
+    },
+    {
+      "id": "refinery_and_storage_outages",
+      "title": "Refinery and storage outages",
+      "description": "Damage from strikes forces temporary halts at refineries and storage facilities, reducing processing and export capacity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-31",
+        "end": "2026-08-31",
+        "label": "weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "refinery_capacity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "energy_export_flow",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "storage_utilization",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "infra_vulnerability",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Lukoil, Ryazan refinery hits and storage-tanker strike reported (2026-07-30/31), causing halts and outages."
+    },
+    {
+      "id": "counteruas_and_port_hardening",
+      "title": "Rapid counter‑UAS and port hardening",
+      "description": "Operators and states accelerate deployment of counter-UAS, access controls and hardening at refineries and ports.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-09-15",
+        "label": "2-6 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "counteruas_deploy_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "security_effectiveness",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "infra_vulnerability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "isr_coverage",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_delay_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Security concerns after Suez and port strikes (2026-07-30/31) will drive rapid C‑UAS and hardening deployments."
+    },
+    {
+      "id": "naval_surges_in_suez_and_mediterranean",
+      "title": "Naval and military patrol surges",
+      "description": "Increased naval/air patrols and escorts in Suez and adjacent seas raise military tempo and route controls.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-08-31",
+        "label": "weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "military_response",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "isr_coverage",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_delay_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_transit_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "escalation_risk",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Reports of strikes near Suez and rising threat (2026-07-31) likely trigger patrol surges and escorts."
+    },
+    {
+      "id": "insurance_premia_and_war_risk_hikes",
+      "title": "Insurance premia and war‑risk surcharge hikes",
+      "description": "Insurers raise war-risk premiums and surcharges for vessels and terminals operating in affected waters and ports.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-09-15",
+        "label": "1-6 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "insurance_premia_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "trader_hedging_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_delay_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Widening attacks and Suez export concerns (2026-07-30/31) typically prompt insurers to raise war‑risk charges."
+    },
+    {
+      "id": "market_hedging_and_price_volatility_spike",
+      "title": "Market hedging and price volatility spike",
+      "description": "Traders increase hedging and markets display elevated volatility in response to repeated attacks and outage reports.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-08-21",
+        "label": "1-3 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "trader_hedging_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_export_flow",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Refinery halts and Suez threat reports (2026-07-30/31) will provoke rapid hedging and price swings."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "naval_surges_in_suez_and_mediterranean",
+      "title": "Naval and military patrol surges",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-08-31",
+      "probability": 0.7,
+      "impact_score": 329.0,
+      "expected_impact": 230.3,
+      "event_PS": 24.25,
+      "event_AS": 27.417,
+      "n_vars": 5,
+      "affected_ids": "military_response, isr_coverage, shipping_delay_level, maritime_transit_flow, escalation_risk",
+      "rationale": "Reports of strikes near Suez and rising threat (2026-07-31) likely trigger patrol surges and escorts."
+    },
+    {
+      "id": "spread_to_suez_and_egypt_ports",
+      "title": "Geographic spread to Suez & Egyptian ports",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4 weeks",
+      "date": null,
+      "start": "2026-07-31",
+      "end": "2026-08-31",
+      "probability": 0.8,
+      "impact_score": 328.0,
+      "expected_impact": 262.4,
+      "event_PS": 25.0,
+      "event_AS": 27.333,
+      "n_vars": 5,
+      "affected_ids": "drone_attack_rate, maritime_transit_flow, shipping_delay_level, energy_export_flow, escalation_risk",
+      "rationale": "Egypt/Suez port strikes reported (2026-07-30, 2026-07-31) imply spread to chokepoints and transit disruption."
+    },
+    {
+      "id": "counteruas_and_port_hardening",
+      "title": "Rapid counter‑UAS and port hardening",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-6 weeks",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-09-15",
+      "probability": 0.8,
+      "impact_score": 265.0,
+      "expected_impact": 212.0,
+      "event_PS": 20.1,
+      "event_AS": 26.5,
+      "n_vars": 5,
+      "affected_ids": "counteruas_deploy_rate, security_effectiveness, infra_vulnerability, isr_coverage, shipping_delay_level",
+      "rationale": "Security concerns after Suez and port strikes (2026-07-30/31) will drive rapid C‑UAS and hardening deployments."
+    },
+    {
+      "id": "refinery_and_storage_outages",
+      "title": "Refinery and storage outages",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-07-31",
+      "end": "2026-08-31",
+      "probability": 0.75,
+      "impact_score": 220.0,
+      "expected_impact": 165.0,
+      "event_PS": 24.583,
+      "event_AS": 18.333,
+      "n_vars": 5,
+      "affected_ids": "refinery_capacity, energy_export_flow, storage_utilization, commodity_volatility, infra_vulnerability",
+      "rationale": "Lukoil, Ryazan refinery hits and storage-tanker strike reported (2026-07-30/31), causing halts and outages."
+    },
+    {
+      "id": "insurance_premia_and_war_risk_hikes",
+      "title": "Insurance premia and war‑risk surcharge hikes",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-6 weeks",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-09-15",
+      "probability": 0.85,
+      "impact_score": 96.0,
+      "expected_impact": 81.6,
+      "event_PS": 29.0,
+      "event_AS": 12.0,
+      "n_vars": 4,
+      "affected_ids": "insurance_premia_level, commodity_volatility, trader_hedging_rate, shipping_delay_level",
+      "rationale": "Widening attacks and Suez export concerns (2026-07-30/31) typically prompt insurers to raise war‑risk charges."
+    },
+    {
+      "id": "market_hedging_and_price_volatility_spike",
+      "title": "Market hedging and price volatility spike",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-3 weeks",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-08-21",
+      "probability": 0.9,
+      "impact_score": 76.0,
+      "expected_impact": 68.4,
+      "event_PS": 29.429,
+      "event_AS": 10.857,
+      "n_vars": 3,
+      "affected_ids": "trader_hedging_rate, commodity_volatility, energy_export_flow",
+      "rationale": "Refinery halts and Suez threat reports (2026-07-30/31) will provoke rapid hedging and price swings."
+    }
+  ]
+}
