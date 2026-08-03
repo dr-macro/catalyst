@@ -1,0 +1,1834 @@
+{
+  "label": "energy_maritime_chokepoi",
+  "as_of": "2026-08-02",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-03T00:38:19",
+  "system_description": {
+    "narrative_title": "Middle East maritime conflict reshaping global oil flows and markets",
+    "narrative_summary": "News across this window converge on a single story: Iran-related military actions, Houthi attacks and broader regional tensions are disrupting key maritime choke points (Strait of Hormuz, Red Sea, Black Sea), producing supply shocks and trading dislocations that lift oil/LNG prices, swell major oil companies' profits, and force logistical and policy responses. As an open system this network admits exogenous shocks (military strikes, political decisions, OPEC+ quota moves, demand shifts) and translates them through physical flows (tankers, pipelines, refineries), markets (spot, futures, margins), and institutional responses (naval coalitions, asset purchases, pricing rules), producing outputs (price volatility, rerouting, corporate earnings, economic pain in affected states) and feedbacks (higher revenues enabling capacity changes or military postures, insurance and shipping behavior altering flows).",
+    "scope": "Seaborne hydrocarbon supply chains and markets: oil and LNG production, tankers and shipping routes (Strait of Hormuz, Red Sea, Black Sea), traders and majors (Exxon, Chevron, Shell, ADNOC, QatarEnergy, Aramco), OPEC+/producers, refiners and margins, buyers (India, Europe, China), maritime security actors (Iran, Saudi, UAE, Houthis), insurers/ship managers, and commodity/financial market responses.",
+    "super_system": "Global political-economy: international security and energy markets",
+    "adjacent_subsystems": [
+      "Global shipping and marine insurance",
+      "International commodities and financial markets",
+      "Regional security architecture and naval coalitions",
+      "Downstream industrial supply chains (refining, fertilizers, petrochemicals)"
+    ],
+    "evidence_headlines": [
+      "Oil Rises After Attacks in Black Sea",
+      "Two tankers carrying Saudi oil for India exit Red Sea by going 'dark'",
+      "Tankers Are Being Blown Out of the Water. See How Mideast Strikes Are Piling Up.",
+      "Exxon and Chevron profits surge on rising oil prices due to Iran war",
+      "ADNOC buys tankers as Red Sea, Hormuz crisis reshape oil trade",
+      "Saudi Arabia announces maritime defence coalition as Houthi attacks threaten Red Sea route"
+    ]
+  },
+  "variables": [
+    {
+      "id": "chokepoint_transit_capac",
+      "name": "Chokepoint transit capacity",
+      "description": "The aggregate physical throughput capacity (ships/day or barrels/day equivalent) available through key maritime chokepoints used by hydrocarbon shipping.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "seaborne_hydrocarb_flow",
+      "name": "Seaborne hydrocarbon flow",
+      "description": "The volume rate of oil and LNG moved by sea across the system (barrels or tons per time unit).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_fleet_availabilit",
+      "name": "Tanker fleet availability",
+      "description": "The active supply of tanker tonnage available for commercial employment and rerouting (effective fleet utilization and idle capacity).",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_freight_rates",
+      "name": "Tanker freight rates",
+      "description": "Market freight rates and time-charter levels for crude and product tankers that determine shipping cost per unit transported.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_premiums_shipp",
+      "name": "Shipping insurance premiums",
+      "description": "The average cost level of war, hull, and cargo insurance for maritime hydrocarbon shipments, expressed as premium rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_security_incide",
+      "name": "Maritime security incidents",
+      "description": "The frequency and severity of hostile or disruptive incidents affecting ships and sea lanes (attacks, seizures, near-misses) per time unit.",
+      "kind": "environment",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "upstream_production_outp",
+      "name": "Upstream production output",
+      "description": "The rate of hydrocarbon production from upstream sources (crude oil and gas liquids and feedstock gas) available for export or domestic processing.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "producer_coordination",
+      "name": "Producer coordination intensity",
+      "description": "The degree and effectiveness of coordinated production/policy actions among supplying actors that influence aggregate output decisions.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refining_throughput",
+      "name": "Refining throughput and margins",
+      "description": "Aggregate refinery processing rates and the associated refining margin spreads that determine conversion capacity and crack economics.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_price_spot_oil",
+      "name": "Spot crude price level",
+      "description": "The prevailing short-term market price level for benchmark crude oils in physical spot markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_price_spot_lng",
+      "name": "Spot LNG price level",
+      "description": "The prevailing short-term market price level for LNG cargoes in spot markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "futures_market_volatilit",
+      "name": "Futures market volatility",
+      "description": "The volatility (realized or implied) in hydrocarbon derivatives markets reflecting uncertainty about future prices.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "trader_inventory_levels",
+      "name": "Trader and commercial inventory levels",
+      "description": "The volume of commercial oil and LNG stocks held by traders, refiners, and merchants available to smooth shortfalls.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "rerouting_distance_cost",
+      "name": "Shipping rerouting cost",
+      "description": "The additional distance, time and operational cost per shipment arising from detours to avoid risky or closed sea lanes.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_finance_liq",
+      "name": "Maritime finance liquidity",
+      "description": "The availability and terms of debt and working capital for shipowners and charterers to finance vessel operations and chartering.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_risk_perception",
+      "name": "Market risk perception",
+      "description": "The prevailing collective perception of geopolitical and supply disruption risk among market participants influencing behaviour and pricing premia.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "chokepoint_transit_capac",
+    "seaborne_hydrocarb_flow",
+    "tanker_fleet_availabilit",
+    "tanker_freight_rates",
+    "insurance_premiums_shipp",
+    "maritime_security_incide",
+    "upstream_production_outp",
+    "producer_coordination",
+    "refining_throughput",
+    "market_price_spot_oil",
+    "market_price_spot_lng",
+    "futures_market_volatilit",
+    "trader_inventory_levels",
+    "rerouting_distance_cost",
+    "maritime_finance_liq",
+    "market_risk_perception"
+  ],
+  "var_names": {
+    "chokepoint_transit_capac": "Chokepoint transit capacity",
+    "seaborne_hydrocarb_flow": "Seaborne hydrocarbon flow",
+    "tanker_fleet_availabilit": "Tanker fleet availability",
+    "tanker_freight_rates": "Tanker freight rates",
+    "insurance_premiums_shipp": "Shipping insurance premiums",
+    "maritime_security_incide": "Maritime security incidents",
+    "upstream_production_outp": "Upstream production output",
+    "producer_coordination": "Producer coordination intensity",
+    "refining_throughput": "Refining throughput and margins",
+    "market_price_spot_oil": "Spot crude price level",
+    "market_price_spot_lng": "Spot LNG price level",
+    "futures_market_volatilit": "Futures market volatility",
+    "trader_inventory_levels": "Trader and commercial inventory levels",
+    "rerouting_distance_cost": "Shipping rerouting cost",
+    "maritime_finance_liq": "Maritime finance liquidity",
+    "market_risk_perception": "Market risk perception"
+  },
+  "impact_matrix": {
+    "chokepoint_transit_capac": {
+      "chokepoint_transit_capac": 0,
+      "seaborne_hydrocarb_flow": 3,
+      "tanker_fleet_availabilit": 2,
+      "tanker_freight_rates": 3,
+      "insurance_premiums_shipp": 1,
+      "maritime_security_incide": 1,
+      "upstream_production_outp": 2,
+      "producer_coordination": 0,
+      "refining_throughput": 2,
+      "market_price_spot_oil": 2,
+      "market_price_spot_lng": 1,
+      "futures_market_volatilit": 1,
+      "trader_inventory_levels": 2,
+      "rerouting_distance_cost": 3,
+      "maritime_finance_liq": 1,
+      "market_risk_perception": 2
+    },
+    "seaborne_hydrocarb_flow": {
+      "chokepoint_transit_capac": 3,
+      "seaborne_hydrocarb_flow": 0,
+      "tanker_fleet_availabilit": 3,
+      "tanker_freight_rates": 3,
+      "insurance_premiums_shipp": 2,
+      "maritime_security_incide": 1,
+      "upstream_production_outp": 2,
+      "producer_coordination": 1,
+      "refining_throughput": 3,
+      "market_price_spot_oil": 3,
+      "market_price_spot_lng": 3,
+      "futures_market_volatilit": 2,
+      "trader_inventory_levels": 2,
+      "rerouting_distance_cost": 1,
+      "maritime_finance_liq": 2,
+      "market_risk_perception": 2
+    },
+    "tanker_fleet_availabilit": {
+      "chokepoint_transit_capac": 1,
+      "seaborne_hydrocarb_flow": 3,
+      "tanker_fleet_availabilit": 0,
+      "tanker_freight_rates": 3,
+      "insurance_premiums_shipp": 1,
+      "maritime_security_incide": 1,
+      "upstream_production_outp": 1,
+      "producer_coordination": 0,
+      "refining_throughput": 1,
+      "market_price_spot_oil": 2,
+      "market_price_spot_lng": 1,
+      "futures_market_volatilit": 1,
+      "trader_inventory_levels": 2,
+      "rerouting_distance_cost": 2,
+      "maritime_finance_liq": 2,
+      "market_risk_perception": 1
+    },
+    "tanker_freight_rates": {
+      "chokepoint_transit_capac": 0,
+      "seaborne_hydrocarb_flow": 2,
+      "tanker_fleet_availabilit": 3,
+      "tanker_freight_rates": 0,
+      "insurance_premiums_shipp": 1,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 1,
+      "producer_coordination": 1,
+      "refining_throughput": 1,
+      "market_price_spot_oil": 2,
+      "market_price_spot_lng": 1,
+      "futures_market_volatilit": 1,
+      "trader_inventory_levels": 1,
+      "rerouting_distance_cost": 0,
+      "maritime_finance_liq": 2,
+      "market_risk_perception": 1
+    },
+    "insurance_premiums_shipp": {
+      "chokepoint_transit_capac": 0,
+      "seaborne_hydrocarb_flow": 2,
+      "tanker_fleet_availabilit": 2,
+      "tanker_freight_rates": 2,
+      "insurance_premiums_shipp": 0,
+      "maritime_security_incide": 1,
+      "upstream_production_outp": 1,
+      "producer_coordination": 0,
+      "refining_throughput": 1,
+      "market_price_spot_oil": 2,
+      "market_price_spot_lng": 1,
+      "futures_market_volatilit": 1,
+      "trader_inventory_levels": 1,
+      "rerouting_distance_cost": 0,
+      "maritime_finance_liq": 2,
+      "market_risk_perception": 2
+    },
+    "maritime_security_incide": {
+      "chokepoint_transit_capac": 3,
+      "seaborne_hydrocarb_flow": 3,
+      "tanker_fleet_availabilit": 3,
+      "tanker_freight_rates": 3,
+      "insurance_premiums_shipp": 3,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 2,
+      "producer_coordination": 2,
+      "refining_throughput": 2,
+      "market_price_spot_oil": 3,
+      "market_price_spot_lng": 2,
+      "futures_market_volatilit": 3,
+      "trader_inventory_levels": 2,
+      "rerouting_distance_cost": 3,
+      "maritime_finance_liq": 2,
+      "market_risk_perception": 3
+    },
+    "upstream_production_outp": {
+      "chokepoint_transit_capac": 1,
+      "seaborne_hydrocarb_flow": 3,
+      "tanker_fleet_availabilit": 2,
+      "tanker_freight_rates": 2,
+      "insurance_premiums_shipp": 1,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 0,
+      "producer_coordination": 2,
+      "refining_throughput": 2,
+      "market_price_spot_oil": 3,
+      "market_price_spot_lng": 1,
+      "futures_market_volatilit": 2,
+      "trader_inventory_levels": 2,
+      "rerouting_distance_cost": 0,
+      "maritime_finance_liq": 1,
+      "market_risk_perception": 1
+    },
+    "producer_coordination": {
+      "chokepoint_transit_capac": 0,
+      "seaborne_hydrocarb_flow": 2,
+      "tanker_fleet_availabilit": 1,
+      "tanker_freight_rates": 1,
+      "insurance_premiums_shipp": 0,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 3,
+      "producer_coordination": 0,
+      "refining_throughput": 1,
+      "market_price_spot_oil": 3,
+      "market_price_spot_lng": 1,
+      "futures_market_volatilit": 2,
+      "trader_inventory_levels": 1,
+      "rerouting_distance_cost": 0,
+      "maritime_finance_liq": 0,
+      "market_risk_perception": 2
+    },
+    "refining_throughput": {
+      "chokepoint_transit_capac": 0,
+      "seaborne_hydrocarb_flow": 1,
+      "tanker_fleet_availabilit": 1,
+      "tanker_freight_rates": 1,
+      "insurance_premiums_shipp": 0,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 1,
+      "producer_coordination": 0,
+      "refining_throughput": 0,
+      "market_price_spot_oil": 2,
+      "market_price_spot_lng": 1,
+      "futures_market_volatilit": 1,
+      "trader_inventory_levels": 2,
+      "rerouting_distance_cost": 0,
+      "maritime_finance_liq": 0,
+      "market_risk_perception": 1
+    },
+    "market_price_spot_oil": {
+      "chokepoint_transit_capac": 0,
+      "seaborne_hydrocarb_flow": 1,
+      "tanker_fleet_availabilit": 1,
+      "tanker_freight_rates": 2,
+      "insurance_premiums_shipp": 1,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 2,
+      "producer_coordination": 1,
+      "refining_throughput": 2,
+      "market_price_spot_oil": 0,
+      "market_price_spot_lng": 1,
+      "futures_market_volatilit": 2,
+      "trader_inventory_levels": 2,
+      "rerouting_distance_cost": 0,
+      "maritime_finance_liq": 1,
+      "market_risk_perception": 2
+    },
+    "market_price_spot_lng": {
+      "chokepoint_transit_capac": 0,
+      "seaborne_hydrocarb_flow": 1,
+      "tanker_fleet_availabilit": 1,
+      "tanker_freight_rates": 1,
+      "insurance_premiums_shipp": 0,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 1,
+      "producer_coordination": 0,
+      "refining_throughput": 0,
+      "market_price_spot_oil": 1,
+      "market_price_spot_lng": 0,
+      "futures_market_volatilit": 1,
+      "trader_inventory_levels": 1,
+      "rerouting_distance_cost": 0,
+      "maritime_finance_liq": 0,
+      "market_risk_perception": 1
+    },
+    "futures_market_volatilit": {
+      "chokepoint_transit_capac": 0,
+      "seaborne_hydrocarb_flow": 1,
+      "tanker_fleet_availabilit": 0,
+      "tanker_freight_rates": 1,
+      "insurance_premiums_shipp": 0,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 1,
+      "producer_coordination": 1,
+      "refining_throughput": 0,
+      "market_price_spot_oil": 2,
+      "market_price_spot_lng": 1,
+      "futures_market_volatilit": 0,
+      "trader_inventory_levels": 2,
+      "rerouting_distance_cost": 0,
+      "maritime_finance_liq": 1,
+      "market_risk_perception": 2
+    },
+    "trader_inventory_levels": {
+      "chokepoint_transit_capac": 0,
+      "seaborne_hydrocarb_flow": 2,
+      "tanker_fleet_availabilit": 1,
+      "tanker_freight_rates": 2,
+      "insurance_premiums_shipp": 0,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 1,
+      "producer_coordination": 0,
+      "refining_throughput": 2,
+      "market_price_spot_oil": 3,
+      "market_price_spot_lng": 2,
+      "futures_market_volatilit": 2,
+      "trader_inventory_levels": 0,
+      "rerouting_distance_cost": 0,
+      "maritime_finance_liq": 0,
+      "market_risk_perception": 2
+    },
+    "rerouting_distance_cost": {
+      "chokepoint_transit_capac": 1,
+      "seaborne_hydrocarb_flow": 2,
+      "tanker_fleet_availabilit": 2,
+      "tanker_freight_rates": 3,
+      "insurance_premiums_shipp": 1,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 1,
+      "producer_coordination": 0,
+      "refining_throughput": 1,
+      "market_price_spot_oil": 2,
+      "market_price_spot_lng": 1,
+      "futures_market_volatilit": 1,
+      "trader_inventory_levels": 1,
+      "rerouting_distance_cost": 0,
+      "maritime_finance_liq": 1,
+      "market_risk_perception": 2
+    },
+    "maritime_finance_liq": {
+      "chokepoint_transit_capac": 0,
+      "seaborne_hydrocarb_flow": 1,
+      "tanker_fleet_availabilit": 3,
+      "tanker_freight_rates": 1,
+      "insurance_premiums_shipp": 0,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 0,
+      "producer_coordination": 0,
+      "refining_throughput": 0,
+      "market_price_spot_oil": 1,
+      "market_price_spot_lng": 0,
+      "futures_market_volatilit": 0,
+      "trader_inventory_levels": 1,
+      "rerouting_distance_cost": 0,
+      "maritime_finance_liq": 0,
+      "market_risk_perception": 1
+    },
+    "market_risk_perception": {
+      "chokepoint_transit_capac": 0,
+      "seaborne_hydrocarb_flow": 1,
+      "tanker_fleet_availabilit": 1,
+      "tanker_freight_rates": 3,
+      "insurance_premiums_shipp": 3,
+      "maritime_security_incide": 0,
+      "upstream_production_outp": 1,
+      "producer_coordination": 1,
+      "refining_throughput": 1,
+      "market_price_spot_oil": 3,
+      "market_price_spot_lng": 2,
+      "futures_market_volatilit": 3,
+      "trader_inventory_levels": 2,
+      "rerouting_distance_cost": 1,
+      "maritime_finance_liq": 2,
+      "market_risk_perception": 0
+    }
+  },
+  "AS": {
+    "chokepoint_transit_capac": 26,
+    "seaborne_hydrocarb_flow": 33,
+    "tanker_fleet_availabilit": 22,
+    "tanker_freight_rates": 17,
+    "insurance_premiums_shipp": 18,
+    "maritime_security_incide": 39,
+    "upstream_production_outp": 23,
+    "producer_coordination": 17,
+    "refining_throughput": 11,
+    "market_price_spot_oil": 18,
+    "market_price_spot_lng": 8,
+    "futures_market_volatilit": 12,
+    "trader_inventory_levels": 17,
+    "rerouting_distance_cost": 19,
+    "maritime_finance_liq": 8,
+    "market_risk_perception": 24
+  },
+  "PS": {
+    "chokepoint_transit_capac": 9,
+    "seaborne_hydrocarb_flow": 28,
+    "tanker_fleet_availabilit": 26,
+    "tanker_freight_rates": 31,
+    "insurance_premiums_shipp": 14,
+    "maritime_security_incide": 4,
+    "upstream_production_outp": 20,
+    "producer_coordination": 9,
+    "refining_throughput": 19,
+    "market_price_spot_oil": 34,
+    "market_price_spot_lng": 19,
+    "futures_market_volatilit": 23,
+    "trader_inventory_levels": 24,
+    "rerouting_distance_cost": 10,
+    "maritime_finance_liq": 17,
+    "market_risk_perception": 25
+  },
+  "med_AS": 18.0,
+  "med_PS": 19.5,
+  "roles": [
+    {
+      "variable": "seaborne_hydrocarb_flow",
+      "name": "Seaborne hydrocarbon flow",
+      "AS": 33,
+      "PS": 28,
+      "Q=AS/PS": 1.18,
+      "P=AS*PS": 924,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_price_spot_oil",
+      "name": "Spot crude price level",
+      "AS": 18,
+      "PS": 34,
+      "Q=AS/PS": 0.53,
+      "P=AS*PS": 612,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_risk_perception",
+      "name": "Market risk perception",
+      "AS": 24,
+      "PS": 25,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 600,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "tanker_fleet_availabilit",
+      "name": "Tanker fleet availability",
+      "AS": 22,
+      "PS": 26,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 572,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "tanker_freight_rates",
+      "name": "Tanker freight rates",
+      "AS": 17,
+      "PS": 31,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 527,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "upstream_production_outp",
+      "name": "Upstream production output",
+      "AS": 23,
+      "PS": 20,
+      "Q=AS/PS": 1.15,
+      "P=AS*PS": 460,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "trader_inventory_levels",
+      "name": "Trader and commercial inventory levels",
+      "AS": 17,
+      "PS": 24,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 408,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "futures_market_volatilit",
+      "name": "Futures market volatility",
+      "AS": 12,
+      "PS": 23,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 276,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "insurance_premiums_shipp",
+      "name": "Shipping insurance premiums",
+      "AS": 18,
+      "PS": 14,
+      "Q=AS/PS": 1.29,
+      "P=AS*PS": 252,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "chokepoint_transit_capac",
+      "name": "Chokepoint transit capacity",
+      "AS": 26,
+      "PS": 9,
+      "Q=AS/PS": 2.89,
+      "P=AS*PS": 234,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refining_throughput",
+      "name": "Refining throughput and margins",
+      "AS": 11,
+      "PS": 19,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 209,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "rerouting_distance_cost",
+      "name": "Shipping rerouting cost",
+      "AS": 19,
+      "PS": 10,
+      "Q=AS/PS": 1.9,
+      "P=AS*PS": 190,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "maritime_security_incide",
+      "name": "Maritime security incidents",
+      "AS": 39,
+      "PS": 4,
+      "Q=AS/PS": 9.75,
+      "P=AS*PS": 156,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "producer_coordination",
+      "name": "Producer coordination intensity",
+      "AS": 17,
+      "PS": 9,
+      "Q=AS/PS": 1.89,
+      "P=AS*PS": 153,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "market_price_spot_lng",
+      "name": "Spot LNG price level",
+      "AS": 8,
+      "PS": 19,
+      "Q=AS/PS": 0.42,
+      "P=AS*PS": 152,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "maritime_finance_liq",
+      "name": "Maritime finance liquidity",
+      "AS": 8,
+      "PS": 17,
+      "Q=AS/PS": 0.47,
+      "P=AS*PS": 136,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "chokepoint_transit_capac",
+        "name": "Chokepoint transit capacity",
+        "kind": "environment",
+        "AS": 26,
+        "PS": 9
+      },
+      {
+        "id": "seaborne_hydrocarb_flow",
+        "name": "Seaborne hydrocarbon flow",
+        "kind": "flow",
+        "AS": 33,
+        "PS": 28
+      },
+      {
+        "id": "tanker_fleet_availabilit",
+        "name": "Tanker fleet availability",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 26
+      },
+      {
+        "id": "tanker_freight_rates",
+        "name": "Tanker freight rates",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 31
+      },
+      {
+        "id": "insurance_premiums_shipp",
+        "name": "Shipping insurance premiums",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 14
+      },
+      {
+        "id": "maritime_security_incide",
+        "name": "Maritime security incidents",
+        "kind": "environment",
+        "AS": 39,
+        "PS": 4
+      },
+      {
+        "id": "upstream_production_outp",
+        "name": "Upstream production output",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 20
+      },
+      {
+        "id": "producer_coordination",
+        "name": "Producer coordination intensity",
+        "kind": "institution_field",
+        "AS": 17,
+        "PS": 9
+      },
+      {
+        "id": "refining_throughput",
+        "name": "Refining throughput and margins",
+        "kind": "flow",
+        "AS": 11,
+        "PS": 19
+      },
+      {
+        "id": "market_price_spot_oil",
+        "name": "Spot crude price level",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 34
+      },
+      {
+        "id": "market_price_spot_lng",
+        "name": "Spot LNG price level",
+        "kind": "driver",
+        "AS": 8,
+        "PS": 19
+      },
+      {
+        "id": "futures_market_volatilit",
+        "name": "Futures market volatility",
+        "kind": "perception",
+        "AS": 12,
+        "PS": 23
+      },
+      {
+        "id": "trader_inventory_levels",
+        "name": "Trader and commercial inventory levels",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 24
+      },
+      {
+        "id": "rerouting_distance_cost",
+        "name": "Shipping rerouting cost",
+        "kind": "driver",
+        "AS": 19,
+        "PS": 10
+      },
+      {
+        "id": "maritime_finance_liq",
+        "name": "Maritime finance liquidity",
+        "kind": "institution_field",
+        "AS": 8,
+        "PS": 17
+      },
+      {
+        "id": "market_risk_perception",
+        "name": "Market risk perception",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 25
+      }
+    ],
+    "edges": [
+      {
+        "source": "chokepoint_transit_capac",
+        "target": "seaborne_hydrocarb_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_capac",
+        "target": "tanker_fleet_availabilit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_capac",
+        "target": "tanker_freight_rates",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_capac",
+        "target": "upstream_production_outp",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_capac",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_capac",
+        "target": "market_price_spot_oil",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_capac",
+        "target": "trader_inventory_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_capac",
+        "target": "rerouting_distance_cost",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_capac",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "chokepoint_transit_capac",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "tanker_fleet_availabilit",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "tanker_freight_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "insurance_premiums_shipp",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "upstream_production_outp",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "refining_throughput",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "market_price_spot_oil",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "market_price_spot_lng",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "futures_market_volatilit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "trader_inventory_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "maritime_finance_liq",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_hydrocarb_flow",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_fleet_availabilit",
+        "target": "seaborne_hydrocarb_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_fleet_availabilit",
+        "target": "tanker_freight_rates",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_fleet_availabilit",
+        "target": "market_price_spot_oil",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_fleet_availabilit",
+        "target": "trader_inventory_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_fleet_availabilit",
+        "target": "rerouting_distance_cost",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_fleet_availabilit",
+        "target": "maritime_finance_liq",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rates",
+        "target": "seaborne_hydrocarb_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_freight_rates",
+        "target": "tanker_fleet_availabilit",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rates",
+        "target": "market_price_spot_oil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rates",
+        "target": "maritime_finance_liq",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premiums_shipp",
+        "target": "seaborne_hydrocarb_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premiums_shipp",
+        "target": "tanker_fleet_availabilit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premiums_shipp",
+        "target": "tanker_freight_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premiums_shipp",
+        "target": "market_price_spot_oil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premiums_shipp",
+        "target": "maritime_finance_liq",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premiums_shipp",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "chokepoint_transit_capac",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "seaborne_hydrocarb_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "tanker_fleet_availabilit",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "tanker_freight_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "insurance_premiums_shipp",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "upstream_production_outp",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "producer_coordination",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "market_price_spot_oil",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "market_price_spot_lng",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "futures_market_volatilit",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "trader_inventory_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "rerouting_distance_cost",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "maritime_finance_liq",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "market_risk_perception",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_production_outp",
+        "target": "seaborne_hydrocarb_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_production_outp",
+        "target": "tanker_fleet_availabilit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_production_outp",
+        "target": "tanker_freight_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_production_outp",
+        "target": "producer_coordination",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "upstream_production_outp",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_production_outp",
+        "target": "market_price_spot_oil",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_production_outp",
+        "target": "futures_market_volatilit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_production_outp",
+        "target": "trader_inventory_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "producer_coordination",
+        "target": "seaborne_hydrocarb_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "producer_coordination",
+        "target": "upstream_production_outp",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "producer_coordination",
+        "target": "market_price_spot_oil",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "producer_coordination",
+        "target": "futures_market_volatilit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "producer_coordination",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "market_price_spot_oil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "trader_inventory_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_spot_oil",
+        "target": "tanker_freight_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_spot_oil",
+        "target": "upstream_production_outp",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_spot_oil",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "market_price_spot_oil",
+        "target": "futures_market_volatilit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_spot_oil",
+        "target": "trader_inventory_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_spot_oil",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "futures_market_volatilit",
+        "target": "market_price_spot_oil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "futures_market_volatilit",
+        "target": "trader_inventory_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "futures_market_volatilit",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trader_inventory_levels",
+        "target": "seaborne_hydrocarb_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "trader_inventory_levels",
+        "target": "tanker_freight_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "trader_inventory_levels",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trader_inventory_levels",
+        "target": "market_price_spot_oil",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "trader_inventory_levels",
+        "target": "market_price_spot_lng",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "trader_inventory_levels",
+        "target": "futures_market_volatilit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "trader_inventory_levels",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_distance_cost",
+        "target": "seaborne_hydrocarb_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_distance_cost",
+        "target": "tanker_fleet_availabilit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_distance_cost",
+        "target": "tanker_freight_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rerouting_distance_cost",
+        "target": "market_price_spot_oil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouting_distance_cost",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_finance_liq",
+        "target": "tanker_fleet_availabilit",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_perception",
+        "target": "tanker_freight_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_perception",
+        "target": "insurance_premiums_shipp",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_perception",
+        "target": "market_price_spot_oil",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_perception",
+        "target": "market_price_spot_lng",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_perception",
+        "target": "futures_market_volatilit",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_perception",
+        "target": "trader_inventory_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_perception",
+        "target": "maritime_finance_liq",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "opec_plus_september_hike",
+      "title": "OPEC+ September quota increase",
+      "description": "Agreed September output quota hike by OPEC+ that raises exportable supply and influences near-term market balances.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September 2026"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "upstream_production_outp",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_price_spot_oil",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "producer_coordination",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "futures_market_volatilit",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"OPEC+ members agree to September quota hike\"; \"OPEC, Allies Increase Oil Output\"."
+    },
+    {
+      "id": "iran_oman_hormuz_shipping_deal",
+      "title": "Iran–Oman Hormuz shipping deal closure",
+      "description": "Imminent Iran–Oman agreement to manage shipping through the Strait of Hormuz, likely to restore transit assurances if closed.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-02",
+        "end": "2026-09-15",
+        "label": "weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "chokepoint_transit_capac",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_security_incide",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "seaborne_hydrocarb_flow",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premiums_shipp",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_perception",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_freight_rates",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"Iran says deal with Oman to manage shipping through Hormuz is close\"."
+    },
+    {
+      "id": "saudi_maritime_defence_coalition_buildout",
+      "title": "Saudi-led maritime defence coalition buildout",
+      "description": "Saudi Arabia's announced plan to create a multinational maritime defence coalition that may begin operations or patrols to protect routes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-02",
+        "end": "2026-10-31",
+        "label": "2-12 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "maritime_security_incide",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "chokepoint_transit_capac",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premiums_shipp",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_perception",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "rerouting_distance_cost",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"Saudi Arabia unveils plans for multinational maritime defence coalition\"; \"Saudi announces maritime defence coalition\"."
+    },
+    {
+      "id": "continued_houthi_shipping_attacks",
+      "title": "Continued Houthi and regional attacks on shipping",
+      "description": "Ongoing pattern of Houthi and related strikes against vessels and regional incidents likely to persist, disrupting routes and raising risk premia.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-02",
+        "end": "2026-09-30",
+        "label": "1-8 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "maritime_security_incide",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premiums_shipp",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rerouting_distance_cost",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "seaborne_hydrocarb_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_fleet_availabilit",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_freight_rates",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_price_spot_oil",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "futures_market_volatilit",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"Tankers near Oman come under fire\"; \"Tankers Are Being Blown Out of the Water\"; Houthi attack reports."
+    },
+    {
+      "id": "qatarenergy_us_lng_cargo_purchases",
+      "title": "QatarEnergy buys US LNG cargoes",
+      "description": "Large-scale procurement of ~33 US LNG cargoes by QatarEnergy to offset Hormuz disruption, shifting LNG flows and tanker demand.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-02",
+        "end": "2026-09-30",
+        "label": "weeks-months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "market_price_spot_lng",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_fleet_availabilit",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_freight_rates",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "seaborne_hydrocarb_flow",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "trader_inventory_levels",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"QatarEnergy buys 33 US LNG cargoes to offset Hormuz disruption.\""
+    },
+    {
+      "id": "adnoc_tanker_acquisitions",
+      "title": "ADNOC tanker purchases and fleet expansion",
+      "description": "ADNOC's announced tanker acquisitions to secure seaborne logistics and reduce reliance on spot shipping markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-07-31",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "tanker_fleet_availabilit",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_freight_rates",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_perception",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"ADNOC buys tankers as Red Sea, Hormuz crisis reshape oil trade.\""
+    },
+    {
+      "id": "turkey_iraq_one_year_pipeline_deal",
+      "title": "Turkey–Iraq one-year oil pipeline deal",
+      "description": "Signed one-year pipeline agreement routing oil overland between Iraq and Turkey, diverting some exports from maritime chokepoints.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-08-01",
+        "start": null,
+        "end": null,
+        "label": "one-year deal starts"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "seaborne_hydrocarb_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "chokepoint_transit_capac",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "rerouting_distance_cost",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"Turkey, Iraq sign one-year oil pipeline deal.\""
+    },
+    {
+      "id": "shadow_fleet_oil_spill_off_oman",
+      "title": "Spreading oil spill from shadow fleet tanker off Oman",
+      "description": "Ongoing oil spill from a shadow-fleet tanker off Oman that may disrupt local shipping and cleaning operations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-01",
+        "end": "2026-08-21",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "seaborne_hydrocarb_flow",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "maritime_security_incide",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premiums_shipp",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rerouting_distance_cost",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Oil spill from shadow fleet tanker spreading off Oman, satellite images show.\""
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "continued_houthi_shipping_attacks",
+      "title": "Continued Houthi and regional attacks on shipping",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-8 weeks",
+      "date": null,
+      "start": "2026-08-02",
+      "end": "2026-09-30",
+      "probability": 0.8,
+      "impact_score": 403.0,
+      "expected_impact": 322.4,
+      "event_PS": 19.722,
+      "event_AS": 22.389,
+      "n_vars": 8,
+      "affected_ids": "maritime_security_incide, insurance_premiums_shipp, rerouting_distance_cost, seaborne_hydrocarb_flow, tanker_fleet_availabilit, tanker_freight_rates, market_price_spot_oil, futures_market_volatilit",
+      "rationale": "Headlines: \"Tankers near Oman come under fire\"; \"Tankers Are Being Blown Out of the Water\"; Houthi attack reports."
+    },
+    {
+      "id": "iran_oman_hormuz_shipping_deal",
+      "title": "Iran–Oman Hormuz shipping deal closure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-02",
+      "end": "2026-09-15",
+      "probability": 0.7,
+      "impact_score": 356.0,
+      "expected_impact": 249.2,
+      "event_PS": 17.538,
+      "event_AS": 27.385,
+      "n_vars": 6,
+      "affected_ids": "chokepoint_transit_capac, maritime_security_incide, seaborne_hydrocarb_flow, insurance_premiums_shipp, market_risk_perception, tanker_freight_rates",
+      "rationale": "Headline: \"Iran says deal with Oman to manage shipping through Hormuz is close\"."
+    },
+    {
+      "id": "saudi_maritime_defence_coalition_buildout",
+      "title": "Saudi-led maritime defence coalition buildout",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-12 weeks",
+      "date": null,
+      "start": "2026-08-02",
+      "end": "2026-10-31",
+      "probability": 0.6,
+      "impact_score": 165.0,
+      "expected_impact": 99.0,
+      "event_PS": 11.0,
+      "event_AS": 27.5,
+      "n_vars": 5,
+      "affected_ids": "maritime_security_incide, chokepoint_transit_capac, insurance_premiums_shipp, market_risk_perception, rerouting_distance_cost",
+      "rationale": "Headlines: \"Saudi Arabia unveils plans for multinational maritime defence coalition\"; \"Saudi announces maritime defence coalition\"."
+    },
+    {
+      "id": "opec_plus_september_hike",
+      "title": "OPEC+ September quota increase",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September 2026",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.95,
+      "impact_score": 163.0,
+      "expected_impact": 154.85,
+      "event_PS": 21.333,
+      "event_AS": 18.111,
+      "n_vars": 4,
+      "affected_ids": "upstream_production_outp, market_price_spot_oil, producer_coordination, futures_market_volatilit",
+      "rationale": "Headlines: \"OPEC+ members agree to September quota hike\"; \"OPEC, Allies Increase Oil Output\"."
+    },
+    {
+      "id": "turkey_iraq_one_year_pipeline_deal",
+      "title": "Turkey–Iraq one-year oil pipeline deal",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "one-year deal starts",
+      "date": "2026-08-01",
+      "start": null,
+      "end": null,
+      "probability": 0.9,
+      "impact_score": 111.0,
+      "expected_impact": 99.9,
+      "event_PS": 18.75,
+      "event_AS": 27.75,
+      "n_vars": 3,
+      "affected_ids": "seaborne_hydrocarb_flow, chokepoint_transit_capac, rerouting_distance_cost",
+      "rationale": "Headline: \"Turkey, Iraq sign one-year oil pipeline deal.\""
+    },
+    {
+      "id": "shadow_fleet_oil_spill_off_oman",
+      "title": "Spreading oil spill from shadow fleet tanker off Oman",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-08-01",
+      "end": "2026-08-21",
+      "probability": 0.6,
+      "impact_score": 109.0,
+      "expected_impact": 65.4,
+      "event_PS": 14.0,
+      "event_AS": 27.25,
+      "n_vars": 4,
+      "affected_ids": "seaborne_hydrocarb_flow, maritime_security_incide, insurance_premiums_shipp, rerouting_distance_cost",
+      "rationale": "Headline: \"Oil spill from shadow fleet tanker spreading off Oman, satellite images show.\""
+    },
+    {
+      "id": "qatarenergy_us_lng_cargo_purchases",
+      "title": "QatarEnergy buys US LNG cargoes",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks-months",
+      "date": null,
+      "start": "2026-08-02",
+      "end": "2026-09-30",
+      "probability": 0.9,
+      "impact_score": 105.0,
+      "expected_impact": 94.5,
+      "event_PS": 24.5,
+      "event_AS": 17.5,
+      "n_vars": 5,
+      "affected_ids": "market_price_spot_lng, tanker_fleet_availabilit, tanker_freight_rates, seaborne_hydrocarb_flow, trader_inventory_levels",
+      "rationale": "Headline: \"QatarEnergy buys 33 US LNG cargoes to offset Hormuz disruption.\""
+    },
+    {
+      "id": "adnoc_tanker_acquisitions",
+      "title": "ADNOC tanker purchases and fleet expansion",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-07-31",
+      "end": "2026-12-31",
+      "probability": 0.85,
+      "impact_score": 85.0,
+      "expected_impact": 72.25,
+      "event_PS": 27.0,
+      "event_AS": 21.25,
+      "n_vars": 3,
+      "affected_ids": "tanker_fleet_availabilit, tanker_freight_rates, market_risk_perception",
+      "rationale": "Headline: \"ADNOC buys tankers as Red Sea, Hormuz crisis reshape oil trade.\""
+    }
+  ]
+}
