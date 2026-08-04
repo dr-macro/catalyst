@@ -1,0 +1,1516 @@
+{
+  "label": "japan_fx_bond_stress",
+  "as_of": "2026-08-04",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-04T00:49:47",
+  "system_description": {
+    "narrative_title": "Bond sell-off, Fed credibility, and US–Japan yen intervention",
+    "narrative_summary": "A market-driven reassessment of inflation, rates and safe assets has produced a surge in long-term yields, heightened volatility across FX and equity markets, and visible strains on Federal Reserve credibility. In response, fiscal authorities have undertaken extraordinary action — most notably a rare, coordinated US–Japan intervention in the yen — creating reinforcing feedbacks between bond yields, FX moves, central-bank communication and Treasury operations. The situation is an open system: price signals, policy communication, sovereign issuance and cross-border capital flows continuously interact and adapt, producing second-order effects and potential contagion.",
+    "scope": "Long-term US Treasury yields and curve dynamics; Federal Reserve communications, votes and credibility; US Treasury operations and FX intervention; major FX pairs (USD/JPY, KRW, etc.); investor positioning, volatility and safe-asset flows; inflation expectations and sovereign borrowing needs",
+    "super_system": "Global macro-financial system (cross-border capital flows, central banks, sovereign fiscal positions and global risk premia)",
+    "adjacent_subsystems": [
+      "Foreign exchange markets and currency intervention coordination",
+      "Central-bank policy frameworks and communications",
+      "Sovereign debt issuance and treasury funding operations",
+      "Regional equity and real-economy dynamics (notably Japan and South Korea)"
+    ],
+    "evidence_headlines": [
+      "US Treasury undertakes historic intervention in yen market",
+      "U.S., Japan Intervene to Boost Yen for First Time Since 1998",
+      "Long-Term Treasury Yields Surge After Fed Meeting",
+      "Bond sell-off sent warning on Federal Reserve’s credibility, says top central bank official",
+      "Kevin Warsh Asked the Market to Speak. It Answered.",
+      "Fed Holds Rates Steady but Three Officials Vote for Increase"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_yield_level",
+      "name": "Long-term sovereign yield level",
+      "description": "The prevailing average yield on long-dated government bonds across the market's reference curve.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_yield_level",
+      "name": "Short-term policy-sensitive yield level",
+      "description": "The prevailing yield on policy-sensitive, short-dated instruments that reflect near-term monetary policy pricing.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The spread between long-term and short-term yields capturing the term structure gradient.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The compensation demanded by investors for bearing duration risk over and above expected short rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and agent expectations about future inflation over medium to long horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "The market-implied expected path of the central bank policy rate over the relevant forecast horizon.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cb_communication_clarity",
+      "name": "Central-bank communication clarity",
+      "description": "The consistency and unambiguity of forward guidance and public messaging from monetary authorities as perceived by markets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cb_credibility",
+      "name": "Central-bank credibility",
+      "description": "The degree to which market participants trust monetary authorities to achieve stated policy objectives, notably inflation targets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_issuance_rate",
+      "name": "Sovereign issuance rate",
+      "description": "The flow rate of gross sovereign debt issuance into markets over a given period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_debt_stock",
+      "name": "Sovereign debt stock",
+      "description": "The outstanding volume of sovereign liabilities held by the market at a point in time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_asset_demand",
+      "name": "Safe-asset demand",
+      "description": "The net flow of investor demand into high-quality liquid assets used for capital preservation and liquidity management.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "Net cross-border portfolio and capital movements that alter international asset allocations and funding conditions.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fx_volatility",
+      "name": "FX volatility",
+      "description": "The magnitude and persistence of exchange-rate fluctuations across major currency pairs.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_positioning",
+      "name": "Investor positioning and leverage",
+      "description": "The aggregate directional exposures and leverage levels of major investor groups across markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_risk_premia",
+      "name": "Market risk premia",
+      "description": "The pricing of compensation investors require for bearing broad market and idiosyncratic risk across asset classes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fx_intervention_capacity",
+      "name": "FX intervention capacity and readiness",
+      "description": "The operational readiness and available means for authorities to intervene in currency markets, and the perceived willingness to use them.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_yield_level",
+    "short_term_yield_level",
+    "yield_curve_slope",
+    "term_premium",
+    "inflation_expectations",
+    "policy_rate_expectations",
+    "cb_communication_clarity",
+    "cb_credibility",
+    "sovereign_issuance_rate",
+    "sovereign_debt_stock",
+    "safe_asset_demand",
+    "cross_border_flows",
+    "fx_volatility",
+    "investor_positioning",
+    "market_risk_premia",
+    "fx_intervention_capacity"
+  ],
+  "var_names": {
+    "long_term_yield_level": "Long-term sovereign yield level",
+    "short_term_yield_level": "Short-term policy-sensitive yield level",
+    "yield_curve_slope": "Yield curve slope",
+    "term_premium": "Term premium",
+    "inflation_expectations": "Inflation expectations",
+    "policy_rate_expectations": "Policy rate expectations",
+    "cb_communication_clarity": "Central-bank communication clarity",
+    "cb_credibility": "Central-bank credibility",
+    "sovereign_issuance_rate": "Sovereign issuance rate",
+    "sovereign_debt_stock": "Sovereign debt stock",
+    "safe_asset_demand": "Safe-asset demand",
+    "cross_border_flows": "Cross-border capital flows",
+    "fx_volatility": "FX volatility",
+    "investor_positioning": "Investor positioning and leverage",
+    "market_risk_premia": "Market risk premia",
+    "fx_intervention_capacity": "FX intervention capacity and readiness"
+  },
+  "impact_matrix": {
+    "long_term_yield_level": {
+      "long_term_yield_level": 0,
+      "short_term_yield_level": 1,
+      "yield_curve_slope": 3,
+      "term_premium": 1,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 1,
+      "sovereign_issuance_rate": 1,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 1,
+      "cross_border_flows": 2,
+      "fx_volatility": 1,
+      "investor_positioning": 2,
+      "market_risk_premia": 2,
+      "fx_intervention_capacity": 0
+    },
+    "short_term_yield_level": {
+      "long_term_yield_level": 2,
+      "short_term_yield_level": 0,
+      "yield_curve_slope": 3,
+      "term_premium": 1,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 3,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 2,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 1,
+      "cross_border_flows": 1,
+      "fx_volatility": 1,
+      "investor_positioning": 2,
+      "market_risk_premia": 2,
+      "fx_intervention_capacity": 0
+    },
+    "yield_curve_slope": {
+      "long_term_yield_level": 1,
+      "short_term_yield_level": 1,
+      "yield_curve_slope": 0,
+      "term_premium": 1,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 1,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 1,
+      "cross_border_flows": 1,
+      "fx_volatility": 1,
+      "investor_positioning": 2,
+      "market_risk_premia": 2,
+      "fx_intervention_capacity": 0
+    },
+    "term_premium": {
+      "long_term_yield_level": 2,
+      "short_term_yield_level": 0,
+      "yield_curve_slope": 1,
+      "term_premium": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 1,
+      "sovereign_issuance_rate": 1,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 2,
+      "cross_border_flows": 1,
+      "fx_volatility": 1,
+      "investor_positioning": 2,
+      "market_risk_premia": 2,
+      "fx_intervention_capacity": 0
+    },
+    "inflation_expectations": {
+      "long_term_yield_level": 2,
+      "short_term_yield_level": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 3,
+      "cb_communication_clarity": 1,
+      "cb_credibility": 2,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 1,
+      "cross_border_flows": 1,
+      "fx_volatility": 1,
+      "investor_positioning": 2,
+      "market_risk_premia": 2,
+      "fx_intervention_capacity": 0
+    },
+    "policy_rate_expectations": {
+      "long_term_yield_level": 2,
+      "short_term_yield_level": 3,
+      "yield_curve_slope": 1,
+      "term_premium": 0,
+      "inflation_expectations": 3,
+      "policy_rate_expectations": 0,
+      "cb_communication_clarity": 2,
+      "cb_credibility": 3,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 1,
+      "cross_border_flows": 1,
+      "fx_volatility": 1,
+      "investor_positioning": 2,
+      "market_risk_premia": 2,
+      "fx_intervention_capacity": 0
+    },
+    "cb_communication_clarity": {
+      "long_term_yield_level": 1,
+      "short_term_yield_level": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 0,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 3,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 3,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 0,
+      "cross_border_flows": 0,
+      "fx_volatility": 0,
+      "investor_positioning": 1,
+      "market_risk_premia": 1,
+      "fx_intervention_capacity": 0
+    },
+    "cb_credibility": {
+      "long_term_yield_level": 2,
+      "short_term_yield_level": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "inflation_expectations": 3,
+      "policy_rate_expectations": 3,
+      "cb_communication_clarity": 1,
+      "cb_credibility": 0,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 1,
+      "cross_border_flows": 1,
+      "fx_volatility": 1,
+      "investor_positioning": 2,
+      "market_risk_premia": 2,
+      "fx_intervention_capacity": 0
+    },
+    "sovereign_issuance_rate": {
+      "long_term_yield_level": 3,
+      "short_term_yield_level": 1,
+      "yield_curve_slope": 2,
+      "term_premium": 2,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 0,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 3,
+      "safe_asset_demand": 2,
+      "cross_border_flows": 2,
+      "fx_volatility": 1,
+      "investor_positioning": 2,
+      "market_risk_premia": 2,
+      "fx_intervention_capacity": 0
+    },
+    "sovereign_debt_stock": {
+      "long_term_yield_level": 2,
+      "short_term_yield_level": 0,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 0,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 2,
+      "cross_border_flows": 1,
+      "fx_volatility": 0,
+      "investor_positioning": 1,
+      "market_risk_premia": 1,
+      "fx_intervention_capacity": 0
+    },
+    "safe_asset_demand": {
+      "long_term_yield_level": 2,
+      "short_term_yield_level": 1,
+      "yield_curve_slope": 1,
+      "term_premium": 2,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 0,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 1,
+      "safe_asset_demand": 0,
+      "cross_border_flows": 2,
+      "fx_volatility": 1,
+      "investor_positioning": 2,
+      "market_risk_premia": 2,
+      "fx_intervention_capacity": 0
+    },
+    "cross_border_flows": {
+      "long_term_yield_level": 2,
+      "short_term_yield_level": 1,
+      "yield_curve_slope": 1,
+      "term_premium": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 0,
+      "sovereign_issuance_rate": 1,
+      "sovereign_debt_stock": 1,
+      "safe_asset_demand": 2,
+      "cross_border_flows": 0,
+      "fx_volatility": 2,
+      "investor_positioning": 2,
+      "market_risk_premia": 2,
+      "fx_intervention_capacity": 2
+    },
+    "fx_volatility": {
+      "long_term_yield_level": 1,
+      "short_term_yield_level": 1,
+      "yield_curve_slope": 0,
+      "term_premium": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 0,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 1,
+      "cross_border_flows": 2,
+      "fx_volatility": 0,
+      "investor_positioning": 2,
+      "market_risk_premia": 2,
+      "fx_intervention_capacity": 2
+    },
+    "investor_positioning": {
+      "long_term_yield_level": 2,
+      "short_term_yield_level": 2,
+      "yield_curve_slope": 2,
+      "term_premium": 1,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 2,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 1,
+      "sovereign_issuance_rate": 1,
+      "sovereign_debt_stock": 1,
+      "safe_asset_demand": 2,
+      "cross_border_flows": 2,
+      "fx_volatility": 2,
+      "investor_positioning": 0,
+      "market_risk_premia": 3,
+      "fx_intervention_capacity": 0
+    },
+    "market_risk_premia": {
+      "long_term_yield_level": 2,
+      "short_term_yield_level": 1,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 1,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 1,
+      "cross_border_flows": 1,
+      "fx_volatility": 2,
+      "investor_positioning": 3,
+      "market_risk_premia": 0,
+      "fx_intervention_capacity": 0
+    },
+    "fx_intervention_capacity": {
+      "long_term_yield_level": 0,
+      "short_term_yield_level": 0,
+      "yield_curve_slope": 0,
+      "term_premium": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "cb_communication_clarity": 0,
+      "cb_credibility": 1,
+      "sovereign_issuance_rate": 0,
+      "sovereign_debt_stock": 0,
+      "safe_asset_demand": 0,
+      "cross_border_flows": 2,
+      "fx_volatility": 2,
+      "investor_positioning": 0,
+      "market_risk_premia": 0,
+      "fx_intervention_capacity": 0
+    }
+  },
+  "AS": {
+    "long_term_yield_level": 17,
+    "short_term_yield_level": 20,
+    "yield_curve_slope": 13,
+    "term_premium": 15,
+    "inflation_expectations": 19,
+    "policy_rate_expectations": 21,
+    "cb_communication_clarity": 14,
+    "cb_credibility": 20,
+    "sovereign_issuance_rate": 20,
+    "sovereign_debt_stock": 9,
+    "safe_asset_demand": 14,
+    "cross_border_flows": 17,
+    "fx_volatility": 12,
+    "investor_positioning": 22,
+    "market_risk_premia": 15,
+    "fx_intervention_capacity": 5
+  },
+  "PS": {
+    "long_term_yield_level": 26,
+    "short_term_yield_level": 18,
+    "yield_curve_slope": 19,
+    "term_premium": 12,
+    "inflation_expectations": 15,
+    "policy_rate_expectations": 20,
+    "cb_communication_clarity": 4,
+    "cb_credibility": 16,
+    "sovereign_issuance_rate": 4,
+    "sovereign_debt_stock": 6,
+    "safe_asset_demand": 18,
+    "cross_border_flows": 20,
+    "fx_volatility": 17,
+    "investor_positioning": 27,
+    "market_risk_premia": 27,
+    "fx_intervention_capacity": 4
+  },
+  "med_AS": 16.0,
+  "med_PS": 17.5,
+  "roles": [
+    {
+      "variable": "investor_positioning",
+      "name": "Investor positioning and leverage",
+      "AS": 22,
+      "PS": 27,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 594,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "long_term_yield_level",
+      "name": "Long-term sovereign yield level",
+      "AS": 17,
+      "PS": 26,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 442,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 21,
+      "PS": 20,
+      "Q=AS/PS": 1.05,
+      "P=AS*PS": 420,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_risk_premia",
+      "name": "Market risk premia",
+      "AS": 15,
+      "PS": 27,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 405,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "short_term_yield_level",
+      "name": "Short-term policy-sensitive yield level",
+      "AS": 20,
+      "PS": 18,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 360,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 17,
+      "PS": 20,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 340,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cb_credibility",
+      "name": "Central-bank credibility",
+      "AS": 20,
+      "PS": 16,
+      "Q=AS/PS": 1.25,
+      "P=AS*PS": 320,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 19,
+      "PS": 15,
+      "Q=AS/PS": 1.27,
+      "P=AS*PS": 285,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "safe_asset_demand",
+      "name": "Safe-asset demand",
+      "AS": 14,
+      "PS": 18,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 252,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 13,
+      "PS": 19,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 247,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fx_volatility",
+      "name": "FX volatility",
+      "AS": 12,
+      "PS": 17,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 204,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 15,
+      "PS": 12,
+      "Q=AS/PS": 1.25,
+      "P=AS*PS": 180,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "sovereign_issuance_rate",
+      "name": "Sovereign issuance rate",
+      "AS": 20,
+      "PS": 4,
+      "Q=AS/PS": 5.0,
+      "P=AS*PS": 80,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "cb_communication_clarity",
+      "name": "Central-bank communication clarity",
+      "AS": 14,
+      "PS": 4,
+      "Q=AS/PS": 3.5,
+      "P=AS*PS": 56,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "sovereign_debt_stock",
+      "name": "Sovereign debt stock",
+      "AS": 9,
+      "PS": 6,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 54,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fx_intervention_capacity",
+      "name": "FX intervention capacity and readiness",
+      "AS": 5,
+      "PS": 4,
+      "Q=AS/PS": 1.25,
+      "P=AS*PS": 20,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_yield_level",
+        "name": "Long-term sovereign yield level",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 26
+      },
+      {
+        "id": "short_term_yield_level",
+        "name": "Short-term policy-sensitive yield level",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 18
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 19
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 12
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 19,
+        "PS": 15
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 20
+      },
+      {
+        "id": "cb_communication_clarity",
+        "name": "Central-bank communication clarity",
+        "kind": "perception",
+        "AS": 14,
+        "PS": 4
+      },
+      {
+        "id": "cb_credibility",
+        "name": "Central-bank credibility",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 16
+      },
+      {
+        "id": "sovereign_issuance_rate",
+        "name": "Sovereign issuance rate",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 4
+      },
+      {
+        "id": "sovereign_debt_stock",
+        "name": "Sovereign debt stock",
+        "kind": "stock",
+        "AS": 9,
+        "PS": 6
+      },
+      {
+        "id": "safe_asset_demand",
+        "name": "Safe-asset demand",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 18
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 20
+      },
+      {
+        "id": "fx_volatility",
+        "name": "FX volatility",
+        "kind": "environment",
+        "AS": 12,
+        "PS": 17
+      },
+      {
+        "id": "investor_positioning",
+        "name": "Investor positioning and leverage",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 27
+      },
+      {
+        "id": "market_risk_premia",
+        "name": "Market risk premia",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 27
+      },
+      {
+        "id": "fx_intervention_capacity",
+        "name": "FX intervention capacity and readiness",
+        "kind": "institution_field",
+        "AS": 5,
+        "PS": 4
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_yield_level",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "short_term_yield_level",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_yield_level",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_yield_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_yield_level",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_yield_level",
+        "target": "cb_credibility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "short_term_yield_level",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_yield_level",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_term_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cb_credibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "short_term_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cb_communication_clarity",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cb_credibility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_communication_clarity",
+        "target": "short_term_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_communication_clarity",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_communication_clarity",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "cb_communication_clarity",
+        "target": "cb_credibility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cb_credibility",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_credibility",
+        "target": "short_term_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_credibility",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cb_credibility",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cb_credibility",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_credibility",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_issuance_rate",
+        "target": "long_term_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_issuance_rate",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_issuance_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_issuance_rate",
+        "target": "sovereign_debt_stock",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_issuance_rate",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_issuance_rate",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_issuance_rate",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_issuance_rate",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_debt_stock",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_debt_stock",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "fx_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "fx_intervention_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_volatility",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_volatility",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_volatility",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_volatility",
+        "target": "fx_intervention_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "short_term_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "fx_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "market_risk_premia",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "fx_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fx_intervention_capacity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_intervention_capacity",
+        "target": "fx_volatility",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_meeting_cycle_and_rate_outlook",
+      "title": "Upcoming Fed meeting cycle and market rate repricing",
+      "description": "Near-term FOMC meetings and attendant market pricing that will reprice short-rate expectations and front-end yields as markets anticipate Fed actions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-04",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cb_communication_clarity",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Investors focusing on front end as Street anticipates next Fed meetings; Fed Holds but dissenters voted to hike. [2026-08-02]"
+    },
+    {
+      "id": "potential_fed_hike_before_year_end",
+      "title": "Possible Fed rate hike before year-end",
+      "description": "A one-off Fed policy tightening prior to year-end if inflation signals persist or credibility pressures build, changing short-term rate pricing.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-04",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cb_credibility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "JPMorgan and Fed officials say Fed may need to hike before year-end to shore up credibility amid inflation worries. [2026-08-03, 2026-08-02]"
+    },
+    {
+      "id": "repeat_us_japan_yen_intervention",
+      "title": "Repeat U.S.–Japan coordinated yen intervention",
+      "description": "Ongoing readiness and repeat coordinated FX intervention by the U.S. Treasury and Japan to support the yen, including unconventional operations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-04",
+        "end": "2026-10-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "fx_intervention_capacity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fx_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Japan and U.S. confirm coordinated intervention and signal readiness for more; reports of unusual euro-sales to buy yen. [2026-08-03, 2026-08-04]"
+    },
+    {
+      "id": "elevated_q3_treasury_issuance",
+      "title": "Higher US Treasury issuance in Q3",
+      "description": "Raised third‑quarter borrowing plans raise gross issuance flows, increasing supply pressure on the Treasury market throughout Q3.",
+      "type": "process",
+      "timeline": {
+        "kind": "date",
+        "date": null,
+        "start": "2026-07-01",
+        "end": "2026-09-30",
+        "label": "Q3 2026"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "sovereign_issuance_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Treasury raises third-quarter borrowing estimate to $739 billion, increasing supply into markets. [2026-08-03]"
+    },
+    {
+      "id": "deteriorating_cb_credibility_from_bond_selloff",
+      "title": "Ongoing hit to Fed credibility from bond-market sell‑off",
+      "description": "Persistent bond sell‑off and terse Fed communication could further erode perceived credibility, lifting term premia and long yields.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-04",
+        "end": "2026-11-30",
+        "label": "next 3–4 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "cb_credibility",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cb_communication_clarity",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines warn bond sell-off undermines Fed credibility and cite strained communication from Chairman Warsh. [2026-08-02, 2026-08-03]"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "potential_fed_hike_before_year_end",
+      "title": "Possible Fed rate hike before year-end",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-08-04",
+      "end": "2026-12-31",
+      "probability": 0.5,
+      "impact_score": 189.0,
+      "expected_impact": 94.5,
+      "event_PS": 18.4,
+      "event_AS": 18.9,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, short_term_yield_level, cb_credibility, yield_curve_slope",
+      "rationale": "JPMorgan and Fed officials say Fed may need to hike before year-end to shore up credibility amid inflation worries. [2026-08-03, 2026-08-02]"
+    },
+    {
+      "id": "deteriorating_cb_credibility_from_bond_selloff",
+      "title": "Ongoing hit to Fed credibility from bond-market sell‑off",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3–4 months",
+      "date": null,
+      "start": "2026-08-04",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 152.0,
+      "expected_impact": 91.2,
+      "event_PS": 14.667,
+      "event_AS": 16.889,
+      "n_vars": 4,
+      "affected_ids": "cb_credibility, term_premium, long_term_yield_level, cb_communication_clarity",
+      "rationale": "Headlines warn bond sell-off undermines Fed credibility and cite strained communication from Chairman Warsh. [2026-08-02, 2026-08-03]"
+    },
+    {
+      "id": "fed_meeting_cycle_and_rate_outlook",
+      "title": "Upcoming Fed meeting cycle and market rate repricing",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-08-04",
+      "end": "2026-12-31",
+      "probability": 0.75,
+      "impact_score": 151.0,
+      "expected_impact": 113.25,
+      "event_PS": 15.25,
+      "event_AS": 18.875,
+      "n_vars": 3,
+      "affected_ids": "policy_rate_expectations, short_term_yield_level, cb_communication_clarity",
+      "rationale": "Investors focusing on front end as Street anticipates next Fed meetings; Fed Holds but dissenters voted to hike. [2026-08-02]"
+    },
+    {
+      "id": "elevated_q3_treasury_issuance",
+      "title": "Higher US Treasury issuance in Q3",
+      "type": "process",
+      "timeline_kind": "date",
+      "timeline_label": "Q3 2026",
+      "date": null,
+      "start": "2026-07-01",
+      "end": "2026-09-30",
+      "probability": 0.95,
+      "impact_score": 124.0,
+      "expected_impact": 117.8,
+      "event_PS": 12.571,
+      "event_AS": 17.714,
+      "n_vars": 3,
+      "affected_ids": "sovereign_issuance_rate, long_term_yield_level, term_premium",
+      "rationale": "Treasury raises third-quarter borrowing estimate to $739 billion, increasing supply into markets. [2026-08-03]"
+    },
+    {
+      "id": "repeat_us_japan_yen_intervention",
+      "title": "Repeat U.S.–Japan coordinated yen intervention",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-08-04",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 73.0,
+      "expected_impact": 51.1,
+      "event_PS": 12.286,
+      "event_AS": 10.429,
+      "n_vars": 3,
+      "affected_ids": "fx_intervention_capacity, fx_volatility, cross_border_flows",
+      "rationale": "Japan and U.S. confirm coordinated intervention and signal readiness for more; reports of unusual euro-sales to buy yen. [2026-08-03, 2026-08-04]"
+    }
+  ]
+}
