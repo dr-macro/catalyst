@@ -1,0 +1,1760 @@
+{
+  "label": "currency_market_shock",
+  "as_of": "2026-08-09",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-10T00:15:22",
+  "system_description": {
+    "narrative_title": "Soft US jobs data reprices Fed bets — ripple across bonds, gold and FX",
+    "narrative_summary": "A surprisingly weak US July jobs report has materially reduced near-term Fed rate-hike odds, prompting a rapid market repricing that pushed bond yields, equities, gold and major FX pairs—most notably the yen—into volatile adjustment. That repricing has elicited policy and market responses (Treasury and coordinated yen intervention, central bank commentary) and raised renewed debate about persistent higher long-term yields and the durability of risk-asset rallies.",
+    "scope": "US labor-market data and market expectation channels (rate futures, Fed communications), major sovereign bond yields (US and Japan), FX flows and interventions (USD/JPY), safe-haven and commodity prices (gold), and the near-term trading responses of equities and other risk assets.",
+    "super_system": "Global macro-financial system (monetary policy regime, cross-border capital flows and currency markets)",
+    "adjacent_subsystems": [
+      "Japanese FX policy and Bank of Japan / bilateral intervention dynamics",
+      "Global sovereign bond market and long-term yield formation",
+      "Commodity markets — gold and other safe-haven assets",
+      "Equity and risk-asset markets (stocks, ETFs, crypto) with volatility feedback"
+    ],
+    "evidence_headlines": [
+      "U.S. economy unexpectedly lost 23,000 jobs in July",
+      "Gold sharply adds to gains after July jobs report cuts into Fed rate hike bets",
+      "Japan's yen surges after US jobs data, traders wary of intervention risk",
+      "US Treasury undertakes historic intervention in yen market",
+      "US stocks, bonds rally after soft jobs report; yen bounces back",
+      "US rate futures cut chances of September rate hike after jobs data"
+    ]
+  },
+  "variables": [
+    {
+      "id": "net_payroll_change",
+      "name": "Net payroll change",
+      "description": "Net change in payroll employment over a standard reporting period, capturing job additions or losses.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "unemployment_rate",
+      "name": "Unemployment rate",
+      "description": "Share of the labour force actively seeking work but without employment at a point in time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "wage_growth_rate",
+      "name": "Wage growth rate",
+      "description": "Rate of change in average earnings across the workforce over time, measuring nominal compensation dynamics.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and agent expectations of future inflation over various horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_rate_expectations",
+      "name": "Short-term rate expectations",
+      "description": "Market-implied expected path of policy or short-term interest rates over the near to medium term.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_stance",
+      "name": "Monetary policy stance",
+      "description": "Degree of monetary policy tightness/looseness as embodied by prevailing policy rates and operational posture.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_communicati",
+      "name": "Central bank communication clarity",
+      "description": "Clarity and predictability of official communications and guidance from monetary authorities as perceived by markets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "long_term_nominal_yield",
+      "name": "Long-term nominal bond yield",
+      "description": "Market yield on long-dated sovereign nominal debt instruments, reflecting compensation for expected rates and risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "Additional yield investors require to hold longer-term bonds instead of rolling short-term instruments, net of expected short rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "Difference between longer- and shorter-dated sovereign yields, indicating market views on future rates and growth.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_bond_yield_vol",
+      "name": "Sovereign bond yield volatility",
+      "description": "Magnitude and frequency of price/yield fluctuations in sovereign bond markets over a given horizon.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_capital_flo",
+      "name": "Cross-border capital flows",
+      "description": "Net flows of portfolio and financing capital across borders, including bond, equity and derivative flows.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_pressure",
+      "name": "Exchange rate pressure",
+      "description": "Directional market pressure on an exchange rate measured by order imbalances, funding stress and forward points.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "currency_intervention_ac",
+      "name": "Currency intervention activity",
+      "description": "Frequency and intensity of official market operations to influence exchange rates by authorities.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_asset_demand",
+      "name": "Safe-haven asset demand",
+      "description": "Aggregate market demand for perceived low-risk assets and stores of value, including high-quality debt and precious metals.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "Availability and cost of executing trades across major markets, measured by bid-ask spreads, depth and price impact.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "net_payroll_change",
+    "unemployment_rate",
+    "wage_growth_rate",
+    "inflation_expectations",
+    "short_rate_expectations",
+    "monetary_policy_stance",
+    "central_bank_communicati",
+    "long_term_nominal_yield",
+    "term_premium",
+    "yield_curve_slope",
+    "sovereign_bond_yield_vol",
+    "cross_border_capital_flo",
+    "exchange_rate_pressure",
+    "currency_intervention_ac",
+    "safe_haven_asset_demand",
+    "market_liquidity"
+  ],
+  "var_names": {
+    "net_payroll_change": "Net payroll change",
+    "unemployment_rate": "Unemployment rate",
+    "wage_growth_rate": "Wage growth rate",
+    "inflation_expectations": "Inflation expectations",
+    "short_rate_expectations": "Short-term rate expectations",
+    "monetary_policy_stance": "Monetary policy stance",
+    "central_bank_communicati": "Central bank communication clarity",
+    "long_term_nominal_yield": "Long-term nominal bond yield",
+    "term_premium": "Term premium",
+    "yield_curve_slope": "Yield curve slope",
+    "sovereign_bond_yield_vol": "Sovereign bond yield volatility",
+    "cross_border_capital_flo": "Cross-border capital flows",
+    "exchange_rate_pressure": "Exchange rate pressure",
+    "currency_intervention_ac": "Currency intervention activity",
+    "safe_haven_asset_demand": "Safe-haven asset demand",
+    "market_liquidity": "Market liquidity"
+  },
+  "impact_matrix": {
+    "net_payroll_change": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 3,
+      "wage_growth_rate": 1,
+      "inflation_expectations": 1,
+      "short_rate_expectations": 2,
+      "monetary_policy_stance": 1,
+      "central_bank_communicati": 0,
+      "long_term_nominal_yield": 2,
+      "term_premium": 1,
+      "yield_curve_slope": 2,
+      "sovereign_bond_yield_vol": 2,
+      "cross_border_capital_flo": 2,
+      "exchange_rate_pressure": 2,
+      "currency_intervention_ac": 0,
+      "safe_haven_asset_demand": 2,
+      "market_liquidity": 1
+    },
+    "unemployment_rate": {
+      "net_payroll_change": 3,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 2,
+      "inflation_expectations": 2,
+      "short_rate_expectations": 2,
+      "monetary_policy_stance": 2,
+      "central_bank_communicati": 1,
+      "long_term_nominal_yield": 2,
+      "term_premium": 1,
+      "yield_curve_slope": 2,
+      "sovereign_bond_yield_vol": 1,
+      "cross_border_capital_flo": 1,
+      "exchange_rate_pressure": 2,
+      "currency_intervention_ac": 0,
+      "safe_haven_asset_demand": 2,
+      "market_liquidity": 1
+    },
+    "wage_growth_rate": {
+      "net_payroll_change": 1,
+      "unemployment_rate": 1,
+      "wage_growth_rate": 0,
+      "inflation_expectations": 2,
+      "short_rate_expectations": 2,
+      "monetary_policy_stance": 2,
+      "central_bank_communicati": 1,
+      "long_term_nominal_yield": 2,
+      "term_premium": 1,
+      "yield_curve_slope": 1,
+      "sovereign_bond_yield_vol": 1,
+      "cross_border_capital_flo": 1,
+      "exchange_rate_pressure": 1,
+      "currency_intervention_ac": 0,
+      "safe_haven_asset_demand": 1,
+      "market_liquidity": 0
+    },
+    "inflation_expectations": {
+      "net_payroll_change": 1,
+      "unemployment_rate": 2,
+      "wage_growth_rate": 2,
+      "inflation_expectations": 0,
+      "short_rate_expectations": 3,
+      "monetary_policy_stance": 2,
+      "central_bank_communicati": 1,
+      "long_term_nominal_yield": 3,
+      "term_premium": 1,
+      "yield_curve_slope": 2,
+      "sovereign_bond_yield_vol": 2,
+      "cross_border_capital_flo": 2,
+      "exchange_rate_pressure": 2,
+      "currency_intervention_ac": 1,
+      "safe_haven_asset_demand": 2,
+      "market_liquidity": 0
+    },
+    "short_rate_expectations": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 1,
+      "wage_growth_rate": 1,
+      "inflation_expectations": 1,
+      "short_rate_expectations": 0,
+      "monetary_policy_stance": 1,
+      "central_bank_communicati": 1,
+      "long_term_nominal_yield": 3,
+      "term_premium": 1,
+      "yield_curve_slope": 3,
+      "sovereign_bond_yield_vol": 2,
+      "cross_border_capital_flo": 2,
+      "exchange_rate_pressure": 2,
+      "currency_intervention_ac": 1,
+      "safe_haven_asset_demand": 2,
+      "market_liquidity": 1
+    },
+    "monetary_policy_stance": {
+      "net_payroll_change": 1,
+      "unemployment_rate": 2,
+      "wage_growth_rate": 1,
+      "inflation_expectations": 2,
+      "short_rate_expectations": 3,
+      "monetary_policy_stance": 0,
+      "central_bank_communicati": 1,
+      "long_term_nominal_yield": 2,
+      "term_premium": 1,
+      "yield_curve_slope": 3,
+      "sovereign_bond_yield_vol": 2,
+      "cross_border_capital_flo": 2,
+      "exchange_rate_pressure": 2,
+      "currency_intervention_ac": 1,
+      "safe_haven_asset_demand": 2,
+      "market_liquidity": 2
+    },
+    "central_bank_communicati": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 1,
+      "inflation_expectations": 3,
+      "short_rate_expectations": 3,
+      "monetary_policy_stance": 1,
+      "central_bank_communicati": 0,
+      "long_term_nominal_yield": 2,
+      "term_premium": 1,
+      "yield_curve_slope": 2,
+      "sovereign_bond_yield_vol": 2,
+      "cross_border_capital_flo": 1,
+      "exchange_rate_pressure": 2,
+      "currency_intervention_ac": 0,
+      "safe_haven_asset_demand": 1,
+      "market_liquidity": 1
+    },
+    "long_term_nominal_yield": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "inflation_expectations": 1,
+      "short_rate_expectations": 1,
+      "monetary_policy_stance": 0,
+      "central_bank_communicati": 0,
+      "long_term_nominal_yield": 0,
+      "term_premium": 1,
+      "yield_curve_slope": 3,
+      "sovereign_bond_yield_vol": 1,
+      "cross_border_capital_flo": 2,
+      "exchange_rate_pressure": 2,
+      "currency_intervention_ac": 1,
+      "safe_haven_asset_demand": 1,
+      "market_liquidity": 0
+    },
+    "term_premium": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "inflation_expectations": 0,
+      "short_rate_expectations": 0,
+      "monetary_policy_stance": 0,
+      "central_bank_communicati": 0,
+      "long_term_nominal_yield": 3,
+      "term_premium": 0,
+      "yield_curve_slope": 2,
+      "sovereign_bond_yield_vol": 2,
+      "cross_border_capital_flo": 1,
+      "exchange_rate_pressure": 1,
+      "currency_intervention_ac": 0,
+      "safe_haven_asset_demand": 1,
+      "market_liquidity": 1
+    },
+    "yield_curve_slope": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 1,
+      "wage_growth_rate": 0,
+      "inflation_expectations": 1,
+      "short_rate_expectations": 0,
+      "monetary_policy_stance": 1,
+      "central_bank_communicati": 0,
+      "long_term_nominal_yield": 2,
+      "term_premium": 0,
+      "yield_curve_slope": 0,
+      "sovereign_bond_yield_vol": 1,
+      "cross_border_capital_flo": 1,
+      "exchange_rate_pressure": 1,
+      "currency_intervention_ac": 0,
+      "safe_haven_asset_demand": 1,
+      "market_liquidity": 1
+    },
+    "sovereign_bond_yield_vol": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "inflation_expectations": 1,
+      "short_rate_expectations": 1,
+      "monetary_policy_stance": 1,
+      "central_bank_communicati": 1,
+      "long_term_nominal_yield": 2,
+      "term_premium": 2,
+      "yield_curve_slope": 1,
+      "sovereign_bond_yield_vol": 0,
+      "cross_border_capital_flo": 2,
+      "exchange_rate_pressure": 1,
+      "currency_intervention_ac": 1,
+      "safe_haven_asset_demand": 2,
+      "market_liquidity": 3
+    },
+    "cross_border_capital_flo": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "inflation_expectations": 1,
+      "short_rate_expectations": 2,
+      "monetary_policy_stance": 1,
+      "central_bank_communicati": 1,
+      "long_term_nominal_yield": 2,
+      "term_premium": 1,
+      "yield_curve_slope": 2,
+      "sovereign_bond_yield_vol": 2,
+      "cross_border_capital_flo": 0,
+      "exchange_rate_pressure": 3,
+      "currency_intervention_ac": 2,
+      "safe_haven_asset_demand": 2,
+      "market_liquidity": 2
+    },
+    "exchange_rate_pressure": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 1,
+      "inflation_expectations": 2,
+      "short_rate_expectations": 2,
+      "monetary_policy_stance": 1,
+      "central_bank_communicati": 1,
+      "long_term_nominal_yield": 1,
+      "term_premium": 1,
+      "yield_curve_slope": 1,
+      "sovereign_bond_yield_vol": 1,
+      "cross_border_capital_flo": 2,
+      "exchange_rate_pressure": 0,
+      "currency_intervention_ac": 3,
+      "safe_haven_asset_demand": 2,
+      "market_liquidity": 2
+    },
+    "currency_intervention_ac": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "inflation_expectations": 1,
+      "short_rate_expectations": 1,
+      "monetary_policy_stance": 1,
+      "central_bank_communicati": 1,
+      "long_term_nominal_yield": 1,
+      "term_premium": 0,
+      "yield_curve_slope": 1,
+      "sovereign_bond_yield_vol": 2,
+      "cross_border_capital_flo": 2,
+      "exchange_rate_pressure": 3,
+      "currency_intervention_ac": 0,
+      "safe_haven_asset_demand": 1,
+      "market_liquidity": 2
+    },
+    "safe_haven_asset_demand": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "inflation_expectations": 0,
+      "short_rate_expectations": 1,
+      "monetary_policy_stance": 0,
+      "central_bank_communicati": 0,
+      "long_term_nominal_yield": 2,
+      "term_premium": 1,
+      "yield_curve_slope": 1,
+      "sovereign_bond_yield_vol": 1,
+      "cross_border_capital_flo": 2,
+      "exchange_rate_pressure": 1,
+      "currency_intervention_ac": 0,
+      "safe_haven_asset_demand": 0,
+      "market_liquidity": 1
+    },
+    "market_liquidity": {
+      "net_payroll_change": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "inflation_expectations": 1,
+      "short_rate_expectations": 1,
+      "monetary_policy_stance": 2,
+      "central_bank_communicati": 1,
+      "long_term_nominal_yield": 2,
+      "term_premium": 2,
+      "yield_curve_slope": 1,
+      "sovereign_bond_yield_vol": 3,
+      "cross_border_capital_flo": 1,
+      "exchange_rate_pressure": 2,
+      "currency_intervention_ac": 2,
+      "safe_haven_asset_demand": 2,
+      "market_liquidity": 0
+    }
+  },
+  "AS": {
+    "net_payroll_change": 22,
+    "unemployment_rate": 24,
+    "wage_growth_rate": 17,
+    "inflation_expectations": 26,
+    "short_rate_expectations": 22,
+    "monetary_policy_stance": 27,
+    "central_bank_communicati": 20,
+    "long_term_nominal_yield": 13,
+    "term_premium": 11,
+    "yield_curve_slope": 10,
+    "sovereign_bond_yield_vol": 18,
+    "cross_border_capital_flo": 21,
+    "exchange_rate_pressure": 20,
+    "currency_intervention_ac": 16,
+    "safe_haven_asset_demand": 10,
+    "market_liquidity": 20
+  },
+  "PS": {
+    "net_payroll_change": 6,
+    "unemployment_rate": 10,
+    "wage_growth_rate": 9,
+    "inflation_expectations": 19,
+    "short_rate_expectations": 24,
+    "monetary_policy_stance": 16,
+    "central_bank_communicati": 10,
+    "long_term_nominal_yield": 31,
+    "term_premium": 15,
+    "yield_curve_slope": 27,
+    "sovereign_bond_yield_vol": 25,
+    "cross_border_capital_flo": 24,
+    "exchange_rate_pressure": 27,
+    "currency_intervention_ac": 12,
+    "safe_haven_asset_demand": 24,
+    "market_liquidity": 18
+  },
+  "med_AS": 20.0,
+  "med_PS": 18.5,
+  "roles": [
+    {
+      "variable": "exchange_rate_pressure",
+      "name": "Exchange rate pressure",
+      "AS": 20,
+      "PS": 27,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 540,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "short_rate_expectations",
+      "name": "Short-term rate expectations",
+      "AS": 22,
+      "PS": 24,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 528,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_capital_flo",
+      "name": "Cross-border capital flows",
+      "AS": 21,
+      "PS": 24,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 504,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 26,
+      "PS": 19,
+      "Q=AS/PS": 1.37,
+      "P=AS*PS": 494,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_bond_yield_vol",
+      "name": "Sovereign bond yield volatility",
+      "AS": 18,
+      "PS": 25,
+      "Q=AS/PS": 0.72,
+      "P=AS*PS": 450,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "monetary_policy_stance",
+      "name": "Monetary policy stance",
+      "AS": 27,
+      "PS": 16,
+      "Q=AS/PS": 1.69,
+      "P=AS*PS": 432,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "long_term_nominal_yield",
+      "name": "Long-term nominal bond yield",
+      "AS": 13,
+      "PS": 31,
+      "Q=AS/PS": 0.42,
+      "P=AS*PS": 403,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 20,
+      "PS": 18,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 360,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 10,
+      "PS": 27,
+      "Q=AS/PS": 0.37,
+      "P=AS*PS": 270,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "safe_haven_asset_demand",
+      "name": "Safe-haven asset demand",
+      "AS": 10,
+      "PS": 24,
+      "Q=AS/PS": 0.42,
+      "P=AS*PS": 240,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "unemployment_rate",
+      "name": "Unemployment rate",
+      "AS": 24,
+      "PS": 10,
+      "Q=AS/PS": 2.4,
+      "P=AS*PS": 240,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "central_bank_communicati",
+      "name": "Central bank communication clarity",
+      "AS": 20,
+      "PS": 10,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 200,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "currency_intervention_ac",
+      "name": "Currency intervention activity",
+      "AS": 16,
+      "PS": 12,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 192,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 11,
+      "PS": 15,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 165,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "wage_growth_rate",
+      "name": "Wage growth rate",
+      "AS": 17,
+      "PS": 9,
+      "Q=AS/PS": 1.89,
+      "P=AS*PS": 153,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "net_payroll_change",
+      "name": "Net payroll change",
+      "AS": 22,
+      "PS": 6,
+      "Q=AS/PS": 3.67,
+      "P=AS*PS": 132,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "net_payroll_change",
+        "name": "Net payroll change",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 6
+      },
+      {
+        "id": "unemployment_rate",
+        "name": "Unemployment rate",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 10
+      },
+      {
+        "id": "wage_growth_rate",
+        "name": "Wage growth rate",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 9
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 26,
+        "PS": 19
+      },
+      {
+        "id": "short_rate_expectations",
+        "name": "Short-term rate expectations",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 24
+      },
+      {
+        "id": "monetary_policy_stance",
+        "name": "Monetary policy stance",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 16
+      },
+      {
+        "id": "central_bank_communicati",
+        "name": "Central bank communication clarity",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 10
+      },
+      {
+        "id": "long_term_nominal_yield",
+        "name": "Long-term nominal bond yield",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 31
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 15
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 27
+      },
+      {
+        "id": "sovereign_bond_yield_vol",
+        "name": "Sovereign bond yield volatility",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 25
+      },
+      {
+        "id": "cross_border_capital_flo",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 24
+      },
+      {
+        "id": "exchange_rate_pressure",
+        "name": "Exchange rate pressure",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 27
+      },
+      {
+        "id": "currency_intervention_ac",
+        "name": "Currency intervention activity",
+        "kind": "institution_field",
+        "AS": 16,
+        "PS": 12
+      },
+      {
+        "id": "safe_haven_asset_demand",
+        "name": "Safe-haven asset demand",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 24
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 18
+      }
+    ],
+    "edges": [
+      {
+        "source": "net_payroll_change",
+        "target": "unemployment_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "net_payroll_change",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "net_payroll_change",
+        "target": "long_term_nominal_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "net_payroll_change",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "net_payroll_change",
+        "target": "sovereign_bond_yield_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "net_payroll_change",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "net_payroll_change",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "net_payroll_change",
+        "target": "safe_haven_asset_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "net_payroll_change",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "wage_growth_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "long_term_nominal_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "safe_haven_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "long_term_nominal_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "unemployment_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "wage_growth_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_nominal_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "sovereign_bond_yield_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "safe_haven_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "long_term_nominal_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "sovereign_bond_yield_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "safe_haven_asset_demand",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "unemployment_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "short_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "long_term_nominal_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "sovereign_bond_yield_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "safe_haven_asset_demand",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_communicati",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_communicati",
+        "target": "short_rate_expectations",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_communicati",
+        "target": "long_term_nominal_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_communicati",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_communicati",
+        "target": "sovereign_bond_yield_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_communicati",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_nominal_yield",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_nominal_yield",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_nominal_yield",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "long_term_nominal_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "sovereign_bond_yield_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "long_term_nominal_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield_vol",
+        "target": "long_term_nominal_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield_vol",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield_vol",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_bond_yield_vol",
+        "target": "safe_haven_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield_vol",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "long_term_nominal_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "sovereign_bond_yield_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "exchange_rate_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "currency_intervention_ac",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "safe_haven_asset_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "currency_intervention_ac",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "safe_haven_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_intervention_ac",
+        "target": "sovereign_bond_yield_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_intervention_ac",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "currency_intervention_ac",
+        "target": "exchange_rate_pressure",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "currency_intervention_ac",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_asset_demand",
+        "target": "long_term_nominal_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_asset_demand",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "long_term_nominal_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "sovereign_bond_yield_vol",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "currency_intervention_ac",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "safe_haven_asset_demand",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_cpi_mid_august_2026",
+      "title": "August US CPI release",
+      "description": "Monthly US consumer inflation print that will materially influence rate-hike odds and inflation expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-12",
+        "end": "2026-08-14",
+        "label": "mid-August"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "monetary_policy_stance",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_term_nominal_yield",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "\"Why the upcoming CPI report is a bigger event...\"; will test whether inflation cools enough to trim rate bets."
+    },
+    {
+      "id": "fed_september_fomc_meeting",
+      "title": "September FOMC meeting (mid‑Sep)",
+      "description": "Federal Reserve policy meeting likely to decide whether to hike or hold, shifting market rate expectations and communications.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-09-18",
+        "label": "mid-September"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "monetary_policy_stance",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "central_bank_communicati",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "\"Some of the urgency is gone for a Fed rate hike in September\"; meeting will re-anchor market pricing."
+    },
+    {
+      "id": "ongoing_repricing_of_rate_futures",
+      "title": "Market repricing of rate-futures",
+      "description": "Continued adjustment of futures and swaps as markets digest soft jobs and inflation signals, lowering short-term rate odds.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-09",
+        "end": "2026-09-15",
+        "label": "next 4-6 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "monetary_policy_stance",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "long_term_nominal_yield",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "safe_haven_asset_demand",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"US rate futures cut chances of September rate hike\"; markets dialing back odds after weak jobs."
+    },
+    {
+      "id": "august_jobs_report_early_september",
+      "title": "August payrolls (early September)",
+      "description": "Next monthly US jobs report that will update net payrolls, unemployment and wage trends, moving rate expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2026-09-06",
+        "label": "early September"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "net_payroll_change",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "unemployment_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "wage_growth_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "\"Jobs report will offer fresh test of Fed Chairman Warsh's less-guidance stance\"; labour data will reprice bets."
+    },
+    {
+      "id": "continued_currency_intervention_risk",
+      "title": "Ongoing risk of coordinated currency interventions",
+      "description": "Heightened probability of further FX intervention (notably US–Japan) as authorities react to rapid yen moves, affecting FX and flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-09",
+        "end": "2026-11-09",
+        "label": "next 3 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "currency_intervention_ac",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_pressure",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_capital_flo",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "safe_haven_asset_demand",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"Japan vows further yen intervention\" and \"US euro sale to prop up yen blindsided ECB\" signal repeat interventions possible."
+    },
+    {
+      "id": "gold_rally_momentum",
+      "title": "Gold demand and price momentum",
+      "description": "Elevated investor demand and ETF inflows pushing gold higher as rate-hike odds fall and safe-haven bids rise.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-09",
+        "end": "2026-09-09",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "safe_haven_asset_demand",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yield",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "\"Gold prices are breaking higher\" and \"Gold sharply adds to gains after July jobs report\"; flows favor metal."
+    },
+    {
+      "id": "elevated_long_term_yield_volatility",
+      "title": "Persistent long-term yield volatility",
+      "description": "Ongoing turbulence in the long end as markets reprice terminal rates and term premium, lifting yield volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-09",
+        "end": "2026-09-30",
+        "label": "next 6-8 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "sovereign_bond_yield_vol",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_term_nominal_yield",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "\"Long-Term Treasury Yields Surge After Fed Meeting\" and \"The Fed Holds and the Long End Gets Nervous\" indicate ongoing volatility."
+    },
+    {
+      "id": "fed_speeches_and_communication_events",
+      "title": "Fed officials' speeches / guidance",
+      "description": "Series of Fed speeches and remarks that will influence clarity of guidance and market interpretation of policy path.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-09",
+        "end": "2026-08-30",
+        "label": "next 2-3 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "central_bank_communicati",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "\"Jobs report will offer fresh test of Fed Chairman Warsh's less-guidance stance\" and Cook's comments will shape clarity."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "fed_september_fomc_meeting",
+      "title": "September FOMC meeting (mid‑Sep)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-September",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-09-18",
+      "probability": 0.85,
+      "impact_score": 207.0,
+      "expected_impact": 175.95,
+      "event_PS": 19.4,
+      "event_AS": 20.7,
+      "n_vars": 4,
+      "affected_ids": "short_rate_expectations, monetary_policy_stance, central_bank_communicati, yield_curve_slope",
+      "rationale": "\"Some of the urgency is gone for a Fed rate hike in September\"; meeting will re-anchor market pricing."
+    },
+    {
+      "id": "august_jobs_report_early_september",
+      "title": "August payrolls (early September)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "early September",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2026-09-06",
+      "probability": 0.75,
+      "impact_score": 192.0,
+      "expected_impact": 144.0,
+      "event_PS": 11.556,
+      "event_AS": 21.333,
+      "n_vars": 4,
+      "affected_ids": "net_payroll_change, unemployment_rate, wage_growth_rate, short_rate_expectations",
+      "rationale": "\"Jobs report will offer fresh test of Fed Chairman Warsh's less-guidance stance\"; labour data will reprice bets."
+    },
+    {
+      "id": "ongoing_repricing_of_rate_futures",
+      "title": "Market repricing of rate-futures",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4-6 weeks",
+      "date": null,
+      "start": "2026-08-09",
+      "end": "2026-09-15",
+      "probability": 0.9,
+      "impact_score": 166.0,
+      "expected_impact": 149.4,
+      "event_PS": 23.778,
+      "event_AS": 18.444,
+      "n_vars": 4,
+      "affected_ids": "short_rate_expectations, monetary_policy_stance, long_term_nominal_yield, safe_haven_asset_demand",
+      "rationale": "\"US rate futures cut chances of September rate hike\"; markets dialing back odds after weak jobs."
+    },
+    {
+      "id": "us_cpi_mid_august_2026",
+      "title": "August US CPI release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-August",
+      "date": null,
+      "start": "2026-08-12",
+      "end": "2026-08-14",
+      "probability": 0.9,
+      "impact_score": 162.0,
+      "expected_impact": 145.8,
+      "event_PS": 21.714,
+      "event_AS": 23.143,
+      "n_vars": 4,
+      "affected_ids": "inflation_expectations, short_rate_expectations, monetary_policy_stance, long_term_nominal_yield",
+      "rationale": "\"Why the upcoming CPI report is a bigger event...\"; will test whether inflation cools enough to trim rate bets."
+    },
+    {
+      "id": "elevated_long_term_yield_volatility",
+      "title": "Persistent long-term yield volatility",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6-8 weeks",
+      "date": null,
+      "start": "2026-08-09",
+      "end": "2026-09-30",
+      "probability": 0.75,
+      "impact_score": 122.0,
+      "expected_impact": 91.5,
+      "event_PS": 24.556,
+      "event_AS": 13.556,
+      "n_vars": 4,
+      "affected_ids": "sovereign_bond_yield_vol, term_premium, yield_curve_slope, long_term_nominal_yield",
+      "rationale": "\"Long-Term Treasury Yields Surge After Fed Meeting\" and \"The Fed Holds and the Long End Gets Nervous\" indicate ongoing volatility."
+    },
+    {
+      "id": "continued_currency_intervention_risk",
+      "title": "Ongoing risk of coordinated currency interventions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-08-09",
+      "end": "2026-11-09",
+      "probability": 0.6,
+      "impact_score": 119.0,
+      "expected_impact": 71.4,
+      "event_PS": 19.714,
+      "event_AS": 17.0,
+      "n_vars": 4,
+      "affected_ids": "currency_intervention_ac, exchange_rate_pressure, cross_border_capital_flo, safe_haven_asset_demand",
+      "rationale": "\"Japan vows further yen intervention\" and \"US euro sale to prop up yen blindsided ECB\" signal repeat interventions possible."
+    },
+    {
+      "id": "fed_speeches_and_communication_events",
+      "title": "Fed officials' speeches / guidance",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2-3 weeks",
+      "date": null,
+      "start": "2026-08-09",
+      "end": "2026-08-30",
+      "probability": 0.85,
+      "impact_score": 104.0,
+      "expected_impact": 88.4,
+      "event_PS": 15.6,
+      "event_AS": 20.8,
+      "n_vars": 2,
+      "affected_ids": "central_bank_communicati, short_rate_expectations",
+      "rationale": "\"Jobs report will offer fresh test of Fed Chairman Warsh's less-guidance stance\" and Cook's comments will shape clarity."
+    },
+    {
+      "id": "gold_rally_momentum",
+      "title": "Gold demand and price momentum",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-08-09",
+      "end": "2026-09-09",
+      "probability": 0.8,
+      "impact_score": 43.0,
+      "expected_impact": 34.4,
+      "event_PS": 25.75,
+      "event_AS": 10.75,
+      "n_vars": 2,
+      "affected_ids": "safe_haven_asset_demand, long_term_nominal_yield",
+      "rationale": "\"Gold prices are breaking higher\" and \"Gold sharply adds to gains after July jobs report\"; flows favor metal."
+    }
+  ]
+}
