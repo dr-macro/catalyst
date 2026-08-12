@@ -1,0 +1,1608 @@
+{
+  "label": "global_energy_volatility",
+  "as_of": "2026-08-11",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-12T00:36:44",
+  "system_description": {
+    "narrative_title": "Hormuz disruption drives a global oil supply shock and market volatility",
+    "narrative_summary": "A stalemate over reopening the Strait of Hormuz and ongoing Middle East disruptions have become the dominant driver of rising oil prices, tighter physical supply (including lower exports and refinery strains), and market volatility. The situation is producing knock-on effects — strategic reserve draws, regional producer revenue swings, asset sales and diplomatic maneuvering — while accelerating short-term demand for alternatives and raising fiscal and inflationary pressures worldwide. Feedbacks between prices, producer output decisions, and geopolitical bargaining are keeping the system unstable and prolonging the shock.",
+    "scope": "Crude production in the Middle East and elsewhere; maritime transit through the Strait of Hormuz; export flows, tanker and shipping risks; refining capacity and margins; inventories and strategic petroleum reserves; global oil pricing and derivatives markets; major state and corporate actors (Iran, US, Gulf producers, OPEC, national oil companies, supermajors); immediate policy responses and sanctions. Excludes unrelated commodity markets and purely domestic non-energy fiscal policy.",
+    "super_system": "Global energy-economy and geopolitical/security system (international trade, finance, and strategic stability)",
+    "adjacent_subsystems": [
+      "International shipping, tanker insurance and chokepoint security",
+      "Global financial and derivatives markets",
+      "Energy transition and renewable deployment",
+      "National fiscal and political systems (budgets, sanctions, domestic energy policy)"
+    ],
+    "evidence_headlines": [
+      "Oil Surges With No Hormuz Deal in Sight",
+      "Oil Rises Amid Growing Doubts That Strait of Hormuz Can Reopen Soon",
+      "ADNOC Gas second-quarter profit falls 52% as Hormuz closure hits sales",
+      "Oil in U.S. Strategic Petroleum Reserve falls below 300 million barrels, lowest since 1983",
+      "Middle East oil output to remain below pre-conflict levels in 2027",
+      "Refining crunch keeps fuel prices high as crude retreats"
+    ]
+  },
+  "variables": [
+    {
+      "id": "global_oil_price_level",
+      "name": "Global oil price level",
+      "description": "The prevailing average market price of crude oil benchmarks expressed in currency per barrel, reflecting aggregate supply-demand balance.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "description": "The magnitude and frequency of short-term fluctuations in crude oil prices measured by realized or implied volatility metrics.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_production_rate",
+      "name": "Crude production rate",
+      "description": "The aggregated flow rate of crude oil produced per unit time across the producing region(s) under study.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "spare_production_capacit",
+      "name": "Spare production capacity",
+      "description": "The volume of producible crude oil that can be brought online within a defined short notice period without new investment.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_transit_capacit",
+      "name": "Maritime transit capacity",
+      "description": "The maximum sustainable throughput of crude and product shipments through critical sea lanes and chokepoints per unit time.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "export_flow_volume",
+      "name": "Export flow volume",
+      "description": "The aggregated volume of crude and refined products actually exported from producing areas per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_risk_premium",
+      "name": "Tanker shipping risk premium",
+      "description": "The additional transport cost component charged or priced into shipping markets due to perceived or actual maritime security and insurance risks.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization",
+      "name": "Refinery utilization rate",
+      "description": "The share of total refining capacity operating at a given time, measured as throughput relative to nameplate capacity.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_margins",
+      "name": "Refinery product margins",
+      "description": "The spread between crude input costs and refined product prices that measures refinery profitability and processing incentives.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commercial_inventories",
+      "name": "Commercial oil inventories",
+      "description": "The stock level of crude and refined products held in commercial storage by market participants at a given time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserve_stock",
+      "name": "Strategic petroleum reserve stock",
+      "description": "The volume of oil held in government or public emergency reserves available for release to stabilize supply.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "producer_revenue_flow",
+      "name": "Producer revenue flows",
+      "description": "The rate of monetary receipts flowing to oil producers from sales of crude and products, net of price-related adjustments.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_pressure_producer",
+      "name": "Fiscal pressure on producers",
+      "description": "The degree of budgetary strain faced by oil-producing economies measured by the gap between public expenditures and resource-based revenues.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "substitution_demand_rate",
+      "name": "Substitution demand rate",
+      "description": "The rate at which end-users shift demand away from oil toward alternative fuels, products, or energy-saving measures.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "geo_bargaining_intensity",
+      "name": "Geopolitical bargaining intensity",
+      "description": "The intensity and pace of political negotiation, coercion, and strategic interaction among stakeholders over energy access and transit.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_reopen_expect",
+      "name": "Chokepoint reopening expectations",
+      "description": "Market and policy expectations about the timing and likelihood that restricted maritime routes or chokepoints will return to normal transit conditions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "global_oil_price_level",
+    "oil_price_volatility",
+    "crude_production_rate",
+    "spare_production_capacit",
+    "maritime_transit_capacit",
+    "export_flow_volume",
+    "tanker_risk_premium",
+    "refinery_utilization",
+    "refinery_margins",
+    "commercial_inventories",
+    "strategic_reserve_stock",
+    "producer_revenue_flow",
+    "fiscal_pressure_producer",
+    "substitution_demand_rate",
+    "geo_bargaining_intensity",
+    "chokepoint_reopen_expect"
+  ],
+  "var_names": {
+    "global_oil_price_level": "Global oil price level",
+    "oil_price_volatility": "Oil price volatility",
+    "crude_production_rate": "Crude production rate",
+    "spare_production_capacit": "Spare production capacity",
+    "maritime_transit_capacit": "Maritime transit capacity",
+    "export_flow_volume": "Export flow volume",
+    "tanker_risk_premium": "Tanker shipping risk premium",
+    "refinery_utilization": "Refinery utilization rate",
+    "refinery_margins": "Refinery product margins",
+    "commercial_inventories": "Commercial oil inventories",
+    "strategic_reserve_stock": "Strategic petroleum reserve stock",
+    "producer_revenue_flow": "Producer revenue flows",
+    "fiscal_pressure_producer": "Fiscal pressure on producers",
+    "substitution_demand_rate": "Substitution demand rate",
+    "geo_bargaining_intensity": "Geopolitical bargaining intensity",
+    "chokepoint_reopen_expect": "Chokepoint reopening expectations"
+  },
+  "impact_matrix": {
+    "global_oil_price_level": {
+      "global_oil_price_level": 0,
+      "oil_price_volatility": 1,
+      "crude_production_rate": 2,
+      "spare_production_capacit": 1,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 2,
+      "tanker_risk_premium": 1,
+      "refinery_utilization": 1,
+      "refinery_margins": 3,
+      "commercial_inventories": 2,
+      "strategic_reserve_stock": 1,
+      "producer_revenue_flow": 3,
+      "fiscal_pressure_producer": 3,
+      "substitution_demand_rate": 2,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 1
+    },
+    "oil_price_volatility": {
+      "global_oil_price_level": 1,
+      "oil_price_volatility": 0,
+      "crude_production_rate": 1,
+      "spare_production_capacit": 1,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 1,
+      "tanker_risk_premium": 2,
+      "refinery_utilization": 1,
+      "refinery_margins": 1,
+      "commercial_inventories": 2,
+      "strategic_reserve_stock": 1,
+      "producer_revenue_flow": 1,
+      "fiscal_pressure_producer": 1,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 0
+    },
+    "crude_production_rate": {
+      "global_oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "crude_production_rate": 0,
+      "spare_production_capacit": 2,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 3,
+      "tanker_risk_premium": 1,
+      "refinery_utilization": 2,
+      "refinery_margins": 1,
+      "commercial_inventories": 2,
+      "strategic_reserve_stock": 1,
+      "producer_revenue_flow": 2,
+      "fiscal_pressure_producer": 1,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 0
+    },
+    "spare_production_capacit": {
+      "global_oil_price_level": 2,
+      "oil_price_volatility": 2,
+      "crude_production_rate": 3,
+      "spare_production_capacit": 0,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 2,
+      "tanker_risk_premium": 1,
+      "refinery_utilization": 1,
+      "refinery_margins": 1,
+      "commercial_inventories": 1,
+      "strategic_reserve_stock": 1,
+      "producer_revenue_flow": 1,
+      "fiscal_pressure_producer": 1,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 0
+    },
+    "maritime_transit_capacit": {
+      "global_oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "crude_production_rate": 2,
+      "spare_production_capacit": 0,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 3,
+      "tanker_risk_premium": 3,
+      "refinery_utilization": 2,
+      "refinery_margins": 2,
+      "commercial_inventories": 2,
+      "strategic_reserve_stock": 1,
+      "producer_revenue_flow": 2,
+      "fiscal_pressure_producer": 1,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 2,
+      "chokepoint_reopen_expect": 3
+    },
+    "export_flow_volume": {
+      "global_oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "crude_production_rate": 2,
+      "spare_production_capacit": 1,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 0,
+      "tanker_risk_premium": 1,
+      "refinery_utilization": 2,
+      "refinery_margins": 2,
+      "commercial_inventories": 3,
+      "strategic_reserve_stock": 1,
+      "producer_revenue_flow": 3,
+      "fiscal_pressure_producer": 2,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 1
+    },
+    "tanker_risk_premium": {
+      "global_oil_price_level": 2,
+      "oil_price_volatility": 2,
+      "crude_production_rate": 1,
+      "spare_production_capacit": 0,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 2,
+      "tanker_risk_premium": 0,
+      "refinery_utilization": 1,
+      "refinery_margins": 1,
+      "commercial_inventories": 1,
+      "strategic_reserve_stock": 1,
+      "producer_revenue_flow": 1,
+      "fiscal_pressure_producer": 1,
+      "substitution_demand_rate": 1,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 2
+    },
+    "refinery_utilization": {
+      "global_oil_price_level": 2,
+      "oil_price_volatility": 1,
+      "crude_production_rate": 1,
+      "spare_production_capacit": 0,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 1,
+      "tanker_risk_premium": 0,
+      "refinery_utilization": 0,
+      "refinery_margins": 2,
+      "commercial_inventories": 2,
+      "strategic_reserve_stock": 0,
+      "producer_revenue_flow": 1,
+      "fiscal_pressure_producer": 0,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 0,
+      "chokepoint_reopen_expect": 0
+    },
+    "refinery_margins": {
+      "global_oil_price_level": 1,
+      "oil_price_volatility": 1,
+      "crude_production_rate": 1,
+      "spare_production_capacit": 0,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 1,
+      "tanker_risk_premium": 0,
+      "refinery_utilization": 3,
+      "refinery_margins": 0,
+      "commercial_inventories": 1,
+      "strategic_reserve_stock": 0,
+      "producer_revenue_flow": 1,
+      "fiscal_pressure_producer": 1,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 0,
+      "chokepoint_reopen_expect": 0
+    },
+    "commercial_inventories": {
+      "global_oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "crude_production_rate": 2,
+      "spare_production_capacit": 0,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 1,
+      "tanker_risk_premium": 1,
+      "refinery_utilization": 1,
+      "refinery_margins": 1,
+      "commercial_inventories": 0,
+      "strategic_reserve_stock": 0,
+      "producer_revenue_flow": 1,
+      "fiscal_pressure_producer": 0,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 1
+    },
+    "strategic_reserve_stock": {
+      "global_oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "crude_production_rate": 0,
+      "spare_production_capacit": 0,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 2,
+      "tanker_risk_premium": 1,
+      "refinery_utilization": 1,
+      "refinery_margins": 1,
+      "commercial_inventories": 2,
+      "strategic_reserve_stock": 0,
+      "producer_revenue_flow": 1,
+      "fiscal_pressure_producer": 1,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 0
+    },
+    "producer_revenue_flow": {
+      "global_oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "crude_production_rate": 1,
+      "spare_production_capacit": 1,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 0,
+      "tanker_risk_premium": 0,
+      "refinery_utilization": 0,
+      "refinery_margins": 0,
+      "commercial_inventories": 1,
+      "strategic_reserve_stock": 1,
+      "producer_revenue_flow": 0,
+      "fiscal_pressure_producer": 3,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 0
+    },
+    "fiscal_pressure_producer": {
+      "global_oil_price_level": 1,
+      "oil_price_volatility": 0,
+      "crude_production_rate": 2,
+      "spare_production_capacit": 2,
+      "maritime_transit_capacit": 0,
+      "export_flow_volume": 2,
+      "tanker_risk_premium": 0,
+      "refinery_utilization": 1,
+      "refinery_margins": 0,
+      "commercial_inventories": 1,
+      "strategic_reserve_stock": 2,
+      "producer_revenue_flow": 1,
+      "fiscal_pressure_producer": 0,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 0
+    },
+    "substitution_demand_rate": {
+      "global_oil_price_level": 3,
+      "oil_price_volatility": 1,
+      "crude_production_rate": 2,
+      "spare_production_capacit": 1,
+      "maritime_transit_capacit": 1,
+      "export_flow_volume": 2,
+      "tanker_risk_premium": 1,
+      "refinery_utilization": 2,
+      "refinery_margins": 2,
+      "commercial_inventories": 1,
+      "strategic_reserve_stock": 0,
+      "producer_revenue_flow": 2,
+      "fiscal_pressure_producer": 2,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 1
+    },
+    "geo_bargaining_intensity": {
+      "global_oil_price_level": 2,
+      "oil_price_volatility": 2,
+      "crude_production_rate": 2,
+      "spare_production_capacit": 1,
+      "maritime_transit_capacit": 3,
+      "export_flow_volume": 3,
+      "tanker_risk_premium": 3,
+      "refinery_utilization": 2,
+      "refinery_margins": 2,
+      "commercial_inventories": 1,
+      "strategic_reserve_stock": 1,
+      "producer_revenue_flow": 2,
+      "fiscal_pressure_producer": 1,
+      "substitution_demand_rate": 1,
+      "geo_bargaining_intensity": 0,
+      "chokepoint_reopen_expect": 3
+    },
+    "chokepoint_reopen_expect": {
+      "global_oil_price_level": 2,
+      "oil_price_volatility": 2,
+      "crude_production_rate": 1,
+      "spare_production_capacit": 0,
+      "maritime_transit_capacit": 1,
+      "export_flow_volume": 1,
+      "tanker_risk_premium": 2,
+      "refinery_utilization": 1,
+      "refinery_margins": 1,
+      "commercial_inventories": 1,
+      "strategic_reserve_stock": 2,
+      "producer_revenue_flow": 1,
+      "fiscal_pressure_producer": 1,
+      "substitution_demand_rate": 0,
+      "geo_bargaining_intensity": 1,
+      "chokepoint_reopen_expect": 0
+    }
+  },
+  "AS": {
+    "global_oil_price_level": 24,
+    "oil_price_volatility": 14,
+    "crude_production_rate": 21,
+    "spare_production_capacit": 17,
+    "maritime_transit_capacit": 28,
+    "export_flow_volume": 24,
+    "tanker_risk_premium": 17,
+    "refinery_utilization": 10,
+    "refinery_margins": 10,
+    "commercial_inventories": 14,
+    "strategic_reserve_stock": 15,
+    "producer_revenue_flow": 8,
+    "fiscal_pressure_producer": 13,
+    "substitution_demand_rate": 22,
+    "geo_bargaining_intensity": 29,
+    "chokepoint_reopen_expect": 17
+  },
+  "PS": {
+    "global_oil_price_level": 31,
+    "oil_price_volatility": 22,
+    "crude_production_rate": 23,
+    "spare_production_capacit": 10,
+    "maritime_transit_capacit": 5,
+    "export_flow_volume": 26,
+    "tanker_risk_premium": 17,
+    "refinery_utilization": 21,
+    "refinery_margins": 20,
+    "commercial_inventories": 23,
+    "strategic_reserve_stock": 13,
+    "producer_revenue_flow": 23,
+    "fiscal_pressure_producer": 19,
+    "substitution_demand_rate": 4,
+    "geo_bargaining_intensity": 14,
+    "chokepoint_reopen_expect": 12
+  },
+  "med_AS": 17.0,
+  "med_PS": 19.5,
+  "roles": [
+    {
+      "variable": "global_oil_price_level",
+      "name": "Global oil price level",
+      "AS": 24,
+      "PS": 31,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 744,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "export_flow_volume",
+      "name": "Export flow volume",
+      "AS": 24,
+      "PS": 26,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 624,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crude_production_rate",
+      "name": "Crude production rate",
+      "AS": 21,
+      "PS": 23,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 483,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "geo_bargaining_intensity",
+      "name": "Geopolitical bargaining intensity",
+      "AS": 29,
+      "PS": 14,
+      "Q=AS/PS": 2.07,
+      "P=AS*PS": 406,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "commercial_inventories",
+      "name": "Commercial oil inventories",
+      "AS": 14,
+      "PS": 23,
+      "Q=AS/PS": 0.61,
+      "P=AS*PS": 322,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "AS": 14,
+      "PS": 22,
+      "Q=AS/PS": 0.64,
+      "P=AS*PS": 308,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tanker_risk_premium",
+      "name": "Tanker shipping risk premium",
+      "AS": 17,
+      "PS": 17,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 289,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "fiscal_pressure_producer",
+      "name": "Fiscal pressure on producers",
+      "AS": 13,
+      "PS": 19,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 247,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "refinery_utilization",
+      "name": "Refinery utilization rate",
+      "AS": 10,
+      "PS": 21,
+      "Q=AS/PS": 0.48,
+      "P=AS*PS": 210,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "chokepoint_reopen_expect",
+      "name": "Chokepoint reopening expectations",
+      "AS": 17,
+      "PS": 12,
+      "Q=AS/PS": 1.42,
+      "P=AS*PS": 204,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refinery_margins",
+      "name": "Refinery product margins",
+      "AS": 10,
+      "PS": 20,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 200,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "strategic_reserve_stock",
+      "name": "Strategic petroleum reserve stock",
+      "AS": 15,
+      "PS": 13,
+      "Q=AS/PS": 1.15,
+      "P=AS*PS": 195,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "producer_revenue_flow",
+      "name": "Producer revenue flows",
+      "AS": 8,
+      "PS": 23,
+      "Q=AS/PS": 0.35,
+      "P=AS*PS": 184,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "spare_production_capacit",
+      "name": "Spare production capacity",
+      "AS": 17,
+      "PS": 10,
+      "Q=AS/PS": 1.7,
+      "P=AS*PS": 170,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "maritime_transit_capacit",
+      "name": "Maritime transit capacity",
+      "AS": 28,
+      "PS": 5,
+      "Q=AS/PS": 5.6,
+      "P=AS*PS": 140,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "substitution_demand_rate",
+      "name": "Substitution demand rate",
+      "AS": 22,
+      "PS": 4,
+      "Q=AS/PS": 5.5,
+      "P=AS*PS": 88,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "global_oil_price_level",
+        "name": "Global oil price level",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 31
+      },
+      {
+        "id": "oil_price_volatility",
+        "name": "Oil price volatility",
+        "kind": "perception",
+        "AS": 14,
+        "PS": 22
+      },
+      {
+        "id": "crude_production_rate",
+        "name": "Crude production rate",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 23
+      },
+      {
+        "id": "spare_production_capacit",
+        "name": "Spare production capacity",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 10
+      },
+      {
+        "id": "maritime_transit_capacit",
+        "name": "Maritime transit capacity",
+        "kind": "environment",
+        "AS": 28,
+        "PS": 5
+      },
+      {
+        "id": "export_flow_volume",
+        "name": "Export flow volume",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 26
+      },
+      {
+        "id": "tanker_risk_premium",
+        "name": "Tanker shipping risk premium",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 17
+      },
+      {
+        "id": "refinery_utilization",
+        "name": "Refinery utilization rate",
+        "kind": "flow",
+        "AS": 10,
+        "PS": 21
+      },
+      {
+        "id": "refinery_margins",
+        "name": "Refinery product margins",
+        "kind": "driver",
+        "AS": 10,
+        "PS": 20
+      },
+      {
+        "id": "commercial_inventories",
+        "name": "Commercial oil inventories",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 23
+      },
+      {
+        "id": "strategic_reserve_stock",
+        "name": "Strategic petroleum reserve stock",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 13
+      },
+      {
+        "id": "producer_revenue_flow",
+        "name": "Producer revenue flows",
+        "kind": "flow",
+        "AS": 8,
+        "PS": 23
+      },
+      {
+        "id": "fiscal_pressure_producer",
+        "name": "Fiscal pressure on producers",
+        "kind": "environment",
+        "AS": 13,
+        "PS": 19
+      },
+      {
+        "id": "substitution_demand_rate",
+        "name": "Substitution demand rate",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 4
+      },
+      {
+        "id": "geo_bargaining_intensity",
+        "name": "Geopolitical bargaining intensity",
+        "kind": "driver",
+        "AS": 29,
+        "PS": 14
+      },
+      {
+        "id": "chokepoint_reopen_expect",
+        "name": "Chokepoint reopening expectations",
+        "kind": "perception",
+        "AS": 17,
+        "PS": 12
+      }
+    ],
+    "edges": [
+      {
+        "source": "global_oil_price_level",
+        "target": "crude_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "export_flow_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "refinery_margins",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "producer_revenue_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "fiscal_pressure_producer",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "substitution_demand_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "tanker_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "spare_production_capacit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "export_flow_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "producer_revenue_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "global_oil_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "crude_production_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "export_flow_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "crude_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "export_flow_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "tanker_risk_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "refinery_margins",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "producer_revenue_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "geo_bargaining_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "chokepoint_reopen_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "export_flow_volume",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "export_flow_volume",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_flow_volume",
+        "target": "crude_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_flow_volume",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "export_flow_volume",
+        "target": "refinery_margins",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "export_flow_volume",
+        "target": "commercial_inventories",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "export_flow_volume",
+        "target": "producer_revenue_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "export_flow_volume",
+        "target": "fiscal_pressure_producer",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_risk_premium",
+        "target": "global_oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_risk_premium",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_risk_premium",
+        "target": "export_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_risk_premium",
+        "target": "chokepoint_reopen_expect",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "global_oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "refinery_margins",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "refinery_margins",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commercial_inventories",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_inventories",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_inventories",
+        "target": "crude_production_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_stock",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_stock",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_stock",
+        "target": "export_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_stock",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "producer_revenue_flow",
+        "target": "fiscal_pressure_producer",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_pressure_producer",
+        "target": "crude_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_pressure_producer",
+        "target": "spare_production_capacit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_pressure_producer",
+        "target": "export_flow_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_pressure_producer",
+        "target": "strategic_reserve_stock",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "substitution_demand_rate",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "substitution_demand_rate",
+        "target": "crude_production_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "substitution_demand_rate",
+        "target": "export_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "substitution_demand_rate",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "substitution_demand_rate",
+        "target": "refinery_margins",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "substitution_demand_rate",
+        "target": "producer_revenue_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "substitution_demand_rate",
+        "target": "fiscal_pressure_producer",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_bargaining_intensity",
+        "target": "global_oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_bargaining_intensity",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_bargaining_intensity",
+        "target": "crude_production_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geo_bargaining_intensity",
+        "target": "maritime_transit_capacit",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geo_bargaining_intensity",
+        "target": "export_flow_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geo_bargaining_intensity",
+        "target": "tanker_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geo_bargaining_intensity",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geo_bargaining_intensity",
+        "target": "refinery_margins",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_bargaining_intensity",
+        "target": "producer_revenue_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "geo_bargaining_intensity",
+        "target": "chokepoint_reopen_expect",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_reopen_expect",
+        "target": "global_oil_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_reopen_expect",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_reopen_expect",
+        "target": "tanker_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_reopen_expect",
+        "target": "strategic_reserve_stock",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "hormuz_deadlock_persists",
+      "title": "Strait of Hormuz deal deadlock continues",
+      "description": "Diplomatic impasse and ongoing attacks keep the Strait effectively closed or restricted, prolonging transit disruptions and market uncertainty.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-11",
+        "end": "2026-09-30",
+        "label": "weeks–2 months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "maritime_transit_capacit",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "export_flow_volume",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_risk_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "chokepoint_reopen_expect",
+          "intensity": 3,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Oil Rises Amid Growing Doubts That Strait of Hormuz Can Reopen Soon'; 'Oil Surges With No Hormuz Deal in Sight'; Houthi attacks stoke supply risks."
+    },
+    {
+      "id": "refining_crunch_continues",
+      "title": "Ongoing refining capacity crunch",
+      "description": "Refinery bottlenecks and tight product markets persist, keeping fuel prices elevated despite crude movements.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-11",
+        "end": "2026-10-31",
+        "label": "1–3 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "refinery_utilization",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refinery_margins",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commercial_inventories",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "export_flow_volume",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Refining crunch keeps fuel prices high'; 'Why the Real Oil Squeeze Is Happening in Refineries'; rising gasoline margins."
+    },
+    {
+      "id": "us_spr_low_and_drawdown",
+      "title": "U.S. SPR at multi-decade low / continued draws",
+      "description": "U.S. strategic stocks are at their lowest since 1983 and likely remain constrained, reducing emergency supply buffers.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-11",
+        "end": "2026-10-31",
+        "label": "weeks–quarter"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "strategic_reserve_stock",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commercial_inventories",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Oil in U.S. Strategic Petroleum Reserve falls below 300 million barrels, lowest since 1983.'"
+    },
+    {
+      "id": "iraq_september_price_increase",
+      "title": "Iraq raises September crude prices to Asia",
+      "description": "Iraq's announced price increase for September Asian buyers takes effect, shifting regional price signals and receipts.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-01",
+        "start": null,
+        "end": null,
+        "label": "start of September"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "producer_revenue_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refinery_margins",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Iraq raises September crude oil prices for Asian buyers' (reported 2026-08-10)."
+    },
+    {
+      "id": "middle_east_output_below_preconflict_through_2027",
+      "title": "Sustained below‑pre‑conflict Middle East output",
+      "description": "Analysts expect Middle Eastern oil output to remain below pre-conflict levels into 2027, constraining global supply availability.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-11",
+        "end": "2027-12-31",
+        "label": "through 2027"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "crude_production_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "spare_production_capacit",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "export_flow_volume",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "producer_revenue_flow",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'Middle East oil output to remain below pre-conflict levels in 2027' (2026-08-11)."
+    },
+    {
+      "id": "us_tax_proposal_overseas_oil_breaks",
+      "title": "U.S. proposal to end tax breaks for overseas oil production",
+      "description": "Legislative proposal to eliminate tax breaks for overseas oil production could alter investment and production incentives for US firms operating abroad.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-11",
+        "end": "2026-12-31",
+        "label": "months"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "crude_production_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "producer_revenue_flow",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Top Democrat proposes killing tax breaks for overseas oil production' (2026-08-09)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "hormuz_deadlock_persists",
+      "title": "Strait of Hormuz deal deadlock continues",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–2 months",
+      "date": null,
+      "start": "2026-08-11",
+      "end": "2026-09-30",
+      "probability": 0.85,
+      "impact_score": 372.0,
+      "expected_impact": 316.2,
+      "event_PS": 18.833,
+      "event_AS": 20.667,
+      "n_vars": 6,
+      "affected_ids": "maritime_transit_capacit, export_flow_volume, tanker_risk_premium, global_oil_price_level, oil_price_volatility, chokepoint_reopen_expect",
+      "rationale": "Headlines: 'Oil Rises Amid Growing Doubts That Strait of Hormuz Can Reopen Soon'; 'Oil Surges With No Hormuz Deal in Sight'; Houthi attacks stoke supply risks."
+    },
+    {
+      "id": "middle_east_output_below_preconflict_through_2027",
+      "title": "Sustained below‑pre‑conflict Middle East output",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through 2027",
+      "date": null,
+      "start": "2026-08-11",
+      "end": "2027-12-31",
+      "probability": 0.85,
+      "impact_score": 274.0,
+      "expected_impact": 232.9,
+      "event_PS": 22.571,
+      "event_AS": 19.571,
+      "n_vars": 5,
+      "affected_ids": "crude_production_rate, spare_production_capacit, export_flow_volume, global_oil_price_level, producer_revenue_flow",
+      "rationale": "Headline: 'Middle East oil output to remain below pre-conflict levels in 2027' (2026-08-11)."
+    },
+    {
+      "id": "refining_crunch_continues",
+      "title": "Ongoing refining capacity crunch",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1–3 months",
+      "date": null,
+      "start": "2026-08-11",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 212.0,
+      "expected_impact": 169.6,
+      "event_PS": 23.357,
+      "event_AS": 15.143,
+      "n_vars": 6,
+      "affected_ids": "refinery_utilization, refinery_margins, commercial_inventories, global_oil_price_level, oil_price_volatility, export_flow_volume",
+      "rationale": "Headlines: 'Refining crunch keeps fuel prices high'; 'Why the Real Oil Squeeze Is Happening in Refineries'; rising gasoline margins."
+    },
+    {
+      "id": "us_spr_low_and_drawdown",
+      "title": "U.S. SPR at multi-decade low / continued draws",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–quarter",
+      "date": null,
+      "start": "2026-08-11",
+      "end": "2026-10-31",
+      "probability": 0.75,
+      "impact_score": 135.0,
+      "expected_impact": 101.25,
+      "event_PS": 21.0,
+      "event_AS": 16.875,
+      "n_vars": 4,
+      "affected_ids": "strategic_reserve_stock, global_oil_price_level, oil_price_volatility, commercial_inventories",
+      "rationale": "Headline: 'Oil in U.S. Strategic Petroleum Reserve falls below 300 million barrels, lowest since 1983.'"
+    },
+    {
+      "id": "iraq_september_price_increase",
+      "title": "Iraq raises September crude prices to Asia",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "start of September",
+      "date": "2026-09-01",
+      "start": null,
+      "end": null,
+      "probability": 0.9,
+      "impact_score": 50.0,
+      "expected_impact": 45.0,
+      "event_PS": 24.25,
+      "event_AS": 12.5,
+      "n_vars": 3,
+      "affected_ids": "producer_revenue_flow, global_oil_price_level, refinery_margins",
+      "rationale": "Headline: 'Iraq raises September crude oil prices for Asian buyers' (reported 2026-08-10)."
+    },
+    {
+      "id": "us_tax_proposal_overseas_oil_breaks",
+      "title": "U.S. proposal to end tax breaks for overseas oil production",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-08-11",
+      "end": "2026-12-31",
+      "probability": 0.4,
+      "impact_score": 29.0,
+      "expected_impact": 11.6,
+      "event_PS": 23.0,
+      "event_AS": 14.5,
+      "n_vars": 2,
+      "affected_ids": "crude_production_rate, producer_revenue_flow",
+      "rationale": "Headline: 'Top Democrat proposes killing tax breaks for overseas oil production' (2026-08-09)."
+    }
+  ]
+}
