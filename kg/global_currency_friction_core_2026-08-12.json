@@ -1,0 +1,1978 @@
+{
+  "label": "global_currency_friction",
+  "as_of": "2026-08-12",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-13T00:23:43",
+  "system_description": {
+    "narrative_title": "Inflation, central-bank policy shifts and the US–Japan yen intervention",
+    "narrative_summary": "The dominant thread ties US inflation data and evolving central-bank guidance (notably under Fed Chair Kevin Warsh and BOJ rate debate) to sharp market repricing across Treasury yields, the dollar/yen complex, and safe-haven commodities such as gold. A historic US–Japan yen intervention and attendant FX volatility have amplified feedbacks: policy signals shift expectations, which move asset prices and exchange rates, which in turn provoke further policy responses and market repositioning amid geopolitical tail risks. The system is open — it ingests data releases, policy communications, and geopolitical shocks and emits capital flows, price moves, and policy reactions that reshape expectations.",
+    "scope": "Inside the boundary: US CPI/inflation prints and expectations; Federal Reserve policy and forward guidance (Kevin Warsh); BOJ rate debate and Japan FX actions (including US-Japan intervention); US Treasury market yields and liquidity; USD/JPY and major currency moves; commodity safe havens (gold, oil); market sentiment and positioning; immediate geopolitical risk (Middle East/Iran).",
+    "super_system": "Global macro-financial system (international capital flows, cross-border FX markets, and geopolitics)",
+    "adjacent_subsystems": [
+      "Japan's monetary-fiscal policy and FX management",
+      "US fiscal position and Treasury market functioning",
+      "Commodity markets (gold, oil) and safe-haven demand",
+      "China and emerging-market inflation/growth dynamics"
+    ],
+    "evidence_headlines": [
+      "A 'weaponized' yen: How the U.S.-Japan intervention may reshape global currency markets",
+      "Kevin Warsh to stick with lean Fed messaging despite market backlash - ft.com",
+      "US Treasury undertakes historic intervention in yen market",
+      "Yen sinks as effect of US-Japan intervention fades",
+      "Treasury yields inch lower as investors look ahead to key inflation data",
+      "US consumer prices increase as expected in July"
+    ]
+  },
+  "variables": [
+    {
+      "id": "inflation_rate",
+      "name": "Consumer price inflation rate",
+      "description": "The ongoing percentage change in a broad consumer price index over a rolling annual or monthly horizon, capturing general price-level inflation.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market- and survey-implied anticipated future inflation rate over multiple horizons, reflecting collective expectations about price trends.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_level",
+      "name": "Policy interest rate level",
+      "description": "The prevailing short-term policy interest rate set or targeted by monetary authorities, forming the baseline for borrowing costs.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "forward_guidance_signal",
+      "name": "Forward guidance signal strength",
+      "description": "The intensity and clarity of official communications about future policy intentions, measured by the degree to which guidance shifts market expectations.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fx_intervention_level",
+      "name": "Official FX intervention level",
+      "description": "The frequency and scale of deliberate official market operations in foreign exchange markets intended to influence exchange rates.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_level",
+      "name": "Sovereign yield curve level",
+      "description": "The absolute level and slope of sovereign bond yields across maturities, summarizing term structure pricing for risk-free rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The depth, bid-ask tightness, and immediacy of execution in sovereign bond markets, indicating how easily positions can be transacted.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_level",
+      "name": "Exchange rate levels",
+      "description": "The prevailing nominal price levels of major cross-border exchange rates or key bilateral exchange relationships.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_volatility",
+      "name": "Exchange rate volatility",
+      "description": "The realized or implied short- to medium-term variability of exchange rates capturing market uncertainty and repricing dynamics.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flow intensity",
+      "description": "The net volume and velocity of capital moving across borders (portfolio, deposit, and funding flows) over a defined period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_price_level",
+      "name": "Safe-haven commodity price level",
+      "description": "The market price level of commodities typically used as liquidity or risk-off stores, reflecting demand for safety assets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_price_level",
+      "name": "Energy price level",
+      "description": "The prevailing price level for energy commodities, representing cost pressures and inflation transmission from energy markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_sentiment",
+      "name": "Market sentiment and risk appetite",
+      "description": "The collective assessment of risk-on versus risk-off positioning expressed through valuations, flows, and derivative indicators.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_positioning",
+      "name": "Investor leverage and positioning",
+      "description": "The aggregate degree of leverage, directional exposures, and hedging positions held by investors across asset classes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "geopolitical_tail_risk",
+      "name": "Geopolitical tail-risk intensity",
+      "description": "The perceived probability and potential severity of low-probability, high-impact geopolitical shocks that could disrupt markets.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fx_funding_stress",
+      "name": "Cross-currency funding stress",
+      "description": "The degree of stress in FX and cross-currency funding markets as measured by basis spreads, term premia, and funding liquidity strains.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "inflation_rate",
+    "inflation_expectations",
+    "policy_rate_level",
+    "forward_guidance_signal",
+    "fx_intervention_level",
+    "yield_curve_level",
+    "bond_market_liquidity",
+    "exchange_rate_level",
+    "exchange_rate_volatility",
+    "cross_border_flows",
+    "safe_haven_price_level",
+    "energy_price_level",
+    "market_sentiment",
+    "investor_positioning",
+    "geopolitical_tail_risk",
+    "fx_funding_stress"
+  ],
+  "var_names": {
+    "inflation_rate": "Consumer price inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "policy_rate_level": "Policy interest rate level",
+    "forward_guidance_signal": "Forward guidance signal strength",
+    "fx_intervention_level": "Official FX intervention level",
+    "yield_curve_level": "Sovereign yield curve level",
+    "bond_market_liquidity": "Bond market liquidity",
+    "exchange_rate_level": "Exchange rate levels",
+    "exchange_rate_volatility": "Exchange rate volatility",
+    "cross_border_flows": "Cross-border capital flow intensity",
+    "safe_haven_price_level": "Safe-haven commodity price level",
+    "energy_price_level": "Energy price level",
+    "market_sentiment": "Market sentiment and risk appetite",
+    "investor_positioning": "Investor leverage and positioning",
+    "geopolitical_tail_risk": "Geopolitical tail-risk intensity",
+    "fx_funding_stress": "Cross-currency funding stress"
+  },
+  "impact_matrix": {
+    "inflation_rate": {
+      "inflation_rate": 0,
+      "inflation_expectations": 3,
+      "policy_rate_level": 3,
+      "forward_guidance_signal": 2,
+      "fx_intervention_level": 1,
+      "yield_curve_level": 3,
+      "bond_market_liquidity": 1,
+      "exchange_rate_level": 2,
+      "exchange_rate_volatility": 1,
+      "cross_border_flows": 2,
+      "safe_haven_price_level": 1,
+      "energy_price_level": 1,
+      "market_sentiment": 2,
+      "investor_positioning": 1,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 1
+    },
+    "inflation_expectations": {
+      "inflation_rate": 3,
+      "inflation_expectations": 0,
+      "policy_rate_level": 3,
+      "forward_guidance_signal": 2,
+      "fx_intervention_level": 1,
+      "yield_curve_level": 3,
+      "bond_market_liquidity": 1,
+      "exchange_rate_level": 2,
+      "exchange_rate_volatility": 2,
+      "cross_border_flows": 2,
+      "safe_haven_price_level": 1,
+      "energy_price_level": 1,
+      "market_sentiment": 2,
+      "investor_positioning": 2,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 1
+    },
+    "policy_rate_level": {
+      "inflation_rate": 3,
+      "inflation_expectations": 3,
+      "policy_rate_level": 0,
+      "forward_guidance_signal": 1,
+      "fx_intervention_level": 2,
+      "yield_curve_level": 3,
+      "bond_market_liquidity": 2,
+      "exchange_rate_level": 3,
+      "exchange_rate_volatility": 2,
+      "cross_border_flows": 3,
+      "safe_haven_price_level": 1,
+      "energy_price_level": 1,
+      "market_sentiment": 3,
+      "investor_positioning": 3,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 3
+    },
+    "forward_guidance_signal": {
+      "inflation_rate": 2,
+      "inflation_expectations": 3,
+      "policy_rate_level": 2,
+      "forward_guidance_signal": 0,
+      "fx_intervention_level": 1,
+      "yield_curve_level": 3,
+      "bond_market_liquidity": 1,
+      "exchange_rate_level": 2,
+      "exchange_rate_volatility": 2,
+      "cross_border_flows": 2,
+      "safe_haven_price_level": 1,
+      "energy_price_level": 0,
+      "market_sentiment": 3,
+      "investor_positioning": 2,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 1
+    },
+    "fx_intervention_level": {
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_level": 1,
+      "forward_guidance_signal": 1,
+      "fx_intervention_level": 0,
+      "yield_curve_level": 1,
+      "bond_market_liquidity": 1,
+      "exchange_rate_level": 3,
+      "exchange_rate_volatility": 3,
+      "cross_border_flows": 2,
+      "safe_haven_price_level": 1,
+      "energy_price_level": 0,
+      "market_sentiment": 2,
+      "investor_positioning": 2,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 2
+    },
+    "yield_curve_level": {
+      "inflation_rate": 2,
+      "inflation_expectations": 2,
+      "policy_rate_level": 2,
+      "forward_guidance_signal": 1,
+      "fx_intervention_level": 1,
+      "yield_curve_level": 0,
+      "bond_market_liquidity": 2,
+      "exchange_rate_level": 2,
+      "exchange_rate_volatility": 2,
+      "cross_border_flows": 3,
+      "safe_haven_price_level": 1,
+      "energy_price_level": 0,
+      "market_sentiment": 2,
+      "investor_positioning": 3,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 2
+    },
+    "bond_market_liquidity": {
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_level": 1,
+      "forward_guidance_signal": 1,
+      "fx_intervention_level": 1,
+      "yield_curve_level": 3,
+      "bond_market_liquidity": 0,
+      "exchange_rate_level": 1,
+      "exchange_rate_volatility": 2,
+      "cross_border_flows": 2,
+      "safe_haven_price_level": 1,
+      "energy_price_level": 0,
+      "market_sentiment": 2,
+      "investor_positioning": 2,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 2
+    },
+    "exchange_rate_level": {
+      "inflation_rate": 3,
+      "inflation_expectations": 2,
+      "policy_rate_level": 2,
+      "forward_guidance_signal": 1,
+      "fx_intervention_level": 3,
+      "yield_curve_level": 2,
+      "bond_market_liquidity": 1,
+      "exchange_rate_level": 0,
+      "exchange_rate_volatility": 2,
+      "cross_border_flows": 3,
+      "safe_haven_price_level": 1,
+      "energy_price_level": 1,
+      "market_sentiment": 2,
+      "investor_positioning": 3,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 2
+    },
+    "exchange_rate_volatility": {
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_level": 2,
+      "forward_guidance_signal": 2,
+      "fx_intervention_level": 3,
+      "yield_curve_level": 2,
+      "bond_market_liquidity": 2,
+      "exchange_rate_level": 1,
+      "exchange_rate_volatility": 0,
+      "cross_border_flows": 2,
+      "safe_haven_price_level": 2,
+      "energy_price_level": 1,
+      "market_sentiment": 3,
+      "investor_positioning": 3,
+      "geopolitical_tail_risk": 1,
+      "fx_funding_stress": 3
+    },
+    "cross_border_flows": {
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_level": 2,
+      "forward_guidance_signal": 1,
+      "fx_intervention_level": 2,
+      "yield_curve_level": 3,
+      "bond_market_liquidity": 2,
+      "exchange_rate_level": 3,
+      "exchange_rate_volatility": 2,
+      "cross_border_flows": 0,
+      "safe_haven_price_level": 1,
+      "energy_price_level": 0,
+      "market_sentiment": 2,
+      "investor_positioning": 3,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 3
+    },
+    "safe_haven_price_level": {
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_level": 1,
+      "forward_guidance_signal": 0,
+      "fx_intervention_level": 0,
+      "yield_curve_level": 1,
+      "bond_market_liquidity": 1,
+      "exchange_rate_level": 1,
+      "exchange_rate_volatility": 1,
+      "cross_border_flows": 1,
+      "safe_haven_price_level": 0,
+      "energy_price_level": 0,
+      "market_sentiment": 2,
+      "investor_positioning": 2,
+      "geopolitical_tail_risk": 1,
+      "fx_funding_stress": 0
+    },
+    "energy_price_level": {
+      "inflation_rate": 3,
+      "inflation_expectations": 2,
+      "policy_rate_level": 2,
+      "forward_guidance_signal": 1,
+      "fx_intervention_level": 1,
+      "yield_curve_level": 2,
+      "bond_market_liquidity": 1,
+      "exchange_rate_level": 2,
+      "exchange_rate_volatility": 1,
+      "cross_border_flows": 1,
+      "safe_haven_price_level": 1,
+      "energy_price_level": 0,
+      "market_sentiment": 2,
+      "investor_positioning": 1,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 1
+    },
+    "market_sentiment": {
+      "inflation_rate": 1,
+      "inflation_expectations": 2,
+      "policy_rate_level": 2,
+      "forward_guidance_signal": 2,
+      "fx_intervention_level": 1,
+      "yield_curve_level": 2,
+      "bond_market_liquidity": 2,
+      "exchange_rate_level": 2,
+      "exchange_rate_volatility": 3,
+      "cross_border_flows": 3,
+      "safe_haven_price_level": 3,
+      "energy_price_level": 1,
+      "market_sentiment": 0,
+      "investor_positioning": 3,
+      "geopolitical_tail_risk": 1,
+      "fx_funding_stress": 2
+    },
+    "investor_positioning": {
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_level": 1,
+      "forward_guidance_signal": 1,
+      "fx_intervention_level": 2,
+      "yield_curve_level": 3,
+      "bond_market_liquidity": 2,
+      "exchange_rate_level": 3,
+      "exchange_rate_volatility": 3,
+      "cross_border_flows": 3,
+      "safe_haven_price_level": 2,
+      "energy_price_level": 1,
+      "market_sentiment": 2,
+      "investor_positioning": 0,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 3
+    },
+    "geopolitical_tail_risk": {
+      "inflation_rate": 2,
+      "inflation_expectations": 3,
+      "policy_rate_level": 2,
+      "forward_guidance_signal": 2,
+      "fx_intervention_level": 1,
+      "yield_curve_level": 2,
+      "bond_market_liquidity": 2,
+      "exchange_rate_level": 2,
+      "exchange_rate_volatility": 3,
+      "cross_border_flows": 2,
+      "safe_haven_price_level": 3,
+      "energy_price_level": 3,
+      "market_sentiment": 3,
+      "investor_positioning": 2,
+      "geopolitical_tail_risk": 0,
+      "fx_funding_stress": 2
+    },
+    "fx_funding_stress": {
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_level": 2,
+      "forward_guidance_signal": 2,
+      "fx_intervention_level": 2,
+      "yield_curve_level": 3,
+      "bond_market_liquidity": 3,
+      "exchange_rate_level": 3,
+      "exchange_rate_volatility": 3,
+      "cross_border_flows": 3,
+      "safe_haven_price_level": 2,
+      "energy_price_level": 1,
+      "market_sentiment": 3,
+      "investor_positioning": 3,
+      "geopolitical_tail_risk": 1,
+      "fx_funding_stress": 0
+    }
+  },
+  "AS": {
+    "inflation_rate": 24,
+    "inflation_expectations": 26,
+    "policy_rate_level": 33,
+    "forward_guidance_signal": 25,
+    "fx_intervention_level": 21,
+    "yield_curve_level": 25,
+    "bond_market_liquidity": 20,
+    "exchange_rate_level": 28,
+    "exchange_rate_volatility": 29,
+    "cross_border_flows": 26,
+    "safe_haven_price_level": 13,
+    "energy_price_level": 21,
+    "market_sentiment": 30,
+    "investor_positioning": 28,
+    "geopolitical_tail_risk": 34,
+    "fx_funding_stress": 33
+  },
+  "PS": {
+    "inflation_rate": 26,
+    "inflation_expectations": 27,
+    "policy_rate_level": 28,
+    "forward_guidance_signal": 20,
+    "fx_intervention_level": 22,
+    "yield_curve_level": 36,
+    "bond_market_liquidity": 24,
+    "exchange_rate_level": 32,
+    "exchange_rate_volatility": 32,
+    "cross_border_flows": 34,
+    "safe_haven_price_level": 22,
+    "energy_price_level": 11,
+    "market_sentiment": 35,
+    "investor_positioning": 35,
+    "geopolitical_tail_risk": 4,
+    "fx_funding_stress": 28
+  },
+  "med_AS": 26.0,
+  "med_PS": 27.5,
+  "roles": [
+    {
+      "variable": "market_sentiment",
+      "name": "Market sentiment and risk appetite",
+      "AS": 30,
+      "PS": 35,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 1050,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_positioning",
+      "name": "Investor leverage and positioning",
+      "AS": 28,
+      "PS": 35,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 980,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "exchange_rate_volatility",
+      "name": "Exchange rate volatility",
+      "AS": 29,
+      "PS": 32,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 928,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_level",
+      "name": "Policy interest rate level",
+      "AS": 33,
+      "PS": 28,
+      "Q=AS/PS": 1.18,
+      "P=AS*PS": 924,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "fx_funding_stress",
+      "name": "Cross-currency funding stress",
+      "AS": 33,
+      "PS": 28,
+      "Q=AS/PS": 1.18,
+      "P=AS*PS": 924,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "yield_curve_level",
+      "name": "Sovereign yield curve level",
+      "AS": 25,
+      "PS": 36,
+      "Q=AS/PS": 0.69,
+      "P=AS*PS": 900,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "exchange_rate_level",
+      "name": "Exchange rate levels",
+      "AS": 28,
+      "PS": 32,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 896,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flow intensity",
+      "AS": 26,
+      "PS": 34,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 884,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 26,
+      "PS": 27,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 702,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_rate",
+      "name": "Consumer price inflation rate",
+      "AS": 24,
+      "PS": 26,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 624,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "forward_guidance_signal",
+      "name": "Forward guidance signal strength",
+      "AS": 25,
+      "PS": 20,
+      "Q=AS/PS": 1.25,
+      "P=AS*PS": 500,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 20,
+      "PS": 24,
+      "Q=AS/PS": 0.83,
+      "P=AS*PS": 480,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fx_intervention_level",
+      "name": "Official FX intervention level",
+      "AS": 21,
+      "PS": 22,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 462,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "safe_haven_price_level",
+      "name": "Safe-haven commodity price level",
+      "AS": 13,
+      "PS": 22,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 286,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "energy_price_level",
+      "name": "Energy price level",
+      "AS": 21,
+      "PS": 11,
+      "Q=AS/PS": 1.91,
+      "P=AS*PS": 231,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "geopolitical_tail_risk",
+      "name": "Geopolitical tail-risk intensity",
+      "AS": 34,
+      "PS": 4,
+      "Q=AS/PS": 8.5,
+      "P=AS*PS": 136,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "inflation_rate",
+        "name": "Consumer price inflation rate",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 26
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 26,
+        "PS": 27
+      },
+      {
+        "id": "policy_rate_level",
+        "name": "Policy interest rate level",
+        "kind": "driver",
+        "AS": 33,
+        "PS": 28
+      },
+      {
+        "id": "forward_guidance_signal",
+        "name": "Forward guidance signal strength",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 20
+      },
+      {
+        "id": "fx_intervention_level",
+        "name": "Official FX intervention level",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 22
+      },
+      {
+        "id": "yield_curve_level",
+        "name": "Sovereign yield curve level",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 36
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 24
+      },
+      {
+        "id": "exchange_rate_level",
+        "name": "Exchange rate levels",
+        "kind": "stock",
+        "AS": 28,
+        "PS": 32
+      },
+      {
+        "id": "exchange_rate_volatility",
+        "name": "Exchange rate volatility",
+        "kind": "stock",
+        "AS": 29,
+        "PS": 32
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flow intensity",
+        "kind": "flow",
+        "AS": 26,
+        "PS": 34
+      },
+      {
+        "id": "safe_haven_price_level",
+        "name": "Safe-haven commodity price level",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 22
+      },
+      {
+        "id": "energy_price_level",
+        "name": "Energy price level",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 11
+      },
+      {
+        "id": "market_sentiment",
+        "name": "Market sentiment and risk appetite",
+        "kind": "perception",
+        "AS": 30,
+        "PS": 35
+      },
+      {
+        "id": "investor_positioning",
+        "name": "Investor leverage and positioning",
+        "kind": "stock",
+        "AS": 28,
+        "PS": 35
+      },
+      {
+        "id": "geopolitical_tail_risk",
+        "name": "Geopolitical tail-risk intensity",
+        "kind": "environment",
+        "AS": 34,
+        "PS": 4
+      },
+      {
+        "id": "fx_funding_stress",
+        "name": "Cross-currency funding stress",
+        "kind": "stock",
+        "AS": 33,
+        "PS": 28
+      }
+    ],
+    "edges": [
+      {
+        "source": "inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "policy_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "forward_guidance_signal",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "forward_guidance_signal",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "inflation_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "fx_intervention_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "exchange_rate_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "market_sentiment",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "fx_funding_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "forward_guidance_signal",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "forward_guidance_signal",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "forward_guidance_signal",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "forward_guidance_signal",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "forward_guidance_signal",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "forward_guidance_signal",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "forward_guidance_signal",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "forward_guidance_signal",
+        "target": "market_sentiment",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "forward_guidance_signal",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "fx_intervention_level",
+        "target": "exchange_rate_level",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "fx_intervention_level",
+        "target": "exchange_rate_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fx_intervention_level",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_intervention_level",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "fx_intervention_level",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_intervention_level",
+        "target": "fx_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "fx_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "fx_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "fx_intervention_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "fx_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "forward_guidance_signal",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "fx_intervention_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "safe_haven_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "market_sentiment",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "fx_funding_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "fx_intervention_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "exchange_rate_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "fx_funding_stress",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_price_level",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_price_level",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "forward_guidance_signal",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "exchange_rate_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "safe_haven_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "fx_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "fx_intervention_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "exchange_rate_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "exchange_rate_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "safe_haven_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "fx_funding_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "forward_guidance_signal",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "exchange_rate_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "safe_haven_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "market_sentiment",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tail_risk",
+        "target": "fx_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_funding_stress",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_funding_stress",
+        "target": "forward_guidance_signal",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_funding_stress",
+        "target": "fx_intervention_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_funding_stress",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fx_funding_stress",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fx_funding_stress",
+        "target": "exchange_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fx_funding_stress",
+        "target": "exchange_rate_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fx_funding_stress",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fx_funding_stress",
+        "target": "safe_haven_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_funding_stress",
+        "target": "market_sentiment",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fx_funding_stress",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_japan_fx_intervention",
+      "title": "Continued US–Japan yen interventions",
+      "description": "Ongoing coordinated or unilateral FX operations by the US Treasury and Japan to support the yen if weakness resumes. Markets will watch for repeat interventions or scaling-up.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-12",
+        "end": "2026-09-30",
+        "label": "weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "fx_intervention_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "exchange_rate_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Historic US intervention and Japan vow of further intervention keep replay risk high (\"US Treasury undertakes historic intervention\", \"Japan vows further yen intervention with US if needed\")."
+    },
+    {
+      "id": "fomc_september_meeting",
+      "title": "Federal Reserve policy meeting (September)",
+      "description": "The next Fed policy meeting and statement will set the near-term policy rate decision and update forward guidance, influencing markets' rate expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-25",
+        "label": "mid-September"
+      },
+      "probability": 1.0,
+      "affected": [
+        {
+          "variable_id": "policy_rate_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "forward_guidance_signal",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "yield_curve_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_sentiment",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Fed's near-term policy and messaging (Warsh's lean messaging) will be tested by incoming data and press coverage (\"Kevin Warsh to stick with lean Fed messaging\", \"Fed expected to leave rates unchanged next month\")."
+    },
+    {
+      "id": "us_cpi_september_release",
+      "title": "Next US CPI inflation release",
+      "description": "Monthly US CPI data for August (released in mid-September) will retest inflation momentum and materially influence Fed bets and market positioning.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-20",
+        "label": "mid-September CPI"
+      },
+      "probability": 1.0,
+      "affected": [
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_rate_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "yield_curve_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_sentiment",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Multiple headlines flag the CPI report as a major market mover and Fed test (\"US inflation data looms\", \"An inflation report Wednesday should be a big deal for the Fed\")."
+    },
+    {
+      "id": "boj_september_hike_risk",
+      "title": "Risk of BOJ rate move in September",
+      "description": "Debate within the Bank of Japan has increased odds of a faster tightening, potentially producing a September policy action or clearer hawkish guidance.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September window"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_rate_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fx_intervention_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "BOJ internal debate and market odds point to a possible September tightening (\"BOJ's debate on faster hikes bolsters September rate move odds\")."
+    },
+    {
+      "id": "middle_east_geopolitical_tensions",
+      "title": "Elevated Middle East tensions",
+      "description": "Renewed Iran–related and broader Middle East tensions continue to pressure oil markets and risk sentiment, with knock-on effects for yields and safe-haven demand.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-12",
+        "end": "2026-09-30",
+        "label": "weeks-months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "geopolitical_tail_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_haven_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_sentiment",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "yield_curve_level",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines link Iran and Middle East uncertainty to oil, yields and risk-off flows (\"Geopolitics in Focus Ahead of US CPI\", \"Treasury Yields Rise as Middle East Tensions, Inflation Fears Increase\")."
+    },
+    {
+      "id": "jgb_yields_and_japanese_flows",
+      "title": "Surging JGB yields and Japanese investor flows",
+      "description": "Higher Japanese government bond yields are prompting domestic fund managers and retail investors to reallocate cash, likely increasing cross-border flow activity and shifting positioning.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-12",
+        "end": "2026-09-30",
+        "label": "weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "yield_curve_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_positioning",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "JGB yield surge and fund-manager behavior signal portfolio rebalancing and cross-border flow effects (\"Japan fund managers chase retail cash as JGB yields surge\", \"The curious case of the Japanese government bond yields\")."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_cpi_september_release",
+      "title": "Next US CPI inflation release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-September CPI",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-20",
+      "probability": 1.0,
+      "impact_score": 326.0,
+      "expected_impact": 326.0,
+      "event_PS": 29.75,
+      "event_AS": 27.167,
+      "n_vars": 5,
+      "affected_ids": "inflation_rate, inflation_expectations, policy_rate_level, yield_curve_level, market_sentiment",
+      "rationale": "Multiple headlines flag the CPI report as a major market mover and Fed test (\"US inflation data looms\", \"An inflation report Wednesday should be a big deal for the Fed\")."
+    },
+    {
+      "id": "fomc_september_meeting",
+      "title": "Federal Reserve policy meeting (September)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-September",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-25",
+      "probability": 1.0,
+      "impact_score": 303.0,
+      "expected_impact": 303.0,
+      "event_PS": 28.364,
+      "event_AS": 27.545,
+      "n_vars": 5,
+      "affected_ids": "policy_rate_level, forward_guidance_signal, inflation_expectations, yield_curve_level, market_sentiment",
+      "rationale": "Fed's near-term policy and messaging (Warsh's lean messaging) will be tested by incoming data and press coverage (\"Kevin Warsh to stick with lean Fed messaging\", \"Fed expected to leave rates unchanged next month\")."
+    },
+    {
+      "id": "boj_september_hike_risk",
+      "title": "Risk of BOJ rate move in September",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September window",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.6,
+      "impact_score": 303.0,
+      "expected_impact": 181.8,
+      "event_PS": 31.455,
+      "event_AS": 27.545,
+      "n_vars": 5,
+      "affected_ids": "policy_rate_level, yield_curve_level, exchange_rate_level, fx_intervention_level, cross_border_flows",
+      "rationale": "BOJ internal debate and market odds point to a possible September tightening (\"BOJ's debate on faster hikes bolsters September rate move odds\")."
+    },
+    {
+      "id": "middle_east_geopolitical_tensions",
+      "title": "Elevated Middle East tensions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks-months",
+      "date": null,
+      "start": "2026-08-12",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 255.0,
+      "expected_impact": 178.5,
+      "event_PS": 18.4,
+      "event_AS": 25.5,
+      "n_vars": 5,
+      "affected_ids": "geopolitical_tail_risk, energy_price_level, safe_haven_price_level, market_sentiment, yield_curve_level",
+      "rationale": "Headlines link Iran and Middle East uncertainty to oil, yields and risk-off flows (\"Geopolitics in Focus Ahead of US CPI\", \"Treasury Yields Rise as Middle East Tensions, Inflation Fears Increase\")."
+    },
+    {
+      "id": "us_japan_fx_intervention",
+      "title": "Continued US–Japan yen interventions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-12",
+      "end": "2026-09-30",
+      "probability": 0.8,
+      "impact_score": 229.0,
+      "expected_impact": 183.2,
+      "event_PS": 29.111,
+      "event_AS": 25.444,
+      "n_vars": 4,
+      "affected_ids": "fx_intervention_level, exchange_rate_volatility, exchange_rate_level, cross_border_flows",
+      "rationale": "Historic US intervention and Japan vow of further intervention keep replay risk high (\"US Treasury undertakes historic intervention\", \"Japan vows further yen intervention with US if needed\")."
+    },
+    {
+      "id": "jgb_yields_and_japanese_flows",
+      "title": "Surging JGB yields and Japanese investor flows",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-12",
+      "end": "2026-09-30",
+      "probability": 0.65,
+      "impact_score": 224.0,
+      "expected_impact": 145.6,
+      "event_PS": 32.444,
+      "event_AS": 24.889,
+      "n_vars": 4,
+      "affected_ids": "yield_curve_level, cross_border_flows, bond_market_liquidity, investor_positioning",
+      "rationale": "JGB yield surge and fund-manager behavior signal portfolio rebalancing and cross-border flow effects (\"Japan fund managers chase retail cash as JGB yields surge\", \"The curious case of the Japanese government bond yields\")."
+    }
+  ]
+}
