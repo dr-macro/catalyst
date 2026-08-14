@@ -1,0 +1,1941 @@
+{
+  "label": "global_monetary_stress",
+  "as_of": "2026-08-13",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-14T00:30:13",
+  "system_description": {
+    "narrative_title": "Markets Reprice Rates, FX and Safe Havens Around Inflation and Interventions",
+    "narrative_summary": "The dominant narrative is that mixed inflation data, shifting central bank guidance and a rare US Treasury intervention in the yen have forced investors to reprice interest-rate expectations and reallocate across bonds, currencies and commodities. Feedbacks between incoming CPI/PPI prints, policy signals (Fed/BOJ/RBA), geopolitical risk (Middle East) and market interventions are driving yield volatility, temporary currency stabilization attempts and a renewed gold rally as a hedge against policy uncertainty.",
+    "scope": "Global fixed-income markets (Treasuries, sovereign bonds), central bank policy decisions and forward guidance (Fed, BOJ, RBA, etc.), inflation statistics (CPI, PPI, wholesale/retail price data), FX markets (USD/JPY movement and interventions), commodity safe-havens (gold, oil) and investor positioning/liquidity dynamics within the trading window Aug 11–13, 2026.",
+    "super_system": "The global macro-financial system (global economy, cross-border capital flows, and geopolitical environment).",
+    "adjacent_subsystems": [
+      "Currency policy & FX markets (intervention mechanics and reserve management)",
+      "Commodity markets (gold, oil, base metals as inflation/risk proxies)",
+      "Sovereign debt issuance & fiscal policy (Treasury supply and funding costs)",
+      "Banking, credit and corporate bond markets (intermediaries and credit spreads)"
+    ],
+    "evidence_headlines": [
+      "Wall Street thinks inflation is under control. Here’s why investors shouldn’t buy it.",
+      "US Treasury undertakes historic intervention in yen market",
+      "Gold Gains Amid Shift in Fed Expectations, Central Bank Buying",
+      "Treasury Yields Rise, Dollar Steady as Iran War Uncertainty Persists",
+      "US inflation falls to 3.4% in July - ft.com",
+      "Wednesday’s crucial CPI report will show tamer inflation, according to prediction markets"
+    ]
+  },
+  "variables": [
+    {
+      "id": "realized_inflation_rate",
+      "name": "Realized Inflation Rate",
+      "description": "The observed rate of change in broad consumer and producer prices over a defined period, as reported by price indices.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_momentum",
+      "name": "Inflation Momentum",
+      "description": "The acceleration or deceleration of inflation, measured as the change in the inflation rate over successive periods.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation Expectations",
+      "description": "The market and survey-implied expected future inflation rate over relevant horizons as reflected in pricing and forecasts.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_dispersion",
+      "name": "Inflation Dispersion",
+      "description": "The cross-sectional variance or disagreement among inflation forecasts and price signals across sectors and regions.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_tightnes",
+      "name": "Monetary Policy Tightness",
+      "description": "The overall stance of monetary policy on a continuum from accommodative to restrictive, incorporating policy rates and other conventional tools in real terms.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_forward_guidance",
+      "name": "Policy Forward Guidance Strength",
+      "description": "The clarity, consistency and perceived credibility of future policy signaling that influences expectations and decision horizons.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_yield_level",
+      "name": "Sovereign Yield Level",
+      "description": "The representative level of long-term sovereign borrowing costs as reflected in benchmark government bond yields.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium_level",
+      "name": "Term Premium Level",
+      "description": "The component of long-term bond yields that compensates investors for interest-rate and reinvestment risk beyond expected short-term rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "interest_rate_volatility",
+      "name": "Interest Rate Volatility",
+      "description": "The short- and medium-term variability of yields and interest-rate sensitive instruments, measured by realized or implied volatility.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "intervention_intensity",
+      "name": "Intervention Intensity",
+      "description": "The frequency, scale and persistence of public-sector market operations aimed at altering exchange rate or asset price dynamics.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fx_market_liquidity",
+      "name": "FX Market Liquidity",
+      "description": "The depth and immediacy of the foreign exchange market, measured by bid-ask spreads, market depth and execution impact for large trades.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flow_rate",
+      "name": "Cross-Border Capital Flow Rate",
+      "description": "The net rate of capital moving across borders into or out of asset classes, measured over a given interval.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market Liquidity",
+      "description": "The availability of counterparties and depth across fixed-income and related markets, reflected in transaction costs and execution speed.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor Risk Appetite",
+      "description": "The aggregate willingness of market participants to accept risk premia and hold riskier assets versus safer alternatives.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_flow",
+      "name": "Safe-Haven Demand Flow",
+      "description": "The rate at which capital is reallocated into perceived safe-haven assets and instruments in response to uncertainty or stress.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "geopolitical_tension",
+      "name": "Geopolitical Tension Level",
+      "description": "The prevailing intensity and geographic scope of political and security stresses that can influence risk perception and capital flows.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "realized_inflation_rate",
+    "inflation_momentum",
+    "inflation_expectations",
+    "inflation_dispersion",
+    "monetary_policy_tightnes",
+    "policy_forward_guidance",
+    "sovereign_yield_level",
+    "term_premium_level",
+    "interest_rate_volatility",
+    "intervention_intensity",
+    "fx_market_liquidity",
+    "cross_border_flow_rate",
+    "market_liquidity",
+    "investor_risk_appetite",
+    "safe_haven_flow",
+    "geopolitical_tension"
+  ],
+  "var_names": {
+    "realized_inflation_rate": "Realized Inflation Rate",
+    "inflation_momentum": "Inflation Momentum",
+    "inflation_expectations": "Inflation Expectations",
+    "inflation_dispersion": "Inflation Dispersion",
+    "monetary_policy_tightnes": "Monetary Policy Tightness",
+    "policy_forward_guidance": "Policy Forward Guidance Strength",
+    "sovereign_yield_level": "Sovereign Yield Level",
+    "term_premium_level": "Term Premium Level",
+    "interest_rate_volatility": "Interest Rate Volatility",
+    "intervention_intensity": "Intervention Intensity",
+    "fx_market_liquidity": "FX Market Liquidity",
+    "cross_border_flow_rate": "Cross-Border Capital Flow Rate",
+    "market_liquidity": "Market Liquidity",
+    "investor_risk_appetite": "Investor Risk Appetite",
+    "safe_haven_flow": "Safe-Haven Demand Flow",
+    "geopolitical_tension": "Geopolitical Tension Level"
+  },
+  "impact_matrix": {
+    "realized_inflation_rate": {
+      "realized_inflation_rate": 0,
+      "inflation_momentum": 3,
+      "inflation_expectations": 2,
+      "inflation_dispersion": 2,
+      "monetary_policy_tightnes": 2,
+      "policy_forward_guidance": 2,
+      "sovereign_yield_level": 2,
+      "term_premium_level": 1,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 1,
+      "fx_market_liquidity": 1,
+      "cross_border_flow_rate": 1,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "safe_haven_flow": 2,
+      "geopolitical_tension": 0
+    },
+    "inflation_momentum": {
+      "realized_inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 3,
+      "inflation_dispersion": 2,
+      "monetary_policy_tightnes": 2,
+      "policy_forward_guidance": 2,
+      "sovereign_yield_level": 2,
+      "term_premium_level": 1,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 1,
+      "fx_market_liquidity": 1,
+      "cross_border_flow_rate": 1,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "safe_haven_flow": 2,
+      "geopolitical_tension": 0
+    },
+    "inflation_expectations": {
+      "realized_inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 0,
+      "inflation_dispersion": 3,
+      "monetary_policy_tightnes": 3,
+      "policy_forward_guidance": 2,
+      "sovereign_yield_level": 3,
+      "term_premium_level": 2,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 1,
+      "fx_market_liquidity": 1,
+      "cross_border_flow_rate": 2,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "safe_haven_flow": 2,
+      "geopolitical_tension": 0
+    },
+    "inflation_dispersion": {
+      "realized_inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 2,
+      "inflation_dispersion": 0,
+      "monetary_policy_tightnes": 2,
+      "policy_forward_guidance": 2,
+      "sovereign_yield_level": 2,
+      "term_premium_level": 2,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 1,
+      "fx_market_liquidity": 1,
+      "cross_border_flow_rate": 1,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "safe_haven_flow": 1,
+      "geopolitical_tension": 0
+    },
+    "monetary_policy_tightnes": {
+      "realized_inflation_rate": 2,
+      "inflation_momentum": 2,
+      "inflation_expectations": 3,
+      "inflation_dispersion": 2,
+      "monetary_policy_tightnes": 0,
+      "policy_forward_guidance": 2,
+      "sovereign_yield_level": 3,
+      "term_premium_level": 2,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 1,
+      "fx_market_liquidity": 1,
+      "cross_border_flow_rate": 2,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "safe_haven_flow": 1,
+      "geopolitical_tension": 0
+    },
+    "policy_forward_guidance": {
+      "realized_inflation_rate": 0,
+      "inflation_momentum": 1,
+      "inflation_expectations": 3,
+      "inflation_dispersion": 2,
+      "monetary_policy_tightnes": 1,
+      "policy_forward_guidance": 0,
+      "sovereign_yield_level": 3,
+      "term_premium_level": 1,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 0,
+      "fx_market_liquidity": 1,
+      "cross_border_flow_rate": 1,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "safe_haven_flow": 1,
+      "geopolitical_tension": 0
+    },
+    "sovereign_yield_level": {
+      "realized_inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 2,
+      "inflation_dispersion": 1,
+      "monetary_policy_tightnes": 1,
+      "policy_forward_guidance": 1,
+      "sovereign_yield_level": 0,
+      "term_premium_level": 0,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 1,
+      "fx_market_liquidity": 1,
+      "cross_border_flow_rate": 2,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "safe_haven_flow": 1,
+      "geopolitical_tension": 0
+    },
+    "term_premium_level": {
+      "realized_inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 1,
+      "inflation_dispersion": 1,
+      "monetary_policy_tightnes": 1,
+      "policy_forward_guidance": 1,
+      "sovereign_yield_level": 3,
+      "term_premium_level": 0,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 1,
+      "fx_market_liquidity": 1,
+      "cross_border_flow_rate": 1,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "safe_haven_flow": 1,
+      "geopolitical_tension": 0
+    },
+    "interest_rate_volatility": {
+      "realized_inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 1,
+      "inflation_dispersion": 2,
+      "monetary_policy_tightnes": 1,
+      "policy_forward_guidance": 1,
+      "sovereign_yield_level": 1,
+      "term_premium_level": 2,
+      "interest_rate_volatility": 0,
+      "intervention_intensity": 2,
+      "fx_market_liquidity": 3,
+      "cross_border_flow_rate": 2,
+      "market_liquidity": 3,
+      "investor_risk_appetite": 2,
+      "safe_haven_flow": 3,
+      "geopolitical_tension": 0
+    },
+    "intervention_intensity": {
+      "realized_inflation_rate": 1,
+      "inflation_momentum": 1,
+      "inflation_expectations": 2,
+      "inflation_dispersion": 1,
+      "monetary_policy_tightnes": 2,
+      "policy_forward_guidance": 2,
+      "sovereign_yield_level": 3,
+      "term_premium_level": 3,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 0,
+      "fx_market_liquidity": 3,
+      "cross_border_flow_rate": 3,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 2,
+      "safe_haven_flow": 2,
+      "geopolitical_tension": 0
+    },
+    "fx_market_liquidity": {
+      "realized_inflation_rate": 1,
+      "inflation_momentum": 1,
+      "inflation_expectations": 1,
+      "inflation_dispersion": 1,
+      "monetary_policy_tightnes": 1,
+      "policy_forward_guidance": 1,
+      "sovereign_yield_level": 1,
+      "term_premium_level": 1,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 2,
+      "fx_market_liquidity": 0,
+      "cross_border_flow_rate": 2,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 1,
+      "safe_haven_flow": 2,
+      "geopolitical_tension": 0
+    },
+    "cross_border_flow_rate": {
+      "realized_inflation_rate": 1,
+      "inflation_momentum": 1,
+      "inflation_expectations": 1,
+      "inflation_dispersion": 1,
+      "monetary_policy_tightnes": 2,
+      "policy_forward_guidance": 1,
+      "sovereign_yield_level": 2,
+      "term_premium_level": 1,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 2,
+      "fx_market_liquidity": 2,
+      "cross_border_flow_rate": 0,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 2,
+      "safe_haven_flow": 2,
+      "geopolitical_tension": 0
+    },
+    "market_liquidity": {
+      "realized_inflation_rate": 1,
+      "inflation_momentum": 1,
+      "inflation_expectations": 1,
+      "inflation_dispersion": 2,
+      "monetary_policy_tightnes": 1,
+      "policy_forward_guidance": 1,
+      "sovereign_yield_level": 2,
+      "term_premium_level": 2,
+      "interest_rate_volatility": 3,
+      "intervention_intensity": 2,
+      "fx_market_liquidity": 2,
+      "cross_border_flow_rate": 1,
+      "market_liquidity": 0,
+      "investor_risk_appetite": 2,
+      "safe_haven_flow": 2,
+      "geopolitical_tension": 0
+    },
+    "investor_risk_appetite": {
+      "realized_inflation_rate": 0,
+      "inflation_momentum": 1,
+      "inflation_expectations": 1,
+      "inflation_dispersion": 1,
+      "monetary_policy_tightnes": 1,
+      "policy_forward_guidance": 1,
+      "sovereign_yield_level": 2,
+      "term_premium_level": 2,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 1,
+      "fx_market_liquidity": 1,
+      "cross_border_flow_rate": 2,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 0,
+      "safe_haven_flow": 3,
+      "geopolitical_tension": 0
+    },
+    "safe_haven_flow": {
+      "realized_inflation_rate": 1,
+      "inflation_momentum": 1,
+      "inflation_expectations": 1,
+      "inflation_dispersion": 1,
+      "monetary_policy_tightnes": 1,
+      "policy_forward_guidance": 1,
+      "sovereign_yield_level": 3,
+      "term_premium_level": 2,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 2,
+      "fx_market_liquidity": 2,
+      "cross_border_flow_rate": 3,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 2,
+      "safe_haven_flow": 0,
+      "geopolitical_tension": 0
+    },
+    "geopolitical_tension": {
+      "realized_inflation_rate": 2,
+      "inflation_momentum": 2,
+      "inflation_expectations": 2,
+      "inflation_dispersion": 2,
+      "monetary_policy_tightnes": 1,
+      "policy_forward_guidance": 1,
+      "sovereign_yield_level": 2,
+      "term_premium_level": 2,
+      "interest_rate_volatility": 2,
+      "intervention_intensity": 1,
+      "fx_market_liquidity": 2,
+      "cross_border_flow_rate": 2,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 3,
+      "safe_haven_flow": 3,
+      "geopolitical_tension": 0
+    }
+  },
+  "AS": {
+    "realized_inflation_rate": 24,
+    "inflation_momentum": 22,
+    "inflation_expectations": 24,
+    "inflation_dispersion": 18,
+    "monetary_policy_tightnes": 26,
+    "policy_forward_guidance": 19,
+    "sovereign_yield_level": 14,
+    "term_premium_level": 15,
+    "interest_rate_volatility": 23,
+    "intervention_intensity": 29,
+    "fx_market_liquidity": 19,
+    "cross_border_flow_rate": 22,
+    "market_liquidity": 23,
+    "investor_risk_appetite": 20,
+    "safe_haven_flow": 24,
+    "geopolitical_tension": 29
+  },
+  "PS": {
+    "realized_inflation_rate": 9,
+    "inflation_momentum": 14,
+    "inflation_expectations": 26,
+    "inflation_dispersion": 24,
+    "monetary_policy_tightnes": 22,
+    "policy_forward_guidance": 21,
+    "sovereign_yield_level": 34,
+    "term_premium_level": 24,
+    "interest_rate_volatility": 31,
+    "intervention_intensity": 19,
+    "fx_market_liquidity": 23,
+    "cross_border_flow_rate": 26,
+    "market_liquidity": 23,
+    "investor_risk_appetite": 27,
+    "safe_haven_flow": 28,
+    "geopolitical_tension": 0
+  },
+  "med_AS": 22.5,
+  "med_PS": 23.5,
+  "roles": [
+    {
+      "variable": "interest_rate_volatility",
+      "name": "Interest Rate Volatility",
+      "AS": 23,
+      "PS": 31,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 713,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "safe_haven_flow",
+      "name": "Safe-Haven Demand Flow",
+      "AS": 24,
+      "PS": 28,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 672,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation Expectations",
+      "AS": 24,
+      "PS": 26,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 624,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "monetary_policy_tightnes",
+      "name": "Monetary Policy Tightness",
+      "AS": 26,
+      "PS": 22,
+      "Q=AS/PS": 1.18,
+      "P=AS*PS": 572,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "cross_border_flow_rate",
+      "name": "Cross-Border Capital Flow Rate",
+      "AS": 22,
+      "PS": 26,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 572,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "intervention_intensity",
+      "name": "Intervention Intensity",
+      "AS": 29,
+      "PS": 19,
+      "Q=AS/PS": 1.53,
+      "P=AS*PS": 551,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor Risk Appetite",
+      "AS": 20,
+      "PS": 27,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 540,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market Liquidity",
+      "AS": 23,
+      "PS": 23,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 529,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sovereign_yield_level",
+      "name": "Sovereign Yield Level",
+      "AS": 14,
+      "PS": 34,
+      "Q=AS/PS": 0.41,
+      "P=AS*PS": 476,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fx_market_liquidity",
+      "name": "FX Market Liquidity",
+      "AS": 19,
+      "PS": 23,
+      "Q=AS/PS": 0.83,
+      "P=AS*PS": 437,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_dispersion",
+      "name": "Inflation Dispersion",
+      "AS": 18,
+      "PS": 24,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 432,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_forward_guidance",
+      "name": "Policy Forward Guidance Strength",
+      "AS": 19,
+      "PS": 21,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 399,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "term_premium_level",
+      "name": "Term Premium Level",
+      "AS": 15,
+      "PS": 24,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 360,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_momentum",
+      "name": "Inflation Momentum",
+      "AS": 22,
+      "PS": 14,
+      "Q=AS/PS": 1.57,
+      "P=AS*PS": 308,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "realized_inflation_rate",
+      "name": "Realized Inflation Rate",
+      "AS": 24,
+      "PS": 9,
+      "Q=AS/PS": 2.67,
+      "P=AS*PS": 216,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "geopolitical_tension",
+      "name": "Geopolitical Tension Level",
+      "AS": 29,
+      "PS": 0,
+      "Q=AS/PS": 29000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "realized_inflation_rate",
+        "name": "Realized Inflation Rate",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 9
+      },
+      {
+        "id": "inflation_momentum",
+        "name": "Inflation Momentum",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 14
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation Expectations",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 26
+      },
+      {
+        "id": "inflation_dispersion",
+        "name": "Inflation Dispersion",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 24
+      },
+      {
+        "id": "monetary_policy_tightnes",
+        "name": "Monetary Policy Tightness",
+        "kind": "driver",
+        "AS": 26,
+        "PS": 22
+      },
+      {
+        "id": "policy_forward_guidance",
+        "name": "Policy Forward Guidance Strength",
+        "kind": "institution_field",
+        "AS": 19,
+        "PS": 21
+      },
+      {
+        "id": "sovereign_yield_level",
+        "name": "Sovereign Yield Level",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 34
+      },
+      {
+        "id": "term_premium_level",
+        "name": "Term Premium Level",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 24
+      },
+      {
+        "id": "interest_rate_volatility",
+        "name": "Interest Rate Volatility",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 31
+      },
+      {
+        "id": "intervention_intensity",
+        "name": "Intervention Intensity",
+        "kind": "institution_field",
+        "AS": 29,
+        "PS": 19
+      },
+      {
+        "id": "fx_market_liquidity",
+        "name": "FX Market Liquidity",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 23
+      },
+      {
+        "id": "cross_border_flow_rate",
+        "name": "Cross-Border Capital Flow Rate",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 26
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market Liquidity",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 23
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor Risk Appetite",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 27
+      },
+      {
+        "id": "safe_haven_flow",
+        "name": "Safe-Haven Demand Flow",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 28
+      },
+      {
+        "id": "geopolitical_tension",
+        "name": "Geopolitical Tension Level",
+        "kind": "environment",
+        "AS": 29,
+        "PS": 0
+      }
+    ],
+    "edges": [
+      {
+        "source": "realized_inflation_rate",
+        "target": "inflation_momentum",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "inflation_dispersion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "monetary_policy_tightnes",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "policy_forward_guidance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "safe_haven_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "inflation_dispersion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "monetary_policy_tightnes",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "policy_forward_guidance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "safe_haven_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "inflation_dispersion",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "monetary_policy_tightnes",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_forward_guidance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_flow_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "safe_haven_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_dispersion",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_dispersion",
+        "target": "monetary_policy_tightnes",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_dispersion",
+        "target": "policy_forward_guidance",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_dispersion",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_dispersion",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_dispersion",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tightnes",
+        "target": "realized_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_tightnes",
+        "target": "inflation_momentum",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_tightnes",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_tightnes",
+        "target": "inflation_dispersion",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_tightnes",
+        "target": "policy_forward_guidance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tightnes",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tightnes",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tightnes",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tightnes",
+        "target": "cross_border_flow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tightnes",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_forward_guidance",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_forward_guidance",
+        "target": "inflation_dispersion",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_forward_guidance",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_forward_guidance",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_forward_guidance",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "cross_border_flow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "interest_rate_volatility",
+        "target": "inflation_dispersion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "interest_rate_volatility",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "interest_rate_volatility",
+        "target": "intervention_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "interest_rate_volatility",
+        "target": "fx_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "interest_rate_volatility",
+        "target": "cross_border_flow_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "interest_rate_volatility",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "interest_rate_volatility",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "interest_rate_volatility",
+        "target": "safe_haven_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_intensity",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_intensity",
+        "target": "monetary_policy_tightnes",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "intervention_intensity",
+        "target": "policy_forward_guidance",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "intervention_intensity",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_intensity",
+        "target": "term_premium_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_intensity",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_intensity",
+        "target": "fx_market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_intensity",
+        "target": "cross_border_flow_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_intensity",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_intensity",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_intensity",
+        "target": "safe_haven_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_market_liquidity",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_market_liquidity",
+        "target": "intervention_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_market_liquidity",
+        "target": "cross_border_flow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_market_liquidity",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_market_liquidity",
+        "target": "safe_haven_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flow_rate",
+        "target": "monetary_policy_tightnes",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_border_flow_rate",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flow_rate",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flow_rate",
+        "target": "intervention_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flow_rate",
+        "target": "fx_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flow_rate",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flow_rate",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flow_rate",
+        "target": "safe_haven_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "inflation_dispersion",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "interest_rate_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "intervention_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "fx_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "safe_haven_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "cross_border_flow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "safe_haven_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_flow",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_flow",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_flow",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_flow",
+        "target": "intervention_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_flow",
+        "target": "fx_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_flow",
+        "target": "cross_border_flow_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_flow",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_flow",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "realized_inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "inflation_momentum",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "inflation_dispersion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "interest_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "fx_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "cross_border_flow_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "safe_haven_flow",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "september_fomc_decision",
+      "title": "September FOMC policy decision",
+      "description": "The Federal Reserve's September meeting and policy statement (and any dot plot/message) will likely shift rate repricing and market expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "mid-September window"
+      },
+      "probability": 0.98,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_tightnes",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_forward_guidance",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "interest_rate_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Fed expected to leave rates unchanged next month' and multiple stories tying Fed odds to CPI."
+    },
+    {
+      "id": "continued_us_japan_yen_interventions",
+      "title": "Ongoing U.S.-Japan yen interventions",
+      "description": "Further coordinated or unilateral interventions to support the yen or curb volatility could recur, altering FX dynamics and capital flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-13",
+        "end": "2026-10-31",
+        "label": "weeks to months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "intervention_intensity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fx_market_liquidity",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "cross_border_flow_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'US Treasury undertakes historic intervention in yen market' and 'Yen steadies as intervention boost fades'."
+    },
+    {
+      "id": "next_30y_treasury_auctions",
+      "title": "Large Treasury (30‑yr) auctions/issuance pressure",
+      "description": "Scheduled large Treasury supply and major auctions will test demand and could move long yields and term premium.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-14",
+        "end": "2026-09-30",
+        "label": "next 2–7 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "interest_rate_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'US sells 30-year bonds at highest borrowing costs since 2001' and Treasury yields coverage."
+    },
+    {
+      "id": "mid_september_us_cpi",
+      "title": "Next U.S. CPI release (September window)",
+      "description": "The upcoming monthly U.S. CPI print will influence Fed pricing, inflation momentum reads and market repricing of rates and safe havens.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-20",
+        "label": "mid-September CPI"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "realized_inflation_rate",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_momentum",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "interest_rate_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: multiple pieces noting CPI's importance for Fed bets and 'An inflation report Wednesday should be a big deal'."
+    },
+    {
+      "id": "middle_east_tensions_oil_shock",
+      "title": "Ongoing Middle East tensions and oil shock risk",
+      "description": "Persisting Iran‑related conflict risks could push oil higher, spur safe‑haven flows and lift inflation expectations and yield volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-13",
+        "end": "2026-11-13",
+        "label": "next 1–3 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "safe_haven_flow",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "interest_rate_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Treasury Yields Rise, Dollar Steady as Iran War Uncertainty Persists' and oil-driven yield moves."
+    },
+    {
+      "id": "central_bank_gold_buying",
+      "title": "Continued central bank gold purchases",
+      "description": "Ongoing central bank accumulation of gold and heightened gold flows can redirect safe‑haven demand and signal inflation concerns.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-13",
+        "end": "2026-10-31",
+        "label": "weeks to months"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "safe_haven_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Gold Gains Amid Shift in Fed Expectations, Central Bank Buying' and 'Central banks spearhead renewed gold rush'."
+    },
+    {
+      "id": "eversholt_bond_redemption_aug24",
+      "title": "Eversholt £257m bond redemption (Aug 24)",
+      "description": "Eversholt Funding's scheduled £257m bond redemption could affect short-term sterling market liquidity and corporate funding flows.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-08-24",
+        "start": null,
+        "end": null,
+        "label": "2026-08-24"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "interest_rate_volatility",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flow_rate",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'Eversholt Funding to redeem £257m bonds on August 24'."
+    },
+    {
+      "id": "september_rba_meeting",
+      "title": "RBA policy decision / guidance",
+      "description": "Reserve Bank of Australia's upcoming meeting and guidance could reprice Australian rates and influence global rate differentials.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September meeting window"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_tightnes",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_forward_guidance",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'RBA leaves rates steady at 4.35%; warns of more rate hikes' and 'Reserve Bank of Australia Holds Rates Steady but Remains Worried About Inflation'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "september_fomc_decision",
+      "title": "September FOMC policy decision",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-September window",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.98,
+      "impact_score": 271.0,
+      "expected_impact": 265.58,
+      "event_PS": 26.538,
+      "event_AS": 20.846,
+      "n_vars": 5,
+      "affected_ids": "monetary_policy_tightnes, policy_forward_guidance, sovereign_yield_level, interest_rate_volatility, inflation_expectations",
+      "rationale": "Headlines: 'Fed expected to leave rates unchanged next month' and multiple stories tying Fed odds to CPI."
+    },
+    {
+      "id": "mid_september_us_cpi",
+      "title": "Next U.S. CPI release (September window)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-September CPI",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-20",
+      "probability": 0.95,
+      "impact_score": 260.0,
+      "expected_impact": 247.0,
+      "event_PS": 20.917,
+      "event_AS": 21.667,
+      "n_vars": 5,
+      "affected_ids": "realized_inflation_rate, inflation_momentum, inflation_expectations, sovereign_yield_level, interest_rate_volatility",
+      "rationale": "Headlines: multiple pieces noting CPI's importance for Fed bets and 'An inflation report Wednesday should be a big deal'."
+    },
+    {
+      "id": "middle_east_tensions_oil_shock",
+      "title": "Ongoing Middle East tensions and oil shock risk",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1–3 months",
+      "date": null,
+      "start": "2026-08-13",
+      "end": "2026-11-13",
+      "probability": 0.7,
+      "impact_score": 234.0,
+      "expected_impact": 163.8,
+      "event_PS": 29.091,
+      "event_AS": 21.273,
+      "n_vars": 5,
+      "affected_ids": "safe_haven_flow, investor_risk_appetite, inflation_expectations, interest_rate_volatility, sovereign_yield_level",
+      "rationale": "Headlines: 'Treasury Yields Rise, Dollar Steady as Iran War Uncertainty Persists' and oil-driven yield moves."
+    },
+    {
+      "id": "continued_us_japan_yen_interventions",
+      "title": "Ongoing U.S.-Japan yen interventions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks to months",
+      "date": null,
+      "start": "2026-08-13",
+      "end": "2026-10-31",
+      "probability": 0.75,
+      "impact_score": 189.0,
+      "expected_impact": 141.75,
+      "event_PS": 22.75,
+      "event_AS": 23.625,
+      "n_vars": 4,
+      "affected_ids": "intervention_intensity, fx_market_liquidity, cross_border_flow_rate, investor_risk_appetite",
+      "rationale": "Headlines: 'US Treasury undertakes historic intervention in yen market' and 'Yen steadies as intervention boost fades'."
+    },
+    {
+      "id": "next_30y_treasury_auctions",
+      "title": "Large Treasury (30‑yr) auctions/issuance pressure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2–7 weeks",
+      "date": null,
+      "start": "2026-08-14",
+      "end": "2026-09-30",
+      "probability": 0.9,
+      "impact_score": 164.0,
+      "expected_impact": 147.6,
+      "event_PS": 28.667,
+      "event_AS": 18.222,
+      "n_vars": 4,
+      "affected_ids": "sovereign_yield_level, term_premium_level, market_liquidity, interest_rate_volatility",
+      "rationale": "Headlines: 'US sells 30-year bonds at highest borrowing costs since 2001' and Treasury yields coverage."
+    },
+    {
+      "id": "september_rba_meeting",
+      "title": "RBA policy decision / guidance",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September meeting window",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 124.0,
+      "expected_impact": 86.8,
+      "event_PS": 24.5,
+      "event_AS": 20.667,
+      "n_vars": 4,
+      "affected_ids": "monetary_policy_tightnes, policy_forward_guidance, sovereign_yield_level, investor_risk_appetite",
+      "rationale": "Headlines: 'RBA leaves rates steady at 4.35%; warns of more rate hikes' and 'Reserve Bank of Australia Holds Rates Steady but Remains Worried About Inflation'."
+    },
+    {
+      "id": "central_bank_gold_buying",
+      "title": "Continued central bank gold purchases",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks to months",
+      "date": null,
+      "start": "2026-08-13",
+      "end": "2026-10-31",
+      "probability": 0.65,
+      "impact_score": 92.0,
+      "expected_impact": 59.8,
+      "event_PS": 27.25,
+      "event_AS": 23.0,
+      "n_vars": 3,
+      "affected_ids": "safe_haven_flow, inflation_expectations, investor_risk_appetite",
+      "rationale": "Headlines: 'Gold Gains Amid Shift in Fed Expectations, Central Bank Buying' and 'Central banks spearhead renewed gold rush'."
+    },
+    {
+      "id": "eversholt_bond_redemption_aug24",
+      "title": "Eversholt £257m bond redemption (Aug 24)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-08-24",
+      "date": "2026-08-24",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 91.0,
+      "expected_impact": 86.45,
+      "event_PS": 25.75,
+      "event_AS": 22.75,
+      "n_vars": 3,
+      "affected_ids": "market_liquidity, interest_rate_volatility, cross_border_flow_rate",
+      "rationale": "Headline: 'Eversholt Funding to redeem £257m bonds on August 24'."
+    }
+  ]
+}

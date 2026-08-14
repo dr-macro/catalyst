@@ -1,0 +1,1742 @@
+{
+  "label": "russia_ukraine_war",
+  "as_of": "2026-08-13",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-14T00:15:36",
+  "system_description": {
+    "narrative_title": "Escalation of Russia-Ukraine conflict via drones & Black Sea chokepoint",
+    "narrative_summary": "A sustained campaign of drone strikes and maritime attacks is extending the Russia–Ukraine war beyond front lines, hitting refineries, petrochemical plants, grain terminals and shipping in and around the Black Sea. The system is open: kinetic actions (drone strikes, naval attacks), countermeasures (air defenses, seizures, sanctions), and economic flows (grain, fuel, shipping routes) continuously exchange material and information with neighboring states, markets and nonstate actors, producing feedback loops of escalation, supply disruption and regional spillover. Shortages of interceptors, shifting export routes, and sanctions-evasion efforts amplify second-order effects across food and energy markets and NATO-area security.",
+    "scope": "Military and economic interactions tied to drone and maritime attacks linked to the Russia–Ukraine war — including strikes on energy and industrial infrastructure, disruption of Black Sea shipping/grain exports, regional air-defense and border responses, and immediate market and logistical adaptations (rerouting, force majeure).",
+    "super_system": "Global geopolitical-security and economic system (international security architecture plus global food and energy markets).",
+    "adjacent_subsystems": [
+      "Global grain and food security markets",
+      "European/NATO air-defense and regional security architecture",
+      "Global energy and maritime shipping (Black Sea–Mediterranean chokepoints)",
+      "Sanctions, sanctions-evasion networks and space/ISR competition"
+    ],
+    "evidence_headlines": [
+      "EXCLUSIVE: Ukraine, Moldova consider shipping grain by rail through Moldova, sources say",
+      "EXCLUSIVE: Ukraine cuts grain export forecast due to Russia attack on seaports",
+      "Ukraine pounds naval base, grain terminals at Russia's Black Sea port of Novorossiysk",
+      "Russia's Sibur petrochemical plant in western Siberia shut after drone attack, sources say - reuters.com",
+      "Romania destroys drones drifting near major offshore gas project in the Black Sea - reuters.com",
+      "Russian bombardment kills 17 in Kyiv as Ukraine runs low on interceptors"
+    ]
+  },
+  "variables": [
+    {
+      "id": "drone_attack_intensity",
+      "name": "Drone attack intensity",
+      "description": "Measures the frequency and kinetic power of unmanned aerial/missile strikes against infrastructure and vessels per unit time.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_attack_intensit",
+      "name": "Maritime attack intensity",
+      "description": "Measures the rate and severity of hostile actions at sea (small-boat strikes, mines, naval drone attacks) per unit time.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "interceptor_inventory",
+      "name": "Interceptor inventory",
+      "description": "Stock of available air-defense interceptors, missiles, and expendable countermeasures held and deployable in the region.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "air_defense_effectivenes",
+      "name": "Air-defense effectiveness",
+      "description": "Operational success rate of air- and missile-defense systems in detecting and neutralizing incoming threats.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_throughput_rate",
+      "name": "Shipping throughput rate",
+      "description": "Volume of commercial cargo (tons or number of vessels) transiting the chokepoint per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_accessibility",
+      "name": "Maritime route accessibility",
+      "description": "Degree to which primary sea lanes and ports are navigable and usable by commercial vessels (accounting for hazards and seizures).",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "grain_export_volume",
+      "name": "Grain export volume",
+      "description": "Rate of agricultural commodity exports leaving the regional seaports or rerouted corridors per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fuel_export_volume",
+      "name": "Fuel export volume",
+      "description": "Rate of crude oil, refined products and fuel-related shipments exiting regional export infrastructure per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "energy_infra_damage",
+      "name": "Energy infrastructure damage",
+      "description": "Cumulative proportion of energy and fuel-handling infrastructure capacity that is non-operational due to physical damage.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "petrochemical_capacity",
+      "name": "Petrochemical operational capacity",
+      "description": "Share of petrochemical and refining processing capacity that is operational and able to produce or process feedstocks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sanctions_evasion_activi",
+      "name": "Sanctions-evasion activity",
+      "description": "Level of organized efforts and mechanisms to circumvent economic restrictions, including covert shipping and financial workarounds.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "rerouting_costs",
+      "name": "Rerouting and logistics costs",
+      "description": "Incremental transport, time and handling costs incurred from rerouting cargoes and using alternative corridors or modalities.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_premiums",
+      "name": "Insurance and security premiums",
+      "description": "Market price level of war-risk insurance and paid private security costs for maritime and cargo operations in the region.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "food_price_index",
+      "name": "Food price index",
+      "description": "Market index of staple food commodity prices affected by export disruptions and supply-chain constraints.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "military_posture",
+      "name": "Military force posture",
+      "description": "Level of force concentration, readiness and forward deployment of armed units and naval assets near the maritime and border areas.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "escalation_perception",
+      "name": "Escalation expectation perception",
+      "description": "Prevailing subjective expectation among regional actors and markets about the likelihood of conflict escalation and broader spillover.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "drone_attack_intensity",
+    "maritime_attack_intensit",
+    "interceptor_inventory",
+    "air_defense_effectivenes",
+    "shipping_throughput_rate",
+    "maritime_accessibility",
+    "grain_export_volume",
+    "fuel_export_volume",
+    "energy_infra_damage",
+    "petrochemical_capacity",
+    "sanctions_evasion_activi",
+    "rerouting_costs",
+    "insurance_premiums",
+    "food_price_index",
+    "military_posture",
+    "escalation_perception"
+  ],
+  "var_names": {
+    "drone_attack_intensity": "Drone attack intensity",
+    "maritime_attack_intensit": "Maritime attack intensity",
+    "interceptor_inventory": "Interceptor inventory",
+    "air_defense_effectivenes": "Air-defense effectiveness",
+    "shipping_throughput_rate": "Shipping throughput rate",
+    "maritime_accessibility": "Maritime route accessibility",
+    "grain_export_volume": "Grain export volume",
+    "fuel_export_volume": "Fuel export volume",
+    "energy_infra_damage": "Energy infrastructure damage",
+    "petrochemical_capacity": "Petrochemical operational capacity",
+    "sanctions_evasion_activi": "Sanctions-evasion activity",
+    "rerouting_costs": "Rerouting and logistics costs",
+    "insurance_premiums": "Insurance and security premiums",
+    "food_price_index": "Food price index",
+    "military_posture": "Military force posture",
+    "escalation_perception": "Escalation expectation perception"
+  },
+  "impact_matrix": {
+    "drone_attack_intensity": {
+      "drone_attack_intensity": 0,
+      "maritime_attack_intensit": 1,
+      "interceptor_inventory": 3,
+      "air_defense_effectivenes": 2,
+      "shipping_throughput_rate": 2,
+      "maritime_accessibility": 2,
+      "grain_export_volume": 2,
+      "fuel_export_volume": 2,
+      "energy_infra_damage": 2,
+      "petrochemical_capacity": 1,
+      "sanctions_evasion_activi": 0,
+      "rerouting_costs": 2,
+      "insurance_premiums": 3,
+      "food_price_index": 1,
+      "military_posture": 3,
+      "escalation_perception": 3
+    },
+    "maritime_attack_intensit": {
+      "drone_attack_intensity": 1,
+      "maritime_attack_intensit": 0,
+      "interceptor_inventory": 1,
+      "air_defense_effectivenes": 1,
+      "shipping_throughput_rate": 3,
+      "maritime_accessibility": 3,
+      "grain_export_volume": 3,
+      "fuel_export_volume": 3,
+      "energy_infra_damage": 2,
+      "petrochemical_capacity": 1,
+      "sanctions_evasion_activi": 1,
+      "rerouting_costs": 3,
+      "insurance_premiums": 3,
+      "food_price_index": 1,
+      "military_posture": 2,
+      "escalation_perception": 3
+    },
+    "interceptor_inventory": {
+      "drone_attack_intensity": 2,
+      "maritime_attack_intensit": 1,
+      "interceptor_inventory": 0,
+      "air_defense_effectivenes": 3,
+      "shipping_throughput_rate": 1,
+      "maritime_accessibility": 1,
+      "grain_export_volume": 1,
+      "fuel_export_volume": 1,
+      "energy_infra_damage": 1,
+      "petrochemical_capacity": 1,
+      "sanctions_evasion_activi": 0,
+      "rerouting_costs": 0,
+      "insurance_premiums": 1,
+      "food_price_index": 0,
+      "military_posture": 1,
+      "escalation_perception": 1
+    },
+    "air_defense_effectivenes": {
+      "drone_attack_intensity": 3,
+      "maritime_attack_intensit": 1,
+      "interceptor_inventory": 1,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 2,
+      "maritime_accessibility": 2,
+      "grain_export_volume": 2,
+      "fuel_export_volume": 2,
+      "energy_infra_damage": 2,
+      "petrochemical_capacity": 1,
+      "sanctions_evasion_activi": 0,
+      "rerouting_costs": 1,
+      "insurance_premiums": 2,
+      "food_price_index": 1,
+      "military_posture": 1,
+      "escalation_perception": 1
+    },
+    "shipping_throughput_rate": {
+      "drone_attack_intensity": 0,
+      "maritime_attack_intensit": 0,
+      "interceptor_inventory": 0,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 0,
+      "maritime_accessibility": 1,
+      "grain_export_volume": 3,
+      "fuel_export_volume": 3,
+      "energy_infra_damage": 0,
+      "petrochemical_capacity": 0,
+      "sanctions_evasion_activi": 1,
+      "rerouting_costs": 2,
+      "insurance_premiums": 1,
+      "food_price_index": 2,
+      "military_posture": 0,
+      "escalation_perception": 1
+    },
+    "maritime_accessibility": {
+      "drone_attack_intensity": 0,
+      "maritime_attack_intensit": 1,
+      "interceptor_inventory": 0,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 3,
+      "maritime_accessibility": 0,
+      "grain_export_volume": 3,
+      "fuel_export_volume": 3,
+      "energy_infra_damage": 0,
+      "petrochemical_capacity": 0,
+      "sanctions_evasion_activi": 1,
+      "rerouting_costs": 3,
+      "insurance_premiums": 3,
+      "food_price_index": 1,
+      "military_posture": 1,
+      "escalation_perception": 2
+    },
+    "grain_export_volume": {
+      "drone_attack_intensity": 0,
+      "maritime_attack_intensit": 0,
+      "interceptor_inventory": 0,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 1,
+      "maritime_accessibility": 0,
+      "grain_export_volume": 0,
+      "fuel_export_volume": 0,
+      "energy_infra_damage": 0,
+      "petrochemical_capacity": 0,
+      "sanctions_evasion_activi": 1,
+      "rerouting_costs": 1,
+      "insurance_premiums": 0,
+      "food_price_index": 3,
+      "military_posture": 0,
+      "escalation_perception": 1
+    },
+    "fuel_export_volume": {
+      "drone_attack_intensity": 0,
+      "maritime_attack_intensit": 0,
+      "interceptor_inventory": 0,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 1,
+      "maritime_accessibility": 0,
+      "grain_export_volume": 0,
+      "fuel_export_volume": 0,
+      "energy_infra_damage": 0,
+      "petrochemical_capacity": 1,
+      "sanctions_evasion_activi": 2,
+      "rerouting_costs": 1,
+      "insurance_premiums": 1,
+      "food_price_index": 1,
+      "military_posture": 0,
+      "escalation_perception": 1
+    },
+    "energy_infra_damage": {
+      "drone_attack_intensity": 0,
+      "maritime_attack_intensit": 0,
+      "interceptor_inventory": 0,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 2,
+      "maritime_accessibility": 1,
+      "grain_export_volume": 2,
+      "fuel_export_volume": 3,
+      "energy_infra_damage": 0,
+      "petrochemical_capacity": 3,
+      "sanctions_evasion_activi": 1,
+      "rerouting_costs": 2,
+      "insurance_premiums": 2,
+      "food_price_index": 1,
+      "military_posture": 1,
+      "escalation_perception": 2
+    },
+    "petrochemical_capacity": {
+      "drone_attack_intensity": 0,
+      "maritime_attack_intensit": 0,
+      "interceptor_inventory": 0,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 1,
+      "maritime_accessibility": 0,
+      "grain_export_volume": 0,
+      "fuel_export_volume": 3,
+      "energy_infra_damage": 0,
+      "petrochemical_capacity": 0,
+      "sanctions_evasion_activi": 1,
+      "rerouting_costs": 1,
+      "insurance_premiums": 1,
+      "food_price_index": 0,
+      "military_posture": 0,
+      "escalation_perception": 1
+    },
+    "sanctions_evasion_activi": {
+      "drone_attack_intensity": 0,
+      "maritime_attack_intensit": 0,
+      "interceptor_inventory": 0,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 1,
+      "maritime_accessibility": 0,
+      "grain_export_volume": 1,
+      "fuel_export_volume": 2,
+      "energy_infra_damage": 0,
+      "petrochemical_capacity": 0,
+      "sanctions_evasion_activi": 0,
+      "rerouting_costs": 1,
+      "insurance_premiums": 1,
+      "food_price_index": 1,
+      "military_posture": 0,
+      "escalation_perception": 1
+    },
+    "rerouting_costs": {
+      "drone_attack_intensity": 0,
+      "maritime_attack_intensit": 0,
+      "interceptor_inventory": 0,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 2,
+      "maritime_accessibility": 1,
+      "grain_export_volume": 2,
+      "fuel_export_volume": 2,
+      "energy_infra_damage": 0,
+      "petrochemical_capacity": 0,
+      "sanctions_evasion_activi": 1,
+      "rerouting_costs": 0,
+      "insurance_premiums": 1,
+      "food_price_index": 1,
+      "military_posture": 0,
+      "escalation_perception": 1
+    },
+    "insurance_premiums": {
+      "drone_attack_intensity": 0,
+      "maritime_attack_intensit": 0,
+      "interceptor_inventory": 0,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 2,
+      "maritime_accessibility": 0,
+      "grain_export_volume": 2,
+      "fuel_export_volume": 2,
+      "energy_infra_damage": 0,
+      "petrochemical_capacity": 0,
+      "sanctions_evasion_activi": 1,
+      "rerouting_costs": 1,
+      "insurance_premiums": 0,
+      "food_price_index": 1,
+      "military_posture": 0,
+      "escalation_perception": 2
+    },
+    "food_price_index": {
+      "drone_attack_intensity": 0,
+      "maritime_attack_intensit": 0,
+      "interceptor_inventory": 0,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 0,
+      "maritime_accessibility": 0,
+      "grain_export_volume": 0,
+      "fuel_export_volume": 0,
+      "energy_infra_damage": 0,
+      "petrochemical_capacity": 0,
+      "sanctions_evasion_activi": 1,
+      "rerouting_costs": 0,
+      "insurance_premiums": 0,
+      "food_price_index": 0,
+      "military_posture": 1,
+      "escalation_perception": 1
+    },
+    "military_posture": {
+      "drone_attack_intensity": 2,
+      "maritime_attack_intensit": 2,
+      "interceptor_inventory": 2,
+      "air_defense_effectivenes": 2,
+      "shipping_throughput_rate": 1,
+      "maritime_accessibility": 1,
+      "grain_export_volume": 0,
+      "fuel_export_volume": 0,
+      "energy_infra_damage": 1,
+      "petrochemical_capacity": 0,
+      "sanctions_evasion_activi": 0,
+      "rerouting_costs": 0,
+      "insurance_premiums": 1,
+      "food_price_index": 0,
+      "military_posture": 0,
+      "escalation_perception": 3
+    },
+    "escalation_perception": {
+      "drone_attack_intensity": 1,
+      "maritime_attack_intensit": 1,
+      "interceptor_inventory": 1,
+      "air_defense_effectivenes": 0,
+      "shipping_throughput_rate": 1,
+      "maritime_accessibility": 0,
+      "grain_export_volume": 1,
+      "fuel_export_volume": 1,
+      "energy_infra_damage": 0,
+      "petrochemical_capacity": 0,
+      "sanctions_evasion_activi": 1,
+      "rerouting_costs": 1,
+      "insurance_premiums": 2,
+      "food_price_index": 1,
+      "military_posture": 3,
+      "escalation_perception": 0
+    }
+  },
+  "AS": {
+    "drone_attack_intensity": 29,
+    "maritime_attack_intensit": 31,
+    "interceptor_inventory": 15,
+    "air_defense_effectivenes": 22,
+    "shipping_throughput_rate": 14,
+    "maritime_accessibility": 21,
+    "grain_export_volume": 7,
+    "fuel_export_volume": 8,
+    "energy_infra_damage": 20,
+    "petrochemical_capacity": 8,
+    "sanctions_evasion_activi": 8,
+    "rerouting_costs": 11,
+    "insurance_premiums": 11,
+    "food_price_index": 3,
+    "military_posture": 15,
+    "escalation_perception": 14
+  },
+  "PS": {
+    "drone_attack_intensity": 9,
+    "maritime_attack_intensit": 7,
+    "interceptor_inventory": 8,
+    "air_defense_effectivenes": 8,
+    "shipping_throughput_rate": 23,
+    "maritime_accessibility": 12,
+    "grain_export_volume": 22,
+    "fuel_export_volume": 27,
+    "energy_infra_damage": 8,
+    "petrochemical_capacity": 8,
+    "sanctions_evasion_activi": 12,
+    "rerouting_costs": 19,
+    "insurance_premiums": 22,
+    "food_price_index": 15,
+    "military_posture": 13,
+    "escalation_perception": 24
+  },
+  "med_AS": 14.0,
+  "med_PS": 12.5,
+  "roles": [
+    {
+      "variable": "escalation_perception",
+      "name": "Escalation expectation perception",
+      "AS": 14,
+      "PS": 24,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 336,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "shipping_throughput_rate",
+      "name": "Shipping throughput rate",
+      "AS": 14,
+      "PS": 23,
+      "Q=AS/PS": 0.61,
+      "P=AS*PS": 322,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "drone_attack_intensity",
+      "name": "Drone attack intensity",
+      "AS": 29,
+      "PS": 9,
+      "Q=AS/PS": 3.22,
+      "P=AS*PS": 261,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "maritime_accessibility",
+      "name": "Maritime route accessibility",
+      "AS": 21,
+      "PS": 12,
+      "Q=AS/PS": 1.75,
+      "P=AS*PS": 252,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "insurance_premiums",
+      "name": "Insurance and security premiums",
+      "AS": 11,
+      "PS": 22,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 242,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "maritime_attack_intensit",
+      "name": "Maritime attack intensity",
+      "AS": 31,
+      "PS": 7,
+      "Q=AS/PS": 4.43,
+      "P=AS*PS": 217,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "fuel_export_volume",
+      "name": "Fuel export volume",
+      "AS": 8,
+      "PS": 27,
+      "Q=AS/PS": 0.3,
+      "P=AS*PS": 216,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "rerouting_costs",
+      "name": "Rerouting and logistics costs",
+      "AS": 11,
+      "PS": 19,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 209,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "military_posture",
+      "name": "Military force posture",
+      "AS": 15,
+      "PS": 13,
+      "Q=AS/PS": 1.15,
+      "P=AS*PS": 195,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "air_defense_effectivenes",
+      "name": "Air-defense effectiveness",
+      "AS": 22,
+      "PS": 8,
+      "Q=AS/PS": 2.75,
+      "P=AS*PS": 176,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "energy_infra_damage",
+      "name": "Energy infrastructure damage",
+      "AS": 20,
+      "PS": 8,
+      "Q=AS/PS": 2.5,
+      "P=AS*PS": 160,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "grain_export_volume",
+      "name": "Grain export volume",
+      "AS": 7,
+      "PS": 22,
+      "Q=AS/PS": 0.32,
+      "P=AS*PS": 154,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "interceptor_inventory",
+      "name": "Interceptor inventory",
+      "AS": 15,
+      "PS": 8,
+      "Q=AS/PS": 1.87,
+      "P=AS*PS": 120,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sanctions_evasion_activi",
+      "name": "Sanctions-evasion activity",
+      "AS": 8,
+      "PS": 12,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 96,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "petrochemical_capacity",
+      "name": "Petrochemical operational capacity",
+      "AS": 8,
+      "PS": 8,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 64,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "food_price_index",
+      "name": "Food price index",
+      "AS": 3,
+      "PS": 15,
+      "Q=AS/PS": 0.2,
+      "P=AS*PS": 45,
+      "role": "reactive (sensor)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "drone_attack_intensity",
+        "name": "Drone attack intensity",
+        "kind": "driver",
+        "AS": 29,
+        "PS": 9
+      },
+      {
+        "id": "maritime_attack_intensit",
+        "name": "Maritime attack intensity",
+        "kind": "driver",
+        "AS": 31,
+        "PS": 7
+      },
+      {
+        "id": "interceptor_inventory",
+        "name": "Interceptor inventory",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 8
+      },
+      {
+        "id": "air_defense_effectivenes",
+        "name": "Air-defense effectiveness",
+        "kind": "environment",
+        "AS": 22,
+        "PS": 8
+      },
+      {
+        "id": "shipping_throughput_rate",
+        "name": "Shipping throughput rate",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 23
+      },
+      {
+        "id": "maritime_accessibility",
+        "name": "Maritime route accessibility",
+        "kind": "environment",
+        "AS": 21,
+        "PS": 12
+      },
+      {
+        "id": "grain_export_volume",
+        "name": "Grain export volume",
+        "kind": "flow",
+        "AS": 7,
+        "PS": 22
+      },
+      {
+        "id": "fuel_export_volume",
+        "name": "Fuel export volume",
+        "kind": "flow",
+        "AS": 8,
+        "PS": 27
+      },
+      {
+        "id": "energy_infra_damage",
+        "name": "Energy infrastructure damage",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 8
+      },
+      {
+        "id": "petrochemical_capacity",
+        "name": "Petrochemical operational capacity",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 8
+      },
+      {
+        "id": "sanctions_evasion_activi",
+        "name": "Sanctions-evasion activity",
+        "kind": "institution_field",
+        "AS": 8,
+        "PS": 12
+      },
+      {
+        "id": "rerouting_costs",
+        "name": "Rerouting and logistics costs",
+        "kind": "environment",
+        "AS": 11,
+        "PS": 19
+      },
+      {
+        "id": "insurance_premiums",
+        "name": "Insurance and security premiums",
+        "kind": "environment",
+        "AS": 11,
+        "PS": 22
+      },
+      {
+        "id": "food_price_index",
+        "name": "Food price index",
+        "kind": "environment",
+        "AS": 3,
+        "PS": 15
+      },
+      {
+        "id": "military_posture",
+        "name": "Military force posture",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 13
+      },
+      {
+        "id": "escalation_perception",
+        "name": "Escalation expectation perception",
+        "kind": "perception",
+        "AS": 14,
+        "PS": 24
+      }
+    ],
+    "edges": [
+      {
+        "source": "drone_attack_intensity",
+        "target": "interceptor_inventory",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "drone_attack_intensity",
+        "target": "air_defense_effectivenes",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "drone_attack_intensity",
+        "target": "shipping_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "drone_attack_intensity",
+        "target": "maritime_accessibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "drone_attack_intensity",
+        "target": "grain_export_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "drone_attack_intensity",
+        "target": "fuel_export_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "drone_attack_intensity",
+        "target": "energy_infra_damage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "drone_attack_intensity",
+        "target": "rerouting_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "drone_attack_intensity",
+        "target": "insurance_premiums",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "drone_attack_intensity",
+        "target": "military_posture",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "drone_attack_intensity",
+        "target": "escalation_perception",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_intensit",
+        "target": "shipping_throughput_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_attack_intensit",
+        "target": "maritime_accessibility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_attack_intensit",
+        "target": "grain_export_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_attack_intensit",
+        "target": "fuel_export_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_attack_intensit",
+        "target": "energy_infra_damage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_intensit",
+        "target": "rerouting_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_intensit",
+        "target": "insurance_premiums",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_intensit",
+        "target": "military_posture",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_intensit",
+        "target": "escalation_perception",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "interceptor_inventory",
+        "target": "drone_attack_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "interceptor_inventory",
+        "target": "air_defense_effectivenes",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "air_defense_effectivenes",
+        "target": "drone_attack_intensity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "air_defense_effectivenes",
+        "target": "shipping_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "air_defense_effectivenes",
+        "target": "maritime_accessibility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "air_defense_effectivenes",
+        "target": "grain_export_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "air_defense_effectivenes",
+        "target": "fuel_export_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "air_defense_effectivenes",
+        "target": "energy_infra_damage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "air_defense_effectivenes",
+        "target": "insurance_premiums",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_throughput_rate",
+        "target": "grain_export_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_throughput_rate",
+        "target": "fuel_export_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_throughput_rate",
+        "target": "rerouting_costs",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_throughput_rate",
+        "target": "food_price_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_accessibility",
+        "target": "shipping_throughput_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_accessibility",
+        "target": "grain_export_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_accessibility",
+        "target": "fuel_export_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_accessibility",
+        "target": "rerouting_costs",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_accessibility",
+        "target": "insurance_premiums",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_accessibility",
+        "target": "escalation_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "grain_export_volume",
+        "target": "food_price_index",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_export_volume",
+        "target": "sanctions_evasion_activi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_damage",
+        "target": "shipping_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_infra_damage",
+        "target": "grain_export_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_infra_damage",
+        "target": "fuel_export_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "energy_infra_damage",
+        "target": "petrochemical_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "energy_infra_damage",
+        "target": "rerouting_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_damage",
+        "target": "insurance_premiums",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_damage",
+        "target": "escalation_perception",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "petrochemical_capacity",
+        "target": "fuel_export_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_evasion_activi",
+        "target": "fuel_export_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouting_costs",
+        "target": "shipping_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_costs",
+        "target": "grain_export_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_costs",
+        "target": "fuel_export_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premiums",
+        "target": "shipping_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premiums",
+        "target": "grain_export_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premiums",
+        "target": "fuel_export_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premiums",
+        "target": "escalation_perception",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_posture",
+        "target": "drone_attack_intensity",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "military_posture",
+        "target": "maritime_attack_intensit",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "military_posture",
+        "target": "interceptor_inventory",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_posture",
+        "target": "air_defense_effectivenes",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_posture",
+        "target": "escalation_perception",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "escalation_perception",
+        "target": "insurance_premiums",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "escalation_perception",
+        "target": "military_posture",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "ukraine_moldova_rail_grain_route",
+      "title": "Ukraine–Moldova rail grain routing",
+      "description": "Plans to move Ukrainian grain via Moldovan rail corridors to bypass Black Sea chokepoint, sustaining exports while shifting flows overland.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-10-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "grain_export_volume",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rerouting_costs",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_throughput_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "maritime_accessibility",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "food_price_index",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "EXCLUSIVE: Ukraine, Moldova consider shipping grain by rail through Moldova; Ukraine cuts grain export forecast after seaport attacks."
+    },
+    {
+      "id": "black_sea_truce_offer",
+      "title": "Black Sea truce offer / negotiations",
+      "description": "Diplomatic offer for a Black Sea truce between Ukraine and Russia could produce a temporary reduction in seaborne strikes if accepted.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-13",
+        "end": "2026-09-30",
+        "label": "2–7 weeks"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "drone_attack_intensity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "maritime_attack_intensit",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_throughput_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "grain_export_volume",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "escalation_perception",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "military_posture",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "EXCLUSIVE: Ukraine offers Russia truce in Black Sea; Zelenskiy gave US negotiators proposals for ending the war."
+    },
+    {
+      "id": "us-mediated_pause_on_tanker_strikes",
+      "title": "US-mediated pause on tanker strikes",
+      "description": "U.S. pressure leads Ukraine to halt strikes on tankers using Russian ports, temporarily reducing attacks on commercial shipping.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-12",
+        "end": "2026-09-15",
+        "label": "days–weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "maritime_attack_intensit",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_throughput_rate",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premiums",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "escalation_perception",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "US asks Ukraine to stop strikes on tankers; reports say Ukraine halts strikes at US request."
+    },
+    {
+      "id": "russian_vessel_seizure_threats",
+      "title": "Russian threats to seize European vessels",
+      "description": "Russian statements threatening seizure of European ships if Russia's vessels are targeted raise risk of actual seizures or detentions at sea.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-13",
+        "end": "2026-11-30",
+        "label": "1–4 months"
+      },
+      "probability": 0.3,
+      "affected": [
+        {
+          "variable_id": "maritime_accessibility",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_throughput_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premiums",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "escalation_perception",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "military_posture",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Putin says Russia will start seizing European vessels if its ships targeted; Putin warns Russia will respond in kind."
+    },
+    {
+      "id": "continued_attacks_on_novorossiysk_and_ports",
+      "title": "Continued attacks on Novorossiysk and Black Sea ports",
+      "description": "Ongoing Ukrainian strikes against Novorossiysk terminals and naval facilities threaten port operations and grain throughput for the near term.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-12",
+        "end": "2026-10-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "maritime_attack_intensit",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_accessibility",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_throughput_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "grain_export_volume",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premiums",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "escalation_perception",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Ukraine pounds grain terminals at Russia's Novorossiysk port; two grain terminals halt work after attack."
+    },
+    {
+      "id": "interceptor_inventory_depletion",
+      "title": "Interceptor inventory depletion in Ukraine",
+      "description": "Sustained strikes and high interceptor use are reducing Ukraine's stock of air-defense interceptors, lowering defensive capacity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-11",
+        "end": "2026-09-30",
+        "label": "weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "interceptor_inventory",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "air_defense_effectivenes",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "drone_attack_intensity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "escalation_perception",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Russian bombardment kills 17 in Kyiv as Ukraine runs low on interceptors; Ukraine needs more help in the battle of the sky."
+    },
+    {
+      "id": "potential_patriot_or_aa_decision",
+      "title": "Decision on Patriot / air-defence aid",
+      "description": "U.S. decision whether to deliver Patriot batteries or similar systems will materially alter regional air-defence capacity if approved.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-13",
+        "end": "2026-11-30",
+        "label": "weeks–months"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "interceptor_inventory",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "air_defense_effectivenes",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "military_posture",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "escalation_perception",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Russia attacks Ukrainian port on Danube, Zelenskiy urges US to send Patriots; Ukraine seeks more help in the sky."
+    },
+    {
+      "id": "orsk_refinery_extended_shutdown",
+      "title": "Orsk refinery extended outage",
+      "description": "The Orsk refinery has been shut by attack and is expected offline for months, cutting regional refining capacity and exports.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-11",
+        "end": "2026-11-11",
+        "label": "months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "fuel_export_volume",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "petrochemical_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "energy_infra_damage",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rerouting_costs",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Ukrainian attack shuts Russia's Orsk refinery for months, halted processing after August 11 drone attack."
+    },
+    {
+      "id": "ship_defences_wider_adoption",
+      "title": "Wider adoption of 'Mad Max' ship defences",
+      "description": "Operators expand physical countermeasures (nets, escorts) on tankers and ghost-fleet tactics, altering vulnerability of vessels to drone strikes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-13",
+        "end": "2026-10-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "shipping_throughput_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_accessibility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premiums",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Russia's ghost fleet tankers use ‘Mad Max’ nets to fend off Ukraine’s drones, showing ship-level adaptation."
+    },
+    {
+      "id": "increased_nato_romania_patrols",
+      "title": "Increased Romania/NATO Black Sea patrols",
+      "description": "Romania and NATO may boost patrols and defenses after drone incidents, raising force posture and surveillance in the Black Sea.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-11",
+        "end": "2026-09-30",
+        "label": "weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "military_posture",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "air_defense_effectivenes",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "escalation_perception",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Romania destroys drones near Black Sea gas project; Russia probes NATO defenses per German general."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "continued_attacks_on_novorossiysk_and_ports",
+      "title": "Continued attacks on Novorossiysk and Black Sea ports",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-08-12",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 269.0,
+      "expected_impact": 215.2,
+      "event_PS": 17.75,
+      "event_AS": 16.812,
+      "n_vars": 6,
+      "affected_ids": "maritime_attack_intensit, maritime_accessibility, shipping_throughput_rate, grain_export_volume, insurance_premiums, escalation_perception",
+      "rationale": "Ukraine pounds grain terminals at Russia's Novorossiysk port; two grain terminals halt work after attack."
+    },
+    {
+      "id": "russian_vessel_seizure_threats",
+      "title": "Russian threats to seize European vessels",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1–4 months",
+      "date": null,
+      "start": "2026-08-13",
+      "end": "2026-11-30",
+      "probability": 0.3,
+      "impact_score": 210.0,
+      "expected_impact": 63.0,
+      "event_PS": 19.214,
+      "event_AS": 15.0,
+      "n_vars": 5,
+      "affected_ids": "maritime_accessibility, shipping_throughput_rate, insurance_premiums, escalation_perception, military_posture",
+      "rationale": "Putin says Russia will start seizing European vessels if its ships targeted; Putin warns Russia will respond in kind."
+    },
+    {
+      "id": "black_sea_truce_offer",
+      "title": "Black Sea truce offer / negotiations",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2–7 weeks",
+      "date": null,
+      "start": "2026-08-13",
+      "end": "2026-09-30",
+      "probability": 0.4,
+      "impact_score": 205.0,
+      "expected_impact": 82.0,
+      "event_PS": 16.636,
+      "event_AS": 18.636,
+      "n_vars": 6,
+      "affected_ids": "drone_attack_intensity, maritime_attack_intensit, shipping_throughput_rate, grain_export_volume, escalation_perception, military_posture",
+      "rationale": "EXCLUSIVE: Ukraine offers Russia truce in Black Sea; Zelenskiy gave US negotiators proposals for ending the war."
+    },
+    {
+      "id": "interceptor_inventory_depletion",
+      "title": "Interceptor inventory depletion in Ukraine",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-11",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 197.0,
+      "expected_impact": 137.9,
+      "event_PS": 11.4,
+      "event_AS": 19.7,
+      "n_vars": 4,
+      "affected_ids": "interceptor_inventory, air_defense_effectivenes, drone_attack_intensity, escalation_perception",
+      "rationale": "Russian bombardment kills 17 in Kyiv as Ukraine runs low on interceptors; Ukraine needs more help in the battle of the sky."
+    },
+    {
+      "id": "orsk_refinery_extended_shutdown",
+      "title": "Orsk refinery extended outage",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-08-11",
+      "end": "2026-11-11",
+      "probability": 0.9,
+      "impact_score": 122.0,
+      "expected_impact": 109.8,
+      "event_PS": 15.9,
+      "event_AS": 12.2,
+      "n_vars": 4,
+      "affected_ids": "fuel_export_volume, petrochemical_capacity, energy_infra_damage, rerouting_costs",
+      "rationale": "Ukrainian attack shuts Russia's Orsk refinery for months, halted processing after August 11 drone attack."
+    },
+    {
+      "id": "potential_patriot_or_aa_decision",
+      "title": "Decision on Patriot / air-defence aid",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-08-13",
+      "end": "2026-11-30",
+      "probability": 0.4,
+      "impact_score": 103.0,
+      "expected_impact": 41.2,
+      "event_PS": 11.5,
+      "event_AS": 17.167,
+      "n_vars": 4,
+      "affected_ids": "interceptor_inventory, air_defense_effectivenes, military_posture, escalation_perception",
+      "rationale": "Russia attacks Ukrainian port on Danube, Zelenskiy urges US to send Patriots; Ukraine seeks more help in the sky."
+    },
+    {
+      "id": "us-mediated_pause_on_tanker_strikes",
+      "title": "US-mediated pause on tanker strikes",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–weeks",
+      "date": null,
+      "start": "2026-08-12",
+      "end": "2026-09-15",
+      "probability": 0.6,
+      "impact_score": 101.0,
+      "expected_impact": 60.6,
+      "event_PS": 16.6,
+      "event_AS": 20.2,
+      "n_vars": 4,
+      "affected_ids": "maritime_attack_intensit, shipping_throughput_rate, insurance_premiums, escalation_perception",
+      "rationale": "US asks Ukraine to stop strikes on tankers; reports say Ukraine halts strikes at US request."
+    },
+    {
+      "id": "ship_defences_wider_adoption",
+      "title": "Wider adoption of 'Mad Max' ship defences",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-08-13",
+      "end": "2026-10-31",
+      "probability": 0.6,
+      "impact_score": 81.0,
+      "expected_impact": 48.6,
+      "event_PS": 18.4,
+      "event_AS": 16.2,
+      "n_vars": 3,
+      "affected_ids": "shipping_throughput_rate, maritime_accessibility, insurance_premiums",
+      "rationale": "Russia's ghost fleet tankers use ‘Mad Max’ nets to fend off Ukraine’s drones, showing ship-level adaptation."
+    },
+    {
+      "id": "increased_nato_romania_patrols",
+      "title": "Increased Romania/NATO Black Sea patrols",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-11",
+      "end": "2026-09-30",
+      "probability": 0.6,
+      "impact_score": 80.0,
+      "expected_impact": 48.0,
+      "event_PS": 16.4,
+      "event_AS": 16.0,
+      "n_vars": 3,
+      "affected_ids": "military_posture, air_defense_effectivenes, escalation_perception",
+      "rationale": "Romania destroys drones near Black Sea gas project; Russia probes NATO defenses per German general."
+    },
+    {
+      "id": "ukraine_moldova_rail_grain_route",
+      "title": "Ukraine–Moldova rail grain routing",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 74.0,
+      "expected_impact": 51.8,
+      "event_PS": 18.857,
+      "event_AS": 10.571,
+      "n_vars": 5,
+      "affected_ids": "grain_export_volume, rerouting_costs, shipping_throughput_rate, maritime_accessibility, food_price_index",
+      "rationale": "EXCLUSIVE: Ukraine, Moldova consider shipping grain by rail through Moldova; Ukraine cuts grain export forecast after seaport attacks."
+    }
+  ]
+}
