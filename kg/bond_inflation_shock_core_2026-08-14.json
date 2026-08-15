@@ -1,0 +1,1429 @@
+{
+  "label": "bond_inflation_shock",
+  "as_of": "2026-08-14",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-15T00:07:57",
+  "system_description": {
+    "narrative_title": "Inflation data and central-bank uncertainty driving a bond-market repricing",
+    "narrative_summary": "A wave of US and global inflation releases is reshaping expectations for central-bank policy (Fed, BOJ and others), producing volatile sovereign yields and forcing portfolio reallocations into gold, cash and alternative assets. Treasuries, fiscal supply and FX interventions interact through feedback loops: inflation -> rate expectations -> yields -> asset flows -> policy/market interventions, making this an open system with information-driven, time-sensitive feedbacks and external shocks (geopolitics, commodity moves).",
+    "scope": "US and major developed-market inflation and wholesale price data; central-bank policy expectations and guidance (Fed, BOJ, ECB, RBA, RBI); sovereign bond markets and yields (US Treasuries, JGBs); investor portfolio flows into gold and safe havens; FX moves and interventions (yen, dollar); fiscal supply signals (US budget/deficit).",
+    "super_system": "Global macro-financial system (global economy, monetary-fiscal policy coordination, and international capital flows)",
+    "adjacent_subsystems": [
+      "FX and currency intervention dynamics",
+      "Commodity and precious-metals markets (gold, oil)",
+      "Fiscal & sovereign debt supply dynamics",
+      "Banking, credit and corporate funding markets"
+    ],
+    "evidence_headlines": [
+      "An inflation report Wednesday should be a big deal for the Fed. Here's what to expect",
+      "Consumer prices rose 0.1% in July, as expected, putting the annual rate at 3.4%",
+      "Treasury Yields Slip as U.S. Inflation Meets Expectations",
+      "The $30 trillion Treasury market is facing a painful reckoning. How rising yields could squeeze your portfolio.",
+      "Gold rises to over two-month peak as US inflation data dampens rate hike bets",
+      "Why the historic U.S.-Japan intervention has failed to halt the yen’s slide"
+    ]
+  },
+  "variables": [
+    {
+      "id": "consumer_price_inflation",
+      "name": "Consumer-price inflation rate",
+      "description": "The continuous percentage change in the general consumer price level over a specified rolling period.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "wholesale_inflation_rate",
+      "name": "Wholesale-price inflation rate",
+      "description": "The continuous percentage change in wholesale or producer price indices over a specified rolling period.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market and survey-implied anticipated future inflation rate over near-to-medium horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_risk",
+      "name": "Monetary policy uncertainty/risk",
+      "description": "The perceived uncertainty about future monetary policy actions and their timing/intensity.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectation",
+      "name": "Policy-rate expectation",
+      "description": "The expected path or level of short-term policy interest rates implied by markets and forecasts.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_yield_curve",
+      "name": "Sovereign yield term structure",
+      "description": "The set of sovereign interest rates across maturities representing the level and slope of the yield curve.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_term_premium",
+      "name": "Term premium",
+      "description": "The component of long-term sovereign yields reflecting compensation for duration and uncertainty separate from expected short rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_asset_allocation",
+      "name": "Safe-asset allocation",
+      "description": "The share of investor portfolios allocated to assets perceived as safe or reserve-like at a point in time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crossborder_capital_flow",
+      "name": "Cross-border capital flow volumes",
+      "description": "The net continuous flow of capital across borders driven by portfolio reallocation, foreign investment and hedging activity.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_bond_supply",
+      "name": "Sovereign bond supply flow",
+      "description": "The ongoing issuance rate of sovereign debt securities into financial markets over a given period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity_depth",
+      "name": "Market liquidity depth",
+      "description": "The degree to which markets can absorb trades without large price moves, as measured by available depth and bid-ask tightness.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fx_intervention_rate",
+      "name": "FX intervention intensity",
+      "description": "The rate and magnitude of official foreign-exchange operations intended to influence exchange rates or market conditions.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_volatility",
+      "name": "Exchange-rate volatility",
+      "description": "The realized or implied variability of exchange rates over a chosen time horizon.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_volatility",
+      "name": "Commodity price volatility",
+      "description": "The realized or implied variability of major commodity prices (e.g., energy, metals) that affect inflation and trade balances.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_aversion",
+      "name": "Investor risk aversion",
+      "description": "The prevailing degree of risk tolerance among investors, shaping demand for risky versus safe assets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_surprise_rate",
+      "name": "Inflation surprise rate",
+      "description": "The continuous deviation between realized inflation data and prevailing market/forecast expectations.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "consumer_price_inflation",
+    "wholesale_inflation_rate",
+    "inflation_expectations",
+    "monetary_policy_risk",
+    "policy_rate_expectation",
+    "sovereign_yield_curve",
+    "sovereign_term_premium",
+    "safe_asset_allocation",
+    "crossborder_capital_flow",
+    "sovereign_bond_supply",
+    "market_liquidity_depth",
+    "fx_intervention_rate",
+    "exchange_rate_volatility",
+    "commodity_volatility",
+    "investor_risk_aversion",
+    "inflation_surprise_rate"
+  ],
+  "var_names": {
+    "consumer_price_inflation": "Consumer-price inflation rate",
+    "wholesale_inflation_rate": "Wholesale-price inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "monetary_policy_risk": "Monetary policy uncertainty/risk",
+    "policy_rate_expectation": "Policy-rate expectation",
+    "sovereign_yield_curve": "Sovereign yield term structure",
+    "sovereign_term_premium": "Term premium",
+    "safe_asset_allocation": "Safe-asset allocation",
+    "crossborder_capital_flow": "Cross-border capital flow volumes",
+    "sovereign_bond_supply": "Sovereign bond supply flow",
+    "market_liquidity_depth": "Market liquidity depth",
+    "fx_intervention_rate": "FX intervention intensity",
+    "exchange_rate_volatility": "Exchange-rate volatility",
+    "commodity_volatility": "Commodity price volatility",
+    "investor_risk_aversion": "Investor risk aversion",
+    "inflation_surprise_rate": "Inflation surprise rate"
+  },
+  "impact_matrix": {
+    "consumer_price_inflation": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 1,
+      "inflation_expectations": 3,
+      "monetary_policy_risk": 2,
+      "policy_rate_expectation": 2,
+      "sovereign_yield_curve": 1,
+      "sovereign_term_premium": 1,
+      "safe_asset_allocation": 1,
+      "crossborder_capital_flow": 1,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 0,
+      "fx_intervention_rate": 0,
+      "exchange_rate_volatility": 1,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 1,
+      "inflation_surprise_rate": 3
+    },
+    "wholesale_inflation_rate": {
+      "consumer_price_inflation": 2,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 2,
+      "monetary_policy_risk": 1,
+      "policy_rate_expectation": 1,
+      "sovereign_yield_curve": 1,
+      "sovereign_term_premium": 1,
+      "safe_asset_allocation": 1,
+      "crossborder_capital_flow": 1,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 0,
+      "fx_intervention_rate": 0,
+      "exchange_rate_volatility": 0,
+      "commodity_volatility": 1,
+      "investor_risk_aversion": 0,
+      "inflation_surprise_rate": 1
+    },
+    "inflation_expectations": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_risk": 3,
+      "policy_rate_expectation": 3,
+      "sovereign_yield_curve": 3,
+      "sovereign_term_premium": 1,
+      "safe_asset_allocation": 2,
+      "crossborder_capital_flow": 1,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 0,
+      "fx_intervention_rate": 0,
+      "exchange_rate_volatility": 1,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 1,
+      "inflation_surprise_rate": 0
+    },
+    "monetary_policy_risk": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 2,
+      "monetary_policy_risk": 0,
+      "policy_rate_expectation": 3,
+      "sovereign_yield_curve": 2,
+      "sovereign_term_premium": 2,
+      "safe_asset_allocation": 2,
+      "crossborder_capital_flow": 2,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 1,
+      "fx_intervention_rate": 1,
+      "exchange_rate_volatility": 2,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 1,
+      "inflation_surprise_rate": 0
+    },
+    "policy_rate_expectation": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "monetary_policy_risk": 1,
+      "policy_rate_expectation": 0,
+      "sovereign_yield_curve": 3,
+      "sovereign_term_premium": 1,
+      "safe_asset_allocation": 2,
+      "crossborder_capital_flow": 2,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 0,
+      "fx_intervention_rate": 0,
+      "exchange_rate_volatility": 1,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 0,
+      "inflation_surprise_rate": 0
+    },
+    "sovereign_yield_curve": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "monetary_policy_risk": 1,
+      "policy_rate_expectation": 2,
+      "sovereign_yield_curve": 0,
+      "sovereign_term_premium": 2,
+      "safe_asset_allocation": 2,
+      "crossborder_capital_flow": 2,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 1,
+      "fx_intervention_rate": 0,
+      "exchange_rate_volatility": 1,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 1,
+      "inflation_surprise_rate": 0
+    },
+    "sovereign_term_premium": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "monetary_policy_risk": 1,
+      "policy_rate_expectation": 1,
+      "sovereign_yield_curve": 3,
+      "sovereign_term_premium": 0,
+      "safe_asset_allocation": 1,
+      "crossborder_capital_flow": 1,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 0,
+      "fx_intervention_rate": 0,
+      "exchange_rate_volatility": 0,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 1,
+      "inflation_surprise_rate": 0
+    },
+    "safe_asset_allocation": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_risk": 0,
+      "policy_rate_expectation": 0,
+      "sovereign_yield_curve": 2,
+      "sovereign_term_premium": 2,
+      "safe_asset_allocation": 0,
+      "crossborder_capital_flow": 2,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 2,
+      "fx_intervention_rate": 0,
+      "exchange_rate_volatility": 1,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 0,
+      "inflation_surprise_rate": 0
+    },
+    "crossborder_capital_flow": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "monetary_policy_risk": 1,
+      "policy_rate_expectation": 1,
+      "sovereign_yield_curve": 2,
+      "sovereign_term_premium": 1,
+      "safe_asset_allocation": 2,
+      "crossborder_capital_flow": 0,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 2,
+      "fx_intervention_rate": 2,
+      "exchange_rate_volatility": 2,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 1,
+      "inflation_surprise_rate": 0
+    },
+    "sovereign_bond_supply": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_risk": 0,
+      "policy_rate_expectation": 0,
+      "sovereign_yield_curve": 3,
+      "sovereign_term_premium": 2,
+      "safe_asset_allocation": 0,
+      "crossborder_capital_flow": 1,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 1,
+      "fx_intervention_rate": 0,
+      "exchange_rate_volatility": 0,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 0,
+      "inflation_surprise_rate": 0
+    },
+    "market_liquidity_depth": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_risk": 1,
+      "policy_rate_expectation": 0,
+      "sovereign_yield_curve": 1,
+      "sovereign_term_premium": 1,
+      "safe_asset_allocation": 0,
+      "crossborder_capital_flow": 1,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 0,
+      "fx_intervention_rate": 1,
+      "exchange_rate_volatility": 1,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 1,
+      "inflation_surprise_rate": 0
+    },
+    "fx_intervention_rate": {
+      "consumer_price_inflation": 1,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_risk": 1,
+      "policy_rate_expectation": 1,
+      "sovereign_yield_curve": 1,
+      "sovereign_term_premium": 0,
+      "safe_asset_allocation": 1,
+      "crossborder_capital_flow": 2,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 1,
+      "fx_intervention_rate": 0,
+      "exchange_rate_volatility": 3,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 1,
+      "inflation_surprise_rate": 0
+    },
+    "exchange_rate_volatility": {
+      "consumer_price_inflation": 2,
+      "wholesale_inflation_rate": 1,
+      "inflation_expectations": 1,
+      "monetary_policy_risk": 1,
+      "policy_rate_expectation": 1,
+      "sovereign_yield_curve": 1,
+      "sovereign_term_premium": 1,
+      "safe_asset_allocation": 1,
+      "crossborder_capital_flow": 2,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 1,
+      "fx_intervention_rate": 2,
+      "exchange_rate_volatility": 0,
+      "commodity_volatility": 1,
+      "investor_risk_aversion": 1,
+      "inflation_surprise_rate": 1
+    },
+    "commodity_volatility": {
+      "consumer_price_inflation": 2,
+      "wholesale_inflation_rate": 3,
+      "inflation_expectations": 2,
+      "monetary_policy_risk": 1,
+      "policy_rate_expectation": 1,
+      "sovereign_yield_curve": 1,
+      "sovereign_term_premium": 0,
+      "safe_asset_allocation": 1,
+      "crossborder_capital_flow": 0,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 0,
+      "fx_intervention_rate": 0,
+      "exchange_rate_volatility": 1,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 1,
+      "inflation_surprise_rate": 2
+    },
+    "investor_risk_aversion": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_risk": 0,
+      "policy_rate_expectation": 0,
+      "sovereign_yield_curve": 2,
+      "sovereign_term_premium": 2,
+      "safe_asset_allocation": 3,
+      "crossborder_capital_flow": 2,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 2,
+      "fx_intervention_rate": 0,
+      "exchange_rate_volatility": 1,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 0,
+      "inflation_surprise_rate": 0
+    },
+    "inflation_surprise_rate": {
+      "consumer_price_inflation": 0,
+      "wholesale_inflation_rate": 0,
+      "inflation_expectations": 3,
+      "monetary_policy_risk": 2,
+      "policy_rate_expectation": 3,
+      "sovereign_yield_curve": 2,
+      "sovereign_term_premium": 1,
+      "safe_asset_allocation": 2,
+      "crossborder_capital_flow": 1,
+      "sovereign_bond_supply": 0,
+      "market_liquidity_depth": 1,
+      "fx_intervention_rate": 1,
+      "exchange_rate_volatility": 2,
+      "commodity_volatility": 0,
+      "investor_risk_aversion": 1,
+      "inflation_surprise_rate": 0
+    }
+  },
+  "AS": {
+    "consumer_price_inflation": 17,
+    "wholesale_inflation_rate": 12,
+    "inflation_expectations": 15,
+    "monetary_policy_risk": 18,
+    "policy_rate_expectation": 11,
+    "sovereign_yield_curve": 13,
+    "sovereign_term_premium": 9,
+    "safe_asset_allocation": 9,
+    "crossborder_capital_flow": 15,
+    "sovereign_bond_supply": 7,
+    "market_liquidity_depth": 7,
+    "fx_intervention_rate": 12,
+    "exchange_rate_volatility": 17,
+    "commodity_volatility": 15,
+    "investor_risk_aversion": 12,
+    "inflation_surprise_rate": 19
+  },
+  "PS": {
+    "consumer_price_inflation": 7,
+    "wholesale_inflation_rate": 5,
+    "inflation_expectations": 17,
+    "monetary_policy_risk": 16,
+    "policy_rate_expectation": 19,
+    "sovereign_yield_curve": 28,
+    "sovereign_term_premium": 18,
+    "safe_asset_allocation": 21,
+    "crossborder_capital_flow": 21,
+    "sovereign_bond_supply": 0,
+    "market_liquidity_depth": 12,
+    "fx_intervention_rate": 7,
+    "exchange_rate_volatility": 17,
+    "commodity_volatility": 2,
+    "investor_risk_aversion": 11,
+    "inflation_surprise_rate": 7
+  },
+  "med_AS": 12.5,
+  "med_PS": 14.0,
+  "roles": [
+    {
+      "variable": "sovereign_yield_curve",
+      "name": "Sovereign yield term structure",
+      "AS": 13,
+      "PS": 28,
+      "Q=AS/PS": 0.46,
+      "P=AS*PS": 364,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crossborder_capital_flow",
+      "name": "Cross-border capital flow volumes",
+      "AS": 15,
+      "PS": 21,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 315,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "exchange_rate_volatility",
+      "name": "Exchange-rate volatility",
+      "AS": 17,
+      "PS": 17,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 289,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "monetary_policy_risk",
+      "name": "Monetary policy uncertainty/risk",
+      "AS": 18,
+      "PS": 16,
+      "Q=AS/PS": 1.12,
+      "P=AS*PS": 288,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 15,
+      "PS": 17,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 255,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_expectation",
+      "name": "Policy-rate expectation",
+      "AS": 11,
+      "PS": 19,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 209,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "safe_asset_allocation",
+      "name": "Safe-asset allocation",
+      "AS": 9,
+      "PS": 21,
+      "Q=AS/PS": 0.43,
+      "P=AS*PS": 189,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "sovereign_term_premium",
+      "name": "Term premium",
+      "AS": 9,
+      "PS": 18,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 162,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_surprise_rate",
+      "name": "Inflation surprise rate",
+      "AS": 19,
+      "PS": 7,
+      "Q=AS/PS": 2.71,
+      "P=AS*PS": 133,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "investor_risk_aversion",
+      "name": "Investor risk aversion",
+      "AS": 12,
+      "PS": 11,
+      "Q=AS/PS": 1.09,
+      "P=AS*PS": 132,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "consumer_price_inflation",
+      "name": "Consumer-price inflation rate",
+      "AS": 17,
+      "PS": 7,
+      "Q=AS/PS": 2.43,
+      "P=AS*PS": 119,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_liquidity_depth",
+      "name": "Market liquidity depth",
+      "AS": 7,
+      "PS": 12,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 84,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fx_intervention_rate",
+      "name": "FX intervention intensity",
+      "AS": 12,
+      "PS": 7,
+      "Q=AS/PS": 1.71,
+      "P=AS*PS": 84,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "wholesale_inflation_rate",
+      "name": "Wholesale-price inflation rate",
+      "AS": 12,
+      "PS": 5,
+      "Q=AS/PS": 2.4,
+      "P=AS*PS": 60,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "commodity_volatility",
+      "name": "Commodity price volatility",
+      "AS": 15,
+      "PS": 2,
+      "Q=AS/PS": 7.5,
+      "P=AS*PS": 30,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sovereign_bond_supply",
+      "name": "Sovereign bond supply flow",
+      "AS": 7,
+      "PS": 0,
+      "Q=AS/PS": 7000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "consumer_price_inflation",
+        "name": "Consumer-price inflation rate",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 7
+      },
+      {
+        "id": "wholesale_inflation_rate",
+        "name": "Wholesale-price inflation rate",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 5
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 15,
+        "PS": 17
+      },
+      {
+        "id": "monetary_policy_risk",
+        "name": "Monetary policy uncertainty/risk",
+        "kind": "perception",
+        "AS": 18,
+        "PS": 16
+      },
+      {
+        "id": "policy_rate_expectation",
+        "name": "Policy-rate expectation",
+        "kind": "perception",
+        "AS": 11,
+        "PS": 19
+      },
+      {
+        "id": "sovereign_yield_curve",
+        "name": "Sovereign yield term structure",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 28
+      },
+      {
+        "id": "sovereign_term_premium",
+        "name": "Term premium",
+        "kind": "driver",
+        "AS": 9,
+        "PS": 18
+      },
+      {
+        "id": "safe_asset_allocation",
+        "name": "Safe-asset allocation",
+        "kind": "stock",
+        "AS": 9,
+        "PS": 21
+      },
+      {
+        "id": "crossborder_capital_flow",
+        "name": "Cross-border capital flow volumes",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 21
+      },
+      {
+        "id": "sovereign_bond_supply",
+        "name": "Sovereign bond supply flow",
+        "kind": "flow",
+        "AS": 7,
+        "PS": 0
+      },
+      {
+        "id": "market_liquidity_depth",
+        "name": "Market liquidity depth",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 12
+      },
+      {
+        "id": "fx_intervention_rate",
+        "name": "FX intervention intensity",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 7
+      },
+      {
+        "id": "exchange_rate_volatility",
+        "name": "Exchange-rate volatility",
+        "kind": "environment",
+        "AS": 17,
+        "PS": 17
+      },
+      {
+        "id": "commodity_volatility",
+        "name": "Commodity price volatility",
+        "kind": "environment",
+        "AS": 15,
+        "PS": 2
+      },
+      {
+        "id": "investor_risk_aversion",
+        "name": "Investor risk aversion",
+        "kind": "perception",
+        "AS": 12,
+        "PS": 11
+      },
+      {
+        "id": "inflation_surprise_rate",
+        "name": "Inflation surprise rate",
+        "kind": "driver",
+        "AS": 19,
+        "PS": 7
+      }
+    ],
+    "edges": [
+      {
+        "source": "consumer_price_inflation",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "monetary_policy_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "policy_rate_expectation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "inflation_surprise_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "wholesale_inflation_rate",
+        "target": "consumer_price_inflation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wholesale_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "monetary_policy_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "sovereign_yield_curve",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "safe_asset_allocation",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_risk",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_risk",
+        "target": "policy_rate_expectation",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_risk",
+        "target": "sovereign_yield_curve",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_risk",
+        "target": "sovereign_term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_risk",
+        "target": "safe_asset_allocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_risk",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_risk",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectation",
+        "target": "sovereign_yield_curve",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectation",
+        "target": "safe_asset_allocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectation",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_curve",
+        "target": "policy_rate_expectation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_curve",
+        "target": "sovereign_term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_yield_curve",
+        "target": "safe_asset_allocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_curve",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_term_premium",
+        "target": "sovereign_yield_curve",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_allocation",
+        "target": "sovereign_yield_curve",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_allocation",
+        "target": "sovereign_term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_allocation",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_allocation",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "sovereign_yield_curve",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "safe_asset_allocation",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "fx_intervention_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_supply",
+        "target": "sovereign_yield_curve",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_supply",
+        "target": "sovereign_term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_intervention_rate",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_intervention_rate",
+        "target": "exchange_rate_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "consumer_price_inflation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "fx_intervention_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_volatility",
+        "target": "consumer_price_inflation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_volatility",
+        "target": "wholesale_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_volatility",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_volatility",
+        "target": "inflation_surprise_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "sovereign_yield_curve",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "sovereign_term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "safe_asset_allocation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_surprise_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_surprise_rate",
+        "target": "monetary_policy_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_surprise_rate",
+        "target": "policy_rate_expectation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_surprise_rate",
+        "target": "sovereign_yield_curve",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_surprise_rate",
+        "target": "safe_asset_allocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_surprise_rate",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_cpi_ppi_next_release",
+      "title": "Next US CPI/PPI monthly releases",
+      "description": "The upcoming monthly U.S. consumer and producer price releases are likely to move expectations and bond yields if they surprise relative to consensus.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-09-15",
+        "label": "next 4 weeks"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "consumer_price_inflation",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "wholesale_inflation_rate",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_surprise_rate",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_rate_expectation",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_yield_curve",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "monetary_policy_risk",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'An inflation report Wednesday should be a big deal'; 'Treasury yields await key inflation data'; 'US consumer prices increase as expected'."
+    },
+    {
+      "id": "fed_september_policy_meeting",
+      "title": "September Fed policy meeting/outcome",
+      "description": "The Fed's September decision (and message) will recalibrate market rate paths and risk premia given recent inflation prints and official comments.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-09-30",
+        "label": "mid–late September"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectation",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "monetary_policy_risk",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_yield_curve",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_risk_aversion",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "safe_asset_allocation",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Fed expected to leave rates unchanged next month after soft inflation data'; 'Inflation is the biggest problem, Fed's Goolsbee says'."
+    },
+    {
+      "id": "boj_september_rate_decision",
+      "title": "BOJ decision and likely September hike",
+      "description": "Markets expect the Bank of Japan to tighten in September as wholesale inflation stays hot, which would shift rate expectations and FX dynamics.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September 2026"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectation",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "monetary_policy_risk",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "exchange_rate_volatility",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "fx_intervention_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_yield_curve",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'BOJ eyeing September rate hike'; 'Japan's wholesale inflation stays hot, bolstering odds of September BOJ hike'."
+    },
+    {
+      "id": "continued_yen_fx_intervention",
+      "title": "Further yen FX interventions",
+      "description": "Follow-on official FX operations (Japan/partners) are likely if the yen resumes sharp weakness, affecting intervention intensity and near-term FX volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-14",
+        "end": "2026-09-30",
+        "label": "near term (weeks)"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "fx_intervention_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crossborder_capital_flow",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_yield_curve",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Yen's slide prompts bets for another intervention'; 'US Treasury undertakes historic intervention in yen market'."
+    },
+    {
+      "id": "sustained_high_treasury_supply_and_deficit",
+      "title": "Sustained large US Treasury issuance and widening deficit",
+      "description": "Ongoing large Treasury supply and a widening budget deficit will keep upward pressure on long-term yields and term premia over coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-14",
+        "end": "2026-11-30",
+        "label": "next 3 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "sovereign_bond_supply",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_curve",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity_depth",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crossborder_capital_flow",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'US sells 30-year bonds at highest borrowing costs'; 'U.S. budget deficit widens' and 'national debt about to reach $40 trillion'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_cpi_ppi_next_release",
+      "title": "Next US CPI/PPI monthly releases",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4 weeks",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-09-15",
+      "probability": 0.95,
+      "impact_score": 258.0,
+      "expected_impact": 245.1,
+      "event_PS": 12.765,
+      "event_AS": 15.176,
+      "n_vars": 7,
+      "affected_ids": "consumer_price_inflation, wholesale_inflation_rate, inflation_surprise_rate, inflation_expectations, policy_rate_expectation, sovereign_yield_curve, monetary_policy_risk",
+      "rationale": "Headlines: 'An inflation report Wednesday should be a big deal'; 'Treasury yields await key inflation data'; 'US consumer prices increase as expected'."
+    },
+    {
+      "id": "boj_september_rate_decision",
+      "title": "BOJ decision and likely September hike",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September 2026",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 140.0,
+      "expected_impact": 98.0,
+      "event_PS": 16.5,
+      "event_AS": 14.0,
+      "n_vars": 5,
+      "affected_ids": "policy_rate_expectation, monetary_policy_risk, exchange_rate_volatility, fx_intervention_rate, sovereign_yield_curve",
+      "rationale": "Headlines: 'BOJ eyeing September rate hike'; 'Japan's wholesale inflation stays hot, bolstering odds of September BOJ hike'."
+    },
+    {
+      "id": "fed_september_policy_meeting",
+      "title": "September Fed policy meeting/outcome",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid–late September",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-09-30",
+      "probability": 0.9,
+      "impact_score": 134.0,
+      "expected_impact": 120.6,
+      "event_PS": 19.3,
+      "event_AS": 13.4,
+      "n_vars": 5,
+      "affected_ids": "policy_rate_expectation, monetary_policy_risk, sovereign_yield_curve, investor_risk_aversion, safe_asset_allocation",
+      "rationale": "Headlines: 'Fed expected to leave rates unchanged next month after soft inflation data'; 'Inflation is the biggest problem, Fed's Goolsbee says'."
+    },
+    {
+      "id": "sustained_high_treasury_supply_and_deficit",
+      "title": "Sustained large US Treasury issuance and widening deficit",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-08-14",
+      "end": "2026-11-30",
+      "probability": 0.8,
+      "impact_score": 100.0,
+      "expected_impact": 80.0,
+      "event_PS": 15.3,
+      "event_AS": 10.0,
+      "n_vars": 5,
+      "affected_ids": "sovereign_bond_supply, sovereign_yield_curve, sovereign_term_premium, market_liquidity_depth, crossborder_capital_flow",
+      "rationale": "Headlines: 'US sells 30-year bonds at highest borrowing costs'; 'U.S. budget deficit widens' and 'national debt about to reach $40 trillion'."
+    },
+    {
+      "id": "continued_yen_fx_intervention",
+      "title": "Further yen FX interventions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near term (weeks)",
+      "date": null,
+      "start": "2026-08-14",
+      "end": "2026-09-30",
+      "probability": 0.6,
+      "impact_score": 98.0,
+      "expected_impact": 58.8,
+      "event_PS": 14.857,
+      "event_AS": 14.0,
+      "n_vars": 4,
+      "affected_ids": "fx_intervention_rate, exchange_rate_volatility, crossborder_capital_flow, sovereign_yield_curve",
+      "rationale": "Headlines: 'Yen's slide prompts bets for another intervention'; 'US Treasury undertakes historic intervention in yen market'."
+    }
+  ]
+}

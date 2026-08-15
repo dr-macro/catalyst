@@ -1,0 +1,1965 @@
+{
+  "label": "us_iran_maritime_standof",
+  "as_of": "2026-08-14",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-14T23:55:57",
+  "system_description": {
+    "narrative_title": "Hormuz blockade and regional attacks choking global oil supply",
+    "narrative_summary": "An escalating standoff centered on Iran’s control over the Strait of Hormuz, coupled with Houthi attacks in the Red Sea and increased U.S. naval pressure, is disrupting crude flows, raising prices and forcing rerouting of exports and refinery adjustments. Treated as an open system, physical flows (tankers, pipelines, inventories), signals (diplomacy, military actions, forecasts), and market responses (prices, insurance, demand destruction) exchange matter, energy and information across boundaries, producing feedbacks that deepen supply shortfalls and prompt policy and commercial countermeasures. Concrete actors include Iran, the U.S., Gulf producers, Houthis and oil firms; systemic variables include chokepoint throughput, spare capacity, shipping/insurance premia and market expectations. Ongoing strikes, talks, spills and lease/production decisions act as catalysts that continually reshape system trajectories.",
+    "scope": "Maritime oil transit through the Strait of Hormuz and adjacent seas, regional military/naval operations and diplomatic negotiations affecting transit, global crude supply balances and prices, rerouting infrastructure (pipelines, alternate export routes), refining and storage capacity, shipping/insurance markets and strategic reserves.",
+    "super_system": "Global energy–economy–security system (world oil markets embedded within international trade, finance and geopolitics).",
+    "adjacent_subsystems": [
+      "Global shipping, logistics and marine insurance",
+      "Downstream refining, storage and petrochemical capacity",
+      "International commodity and financial markets",
+      "Regional Middle East security and diplomatic architecture"
+    ],
+    "evidence_headlines": [
+      "U.S. oil rises above $83 a barrel as Iran says Strait of Hormuz won't open until conditions are met",
+      "Hormuz shipping traffic falls to one-week low amid hostilities",
+      "IEA slashes 2026 supply forecast as Hormuz reopening remains elusive",
+      "Saudi Red Sea oil exports go dark as Houthi attack threat grows",
+      "US says it can keep naval blockade on Iran 'indefinitely,' vows more economic pressure",
+      "Gulf oil spill fast becoming worst in years, agencies warn"
+    ]
+  },
+  "variables": [
+    {
+      "id": "chokepoint_throughput",
+      "name": "Chokepoint throughput",
+      "description": "The volumetric rate of crude and oil-product cargo (barrels/day) transiting strategic maritime chokepoints.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_transit_rate",
+      "name": "Tanker transit rate",
+      "description": "The number of oil tankers and related cargo vessels passing through key sea lanes per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "spare_production_capacit",
+      "name": "Spare production capacity",
+      "description": "The volume of additional oil production that can be brought online within a defined short-to-medium timeframe.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "global_supply_gap",
+      "name": "Global supply gap",
+      "description": "The net difference between globally available oil supply and aggregate demand at prevailing conditions.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization",
+      "name": "Refinery utilization",
+      "description": "The proportion of global refining capacity that is actively processing crude into products at a given time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commercial_inventories",
+      "name": "Commercial inventories",
+      "description": "The aggregated level of commercial crude and product stocks held in storage facilities and terminals.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "marine_insurance_premia",
+      "name": "Marine insurance premia",
+      "description": "The average war-risk, hull and other voyage insurance premium levels charged for tanker voyages in affected waters.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_freight_rate",
+      "name": "Shipping freight rate",
+      "description": "The freight cost per ton (or per barrel) for transporting crude and refined products by sea.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_interdiction",
+      "name": "Maritime interdiction intensity",
+      "description": "The intensity and frequency of naval and quasi‑naval operations that obstruct or control maritime transit.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "hostile_incident_rate",
+      "name": "Hostile incident rate",
+      "description": "The rate of armed attacks, strikes, seizures or hostile events directed at shipping and maritime infrastructure.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "export_rerouting_share",
+      "name": "Export rerouting share",
+      "description": "The proportion of export volumes diverted from primary sea routes to alternative pipelines, terminals or passages.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "average_transit_delay",
+      "name": "Average transit delay",
+      "description": "The mean additional time incurred per voyage due to inspections, rerouting, congestion or security measures.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "benchmark_crude_price",
+      "name": "Benchmark crude price",
+      "description": "The prevailing market reference price level for crude oil (e.g., international benchmark) in currency per barrel.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_expectations",
+      "name": "Market supply expectations",
+      "description": "The prevailing collective expectation in markets about future supply–demand balance and tightness over the forecasting horizon.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "demand_destruction_rate",
+      "name": "Demand destruction rate",
+      "description": "The rate at which oil consumption declines in response to price increases, economic slowdown or access constraints.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "reserve_drawdown_rate",
+      "name": "Strategic reserve drawdown rate",
+      "description": "The rate at which government and strategic reserves are released or withdrawn into the market.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "chokepoint_throughput",
+    "tanker_transit_rate",
+    "spare_production_capacit",
+    "global_supply_gap",
+    "refinery_utilization",
+    "commercial_inventories",
+    "marine_insurance_premia",
+    "shipping_freight_rate",
+    "maritime_interdiction",
+    "hostile_incident_rate",
+    "export_rerouting_share",
+    "average_transit_delay",
+    "benchmark_crude_price",
+    "market_expectations",
+    "demand_destruction_rate",
+    "reserve_drawdown_rate"
+  ],
+  "var_names": {
+    "chokepoint_throughput": "Chokepoint throughput",
+    "tanker_transit_rate": "Tanker transit rate",
+    "spare_production_capacit": "Spare production capacity",
+    "global_supply_gap": "Global supply gap",
+    "refinery_utilization": "Refinery utilization",
+    "commercial_inventories": "Commercial inventories",
+    "marine_insurance_premia": "Marine insurance premia",
+    "shipping_freight_rate": "Shipping freight rate",
+    "maritime_interdiction": "Maritime interdiction intensity",
+    "hostile_incident_rate": "Hostile incident rate",
+    "export_rerouting_share": "Export rerouting share",
+    "average_transit_delay": "Average transit delay",
+    "benchmark_crude_price": "Benchmark crude price",
+    "market_expectations": "Market supply expectations",
+    "demand_destruction_rate": "Demand destruction rate",
+    "reserve_drawdown_rate": "Strategic reserve drawdown rate"
+  },
+  "impact_matrix": {
+    "chokepoint_throughput": {
+      "chokepoint_throughput": 0,
+      "tanker_transit_rate": 3,
+      "spare_production_capacit": 0,
+      "global_supply_gap": 3,
+      "refinery_utilization": 2,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 2,
+      "shipping_freight_rate": 3,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 0,
+      "export_rerouting_share": 3,
+      "average_transit_delay": 3,
+      "benchmark_crude_price": 2,
+      "market_expectations": 1,
+      "demand_destruction_rate": 0,
+      "reserve_drawdown_rate": 0
+    },
+    "tanker_transit_rate": {
+      "chokepoint_throughput": 3,
+      "tanker_transit_rate": 0,
+      "spare_production_capacit": 0,
+      "global_supply_gap": 3,
+      "refinery_utilization": 2,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 1,
+      "shipping_freight_rate": 3,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 0,
+      "export_rerouting_share": 3,
+      "average_transit_delay": 2,
+      "benchmark_crude_price": 2,
+      "market_expectations": 1,
+      "demand_destruction_rate": 0,
+      "reserve_drawdown_rate": 0
+    },
+    "spare_production_capacit": {
+      "chokepoint_throughput": 0,
+      "tanker_transit_rate": 1,
+      "spare_production_capacit": 0,
+      "global_supply_gap": 3,
+      "refinery_utilization": 2,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 0,
+      "shipping_freight_rate": 1,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 0,
+      "export_rerouting_share": 1,
+      "average_transit_delay": 0,
+      "benchmark_crude_price": 3,
+      "market_expectations": 3,
+      "demand_destruction_rate": 1,
+      "reserve_drawdown_rate": 0
+    },
+    "global_supply_gap": {
+      "chokepoint_throughput": 0,
+      "tanker_transit_rate": 1,
+      "spare_production_capacit": 0,
+      "global_supply_gap": 0,
+      "refinery_utilization": 3,
+      "commercial_inventories": 3,
+      "marine_insurance_premia": 0,
+      "shipping_freight_rate": 1,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 0,
+      "export_rerouting_share": 2,
+      "average_transit_delay": 0,
+      "benchmark_crude_price": 3,
+      "market_expectations": 3,
+      "demand_destruction_rate": 1,
+      "reserve_drawdown_rate": 1
+    },
+    "refinery_utilization": {
+      "chokepoint_throughput": 0,
+      "tanker_transit_rate": 2,
+      "spare_production_capacit": 0,
+      "global_supply_gap": 2,
+      "refinery_utilization": 0,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 0,
+      "shipping_freight_rate": 1,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 0,
+      "export_rerouting_share": 0,
+      "average_transit_delay": 2,
+      "benchmark_crude_price": 2,
+      "market_expectations": 1,
+      "demand_destruction_rate": 0,
+      "reserve_drawdown_rate": 0
+    },
+    "commercial_inventories": {
+      "chokepoint_throughput": 0,
+      "tanker_transit_rate": 2,
+      "spare_production_capacit": 0,
+      "global_supply_gap": 3,
+      "refinery_utilization": 2,
+      "commercial_inventories": 0,
+      "marine_insurance_premia": 1,
+      "shipping_freight_rate": 2,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 0,
+      "export_rerouting_share": 1,
+      "average_transit_delay": 1,
+      "benchmark_crude_price": 3,
+      "market_expectations": 3,
+      "demand_destruction_rate": 1,
+      "reserve_drawdown_rate": 1
+    },
+    "marine_insurance_premia": {
+      "chokepoint_throughput": 2,
+      "tanker_transit_rate": 3,
+      "spare_production_capacit": 1,
+      "global_supply_gap": 2,
+      "refinery_utilization": 2,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 0,
+      "shipping_freight_rate": 3,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 0,
+      "export_rerouting_share": 2,
+      "average_transit_delay": 1,
+      "benchmark_crude_price": 2,
+      "market_expectations": 2,
+      "demand_destruction_rate": 1,
+      "reserve_drawdown_rate": 0
+    },
+    "shipping_freight_rate": {
+      "chokepoint_throughput": 2,
+      "tanker_transit_rate": 3,
+      "spare_production_capacit": 1,
+      "global_supply_gap": 1,
+      "refinery_utilization": 2,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 1,
+      "shipping_freight_rate": 0,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 0,
+      "export_rerouting_share": 2,
+      "average_transit_delay": 0,
+      "benchmark_crude_price": 1,
+      "market_expectations": 1,
+      "demand_destruction_rate": 1,
+      "reserve_drawdown_rate": 0
+    },
+    "maritime_interdiction": {
+      "chokepoint_throughput": 3,
+      "tanker_transit_rate": 3,
+      "spare_production_capacit": 1,
+      "global_supply_gap": 3,
+      "refinery_utilization": 2,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 3,
+      "shipping_freight_rate": 3,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 2,
+      "export_rerouting_share": 3,
+      "average_transit_delay": 3,
+      "benchmark_crude_price": 3,
+      "market_expectations": 3,
+      "demand_destruction_rate": 1,
+      "reserve_drawdown_rate": 2
+    },
+    "hostile_incident_rate": {
+      "chokepoint_throughput": 3,
+      "tanker_transit_rate": 3,
+      "spare_production_capacit": 1,
+      "global_supply_gap": 3,
+      "refinery_utilization": 2,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 3,
+      "shipping_freight_rate": 3,
+      "maritime_interdiction": 2,
+      "hostile_incident_rate": 0,
+      "export_rerouting_share": 3,
+      "average_transit_delay": 3,
+      "benchmark_crude_price": 3,
+      "market_expectations": 3,
+      "demand_destruction_rate": 1,
+      "reserve_drawdown_rate": 2
+    },
+    "export_rerouting_share": {
+      "chokepoint_throughput": 3,
+      "tanker_transit_rate": 2,
+      "spare_production_capacit": 0,
+      "global_supply_gap": 2,
+      "refinery_utilization": 2,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 1,
+      "shipping_freight_rate": 3,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 1,
+      "export_rerouting_share": 0,
+      "average_transit_delay": 3,
+      "benchmark_crude_price": 2,
+      "market_expectations": 2,
+      "demand_destruction_rate": 1,
+      "reserve_drawdown_rate": 1
+    },
+    "average_transit_delay": {
+      "chokepoint_throughput": 3,
+      "tanker_transit_rate": 3,
+      "spare_production_capacit": 0,
+      "global_supply_gap": 3,
+      "refinery_utilization": 2,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 1,
+      "shipping_freight_rate": 3,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 0,
+      "export_rerouting_share": 2,
+      "average_transit_delay": 0,
+      "benchmark_crude_price": 2,
+      "market_expectations": 2,
+      "demand_destruction_rate": 1,
+      "reserve_drawdown_rate": 1
+    },
+    "benchmark_crude_price": {
+      "chokepoint_throughput": 0,
+      "tanker_transit_rate": 1,
+      "spare_production_capacit": 2,
+      "global_supply_gap": 1,
+      "refinery_utilization": 2,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 0,
+      "shipping_freight_rate": 1,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 1,
+      "export_rerouting_share": 1,
+      "average_transit_delay": 0,
+      "benchmark_crude_price": 0,
+      "market_expectations": 3,
+      "demand_destruction_rate": 3,
+      "reserve_drawdown_rate": 2
+    },
+    "market_expectations": {
+      "chokepoint_throughput": 0,
+      "tanker_transit_rate": 2,
+      "spare_production_capacit": 2,
+      "global_supply_gap": 1,
+      "refinery_utilization": 1,
+      "commercial_inventories": 3,
+      "marine_insurance_premia": 2,
+      "shipping_freight_rate": 2,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 1,
+      "export_rerouting_share": 2,
+      "average_transit_delay": 2,
+      "benchmark_crude_price": 3,
+      "market_expectations": 0,
+      "demand_destruction_rate": 1,
+      "reserve_drawdown_rate": 2
+    },
+    "demand_destruction_rate": {
+      "chokepoint_throughput": 2,
+      "tanker_transit_rate": 3,
+      "spare_production_capacit": 1,
+      "global_supply_gap": 3,
+      "refinery_utilization": 3,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 0,
+      "shipping_freight_rate": 2,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 0,
+      "export_rerouting_share": 1,
+      "average_transit_delay": 1,
+      "benchmark_crude_price": 3,
+      "market_expectations": 2,
+      "demand_destruction_rate": 0,
+      "reserve_drawdown_rate": 1
+    },
+    "reserve_drawdown_rate": {
+      "chokepoint_throughput": 2,
+      "tanker_transit_rate": 3,
+      "spare_production_capacit": 0,
+      "global_supply_gap": 3,
+      "refinery_utilization": 2,
+      "commercial_inventories": 2,
+      "marine_insurance_premia": 0,
+      "shipping_freight_rate": 2,
+      "maritime_interdiction": 0,
+      "hostile_incident_rate": 1,
+      "export_rerouting_share": 1,
+      "average_transit_delay": 1,
+      "benchmark_crude_price": 3,
+      "market_expectations": 3,
+      "demand_destruction_rate": 1,
+      "reserve_drawdown_rate": 0
+    }
+  },
+  "AS": {
+    "chokepoint_throughput": 24,
+    "tanker_transit_rate": 22,
+    "spare_production_capacit": 17,
+    "global_supply_gap": 18,
+    "refinery_utilization": 12,
+    "commercial_inventories": 20,
+    "marine_insurance_premia": 23,
+    "shipping_freight_rate": 17,
+    "maritime_interdiction": 37,
+    "hostile_incident_rate": 37,
+    "export_rerouting_share": 25,
+    "average_transit_delay": 25,
+    "benchmark_crude_price": 19,
+    "market_expectations": 24,
+    "demand_destruction_rate": 24,
+    "reserve_drawdown_rate": 24
+  },
+  "PS": {
+    "chokepoint_throughput": 23,
+    "tanker_transit_rate": 35,
+    "spare_production_capacit": 9,
+    "global_supply_gap": 36,
+    "refinery_utilization": 31,
+    "commercial_inventories": 32,
+    "marine_insurance_premia": 15,
+    "shipping_freight_rate": 33,
+    "maritime_interdiction": 2,
+    "hostile_incident_rate": 6,
+    "export_rerouting_share": 27,
+    "average_transit_delay": 22,
+    "benchmark_crude_price": 37,
+    "market_expectations": 33,
+    "demand_destruction_rate": 14,
+    "reserve_drawdown_rate": 13
+  },
+  "med_AS": 23.5,
+  "med_PS": 25.0,
+  "roles": [
+    {
+      "variable": "market_expectations",
+      "name": "Market supply expectations",
+      "AS": 24,
+      "PS": 33,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 792,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "tanker_transit_rate",
+      "name": "Tanker transit rate",
+      "AS": 22,
+      "PS": 35,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 770,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "benchmark_crude_price",
+      "name": "Benchmark crude price",
+      "AS": 19,
+      "PS": 37,
+      "Q=AS/PS": 0.51,
+      "P=AS*PS": 703,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "export_rerouting_share",
+      "name": "Export rerouting share",
+      "AS": 25,
+      "PS": 27,
+      "Q=AS/PS": 0.93,
+      "P=AS*PS": 675,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "global_supply_gap",
+      "name": "Global supply gap",
+      "AS": 18,
+      "PS": 36,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 648,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "commercial_inventories",
+      "name": "Commercial inventories",
+      "AS": 20,
+      "PS": 32,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 640,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "shipping_freight_rate",
+      "name": "Shipping freight rate",
+      "AS": 17,
+      "PS": 33,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 561,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "chokepoint_throughput",
+      "name": "Chokepoint throughput",
+      "AS": 24,
+      "PS": 23,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 552,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "average_transit_delay",
+      "name": "Average transit delay",
+      "AS": 25,
+      "PS": 22,
+      "Q=AS/PS": 1.14,
+      "P=AS*PS": 550,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refinery_utilization",
+      "name": "Refinery utilization",
+      "AS": 12,
+      "PS": 31,
+      "Q=AS/PS": 0.39,
+      "P=AS*PS": 372,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "marine_insurance_premia",
+      "name": "Marine insurance premia",
+      "AS": 23,
+      "PS": 15,
+      "Q=AS/PS": 1.53,
+      "P=AS*PS": 345,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "demand_destruction_rate",
+      "name": "Demand destruction rate",
+      "AS": 24,
+      "PS": 14,
+      "Q=AS/PS": 1.71,
+      "P=AS*PS": 336,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "reserve_drawdown_rate",
+      "name": "Strategic reserve drawdown rate",
+      "AS": 24,
+      "PS": 13,
+      "Q=AS/PS": 1.85,
+      "P=AS*PS": 312,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "hostile_incident_rate",
+      "name": "Hostile incident rate",
+      "AS": 37,
+      "PS": 6,
+      "Q=AS/PS": 6.17,
+      "P=AS*PS": 222,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "spare_production_capacit",
+      "name": "Spare production capacity",
+      "AS": 17,
+      "PS": 9,
+      "Q=AS/PS": 1.89,
+      "P=AS*PS": 153,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "maritime_interdiction",
+      "name": "Maritime interdiction intensity",
+      "AS": 37,
+      "PS": 2,
+      "Q=AS/PS": 18.5,
+      "P=AS*PS": 74,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "chokepoint_throughput",
+        "name": "Chokepoint throughput",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 23
+      },
+      {
+        "id": "tanker_transit_rate",
+        "name": "Tanker transit rate",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 35
+      },
+      {
+        "id": "spare_production_capacit",
+        "name": "Spare production capacity",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 9
+      },
+      {
+        "id": "global_supply_gap",
+        "name": "Global supply gap",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 36
+      },
+      {
+        "id": "refinery_utilization",
+        "name": "Refinery utilization",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 31
+      },
+      {
+        "id": "commercial_inventories",
+        "name": "Commercial inventories",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 32
+      },
+      {
+        "id": "marine_insurance_premia",
+        "name": "Marine insurance premia",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 15
+      },
+      {
+        "id": "shipping_freight_rate",
+        "name": "Shipping freight rate",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 33
+      },
+      {
+        "id": "maritime_interdiction",
+        "name": "Maritime interdiction intensity",
+        "kind": "flow",
+        "AS": 37,
+        "PS": 2
+      },
+      {
+        "id": "hostile_incident_rate",
+        "name": "Hostile incident rate",
+        "kind": "flow",
+        "AS": 37,
+        "PS": 6
+      },
+      {
+        "id": "export_rerouting_share",
+        "name": "Export rerouting share",
+        "kind": "flow",
+        "AS": 25,
+        "PS": 27
+      },
+      {
+        "id": "average_transit_delay",
+        "name": "Average transit delay",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 22
+      },
+      {
+        "id": "benchmark_crude_price",
+        "name": "Benchmark crude price",
+        "kind": "driver",
+        "AS": 19,
+        "PS": 37
+      },
+      {
+        "id": "market_expectations",
+        "name": "Market supply expectations",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 33
+      },
+      {
+        "id": "demand_destruction_rate",
+        "name": "Demand destruction rate",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 14
+      },
+      {
+        "id": "reserve_drawdown_rate",
+        "name": "Strategic reserve drawdown rate",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 13
+      }
+    ],
+    "edges": [
+      {
+        "source": "chokepoint_throughput",
+        "target": "tanker_transit_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_throughput",
+        "target": "global_supply_gap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_throughput",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_throughput",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_throughput",
+        "target": "marine_insurance_premia",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_throughput",
+        "target": "shipping_freight_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_throughput",
+        "target": "export_rerouting_share",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_throughput",
+        "target": "average_transit_delay",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_throughput",
+        "target": "benchmark_crude_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_rate",
+        "target": "chokepoint_throughput",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_transit_rate",
+        "target": "global_supply_gap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_rate",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_transit_rate",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_transit_rate",
+        "target": "shipping_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_transit_rate",
+        "target": "export_rerouting_share",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_rate",
+        "target": "average_transit_delay",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_rate",
+        "target": "benchmark_crude_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "global_supply_gap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "benchmark_crude_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "market_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_supply_gap",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_supply_gap",
+        "target": "commercial_inventories",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_supply_gap",
+        "target": "export_rerouting_share",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "global_supply_gap",
+        "target": "benchmark_crude_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_supply_gap",
+        "target": "market_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "tanker_transit_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "global_supply_gap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "average_transit_delay",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "benchmark_crude_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commercial_inventories",
+        "target": "tanker_transit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_inventories",
+        "target": "global_supply_gap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_inventories",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commercial_inventories",
+        "target": "shipping_freight_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_inventories",
+        "target": "benchmark_crude_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_inventories",
+        "target": "market_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "marine_insurance_premia",
+        "target": "chokepoint_throughput",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "marine_insurance_premia",
+        "target": "tanker_transit_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "marine_insurance_premia",
+        "target": "global_supply_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "marine_insurance_premia",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "marine_insurance_premia",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "marine_insurance_premia",
+        "target": "shipping_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "marine_insurance_premia",
+        "target": "export_rerouting_share",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "marine_insurance_premia",
+        "target": "benchmark_crude_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "marine_insurance_premia",
+        "target": "market_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_freight_rate",
+        "target": "chokepoint_throughput",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_freight_rate",
+        "target": "tanker_transit_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_freight_rate",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_freight_rate",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_freight_rate",
+        "target": "export_rerouting_share",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "chokepoint_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "tanker_transit_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "global_supply_gap",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "marine_insurance_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "shipping_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "hostile_incident_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "export_rerouting_share",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "average_transit_delay",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "benchmark_crude_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "market_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_interdiction",
+        "target": "reserve_drawdown_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "chokepoint_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "tanker_transit_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "global_supply_gap",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "marine_insurance_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "shipping_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "maritime_interdiction",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "export_rerouting_share",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "average_transit_delay",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "benchmark_crude_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "market_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "hostile_incident_rate",
+        "target": "reserve_drawdown_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_rerouting_share",
+        "target": "chokepoint_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "export_rerouting_share",
+        "target": "tanker_transit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_rerouting_share",
+        "target": "global_supply_gap",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "export_rerouting_share",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "export_rerouting_share",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "export_rerouting_share",
+        "target": "shipping_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "export_rerouting_share",
+        "target": "average_transit_delay",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "export_rerouting_share",
+        "target": "benchmark_crude_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_rerouting_share",
+        "target": "market_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "average_transit_delay",
+        "target": "chokepoint_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "average_transit_delay",
+        "target": "tanker_transit_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "average_transit_delay",
+        "target": "global_supply_gap",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "average_transit_delay",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "average_transit_delay",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "average_transit_delay",
+        "target": "shipping_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "average_transit_delay",
+        "target": "export_rerouting_share",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "average_transit_delay",
+        "target": "benchmark_crude_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "average_transit_delay",
+        "target": "market_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "benchmark_crude_price",
+        "target": "spare_production_capacit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "benchmark_crude_price",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "benchmark_crude_price",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "benchmark_crude_price",
+        "target": "market_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "benchmark_crude_price",
+        "target": "demand_destruction_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "benchmark_crude_price",
+        "target": "reserve_drawdown_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_expectations",
+        "target": "tanker_transit_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_expectations",
+        "target": "spare_production_capacit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_expectations",
+        "target": "commercial_inventories",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_expectations",
+        "target": "marine_insurance_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_expectations",
+        "target": "shipping_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_expectations",
+        "target": "export_rerouting_share",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_expectations",
+        "target": "average_transit_delay",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_expectations",
+        "target": "benchmark_crude_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_expectations",
+        "target": "reserve_drawdown_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "demand_destruction_rate",
+        "target": "chokepoint_throughput",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "demand_destruction_rate",
+        "target": "tanker_transit_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "demand_destruction_rate",
+        "target": "global_supply_gap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "demand_destruction_rate",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "demand_destruction_rate",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "demand_destruction_rate",
+        "target": "shipping_freight_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "demand_destruction_rate",
+        "target": "benchmark_crude_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "demand_destruction_rate",
+        "target": "market_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_drawdown_rate",
+        "target": "chokepoint_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_drawdown_rate",
+        "target": "tanker_transit_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_drawdown_rate",
+        "target": "global_supply_gap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_drawdown_rate",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_drawdown_rate",
+        "target": "commercial_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_drawdown_rate",
+        "target": "shipping_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_drawdown_rate",
+        "target": "benchmark_crude_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_drawdown_rate",
+        "target": "market_expectations",
+        "strength": 3,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_indefinite_blockade",
+      "title": "U.S. indefinite naval blockade operations",
+      "description": "Sustained U.S. naval blockade posture and enforcement actions in and around the Strait of Hormuz that constrain shipping access.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-14",
+        "end": "2026-11-14",
+        "label": "3 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "maritime_interdiction",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "hostile_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_transit_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "chokepoint_throughput",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "average_transit_delay",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "marine_insurance_premia",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "benchmark_crude_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_expectations",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"US says it can keep naval blockade on Iran 'indefinitely'\"; multiple reports of US firing on ships enforcing blockade."
+    },
+    {
+      "id": "iran_talks_deadlock_hormuz_closed",
+      "title": "Stalled Iran–US talks keep Hormuz closed",
+      "description": "Diplomatic deadlock leaves Iran's conditions unmet and the Strait effectively closed, prolonging restricted oil flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-14",
+        "end": "2026-12-31",
+        "label": "through year"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "chokepoint_throughput",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_transit_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_supply_gap",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "benchmark_crude_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_expectations",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"Iran says Strait of Hormuz won't open until conditions are met\"; \"Hormuz reopening remains elusive\", IEA warnings."
+    },
+    {
+      "id": "houthi_attack_escalation",
+      "title": "Escalation of Houthi attacks in Red Sea",
+      "description": "Increased frequency/severity of Houthi strikes on ships and infrastructure in the Red Sea and nearby approaches, prompting reroutes and strikes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-14",
+        "end": "2026-10-14",
+        "label": "6-8 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "hostile_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_transit_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "export_rerouting_share",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_freight_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "marine_insurance_premia",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "average_transit_delay",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple headlines: Houthi attacks kill crew, hit Saudi facilities; U.S. strikes container ships; Red Sea threats grow."
+    },
+    {
+      "id": "oman_oil_spill_salvage",
+      "title": "Ship oil leak and salvage off Oman",
+      "description": "Ongoing salvage and cleanup of a leaking vessel off Oman that could temporarily disrupt nearby transits and raise local risk perceptions.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-14",
+        "end": "2026-09-10",
+        "label": "weeks"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "chokepoint_throughput",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "average_transit_delay",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_transit_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "marine_insurance_premia",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"Risk firm Ambrey working to salvage ship spewing oil off Oman\"; salvors working to secure ship leaking oil off Oman."
+    },
+    {
+      "id": "saudi_med_pipeline_reroute",
+      "title": "Saudi expansion of Mediterranean pipeline exports",
+      "description": "Saudi and Gulf producers accelerate use and expansion of Mediterranean routing to avoid Red Sea/Hormuz vulnerabilities, shifting flows and congestion.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-14",
+        "end": "2026-10-31",
+        "label": "2-12 weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "export_rerouting_share",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_transit_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "chokepoint_throughput",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "average_transit_delay",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"Saudi Arabia ramps up oil exports through Mediterranean pipeline to avoid attacks in Red Sea\"; Saudi Red Sea exports go dark."
+    },
+    {
+      "id": "big_oil_venezuela_return",
+      "title": "Major oil firms resume Venezuelan activity",
+      "description": "Oil majors' tentative return and deals in Venezuela begin to restart production and investment, adding potential incremental supply over months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-14",
+        "end": "2027-06-30",
+        "label": "by mid-2027"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "spare_production_capacit",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "benchmark_crude_price",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_expectations",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "commercial_inventories",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"BP joins Big Oil return to post‑Maduro Venezuela\"; majors partnering on Venezuelan development."
+    },
+    {
+      "id": "north_sea_well_closures",
+      "title": "Accelerated North Sea well closures",
+      "description": "Regulator-driven or operator-initiated faster well closures in the North Sea reduce near-term output, tightening supply balances.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-14",
+        "end": "2026-10-14",
+        "label": "2 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "spare_production_capacit",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_supply_gap",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "benchmark_crude_price",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"North Sea oil producers told to speed up well closures\" — FT/Reuters coverage indicates output cuts ahead."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_indefinite_blockade",
+      "title": "U.S. indefinite naval blockade operations",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3 months",
+      "date": null,
+      "start": "2026-08-14",
+      "end": "2026-11-14",
+      "probability": 0.8,
+      "impact_score": 542.0,
+      "expected_impact": 433.6,
+      "event_PS": 20.6,
+      "event_AS": 27.1,
+      "n_vars": 8,
+      "affected_ids": "maritime_interdiction, hostile_incident_rate, tanker_transit_rate, chokepoint_throughput, average_transit_delay, marine_insurance_premia, benchmark_crude_price, market_expectations",
+      "rationale": "\"US says it can keep naval blockade on Iran 'indefinitely'\"; multiple reports of US firing on ships enforcing blockade."
+    },
+    {
+      "id": "houthi_attack_escalation",
+      "title": "Escalation of Houthi attacks in Red Sea",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6-8 weeks",
+      "date": null,
+      "start": "2026-08-14",
+      "end": "2026-10-14",
+      "probability": 0.6,
+      "impact_score": 335.0,
+      "expected_impact": 201.0,
+      "event_PS": 21.692,
+      "event_AS": 25.769,
+      "n_vars": 6,
+      "affected_ids": "hostile_incident_rate, tanker_transit_rate, export_rerouting_share, shipping_freight_rate, marine_insurance_premia, average_transit_delay",
+      "rationale": "Multiple headlines: Houthi attacks kill crew, hit Saudi facilities; U.S. strikes container ships; Red Sea threats grow."
+    },
+    {
+      "id": "iran_talks_deadlock_hormuz_closed",
+      "title": "Stalled Iran–US talks keep Hormuz closed",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through year",
+      "date": null,
+      "start": "2026-08-14",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 321.0,
+      "expected_impact": 224.7,
+      "event_PS": 32.8,
+      "event_AS": 21.4,
+      "n_vars": 5,
+      "affected_ids": "chokepoint_throughput, tanker_transit_rate, global_supply_gap, benchmark_crude_price, market_expectations",
+      "rationale": "Headlines: \"Iran says Strait of Hormuz won't open until conditions are met\"; \"Hormuz reopening remains elusive\", IEA warnings."
+    },
+    {
+      "id": "saudi_med_pipeline_reroute",
+      "title": "Saudi expansion of Mediterranean pipeline exports",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-12 weeks",
+      "date": null,
+      "start": "2026-08-14",
+      "end": "2026-10-31",
+      "probability": 0.65,
+      "impact_score": 192.0,
+      "expected_impact": 124.8,
+      "event_PS": 27.375,
+      "event_AS": 24.0,
+      "n_vars": 4,
+      "affected_ids": "export_rerouting_share, tanker_transit_rate, chokepoint_throughput, average_transit_delay",
+      "rationale": "\"Saudi Arabia ramps up oil exports through Mediterranean pipeline to avoid attacks in Red Sea\"; Saudi Red Sea exports go dark."
+    },
+    {
+      "id": "big_oil_venezuela_return",
+      "title": "Major oil firms resume Venezuelan activity",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by mid-2027",
+      "date": null,
+      "start": "2026-08-14",
+      "end": "2027-06-30",
+      "probability": 0.5,
+      "impact_score": 121.0,
+      "expected_impact": 60.5,
+      "event_PS": 25.5,
+      "event_AS": 20.167,
+      "n_vars": 4,
+      "affected_ids": "spare_production_capacit, benchmark_crude_price, market_expectations, commercial_inventories",
+      "rationale": "Headlines: \"BP joins Big Oil return to post‑Maduro Venezuela\"; majors partnering on Venezuelan development."
+    },
+    {
+      "id": "oman_oil_spill_salvage",
+      "title": "Ship oil leak and salvage off Oman",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-14",
+      "end": "2026-09-10",
+      "probability": 0.5,
+      "impact_score": 94.0,
+      "expected_impact": 47.0,
+      "event_PS": 23.75,
+      "event_AS": 23.5,
+      "n_vars": 4,
+      "affected_ids": "chokepoint_throughput, average_transit_delay, tanker_transit_rate, marine_insurance_premia",
+      "rationale": "\"Risk firm Ambrey working to salvage ship spewing oil off Oman\"; salvors working to secure ship leaking oil off Oman."
+    },
+    {
+      "id": "north_sea_well_closures",
+      "title": "Accelerated North Sea well closures",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 months",
+      "date": null,
+      "start": "2026-08-14",
+      "end": "2026-10-14",
+      "probability": 0.6,
+      "impact_score": 89.0,
+      "expected_impact": 53.4,
+      "event_PS": 25.4,
+      "event_AS": 17.8,
+      "n_vars": 3,
+      "affected_ids": "spare_production_capacit, global_supply_gap, benchmark_crude_price",
+      "rationale": "\"North Sea oil producers told to speed up well closures\" — FT/Reuters coverage indicates output cuts ahead."
+    }
+  ]
+}
