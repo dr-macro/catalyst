@@ -1,0 +1,1820 @@
+{
+  "label": "iran_hormuz_standoff",
+  "as_of": "2026-08-15",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-15T23:45:59",
+  "system_description": {
+    "narrative_title": "Hormuz standoff: US–Iran control clash disrupts shipping and oil markets",
+    "narrative_summary": "A geopolitical standoff over control of the Strait of Hormuz — characterised by competing US and Iranian claims, vessel attacks, and threats of a naval blockade — is constraining shipping and creating supply-side risk for global oil markets even as demand forecasts weaken. The interaction of military posture, maritime incidents (including oil spills), and policy measures (sanctions, economic pressure) is producing volatile oil prices, altered trade routes, insurance/operational responses, and broader macroeconomic effects. The system is open: actions in the strait feed into global energy stocks, refinery operations, and financial markets, which in turn influence political and military decisions in an iterative feedback loop.",
+    "scope": "Elements inside the system boundary: control and security of the Strait of Hormuz; commercial shipping flows and insurance; attacks on and damage to vessels; oil production, exports and strategic inventories (regional and global); oil price formation and trader/speculator behavior; diplomatic talks and coercive measures (blockade threats, sanctions); immediate economic spillovers (fuel prices, mortgage/borrowing costs).",
+    "super_system": "Global energy-security-economy system (the international geopolitical order as it shapes energy supply, trade, and macroeconomic stability)",
+    "adjacent_subsystems": [
+      "Global oil & refined-products markets and inventories",
+      "Maritime security, shipping logistics and marine insurance",
+      "Middle East regional geopolitics and military alliances",
+      "Global financial markets and real-economy transmission (inflation, borrowing costs)"
+    ],
+    "evidence_headlines": [
+      "Trump Says Hormuz Is Under U.S. Control. Few Ships Are Listening.",
+      "Iran, US make competing claims over control of Strait of Hormuz - reuters.com",
+      "Oil prices drop 1% as weak demand outlook offsets supply uncertainty",
+      "US says it can keep naval blockade on Iran 'indefinitely,' vows more economic pressure",
+      "Huge oil slick hitting Oman's shoreline as agencies warn of disaster",
+      "Hormuz traffic slows further after US threatens more economic pressure on Iran"
+    ]
+  },
+  "variables": [
+    {
+      "id": "strait_control_perc",
+      "name": "Perceived control of the strait",
+      "description": "The market and actor perception of which force or claim effectively governs safe passage and regulatory control of the strait at a given time.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "naval_presence",
+      "name": "Naval/military presence intensity",
+      "description": "The concentration and operational intensity of naval and military assets deployed in and around the strait.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_incident_rate",
+      "name": "Maritime incident occurrence rate",
+      "description": "The frequency at which hostile acts, collisions, groundings, leaks, or other damaging incidents occur to vessels transiting the strait.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_traffic_volume",
+      "name": "Shipping traffic volume through strait",
+      "description": "The volumetric flow of commercial vessels and cargo transits passing through the strait per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "rerouted_trade_flow",
+      "name": "Volume of trade rerouted",
+      "description": "The rate at which maritime cargo and energy shipments are diverted to alternative routes or modes instead of the strait.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_insurance_level",
+      "name": "Shipping insurance premium level",
+      "description": "The average insurance and war-risk premium rates applied to vessels and cargo transiting the route, reflecting perceived transit risk.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_production_rate",
+      "name": "Oil production rate",
+      "description": "The volumetric rate of crude oil and liquid fuel production originating in the relevant supply basin(s) per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "oil_export_strait",
+      "name": "Oil export flow through strait",
+      "description": "The volumetric flow of crude oil and refined product exports transiting the strait per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_oil_reserves",
+      "name": "Strategic oil reserve level",
+      "description": "The stock level of government-held strategic petroleum reserves available for release in response to supply disruptions.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commercial_oil_stocks",
+      "name": "Commercial oil stock level",
+      "description": "The aggregate inventory of crude oil and refined products held by commercial entities across the supply chain.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "description": "The proportion of refining capacity currently in operation processing crude into refined products.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_level",
+      "name": "Oil price level",
+      "description": "The prevailing market price of crude oil (e.g., representative benchmark) reflecting supply-demand balance and risk premia.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "description": "The magnitude and frequency of short- to medium-term fluctuations in oil prices, capturing market uncertainty and risk sensitivity.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "speculative_trade_flow",
+      "name": "Speculative trading flow intensity",
+      "description": "The rate and scale of non-commercial trading flows (speculative positions, hedging adjustments) entering oil and freight markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "demand_forecast_growth",
+      "name": "Oil demand forecast growth",
+      "description": "The expected short- to medium-term growth rate of oil consumption as reflected in consensus forecasts and market expectations.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "borrowing_cost_level",
+      "name": "Borrowing/credit cost level",
+      "description": "The prevailing cost of borrowing for businesses and consumers (interest rate spreads and lending rates) that transmits macroeconomic spillovers.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "strait_control_perc",
+    "naval_presence",
+    "maritime_incident_rate",
+    "shipping_traffic_volume",
+    "rerouted_trade_flow",
+    "shipping_insurance_level",
+    "oil_production_rate",
+    "oil_export_strait",
+    "strategic_oil_reserves",
+    "commercial_oil_stocks",
+    "refinery_utilization_rat",
+    "oil_price_level",
+    "oil_price_volatility",
+    "speculative_trade_flow",
+    "demand_forecast_growth",
+    "borrowing_cost_level"
+  ],
+  "var_names": {
+    "strait_control_perc": "Perceived control of the strait",
+    "naval_presence": "Naval/military presence intensity",
+    "maritime_incident_rate": "Maritime incident occurrence rate",
+    "shipping_traffic_volume": "Shipping traffic volume through strait",
+    "rerouted_trade_flow": "Volume of trade rerouted",
+    "shipping_insurance_level": "Shipping insurance premium level",
+    "oil_production_rate": "Oil production rate",
+    "oil_export_strait": "Oil export flow through strait",
+    "strategic_oil_reserves": "Strategic oil reserve level",
+    "commercial_oil_stocks": "Commercial oil stock level",
+    "refinery_utilization_rat": "Refinery utilization rate",
+    "oil_price_level": "Oil price level",
+    "oil_price_volatility": "Oil price volatility",
+    "speculative_trade_flow": "Speculative trading flow intensity",
+    "demand_forecast_growth": "Oil demand forecast growth",
+    "borrowing_cost_level": "Borrowing/credit cost level"
+  },
+  "impact_matrix": {
+    "strait_control_perc": {
+      "strait_control_perc": 0,
+      "naval_presence": 2,
+      "maritime_incident_rate": 2,
+      "shipping_traffic_volume": 3,
+      "rerouted_trade_flow": 3,
+      "shipping_insurance_level": 3,
+      "oil_production_rate": 2,
+      "oil_export_strait": 3,
+      "strategic_oil_reserves": 1,
+      "commercial_oil_stocks": 2,
+      "refinery_utilization_rat": 1,
+      "oil_price_level": 3,
+      "oil_price_volatility": 3,
+      "speculative_trade_flow": 3,
+      "demand_forecast_growth": 1,
+      "borrowing_cost_level": 1
+    },
+    "naval_presence": {
+      "strait_control_perc": 3,
+      "naval_presence": 0,
+      "maritime_incident_rate": 2,
+      "shipping_traffic_volume": 2,
+      "rerouted_trade_flow": 2,
+      "shipping_insurance_level": 3,
+      "oil_production_rate": 1,
+      "oil_export_strait": 3,
+      "strategic_oil_reserves": 1,
+      "commercial_oil_stocks": 1,
+      "refinery_utilization_rat": 0,
+      "oil_price_level": 3,
+      "oil_price_volatility": 3,
+      "speculative_trade_flow": 2,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 0
+    },
+    "maritime_incident_rate": {
+      "strait_control_perc": 3,
+      "naval_presence": 3,
+      "maritime_incident_rate": 0,
+      "shipping_traffic_volume": 3,
+      "rerouted_trade_flow": 3,
+      "shipping_insurance_level": 3,
+      "oil_production_rate": 2,
+      "oil_export_strait": 3,
+      "strategic_oil_reserves": 2,
+      "commercial_oil_stocks": 2,
+      "refinery_utilization_rat": 2,
+      "oil_price_level": 3,
+      "oil_price_volatility": 3,
+      "speculative_trade_flow": 3,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 0
+    },
+    "shipping_traffic_volume": {
+      "strait_control_perc": 2,
+      "naval_presence": 1,
+      "maritime_incident_rate": 2,
+      "shipping_traffic_volume": 0,
+      "rerouted_trade_flow": 3,
+      "shipping_insurance_level": 1,
+      "oil_production_rate": 0,
+      "oil_export_strait": 3,
+      "strategic_oil_reserves": 0,
+      "commercial_oil_stocks": 2,
+      "refinery_utilization_rat": 2,
+      "oil_price_level": 2,
+      "oil_price_volatility": 2,
+      "speculative_trade_flow": 1,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 0
+    },
+    "rerouted_trade_flow": {
+      "strait_control_perc": 2,
+      "naval_presence": 1,
+      "maritime_incident_rate": 2,
+      "shipping_traffic_volume": 3,
+      "rerouted_trade_flow": 0,
+      "shipping_insurance_level": 2,
+      "oil_production_rate": 0,
+      "oil_export_strait": 3,
+      "strategic_oil_reserves": 0,
+      "commercial_oil_stocks": 2,
+      "refinery_utilization_rat": 2,
+      "oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "speculative_trade_flow": 2,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 0
+    },
+    "shipping_insurance_level": {
+      "strait_control_perc": 2,
+      "naval_presence": 1,
+      "maritime_incident_rate": 2,
+      "shipping_traffic_volume": 2,
+      "rerouted_trade_flow": 2,
+      "shipping_insurance_level": 0,
+      "oil_production_rate": 1,
+      "oil_export_strait": 2,
+      "strategic_oil_reserves": 0,
+      "commercial_oil_stocks": 1,
+      "refinery_utilization_rat": 1,
+      "oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "speculative_trade_flow": 2,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 1
+    },
+    "oil_production_rate": {
+      "strait_control_perc": 0,
+      "naval_presence": 0,
+      "maritime_incident_rate": 0,
+      "shipping_traffic_volume": 2,
+      "rerouted_trade_flow": 1,
+      "shipping_insurance_level": 0,
+      "oil_production_rate": 0,
+      "oil_export_strait": 3,
+      "strategic_oil_reserves": 1,
+      "commercial_oil_stocks": 3,
+      "refinery_utilization_rat": 2,
+      "oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "speculative_trade_flow": 2,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 0
+    },
+    "oil_export_strait": {
+      "strait_control_perc": 3,
+      "naval_presence": 1,
+      "maritime_incident_rate": 2,
+      "shipping_traffic_volume": 3,
+      "rerouted_trade_flow": 3,
+      "shipping_insurance_level": 2,
+      "oil_production_rate": 1,
+      "oil_export_strait": 0,
+      "strategic_oil_reserves": 1,
+      "commercial_oil_stocks": 2,
+      "refinery_utilization_rat": 1,
+      "oil_price_level": 3,
+      "oil_price_volatility": 3,
+      "speculative_trade_flow": 2,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 0
+    },
+    "strategic_oil_reserves": {
+      "strait_control_perc": 1,
+      "naval_presence": 0,
+      "maritime_incident_rate": 0,
+      "shipping_traffic_volume": 0,
+      "rerouted_trade_flow": 1,
+      "shipping_insurance_level": 1,
+      "oil_production_rate": 0,
+      "oil_export_strait": 1,
+      "strategic_oil_reserves": 0,
+      "commercial_oil_stocks": 2,
+      "refinery_utilization_rat": 2,
+      "oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "speculative_trade_flow": 2,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 0
+    },
+    "commercial_oil_stocks": {
+      "strait_control_perc": 1,
+      "naval_presence": 0,
+      "maritime_incident_rate": 0,
+      "shipping_traffic_volume": 1,
+      "rerouted_trade_flow": 1,
+      "shipping_insurance_level": 1,
+      "oil_production_rate": 2,
+      "oil_export_strait": 1,
+      "strategic_oil_reserves": 0,
+      "commercial_oil_stocks": 0,
+      "refinery_utilization_rat": 2,
+      "oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "speculative_trade_flow": 2,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 1
+    },
+    "refinery_utilization_rat": {
+      "strait_control_perc": 0,
+      "naval_presence": 0,
+      "maritime_incident_rate": 0,
+      "shipping_traffic_volume": 1,
+      "rerouted_trade_flow": 1,
+      "shipping_insurance_level": 0,
+      "oil_production_rate": 2,
+      "oil_export_strait": 2,
+      "strategic_oil_reserves": 1,
+      "commercial_oil_stocks": 2,
+      "refinery_utilization_rat": 0,
+      "oil_price_level": 2,
+      "oil_price_volatility": 1,
+      "speculative_trade_flow": 1,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 0
+    },
+    "oil_price_level": {
+      "strait_control_perc": 1,
+      "naval_presence": 0,
+      "maritime_incident_rate": 0,
+      "shipping_traffic_volume": 1,
+      "rerouted_trade_flow": 0,
+      "shipping_insurance_level": 0,
+      "oil_production_rate": 3,
+      "oil_export_strait": 2,
+      "strategic_oil_reserves": 2,
+      "commercial_oil_stocks": 2,
+      "refinery_utilization_rat": 2,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "speculative_trade_flow": 2,
+      "demand_forecast_growth": 1,
+      "borrowing_cost_level": 1
+    },
+    "oil_price_volatility": {
+      "strait_control_perc": 1,
+      "naval_presence": 0,
+      "maritime_incident_rate": 0,
+      "shipping_traffic_volume": 1,
+      "rerouted_trade_flow": 0,
+      "shipping_insurance_level": 2,
+      "oil_production_rate": 1,
+      "oil_export_strait": 0,
+      "strategic_oil_reserves": 1,
+      "commercial_oil_stocks": 2,
+      "refinery_utilization_rat": 1,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "speculative_trade_flow": 3,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 2
+    },
+    "speculative_trade_flow": {
+      "strait_control_perc": 1,
+      "naval_presence": 0,
+      "maritime_incident_rate": 0,
+      "shipping_traffic_volume": 0,
+      "rerouted_trade_flow": 0,
+      "shipping_insurance_level": 1,
+      "oil_production_rate": 1,
+      "oil_export_strait": 0,
+      "strategic_oil_reserves": 1,
+      "commercial_oil_stocks": 1,
+      "refinery_utilization_rat": 1,
+      "oil_price_level": 3,
+      "oil_price_volatility": 3,
+      "speculative_trade_flow": 0,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 1
+    },
+    "demand_forecast_growth": {
+      "strait_control_perc": 0,
+      "naval_presence": 0,
+      "maritime_incident_rate": 0,
+      "shipping_traffic_volume": 2,
+      "rerouted_trade_flow": 1,
+      "shipping_insurance_level": 0,
+      "oil_production_rate": 2,
+      "oil_export_strait": 2,
+      "strategic_oil_reserves": 1,
+      "commercial_oil_stocks": 2,
+      "refinery_utilization_rat": 2,
+      "oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "speculative_trade_flow": 2,
+      "demand_forecast_growth": 0,
+      "borrowing_cost_level": 1
+    },
+    "borrowing_cost_level": {
+      "strait_control_perc": 0,
+      "naval_presence": 0,
+      "maritime_incident_rate": 0,
+      "shipping_traffic_volume": 0,
+      "rerouted_trade_flow": 0,
+      "shipping_insurance_level": 1,
+      "oil_production_rate": 2,
+      "oil_export_strait": 0,
+      "strategic_oil_reserves": 1,
+      "commercial_oil_stocks": 2,
+      "refinery_utilization_rat": 1,
+      "oil_price_level": 1,
+      "oil_price_volatility": 1,
+      "speculative_trade_flow": 2,
+      "demand_forecast_growth": 1,
+      "borrowing_cost_level": 0
+    }
+  },
+  "AS": {
+    "strait_control_perc": 33,
+    "naval_presence": 26,
+    "maritime_incident_rate": 35,
+    "shipping_traffic_volume": 21,
+    "rerouted_trade_flow": 24,
+    "shipping_insurance_level": 22,
+    "oil_production_rate": 19,
+    "oil_export_strait": 27,
+    "strategic_oil_reserves": 15,
+    "commercial_oil_stocks": 17,
+    "refinery_utilization_rat": 13,
+    "oil_price_level": 17,
+    "oil_price_volatility": 14,
+    "speculative_trade_flow": 13,
+    "demand_forecast_growth": 20,
+    "borrowing_cost_level": 12
+  },
+  "PS": {
+    "strait_control_perc": 20,
+    "naval_presence": 9,
+    "maritime_incident_rate": 12,
+    "shipping_traffic_volume": 24,
+    "rerouted_trade_flow": 21,
+    "shipping_insurance_level": 20,
+    "oil_production_rate": 20,
+    "oil_export_strait": 28,
+    "strategic_oil_reserves": 13,
+    "commercial_oil_stocks": 28,
+    "refinery_utilization_rat": 22,
+    "oil_price_level": 38,
+    "oil_price_volatility": 31,
+    "speculative_trade_flow": 31,
+    "demand_forecast_growth": 3,
+    "borrowing_cost_level": 8
+  },
+  "med_AS": 19.5,
+  "med_PS": 20.5,
+  "roles": [
+    {
+      "variable": "oil_export_strait",
+      "name": "Oil export flow through strait",
+      "AS": 27,
+      "PS": 28,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 756,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "strait_control_perc",
+      "name": "Perceived control of the strait",
+      "AS": 33,
+      "PS": 20,
+      "Q=AS/PS": 1.65,
+      "P=AS*PS": 660,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "oil_price_level",
+      "name": "Oil price level",
+      "AS": 17,
+      "PS": 38,
+      "Q=AS/PS": 0.45,
+      "P=AS*PS": 646,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "rerouted_trade_flow",
+      "name": "Volume of trade rerouted",
+      "AS": 24,
+      "PS": 21,
+      "Q=AS/PS": 1.14,
+      "P=AS*PS": 504,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "shipping_traffic_volume",
+      "name": "Shipping traffic volume through strait",
+      "AS": 21,
+      "PS": 24,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 504,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "commercial_oil_stocks",
+      "name": "Commercial oil stock level",
+      "AS": 17,
+      "PS": 28,
+      "Q=AS/PS": 0.61,
+      "P=AS*PS": 476,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "shipping_insurance_level",
+      "name": "Shipping insurance premium level",
+      "AS": 22,
+      "PS": 20,
+      "Q=AS/PS": 1.1,
+      "P=AS*PS": 440,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "AS": 14,
+      "PS": 31,
+      "Q=AS/PS": 0.45,
+      "P=AS*PS": 434,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "maritime_incident_rate",
+      "name": "Maritime incident occurrence rate",
+      "AS": 35,
+      "PS": 12,
+      "Q=AS/PS": 2.92,
+      "P=AS*PS": 420,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "speculative_trade_flow",
+      "name": "Speculative trading flow intensity",
+      "AS": 13,
+      "PS": 31,
+      "Q=AS/PS": 0.42,
+      "P=AS*PS": 403,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "oil_production_rate",
+      "name": "Oil production rate",
+      "AS": 19,
+      "PS": 20,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 380,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "AS": 13,
+      "PS": 22,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 286,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "naval_presence",
+      "name": "Naval/military presence intensity",
+      "AS": 26,
+      "PS": 9,
+      "Q=AS/PS": 2.89,
+      "P=AS*PS": 234,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "strategic_oil_reserves",
+      "name": "Strategic oil reserve level",
+      "AS": 15,
+      "PS": 13,
+      "Q=AS/PS": 1.15,
+      "P=AS*PS": 195,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "borrowing_cost_level",
+      "name": "Borrowing/credit cost level",
+      "AS": 12,
+      "PS": 8,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 96,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "demand_forecast_growth",
+      "name": "Oil demand forecast growth",
+      "AS": 20,
+      "PS": 3,
+      "Q=AS/PS": 6.67,
+      "P=AS*PS": 60,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "strait_control_perc",
+        "name": "Perceived control of the strait",
+        "kind": "perception",
+        "AS": 33,
+        "PS": 20
+      },
+      {
+        "id": "naval_presence",
+        "name": "Naval/military presence intensity",
+        "kind": "driver",
+        "AS": 26,
+        "PS": 9
+      },
+      {
+        "id": "maritime_incident_rate",
+        "name": "Maritime incident occurrence rate",
+        "kind": "flow",
+        "AS": 35,
+        "PS": 12
+      },
+      {
+        "id": "shipping_traffic_volume",
+        "name": "Shipping traffic volume through strait",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 24
+      },
+      {
+        "id": "rerouted_trade_flow",
+        "name": "Volume of trade rerouted",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 21
+      },
+      {
+        "id": "shipping_insurance_level",
+        "name": "Shipping insurance premium level",
+        "kind": "driver",
+        "AS": 22,
+        "PS": 20
+      },
+      {
+        "id": "oil_production_rate",
+        "name": "Oil production rate",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 20
+      },
+      {
+        "id": "oil_export_strait",
+        "name": "Oil export flow through strait",
+        "kind": "flow",
+        "AS": 27,
+        "PS": 28
+      },
+      {
+        "id": "strategic_oil_reserves",
+        "name": "Strategic oil reserve level",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 13
+      },
+      {
+        "id": "commercial_oil_stocks",
+        "name": "Commercial oil stock level",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 28
+      },
+      {
+        "id": "refinery_utilization_rat",
+        "name": "Refinery utilization rate",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 22
+      },
+      {
+        "id": "oil_price_level",
+        "name": "Oil price level",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 38
+      },
+      {
+        "id": "oil_price_volatility",
+        "name": "Oil price volatility",
+        "kind": "perception",
+        "AS": 14,
+        "PS": 31
+      },
+      {
+        "id": "speculative_trade_flow",
+        "name": "Speculative trading flow intensity",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 31
+      },
+      {
+        "id": "demand_forecast_growth",
+        "name": "Oil demand forecast growth",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 3
+      },
+      {
+        "id": "borrowing_cost_level",
+        "name": "Borrowing/credit cost level",
+        "kind": "environment",
+        "AS": 12,
+        "PS": 8
+      }
+    ],
+    "edges": [
+      {
+        "source": "strait_control_perc",
+        "target": "naval_presence",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "strait_control_perc",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "strait_control_perc",
+        "target": "shipping_traffic_volume",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "strait_control_perc",
+        "target": "rerouted_trade_flow",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "strait_control_perc",
+        "target": "shipping_insurance_level",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "strait_control_perc",
+        "target": "oil_production_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "strait_control_perc",
+        "target": "oil_export_strait",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "strait_control_perc",
+        "target": "commercial_oil_stocks",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "strait_control_perc",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "strait_control_perc",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "strait_control_perc",
+        "target": "speculative_trade_flow",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "naval_presence",
+        "target": "strait_control_perc",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "naval_presence",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "naval_presence",
+        "target": "shipping_traffic_volume",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "naval_presence",
+        "target": "rerouted_trade_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "naval_presence",
+        "target": "shipping_insurance_level",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "naval_presence",
+        "target": "oil_export_strait",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "naval_presence",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "naval_presence",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "naval_presence",
+        "target": "speculative_trade_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "strait_control_perc",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "naval_presence",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "shipping_traffic_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "rerouted_trade_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "shipping_insurance_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "oil_production_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "oil_export_strait",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "strategic_oil_reserves",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "commercial_oil_stocks",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "speculative_trade_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_traffic_volume",
+        "target": "strait_control_perc",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_traffic_volume",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_traffic_volume",
+        "target": "rerouted_trade_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_traffic_volume",
+        "target": "oil_export_strait",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_traffic_volume",
+        "target": "commercial_oil_stocks",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_traffic_volume",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_traffic_volume",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_traffic_volume",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "rerouted_trade_flow",
+        "target": "strait_control_perc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouted_trade_flow",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouted_trade_flow",
+        "target": "shipping_traffic_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "rerouted_trade_flow",
+        "target": "shipping_insurance_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouted_trade_flow",
+        "target": "oil_export_strait",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "rerouted_trade_flow",
+        "target": "commercial_oil_stocks",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouted_trade_flow",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouted_trade_flow",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rerouted_trade_flow",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouted_trade_flow",
+        "target": "speculative_trade_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_insurance_level",
+        "target": "strait_control_perc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_insurance_level",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_insurance_level",
+        "target": "shipping_traffic_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_insurance_level",
+        "target": "rerouted_trade_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_insurance_level",
+        "target": "oil_export_strait",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_insurance_level",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_insurance_level",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_insurance_level",
+        "target": "speculative_trade_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_production_rate",
+        "target": "shipping_traffic_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_production_rate",
+        "target": "oil_export_strait",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_production_rate",
+        "target": "commercial_oil_stocks",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_production_rate",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_production_rate",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "oil_production_rate",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_production_rate",
+        "target": "speculative_trade_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_export_strait",
+        "target": "strait_control_perc",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_export_strait",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_export_strait",
+        "target": "shipping_traffic_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_export_strait",
+        "target": "rerouted_trade_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_export_strait",
+        "target": "shipping_insurance_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_export_strait",
+        "target": "commercial_oil_stocks",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_export_strait",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "oil_export_strait",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "oil_export_strait",
+        "target": "speculative_trade_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_oil_reserves",
+        "target": "commercial_oil_stocks",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_oil_reserves",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "strategic_oil_reserves",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_oil_reserves",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_oil_reserves",
+        "target": "speculative_trade_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_oil_stocks",
+        "target": "oil_production_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_oil_stocks",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commercial_oil_stocks",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_oil_stocks",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_oil_stocks",
+        "target": "speculative_trade_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "oil_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "oil_export_strait",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "commercial_oil_stocks",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "oil_production_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "oil_export_strait",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "strategic_oil_reserves",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "commercial_oil_stocks",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "speculative_trade_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "shipping_insurance_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "commercial_oil_stocks",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "speculative_trade_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "borrowing_cost_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "speculative_trade_flow",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "speculative_trade_flow",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "demand_forecast_growth",
+        "target": "shipping_traffic_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "demand_forecast_growth",
+        "target": "oil_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "demand_forecast_growth",
+        "target": "oil_export_strait",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "demand_forecast_growth",
+        "target": "commercial_oil_stocks",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "demand_forecast_growth",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "demand_forecast_growth",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "demand_forecast_growth",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "demand_forecast_growth",
+        "target": "speculative_trade_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "borrowing_cost_level",
+        "target": "oil_production_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "borrowing_cost_level",
+        "target": "commercial_oil_stocks",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "borrowing_cost_level",
+        "target": "speculative_trade_flow",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_indefinite_blockade",
+      "title": "US moves to enforce indefinite naval blockade",
+      "description": "US statements and extended carrier deployments imply an ongoing effort to sustain a naval blockade, increasing military pressure around Hormuz.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-11-15",
+        "label": "next 3 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "naval_presence",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "strait_control_perc",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "shipping_traffic_volume",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“US says it can keep naval blockade on Iran 'indefinitely'” and extended carrier deployment headlines"
+    },
+    {
+      "id": "ongoing_vessel_attacks",
+      "title": "Continued attacks on commercial vessels in Hormuz",
+      "description": "Repeated attacks on tankers and merchant ships are likely to continue, raising transit risk and prompting detours and insurance hikes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-09-15",
+        "label": "4 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_traffic_volume",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_insurance_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_export_strait",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: “Two more ships attacked in Hormuz”, “ADNOC vessel attacked”, reports of another ship struck"
+    },
+    {
+      "id": "saudi_med_pipeline_ramp",
+      "title": "Saudi ramp-up of Mediterranean pipeline exports",
+      "description": "Saudi Arabia increases flows via its Mediterranean pipeline to avoid Red Sea/Hormuz risk, diverting volumes away from the strait.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-13",
+        "end": "2026-10-13",
+        "label": "2 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "rerouted_trade_flow",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_export_strait",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_traffic_volume",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "“Saudi Arabia ramps up oil exports through Mediterranean pipeline to avoid attacks”"
+    },
+    {
+      "id": "oman_oil_slick_salvage",
+      "title": "Oil slick salvage and cleanup off Oman",
+      "description": "Ongoing salvage and cleanup of a leaking ship and large oil slick off Oman's coast may close lanes and disrupt nearby traffic for weeks.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-09-05",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_traffic_volume",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_insurance_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Huge oil slick hitting Oman's shoreline” and “Risk firm Ambrey working to salvage ship spewing oil off Oman”"
+    },
+    {
+      "id": "strategic_reserve_depletion",
+      "title": "Continued drawdown and constrained SPR capacity",
+      "description": "Strategic reserve levels near concerning lows and cavern damage risks constrain further releases, tightening governments' short-term buffers.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-11-15",
+        "label": "next 3 months"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "strategic_oil_reserves",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Depleted strategic oil reserve nears level that raises concerns about damage to caverns, operations”"
+    },
+    {
+      "id": "asian_refiners_buy_us_crude",
+      "title": "Asian refiners increase US crude purchases",
+      "description": "Refiners in Asia shift buying toward US barrels while Hormuz remains blocked, altering trade flows and stock positions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-14",
+        "end": "2026-10-14",
+        "label": "1-2 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "rerouted_trade_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_export_strait",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "commercial_oil_stocks",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Asian refiners buy more US crude as Hormuz remains blocked”"
+    },
+    {
+      "id": "talks_deadlock_persists",
+      "title": "US–Iran Hormuz talks remain deadlocked",
+      "description": "Stalled negotiations over control of the strait are likely to persist, maintaining ambiguity and market uncertainty.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-09-30",
+        "label": "6 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "strait_control_perc",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "naval_presence",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“deadlock in US-Iran talks” and “stalled Hormuz talks” headlines"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "ongoing_vessel_attacks",
+      "title": "Continued attacks on commercial vessels in Hormuz",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "4 weeks",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-09-15",
+      "probability": 0.8,
+      "impact_score": 245.0,
+      "expected_impact": 196.0,
+      "event_PS": 20.0,
+      "event_AS": 27.222,
+      "n_vars": 4,
+      "affected_ids": "maritime_incident_rate, shipping_traffic_volume, shipping_insurance_level, oil_export_strait",
+      "rationale": "Headlines: “Two more ships attacked in Hormuz”, “ADNOC vessel attacked”, reports of another ship struck"
+    },
+    {
+      "id": "us_indefinite_blockade",
+      "title": "US moves to enforce indefinite naval blockade",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-11-15",
+      "probability": 0.6,
+      "impact_score": 214.0,
+      "expected_impact": 128.4,
+      "event_PS": 19.667,
+      "event_AS": 23.778,
+      "n_vars": 4,
+      "affected_ids": "naval_presence, strait_control_perc, shipping_traffic_volume, oil_price_volatility",
+      "rationale": "“US says it can keep naval blockade on Iran 'indefinitely'” and extended carrier deployment headlines"
+    },
+    {
+      "id": "saudi_med_pipeline_ramp",
+      "title": "Saudi ramp-up of Mediterranean pipeline exports",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 months",
+      "date": null,
+      "start": "2026-08-13",
+      "end": "2026-10-13",
+      "probability": 0.7,
+      "impact_score": 168.0,
+      "expected_impact": 117.6,
+      "event_PS": 23.857,
+      "event_AS": 24.0,
+      "n_vars": 3,
+      "affected_ids": "rerouted_trade_flow, oil_export_strait, shipping_traffic_volume",
+      "rationale": "“Saudi Arabia ramps up oil exports through Mediterranean pipeline to avoid attacks”"
+    },
+    {
+      "id": "talks_deadlock_persists",
+      "title": "US–Iran Hormuz talks remain deadlocked",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6 weeks",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-09-30",
+      "probability": 0.8,
+      "impact_score": 132.0,
+      "expected_impact": 105.6,
+      "event_PS": 17.8,
+      "event_AS": 26.4,
+      "n_vars": 3,
+      "affected_ids": "strait_control_perc, naval_presence, oil_price_volatility",
+      "rationale": "“deadlock in US-Iran talks” and “stalled Hormuz talks” headlines"
+    },
+    {
+      "id": "asian_refiners_buy_us_crude",
+      "title": "Asian refiners increase US crude purchases",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-2 months",
+      "date": null,
+      "start": "2026-08-14",
+      "end": "2026-10-14",
+      "probability": 0.7,
+      "impact_score": 119.0,
+      "expected_impact": 83.3,
+      "event_PS": 25.2,
+      "event_AS": 23.8,
+      "n_vars": 3,
+      "affected_ids": "rerouted_trade_flow, oil_export_strait, commercial_oil_stocks",
+      "rationale": "“Asian refiners buy more US crude as Hormuz remains blocked”"
+    },
+    {
+      "id": "oman_oil_slick_salvage",
+      "title": "Oil slick salvage and cleanup off Oman",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-09-05",
+      "probability": 0.85,
+      "impact_score": 113.0,
+      "expected_impact": 96.05,
+      "event_PS": 17.0,
+      "event_AS": 28.25,
+      "n_vars": 3,
+      "affected_ids": "maritime_incident_rate, shipping_traffic_volume, shipping_insurance_level",
+      "rationale": "“Huge oil slick hitting Oman's shoreline” and “Risk firm Ambrey working to salvage ship spewing oil off Oman”"
+    },
+    {
+      "id": "strategic_reserve_depletion",
+      "title": "Continued drawdown and constrained SPR capacity",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-11-15",
+      "probability": 0.65,
+      "impact_score": 107.0,
+      "expected_impact": 69.55,
+      "event_PS": 25.286,
+      "event_AS": 15.286,
+      "n_vars": 3,
+      "affected_ids": "strategic_oil_reserves, oil_price_level, oil_price_volatility",
+      "rationale": "“Depleted strategic oil reserve nears level that raises concerns about damage to caverns, operations”"
+    }
+  ]
+}
