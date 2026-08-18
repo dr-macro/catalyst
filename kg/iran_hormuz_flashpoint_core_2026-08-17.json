@@ -1,0 +1,1794 @@
+{
+  "label": "iran_hormuz_flashpoint",
+  "as_of": "2026-08-17",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-17T23:47:36",
+  "system_description": {
+    "narrative_title": "US–Iran confrontation: Hormuz blockade, economic pressure, and energy shocks",
+    "narrative_summary": "The headlines depict an intensifying US–Iran standoff centered on control of the Strait of Hormuz combining naval action, attacks on shipping, and unprecedented economic measures. Military moves (carrier deployments, naval fire), tanker/vessel strikes, and US threats of new economic tactics are disrupting shipping and driving oil-price volatility, while Iran adapts into a ‘survival economy’ and leverages asymmetric tools. Feedbacks between security escalation, market disruption, and domestic political pressure are the dominant dynamic.",
+    "scope": "The regional military-diplomatic-economic system focused on the Persian Gulf and Strait of Hormuz: naval deployments and blockades, attacks on commercial vessels, US economic and sanction measures, Iran’s domestic economic adaptations, responses by Gulf states (UAE, Oman, Qatar, Saudi), and downstream impacts on global oil/refining markets, strategic reserves, shipping flows and insurance.",
+    "super_system": "Global geopolitical-energy system (international security, cross-border economics, and global oil/commodity markets).",
+    "adjacent_subsystems": [
+      "Global oil and commodities markets (prices, reserves, refiners, majors)",
+      "US domestic politics, defense policy and public opinion (carrier politics, presidential statements)",
+      "Gulf regional diplomacy and security (UAE, Oman, Qatar, Saudi, Iran proxies/Houthis)",
+      "Global shipping, logistics and maritime insurance"
+    ],
+    "evidence_headlines": [
+      "U.S. to use economic tactics on Iran 'that have never been seen'; Navy works to relieve troubled carrier USS Abraham Lincoln",
+      "US fires on ship it says violated Iran blockade",
+      "ADNOC vessel attacked in Hormuz as Trump defends extended carrier deployment",
+      "Iran Is Defying U.S. Pressure by Becoming a ‘Survival Economy’",
+      "Oil rises after US threatens indefinite blockade of Iran; set for weekly gains",
+      "Strait of Hormuz shipping grinds to a halt ahead of U.S."
+    ]
+  },
+  "variables": [
+    {
+      "id": "naval_presence_density",
+      "name": "Naval presence density",
+      "description": "Concentration of deployed military naval and air assets operating within the maritime operational area.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "blockade_pressure_level",
+      "name": "Blockade pressure level",
+      "description": "Intensity and effectiveness of measures restricting maritime traffic and commercial passage along key routes.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "asymmetric_attack_rate",
+      "name": "Asymmetric attack rate",
+      "description": "Rate at which irregular or non-conventional attacks on vessels, platforms, and maritime infrastructure occur.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_incident_rate",
+      "name": "Maritime incident rate",
+      "description": "Frequency of maritime incidents including strikes, collisions, spills, detentions and suspicious interdictions.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_throughput",
+      "name": "Commercial shipping throughput",
+      "description": "Volume of commercial cargo and tanker transits through the regional sea lanes per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_rerouting_exten",
+      "name": "Shipping rerouting extent",
+      "description": "Proportion of vessels that alter predefined routes to avoid perceived or actual risk areas.",
+      "kind": "state",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_choke_congestio",
+      "name": "Maritime choke-point congestion",
+      "description": "Degree of queuing, delays and congestion at critical narrow sea passages that constrain throughput.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_premium_index",
+      "name": "Shipping insurance premium index",
+      "description": "Average uplift in insurance and war-risk premiums applied to maritime cargo and tanker operations in the region.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "description": "Short- to medium-term variability in benchmark crude oil prices as influenced by regional risks and shocks.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "global_oil_supply_balanc",
+      "name": "Global oil supply balance",
+      "description": "Net balance of global oil supply relative to demand, reflecting spare capacity, exports and disruptions.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserve_level",
+      "name": "Strategic reserve level",
+      "description": "Usable volume and operational integrity of strategic fuel reserves available to mitigate supply shocks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "description": "Percentage share of refining capacity actively operating and producing refined fuels in relevant markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fuel_retail_price_level",
+      "name": "Fuel retail price level",
+      "description": "Average consumer price level for refined transport fuels in affected markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "economic_resilience",
+      "name": "Domestic economic resilience",
+      "description": "Ability of an economy to maintain essential production, distribution and consumption under external economic pressure.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sanctions_intensity",
+      "name": "Sanctions pressure intensity",
+      "description": "Breadth and strictness of economic restrictive measures applied to target trade, finance and critical sectors.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diplomatic_tension",
+      "name": "Diplomatic escalation tension",
+      "description": "Level of adversarial diplomatic rhetoric, formal political measures and perceived bilateral tension raising conflict risk.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "naval_presence_density",
+    "blockade_pressure_level",
+    "asymmetric_attack_rate",
+    "maritime_incident_rate",
+    "shipping_throughput",
+    "shipping_rerouting_exten",
+    "maritime_choke_congestio",
+    "insurance_premium_index",
+    "oil_price_volatility",
+    "global_oil_supply_balanc",
+    "strategic_reserve_level",
+    "refinery_utilization_rat",
+    "fuel_retail_price_level",
+    "economic_resilience",
+    "sanctions_intensity",
+    "diplomatic_tension"
+  ],
+  "var_names": {
+    "naval_presence_density": "Naval presence density",
+    "blockade_pressure_level": "Blockade pressure level",
+    "asymmetric_attack_rate": "Asymmetric attack rate",
+    "maritime_incident_rate": "Maritime incident rate",
+    "shipping_throughput": "Commercial shipping throughput",
+    "shipping_rerouting_exten": "Shipping rerouting extent",
+    "maritime_choke_congestio": "Maritime choke-point congestion",
+    "insurance_premium_index": "Shipping insurance premium index",
+    "oil_price_volatility": "Oil price volatility",
+    "global_oil_supply_balanc": "Global oil supply balance",
+    "strategic_reserve_level": "Strategic reserve level",
+    "refinery_utilization_rat": "Refinery utilization rate",
+    "fuel_retail_price_level": "Fuel retail price level",
+    "economic_resilience": "Domestic economic resilience",
+    "sanctions_intensity": "Sanctions pressure intensity",
+    "diplomatic_tension": "Diplomatic escalation tension"
+  },
+  "impact_matrix": {
+    "naval_presence_density": {
+      "naval_presence_density": 0,
+      "blockade_pressure_level": 3,
+      "asymmetric_attack_rate": 2,
+      "maritime_incident_rate": 2,
+      "shipping_throughput": 1,
+      "shipping_rerouting_exten": 1,
+      "maritime_choke_congestio": 1,
+      "insurance_premium_index": 1,
+      "oil_price_volatility": 1,
+      "global_oil_supply_balanc": 0,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 0,
+      "fuel_retail_price_level": 0,
+      "economic_resilience": 0,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 2
+    },
+    "blockade_pressure_level": {
+      "naval_presence_density": 3,
+      "blockade_pressure_level": 0,
+      "asymmetric_attack_rate": 1,
+      "maritime_incident_rate": 3,
+      "shipping_throughput": 3,
+      "shipping_rerouting_exten": 3,
+      "maritime_choke_congestio": 3,
+      "insurance_premium_index": 3,
+      "oil_price_volatility": 3,
+      "global_oil_supply_balanc": 2,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 1,
+      "fuel_retail_price_level": 2,
+      "economic_resilience": 2,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 3
+    },
+    "asymmetric_attack_rate": {
+      "naval_presence_density": 2,
+      "blockade_pressure_level": 1,
+      "asymmetric_attack_rate": 0,
+      "maritime_incident_rate": 3,
+      "shipping_throughput": 3,
+      "shipping_rerouting_exten": 3,
+      "maritime_choke_congestio": 2,
+      "insurance_premium_index": 3,
+      "oil_price_volatility": 3,
+      "global_oil_supply_balanc": 1,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 0,
+      "fuel_retail_price_level": 2,
+      "economic_resilience": 1,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 3
+    },
+    "maritime_incident_rate": {
+      "naval_presence_density": 2,
+      "blockade_pressure_level": 1,
+      "asymmetric_attack_rate": 1,
+      "maritime_incident_rate": 0,
+      "shipping_throughput": 3,
+      "shipping_rerouting_exten": 3,
+      "maritime_choke_congestio": 2,
+      "insurance_premium_index": 3,
+      "oil_price_volatility": 3,
+      "global_oil_supply_balanc": 1,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 0,
+      "fuel_retail_price_level": 2,
+      "economic_resilience": 1,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 2
+    },
+    "shipping_throughput": {
+      "naval_presence_density": 1,
+      "blockade_pressure_level": 0,
+      "asymmetric_attack_rate": 0,
+      "maritime_incident_rate": 1,
+      "shipping_throughput": 0,
+      "shipping_rerouting_exten": 2,
+      "maritime_choke_congestio": 2,
+      "insurance_premium_index": 2,
+      "oil_price_volatility": 1,
+      "global_oil_supply_balanc": 2,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 1,
+      "fuel_retail_price_level": 1,
+      "economic_resilience": 1,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 0
+    },
+    "shipping_rerouting_exten": {
+      "naval_presence_density": 1,
+      "blockade_pressure_level": 2,
+      "asymmetric_attack_rate": 1,
+      "maritime_incident_rate": 2,
+      "shipping_throughput": 3,
+      "shipping_rerouting_exten": 0,
+      "maritime_choke_congestio": 2,
+      "insurance_premium_index": 3,
+      "oil_price_volatility": 2,
+      "global_oil_supply_balanc": 1,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 1,
+      "fuel_retail_price_level": 1,
+      "economic_resilience": 1,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 0
+    },
+    "maritime_choke_congestio": {
+      "naval_presence_density": 1,
+      "blockade_pressure_level": 2,
+      "asymmetric_attack_rate": 1,
+      "maritime_incident_rate": 3,
+      "shipping_throughput": 3,
+      "shipping_rerouting_exten": 2,
+      "maritime_choke_congestio": 0,
+      "insurance_premium_index": 2,
+      "oil_price_volatility": 2,
+      "global_oil_supply_balanc": 1,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 1,
+      "fuel_retail_price_level": 1,
+      "economic_resilience": 1,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 0
+    },
+    "insurance_premium_index": {
+      "naval_presence_density": 0,
+      "blockade_pressure_level": 0,
+      "asymmetric_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "shipping_throughput": 1,
+      "shipping_rerouting_exten": 1,
+      "maritime_choke_congestio": 0,
+      "insurance_premium_index": 0,
+      "oil_price_volatility": 2,
+      "global_oil_supply_balanc": 0,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 0,
+      "fuel_retail_price_level": 1,
+      "economic_resilience": 1,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 0
+    },
+    "oil_price_volatility": {
+      "naval_presence_density": 0,
+      "blockade_pressure_level": 0,
+      "asymmetric_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "shipping_throughput": 1,
+      "shipping_rerouting_exten": 0,
+      "maritime_choke_congestio": 0,
+      "insurance_premium_index": 1,
+      "oil_price_volatility": 0,
+      "global_oil_supply_balanc": 1,
+      "strategic_reserve_level": 1,
+      "refinery_utilization_rat": 1,
+      "fuel_retail_price_level": 3,
+      "economic_resilience": 2,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 1
+    },
+    "global_oil_supply_balanc": {
+      "naval_presence_density": 0,
+      "blockade_pressure_level": 0,
+      "asymmetric_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "shipping_throughput": 1,
+      "shipping_rerouting_exten": 0,
+      "maritime_choke_congestio": 0,
+      "insurance_premium_index": 1,
+      "oil_price_volatility": 3,
+      "global_oil_supply_balanc": 0,
+      "strategic_reserve_level": 1,
+      "refinery_utilization_rat": 2,
+      "fuel_retail_price_level": 3,
+      "economic_resilience": 2,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 1
+    },
+    "strategic_reserve_level": {
+      "naval_presence_density": 0,
+      "blockade_pressure_level": 0,
+      "asymmetric_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "shipping_throughput": 0,
+      "shipping_rerouting_exten": 0,
+      "maritime_choke_congestio": 0,
+      "insurance_premium_index": 0,
+      "oil_price_volatility": 2,
+      "global_oil_supply_balanc": 2,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 0,
+      "fuel_retail_price_level": 2,
+      "economic_resilience": 1,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 0
+    },
+    "refinery_utilization_rat": {
+      "naval_presence_density": 0,
+      "blockade_pressure_level": 1,
+      "asymmetric_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "shipping_throughput": 1,
+      "shipping_rerouting_exten": 0,
+      "maritime_choke_congestio": 1,
+      "insurance_premium_index": 0,
+      "oil_price_volatility": 1,
+      "global_oil_supply_balanc": 1,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 0,
+      "fuel_retail_price_level": 2,
+      "economic_resilience": 2,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 0
+    },
+    "fuel_retail_price_level": {
+      "naval_presence_density": 0,
+      "blockade_pressure_level": 0,
+      "asymmetric_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "shipping_throughput": 0,
+      "shipping_rerouting_exten": 0,
+      "maritime_choke_congestio": 0,
+      "insurance_premium_index": 0,
+      "oil_price_volatility": 0,
+      "global_oil_supply_balanc": 0,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 0,
+      "fuel_retail_price_level": 0,
+      "economic_resilience": 2,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 1
+    },
+    "economic_resilience": {
+      "naval_presence_density": 0,
+      "blockade_pressure_level": 0,
+      "asymmetric_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "shipping_throughput": 1,
+      "shipping_rerouting_exten": 0,
+      "maritime_choke_congestio": 0,
+      "insurance_premium_index": 0,
+      "oil_price_volatility": 0,
+      "global_oil_supply_balanc": 0,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 1,
+      "fuel_retail_price_level": 0,
+      "economic_resilience": 0,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 0
+    },
+    "sanctions_intensity": {
+      "naval_presence_density": 1,
+      "blockade_pressure_level": 1,
+      "asymmetric_attack_rate": 0,
+      "maritime_incident_rate": 1,
+      "shipping_throughput": 2,
+      "shipping_rerouting_exten": 2,
+      "maritime_choke_congestio": 1,
+      "insurance_premium_index": 1,
+      "oil_price_volatility": 2,
+      "global_oil_supply_balanc": 2,
+      "strategic_reserve_level": 0,
+      "refinery_utilization_rat": 1,
+      "fuel_retail_price_level": 1,
+      "economic_resilience": 2,
+      "sanctions_intensity": 0,
+      "diplomatic_tension": 3
+    },
+    "diplomatic_tension": {
+      "naval_presence_density": 3,
+      "blockade_pressure_level": 2,
+      "asymmetric_attack_rate": 2,
+      "maritime_incident_rate": 2,
+      "shipping_throughput": 2,
+      "shipping_rerouting_exten": 2,
+      "maritime_choke_congestio": 1,
+      "insurance_premium_index": 2,
+      "oil_price_volatility": 2,
+      "global_oil_supply_balanc": 1,
+      "strategic_reserve_level": 1,
+      "refinery_utilization_rat": 1,
+      "fuel_retail_price_level": 1,
+      "economic_resilience": 1,
+      "sanctions_intensity": 2,
+      "diplomatic_tension": 0
+    }
+  },
+  "AS": {
+    "naval_presence_density": 14,
+    "blockade_pressure_level": 32,
+    "asymmetric_attack_rate": 27,
+    "maritime_incident_rate": 24,
+    "shipping_throughput": 14,
+    "shipping_rerouting_exten": 20,
+    "maritime_choke_congestio": 20,
+    "insurance_premium_index": 6,
+    "oil_price_volatility": 11,
+    "global_oil_supply_balanc": 14,
+    "strategic_reserve_level": 7,
+    "refinery_utilization_rat": 9,
+    "fuel_retail_price_level": 3,
+    "economic_resilience": 2,
+    "sanctions_intensity": 20,
+    "diplomatic_tension": 25
+  },
+  "PS": {
+    "naval_presence_density": 14,
+    "blockade_pressure_level": 13,
+    "asymmetric_attack_rate": 8,
+    "maritime_incident_rate": 17,
+    "shipping_throughput": 25,
+    "shipping_rerouting_exten": 19,
+    "maritime_choke_congestio": 15,
+    "insurance_premium_index": 22,
+    "oil_price_volatility": 27,
+    "global_oil_supply_balanc": 15,
+    "strategic_reserve_level": 3,
+    "refinery_utilization_rat": 10,
+    "fuel_retail_price_level": 22,
+    "economic_resilience": 20,
+    "sanctions_intensity": 2,
+    "diplomatic_tension": 16
+  },
+  "med_AS": 14.0,
+  "med_PS": 15.5,
+  "roles": [
+    {
+      "variable": "blockade_pressure_level",
+      "name": "Blockade pressure level",
+      "AS": 32,
+      "PS": 13,
+      "Q=AS/PS": 2.46,
+      "P=AS*PS": 416,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "maritime_incident_rate",
+      "name": "Maritime incident rate",
+      "AS": 24,
+      "PS": 17,
+      "Q=AS/PS": 1.41,
+      "P=AS*PS": 408,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diplomatic_tension",
+      "name": "Diplomatic escalation tension",
+      "AS": 25,
+      "PS": 16,
+      "Q=AS/PS": 1.56,
+      "P=AS*PS": 400,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "shipping_rerouting_exten",
+      "name": "Shipping rerouting extent",
+      "AS": 20,
+      "PS": 19,
+      "Q=AS/PS": 1.05,
+      "P=AS*PS": 380,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "shipping_throughput",
+      "name": "Commercial shipping throughput",
+      "AS": 14,
+      "PS": 25,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 350,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "maritime_choke_congestio",
+      "name": "Maritime choke-point congestion",
+      "AS": 20,
+      "PS": 15,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 300,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "AS": 11,
+      "PS": 27,
+      "Q=AS/PS": 0.41,
+      "P=AS*PS": 297,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "asymmetric_attack_rate",
+      "name": "Asymmetric attack rate",
+      "AS": 27,
+      "PS": 8,
+      "Q=AS/PS": 3.37,
+      "P=AS*PS": 216,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "global_oil_supply_balanc",
+      "name": "Global oil supply balance",
+      "AS": 14,
+      "PS": 15,
+      "Q=AS/PS": 0.93,
+      "P=AS*PS": 210,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "naval_presence_density",
+      "name": "Naval presence density",
+      "AS": 14,
+      "PS": 14,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 196,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "insurance_premium_index",
+      "name": "Shipping insurance premium index",
+      "AS": 6,
+      "PS": 22,
+      "Q=AS/PS": 0.27,
+      "P=AS*PS": 132,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "AS": 9,
+      "PS": 10,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 90,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fuel_retail_price_level",
+      "name": "Fuel retail price level",
+      "AS": 3,
+      "PS": 22,
+      "Q=AS/PS": 0.14,
+      "P=AS*PS": 66,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "economic_resilience",
+      "name": "Domestic economic resilience",
+      "AS": 2,
+      "PS": 20,
+      "Q=AS/PS": 0.1,
+      "P=AS*PS": 40,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "sanctions_intensity",
+      "name": "Sanctions pressure intensity",
+      "AS": 20,
+      "PS": 2,
+      "Q=AS/PS": 10.0,
+      "P=AS*PS": 40,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "strategic_reserve_level",
+      "name": "Strategic reserve level",
+      "AS": 7,
+      "PS": 3,
+      "Q=AS/PS": 2.33,
+      "P=AS*PS": 21,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "naval_presence_density",
+        "name": "Naval presence density",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 14
+      },
+      {
+        "id": "blockade_pressure_level",
+        "name": "Blockade pressure level",
+        "kind": "driver",
+        "AS": 32,
+        "PS": 13
+      },
+      {
+        "id": "asymmetric_attack_rate",
+        "name": "Asymmetric attack rate",
+        "kind": "flow",
+        "AS": 27,
+        "PS": 8
+      },
+      {
+        "id": "maritime_incident_rate",
+        "name": "Maritime incident rate",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 17
+      },
+      {
+        "id": "shipping_throughput",
+        "name": "Commercial shipping throughput",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 25
+      },
+      {
+        "id": "shipping_rerouting_exten",
+        "name": "Shipping rerouting extent",
+        "kind": "state",
+        "AS": 20,
+        "PS": 19
+      },
+      {
+        "id": "maritime_choke_congestio",
+        "name": "Maritime choke-point congestion",
+        "kind": "environment",
+        "AS": 20,
+        "PS": 15
+      },
+      {
+        "id": "insurance_premium_index",
+        "name": "Shipping insurance premium index",
+        "kind": "environment",
+        "AS": 6,
+        "PS": 22
+      },
+      {
+        "id": "oil_price_volatility",
+        "name": "Oil price volatility",
+        "kind": "environment",
+        "AS": 11,
+        "PS": 27
+      },
+      {
+        "id": "global_oil_supply_balanc",
+        "name": "Global oil supply balance",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 15
+      },
+      {
+        "id": "strategic_reserve_level",
+        "name": "Strategic reserve level",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 3
+      },
+      {
+        "id": "refinery_utilization_rat",
+        "name": "Refinery utilization rate",
+        "kind": "flow",
+        "AS": 9,
+        "PS": 10
+      },
+      {
+        "id": "fuel_retail_price_level",
+        "name": "Fuel retail price level",
+        "kind": "stock",
+        "AS": 3,
+        "PS": 22
+      },
+      {
+        "id": "economic_resilience",
+        "name": "Domestic economic resilience",
+        "kind": "stock",
+        "AS": 2,
+        "PS": 20
+      },
+      {
+        "id": "sanctions_intensity",
+        "name": "Sanctions pressure intensity",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 2
+      },
+      {
+        "id": "diplomatic_tension",
+        "name": "Diplomatic escalation tension",
+        "kind": "perception",
+        "AS": 25,
+        "PS": 16
+      }
+    ],
+    "edges": [
+      {
+        "source": "naval_presence_density",
+        "target": "blockade_pressure_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "naval_presence_density",
+        "target": "asymmetric_attack_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "naval_presence_density",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "naval_presence_density",
+        "target": "diplomatic_tension",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "blockade_pressure_level",
+        "target": "naval_presence_density",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "blockade_pressure_level",
+        "target": "maritime_incident_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "blockade_pressure_level",
+        "target": "shipping_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "blockade_pressure_level",
+        "target": "shipping_rerouting_exten",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "blockade_pressure_level",
+        "target": "maritime_choke_congestio",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "blockade_pressure_level",
+        "target": "insurance_premium_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "blockade_pressure_level",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "blockade_pressure_level",
+        "target": "global_oil_supply_balanc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "blockade_pressure_level",
+        "target": "fuel_retail_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "blockade_pressure_level",
+        "target": "economic_resilience",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "blockade_pressure_level",
+        "target": "diplomatic_tension",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "asymmetric_attack_rate",
+        "target": "naval_presence_density",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asymmetric_attack_rate",
+        "target": "maritime_incident_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "asymmetric_attack_rate",
+        "target": "shipping_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "asymmetric_attack_rate",
+        "target": "shipping_rerouting_exten",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "asymmetric_attack_rate",
+        "target": "maritime_choke_congestio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asymmetric_attack_rate",
+        "target": "insurance_premium_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "asymmetric_attack_rate",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "asymmetric_attack_rate",
+        "target": "fuel_retail_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asymmetric_attack_rate",
+        "target": "diplomatic_tension",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "naval_presence_density",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "shipping_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "shipping_rerouting_exten",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "maritime_choke_congestio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "insurance_premium_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "fuel_retail_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "diplomatic_tension",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_throughput",
+        "target": "shipping_rerouting_exten",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_throughput",
+        "target": "maritime_choke_congestio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_throughput",
+        "target": "insurance_premium_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_throughput",
+        "target": "global_oil_supply_balanc",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_rerouting_exten",
+        "target": "blockade_pressure_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_rerouting_exten",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_rerouting_exten",
+        "target": "shipping_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_rerouting_exten",
+        "target": "maritime_choke_congestio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_rerouting_exten",
+        "target": "insurance_premium_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_rerouting_exten",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_choke_congestio",
+        "target": "blockade_pressure_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_choke_congestio",
+        "target": "maritime_incident_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_choke_congestio",
+        "target": "shipping_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_choke_congestio",
+        "target": "shipping_rerouting_exten",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_choke_congestio",
+        "target": "insurance_premium_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_choke_congestio",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premium_index",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "fuel_retail_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "economic_resilience",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_supply_balanc",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_supply_balanc",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_supply_balanc",
+        "target": "fuel_retail_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_supply_balanc",
+        "target": "economic_resilience",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "global_oil_supply_balanc",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "fuel_retail_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "fuel_retail_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "economic_resilience",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_retail_price_level",
+        "target": "economic_resilience",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "shipping_throughput",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "shipping_rerouting_exten",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "global_oil_supply_balanc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "economic_resilience",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "diplomatic_tension",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension",
+        "target": "naval_presence_density",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension",
+        "target": "blockade_pressure_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension",
+        "target": "asymmetric_attack_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension",
+        "target": "shipping_throughput",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_tension",
+        "target": "shipping_rerouting_exten",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension",
+        "target": "insurance_premium_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension",
+        "target": "sanctions_intensity",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_unprecedented_economic_campaign",
+      "title": "U.S. ramps unprecedented economic pressure on Iran",
+      "description": "Washington is preparing and signalling new, aggressive economic measures aimed at squeezing Iran's finances and trade over coming weeks-to-months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-10-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "sanctions_intensity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "economic_resilience",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diplomatic_tension",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'U.S. to use economic tactics on Iran that have never been seen'; 'Trump wants more economic pressure on Iran.'"
+    },
+    {
+      "id": "sustained_us_blockade_operations",
+      "title": "Sustained U.S. blockade operations in/around Hormuz",
+      "description": "U.S. statements and naval movements point to a continued, high-pressure maritime interdiction campaign that could be maintained for months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-12-31",
+        "label": "months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "blockade_pressure_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_throughput",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_rerouting_exten",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premium_index",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_choke_congestio",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'US says it can keep naval blockade on Iran \"indefinitely\"'; 'Hormuz traffic slows further.'"
+    },
+    {
+      "id": "carrier_rotations_and_deployments",
+      "title": "Aircraft carrier rotations and fresh deployments",
+      "description": "Pentagon rotations and fresh carrier dispatches to the Middle East will raise concentrated naval assets and operational tempo in the area.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-09-30",
+        "label": "weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "naval_presence_density",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "asymmetric_attack_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "diplomatic_tension",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'U.S. Sending Fresh Aircraft Carrier to Middle East'; 'Pentagon Rotates Aircraft Carriers.'"
+    },
+    {
+      "id": "ceasefire_expiry_and_potential_escalation",
+      "title": "Ceasefire/peace-deal deadline and risk of Iranian escalation",
+      "description": "With ceasefire talks stalling and Iran warning it will escalate if a deal isn't honoured within weeks, a near-term escalation risk around the expiry exists.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-17",
+        "end": "2026-09-14",
+        "label": "within weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "asymmetric_attack_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "blockade_pressure_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_tension",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Iran says it will escalate if US does not honour deal within weeks'; 'U.S. Futures Mostly Higher as Iran Ceasefire Set to Expire.'"
+    },
+    {
+      "id": "continued_attacks_on_commercial_vessels",
+      "title": "Continuing attacks on tankers and commercial vessels in Hormuz",
+      "description": "Recent strikes on ADNOC and other vessels indicate an elevated and likely persistent campaign targeting commercial shipping in the Strait of Hormuz.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-10-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "asymmetric_attack_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_throughput",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium_index",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_choke_congestio",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'UAE's ADNOC says one of its vessels came under attack'; 'UAE says Iran attacked ADNOC vessel.'"
+    },
+    {
+      "id": "gulf_oil_spill_and_navigation_restrictions",
+      "title": "Oil slicks/off-Oman spill prompting navigation limits",
+      "description": "Two slicks and a large spill off Oman risk continued cleanup and localized navigation restrictions that will affect regional shipping flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-09-15",
+        "label": "weeks"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_throughput",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_rerouting_exten",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premium_index",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Two slicks appear in Gulf as huge oil spill off Oman threatens disaster.'"
+    },
+    {
+      "id": "energy_secretary_refiner_meeting",
+      "title": "Energy Secretary meets refiners to boost fuel output",
+      "description": "U.S. Energy Secretary's meetings with refiners aim to accelerate refinery output or regulatory relief to blunt fuel-price pressure.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-17",
+        "end": "2026-08-31",
+        "label": "by end of month"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "refinery_utilization_rat",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fuel_retail_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "economic_resilience",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Energy Secretary Wright to meet refiners on boosting fuel output.'"
+    },
+    {
+      "id": "strategic_reserve_depletion_risk",
+      "title": "Strategic reserves near damaging low levels",
+      "description": "U.S. strategic oil reserves are approaching levels that risk cavern damage and operational constraints, reducing usable mitigation capacity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-15",
+        "end": "2026-10-15",
+        "label": "weeks–months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "strategic_reserve_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fuel_retail_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Depleted strategic oil reserve nears level that raises concerns about damage to caverns, operations.'"
+    },
+    {
+      "id": "chinese_refiners_sanctioned_oil_purchases",
+      "title": "Chinese refiners' purchases of sanctioned Iranian oil continue",
+      "description": "Accusations that Chinese refiners are buying sanctioned Iranian oil suggest persistent Iranian export channels that could blunt supply shocks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-16",
+        "end": "2026-11-30",
+        "label": "months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "global_oil_supply_balanc",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sanctions_intensity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Chinese refiner Hengli accused of funding Iran through sanctioned oil purchases'; 'This Sprawling Chinese Refinery Is Bankrolling Tehran.'"
+    },
+    {
+      "id": "threats_against_oman_and_regional_reactions",
+      "title": "Public threats to bomb Oman and potential regional backlash",
+      "description": "Repeated U.S. threats toward Oman raise diplomatic fallout risk and could provoke Gulf-state responses and shifts in regional alignments.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-17",
+        "end": "2026-09-30",
+        "label": "weeks"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "diplomatic_tension",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "naval_presence_density",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "blockade_pressure_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Trump threatens to bomb Oman if it “gets in the way” of US-Iran negotiations.'"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "ceasefire_expiry_and_potential_escalation",
+      "title": "Ceasefire/peace-deal deadline and risk of Iranian escalation",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "within weeks",
+      "date": null,
+      "start": "2026-08-17",
+      "end": "2026-09-14",
+      "probability": 0.6,
+      "impact_score": 325.0,
+      "expected_impact": 195.0,
+      "event_PS": 16.429,
+      "event_AS": 23.214,
+      "n_vars": 5,
+      "affected_ids": "asymmetric_attack_rate, maritime_incident_rate, blockade_pressure_level, diplomatic_tension, oil_price_volatility",
+      "rationale": "Headlines: 'Iran says it will escalate if US does not honour deal within weeks'; 'U.S. Futures Mostly Higher as Iran Ceasefire Set to Expire.'"
+    },
+    {
+      "id": "sustained_us_blockade_operations",
+      "title": "Sustained U.S. blockade operations in/around Hormuz",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-12-31",
+      "probability": 0.8,
+      "impact_score": 258.0,
+      "expected_impact": 206.4,
+      "event_PS": 20.133,
+      "event_AS": 17.2,
+      "n_vars": 6,
+      "affected_ids": "blockade_pressure_level, shipping_throughput, shipping_rerouting_exten, insurance_premium_index, maritime_choke_congestio, oil_price_volatility",
+      "rationale": "Headlines: 'US says it can keep naval blockade on Iran \"indefinitely\"'; 'Hormuz traffic slows further.'"
+    },
+    {
+      "id": "continued_attacks_on_commercial_vessels",
+      "title": "Continuing attacks on tankers and commercial vessels in Hormuz",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 239.0,
+      "expected_impact": 191.2,
+      "event_PS": 17.0,
+      "event_AS": 18.385,
+      "n_vars": 5,
+      "affected_ids": "asymmetric_attack_rate, maritime_incident_rate, shipping_throughput, insurance_premium_index, maritime_choke_congestio",
+      "rationale": "Headlines: 'UAE's ADNOC says one of its vessels came under attack'; 'UAE says Iran attacked ADNOC vessel.'"
+    },
+    {
+      "id": "carrier_rotations_and_deployments",
+      "title": "Aircraft carrier rotations and fresh deployments",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-09-30",
+      "probability": 0.9,
+      "impact_score": 169.0,
+      "expected_impact": 152.1,
+      "event_PS": 13.5,
+      "event_AS": 21.125,
+      "n_vars": 4,
+      "affected_ids": "naval_presence_density, maritime_incident_rate, asymmetric_attack_rate, diplomatic_tension",
+      "rationale": "Headlines: 'U.S. Sending Fresh Aircraft Carrier to Middle East'; 'Pentagon Rotates Aircraft Carriers.'"
+    },
+    {
+      "id": "threats_against_oman_and_regional_reactions",
+      "title": "Public threats to bomb Oman and potential regional backlash",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-17",
+      "end": "2026-09-30",
+      "probability": 0.4,
+      "impact_score": 121.0,
+      "expected_impact": 48.4,
+      "event_PS": 15.0,
+      "event_AS": 24.2,
+      "n_vars": 3,
+      "affected_ids": "diplomatic_tension, naval_presence_density, blockade_pressure_level",
+      "rationale": "Headlines: 'Trump threatens to bomb Oman if it “gets in the way” of US-Iran negotiations.'"
+    },
+    {
+      "id": "us_unprecedented_economic_campaign",
+      "title": "U.S. ramps unprecedented economic pressure on Iran",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-10-31",
+      "probability": 0.85,
+      "impact_score": 114.0,
+      "expected_impact": 96.9,
+      "event_PS": 11.143,
+      "event_AS": 16.286,
+      "n_vars": 3,
+      "affected_ids": "sanctions_intensity, economic_resilience, diplomatic_tension",
+      "rationale": "Headlines: 'U.S. to use economic tactics on Iran that have never been seen'; 'Trump wants more economic pressure on Iran.'"
+    },
+    {
+      "id": "gulf_oil_spill_and_navigation_restrictions",
+      "title": "Oil slicks/off-Oman spill prompting navigation limits",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-09-15",
+      "probability": 0.5,
+      "impact_score": 102.0,
+      "expected_impact": 51.0,
+      "event_PS": 20.833,
+      "event_AS": 17.0,
+      "n_vars": 4,
+      "affected_ids": "maritime_incident_rate, shipping_throughput, shipping_rerouting_exten, insurance_premium_index",
+      "rationale": "Headline: 'Two slicks appear in Gulf as huge oil spill off Oman threatens disaster.'"
+    },
+    {
+      "id": "chinese_refiners_sanctioned_oil_purchases",
+      "title": "Chinese refiners' purchases of sanctioned Iranian oil continue",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-08-16",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 79.0,
+      "expected_impact": 47.4,
+      "event_PS": 12.2,
+      "event_AS": 15.8,
+      "n_vars": 3,
+      "affected_ids": "global_oil_supply_balanc, sanctions_intensity, oil_price_volatility",
+      "rationale": "Headlines: 'Chinese refiner Hengli accused of funding Iran through sanctioned oil purchases'; 'This Sprawling Chinese Refinery Is Bankrolling Tehran.'"
+    },
+    {
+      "id": "strategic_reserve_depletion_risk",
+      "title": "Strategic reserves near damaging low levels",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-08-15",
+      "end": "2026-10-15",
+      "probability": 0.6,
+      "impact_score": 49.0,
+      "expected_impact": 29.4,
+      "event_PS": 15.286,
+      "event_AS": 7.0,
+      "n_vars": 3,
+      "affected_ids": "strategic_reserve_level, fuel_retail_price_level, oil_price_volatility",
+      "rationale": "Headline: 'Depleted strategic oil reserve nears level that raises concerns about damage to caverns, operations.'"
+    },
+    {
+      "id": "energy_secretary_refiner_meeting",
+      "title": "Energy Secretary meets refiners to boost fuel output",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of month",
+      "date": null,
+      "start": "2026-08-17",
+      "end": "2026-08-31",
+      "probability": 0.7,
+      "impact_score": 37.0,
+      "expected_impact": 25.9,
+      "event_PS": 18.5,
+      "event_AS": 6.167,
+      "n_vars": 4,
+      "affected_ids": "refinery_utilization_rat, fuel_retail_price_level, oil_price_volatility, economic_resilience",
+      "rationale": "Headline: 'Energy Secretary Wright to meet refiners on boosting fuel output.'"
+    }
+  ]
+}
