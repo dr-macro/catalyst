@@ -1,0 +1,1820 @@
+{
+  "label": "us_debt_bond_stress",
+  "as_of": "2026-08-21",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-22T00:06:01",
+  "system_description": {
+    "narrative_title": "Bond-market repricing, US debt stress, and the policy tug-of-war",
+    "narrative_summary": "A global repricing of government bond markets—driven by rising inflation expectations, fiscal‑deficit concerns (highlighted by the US crossing $40tn of debt), and geopolitically driven commodity shocks—has pushed yields to multi‑year highs and forced emergency policy responses. The US Treasury’s stepped‑up long‑bond buybacks under Scott Bessent attempt to calm yields but risk complicating the Federal Reserve’s monetary stance and market perceptions of policy independence. This is an open system of capital, information and policy flows in which feedback loops between yields, central‑bank decisions, fiscal financing needs, currency moves and risk‑asset prices determine evolving stability and spillovers into equities, mortgages and commodities.",
+    "scope": "Global government bond markets and their immediate interactions with major central banks (Fed, ECB, BOJ), sovereign fiscal financing (notably the US Treasury), investor risk sentiment, core inflation dynamics, and cross‑asset responses (currencies, equities, commodities such as oil and gold).",
+    "super_system": "Global financial system / global macroeconomy",
+    "adjacent_subsystems": [
+      "Equity markets and risk‑asset valuation",
+      "Commodity markets (oil, gold) and geopolitics",
+      "Banking, credit and mortgage markets",
+      "Sovereign fiscal policy and public debt management"
+    ],
+    "evidence_headlines": [
+      "U.S. government debt passes $40 trillion, more than doubling in a decade",
+      "Treasury Secretary Bessent doubles US long-bond buybacks in the face of surging yields",
+      "Fed minutes reveal growing support for rate hikes",
+      "Global Government Bond Yields Hit Multiyear Highs",
+      "US long-term bonds slide as Bessent intervention fails to soothe investors",
+      "Bond rout sends tech stocks lower"
+    ]
+  },
+  "variables": [
+    {
+      "id": "government_bond_yields",
+      "name": "Government bond yields",
+      "description": "The prevailing nominal interest rates on longer‑dated sovereign bonds as measured at market close across the yield curve segment of interest.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_volatility",
+      "name": "Yield volatility",
+      "description": "The short‑term variability and uncertainty in government bond yields as reflected by realized and implied price movement metrics.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The component of long‑term yields that compensates investors for interest‑rate risk and other long‑horizon uncertainties above expected short rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and survey‑based expectations of future inflation over specified horizons that inform real return demands.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "core_inflation_rate",
+      "name": "Core inflation rate",
+      "description": "The underlying rate of consumer price inflation excluding volatile components, measured continuously over time.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "public_debt_stock",
+      "name": "Public debt stock",
+      "description": "The outstanding nominal stock of sovereign debt liabilities held by the public at a point in time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_deficit_flow",
+      "name": "Fiscal deficit (flow)",
+      "description": "The rate of government net borrowing (budget deficit or surplus) over a reporting period that adds to or reduces debt issuance needs.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_credit_spread",
+      "name": "Sovereign credit spread",
+      "description": "The incremental yield premium demanded by investors over risk‑free reference rates to compensate for perceived sovereign credit and default risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_interest_rate",
+      "name": "Policy interest rate",
+      "description": "The prevailing short‑term policy interest rate that anchors interbank funding costs and short‑term market rates.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_balance_sheet",
+      "name": "Policy balance sheet size",
+      "description": "The aggregate size of official sector asset holdings and liabilities used in market‑operation policy (e.g., asset purchase programs) measured continuously.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_independence_perc",
+      "name": "Perceived policy independence",
+      "description": "Market participants' perception of the degree to which fiscal and monetary policy decisions are independent and non‑conflicted.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The ease, depth and cost of transacting in government bond markets as reflected by bid‑ask spreads, market depth and price impact.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "debt_buyback_flow",
+      "name": "Debt buyback flow",
+      "description": "The volume and rate at which an issuer repurchases its outstanding longer‑dated debt from the market over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "net_capital_to_gov_bonds",
+      "name": "Net capital flows to government bonds",
+      "description": "The net cross‑border and domestic inflows or outflows of capital into the sovereign bond market per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "currency_exchange_level",
+      "name": "Currency exchange level",
+      "description": "The relative valuation of a major currency or currency index against a broad basket, measured continuously.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "risk_asset_valuation",
+      "name": "Risk‑asset valuation",
+      "description": "The prevailing valuation level of broadly defined risk assets (equities, corporate credit and other risk instruments) as an aggregate state.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "government_bond_yields",
+    "yield_volatility",
+    "term_premium",
+    "inflation_expectations",
+    "core_inflation_rate",
+    "public_debt_stock",
+    "fiscal_deficit_flow",
+    "sovereign_credit_spread",
+    "policy_interest_rate",
+    "policy_balance_sheet",
+    "policy_independence_perc",
+    "bond_market_liquidity",
+    "debt_buyback_flow",
+    "net_capital_to_gov_bonds",
+    "currency_exchange_level",
+    "risk_asset_valuation"
+  ],
+  "var_names": {
+    "government_bond_yields": "Government bond yields",
+    "yield_volatility": "Yield volatility",
+    "term_premium": "Term premium",
+    "inflation_expectations": "Inflation expectations",
+    "core_inflation_rate": "Core inflation rate",
+    "public_debt_stock": "Public debt stock",
+    "fiscal_deficit_flow": "Fiscal deficit (flow)",
+    "sovereign_credit_spread": "Sovereign credit spread",
+    "policy_interest_rate": "Policy interest rate",
+    "policy_balance_sheet": "Policy balance sheet size",
+    "policy_independence_perc": "Perceived policy independence",
+    "bond_market_liquidity": "Bond market liquidity",
+    "debt_buyback_flow": "Debt buyback flow",
+    "net_capital_to_gov_bonds": "Net capital flows to government bonds",
+    "currency_exchange_level": "Currency exchange level",
+    "risk_asset_valuation": "Risk‑asset valuation"
+  },
+  "impact_matrix": {
+    "government_bond_yields": {
+      "government_bond_yields": 0,
+      "yield_volatility": 2,
+      "term_premium": 1,
+      "inflation_expectations": 1,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 2,
+      "sovereign_credit_spread": 2,
+      "policy_interest_rate": 1,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 1,
+      "bond_market_liquidity": 1,
+      "debt_buyback_flow": 1,
+      "net_capital_to_gov_bonds": 3,
+      "currency_exchange_level": 2,
+      "risk_asset_valuation": 3
+    },
+    "yield_volatility": {
+      "government_bond_yields": 2,
+      "yield_volatility": 0,
+      "term_premium": 3,
+      "inflation_expectations": 1,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 0,
+      "sovereign_credit_spread": 2,
+      "policy_interest_rate": 1,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 1,
+      "bond_market_liquidity": 3,
+      "debt_buyback_flow": 1,
+      "net_capital_to_gov_bonds": 2,
+      "currency_exchange_level": 1,
+      "risk_asset_valuation": 2
+    },
+    "term_premium": {
+      "government_bond_yields": 3,
+      "yield_volatility": 1,
+      "term_premium": 0,
+      "inflation_expectations": 1,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 0,
+      "sovereign_credit_spread": 1,
+      "policy_interest_rate": 1,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 1,
+      "bond_market_liquidity": 1,
+      "debt_buyback_flow": 0,
+      "net_capital_to_gov_bonds": 2,
+      "currency_exchange_level": 1,
+      "risk_asset_valuation": 2
+    },
+    "inflation_expectations": {
+      "government_bond_yields": 3,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "inflation_expectations": 0,
+      "core_inflation_rate": 1,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 0,
+      "sovereign_credit_spread": 1,
+      "policy_interest_rate": 3,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 1,
+      "bond_market_liquidity": 1,
+      "debt_buyback_flow": 0,
+      "net_capital_to_gov_bonds": 2,
+      "currency_exchange_level": 2,
+      "risk_asset_valuation": 2
+    },
+    "core_inflation_rate": {
+      "government_bond_yields": 3,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "inflation_expectations": 3,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 1,
+      "sovereign_credit_spread": 1,
+      "policy_interest_rate": 3,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 1,
+      "bond_market_liquidity": 1,
+      "debt_buyback_flow": 0,
+      "net_capital_to_gov_bonds": 2,
+      "currency_exchange_level": 2,
+      "risk_asset_valuation": 2
+    },
+    "public_debt_stock": {
+      "government_bond_yields": 2,
+      "yield_volatility": 1,
+      "term_premium": 2,
+      "inflation_expectations": 1,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 0,
+      "sovereign_credit_spread": 2,
+      "policy_interest_rate": 1,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 2,
+      "bond_market_liquidity": 1,
+      "debt_buyback_flow": 1,
+      "net_capital_to_gov_bonds": 1,
+      "currency_exchange_level": 1,
+      "risk_asset_valuation": 1
+    },
+    "fiscal_deficit_flow": {
+      "government_bond_yields": 2,
+      "yield_volatility": 1,
+      "term_premium": 2,
+      "inflation_expectations": 1,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 3,
+      "fiscal_deficit_flow": 0,
+      "sovereign_credit_spread": 2,
+      "policy_interest_rate": 1,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 2,
+      "bond_market_liquidity": 1,
+      "debt_buyback_flow": 1,
+      "net_capital_to_gov_bonds": 1,
+      "currency_exchange_level": 1,
+      "risk_asset_valuation": 1
+    },
+    "sovereign_credit_spread": {
+      "government_bond_yields": 3,
+      "yield_volatility": 2,
+      "term_premium": 1,
+      "inflation_expectations": 0,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 1,
+      "sovereign_credit_spread": 0,
+      "policy_interest_rate": 1,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 1,
+      "bond_market_liquidity": 2,
+      "debt_buyback_flow": 1,
+      "net_capital_to_gov_bonds": 2,
+      "currency_exchange_level": 2,
+      "risk_asset_valuation": 2
+    },
+    "policy_interest_rate": {
+      "government_bond_yields": 2,
+      "yield_volatility": 2,
+      "term_premium": 1,
+      "inflation_expectations": 2,
+      "core_inflation_rate": 2,
+      "public_debt_stock": 1,
+      "fiscal_deficit_flow": 1,
+      "sovereign_credit_spread": 1,
+      "policy_interest_rate": 0,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 1,
+      "bond_market_liquidity": 1,
+      "debt_buyback_flow": 1,
+      "net_capital_to_gov_bonds": 2,
+      "currency_exchange_level": 2,
+      "risk_asset_valuation": 3
+    },
+    "policy_balance_sheet": {
+      "government_bond_yields": 3,
+      "yield_volatility": 2,
+      "term_premium": 3,
+      "inflation_expectations": 1,
+      "core_inflation_rate": 1,
+      "public_debt_stock": 2,
+      "fiscal_deficit_flow": 1,
+      "sovereign_credit_spread": 2,
+      "policy_interest_rate": 1,
+      "policy_balance_sheet": 0,
+      "policy_independence_perc": 2,
+      "bond_market_liquidity": 2,
+      "debt_buyback_flow": 1,
+      "net_capital_to_gov_bonds": 2,
+      "currency_exchange_level": 2,
+      "risk_asset_valuation": 2
+    },
+    "policy_independence_perc": {
+      "government_bond_yields": 2,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "inflation_expectations": 2,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 0,
+      "sovereign_credit_spread": 2,
+      "policy_interest_rate": 1,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 0,
+      "bond_market_liquidity": 1,
+      "debt_buyback_flow": 0,
+      "net_capital_to_gov_bonds": 2,
+      "currency_exchange_level": 2,
+      "risk_asset_valuation": 1
+    },
+    "bond_market_liquidity": {
+      "government_bond_yields": 2,
+      "yield_volatility": 3,
+      "term_premium": 2,
+      "inflation_expectations": 0,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 1,
+      "sovereign_credit_spread": 2,
+      "policy_interest_rate": 1,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 1,
+      "bond_market_liquidity": 0,
+      "debt_buyback_flow": 1,
+      "net_capital_to_gov_bonds": 2,
+      "currency_exchange_level": 1,
+      "risk_asset_valuation": 2
+    },
+    "debt_buyback_flow": {
+      "government_bond_yields": 2,
+      "yield_volatility": 1,
+      "term_premium": 1,
+      "inflation_expectations": 0,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 2,
+      "fiscal_deficit_flow": 1,
+      "sovereign_credit_spread": 1,
+      "policy_interest_rate": 0,
+      "policy_balance_sheet": 0,
+      "policy_independence_perc": 1,
+      "bond_market_liquidity": 1,
+      "debt_buyback_flow": 0,
+      "net_capital_to_gov_bonds": 1,
+      "currency_exchange_level": 0,
+      "risk_asset_valuation": 1
+    },
+    "net_capital_to_gov_bonds": {
+      "government_bond_yields": 3,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "inflation_expectations": 0,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 0,
+      "sovereign_credit_spread": 2,
+      "policy_interest_rate": 1,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 0,
+      "bond_market_liquidity": 2,
+      "debt_buyback_flow": 1,
+      "net_capital_to_gov_bonds": 0,
+      "currency_exchange_level": 3,
+      "risk_asset_valuation": 2
+    },
+    "currency_exchange_level": {
+      "government_bond_yields": 1,
+      "yield_volatility": 1,
+      "term_premium": 1,
+      "inflation_expectations": 2,
+      "core_inflation_rate": 1,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 0,
+      "sovereign_credit_spread": 1,
+      "policy_interest_rate": 2,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 1,
+      "bond_market_liquidity": 1,
+      "debt_buyback_flow": 0,
+      "net_capital_to_gov_bonds": 2,
+      "currency_exchange_level": 0,
+      "risk_asset_valuation": 1
+    },
+    "risk_asset_valuation": {
+      "government_bond_yields": 2,
+      "yield_volatility": 2,
+      "term_premium": 1,
+      "inflation_expectations": 0,
+      "core_inflation_rate": 0,
+      "public_debt_stock": 0,
+      "fiscal_deficit_flow": 0,
+      "sovereign_credit_spread": 2,
+      "policy_interest_rate": 1,
+      "policy_balance_sheet": 1,
+      "policy_independence_perc": 1,
+      "bond_market_liquidity": 2,
+      "debt_buyback_flow": 0,
+      "net_capital_to_gov_bonds": 3,
+      "currency_exchange_level": 1,
+      "risk_asset_valuation": 0
+    }
+  },
+  "AS": {
+    "government_bond_yields": 21,
+    "yield_volatility": 20,
+    "term_premium": 15,
+    "inflation_expectations": 21,
+    "core_inflation_rate": 24,
+    "public_debt_stock": 17,
+    "fiscal_deficit_flow": 20,
+    "sovereign_credit_spread": 19,
+    "policy_interest_rate": 23,
+    "policy_balance_sheet": 27,
+    "policy_independence_perc": 18,
+    "bond_market_liquidity": 19,
+    "debt_buyback_flow": 12,
+    "net_capital_to_gov_bonds": 19,
+    "currency_exchange_level": 15,
+    "risk_asset_valuation": 16
+  },
+  "PS": {
+    "government_bond_yields": 35,
+    "yield_volatility": 26,
+    "term_premium": 26,
+    "inflation_expectations": 15,
+    "core_inflation_rate": 5,
+    "public_debt_stock": 8,
+    "fiscal_deficit_flow": 8,
+    "sovereign_credit_spread": 24,
+    "policy_interest_rate": 19,
+    "policy_balance_sheet": 14,
+    "policy_independence_perc": 17,
+    "bond_market_liquidity": 21,
+    "debt_buyback_flow": 9,
+    "net_capital_to_gov_bonds": 29,
+    "currency_exchange_level": 23,
+    "risk_asset_valuation": 27
+  },
+  "med_AS": 19.0,
+  "med_PS": 20.0,
+  "roles": [
+    {
+      "variable": "government_bond_yields",
+      "name": "Government bond yields",
+      "AS": 21,
+      "PS": 35,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 735,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "net_capital_to_gov_bonds",
+      "name": "Net capital flows to government bonds",
+      "AS": 19,
+      "PS": 29,
+      "Q=AS/PS": 0.66,
+      "P=AS*PS": 551,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "yield_volatility",
+      "name": "Yield volatility",
+      "AS": 20,
+      "PS": 26,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 520,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_credit_spread",
+      "name": "Sovereign credit spread",
+      "AS": 19,
+      "PS": 24,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 456,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_interest_rate",
+      "name": "Policy interest rate",
+      "AS": 23,
+      "PS": 19,
+      "Q=AS/PS": 1.21,
+      "P=AS*PS": 437,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "risk_asset_valuation",
+      "name": "Risk‑asset valuation",
+      "AS": 16,
+      "PS": 27,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 432,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 19,
+      "PS": 21,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 399,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 15,
+      "PS": 26,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 390,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_balance_sheet",
+      "name": "Policy balance sheet size",
+      "AS": 27,
+      "PS": 14,
+      "Q=AS/PS": 1.93,
+      "P=AS*PS": 378,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "currency_exchange_level",
+      "name": "Currency exchange level",
+      "AS": 15,
+      "PS": 23,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 345,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 21,
+      "PS": 15,
+      "Q=AS/PS": 1.4,
+      "P=AS*PS": 315,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "policy_independence_perc",
+      "name": "Perceived policy independence",
+      "AS": 18,
+      "PS": 17,
+      "Q=AS/PS": 1.06,
+      "P=AS*PS": 306,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fiscal_deficit_flow",
+      "name": "Fiscal deficit (flow)",
+      "AS": 20,
+      "PS": 8,
+      "Q=AS/PS": 2.5,
+      "P=AS*PS": 160,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "public_debt_stock",
+      "name": "Public debt stock",
+      "AS": 17,
+      "PS": 8,
+      "Q=AS/PS": 2.12,
+      "P=AS*PS": 136,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "core_inflation_rate",
+      "name": "Core inflation rate",
+      "AS": 24,
+      "PS": 5,
+      "Q=AS/PS": 4.8,
+      "P=AS*PS": 120,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "debt_buyback_flow",
+      "name": "Debt buyback flow",
+      "AS": 12,
+      "PS": 9,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 108,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "government_bond_yields",
+        "name": "Government bond yields",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 35
+      },
+      {
+        "id": "yield_volatility",
+        "name": "Yield volatility",
+        "kind": "environment",
+        "AS": 20,
+        "PS": 26
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 26
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 15
+      },
+      {
+        "id": "core_inflation_rate",
+        "name": "Core inflation rate",
+        "kind": "environment",
+        "AS": 24,
+        "PS": 5
+      },
+      {
+        "id": "public_debt_stock",
+        "name": "Public debt stock",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 8
+      },
+      {
+        "id": "fiscal_deficit_flow",
+        "name": "Fiscal deficit (flow)",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 8
+      },
+      {
+        "id": "sovereign_credit_spread",
+        "name": "Sovereign credit spread",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 24
+      },
+      {
+        "id": "policy_interest_rate",
+        "name": "Policy interest rate",
+        "kind": "institution_field",
+        "AS": 23,
+        "PS": 19
+      },
+      {
+        "id": "policy_balance_sheet",
+        "name": "Policy balance sheet size",
+        "kind": "institution_field",
+        "AS": 27,
+        "PS": 14
+      },
+      {
+        "id": "policy_independence_perc",
+        "name": "Perceived policy independence",
+        "kind": "perception",
+        "AS": 18,
+        "PS": 17
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 21
+      },
+      {
+        "id": "debt_buyback_flow",
+        "name": "Debt buyback flow",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 9
+      },
+      {
+        "id": "net_capital_to_gov_bonds",
+        "name": "Net capital flows to government bonds",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 29
+      },
+      {
+        "id": "currency_exchange_level",
+        "name": "Currency exchange level",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 23
+      },
+      {
+        "id": "risk_asset_valuation",
+        "name": "Risk‑asset valuation",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 27
+      }
+    ],
+    "edges": [
+      {
+        "source": "government_bond_yields",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_bond_yields",
+        "target": "fiscal_deficit_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_bond_yields",
+        "target": "sovereign_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_bond_yields",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "government_bond_yields",
+        "target": "currency_exchange_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_bond_yields",
+        "target": "risk_asset_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "government_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "sovereign_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "risk_asset_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "government_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "term_premium",
+        "target": "risk_asset_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "government_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_interest_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "currency_exchange_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "risk_asset_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "government_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "policy_interest_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "currency_exchange_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "risk_asset_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "public_debt_stock",
+        "target": "government_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "public_debt_stock",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "public_debt_stock",
+        "target": "sovereign_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "public_debt_stock",
+        "target": "policy_independence_perc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "government_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "public_debt_stock",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "sovereign_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "policy_independence_perc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spread",
+        "target": "government_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spread",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spread",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spread",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spread",
+        "target": "currency_exchange_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spread",
+        "target": "risk_asset_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "government_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "core_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "currency_exchange_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "risk_asset_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_balance_sheet",
+        "target": "government_bond_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_balance_sheet",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_balance_sheet",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_balance_sheet",
+        "target": "public_debt_stock",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_balance_sheet",
+        "target": "sovereign_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_balance_sheet",
+        "target": "policy_independence_perc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_balance_sheet",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_balance_sheet",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_balance_sheet",
+        "target": "currency_exchange_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_balance_sheet",
+        "target": "risk_asset_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_independence_perc",
+        "target": "government_bond_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_independence_perc",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_independence_perc",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_independence_perc",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_independence_perc",
+        "target": "sovereign_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_independence_perc",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_independence_perc",
+        "target": "currency_exchange_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "government_bond_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "sovereign_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "risk_asset_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_buyback_flow",
+        "target": "government_bond_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_buyback_flow",
+        "target": "public_debt_stock",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "net_capital_to_gov_bonds",
+        "target": "government_bond_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "net_capital_to_gov_bonds",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "net_capital_to_gov_bonds",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "net_capital_to_gov_bonds",
+        "target": "sovereign_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "net_capital_to_gov_bonds",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "net_capital_to_gov_bonds",
+        "target": "currency_exchange_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "net_capital_to_gov_bonds",
+        "target": "risk_asset_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_exchange_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_exchange_level",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_exchange_level",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_asset_valuation",
+        "target": "government_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_asset_valuation",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "risk_asset_valuation",
+        "target": "sovereign_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_asset_valuation",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_asset_valuation",
+        "target": "net_capital_to_gov_bonds",
+        "strength": 3,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_september_rate_move",
+      "title": "Fed tightening risk in September",
+      "description": "Markets expect a potential Fed rate hike or clearer hawkish guidance in September after July minutes showed rising support for hikes.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "government_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "“Fed minutes reveal growing support for rate hikes”; “Fed minutes show September rate hike still on the table.”"
+    },
+    {
+      "id": "jackson_hole_warsh_speech",
+      "title": "Warsh speech at Jackson Hole",
+      "description": "Jackson Hole remarks (including Warsh) could shift market pricing on policy, signaling Fed resolve or caution and moving yields and volatility.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-26",
+        "end": "2026-08-29",
+        "label": "late Aug (Jackson Hole)"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_independence_perc",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“Week Ahead... Warsh Speech at Jackson Hole”; Fed minutes and coverage flag market sensitivity to Fed messaging."
+    },
+    {
+      "id": "us_pce_data_release",
+      "title": "U.S. PCE inflation print (near term)",
+      "description": "U.S. PCE (core) data due in the coming days could confirm persistent inflation and re‑price inflation expectations and yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-24",
+        "end": "2026-08-31",
+        "label": "by end of August"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "core_inflation_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Week Ahead for FX, Bonds: Warsh Speech at Jackson Hole, U.S. PCE Data in Focus”; multiple headlines flag inflation risk."
+    },
+    {
+      "id": "treasury_upsized_buybacks",
+      "title": "U.S. Treasury expands long‑bond buybacks",
+      "description": "The Treasury's ongoing upsizing of long‑bond repurchases (Bessent) is likely to continue and shape yields, liquidity and dollar moves.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-20",
+        "end": "2026-10-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "debt_buyback_flow",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "government_bond_yields",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "policy_independence_perc",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_exchange_level",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "“Treasury Secretary Bessent doubles US long‑bond buybacks”; “Bessent may raise bond buyback beyond $4 billion.”"
+    },
+    {
+      "id": "mideast_geopolitical_risk",
+      "title": "Escalating Middle East tensions",
+      "description": "Ongoing Iran/Mideast military risks and oil shocks could sustain investor flight to safety and boost yield volatility and term premia.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-21",
+        "end": "2026-11-30",
+        "label": "next 2–3 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "government_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Morning Bid: Bond investors in revolt as Iran threatens to go 'fully offensive'”; multiple headlines link Iran tensions to yields and oil."
+    },
+    {
+      "id": "broadcom_debt_issuance",
+      "title": "Broadcom mega debt deal expected",
+      "description": "A large corporate bond issuance (Broadcom ~$70bn) could absorb investor risk capital and influence Treasury demand and yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-21",
+        "end": "2026-09-30",
+        "label": "next 1–6 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "government_bond_yields",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "net_capital_to_gov_bonds",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "risk_asset_valuation",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "“Broadcom debt deal expected to reach upwards of $70 billion, sources say.”"
+    },
+    {
+      "id": "us_debt_reckoning_fiscal_measures",
+      "title": "U.S. fiscal 'crackdown' / austerity process",
+      "description": "Announced plans to tackle the $40tn debt imply upcoming fiscal tightening measures that could alter deficit flows and debt trajectory.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2027-06-30",
+        "label": "Q4–Q2 (policy window)"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "fiscal_deficit_flow",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "public_debt_stock",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_credit_spread",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "policy_independence_perc",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“The U.S. government plans to crack down on its $40 trillion debt — brace for a ‘wrenching time’ ahead.”"
+    },
+    {
+      "id": "ecb_hawkish_shift",
+      "title": "ECB increasingly hawkish path",
+      "description": "Markets expect the ECB to adopt a firmer stance, which can reprice Euro‑area yields and global rate expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-21",
+        "end": "2026-10-31",
+        "label": "next 2 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "government_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Traders are bracing for an increasingly hawkish ECB.”"
+    },
+    {
+      "id": "japan_rate_and_intervention_path",
+      "title": "Japan inflation → BOJ action / FX interventions",
+      "description": "Rising Japanese inflation and recent yen intervention raise odds of BOJ tightening or further FX action, affecting yields and cross‑currency flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-21",
+        "end": "2026-10-31",
+        "label": "next 2 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_exchange_level",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“Japan core inflation accelerates... bolsters case for rate hike”; “Japan's historic yen intervention has ‘turbo‑charged’ the carry trade.”"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "treasury_upsized_buybacks",
+      "title": "U.S. Treasury expands long‑bond buybacks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-08-20",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 182.0,
+      "expected_impact": 145.6,
+      "event_PS": 19.909,
+      "event_AS": 16.545,
+      "n_vars": 5,
+      "affected_ids": "debt_buyback_flow, government_bond_yields, policy_independence_perc, bond_market_liquidity, currency_exchange_level",
+      "rationale": "“Treasury Secretary Bessent doubles US long‑bond buybacks”; “Bessent may raise bond buyback beyond $4 billion.”"
+    },
+    {
+      "id": "fed_september_rate_move",
+      "title": "Fed tightening risk in September",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.6,
+      "impact_score": 172.0,
+      "expected_impact": 103.2,
+      "event_PS": 24.25,
+      "event_AS": 21.5,
+      "n_vars": 4,
+      "affected_ids": "policy_interest_rate, government_bond_yields, yield_volatility, inflation_expectations",
+      "rationale": "“Fed minutes reveal growing support for rate hikes”; “Fed minutes show September rate hike still on the table.”"
+    },
+    {
+      "id": "mideast_geopolitical_risk",
+      "title": "Escalating Middle East tensions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2–3 months",
+      "date": null,
+      "start": "2026-08-21",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 153.0,
+      "expected_impact": 91.8,
+      "event_PS": 26.875,
+      "event_AS": 19.125,
+      "n_vars": 4,
+      "affected_ids": "yield_volatility, government_bond_yields, term_premium, inflation_expectations",
+      "rationale": "“Morning Bid: Bond investors in revolt as Iran threatens to go 'fully offensive'”; multiple headlines link Iran tensions to yields and oil."
+    },
+    {
+      "id": "us_pce_data_release",
+      "title": "U.S. PCE inflation print (near term)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of August",
+      "date": null,
+      "start": "2026-08-24",
+      "end": "2026-08-31",
+      "probability": 0.85,
+      "impact_score": 151.0,
+      "expected_impact": 128.35,
+      "event_PS": 15.286,
+      "event_AS": 21.571,
+      "n_vars": 3,
+      "affected_ids": "inflation_expectations, core_inflation_rate, yield_volatility",
+      "rationale": "“Week Ahead for FX, Bonds: Warsh Speech at Jackson Hole, U.S. PCE Data in Focus”; multiple headlines flag inflation risk."
+    },
+    {
+      "id": "us_debt_reckoning_fiscal_measures",
+      "title": "U.S. fiscal 'crackdown' / austerity process",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Q4–Q2 (policy window)",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2027-06-30",
+      "probability": 0.5,
+      "impact_score": 150.0,
+      "expected_impact": 75.0,
+      "event_PS": 13.125,
+      "event_AS": 18.75,
+      "n_vars": 4,
+      "affected_ids": "fiscal_deficit_flow, public_debt_stock, sovereign_credit_spread, policy_independence_perc",
+      "rationale": "“The U.S. government plans to crack down on its $40 trillion debt — brace for a ‘wrenching time’ ahead.”"
+    },
+    {
+      "id": "jackson_hole_warsh_speech",
+      "title": "Warsh speech at Jackson Hole",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "late Aug (Jackson Hole)",
+      "date": null,
+      "start": "2026-08-26",
+      "end": "2026-08-29",
+      "probability": 0.9,
+      "impact_score": 119.0,
+      "expected_impact": 107.1,
+      "event_PS": 22.167,
+      "event_AS": 19.833,
+      "n_vars": 4,
+      "affected_ids": "yield_volatility, policy_interest_rate, term_premium, policy_independence_perc",
+      "rationale": "“Week Ahead... Warsh Speech at Jackson Hole”; Fed minutes and coverage flag market sensitivity to Fed messaging."
+    },
+    {
+      "id": "japan_rate_and_intervention_path",
+      "title": "Japan inflation → BOJ action / FX interventions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 months",
+      "date": null,
+      "start": "2026-08-21",
+      "end": "2026-10-31",
+      "probability": 0.6,
+      "impact_score": 116.0,
+      "expected_impact": 69.6,
+      "event_PS": 22.667,
+      "event_AS": 19.333,
+      "n_vars": 3,
+      "affected_ids": "policy_interest_rate, yield_volatility, currency_exchange_level",
+      "rationale": "“Japan core inflation accelerates... bolsters case for rate hike”; “Japan's historic yen intervention has ‘turbo‑charged’ the carry trade.”"
+    },
+    {
+      "id": "ecb_hawkish_shift",
+      "title": "ECB increasingly hawkish path",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 months",
+      "date": null,
+      "start": "2026-08-21",
+      "end": "2026-10-31",
+      "probability": 0.6,
+      "impact_score": 108.0,
+      "expected_impact": 64.8,
+      "event_PS": 26.8,
+      "event_AS": 21.6,
+      "n_vars": 3,
+      "affected_ids": "policy_interest_rate, government_bond_yields, yield_volatility",
+      "rationale": "“Traders are bracing for an increasingly hawkish ECB.”"
+    },
+    {
+      "id": "broadcom_debt_issuance",
+      "title": "Broadcom mega debt deal expected",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1–6 weeks",
+      "date": null,
+      "start": "2026-08-21",
+      "end": "2026-09-30",
+      "probability": 0.75,
+      "impact_score": 75.0,
+      "expected_impact": 56.25,
+      "event_PS": 30.0,
+      "event_AS": 18.75,
+      "n_vars": 3,
+      "affected_ids": "government_bond_yields, net_capital_to_gov_bonds, risk_asset_valuation",
+      "rationale": "“Broadcom debt deal expected to reach upwards of $70 billion, sources say.”"
+    }
+  ]
+}
