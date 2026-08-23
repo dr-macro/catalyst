@@ -1,0 +1,1707 @@
+{
+  "label": "us_treasury_market_stres",
+  "as_of": "2026-08-22",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-22T23:51:51",
+  "system_description": {
+    "narrative_title": "Treasury market turmoil and Bessent's bond-buyback intervention",
+    "narrative_summary": "A burst of selling in long-dated US Treasuries, driven by rising yields and $40 trillion-plus US debt dynamics, has prompted an unusually activist Treasury led by Scott Bessent to mount large buybacks to try to steady the market. Treasuries, the Federal Reserve, primary dealers, global investors and the dollar form an open system: fiscal issuance, macro data and geopolitics feed in as inputs; yields, liquidity and FX are outputs; and interventions, market positioning and central-bank signals create reinforcing and balancing feedback loops that can produce sudden, nonlinear market moves. The window shows repeated short-lived relief from buybacks, growing valuation-sensitivity among holders, concerns about liquidity and central-bank independence, and a credible risk of a market 'accident' or renewed breakdown in the weeks ahead.",
+    "scope": "US long-term Treasury market dynamics and interventions (Treasury buybacks), the Treasury Department led by Scott Bessent, primary dealers and bond investors, related USD FX moves, and near-term market liquidity and pricing signals.",
+    "super_system": "Global financial system / international capital markets and macroeconomy",
+    "adjacent_subsystems": [
+      "Federal Reserve monetary policy and policy signalling",
+      "US fiscal and political arena (debt trajectory, budget choices)",
+      "FX and global safe‑asset allocation (dollar, gilts, global yields)",
+      "Banking and non‑bank credit markets (liquidity, private credit stress)"
+    ],
+    "evidence_headlines": [
+      "Why the Treasury market’s newfound calm could break down in September",
+      "Treasury doubles debt buybacks as Bessent moves to steady bond market",
+      "US long-term bonds slide as Bessent intervention fails to soothe investors",
+      "U.S. debt crosses $40 trillion threshold after doubling under Trump and Biden",
+      "Treasury Buyback Might Only Briefly Tame Yields",
+      "Bessent Leans Into His Role as America’s Bond Trader in Chief"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_bond_yield",
+      "name": "Long-term government bond yield",
+      "description": "The prevailing interest rate (yield) on long-dated government bonds, expressed as a continuously varying percentage.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_term_premium",
+      "name": "Yield term premium",
+      "description": "The component of long-term yields that reflects compensation for holding duration risk beyond expected short-term rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_yield_volatility",
+      "name": "Bond yield volatility",
+      "description": "The realized or implied short-to-medium‑term variability of long-term government bond yields.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "secondary_market_liquidi",
+      "name": "Secondary market liquidity",
+      "description": "The ease and depth with which long-dated government bonds can be bought or sold in secondary markets without large price impact.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_funding_liqui",
+      "name": "Short-term funding liquidity",
+      "description": "The availability and cost of short-term secured and unsecured funding (e.g., repo, interbank) relevant to bond market participants.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "government_debt_stock",
+      "name": "Government debt stock",
+      "description": "The outstanding nominal amount of government debt outstanding across all maturities.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_issuance_rate",
+      "name": "Fiscal issuance rate",
+      "description": "The pace (volume per unit time) at which the government issues new debt into the market.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "debt_buyback_rate",
+      "name": "Debt buyback/intervention rate",
+      "description": "The rate and scale of government-initiated repurchases of outstanding debt (buybacks) executed to influence market conditions.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_policy_rate",
+      "name": "Policy interest rate",
+      "description": "The central bank's operative short-term policy rate that underpins monetary policy expectations.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_ops",
+      "name": "Central bank balance-sheet operations",
+      "description": "The direction and magnitude of central-bank asset purchases, sales and lending facilities that alter market liquidity and reserves.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "investor_valuation_sensi",
+      "name": "Investor valuation sensitivity",
+      "description": "The degree to which aggregated investors adjust holdings in response to changes in yields, prices and valuation metrics.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_leverage_positi",
+      "name": "Investor leverage and positioning",
+      "description": "The aggregated net exposure, duration concentration and leverage of major bond market participants.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "currency_exchange_rate",
+      "name": "Currency exchange rate",
+      "description": "The value of the domestic currency against major foreign currencies or a broad basket, expressed continuously.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and agent expectations of future inflation over relevant horizons that feed into nominal yields and policy decisions.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "macro_data_surprises",
+      "name": "Macro data surprise index",
+      "description": "The real-time rate and magnitude at which incoming macroeconomic releases deviate from consensus expectations.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "primary_dealer_capacity",
+      "name": "Primary dealer intermediation capacity",
+      "description": "The aggregated ability of market-making intermediaries to absorb issuance, warehouse inventory and provide two‑sided markets in government bonds.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_bond_yield",
+    "yield_term_premium",
+    "bond_yield_volatility",
+    "secondary_market_liquidi",
+    "short_term_funding_liqui",
+    "government_debt_stock",
+    "fiscal_issuance_rate",
+    "debt_buyback_rate",
+    "central_bank_policy_rate",
+    "central_bank_ops",
+    "investor_valuation_sensi",
+    "investor_leverage_positi",
+    "currency_exchange_rate",
+    "inflation_expectations",
+    "macro_data_surprises",
+    "primary_dealer_capacity"
+  ],
+  "var_names": {
+    "long_term_bond_yield": "Long-term government bond yield",
+    "yield_term_premium": "Yield term premium",
+    "bond_yield_volatility": "Bond yield volatility",
+    "secondary_market_liquidi": "Secondary market liquidity",
+    "short_term_funding_liqui": "Short-term funding liquidity",
+    "government_debt_stock": "Government debt stock",
+    "fiscal_issuance_rate": "Fiscal issuance rate",
+    "debt_buyback_rate": "Debt buyback/intervention rate",
+    "central_bank_policy_rate": "Policy interest rate",
+    "central_bank_ops": "Central bank balance-sheet operations",
+    "investor_valuation_sensi": "Investor valuation sensitivity",
+    "investor_leverage_positi": "Investor leverage and positioning",
+    "currency_exchange_rate": "Currency exchange rate",
+    "inflation_expectations": "Inflation expectations",
+    "macro_data_surprises": "Macro data surprise index",
+    "primary_dealer_capacity": "Primary dealer intermediation capacity"
+  },
+  "impact_matrix": {
+    "long_term_bond_yield": {
+      "long_term_bond_yield": 0,
+      "yield_term_premium": 2,
+      "bond_yield_volatility": 1,
+      "secondary_market_liquidi": 2,
+      "short_term_funding_liqui": 1,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 0,
+      "central_bank_policy_rate": 1,
+      "central_bank_ops": 1,
+      "investor_valuation_sensi": 3,
+      "investor_leverage_positi": 2,
+      "currency_exchange_rate": 2,
+      "inflation_expectations": 1,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 1
+    },
+    "yield_term_premium": {
+      "long_term_bond_yield": 3,
+      "yield_term_premium": 0,
+      "bond_yield_volatility": 2,
+      "secondary_market_liquidi": 1,
+      "short_term_funding_liqui": 0,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 0,
+      "central_bank_policy_rate": 0,
+      "central_bank_ops": 1,
+      "investor_valuation_sensi": 2,
+      "investor_leverage_positi": 1,
+      "currency_exchange_rate": 1,
+      "inflation_expectations": 1,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 1
+    },
+    "bond_yield_volatility": {
+      "long_term_bond_yield": 1,
+      "yield_term_premium": 2,
+      "bond_yield_volatility": 0,
+      "secondary_market_liquidi": 3,
+      "short_term_funding_liqui": 2,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 1,
+      "central_bank_policy_rate": 1,
+      "central_bank_ops": 2,
+      "investor_valuation_sensi": 2,
+      "investor_leverage_positi": 2,
+      "currency_exchange_rate": 2,
+      "inflation_expectations": 0,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 2
+    },
+    "secondary_market_liquidi": {
+      "long_term_bond_yield": 2,
+      "yield_term_premium": 2,
+      "bond_yield_volatility": 2,
+      "secondary_market_liquidi": 0,
+      "short_term_funding_liqui": 2,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 2,
+      "central_bank_policy_rate": 1,
+      "central_bank_ops": 2,
+      "investor_valuation_sensi": 1,
+      "investor_leverage_positi": 2,
+      "currency_exchange_rate": 1,
+      "inflation_expectations": 0,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 3
+    },
+    "short_term_funding_liqui": {
+      "long_term_bond_yield": 2,
+      "yield_term_premium": 1,
+      "bond_yield_volatility": 2,
+      "secondary_market_liquidi": 3,
+      "short_term_funding_liqui": 0,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 1,
+      "central_bank_policy_rate": 1,
+      "central_bank_ops": 3,
+      "investor_valuation_sensi": 1,
+      "investor_leverage_positi": 3,
+      "currency_exchange_rate": 1,
+      "inflation_expectations": 0,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 3
+    },
+    "government_debt_stock": {
+      "long_term_bond_yield": 2,
+      "yield_term_premium": 1,
+      "bond_yield_volatility": 1,
+      "secondary_market_liquidi": 1,
+      "short_term_funding_liqui": 0,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 1,
+      "debt_buyback_rate": 1,
+      "central_bank_policy_rate": 0,
+      "central_bank_ops": 0,
+      "investor_valuation_sensi": 0,
+      "investor_leverage_positi": 0,
+      "currency_exchange_rate": 0,
+      "inflation_expectations": 0,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 1
+    },
+    "fiscal_issuance_rate": {
+      "long_term_bond_yield": 3,
+      "yield_term_premium": 2,
+      "bond_yield_volatility": 2,
+      "secondary_market_liquidi": 2,
+      "short_term_funding_liqui": 1,
+      "government_debt_stock": 3,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 0,
+      "central_bank_policy_rate": 0,
+      "central_bank_ops": 1,
+      "investor_valuation_sensi": 1,
+      "investor_leverage_positi": 1,
+      "currency_exchange_rate": 1,
+      "inflation_expectations": 0,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 2
+    },
+    "debt_buyback_rate": {
+      "long_term_bond_yield": 3,
+      "yield_term_premium": 2,
+      "bond_yield_volatility": 2,
+      "secondary_market_liquidi": 3,
+      "short_term_funding_liqui": 1,
+      "government_debt_stock": 2,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 0,
+      "central_bank_policy_rate": 0,
+      "central_bank_ops": 1,
+      "investor_valuation_sensi": 1,
+      "investor_leverage_positi": 1,
+      "currency_exchange_rate": 1,
+      "inflation_expectations": 0,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 2
+    },
+    "central_bank_policy_rate": {
+      "long_term_bond_yield": 2,
+      "yield_term_premium": 1,
+      "bond_yield_volatility": 2,
+      "secondary_market_liquidi": 1,
+      "short_term_funding_liqui": 3,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 0,
+      "central_bank_policy_rate": 0,
+      "central_bank_ops": 2,
+      "investor_valuation_sensi": 2,
+      "investor_leverage_positi": 2,
+      "currency_exchange_rate": 2,
+      "inflation_expectations": 2,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 1
+    },
+    "central_bank_ops": {
+      "long_term_bond_yield": 3,
+      "yield_term_premium": 2,
+      "bond_yield_volatility": 2,
+      "secondary_market_liquidi": 3,
+      "short_term_funding_liqui": 3,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 0,
+      "central_bank_policy_rate": 1,
+      "central_bank_ops": 0,
+      "investor_valuation_sensi": 2,
+      "investor_leverage_positi": 2,
+      "currency_exchange_rate": 2,
+      "inflation_expectations": 1,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 2
+    },
+    "investor_valuation_sensi": {
+      "long_term_bond_yield": 2,
+      "yield_term_premium": 1,
+      "bond_yield_volatility": 2,
+      "secondary_market_liquidi": 1,
+      "short_term_funding_liqui": 1,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 1,
+      "central_bank_policy_rate": 0,
+      "central_bank_ops": 1,
+      "investor_valuation_sensi": 0,
+      "investor_leverage_positi": 3,
+      "currency_exchange_rate": 1,
+      "inflation_expectations": 0,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 1
+    },
+    "investor_leverage_positi": {
+      "long_term_bond_yield": 2,
+      "yield_term_premium": 1,
+      "bond_yield_volatility": 3,
+      "secondary_market_liquidi": 3,
+      "short_term_funding_liqui": 3,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 1,
+      "central_bank_policy_rate": 0,
+      "central_bank_ops": 2,
+      "investor_valuation_sensi": 2,
+      "investor_leverage_positi": 0,
+      "currency_exchange_rate": 1,
+      "inflation_expectations": 0,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 2
+    },
+    "currency_exchange_rate": {
+      "long_term_bond_yield": 2,
+      "yield_term_premium": 1,
+      "bond_yield_volatility": 1,
+      "secondary_market_liquidi": 1,
+      "short_term_funding_liqui": 1,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 0,
+      "central_bank_policy_rate": 1,
+      "central_bank_ops": 1,
+      "investor_valuation_sensi": 0,
+      "investor_leverage_positi": 0,
+      "currency_exchange_rate": 0,
+      "inflation_expectations": 1,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 0
+    },
+    "inflation_expectations": {
+      "long_term_bond_yield": 3,
+      "yield_term_premium": 1,
+      "bond_yield_volatility": 1,
+      "secondary_market_liquidi": 0,
+      "short_term_funding_liqui": 0,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 0,
+      "central_bank_policy_rate": 2,
+      "central_bank_ops": 1,
+      "investor_valuation_sensi": 1,
+      "investor_leverage_positi": 0,
+      "currency_exchange_rate": 1,
+      "inflation_expectations": 0,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 0
+    },
+    "macro_data_surprises": {
+      "long_term_bond_yield": 2,
+      "yield_term_premium": 1,
+      "bond_yield_volatility": 2,
+      "secondary_market_liquidi": 1,
+      "short_term_funding_liqui": 1,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 0,
+      "central_bank_policy_rate": 1,
+      "central_bank_ops": 1,
+      "investor_valuation_sensi": 1,
+      "investor_leverage_positi": 1,
+      "currency_exchange_rate": 2,
+      "inflation_expectations": 2,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 0
+    },
+    "primary_dealer_capacity": {
+      "long_term_bond_yield": 2,
+      "yield_term_premium": 2,
+      "bond_yield_volatility": 2,
+      "secondary_market_liquidi": 3,
+      "short_term_funding_liqui": 2,
+      "government_debt_stock": 0,
+      "fiscal_issuance_rate": 0,
+      "debt_buyback_rate": 0,
+      "central_bank_policy_rate": 0,
+      "central_bank_ops": 2,
+      "investor_valuation_sensi": 0,
+      "investor_leverage_positi": 2,
+      "currency_exchange_rate": 0,
+      "inflation_expectations": 0,
+      "macro_data_surprises": 0,
+      "primary_dealer_capacity": 0
+    }
+  },
+  "AS": {
+    "long_term_bond_yield": 17,
+    "yield_term_premium": 13,
+    "bond_yield_volatility": 20,
+    "secondary_market_liquidi": 20,
+    "short_term_funding_liqui": 21,
+    "government_debt_stock": 8,
+    "fiscal_issuance_rate": 19,
+    "debt_buyback_rate": 19,
+    "central_bank_policy_rate": 20,
+    "central_bank_ops": 23,
+    "investor_valuation_sensi": 14,
+    "investor_leverage_positi": 20,
+    "currency_exchange_rate": 9,
+    "inflation_expectations": 10,
+    "macro_data_surprises": 15,
+    "primary_dealer_capacity": 15
+  },
+  "PS": {
+    "long_term_bond_yield": 34,
+    "yield_term_premium": 22,
+    "bond_yield_volatility": 27,
+    "secondary_market_liquidi": 28,
+    "short_term_funding_liqui": 21,
+    "government_debt_stock": 5,
+    "fiscal_issuance_rate": 1,
+    "debt_buyback_rate": 7,
+    "central_bank_policy_rate": 9,
+    "central_bank_ops": 21,
+    "investor_valuation_sensi": 19,
+    "investor_leverage_positi": 22,
+    "currency_exchange_rate": 18,
+    "inflation_expectations": 8,
+    "macro_data_surprises": 0,
+    "primary_dealer_capacity": 21
+  },
+  "med_AS": 18.0,
+  "med_PS": 20.0,
+  "roles": [
+    {
+      "variable": "long_term_bond_yield",
+      "name": "Long-term government bond yield",
+      "AS": 17,
+      "PS": 34,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 578,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "secondary_market_liquidi",
+      "name": "Secondary market liquidity",
+      "AS": 20,
+      "PS": 28,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 560,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_yield_volatility",
+      "name": "Bond yield volatility",
+      "AS": 20,
+      "PS": 27,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 540,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "central_bank_ops",
+      "name": "Central bank balance-sheet operations",
+      "AS": 23,
+      "PS": 21,
+      "Q=AS/PS": 1.1,
+      "P=AS*PS": 483,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "short_term_funding_liqui",
+      "name": "Short-term funding liquidity",
+      "AS": 21,
+      "PS": 21,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 441,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_leverage_positi",
+      "name": "Investor leverage and positioning",
+      "AS": 20,
+      "PS": 22,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 440,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "primary_dealer_capacity",
+      "name": "Primary dealer intermediation capacity",
+      "AS": 15,
+      "PS": 21,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 315,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "yield_term_premium",
+      "name": "Yield term premium",
+      "AS": 13,
+      "PS": 22,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 286,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "investor_valuation_sensi",
+      "name": "Investor valuation sensitivity",
+      "AS": 14,
+      "PS": 19,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 266,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "central_bank_policy_rate",
+      "name": "Policy interest rate",
+      "AS": 20,
+      "PS": 9,
+      "Q=AS/PS": 2.22,
+      "P=AS*PS": 180,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "currency_exchange_rate",
+      "name": "Currency exchange rate",
+      "AS": 9,
+      "PS": 18,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 162,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "debt_buyback_rate",
+      "name": "Debt buyback/intervention rate",
+      "AS": 19,
+      "PS": 7,
+      "Q=AS/PS": 2.71,
+      "P=AS*PS": 133,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 10,
+      "PS": 8,
+      "Q=AS/PS": 1.25,
+      "P=AS*PS": 80,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "government_debt_stock",
+      "name": "Government debt stock",
+      "AS": 8,
+      "PS": 5,
+      "Q=AS/PS": 1.6,
+      "P=AS*PS": 40,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fiscal_issuance_rate",
+      "name": "Fiscal issuance rate",
+      "AS": 19,
+      "PS": 1,
+      "Q=AS/PS": 19.0,
+      "P=AS*PS": 19,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "macro_data_surprises",
+      "name": "Macro data surprise index",
+      "AS": 15,
+      "PS": 0,
+      "Q=AS/PS": 15000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_bond_yield",
+        "name": "Long-term government bond yield",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 34
+      },
+      {
+        "id": "yield_term_premium",
+        "name": "Yield term premium",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 22
+      },
+      {
+        "id": "bond_yield_volatility",
+        "name": "Bond yield volatility",
+        "kind": "environment",
+        "AS": 20,
+        "PS": 27
+      },
+      {
+        "id": "secondary_market_liquidi",
+        "name": "Secondary market liquidity",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 28
+      },
+      {
+        "id": "short_term_funding_liqui",
+        "name": "Short-term funding liquidity",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 21
+      },
+      {
+        "id": "government_debt_stock",
+        "name": "Government debt stock",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 5
+      },
+      {
+        "id": "fiscal_issuance_rate",
+        "name": "Fiscal issuance rate",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 1
+      },
+      {
+        "id": "debt_buyback_rate",
+        "name": "Debt buyback/intervention rate",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 7
+      },
+      {
+        "id": "central_bank_policy_rate",
+        "name": "Policy interest rate",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 9
+      },
+      {
+        "id": "central_bank_ops",
+        "name": "Central bank balance-sheet operations",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 21
+      },
+      {
+        "id": "investor_valuation_sensi",
+        "name": "Investor valuation sensitivity",
+        "kind": "perception",
+        "AS": 14,
+        "PS": 19
+      },
+      {
+        "id": "investor_leverage_positi",
+        "name": "Investor leverage and positioning",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 22
+      },
+      {
+        "id": "currency_exchange_rate",
+        "name": "Currency exchange rate",
+        "kind": "environment",
+        "AS": 9,
+        "PS": 18
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "driver",
+        "AS": 10,
+        "PS": 8
+      },
+      {
+        "id": "macro_data_surprises",
+        "name": "Macro data surprise index",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 0
+      },
+      {
+        "id": "primary_dealer_capacity",
+        "name": "Primary dealer intermediation capacity",
+        "kind": "institution_field",
+        "AS": 15,
+        "PS": 21
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_bond_yield",
+        "target": "yield_term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "secondary_market_liquidi",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "investor_valuation_sensi",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "investor_leverage_positi",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "currency_exchange_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_term_premium",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_term_premium",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_term_premium",
+        "target": "investor_valuation_sensi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "yield_term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "secondary_market_liquidi",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "short_term_funding_liqui",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "central_bank_ops",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "investor_valuation_sensi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "investor_leverage_positi",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "currency_exchange_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "primary_dealer_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "secondary_market_liquidi",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "secondary_market_liquidi",
+        "target": "yield_term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "secondary_market_liquidi",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "secondary_market_liquidi",
+        "target": "short_term_funding_liqui",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "secondary_market_liquidi",
+        "target": "debt_buyback_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "secondary_market_liquidi",
+        "target": "central_bank_ops",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "secondary_market_liquidi",
+        "target": "investor_leverage_positi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "secondary_market_liquidi",
+        "target": "primary_dealer_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_funding_liqui",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_funding_liqui",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_funding_liqui",
+        "target": "secondary_market_liquidi",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_funding_liqui",
+        "target": "central_bank_ops",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_funding_liqui",
+        "target": "investor_leverage_positi",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_funding_liqui",
+        "target": "primary_dealer_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "government_debt_stock",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_issuance_rate",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_issuance_rate",
+        "target": "yield_term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_issuance_rate",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_issuance_rate",
+        "target": "secondary_market_liquidi",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_issuance_rate",
+        "target": "government_debt_stock",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_issuance_rate",
+        "target": "primary_dealer_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_buyback_rate",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "debt_buyback_rate",
+        "target": "yield_term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_buyback_rate",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_buyback_rate",
+        "target": "secondary_market_liquidi",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_buyback_rate",
+        "target": "government_debt_stock",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_buyback_rate",
+        "target": "primary_dealer_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "short_term_funding_liqui",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "central_bank_ops",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "investor_valuation_sensi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "investor_leverage_positi",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "currency_exchange_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "yield_term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "secondary_market_liquidi",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "short_term_funding_liqui",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "investor_valuation_sensi",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "investor_leverage_positi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "currency_exchange_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "primary_dealer_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_valuation_sensi",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_valuation_sensi",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_valuation_sensi",
+        "target": "investor_leverage_positi",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage_positi",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage_positi",
+        "target": "bond_yield_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage_positi",
+        "target": "secondary_market_liquidi",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage_positi",
+        "target": "short_term_funding_liqui",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage_positi",
+        "target": "central_bank_ops",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage_positi",
+        "target": "investor_valuation_sensi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage_positi",
+        "target": "primary_dealer_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_exchange_rate",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "central_bank_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "macro_data_surprises",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "macro_data_surprises",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "macro_data_surprises",
+        "target": "currency_exchange_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "macro_data_surprises",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "primary_dealer_capacity",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "primary_dealer_capacity",
+        "target": "yield_term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "primary_dealer_capacity",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "primary_dealer_capacity",
+        "target": "secondary_market_liquidi",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "primary_dealer_capacity",
+        "target": "short_term_funding_liqui",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "primary_dealer_capacity",
+        "target": "central_bank_ops",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "primary_dealer_capacity",
+        "target": "investor_leverage_positi",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "bessent_press_conference_2026_08_24",
+      "title": "Bessent press conference",
+      "description": "Treasury Secretary Bessent will hold a scheduled press conference likely to clarify buyback plans and market strategy, moving near‑term market expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-08-24",
+        "start": null,
+        "end": null,
+        "label": "Mon 24 Aug"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "debt_buyback_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_yield_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "secondary_market_liquidi",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_exchange_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_valuation_sensi",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "central_bank_ops",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: \"US Treasury Secretary Bessent to hold press conference on Monday\"; will likely announce/clarify buyback action."
+    },
+    {
+      "id": "jackson_hole_warsh_speech",
+      "title": "Warsh speech at Jackson Hole",
+      "description": "Fed chair Warsh's Jackson Hole remarks and surrounding Fed commentary will shape policy expectations and market pricing for rates and term premium.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-26",
+        "end": "2026-08-30",
+        "label": "late Aug"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "central_bank_policy_rate",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_yield_volatility",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "yield_term_premium",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "central_bank_ops",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_valuation_sensi",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: \"Week Ahead for FX, Bonds: Warsh Speech at Jackson Hole, U.S. PCE Data in Focus\"; Fed remarks will move expectations."
+    },
+    {
+      "id": "us_pce_inflation_print_end_aug",
+      "title": "U.S. PCE inflation release",
+      "description": "Monthly PCE print will update inflation expectations and influence rate and yield pricing across long maturities.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-27",
+        "end": "2026-08-31",
+        "label": "end of month"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "yield_term_premium",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_yield_volatility",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "central_bank_policy_rate",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: \"Week Ahead... U.S. PCE Data in Focus\"; PCE print will directly affect inflation and rate expectations."
+    },
+    {
+      "id": "treasury_additional_buyback_scaleup",
+      "title": "Further scaling up of Treasury buybacks",
+      "description": "Treasury likely to expand and repeat long‑bond repurchases (more than $4bn) as an ongoing intervention to steady yields.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-22",
+        "end": "2026-09-15",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "debt_buyback_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_yield_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "secondary_market_liquidi",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_exchange_rate",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"Bessent says may raise bond buyback beyond $4 billion\"; \"Treasury doubles debt buybacks\" indicate continued scale‑ups."
+    },
+    {
+      "id": "september_issuance_surge",
+      "title": "September issuance and funding pressures",
+      "description": "Seasonal/technical issuance and funding needs in September could re‑introduce supply pressure and unwind calm in the Treasury market.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "fiscal_issuance_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "secondary_market_liquidi",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_valuation_sensi",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "primary_dealer_capacity",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"Why the Treasury market’s newfound calm could break down in September\"; fiscal supply risks expected in Sept."
+    },
+    {
+      "id": "fed_minutes_release_this_week",
+      "title": "Fed minutes / staff commentary release",
+      "description": "Upcoming Fed minutes and commentary will clarify Fed stance after market intervention, affecting rate uncertainty and term premia.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-24",
+        "end": "2026-08-28",
+        "label": "this week"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "central_bank_policy_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_yield_volatility",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_valuation_sensi",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "yield_term_premium",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: \"Global Government Bond Yields Stabilize Ahead of Fed Minutes\"; minutes will influence policy signals."
+    },
+    {
+      "id": "continued_buyback_effectiveness_fizzle",
+      "title": "Ongoing risk that buybacks fail to calm markets",
+      "description": "Repeated buybacks may not soothe market participants, leading to renewed selling pressure and higher yields if confidence erodes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-22",
+        "end": "2026-09-05",
+        "label": "near term"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_yield_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "secondary_market_liquidi",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_valuation_sensi",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"Bessent intervention fails to soothe investors\"; \"Buyback Only Briefly Tames Yields\" signal risk of repeated ineffectiveness."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "jackson_hole_warsh_speech",
+      "title": "Warsh speech at Jackson Hole",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "late Aug",
+      "date": null,
+      "start": "2026-08-26",
+      "end": "2026-08-30",
+      "probability": 0.9,
+      "impact_score": 220.0,
+      "expected_impact": 198.0,
+      "event_PS": 19.333,
+      "event_AS": 18.333,
+      "n_vars": 5,
+      "affected_ids": "central_bank_policy_rate, bond_yield_volatility, yield_term_premium, central_bank_ops, investor_valuation_sensi",
+      "rationale": "Headline: \"Week Ahead for FX, Bonds: Warsh Speech at Jackson Hole, U.S. PCE Data in Focus\"; Fed remarks will move expectations."
+    },
+    {
+      "id": "us_pce_inflation_print_end_aug",
+      "title": "U.S. PCE inflation release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "end of month",
+      "date": null,
+      "start": "2026-08-27",
+      "end": "2026-08-31",
+      "probability": 0.9,
+      "impact_score": 207.0,
+      "expected_impact": 186.3,
+      "event_PS": 20.692,
+      "event_AS": 15.923,
+      "n_vars": 5,
+      "affected_ids": "inflation_expectations, long_term_bond_yield, yield_term_premium, bond_yield_volatility, central_bank_policy_rate",
+      "rationale": "Headline: \"Week Ahead... U.S. PCE Data in Focus\"; PCE print will directly affect inflation and rate expectations."
+    },
+    {
+      "id": "september_issuance_surge",
+      "title": "September issuance and funding pressures",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "September",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.75,
+      "impact_score": 206.0,
+      "expected_impact": 154.5,
+      "event_PS": 20.083,
+      "event_AS": 17.167,
+      "n_vars": 5,
+      "affected_ids": "fiscal_issuance_rate, long_term_bond_yield, secondary_market_liquidi, investor_valuation_sensi, primary_dealer_capacity",
+      "rationale": "Headline: \"Why the Treasury market’s newfound calm could break down in September\"; fiscal supply risks expected in Sept."
+    },
+    {
+      "id": "bessent_press_conference_2026_08_24",
+      "title": "Bessent press conference",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "Mon 24 Aug",
+      "date": "2026-08-24",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 192.0,
+      "expected_impact": 182.4,
+      "event_PS": 18.818,
+      "event_AS": 17.455,
+      "n_vars": 6,
+      "affected_ids": "debt_buyback_rate, bond_yield_volatility, secondary_market_liquidi, currency_exchange_rate, investor_valuation_sensi, central_bank_ops",
+      "rationale": "Headline: \"US Treasury Secretary Bessent to hold press conference on Monday\"; will likely announce/clarify buyback action."
+    },
+    {
+      "id": "treasury_additional_buyback_scaleup",
+      "title": "Further scaling up of Treasury buybacks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-08-22",
+      "end": "2026-09-15",
+      "probability": 0.7,
+      "impact_score": 189.0,
+      "expected_impact": 132.3,
+      "event_PS": 21.364,
+      "event_AS": 17.182,
+      "n_vars": 5,
+      "affected_ids": "debt_buyback_rate, long_term_bond_yield, bond_yield_volatility, secondary_market_liquidi, currency_exchange_rate",
+      "rationale": "Headlines: \"Bessent says may raise bond buyback beyond $4 billion\"; \"Treasury doubles debt buybacks\" indicate continued scale‑ups."
+    },
+    {
+      "id": "continued_buyback_effectiveness_fizzle",
+      "title": "Ongoing risk that buybacks fail to calm markets",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near term",
+      "date": null,
+      "start": "2026-08-22",
+      "end": "2026-09-05",
+      "probability": 0.6,
+      "impact_score": 179.0,
+      "expected_impact": 107.4,
+      "event_PS": 27.7,
+      "event_AS": 17.9,
+      "n_vars": 4,
+      "affected_ids": "long_term_bond_yield, bond_yield_volatility, secondary_market_liquidi, investor_valuation_sensi",
+      "rationale": "Headlines: \"Bessent intervention fails to soothe investors\"; \"Buyback Only Briefly Tames Yields\" signal risk of repeated ineffectiveness."
+    },
+    {
+      "id": "fed_minutes_release_this_week",
+      "title": "Fed minutes / staff commentary release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-08-24",
+      "end": "2026-08-28",
+      "probability": 0.8,
+      "impact_score": 121.0,
+      "expected_impact": 96.8,
+      "event_PS": 18.857,
+      "event_AS": 17.286,
+      "n_vars": 4,
+      "affected_ids": "central_bank_policy_rate, bond_yield_volatility, investor_valuation_sensi, yield_term_premium",
+      "rationale": "Headline: \"Global Government Bond Yields Stabilize Ahead of Fed Minutes\"; minutes will influence policy signals."
+    }
+  ]
+}
