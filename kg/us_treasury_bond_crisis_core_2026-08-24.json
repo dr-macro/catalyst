@@ -1,0 +1,1741 @@
+{
+  "label": "us_treasury_bond_crisis",
+  "as_of": "2026-08-24",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-25T00:02:17",
+  "system_description": {
+    "narrative_title": "Bessent's Treasury Bond Interventions vs. Market (and Fed) Credibility",
+    "narrative_summary": "The dominant narrative is that U.S. Treasury Secretary Scott Bessent has launched active buybacks/interventions in the long‑end Treasury market to try to cap rising yields, triggering a cascade of market reactions — rising gold and bitcoin, dollar weakness, and persistent investor skepticism. Described as an open system, the intervention injects funds and signals into the Treasury market and interacts with feedback loops linking yields, inflation expectations, Fed credibility (and its Jackson Hole moment), FX and safe‑haven demand, market liquidity, and fiscal financing choices; disturbances propagate to global asset prices and policy credibility and may prompt further policy adjustments. The system boundary covers Treasury actions, bond market microstructure and participants, short‑ and long‑term yield formation, and immediate spillovers into FX, precious metals and crypto; external inputs (global demand for safe assets, Fed policy, economic data) enter as driving forces.",
+    "scope": "Inside: U.S. Treasury market (long‑term yields, auctions, buybacks, Treasury General Account), Treasury policy and announcements (Bessent), market participants and liquidity providers, investor expectations, Fed signals and speeches (e.g. Warsh), immediate spillovers to dollar, gold and crypto prices, and short‑term market functioning.",
+    "super_system": "Global financial system / global macroeconomic stability",
+    "adjacent_subsystems": [
+      "Monetary policy and central banking (the Fed and global central banks)",
+      "Fiscal policy and sovereign debt management (US Treasury funding, auctions, debt ceiling dynamics)",
+      "Foreign exchange and dollar liquidity",
+      "Safe‑haven asset markets and risk sentiment (gold, bitcoin, government bond demand)"
+    ],
+    "evidence_headlines": [
+      "Here’s how Bessent’s newly activist Treasury Department is undercutting the Fed’s Warsh",
+      "Bitcoin and gold surge as Bessent’s bond market intervention weighs on dollar",
+      "US long-term bonds slide as Treasury secretary Bessent’s intervention fails to soothe investors",
+      "US Treasury to boost long-term bond purchases in bid to steady market",
+      "Treasury buyback renews dollar-debasement fears",
+      "The Treasury’s bond-market intervention isn’t working. So what comes next?"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_yields",
+      "name": "Long-term yield level",
+      "description": "Market-determined average yield on long-maturity bond instruments.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_volatility",
+      "name": "Yield volatility",
+      "description": "Short-term variability in long-maturity bond yields measured by price or yield swings.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_intervention_flow",
+      "name": "Market intervention flow",
+      "description": "Rate of purchases or sales of long-maturity bonds executed to influence market yields.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "intervention_capacity",
+      "name": "Intervention capacity",
+      "description": "Available financial resources and operational flexibility that can be deployed to support markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "Depth and immediacy of tradable orders and bid-ask tightness in the long-maturity bond market.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "liquidity_maker_flow",
+      "name": "Liquidity-provider activity",
+      "description": "Aggregate quoting and transaction activity by liquidity-providing agents that sustains market execution.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market-implied or survey-based expected path of consumer prices over relevant horizons.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_credibility",
+      "name": "Policy credibility",
+      "description": "Market confidence in policymakers' consistency and ability to achieve stated macroeconomic objectives.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "Additional yield investors require to hold longer-duration bonds versus short-term alternatives.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "debt_supply_rate",
+      "name": "Debt supply rate",
+      "description": "Pace at which long-maturity debt instruments are issued into the market.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "safe_asset_demand",
+      "name": "Safe-asset demand",
+      "description": "Aggregate investor demand for assets perceived as low-risk stores of value.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "currency_value_index",
+      "name": "Currency exchange value",
+      "description": "Market valuation of the currency relative to a basket of other currencies.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "alt_safe_asset_prices",
+      "name": "Alternative safe-asset prices",
+      "description": "Price level of non-bond safe assets that respond to shifts in safe-haven demand.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_sentiment",
+      "name": "Market sentiment",
+      "description": "Aggregate investor risk appetite and willingness to hold duration and credit risk.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "rate_expectations",
+      "name": "Short-rate expectations",
+      "description": "Market-implied expected path of short-term interest rates over coming horizons.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_stress_level",
+      "name": "Market stress level",
+      "description": "Degree of systemic stress in the bond market reflected in liquidity shocks, order imbalances, and disorderly price moves.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_yields",
+    "yield_volatility",
+    "market_intervention_flow",
+    "intervention_capacity",
+    "market_liquidity",
+    "liquidity_maker_flow",
+    "inflation_expectations",
+    "policy_credibility",
+    "term_premium",
+    "debt_supply_rate",
+    "safe_asset_demand",
+    "currency_value_index",
+    "alt_safe_asset_prices",
+    "market_sentiment",
+    "rate_expectations",
+    "market_stress_level"
+  ],
+  "var_names": {
+    "long_term_yields": "Long-term yield level",
+    "yield_volatility": "Yield volatility",
+    "market_intervention_flow": "Market intervention flow",
+    "intervention_capacity": "Intervention capacity",
+    "market_liquidity": "Bond market liquidity",
+    "liquidity_maker_flow": "Liquidity-provider activity",
+    "inflation_expectations": "Inflation expectations",
+    "policy_credibility": "Policy credibility",
+    "term_premium": "Term premium",
+    "debt_supply_rate": "Debt supply rate",
+    "safe_asset_demand": "Safe-asset demand",
+    "currency_value_index": "Currency exchange value",
+    "alt_safe_asset_prices": "Alternative safe-asset prices",
+    "market_sentiment": "Market sentiment",
+    "rate_expectations": "Short-rate expectations",
+    "market_stress_level": "Market stress level"
+  },
+  "impact_matrix": {
+    "long_term_yields": {
+      "long_term_yields": 0,
+      "yield_volatility": 1,
+      "market_intervention_flow": 3,
+      "intervention_capacity": 0,
+      "market_liquidity": 2,
+      "liquidity_maker_flow": 1,
+      "inflation_expectations": 1,
+      "policy_credibility": 2,
+      "term_premium": 2,
+      "debt_supply_rate": 1,
+      "safe_asset_demand": 2,
+      "currency_value_index": 2,
+      "alt_safe_asset_prices": 1,
+      "market_sentiment": 3,
+      "rate_expectations": 2,
+      "market_stress_level": 2
+    },
+    "yield_volatility": {
+      "long_term_yields": 1,
+      "yield_volatility": 0,
+      "market_intervention_flow": 2,
+      "intervention_capacity": 0,
+      "market_liquidity": 3,
+      "liquidity_maker_flow": 3,
+      "inflation_expectations": 0,
+      "policy_credibility": 2,
+      "term_premium": 2,
+      "debt_supply_rate": 0,
+      "safe_asset_demand": 2,
+      "currency_value_index": 1,
+      "alt_safe_asset_prices": 2,
+      "market_sentiment": 3,
+      "rate_expectations": 1,
+      "market_stress_level": 3
+    },
+    "market_intervention_flow": {
+      "long_term_yields": 3,
+      "yield_volatility": 2,
+      "market_intervention_flow": 0,
+      "intervention_capacity": 2,
+      "market_liquidity": 2,
+      "liquidity_maker_flow": 1,
+      "inflation_expectations": 1,
+      "policy_credibility": 2,
+      "term_premium": 2,
+      "debt_supply_rate": 0,
+      "safe_asset_demand": 1,
+      "currency_value_index": 1,
+      "alt_safe_asset_prices": 1,
+      "market_sentiment": 2,
+      "rate_expectations": 1,
+      "market_stress_level": 2
+    },
+    "intervention_capacity": {
+      "long_term_yields": 2,
+      "yield_volatility": 1,
+      "market_intervention_flow": 3,
+      "intervention_capacity": 0,
+      "market_liquidity": 1,
+      "liquidity_maker_flow": 1,
+      "inflation_expectations": 0,
+      "policy_credibility": 3,
+      "term_premium": 1,
+      "debt_supply_rate": 0,
+      "safe_asset_demand": 0,
+      "currency_value_index": 1,
+      "alt_safe_asset_prices": 0,
+      "market_sentiment": 2,
+      "rate_expectations": 1,
+      "market_stress_level": 2
+    },
+    "market_liquidity": {
+      "long_term_yields": 2,
+      "yield_volatility": 3,
+      "market_intervention_flow": 1,
+      "intervention_capacity": 0,
+      "market_liquidity": 0,
+      "liquidity_maker_flow": 2,
+      "inflation_expectations": 0,
+      "policy_credibility": 1,
+      "term_premium": 2,
+      "debt_supply_rate": 1,
+      "safe_asset_demand": 1,
+      "currency_value_index": 1,
+      "alt_safe_asset_prices": 1,
+      "market_sentiment": 2,
+      "rate_expectations": 0,
+      "market_stress_level": 3
+    },
+    "liquidity_maker_flow": {
+      "long_term_yields": 2,
+      "yield_volatility": 3,
+      "market_intervention_flow": 1,
+      "intervention_capacity": 0,
+      "market_liquidity": 3,
+      "liquidity_maker_flow": 0,
+      "inflation_expectations": 0,
+      "policy_credibility": 1,
+      "term_premium": 2,
+      "debt_supply_rate": 1,
+      "safe_asset_demand": 1,
+      "currency_value_index": 1,
+      "alt_safe_asset_prices": 1,
+      "market_sentiment": 2,
+      "rate_expectations": 0,
+      "market_stress_level": 3
+    },
+    "inflation_expectations": {
+      "long_term_yields": 3,
+      "yield_volatility": 1,
+      "market_intervention_flow": 1,
+      "intervention_capacity": 0,
+      "market_liquidity": 0,
+      "liquidity_maker_flow": 0,
+      "inflation_expectations": 0,
+      "policy_credibility": 3,
+      "term_premium": 2,
+      "debt_supply_rate": 1,
+      "safe_asset_demand": 2,
+      "currency_value_index": 2,
+      "alt_safe_asset_prices": 2,
+      "market_sentiment": 2,
+      "rate_expectations": 3,
+      "market_stress_level": 1
+    },
+    "policy_credibility": {
+      "long_term_yields": 3,
+      "yield_volatility": 2,
+      "market_intervention_flow": 2,
+      "intervention_capacity": 0,
+      "market_liquidity": 1,
+      "liquidity_maker_flow": 1,
+      "inflation_expectations": 3,
+      "policy_credibility": 0,
+      "term_premium": 2,
+      "debt_supply_rate": 1,
+      "safe_asset_demand": 2,
+      "currency_value_index": 2,
+      "alt_safe_asset_prices": 2,
+      "market_sentiment": 3,
+      "rate_expectations": 3,
+      "market_stress_level": 2
+    },
+    "term_premium": {
+      "long_term_yields": 3,
+      "yield_volatility": 1,
+      "market_intervention_flow": 2,
+      "intervention_capacity": 0,
+      "market_liquidity": 1,
+      "liquidity_maker_flow": 0,
+      "inflation_expectations": 0,
+      "policy_credibility": 1,
+      "term_premium": 0,
+      "debt_supply_rate": 1,
+      "safe_asset_demand": 2,
+      "currency_value_index": 1,
+      "alt_safe_asset_prices": 1,
+      "market_sentiment": 1,
+      "rate_expectations": 1,
+      "market_stress_level": 1
+    },
+    "debt_supply_rate": {
+      "long_term_yields": 3,
+      "yield_volatility": 1,
+      "market_intervention_flow": 1,
+      "intervention_capacity": 0,
+      "market_liquidity": 1,
+      "liquidity_maker_flow": 0,
+      "inflation_expectations": 0,
+      "policy_credibility": 1,
+      "term_premium": 2,
+      "debt_supply_rate": 0,
+      "safe_asset_demand": 0,
+      "currency_value_index": 1,
+      "alt_safe_asset_prices": 0,
+      "market_sentiment": 1,
+      "rate_expectations": 0,
+      "market_stress_level": 1
+    },
+    "safe_asset_demand": {
+      "long_term_yields": 3,
+      "yield_volatility": 1,
+      "market_intervention_flow": 1,
+      "intervention_capacity": 0,
+      "market_liquidity": 1,
+      "liquidity_maker_flow": 0,
+      "inflation_expectations": 0,
+      "policy_credibility": 1,
+      "term_premium": 2,
+      "debt_supply_rate": 0,
+      "safe_asset_demand": 0,
+      "currency_value_index": 2,
+      "alt_safe_asset_prices": 2,
+      "market_sentiment": 2,
+      "rate_expectations": 1,
+      "market_stress_level": 1
+    },
+    "currency_value_index": {
+      "long_term_yields": 2,
+      "yield_volatility": 1,
+      "market_intervention_flow": 1,
+      "intervention_capacity": 0,
+      "market_liquidity": 0,
+      "liquidity_maker_flow": 0,
+      "inflation_expectations": 1,
+      "policy_credibility": 1,
+      "term_premium": 1,
+      "debt_supply_rate": 0,
+      "safe_asset_demand": 1,
+      "currency_value_index": 0,
+      "alt_safe_asset_prices": 1,
+      "market_sentiment": 1,
+      "rate_expectations": 1,
+      "market_stress_level": 1
+    },
+    "alt_safe_asset_prices": {
+      "long_term_yields": 1,
+      "yield_volatility": 0,
+      "market_intervention_flow": 0,
+      "intervention_capacity": 0,
+      "market_liquidity": 0,
+      "liquidity_maker_flow": 0,
+      "inflation_expectations": 1,
+      "policy_credibility": 0,
+      "term_premium": 0,
+      "debt_supply_rate": 0,
+      "safe_asset_demand": 2,
+      "currency_value_index": 1,
+      "alt_safe_asset_prices": 0,
+      "market_sentiment": 1,
+      "rate_expectations": 0,
+      "market_stress_level": 1
+    },
+    "market_sentiment": {
+      "long_term_yields": 3,
+      "yield_volatility": 2,
+      "market_intervention_flow": 1,
+      "intervention_capacity": 0,
+      "market_liquidity": 1,
+      "liquidity_maker_flow": 1,
+      "inflation_expectations": 1,
+      "policy_credibility": 1,
+      "term_premium": 2,
+      "debt_supply_rate": 0,
+      "safe_asset_demand": 3,
+      "currency_value_index": 2,
+      "alt_safe_asset_prices": 2,
+      "market_sentiment": 0,
+      "rate_expectations": 1,
+      "market_stress_level": 3
+    },
+    "rate_expectations": {
+      "long_term_yields": 3,
+      "yield_volatility": 1,
+      "market_intervention_flow": 1,
+      "intervention_capacity": 0,
+      "market_liquidity": 0,
+      "liquidity_maker_flow": 0,
+      "inflation_expectations": 1,
+      "policy_credibility": 1,
+      "term_premium": 1,
+      "debt_supply_rate": 0,
+      "safe_asset_demand": 1,
+      "currency_value_index": 1,
+      "alt_safe_asset_prices": 0,
+      "market_sentiment": 1,
+      "rate_expectations": 0,
+      "market_stress_level": 1
+    },
+    "market_stress_level": {
+      "long_term_yields": 3,
+      "yield_volatility": 3,
+      "market_intervention_flow": 3,
+      "intervention_capacity": 0,
+      "market_liquidity": 3,
+      "liquidity_maker_flow": 3,
+      "inflation_expectations": 1,
+      "policy_credibility": 2,
+      "term_premium": 2,
+      "debt_supply_rate": 1,
+      "safe_asset_demand": 2,
+      "currency_value_index": 2,
+      "alt_safe_asset_prices": 2,
+      "market_sentiment": 3,
+      "rate_expectations": 1,
+      "market_stress_level": 0
+    }
+  },
+  "AS": {
+    "long_term_yields": 25,
+    "yield_volatility": 25,
+    "market_intervention_flow": 23,
+    "intervention_capacity": 18,
+    "market_liquidity": 20,
+    "liquidity_maker_flow": 21,
+    "inflation_expectations": 23,
+    "policy_credibility": 29,
+    "term_premium": 16,
+    "debt_supply_rate": 12,
+    "safe_asset_demand": 17,
+    "currency_value_index": 12,
+    "alt_safe_asset_prices": 7,
+    "market_sentiment": 23,
+    "rate_expectations": 12,
+    "market_stress_level": 31
+  },
+  "PS": {
+    "long_term_yields": 37,
+    "yield_volatility": 23,
+    "market_intervention_flow": 23,
+    "intervention_capacity": 2,
+    "market_liquidity": 19,
+    "liquidity_maker_flow": 13,
+    "inflation_expectations": 10,
+    "policy_credibility": 22,
+    "term_premium": 25,
+    "debt_supply_rate": 7,
+    "safe_asset_demand": 22,
+    "currency_value_index": 21,
+    "alt_safe_asset_prices": 18,
+    "market_sentiment": 29,
+    "rate_expectations": 16,
+    "market_stress_level": 27
+  },
+  "med_AS": 20.5,
+  "med_PS": 21.5,
+  "roles": [
+    {
+      "variable": "long_term_yields",
+      "name": "Long-term yield level",
+      "AS": 25,
+      "PS": 37,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 925,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_stress_level",
+      "name": "Market stress level",
+      "AS": 31,
+      "PS": 27,
+      "Q=AS/PS": 1.15,
+      "P=AS*PS": 837,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_sentiment",
+      "name": "Market sentiment",
+      "AS": 23,
+      "PS": 29,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 667,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_credibility",
+      "name": "Policy credibility",
+      "AS": 29,
+      "PS": 22,
+      "Q=AS/PS": 1.32,
+      "P=AS*PS": 638,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "yield_volatility",
+      "name": "Yield volatility",
+      "AS": 25,
+      "PS": 23,
+      "Q=AS/PS": 1.09,
+      "P=AS*PS": 575,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_intervention_flow",
+      "name": "Market intervention flow",
+      "AS": 23,
+      "PS": 23,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 529,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 16,
+      "PS": 25,
+      "Q=AS/PS": 0.64,
+      "P=AS*PS": 400,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 20,
+      "PS": 19,
+      "Q=AS/PS": 1.05,
+      "P=AS*PS": 380,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "safe_asset_demand",
+      "name": "Safe-asset demand",
+      "AS": 17,
+      "PS": 22,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 374,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "liquidity_maker_flow",
+      "name": "Liquidity-provider activity",
+      "AS": 21,
+      "PS": 13,
+      "Q=AS/PS": 1.62,
+      "P=AS*PS": 273,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "currency_value_index",
+      "name": "Currency exchange value",
+      "AS": 12,
+      "PS": 21,
+      "Q=AS/PS": 0.57,
+      "P=AS*PS": 252,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 23,
+      "PS": 10,
+      "Q=AS/PS": 2.3,
+      "P=AS*PS": 230,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "rate_expectations",
+      "name": "Short-rate expectations",
+      "AS": 12,
+      "PS": 16,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 192,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "alt_safe_asset_prices",
+      "name": "Alternative safe-asset prices",
+      "AS": 7,
+      "PS": 18,
+      "Q=AS/PS": 0.39,
+      "P=AS*PS": 126,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "debt_supply_rate",
+      "name": "Debt supply rate",
+      "AS": 12,
+      "PS": 7,
+      "Q=AS/PS": 1.71,
+      "P=AS*PS": 84,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "intervention_capacity",
+      "name": "Intervention capacity",
+      "AS": 18,
+      "PS": 2,
+      "Q=AS/PS": 9.0,
+      "P=AS*PS": 36,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_yields",
+        "name": "Long-term yield level",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 37
+      },
+      {
+        "id": "yield_volatility",
+        "name": "Yield volatility",
+        "kind": "environment",
+        "AS": 25,
+        "PS": 23
+      },
+      {
+        "id": "market_intervention_flow",
+        "name": "Market intervention flow",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 23
+      },
+      {
+        "id": "intervention_capacity",
+        "name": "Intervention capacity",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 2
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 19
+      },
+      {
+        "id": "liquidity_maker_flow",
+        "name": "Liquidity-provider activity",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 13
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "driver",
+        "AS": 23,
+        "PS": 10
+      },
+      {
+        "id": "policy_credibility",
+        "name": "Policy credibility",
+        "kind": "perception",
+        "AS": 29,
+        "PS": 22
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 25
+      },
+      {
+        "id": "debt_supply_rate",
+        "name": "Debt supply rate",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 7
+      },
+      {
+        "id": "safe_asset_demand",
+        "name": "Safe-asset demand",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 22
+      },
+      {
+        "id": "currency_value_index",
+        "name": "Currency exchange value",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 21
+      },
+      {
+        "id": "alt_safe_asset_prices",
+        "name": "Alternative safe-asset prices",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 18
+      },
+      {
+        "id": "market_sentiment",
+        "name": "Market sentiment",
+        "kind": "perception",
+        "AS": 23,
+        "PS": 29
+      },
+      {
+        "id": "rate_expectations",
+        "name": "Short-rate expectations",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 16
+      },
+      {
+        "id": "market_stress_level",
+        "name": "Market stress level",
+        "kind": "environment",
+        "AS": 31,
+        "PS": 27
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_yields",
+        "target": "market_intervention_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "policy_credibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "currency_value_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "market_sentiment",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "market_stress_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "market_intervention_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "liquidity_maker_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "policy_credibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "alt_safe_asset_prices",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "market_sentiment",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "market_stress_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "intervention_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "policy_credibility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "market_stress_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_capacity",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_capacity",
+        "target": "market_intervention_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_capacity",
+        "target": "policy_credibility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_capacity",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_capacity",
+        "target": "market_stress_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "liquidity_maker_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "market_stress_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "liquidity_maker_flow",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "liquidity_maker_flow",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "liquidity_maker_flow",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "liquidity_maker_flow",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "liquidity_maker_flow",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "liquidity_maker_flow",
+        "target": "market_stress_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_credibility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "currency_value_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "alt_safe_asset_prices",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_credibility",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_credibility",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_credibility",
+        "target": "market_intervention_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_credibility",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_credibility",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_credibility",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_credibility",
+        "target": "currency_value_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_credibility",
+        "target": "alt_safe_asset_prices",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_credibility",
+        "target": "market_sentiment",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_credibility",
+        "target": "rate_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_credibility",
+        "target": "market_stress_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "market_intervention_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_supply_rate",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_supply_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "currency_value_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "alt_safe_asset_prices",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "market_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_value_index",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "alt_safe_asset_prices",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "safe_asset_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "currency_value_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "alt_safe_asset_prices",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_sentiment",
+        "target": "market_stress_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_stress_level",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_stress_level",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_stress_level",
+        "target": "market_intervention_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_stress_level",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_stress_level",
+        "target": "liquidity_maker_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_stress_level",
+        "target": "policy_credibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_stress_level",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_stress_level",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_stress_level",
+        "target": "currency_value_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_stress_level",
+        "target": "alt_safe_asset_prices",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_stress_level",
+        "target": "market_sentiment",
+        "strength": 3,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "warsh_jackson_hole_speech",
+      "title": "Kevin Warsh Jackson Hole speech",
+      "description": "High‑profile Fed-related speech at Jackson Hole likely to influence rate and credibility expectations around US monetary policy.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-27",
+        "end": "2026-08-30",
+        "label": "this week"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_credibility",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines flag Warsh's Jackson Hole speech as a bond‑market focal point and credibility test (Bond scare; Warsh speech)."
+    },
+    {
+      "id": "us_pce_data_release",
+      "title": "US PCE inflation report",
+      "description": "Core and headline PCE release expected to move inflation and rate expectations and therefore long yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-25",
+        "end": "2026-08-30",
+        "label": "next few days"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_sentiment",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Multiple headlines cite US PCE data as the key near‑term market mover ahead of Fed speeches."
+    },
+    {
+      "id": "treasury_buyback_ramp",
+      "title": "Treasury ramps long‑bond buybacks",
+      "description": "Treasury plans to boost long‑term buybacks as an ongoing intervention to steady yields and market liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-24",
+        "end": "2026-09-07",
+        "label": "near‑term ramp"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "market_intervention_flow",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "intervention_capacity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "policy_credibility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "currency_value_index",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "alt_safe_asset_prices",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines report Treasury will boost long‑term purchases and buybacks to steady markets (Treasury to boost purchases; buyback renews dollar fears)."
+    },
+    {
+      "id": "tga_tapping_decision",
+      "title": "Possible tap of Treasury General Account",
+      "description": "Decision or announcement on using the Treasury General Account (rainy‑day funds) to finance larger buybacks would change intervention capacity.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-24",
+        "end": "2026-09-14",
+        "label": "coming weeks"
+      },
+      "probability": 0.55,
+      "affected": [
+        {
+          "variable_id": "intervention_capacity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_intervention_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_credibility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "currency_value_index",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline notes Bessent could tap near $1tn TGA to fund buybacks, implying enlarged intervention capacity."
+    },
+    {
+      "id": "debt_auction_schedule_continuation",
+      "title": "Scheduled Treasury debt auctions continue",
+      "description": "Treasury will keep its auction schedule despite larger buybacks, sustaining supply pressure in the long‑end.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-24",
+        "end": "2026-09-30",
+        "label": "ongoing auctions"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "debt_supply_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_stress_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Treasury says it will stick to auction schedule despite bigger buybacks, keeping supply pressure (headline)."
+    },
+    {
+      "id": "prediction_market_doubt",
+      "title": "Prediction markets doubt buybacks' efficacy",
+      "description": "Public skepticism in prediction markets that interventions will lower yields amplifies market disbelief and sentiment effects.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-24",
+        "end": "2026-09-07",
+        "label": "near‑term"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "market_sentiment",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "policy_credibility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: prediction market traders doubtful interventions will push yields lower, signaling weak market faith."
+    },
+    {
+      "id": "fed_chair_speech",
+      "title": "Fed chair public remarks",
+      "description": "Upcoming Fed chair remarks (linked to Jackson Hole and PCE timing) likely to clarify policy reaction function and influence markets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-25",
+        "end": "2026-08-30",
+        "label": "this week"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_credibility",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_sentiment",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline flags Fed chair speech ahead of inflation data as a market focal point (Gold ahead of US inflation data, Fed chair speech)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "treasury_buyback_ramp",
+      "title": "Treasury ramps long‑bond buybacks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near‑term ramp",
+      "date": null,
+      "start": "2026-08-24",
+      "end": "2026-09-07",
+      "probability": 0.85,
+      "impact_score": 244.0,
+      "expected_impact": 207.4,
+      "event_PS": 20.917,
+      "event_AS": 20.333,
+      "n_vars": 6,
+      "affected_ids": "market_intervention_flow, intervention_capacity, long_term_yields, policy_credibility, currency_value_index, alt_safe_asset_prices",
+      "rationale": "Headlines report Treasury will boost long‑term purchases and buybacks to steady markets (Treasury to boost purchases; buyback renews dollar fears)."
+    },
+    {
+      "id": "warsh_jackson_hole_speech",
+      "title": "Kevin Warsh Jackson Hole speech",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-08-27",
+      "end": "2026-08-30",
+      "probability": 0.95,
+      "impact_score": 219.0,
+      "expected_impact": 208.05,
+      "event_PS": 24.9,
+      "event_AS": 21.9,
+      "n_vars": 4,
+      "affected_ids": "rate_expectations, long_term_yields, yield_volatility, policy_credibility",
+      "rationale": "Headlines flag Warsh's Jackson Hole speech as a bond‑market focal point and credibility test (Bond scare; Warsh speech)."
+    },
+    {
+      "id": "tga_tapping_decision",
+      "title": "Possible tap of Treasury General Account",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "coming weeks",
+      "date": null,
+      "start": "2026-08-24",
+      "end": "2026-09-14",
+      "probability": 0.55,
+      "impact_score": 207.0,
+      "expected_impact": 113.85,
+      "event_PS": 17.5,
+      "event_AS": 20.7,
+      "n_vars": 5,
+      "affected_ids": "intervention_capacity, market_intervention_flow, policy_credibility, currency_value_index, long_term_yields",
+      "rationale": "Headline notes Bessent could tap near $1tn TGA to fund buybacks, implying enlarged intervention capacity."
+    },
+    {
+      "id": "us_pce_data_release",
+      "title": "US PCE inflation report",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next few days",
+      "date": null,
+      "start": "2026-08-25",
+      "end": "2026-08-30",
+      "probability": 0.9,
+      "impact_score": 201.0,
+      "expected_impact": 180.9,
+      "event_PS": 21.0,
+      "event_AS": 20.1,
+      "n_vars": 4,
+      "affected_ids": "inflation_expectations, rate_expectations, long_term_yields, market_sentiment",
+      "rationale": "Multiple headlines cite US PCE data as the key near‑term market mover ahead of Fed speeches."
+    },
+    {
+      "id": "fed_chair_speech",
+      "title": "Fed chair public remarks",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-08-25",
+      "end": "2026-08-30",
+      "probability": 0.8,
+      "impact_score": 167.0,
+      "expected_impact": 133.6,
+      "event_PS": 24.375,
+      "event_AS": 20.875,
+      "n_vars": 4,
+      "affected_ids": "rate_expectations, policy_credibility, long_term_yields, market_sentiment",
+      "rationale": "Headline flags Fed chair speech ahead of inflation data as a market focal point (Gold ahead of US inflation data, Fed chair speech)."
+    },
+    {
+      "id": "debt_auction_schedule_continuation",
+      "title": "Scheduled Treasury debt auctions continue",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "ongoing auctions",
+      "date": null,
+      "start": "2026-08-24",
+      "end": "2026-09-30",
+      "probability": 0.95,
+      "impact_score": 137.0,
+      "expected_impact": 130.15,
+      "event_PS": 20.143,
+      "event_AS": 19.571,
+      "n_vars": 4,
+      "affected_ids": "debt_supply_rate, long_term_yields, market_liquidity, market_stress_level",
+      "rationale": "Treasury says it will stick to auction schedule despite bigger buybacks, keeping supply pressure (headline)."
+    },
+    {
+      "id": "prediction_market_doubt",
+      "title": "Prediction markets doubt buybacks' efficacy",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near‑term",
+      "date": null,
+      "start": "2026-08-24",
+      "end": "2026-09-07",
+      "probability": 0.9,
+      "impact_score": 129.0,
+      "expected_impact": 116.1,
+      "event_PS": 25.0,
+      "event_AS": 25.8,
+      "n_vars": 3,
+      "affected_ids": "market_sentiment, policy_credibility, yield_volatility",
+      "rationale": "Headline: prediction market traders doubtful interventions will push yields lower, signaling weak market faith."
+    }
+  ]
+}
