@@ -1,0 +1,1879 @@
+{
+  "label": "treasury_market_stress",
+  "as_of": "2026-08-25",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-26T00:08:48",
+  "system_description": {
+    "narrative_title": "Bond-market panic: Treasury buybacks, rising yields, and shaken credibility",
+    "narrative_summary": "The dominant narrative is a Treasury-market crisis driven by surging long-term U.S. yields, rising federal debt and aggressive Treasury buyback interventions (led by Secretary Scott Bessent) that markets treat as inadequate or credibility-damaging. As an open system this encompasses flows of issuance, buybacks, market liquidity, investor expectations and asset reallocations (into gold, bitcoin, cash, or risk assets), with reinforcing feedbacks: higher yields prompt interventions, which alter expectations and can spur further selling or safe‑haven flows, producing contagion across banks, hedge funds, FX and credit. The system transmits signals (prices, statements, policy moves) and capital across national and institutional boundaries, so local Treasury actions produce global and cross‑market effects that evolve dynamically.",
+    "scope": "The U.S. Treasury market (long-term yields and bond supply), Treasury buyback operations and funding choices, major market participants (hedge funds, asset managers, banks), related asset prices (USD, gold, equities), market liquidity and investor expectations.",
+    "super_system": "Global financial system and international capital markets (central banks, sovereign debt markets, global FX and commodity markets, cross-border capital flows).",
+    "adjacent_subsystems": [
+      "U.S. fiscal policy and public-debt trajectory",
+      "Federal Reserve monetary policy and inflation expectations",
+      "Global FX and commodity markets (dollar, gold, oil)",
+      "Capital markets & shadow banking (hedge funds, banks, private credit)"
+    ],
+    "evidence_headlines": [
+      "US government debt hits $40tn as borrowing rises at historic rate",
+      "US Treasury to boost long-term bond purchases in bid to steady market",
+      "US long-term bonds slide as Treasury secretary Bessent’s intervention fails to soothe investors",
+      "Why an announcement from the Treasury sparked a rally in gold and bitcoin this week",
+      "Citadel offloads 80% of portfolio scooped up from Situational Awareness",
+      "Bessent could tap near $1 trillion Treasury General Account to fund bond buybacks, sources said"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_yields",
+      "name": "Long-term bond yields",
+      "description": "The prevailing interest rates on long-dated sovereign bonds that signal borrowing costs and discount rates for long-duration assets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "govt_debt_outstanding",
+      "name": "Government debt outstanding",
+      "description": "The total stock of government debt securities outstanding that must be financed or rolled over over time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "debt_issuance_flow",
+      "name": "Scheduled debt issuance",
+      "description": "The rate and timing of planned government debt issuance entering the market over a given period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "buyback_intervention",
+      "name": "Buyback intervention rate",
+      "description": "The pace and scale of official market purchases of long-dated bonds intended to influence prices and yields.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity_depth",
+      "name": "Market liquidity depth",
+      "description": "The ease with which large bond positions can be transacted without materially moving prices, measured by depth and bid-ask rawness.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Market volatility",
+      "description": "The magnitude and frequency of price swings in fixed-income and related markets reflecting uncertainty and repricing events.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_policy_expect",
+      "name": "Investor policy expectations",
+      "description": "Market beliefs about future effectiveness and direction of fiscal and debt-management actions that shape trading and positioning.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_credibility_perce",
+      "name": "Perceived fiscal credibility",
+      "description": "The market's confidence in the fiscal authority's commitment and ability to manage debt, deficits, and financing plans.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The additional yield investors require for holding longer-duration sovereign bonds relative to expected short rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "leverage_margin_exposure",
+      "name": "Leverage and margin exposure",
+      "description": "The aggregate level of borrowed funding and margin positions across leveraged market participants that amplify moves.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_market_flows",
+      "name": "Cross-market capital flows",
+      "description": "The net movement of capital between sovereign bonds, equities, currencies, commodities, and other asset classes.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_demand",
+      "name": "Safe-haven demand",
+      "description": "The intensity and speed of investor reallocations into perceived low-risk assets in response to stress or uncertainty.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "risk_asset_tilt",
+      "name": "Risk-asset allocation tilt",
+      "description": "The net directional shift of portfolios toward or away from risk assets (equities, credit, EM) relative to bonds/cash.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "currency_rate_pressure",
+      "name": "Currency exchange pressure",
+      "description": "The directional stress on major currency exchange rates caused by capital flows, yield differentials, and market sentiment.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market-implied and survey-based forecasts of future inflation that influence real yields, term premia, and policy views.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_structure_res",
+      "name": "Market structure resilience",
+      "description": "The capacity of trading infrastructure, settlement plumbing, and regulatory backstops to absorb shocks and maintain orderly markets.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_yields",
+    "govt_debt_outstanding",
+    "debt_issuance_flow",
+    "buyback_intervention",
+    "market_liquidity_depth",
+    "market_volatility",
+    "investor_policy_expect",
+    "fiscal_credibility_perce",
+    "term_premium",
+    "leverage_margin_exposure",
+    "cross_market_flows",
+    "safe_haven_demand",
+    "risk_asset_tilt",
+    "currency_rate_pressure",
+    "inflation_expectations",
+    "market_structure_res"
+  ],
+  "var_names": {
+    "long_term_yields": "Long-term bond yields",
+    "govt_debt_outstanding": "Government debt outstanding",
+    "debt_issuance_flow": "Scheduled debt issuance",
+    "buyback_intervention": "Buyback intervention rate",
+    "market_liquidity_depth": "Market liquidity depth",
+    "market_volatility": "Market volatility",
+    "investor_policy_expect": "Investor policy expectations",
+    "fiscal_credibility_perce": "Perceived fiscal credibility",
+    "term_premium": "Term premium",
+    "leverage_margin_exposure": "Leverage and margin exposure",
+    "cross_market_flows": "Cross-market capital flows",
+    "safe_haven_demand": "Safe-haven demand",
+    "risk_asset_tilt": "Risk-asset allocation tilt",
+    "currency_rate_pressure": "Currency exchange pressure",
+    "inflation_expectations": "Inflation expectations",
+    "market_structure_res": "Market structure resilience"
+  },
+  "impact_matrix": {
+    "long_term_yields": {
+      "long_term_yields": 0,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 0,
+      "buyback_intervention": 2,
+      "market_liquidity_depth": 2,
+      "market_volatility": 3,
+      "investor_policy_expect": 2,
+      "fiscal_credibility_perce": 2,
+      "term_premium": 1,
+      "leverage_margin_exposure": 2,
+      "cross_market_flows": 3,
+      "safe_haven_demand": 1,
+      "risk_asset_tilt": 2,
+      "currency_rate_pressure": 2,
+      "inflation_expectations": 1,
+      "market_structure_res": 1
+    },
+    "govt_debt_outstanding": {
+      "long_term_yields": 2,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 1,
+      "buyback_intervention": 1,
+      "market_liquidity_depth": 1,
+      "market_volatility": 1,
+      "investor_policy_expect": 2,
+      "fiscal_credibility_perce": 2,
+      "term_premium": 2,
+      "leverage_margin_exposure": 1,
+      "cross_market_flows": 1,
+      "safe_haven_demand": 1,
+      "risk_asset_tilt": 1,
+      "currency_rate_pressure": 1,
+      "inflation_expectations": 1,
+      "market_structure_res": 1
+    },
+    "debt_issuance_flow": {
+      "long_term_yields": 3,
+      "govt_debt_outstanding": 3,
+      "debt_issuance_flow": 0,
+      "buyback_intervention": 3,
+      "market_liquidity_depth": 2,
+      "market_volatility": 2,
+      "investor_policy_expect": 2,
+      "fiscal_credibility_perce": 2,
+      "term_premium": 2,
+      "leverage_margin_exposure": 1,
+      "cross_market_flows": 2,
+      "safe_haven_demand": 1,
+      "risk_asset_tilt": 2,
+      "currency_rate_pressure": 1,
+      "inflation_expectations": 1,
+      "market_structure_res": 1
+    },
+    "buyback_intervention": {
+      "long_term_yields": 3,
+      "govt_debt_outstanding": 3,
+      "debt_issuance_flow": 2,
+      "buyback_intervention": 0,
+      "market_liquidity_depth": 2,
+      "market_volatility": 2,
+      "investor_policy_expect": 2,
+      "fiscal_credibility_perce": 2,
+      "term_premium": 2,
+      "leverage_margin_exposure": 1,
+      "cross_market_flows": 2,
+      "safe_haven_demand": 1,
+      "risk_asset_tilt": 2,
+      "currency_rate_pressure": 1,
+      "inflation_expectations": 0,
+      "market_structure_res": 1
+    },
+    "market_liquidity_depth": {
+      "long_term_yields": 2,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 0,
+      "buyback_intervention": 2,
+      "market_liquidity_depth": 0,
+      "market_volatility": 3,
+      "investor_policy_expect": 1,
+      "fiscal_credibility_perce": 1,
+      "term_premium": 2,
+      "leverage_margin_exposure": 2,
+      "cross_market_flows": 1,
+      "safe_haven_demand": 1,
+      "risk_asset_tilt": 1,
+      "currency_rate_pressure": 1,
+      "inflation_expectations": 0,
+      "market_structure_res": 3
+    },
+    "market_volatility": {
+      "long_term_yields": 2,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 1,
+      "buyback_intervention": 2,
+      "market_liquidity_depth": 2,
+      "market_volatility": 0,
+      "investor_policy_expect": 2,
+      "fiscal_credibility_perce": 2,
+      "term_premium": 2,
+      "leverage_margin_exposure": 3,
+      "cross_market_flows": 2,
+      "safe_haven_demand": 3,
+      "risk_asset_tilt": 2,
+      "currency_rate_pressure": 2,
+      "inflation_expectations": 0,
+      "market_structure_res": 1
+    },
+    "investor_policy_expect": {
+      "long_term_yields": 3,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 0,
+      "buyback_intervention": 1,
+      "market_liquidity_depth": 1,
+      "market_volatility": 2,
+      "investor_policy_expect": 0,
+      "fiscal_credibility_perce": 2,
+      "term_premium": 2,
+      "leverage_margin_exposure": 1,
+      "cross_market_flows": 2,
+      "safe_haven_demand": 2,
+      "risk_asset_tilt": 2,
+      "currency_rate_pressure": 2,
+      "inflation_expectations": 2,
+      "market_structure_res": 0
+    },
+    "fiscal_credibility_perce": {
+      "long_term_yields": 3,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 1,
+      "buyback_intervention": 1,
+      "market_liquidity_depth": 1,
+      "market_volatility": 2,
+      "investor_policy_expect": 3,
+      "fiscal_credibility_perce": 0,
+      "term_premium": 3,
+      "leverage_margin_exposure": 1,
+      "cross_market_flows": 2,
+      "safe_haven_demand": 2,
+      "risk_asset_tilt": 2,
+      "currency_rate_pressure": 2,
+      "inflation_expectations": 2,
+      "market_structure_res": 1
+    },
+    "term_premium": {
+      "long_term_yields": 3,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 1,
+      "buyback_intervention": 1,
+      "market_liquidity_depth": 1,
+      "market_volatility": 2,
+      "investor_policy_expect": 1,
+      "fiscal_credibility_perce": 1,
+      "term_premium": 0,
+      "leverage_margin_exposure": 1,
+      "cross_market_flows": 1,
+      "safe_haven_demand": 1,
+      "risk_asset_tilt": 1,
+      "currency_rate_pressure": 1,
+      "inflation_expectations": 1,
+      "market_structure_res": 0
+    },
+    "leverage_margin_exposure": {
+      "long_term_yields": 2,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 0,
+      "buyback_intervention": 1,
+      "market_liquidity_depth": 2,
+      "market_volatility": 3,
+      "investor_policy_expect": 1,
+      "fiscal_credibility_perce": 0,
+      "term_premium": 2,
+      "leverage_margin_exposure": 0,
+      "cross_market_flows": 2,
+      "safe_haven_demand": 2,
+      "risk_asset_tilt": 2,
+      "currency_rate_pressure": 1,
+      "inflation_expectations": 0,
+      "market_structure_res": 2
+    },
+    "cross_market_flows": {
+      "long_term_yields": 2,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 0,
+      "buyback_intervention": 1,
+      "market_liquidity_depth": 2,
+      "market_volatility": 2,
+      "investor_policy_expect": 1,
+      "fiscal_credibility_perce": 1,
+      "term_premium": 2,
+      "leverage_margin_exposure": 1,
+      "cross_market_flows": 0,
+      "safe_haven_demand": 2,
+      "risk_asset_tilt": 3,
+      "currency_rate_pressure": 3,
+      "inflation_expectations": 0,
+      "market_structure_res": 1
+    },
+    "safe_haven_demand": {
+      "long_term_yields": 3,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 0,
+      "buyback_intervention": 1,
+      "market_liquidity_depth": 1,
+      "market_volatility": 1,
+      "investor_policy_expect": 1,
+      "fiscal_credibility_perce": 1,
+      "term_premium": 2,
+      "leverage_margin_exposure": 1,
+      "cross_market_flows": 3,
+      "safe_haven_demand": 0,
+      "risk_asset_tilt": 3,
+      "currency_rate_pressure": 2,
+      "inflation_expectations": 0,
+      "market_structure_res": 1
+    },
+    "risk_asset_tilt": {
+      "long_term_yields": 2,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 0,
+      "buyback_intervention": 1,
+      "market_liquidity_depth": 1,
+      "market_volatility": 1,
+      "investor_policy_expect": 1,
+      "fiscal_credibility_perce": 0,
+      "term_premium": 2,
+      "leverage_margin_exposure": 1,
+      "cross_market_flows": 3,
+      "safe_haven_demand": 3,
+      "risk_asset_tilt": 0,
+      "currency_rate_pressure": 2,
+      "inflation_expectations": 0,
+      "market_structure_res": 0
+    },
+    "currency_rate_pressure": {
+      "long_term_yields": 2,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 1,
+      "buyback_intervention": 1,
+      "market_liquidity_depth": 1,
+      "market_volatility": 2,
+      "investor_policy_expect": 2,
+      "fiscal_credibility_perce": 2,
+      "term_premium": 1,
+      "leverage_margin_exposure": 1,
+      "cross_market_flows": 2,
+      "safe_haven_demand": 2,
+      "risk_asset_tilt": 2,
+      "currency_rate_pressure": 0,
+      "inflation_expectations": 2,
+      "market_structure_res": 1
+    },
+    "inflation_expectations": {
+      "long_term_yields": 3,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 0,
+      "buyback_intervention": 0,
+      "market_liquidity_depth": 1,
+      "market_volatility": 2,
+      "investor_policy_expect": 3,
+      "fiscal_credibility_perce": 2,
+      "term_premium": 2,
+      "leverage_margin_exposure": 1,
+      "cross_market_flows": 2,
+      "safe_haven_demand": 1,
+      "risk_asset_tilt": 2,
+      "currency_rate_pressure": 2,
+      "inflation_expectations": 0,
+      "market_structure_res": 0
+    },
+    "market_structure_res": {
+      "long_term_yields": 2,
+      "govt_debt_outstanding": 0,
+      "debt_issuance_flow": 1,
+      "buyback_intervention": 1,
+      "market_liquidity_depth": 3,
+      "market_volatility": 2,
+      "investor_policy_expect": 1,
+      "fiscal_credibility_perce": 1,
+      "term_premium": 2,
+      "leverage_margin_exposure": 2,
+      "cross_market_flows": 1,
+      "safe_haven_demand": 1,
+      "risk_asset_tilt": 1,
+      "currency_rate_pressure": 0,
+      "inflation_expectations": 0,
+      "market_structure_res": 0
+    }
+  },
+  "AS": {
+    "long_term_yields": 24,
+    "govt_debt_outstanding": 19,
+    "debt_issuance_flow": 28,
+    "buyback_intervention": 26,
+    "market_liquidity_depth": 20,
+    "market_volatility": 26,
+    "investor_policy_expect": 22,
+    "fiscal_credibility_perce": 26,
+    "term_premium": 16,
+    "leverage_margin_exposure": 20,
+    "cross_market_flows": 21,
+    "safe_haven_demand": 20,
+    "risk_asset_tilt": 17,
+    "currency_rate_pressure": 22,
+    "inflation_expectations": 21,
+    "market_structure_res": 18
+  },
+  "PS": {
+    "long_term_yields": 37,
+    "govt_debt_outstanding": 6,
+    "debt_issuance_flow": 8,
+    "buyback_intervention": 19,
+    "market_liquidity_depth": 23,
+    "market_volatility": 30,
+    "investor_policy_expect": 25,
+    "fiscal_credibility_perce": 21,
+    "term_premium": 29,
+    "leverage_margin_exposure": 20,
+    "cross_market_flows": 29,
+    "safe_haven_demand": 24,
+    "risk_asset_tilt": 28,
+    "currency_rate_pressure": 23,
+    "inflation_expectations": 10,
+    "market_structure_res": 14
+  },
+  "med_AS": 21.0,
+  "med_PS": 23.0,
+  "roles": [
+    {
+      "variable": "long_term_yields",
+      "name": "Long-term bond yields",
+      "AS": 24,
+      "PS": 37,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 888,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Market volatility",
+      "AS": 26,
+      "PS": 30,
+      "Q=AS/PS": 0.87,
+      "P=AS*PS": 780,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_market_flows",
+      "name": "Cross-market capital flows",
+      "AS": 21,
+      "PS": 29,
+      "Q=AS/PS": 0.72,
+      "P=AS*PS": 609,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_policy_expect",
+      "name": "Investor policy expectations",
+      "AS": 22,
+      "PS": 25,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 550,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "fiscal_credibility_perce",
+      "name": "Perceived fiscal credibility",
+      "AS": 26,
+      "PS": 21,
+      "Q=AS/PS": 1.24,
+      "P=AS*PS": 546,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "currency_rate_pressure",
+      "name": "Currency exchange pressure",
+      "AS": 22,
+      "PS": 23,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 506,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "buyback_intervention",
+      "name": "Buyback intervention rate",
+      "AS": 26,
+      "PS": 19,
+      "Q=AS/PS": 1.37,
+      "P=AS*PS": 494,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "safe_haven_demand",
+      "name": "Safe-haven demand",
+      "AS": 20,
+      "PS": 24,
+      "Q=AS/PS": 0.83,
+      "P=AS*PS": 480,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "risk_asset_tilt",
+      "name": "Risk-asset allocation tilt",
+      "AS": 17,
+      "PS": 28,
+      "Q=AS/PS": 0.61,
+      "P=AS*PS": 476,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 16,
+      "PS": 29,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 464,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity_depth",
+      "name": "Market liquidity depth",
+      "AS": 20,
+      "PS": 23,
+      "Q=AS/PS": 0.87,
+      "P=AS*PS": 460,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "leverage_margin_exposure",
+      "name": "Leverage and margin exposure",
+      "AS": 20,
+      "PS": 20,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 400,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "market_structure_res",
+      "name": "Market structure resilience",
+      "AS": 18,
+      "PS": 14,
+      "Q=AS/PS": 1.29,
+      "P=AS*PS": 252,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "debt_issuance_flow",
+      "name": "Scheduled debt issuance",
+      "AS": 28,
+      "PS": 8,
+      "Q=AS/PS": 3.5,
+      "P=AS*PS": 224,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 21,
+      "PS": 10,
+      "Q=AS/PS": 2.1,
+      "P=AS*PS": 210,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "govt_debt_outstanding",
+      "name": "Government debt outstanding",
+      "AS": 19,
+      "PS": 6,
+      "Q=AS/PS": 3.17,
+      "P=AS*PS": 114,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_yields",
+        "name": "Long-term bond yields",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 37
+      },
+      {
+        "id": "govt_debt_outstanding",
+        "name": "Government debt outstanding",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 6
+      },
+      {
+        "id": "debt_issuance_flow",
+        "name": "Scheduled debt issuance",
+        "kind": "flow",
+        "AS": 28,
+        "PS": 8
+      },
+      {
+        "id": "buyback_intervention",
+        "name": "Buyback intervention rate",
+        "kind": "flow",
+        "AS": 26,
+        "PS": 19
+      },
+      {
+        "id": "market_liquidity_depth",
+        "name": "Market liquidity depth",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 23
+      },
+      {
+        "id": "market_volatility",
+        "name": "Market volatility",
+        "kind": "stock",
+        "AS": 26,
+        "PS": 30
+      },
+      {
+        "id": "investor_policy_expect",
+        "name": "Investor policy expectations",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 25
+      },
+      {
+        "id": "fiscal_credibility_perce",
+        "name": "Perceived fiscal credibility",
+        "kind": "perception",
+        "AS": 26,
+        "PS": 21
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 29
+      },
+      {
+        "id": "leverage_margin_exposure",
+        "name": "Leverage and margin exposure",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 20
+      },
+      {
+        "id": "cross_market_flows",
+        "name": "Cross-market capital flows",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 29
+      },
+      {
+        "id": "safe_haven_demand",
+        "name": "Safe-haven demand",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 24
+      },
+      {
+        "id": "risk_asset_tilt",
+        "name": "Risk-asset allocation tilt",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 28
+      },
+      {
+        "id": "currency_rate_pressure",
+        "name": "Currency exchange pressure",
+        "kind": "environment",
+        "AS": 22,
+        "PS": 23
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 10
+      },
+      {
+        "id": "market_structure_res",
+        "name": "Market structure resilience",
+        "kind": "institution_field",
+        "AS": 18,
+        "PS": 14
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_yields",
+        "target": "buyback_intervention",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "investor_policy_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "fiscal_credibility_perce",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "leverage_margin_exposure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "cross_market_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "risk_asset_tilt",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "currency_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "govt_debt_outstanding",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "govt_debt_outstanding",
+        "target": "investor_policy_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "govt_debt_outstanding",
+        "target": "fiscal_credibility_perce",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "govt_debt_outstanding",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_flow",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_flow",
+        "target": "govt_debt_outstanding",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_flow",
+        "target": "buyback_intervention",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_flow",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_flow",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_flow",
+        "target": "investor_policy_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_flow",
+        "target": "fiscal_credibility_perce",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_issuance_flow",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_flow",
+        "target": "cross_market_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_flow",
+        "target": "risk_asset_tilt",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "buyback_intervention",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "buyback_intervention",
+        "target": "govt_debt_outstanding",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "buyback_intervention",
+        "target": "debt_issuance_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "buyback_intervention",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "buyback_intervention",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "buyback_intervention",
+        "target": "investor_policy_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "buyback_intervention",
+        "target": "fiscal_credibility_perce",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "buyback_intervention",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "buyback_intervention",
+        "target": "cross_market_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "buyback_intervention",
+        "target": "risk_asset_tilt",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "buyback_intervention",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "leverage_margin_exposure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "market_structure_res",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "buyback_intervention",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "investor_policy_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "fiscal_credibility_perce",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "leverage_margin_exposure",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "cross_market_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "safe_haven_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "risk_asset_tilt",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "currency_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_policy_expect",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "investor_policy_expect",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_policy_expect",
+        "target": "fiscal_credibility_perce",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_policy_expect",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_policy_expect",
+        "target": "cross_market_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_policy_expect",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_policy_expect",
+        "target": "risk_asset_tilt",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_policy_expect",
+        "target": "currency_rate_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_policy_expect",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "fiscal_credibility_perce",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility_perce",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility_perce",
+        "target": "investor_policy_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_credibility_perce",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility_perce",
+        "target": "cross_market_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_credibility_perce",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility_perce",
+        "target": "risk_asset_tilt",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_credibility_perce",
+        "target": "currency_rate_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility_perce",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_margin_exposure",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_margin_exposure",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "leverage_margin_exposure",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_margin_exposure",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_margin_exposure",
+        "target": "cross_market_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_margin_exposure",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_margin_exposure",
+        "target": "risk_asset_tilt",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "leverage_margin_exposure",
+        "target": "market_structure_res",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_market_flows",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_market_flows",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_market_flows",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_market_flows",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_market_flows",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_market_flows",
+        "target": "risk_asset_tilt",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "cross_market_flows",
+        "target": "currency_rate_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "cross_market_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "risk_asset_tilt",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "currency_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_asset_tilt",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_asset_tilt",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_asset_tilt",
+        "target": "cross_market_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_asset_tilt",
+        "target": "safe_haven_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "risk_asset_tilt",
+        "target": "currency_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_rate_pressure",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_rate_pressure",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_rate_pressure",
+        "target": "investor_policy_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_rate_pressure",
+        "target": "fiscal_credibility_perce",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_rate_pressure",
+        "target": "cross_market_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_rate_pressure",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_rate_pressure",
+        "target": "risk_asset_tilt",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_rate_pressure",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_policy_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "fiscal_credibility_perce",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_market_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "risk_asset_tilt",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "currency_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_structure_res",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_structure_res",
+        "target": "market_liquidity_depth",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_structure_res",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_structure_res",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_structure_res",
+        "target": "leverage_margin_exposure",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "warsh_jackson_hole_speech",
+      "title": "Kevin Warsh Jackson Hole keynote",
+      "description": "Kevin Warsh's Jackson Hole speech is expected to influence inflation and policy expectations and could move long-term yields and market volatility.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-08-28",
+        "start": null,
+        "end": null,
+        "label": "Jackson Hole keynote date"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "investor_policy_expect",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Multiple headlines: 'Warsh Speech at Jackson Hole' and 'Warsh’s Jackson Hole Speech Puts Bond Yields on Notice'."
+    },
+    {
+      "id": "us_pce_inflation_release",
+      "title": "U.S. PCE inflation release",
+      "description": "Upcoming U.S. personal consumption expenditures inflation print will recalibrate inflation expectations and drive yields and term premia.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-25",
+        "end": "2026-08-31",
+        "label": "this week / next data print"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'U.S. PCE Data in Focus' and 'investors await U.S. inflation, Warsh speech'."
+    },
+    {
+      "id": "treasury_buyback_program_boost",
+      "title": "Expanded Treasury buyback program (ongoing)",
+      "description": "The Treasury's announced increase in long-term bond buybacks is an ongoing intervention intended to cap yields but may affect liquidity and credibility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-25",
+        "end": "2026-11-25",
+        "label": "next 1-3 months"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "buyback_intervention",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity_depth",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fiscal_credibility_perce",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'US Treasury to boost long-term bond purchases' and 'Treasury buybacks put bond market liquidity front and center'."
+    },
+    {
+      "id": "tga_funding_for_buybacks",
+      "title": "Potential tap of Treasury General Account to fund buybacks",
+      "description": "Reports that the Treasury could use its large General Account to finance buybacks would materially expand intervention capacity and risk credibility and currency effects.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-25",
+        "end": "2026-09-15",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "buyback_intervention",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_credibility_perce",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "currency_rate_pressure",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Bessent could tap near $1 trillion Treasury General Account' and 'Treasury buyback renews dollar-debasement fears'."
+    },
+    {
+      "id": "scheduled_treasury_auctions",
+      "title": "Ongoing scheduled Treasury auctions",
+      "description": "Planned Treasury auction schedule will continue supplying bonds to the market and interact with buybacks and dealer capacity to determine yield direction.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-25",
+        "end": "2026-09-30",
+        "label": "next 4-6 weeks"
+      },
+      "probability": 0.98,
+      "affected": [
+        {
+          "variable_id": "debt_issuance_flow",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "govt_debt_outstanding",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity_depth",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'US Treasury to stick to debt auction schedule despite bigger buybacks' (scheduled issuance continues)."
+    },
+    {
+      "id": "sec_probes_situational_awareness",
+      "title": "Regulatory probes into Situational Awareness and banks",
+      "description": "Ongoing SEC subpoenas and regulatory scrutiny of the AI hedge fund and banks could prolong stress, disclosures, and constrained lending/market-making.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-25",
+        "end": "2026-10-31",
+        "label": "weeks to months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "market_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity_depth",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "leverage_margin_exposure",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_structure_res",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'SEC subpoenas Wall Street banks over Situational Awareness' and 'Regulators Probing Near-Collapse'."
+    },
+    {
+      "id": "leveraged_deleveraging_and_redemptions",
+      "title": "Forced deleveraging, redemptions and portfolio unwinds",
+      "description": "Reports of large offloads (Citadel, quant funds) and distressed trades indicate a process of deleveraging that can drain liquidity and spike volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-25",
+        "end": "2026-10-06",
+        "label": "1-6 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "leverage_margin_exposure",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity_depth",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Citadel offloads 80% of portfolio', 'Quant hedge funds suffer worst day', 'Guggenheim loan trades in distressed territory'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "tga_funding_for_buybacks",
+      "title": "Potential tap of Treasury General Account to fund buybacks",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-08-25",
+      "end": "2026-09-15",
+      "probability": 0.6,
+      "impact_score": 262.0,
+      "expected_impact": 157.2,
+      "event_PS": 24.273,
+      "event_AS": 23.818,
+      "n_vars": 5,
+      "affected_ids": "buyback_intervention, fiscal_credibility_perce, currency_rate_pressure, safe_haven_demand, long_term_yields",
+      "rationale": "Headlines: 'Bessent could tap near $1 trillion Treasury General Account' and 'Treasury buyback renews dollar-debasement fears'."
+    },
+    {
+      "id": "leveraged_deleveraging_and_redemptions",
+      "title": "Forced deleveraging, redemptions and portfolio unwinds",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-6 weeks",
+      "date": null,
+      "start": "2026-08-25",
+      "end": "2026-10-06",
+      "probability": 0.75,
+      "impact_score": 246.0,
+      "expected_impact": 184.5,
+      "event_PS": 26.636,
+      "event_AS": 22.364,
+      "n_vars": 4,
+      "affected_ids": "leverage_margin_exposure, market_liquidity_depth, market_volatility, long_term_yields",
+      "rationale": "Headlines: 'Citadel offloads 80% of portfolio', 'Quant hedge funds suffer worst day', 'Guggenheim loan trades in distressed territory'."
+    },
+    {
+      "id": "treasury_buyback_program_boost",
+      "title": "Expanded Treasury buyback program (ongoing)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1-3 months",
+      "date": null,
+      "start": "2026-08-25",
+      "end": "2026-11-25",
+      "probability": 0.95,
+      "impact_score": 234.0,
+      "expected_impact": 222.3,
+      "event_PS": 24.8,
+      "event_AS": 23.4,
+      "n_vars": 5,
+      "affected_ids": "buyback_intervention, long_term_yields, market_liquidity_depth, fiscal_credibility_perce, term_premium",
+      "rationale": "Headlines: 'US Treasury to boost long-term bond purchases' and 'Treasury buybacks put bond market liquidity front and center'."
+    },
+    {
+      "id": "us_pce_inflation_release",
+      "title": "U.S. PCE inflation release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week / next data print",
+      "date": null,
+      "start": "2026-08-25",
+      "end": "2026-08-31",
+      "probability": 0.9,
+      "impact_score": 219.0,
+      "expected_impact": 197.1,
+      "event_PS": 25.9,
+      "event_AS": 21.9,
+      "n_vars": 4,
+      "affected_ids": "inflation_expectations, long_term_yields, term_premium, market_volatility",
+      "rationale": "Headlines: 'U.S. PCE Data in Focus' and 'investors await U.S. inflation, Warsh speech'."
+    },
+    {
+      "id": "scheduled_treasury_auctions",
+      "title": "Ongoing scheduled Treasury auctions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4-6 weeks",
+      "date": null,
+      "start": "2026-08-25",
+      "end": "2026-09-30",
+      "probability": 0.98,
+      "impact_score": 190.0,
+      "expected_impact": 186.2,
+      "event_PS": 16.625,
+      "event_AS": 23.75,
+      "n_vars": 4,
+      "affected_ids": "debt_issuance_flow, govt_debt_outstanding, long_term_yields, market_liquidity_depth",
+      "rationale": "Headline: 'US Treasury to stick to debt auction schedule despite bigger buybacks' (scheduled issuance continues)."
+    },
+    {
+      "id": "warsh_jackson_hole_speech",
+      "title": "Kevin Warsh Jackson Hole keynote",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "Jackson Hole keynote date",
+      "date": "2026-08-28",
+      "start": null,
+      "end": null,
+      "probability": 0.9,
+      "impact_score": 187.0,
+      "expected_impact": 168.3,
+      "event_PS": 27.375,
+      "event_AS": 23.375,
+      "n_vars": 4,
+      "affected_ids": "investor_policy_expect, long_term_yields, market_volatility, inflation_expectations",
+      "rationale": "Multiple headlines: 'Warsh Speech at Jackson Hole' and 'Warsh’s Jackson Hole Speech Puts Bond Yields on Notice'."
+    },
+    {
+      "id": "sec_probes_situational_awareness",
+      "title": "Regulatory probes into Situational Awareness and banks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks to months",
+      "date": null,
+      "start": "2026-08-25",
+      "end": "2026-10-31",
+      "probability": 0.9,
+      "impact_score": 176.0,
+      "expected_impact": 158.4,
+      "event_PS": 23.75,
+      "event_AS": 22.0,
+      "n_vars": 4,
+      "affected_ids": "market_volatility, market_liquidity_depth, leverage_margin_exposure, market_structure_res",
+      "rationale": "Headlines: 'SEC subpoenas Wall Street banks over Situational Awareness' and 'Regulators Probing Near-Collapse'."
+    }
+  ]
+}
