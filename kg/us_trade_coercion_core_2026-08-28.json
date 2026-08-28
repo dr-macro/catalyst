@@ -1,0 +1,1746 @@
+{
+  "label": "us_trade_coercion",
+  "as_of": "2026-08-28",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-28T07:27:58",
+  "system_description": {
+    "narrative_title": "U.S.–Canada Tariff Escalation and Market Spillovers",
+    "narrative_summary": "An escalating U.S.-Canada trade confrontation — triggered by new U.S. tariffs (including a threatened 50% on Canadian cars) and met with about $20 billion in Canadian retaliatory tariffs — is driving market volatility, sectoral pain and political backlash. As an open system, tariff policy shocks transmit through trade flows, commodity and equity markets, firm balance sheets, provincial and federal politics, and public opinion, creating feedback loops (retaliation, supply‑chain adjustments, commodity price swings, electoral pressure) that can amplify or dampen further actions. The dispute is concentrating stress on autos, resources and retail while also testing broader global trade norms.",
+    "scope": "Bilateral U.S.-Canada trade policy actions and immediate economic, market and political responses during the tariff escalation window: tariffs and counter-tariffs, affected industries (autos, mining/commodities, agriculture, retail), market price and flow adjustments, corporate and provincial reactions, and domestic political dynamics.",
+    "super_system": "Global trade architecture and international political economy (multilateral institutions, global supply chains, commodity markets and investor sentiment).",
+    "adjacent_subsystems": [
+      "North American automotive supply chain and manufacturing",
+      "Commodity markets (copper, oil) and related mining/energy firms",
+      "Domestic politics and elections in Canada and the United States",
+      "Retail, consumer prices and wholesale trade flows"
+    ],
+    "evidence_headlines": [
+      "Canada unveils retaliatory tariffs on about $20 billion of U.S. goods",
+      "Donald Trump says US to increase tariffs on Canadian cars to 50%",
+      "Automakers thought Canada was getting a trade deal. Then tariffs doubled.",
+      "Mark Carney says Canada 'at war' with US over trade",
+      "BHP faces copper price risk as tariff concerns inflate rally",
+      "World braces as Trump's Canada tariff stand-off escalates"
+    ]
+  },
+  "variables": [
+    {
+      "id": "tariff_rate",
+      "name": "Applied tariff level",
+      "description": "The average ad valorem tariff rate applied to the set of traded goods subject to tariff measures.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tariff_escalation_speed",
+      "name": "Tariff escalation speed",
+      "description": "The pace at which applied tariff rates are being increased or decreased over time.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "reciprocal_retaliation",
+      "name": "Reciprocal retaliation intensity",
+      "description": "The intensity and frequency of countermeasures deployed in response to new trade measures.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "bilateral_trade_volume",
+      "name": "Bilateral trade volume",
+      "description": "The aggregate physical and value flow of goods and services crossing the bilateral border per unit time.",
+      "kind": "flow",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "supply_chain_disruption",
+      "name": "Supply‑chain disruption rate",
+      "description": "The rate at which goods, inputs and production steps are delayed, rerouted or interrupted across the supply network.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_price_index",
+      "name": "Commodity price level",
+      "description": "A composite index measuring the price level of key commodities affected by the dispute.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_volatility",
+      "name": "Commodity price volatility",
+      "description": "The short‑ to medium‑term variability in prices for commodities tied to the trade relationship.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_volatility",
+      "name": "Exchange rate volatility",
+      "description": "The variability and directional movement of bilateral currency exchange rates influencing trade competitiveness.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_market_volatility",
+      "name": "Equity market volatility",
+      "description": "The degree of price dispersion and rapid movement in equity markets associated with trade‑policy risk.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_margin_pressur",
+      "name": "Corporate margin pressure",
+      "description": "The aggregate pressure on operating and net profit margins for firms exposed to tariff and cost shocks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sector_inventory_levels",
+      "name": "Sector inventory levels",
+      "description": "The stock of inventories held within affected sectors relative to normal seasonal or target levels.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "import_price_pass_throug",
+      "name": "Import price pass‑through rate",
+      "description": "The rate at which additional trade costs (tariffs, duties) are transmitted into domestic wholesale and consumer prices.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "consumer_inflation_press",
+      "name": "Consumer inflation pressure",
+      "description": "The upward pressure on consumer price inflation attributable to changes in trade costs and supply frictions.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "political_backlash",
+      "name": "Political backlash intensity",
+      "description": "The intensity of domestic political and public opinion pressure on policymakers arising from trade tensions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_uncertainty_level",
+      "name": "Policy uncertainty level",
+      "description": "The degree of uncertainty among economic actors about future trade policy directions and rules enforcement.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "legal_dispute_risk",
+      "name": "Legal dispute risk",
+      "description": "The likelihood and systemic exposure to formal trade‑rule disputes, litigation or adjudication processes.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "tariff_rate",
+    "tariff_escalation_speed",
+    "reciprocal_retaliation",
+    "bilateral_trade_volume",
+    "supply_chain_disruption",
+    "commodity_price_index",
+    "commodity_volatility",
+    "exchange_rate_volatility",
+    "equity_market_volatility",
+    "corporate_margin_pressur",
+    "sector_inventory_levels",
+    "import_price_pass_throug",
+    "consumer_inflation_press",
+    "political_backlash",
+    "policy_uncertainty_level",
+    "legal_dispute_risk"
+  ],
+  "var_names": {
+    "tariff_rate": "Applied tariff level",
+    "tariff_escalation_speed": "Tariff escalation speed",
+    "reciprocal_retaliation": "Reciprocal retaliation intensity",
+    "bilateral_trade_volume": "Bilateral trade volume",
+    "supply_chain_disruption": "Supply‑chain disruption rate",
+    "commodity_price_index": "Commodity price level",
+    "commodity_volatility": "Commodity price volatility",
+    "exchange_rate_volatility": "Exchange rate volatility",
+    "equity_market_volatility": "Equity market volatility",
+    "corporate_margin_pressur": "Corporate margin pressure",
+    "sector_inventory_levels": "Sector inventory levels",
+    "import_price_pass_throug": "Import price pass‑through rate",
+    "consumer_inflation_press": "Consumer inflation pressure",
+    "political_backlash": "Political backlash intensity",
+    "policy_uncertainty_level": "Policy uncertainty level",
+    "legal_dispute_risk": "Legal dispute risk"
+  },
+  "impact_matrix": {
+    "tariff_rate": {
+      "tariff_rate": 0,
+      "tariff_escalation_speed": 1,
+      "reciprocal_retaliation": 2,
+      "bilateral_trade_volume": 3,
+      "supply_chain_disruption": 2,
+      "commodity_price_index": 2,
+      "commodity_volatility": 1,
+      "exchange_rate_volatility": 1,
+      "equity_market_volatility": 2,
+      "corporate_margin_pressur": 3,
+      "sector_inventory_levels": 1,
+      "import_price_pass_throug": 3,
+      "consumer_inflation_press": 2,
+      "political_backlash": 2,
+      "policy_uncertainty_level": 2,
+      "legal_dispute_risk": 2
+    },
+    "tariff_escalation_speed": {
+      "tariff_rate": 2,
+      "tariff_escalation_speed": 0,
+      "reciprocal_retaliation": 3,
+      "bilateral_trade_volume": 2,
+      "supply_chain_disruption": 3,
+      "commodity_price_index": 2,
+      "commodity_volatility": 2,
+      "exchange_rate_volatility": 2,
+      "equity_market_volatility": 2,
+      "corporate_margin_pressur": 2,
+      "sector_inventory_levels": 2,
+      "import_price_pass_throug": 2,
+      "consumer_inflation_press": 2,
+      "political_backlash": 2,
+      "policy_uncertainty_level": 3,
+      "legal_dispute_risk": 2
+    },
+    "reciprocal_retaliation": {
+      "tariff_rate": 2,
+      "tariff_escalation_speed": 2,
+      "reciprocal_retaliation": 0,
+      "bilateral_trade_volume": 3,
+      "supply_chain_disruption": 3,
+      "commodity_price_index": 2,
+      "commodity_volatility": 2,
+      "exchange_rate_volatility": 2,
+      "equity_market_volatility": 2,
+      "corporate_margin_pressur": 3,
+      "sector_inventory_levels": 2,
+      "import_price_pass_throug": 2,
+      "consumer_inflation_press": 2,
+      "political_backlash": 2,
+      "policy_uncertainty_level": 2,
+      "legal_dispute_risk": 3
+    },
+    "bilateral_trade_volume": {
+      "tariff_rate": 1,
+      "tariff_escalation_speed": 1,
+      "reciprocal_retaliation": 1,
+      "bilateral_trade_volume": 0,
+      "supply_chain_disruption": 1,
+      "commodity_price_index": 1,
+      "commodity_volatility": 1,
+      "exchange_rate_volatility": 1,
+      "equity_market_volatility": 1,
+      "corporate_margin_pressur": 2,
+      "sector_inventory_levels": 2,
+      "import_price_pass_throug": 1,
+      "consumer_inflation_press": 1,
+      "political_backlash": 1,
+      "policy_uncertainty_level": 1,
+      "legal_dispute_risk": 1
+    },
+    "supply_chain_disruption": {
+      "tariff_rate": 0,
+      "tariff_escalation_speed": 0,
+      "reciprocal_retaliation": 0,
+      "bilateral_trade_volume": 3,
+      "supply_chain_disruption": 0,
+      "commodity_price_index": 2,
+      "commodity_volatility": 2,
+      "exchange_rate_volatility": 1,
+      "equity_market_volatility": 2,
+      "corporate_margin_pressur": 3,
+      "sector_inventory_levels": 3,
+      "import_price_pass_throug": 2,
+      "consumer_inflation_press": 2,
+      "political_backlash": 2,
+      "policy_uncertainty_level": 2,
+      "legal_dispute_risk": 1
+    },
+    "commodity_price_index": {
+      "tariff_rate": 1,
+      "tariff_escalation_speed": 1,
+      "reciprocal_retaliation": 1,
+      "bilateral_trade_volume": 1,
+      "supply_chain_disruption": 1,
+      "commodity_price_index": 0,
+      "commodity_volatility": 1,
+      "exchange_rate_volatility": 1,
+      "equity_market_volatility": 1,
+      "corporate_margin_pressur": 2,
+      "sector_inventory_levels": 1,
+      "import_price_pass_throug": 2,
+      "consumer_inflation_press": 3,
+      "political_backlash": 1,
+      "policy_uncertainty_level": 1,
+      "legal_dispute_risk": 0
+    },
+    "commodity_volatility": {
+      "tariff_rate": 1,
+      "tariff_escalation_speed": 2,
+      "reciprocal_retaliation": 1,
+      "bilateral_trade_volume": 1,
+      "supply_chain_disruption": 1,
+      "commodity_price_index": 1,
+      "commodity_volatility": 0,
+      "exchange_rate_volatility": 1,
+      "equity_market_volatility": 2,
+      "corporate_margin_pressur": 2,
+      "sector_inventory_levels": 1,
+      "import_price_pass_throug": 1,
+      "consumer_inflation_press": 1,
+      "political_backlash": 1,
+      "policy_uncertainty_level": 2,
+      "legal_dispute_risk": 0
+    },
+    "exchange_rate_volatility": {
+      "tariff_rate": 1,
+      "tariff_escalation_speed": 1,
+      "reciprocal_retaliation": 1,
+      "bilateral_trade_volume": 2,
+      "supply_chain_disruption": 1,
+      "commodity_price_index": 1,
+      "commodity_volatility": 1,
+      "exchange_rate_volatility": 0,
+      "equity_market_volatility": 2,
+      "corporate_margin_pressur": 2,
+      "sector_inventory_levels": 1,
+      "import_price_pass_throug": 2,
+      "consumer_inflation_press": 2,
+      "political_backlash": 1,
+      "policy_uncertainty_level": 1,
+      "legal_dispute_risk": 0
+    },
+    "equity_market_volatility": {
+      "tariff_rate": 1,
+      "tariff_escalation_speed": 1,
+      "reciprocal_retaliation": 1,
+      "bilateral_trade_volume": 0,
+      "supply_chain_disruption": 1,
+      "commodity_price_index": 1,
+      "commodity_volatility": 1,
+      "exchange_rate_volatility": 1,
+      "equity_market_volatility": 0,
+      "corporate_margin_pressur": 1,
+      "sector_inventory_levels": 0,
+      "import_price_pass_throug": 0,
+      "consumer_inflation_press": 1,
+      "political_backlash": 1,
+      "policy_uncertainty_level": 1,
+      "legal_dispute_risk": 0
+    },
+    "corporate_margin_pressur": {
+      "tariff_rate": 0,
+      "tariff_escalation_speed": 0,
+      "reciprocal_retaliation": 0,
+      "bilateral_trade_volume": 1,
+      "supply_chain_disruption": 0,
+      "commodity_price_index": 0,
+      "commodity_volatility": 0,
+      "exchange_rate_volatility": 0,
+      "equity_market_volatility": 2,
+      "corporate_margin_pressur": 0,
+      "sector_inventory_levels": 2,
+      "import_price_pass_throug": 1,
+      "consumer_inflation_press": 1,
+      "political_backlash": 2,
+      "policy_uncertainty_level": 1,
+      "legal_dispute_risk": 0
+    },
+    "sector_inventory_levels": {
+      "tariff_rate": 0,
+      "tariff_escalation_speed": 0,
+      "reciprocal_retaliation": 0,
+      "bilateral_trade_volume": 1,
+      "supply_chain_disruption": 2,
+      "commodity_price_index": 1,
+      "commodity_volatility": 1,
+      "exchange_rate_volatility": 0,
+      "equity_market_volatility": 1,
+      "corporate_margin_pressur": 2,
+      "sector_inventory_levels": 0,
+      "import_price_pass_throug": 1,
+      "consumer_inflation_press": 1,
+      "political_backlash": 0,
+      "policy_uncertainty_level": 0,
+      "legal_dispute_risk": 0
+    },
+    "import_price_pass_throug": {
+      "tariff_rate": 0,
+      "tariff_escalation_speed": 0,
+      "reciprocal_retaliation": 0,
+      "bilateral_trade_volume": 1,
+      "supply_chain_disruption": 0,
+      "commodity_price_index": 2,
+      "commodity_volatility": 1,
+      "exchange_rate_volatility": 1,
+      "equity_market_volatility": 1,
+      "corporate_margin_pressur": 2,
+      "sector_inventory_levels": 1,
+      "import_price_pass_throug": 0,
+      "consumer_inflation_press": 3,
+      "political_backlash": 2,
+      "policy_uncertainty_level": 1,
+      "legal_dispute_risk": 0
+    },
+    "consumer_inflation_press": {
+      "tariff_rate": 0,
+      "tariff_escalation_speed": 0,
+      "reciprocal_retaliation": 0,
+      "bilateral_trade_volume": 1,
+      "supply_chain_disruption": 0,
+      "commodity_price_index": 1,
+      "commodity_volatility": 1,
+      "exchange_rate_volatility": 1,
+      "equity_market_volatility": 2,
+      "corporate_margin_pressur": 1,
+      "sector_inventory_levels": 0,
+      "import_price_pass_throug": 0,
+      "consumer_inflation_press": 0,
+      "political_backlash": 3,
+      "policy_uncertainty_level": 2,
+      "legal_dispute_risk": 0
+    },
+    "political_backlash": {
+      "tariff_rate": 2,
+      "tariff_escalation_speed": 2,
+      "reciprocal_retaliation": 1,
+      "bilateral_trade_volume": 1,
+      "supply_chain_disruption": 0,
+      "commodity_price_index": 0,
+      "commodity_volatility": 0,
+      "exchange_rate_volatility": 1,
+      "equity_market_volatility": 1,
+      "corporate_margin_pressur": 1,
+      "sector_inventory_levels": 0,
+      "import_price_pass_throug": 0,
+      "consumer_inflation_press": 0,
+      "political_backlash": 0,
+      "policy_uncertainty_level": 2,
+      "legal_dispute_risk": 1
+    },
+    "policy_uncertainty_level": {
+      "tariff_rate": 1,
+      "tariff_escalation_speed": 1,
+      "reciprocal_retaliation": 1,
+      "bilateral_trade_volume": 2,
+      "supply_chain_disruption": 2,
+      "commodity_price_index": 1,
+      "commodity_volatility": 2,
+      "exchange_rate_volatility": 2,
+      "equity_market_volatility": 3,
+      "corporate_margin_pressur": 2,
+      "sector_inventory_levels": 1,
+      "import_price_pass_throug": 1,
+      "consumer_inflation_press": 1,
+      "political_backlash": 1,
+      "policy_uncertainty_level": 0,
+      "legal_dispute_risk": 2
+    },
+    "legal_dispute_risk": {
+      "tariff_rate": 1,
+      "tariff_escalation_speed": 1,
+      "reciprocal_retaliation": 1,
+      "bilateral_trade_volume": 1,
+      "supply_chain_disruption": 0,
+      "commodity_price_index": 0,
+      "commodity_volatility": 0,
+      "exchange_rate_volatility": 0,
+      "equity_market_volatility": 1,
+      "corporate_margin_pressur": 1,
+      "sector_inventory_levels": 0,
+      "import_price_pass_throug": 0,
+      "consumer_inflation_press": 0,
+      "political_backlash": 1,
+      "policy_uncertainty_level": 2,
+      "legal_dispute_risk": 0
+    }
+  },
+  "AS": {
+    "tariff_rate": 29,
+    "tariff_escalation_speed": 33,
+    "reciprocal_retaliation": 34,
+    "bilateral_trade_volume": 17,
+    "supply_chain_disruption": 25,
+    "commodity_price_index": 18,
+    "commodity_volatility": 18,
+    "exchange_rate_volatility": 19,
+    "equity_market_volatility": 11,
+    "corporate_margin_pressur": 10,
+    "sector_inventory_levels": 10,
+    "import_price_pass_throug": 15,
+    "consumer_inflation_press": 12,
+    "political_backlash": 12,
+    "policy_uncertainty_level": 23,
+    "legal_dispute_risk": 9
+  },
+  "PS": {
+    "tariff_rate": 13,
+    "tariff_escalation_speed": 13,
+    "reciprocal_retaliation": 13,
+    "bilateral_trade_volume": 23,
+    "supply_chain_disruption": 17,
+    "commodity_price_index": 17,
+    "commodity_volatility": 16,
+    "exchange_rate_volatility": 15,
+    "equity_market_volatility": 25,
+    "corporate_margin_pressur": 29,
+    "sector_inventory_levels": 17,
+    "import_price_pass_throug": 18,
+    "consumer_inflation_press": 22,
+    "political_backlash": 22,
+    "policy_uncertainty_level": 23,
+    "legal_dispute_risk": 12
+  },
+  "med_AS": 17.5,
+  "med_PS": 17.0,
+  "roles": [
+    {
+      "variable": "policy_uncertainty_level",
+      "name": "Policy uncertainty level",
+      "AS": 23,
+      "PS": 23,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 529,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "reciprocal_retaliation",
+      "name": "Reciprocal retaliation intensity",
+      "AS": 34,
+      "PS": 13,
+      "Q=AS/PS": 2.62,
+      "P=AS*PS": 442,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "tariff_escalation_speed",
+      "name": "Tariff escalation speed",
+      "AS": 33,
+      "PS": 13,
+      "Q=AS/PS": 2.54,
+      "P=AS*PS": 429,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "supply_chain_disruption",
+      "name": "Supply‑chain disruption rate",
+      "AS": 25,
+      "PS": 17,
+      "Q=AS/PS": 1.47,
+      "P=AS*PS": 425,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bilateral_trade_volume",
+      "name": "Bilateral trade volume",
+      "AS": 17,
+      "PS": 23,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 391,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tariff_rate",
+      "name": "Applied tariff level",
+      "AS": 29,
+      "PS": 13,
+      "Q=AS/PS": 2.23,
+      "P=AS*PS": 377,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "commodity_price_index",
+      "name": "Commodity price level",
+      "AS": 18,
+      "PS": 17,
+      "Q=AS/PS": 1.06,
+      "P=AS*PS": 306,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "corporate_margin_pressur",
+      "name": "Corporate margin pressure",
+      "AS": 10,
+      "PS": 29,
+      "Q=AS/PS": 0.34,
+      "P=AS*PS": 290,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "commodity_volatility",
+      "name": "Commodity price volatility",
+      "AS": 18,
+      "PS": 16,
+      "Q=AS/PS": 1.12,
+      "P=AS*PS": 288,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "exchange_rate_volatility",
+      "name": "Exchange rate volatility",
+      "AS": 19,
+      "PS": 15,
+      "Q=AS/PS": 1.27,
+      "P=AS*PS": 285,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "equity_market_volatility",
+      "name": "Equity market volatility",
+      "AS": 11,
+      "PS": 25,
+      "Q=AS/PS": 0.44,
+      "P=AS*PS": 275,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "import_price_pass_throug",
+      "name": "Import price pass‑through rate",
+      "AS": 15,
+      "PS": 18,
+      "Q=AS/PS": 0.83,
+      "P=AS*PS": 270,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "political_backlash",
+      "name": "Political backlash intensity",
+      "AS": 12,
+      "PS": 22,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 264,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "consumer_inflation_press",
+      "name": "Consumer inflation pressure",
+      "AS": 12,
+      "PS": 22,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 264,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "sector_inventory_levels",
+      "name": "Sector inventory levels",
+      "AS": 10,
+      "PS": 17,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 170,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "legal_dispute_risk",
+      "name": "Legal dispute risk",
+      "AS": 9,
+      "PS": 12,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 108,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "tariff_rate",
+        "name": "Applied tariff level",
+        "kind": "driver",
+        "AS": 29,
+        "PS": 13
+      },
+      {
+        "id": "tariff_escalation_speed",
+        "name": "Tariff escalation speed",
+        "kind": "driver",
+        "AS": 33,
+        "PS": 13
+      },
+      {
+        "id": "reciprocal_retaliation",
+        "name": "Reciprocal retaliation intensity",
+        "kind": "driver",
+        "AS": 34,
+        "PS": 13
+      },
+      {
+        "id": "bilateral_trade_volume",
+        "name": "Bilateral trade volume",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 23
+      },
+      {
+        "id": "supply_chain_disruption",
+        "name": "Supply‑chain disruption rate",
+        "kind": "flow",
+        "AS": 25,
+        "PS": 17
+      },
+      {
+        "id": "commodity_price_index",
+        "name": "Commodity price level",
+        "kind": "environment",
+        "AS": 18,
+        "PS": 17
+      },
+      {
+        "id": "commodity_volatility",
+        "name": "Commodity price volatility",
+        "kind": "environment",
+        "AS": 18,
+        "PS": 16
+      },
+      {
+        "id": "exchange_rate_volatility",
+        "name": "Exchange rate volatility",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 15
+      },
+      {
+        "id": "equity_market_volatility",
+        "name": "Equity market volatility",
+        "kind": "environment",
+        "AS": 11,
+        "PS": 25
+      },
+      {
+        "id": "corporate_margin_pressur",
+        "name": "Corporate margin pressure",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 29
+      },
+      {
+        "id": "sector_inventory_levels",
+        "name": "Sector inventory levels",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 17
+      },
+      {
+        "id": "import_price_pass_throug",
+        "name": "Import price pass‑through rate",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 18
+      },
+      {
+        "id": "consumer_inflation_press",
+        "name": "Consumer inflation pressure",
+        "kind": "environment",
+        "AS": 12,
+        "PS": 22
+      },
+      {
+        "id": "political_backlash",
+        "name": "Political backlash intensity",
+        "kind": "perception",
+        "AS": 12,
+        "PS": 22
+      },
+      {
+        "id": "policy_uncertainty_level",
+        "name": "Policy uncertainty level",
+        "kind": "perception",
+        "AS": 23,
+        "PS": 23
+      },
+      {
+        "id": "legal_dispute_risk",
+        "name": "Legal dispute risk",
+        "kind": "institution_field",
+        "AS": 9,
+        "PS": 12
+      }
+    ],
+    "edges": [
+      {
+        "source": "tariff_rate",
+        "target": "reciprocal_retaliation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_rate",
+        "target": "bilateral_trade_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tariff_rate",
+        "target": "supply_chain_disruption",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_rate",
+        "target": "commodity_price_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_rate",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_rate",
+        "target": "corporate_margin_pressur",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_rate",
+        "target": "import_price_pass_throug",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_rate",
+        "target": "consumer_inflation_press",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_rate",
+        "target": "political_backlash",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_rate",
+        "target": "policy_uncertainty_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_rate",
+        "target": "legal_dispute_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "tariff_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "reciprocal_retaliation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "bilateral_trade_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "supply_chain_disruption",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "commodity_price_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "corporate_margin_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "sector_inventory_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "import_price_pass_throug",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "consumer_inflation_press",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "political_backlash",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "policy_uncertainty_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tariff_escalation_speed",
+        "target": "legal_dispute_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "tariff_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "tariff_escalation_speed",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "bilateral_trade_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "supply_chain_disruption",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "commodity_price_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "corporate_margin_pressur",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "sector_inventory_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "import_price_pass_throug",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "consumer_inflation_press",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "political_backlash",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "policy_uncertainty_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reciprocal_retaliation",
+        "target": "legal_dispute_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bilateral_trade_volume",
+        "target": "corporate_margin_pressur",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bilateral_trade_volume",
+        "target": "sector_inventory_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "bilateral_trade_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "commodity_price_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "corporate_margin_pressur",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "sector_inventory_levels",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "import_price_pass_throug",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "consumer_inflation_press",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "political_backlash",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "policy_uncertainty_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_index",
+        "target": "corporate_margin_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_index",
+        "target": "import_price_pass_throug",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_index",
+        "target": "consumer_inflation_press",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_volatility",
+        "target": "tariff_escalation_speed",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "commodity_volatility",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_volatility",
+        "target": "corporate_margin_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_volatility",
+        "target": "policy_uncertainty_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "bilateral_trade_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "corporate_margin_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "import_price_pass_throug",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_volatility",
+        "target": "consumer_inflation_press",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_margin_pressur",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_margin_pressur",
+        "target": "sector_inventory_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_margin_pressur",
+        "target": "political_backlash",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sector_inventory_levels",
+        "target": "supply_chain_disruption",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sector_inventory_levels",
+        "target": "corporate_margin_pressur",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "import_price_pass_throug",
+        "target": "commodity_price_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "import_price_pass_throug",
+        "target": "corporate_margin_pressur",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "import_price_pass_throug",
+        "target": "consumer_inflation_press",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "import_price_pass_throug",
+        "target": "political_backlash",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_inflation_press",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_inflation_press",
+        "target": "political_backlash",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_inflation_press",
+        "target": "policy_uncertainty_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_backlash",
+        "target": "tariff_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "political_backlash",
+        "target": "tariff_escalation_speed",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "political_backlash",
+        "target": "policy_uncertainty_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_uncertainty_level",
+        "target": "bilateral_trade_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_uncertainty_level",
+        "target": "supply_chain_disruption",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_uncertainty_level",
+        "target": "commodity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_uncertainty_level",
+        "target": "exchange_rate_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_uncertainty_level",
+        "target": "equity_market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_uncertainty_level",
+        "target": "corporate_margin_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_uncertainty_level",
+        "target": "legal_dispute_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "legal_dispute_risk",
+        "target": "policy_uncertainty_level",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "quebec_election_2026_10_05",
+      "title": "Quebec provincial election (Oct 5, 2026)",
+      "description": "Scheduled Quebec election may shift provincial and federal political dynamics, affecting public backing for trade tactics and policy uncertainty.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-10-05",
+        "start": null,
+        "end": null,
+        "label": "2026-10-05"
+      },
+      "probability": 1.0,
+      "affected": [
+        {
+          "variable_id": "political_backlash",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_uncertainty_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "reciprocal_retaliation",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bilateral_trade_volume",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Quebec to hold Oct 5 election, separatists favored to win' — election likely raises political pressure and policy uncertainty."
+    },
+    {
+      "id": "us_semiconductor_tariff_consideration",
+      "title": "U.S. consideration of semiconductor tariffs",
+      "description": "Ongoing U.S. review of new tariffs on semiconductors could broaden the dispute and trigger higher applied tariffs and supply disruptions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-28",
+        "end": "2026-10-31",
+        "label": "by end of Oct"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "tariff_escalation_speed",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tariff_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "reciprocal_retaliation",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "supply_chain_disruption",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "legal_dispute_risk",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_volatility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'US weighs a new round of tariffs on semiconductors, Politico reports' — potential new tariffs widen escalation and disruptions."
+    },
+    {
+      "id": "us_car_tariff_increase_move",
+      "title": "U.S. push to raise car tariffs to 50%",
+      "description": "U.S. threat or implementation to raise car tariffs to 50% would sharply raise applied rates and prompt rapid retaliatory responses and market impacts.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-28",
+        "end": "2026-09-30",
+        "label": "next 4–6 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "tariff_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tariff_escalation_speed",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "reciprocal_retaliation",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bilateral_trade_volume",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "supply_chain_disruption",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "corporate_margin_pressur",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "import_price_pass_throug",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "consumer_inflation_press",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Donald Trump says US to increase tariffs on Canadian cars to 50%' and 'Automakers thought Canada was getting a trade deal.'"
+    },
+    {
+      "id": "canada_additional_retaliation",
+      "title": "Further Canadian retaliatory tariff measures",
+      "description": "Canada expanding or adjusting retaliatory tariffs beyond the announced $20bn could intensify reciprocal measures and trade disruption.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-28",
+        "end": "2026-10-31",
+        "label": "2–10 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "reciprocal_retaliation",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tariff_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bilateral_trade_volume",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "policy_uncertainty_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "legal_dispute_risk",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "political_backlash",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Canada unveils retaliatory tariffs on about $20 billion of U.S. goods' and 'Canada Digs In as More Countries Stand Up to Trump.'"
+    },
+    {
+      "id": "retailer_price_margin_responses",
+      "title": "Retailer tariff refund and reinvestment responses",
+      "description": "Retailers' plans to use tariff refunds to lower prices or reinvest, and reinvestments squeezing profits, will alter pass‑through and margin pressure dynamics.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-28",
+        "end": "2026-09-30",
+        "label": "weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "corporate_margin_pressur",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "import_price_pass_throug",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "consumer_inflation_press",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Burlington Stores Plans to Use Tariff Refunds to Lower Prices' and 'Dollar Tree Says Tariff Reinvestments Will Squeeze Near-Term Profit.'"
+    },
+    {
+      "id": "commodity_price_volatility_spillover",
+      "title": "Commodity price and volatility shifts (copper focus)",
+      "description": "Tariff-driven market risk is already affecting copper; further escalation could push commodity prices higher and increase volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-28",
+        "end": "2026-10-31",
+        "label": "1–3 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "commodity_price_index",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'BHP faces copper price risk as tariff concerns inflate rally' and 'US tariff threat upends copper surplus as prices test all-time peak.'"
+    },
+    {
+      "id": "prolonged_trade_dispute_cycle",
+      "title": "Prolonged U.S.–Canada trade dispute",
+      "description": "The dispute evolving into a sustained, multi-step confrontation will raise uncertainty, retaliation frequency, and disruption risks over coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-28",
+        "end": "2027-02-28",
+        "label": "next 6 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "policy_uncertainty_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "reciprocal_retaliation",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bilateral_trade_volume",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "supply_chain_disruption",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "legal_dispute_risk",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "political_backlash",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'U.S. and Canada Are Bracing for Prolonged Trade Dispute' — signals sustained escalation and uncertainty."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_car_tariff_increase_move",
+      "title": "U.S. push to raise car tariffs to 50%",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4–6 weeks",
+      "date": null,
+      "start": "2026-08-28",
+      "end": "2026-09-30",
+      "probability": 0.6,
+      "impact_score": 520.0,
+      "expected_impact": 312.0,
+      "event_PS": 18.917,
+      "event_AS": 21.667,
+      "n_vars": 9,
+      "affected_ids": "tariff_rate, tariff_escalation_speed, reciprocal_retaliation, bilateral_trade_volume, supply_chain_disruption, corporate_margin_pressur, import_price_pass_throug, consumer_inflation_press, equity_market_volatility",
+      "rationale": "Headlines: 'Donald Trump says US to increase tariffs on Canadian cars to 50%' and 'Automakers thought Canada was getting a trade deal.'"
+    },
+    {
+      "id": "us_semiconductor_tariff_consideration",
+      "title": "U.S. consideration of semiconductor tariffs",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of Oct",
+      "date": null,
+      "start": "2026-08-28",
+      "end": "2026-10-31",
+      "probability": 0.5,
+      "impact_score": 311.0,
+      "expected_impact": 155.5,
+      "event_PS": 13.75,
+      "event_AS": 25.917,
+      "n_vars": 6,
+      "affected_ids": "tariff_escalation_speed, tariff_rate, reciprocal_retaliation, supply_chain_disruption, legal_dispute_risk, commodity_volatility",
+      "rationale": "Headline: 'US weighs a new round of tariffs on semiconductors, Politico reports' — potential new tariffs widen escalation and disruptions."
+    },
+    {
+      "id": "canada_additional_retaliation",
+      "title": "Further Canadian retaliatory tariff measures",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2–10 weeks",
+      "date": null,
+      "start": "2026-08-28",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 282.0,
+      "expected_impact": 197.4,
+      "event_PS": 17.308,
+      "event_AS": 21.692,
+      "n_vars": 6,
+      "affected_ids": "reciprocal_retaliation, tariff_rate, bilateral_trade_volume, policy_uncertainty_level, legal_dispute_risk, political_backlash",
+      "rationale": "Headlines: 'Canada unveils retaliatory tariffs on about $20 billion of U.S. goods' and 'Canada Digs In as More Countries Stand Up to Trump.'"
+    },
+    {
+      "id": "prolonged_trade_dispute_cycle",
+      "title": "Prolonged U.S.–Canada trade dispute",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 months",
+      "date": null,
+      "start": "2026-08-28",
+      "end": "2027-02-28",
+      "probability": 0.8,
+      "impact_score": 263.0,
+      "expected_impact": 210.4,
+      "event_PS": 18.692,
+      "event_AS": 20.231,
+      "n_vars": 6,
+      "affected_ids": "policy_uncertainty_level, reciprocal_retaliation, bilateral_trade_volume, supply_chain_disruption, legal_dispute_risk, political_backlash",
+      "rationale": "Headline: 'U.S. and Canada Are Bracing for Prolonged Trade Dispute' — signals sustained escalation and uncertainty."
+    },
+    {
+      "id": "quebec_election_2026_10_05",
+      "title": "Quebec provincial election (Oct 5, 2026)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-10-05",
+      "date": "2026-10-05",
+      "start": null,
+      "end": null,
+      "probability": 1.0,
+      "impact_score": 167.0,
+      "expected_impact": 167.0,
+      "event_PS": 20.125,
+      "event_AS": 20.875,
+      "n_vars": 4,
+      "affected_ids": "political_backlash, policy_uncertainty_level, reciprocal_retaliation, bilateral_trade_volume",
+      "rationale": "Headline: 'Quebec to hold Oct 5 election, separatists favored to win' — election likely raises political pressure and policy uncertainty."
+    },
+    {
+      "id": "commodity_price_volatility_spillover",
+      "title": "Commodity price and volatility shifts (copper focus)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1–3 months",
+      "date": null,
+      "start": "2026-08-28",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 112.0,
+      "expected_impact": 78.4,
+      "event_PS": 18.857,
+      "event_AS": 16.0,
+      "n_vars": 3,
+      "affected_ids": "commodity_price_index, commodity_volatility, equity_market_volatility",
+      "rationale": "Headlines: 'BHP faces copper price risk as tariff concerns inflate rally' and 'US tariff threat upends copper surplus as prices test all-time peak.'"
+    },
+    {
+      "id": "retailer_price_margin_responses",
+      "title": "Retailer tariff refund and reinvestment responses",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-08-28",
+      "end": "2026-09-30",
+      "probability": 0.8,
+      "impact_score": 47.0,
+      "expected_impact": 37.6,
+      "event_PS": 24.5,
+      "event_AS": 11.75,
+      "n_vars": 3,
+      "affected_ids": "corporate_margin_pressur, import_price_pass_throug, consumer_inflation_press",
+      "rationale": "Headlines: 'Burlington Stores Plans to Use Tariff Refunds to Lower Prices' and 'Dollar Tree Says Tariff Reinvestments Will Squeeze Near-Term Profit.'"
+    }
+  ]
+}
