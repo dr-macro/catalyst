@@ -1,0 +1,1971 @@
+{
+  "label": "us_bond_market_tension",
+  "as_of": "2026-08-29",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-29T04:28:01",
+  "system_description": {
+    "narrative_title": "Warsh's Jackson Hole Hawkish Turn: Markets Reprice Inflation and Rates",
+    "narrative_summary": "The dominant narrative is that Fed Chair Kevin Warsh's Jackson Hole communications have shifted toward a hawkish stance on inflation, prompting rapid market repricing across Treasury yields, FX, gold and equities. As an open system this narrative links policy signalling, incoming inflation and growth data, market expectations and portfolio flows in a feedback loop—central bank words change expectations, which move asset prices, which in turn constrain policy and fiscal actors. External inputs (global central bank moves, Treasury interventions, commodity surprises) and investor positioning continuously perturb the system and generate short‑term volatility and longer‑term regime shifts in interest‑rate expectations.",
+    "scope": "Federal Reserve communications (Jackson Hole) and near‑term monetary policy signalling; market reactions in U.S. Treasury yields, bond market liquidity, equities, FX and safe havens (gold); short‑term interactions with U.S. Treasury actions (buybacks/interventions) and incoming U.S. inflation and growth data.",
+    "super_system": "Global financial system and macroeconomy",
+    "adjacent_subsystems": [
+      "U.S. Treasury policy and bond market interventions",
+      "Other central banks' tightening cycles (BOJ, Bank of Korea, etc.)",
+      "Global bond market liquidity and investor positioning",
+      "Commodity and safe‑haven markets (gold, dollar)"
+    ],
+    "evidence_headlines": [
+      "Fed Chairman Kevin Warsh delivers his key Jackson Hole speech Friday. Here's what to expect",
+      "Warsh signals Fed may need to raise rates if above-target inflation persists",
+      "U.S. Stocks Fall After Warsh Speech Boosts Bond Yields",
+      "Treasury Raises the Stakes in a Battle to Cap Long‑Term Yields",
+      "Dollar Rises as Warsh Acknowledges Inflation Risk",
+      "Gold drops 3% as Fed's Warsh comments lift rate hike bets"
+    ]
+  },
+  "variables": [
+    {
+      "id": "policy_signal_tone",
+      "name": "Policy signal tone",
+      "description": "The perceived hawkishness or dovishness of official monetary communications as interpreted by markets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market-implied expected path or level of future inflation over relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "nominal_treasury_yields",
+      "name": "Nominal Treasury yields",
+      "description": "The prevailing market levels of nominal government bond yields across maturities.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The ease and depth with which bonds can be transacted without large price impact.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium_level",
+      "name": "Term premium level",
+      "description": "The component of long-term yields reflecting compensation for interest-rate risk and uncertainty over the term structure.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "real_yield_level",
+      "name": "Real yield level",
+      "description": "Inflation-adjusted interest rates that measure the real return demanded by bond investors.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_path",
+      "name": "Policy rate path expectations",
+      "description": "The market-implied expected future trajectory of the policy interest rate.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_positioning",
+      "name": "Investor positioning",
+      "description": "The aggregated net exposure and leverage stance of market participants across asset classes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "portfolio_flows",
+      "name": "Cross-asset portfolio flows",
+      "description": "Net capital movements between major asset classes (bonds, equities, FX, commodities) over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_demand",
+      "name": "Safe-haven demand",
+      "description": "The rate at which capital reallocates into assets regarded as low-risk stores of value in response to stress or uncertainty.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "equity_risk_premium",
+      "name": "Equity risk premium",
+      "description": "The additional return investors require to hold equities instead of risk-free assets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_pressure",
+      "name": "Exchange rate pressure",
+      "description": "Directional stress on major currency pairs driven by differential yields, flows and risk sentiment.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Market volatility level",
+      "description": "The prevailing magnitude of short- to medium-term price fluctuations across asset markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "incoming_inflation",
+      "name": "Incoming inflation trend",
+      "description": "The ongoing rate and surprise component of observed inflation readings arriving to markets.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "incoming_growth",
+      "name": "Incoming growth trend",
+      "description": "The contemporary trajectory and surprise component of macroeconomic growth data as it is released.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_intervention",
+      "name": "Market intervention intensity",
+      "description": "The frequency and scale of active balance-sheet or transactional actions aimed at influencing market prices or yields.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "policy_signal_tone",
+    "inflation_expectations",
+    "nominal_treasury_yields",
+    "bond_market_liquidity",
+    "term_premium_level",
+    "real_yield_level",
+    "policy_rate_path",
+    "investor_positioning",
+    "portfolio_flows",
+    "safe_haven_demand",
+    "equity_risk_premium",
+    "exchange_rate_pressure",
+    "market_volatility",
+    "incoming_inflation",
+    "incoming_growth",
+    "market_intervention"
+  ],
+  "var_names": {
+    "policy_signal_tone": "Policy signal tone",
+    "inflation_expectations": "Inflation expectations",
+    "nominal_treasury_yields": "Nominal Treasury yields",
+    "bond_market_liquidity": "Bond market liquidity",
+    "term_premium_level": "Term premium level",
+    "real_yield_level": "Real yield level",
+    "policy_rate_path": "Policy rate path expectations",
+    "investor_positioning": "Investor positioning",
+    "portfolio_flows": "Cross-asset portfolio flows",
+    "safe_haven_demand": "Safe-haven demand",
+    "equity_risk_premium": "Equity risk premium",
+    "exchange_rate_pressure": "Exchange rate pressure",
+    "market_volatility": "Market volatility level",
+    "incoming_inflation": "Incoming inflation trend",
+    "incoming_growth": "Incoming growth trend",
+    "market_intervention": "Market intervention intensity"
+  },
+  "impact_matrix": {
+    "policy_signal_tone": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 3,
+      "nominal_treasury_yields": 3,
+      "bond_market_liquidity": 1,
+      "term_premium_level": 2,
+      "real_yield_level": 3,
+      "policy_rate_path": 3,
+      "investor_positioning": 2,
+      "portfolio_flows": 2,
+      "safe_haven_demand": 2,
+      "equity_risk_premium": 2,
+      "exchange_rate_pressure": 2,
+      "market_volatility": 2,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 0
+    },
+    "inflation_expectations": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 0,
+      "nominal_treasury_yields": 3,
+      "bond_market_liquidity": 1,
+      "term_premium_level": 2,
+      "real_yield_level": 2,
+      "policy_rate_path": 2,
+      "investor_positioning": 2,
+      "portfolio_flows": 2,
+      "safe_haven_demand": 1,
+      "equity_risk_premium": 2,
+      "exchange_rate_pressure": 2,
+      "market_volatility": 2,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 1
+    },
+    "nominal_treasury_yields": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 1,
+      "nominal_treasury_yields": 0,
+      "bond_market_liquidity": 1,
+      "term_premium_level": 1,
+      "real_yield_level": 3,
+      "policy_rate_path": 2,
+      "investor_positioning": 2,
+      "portfolio_flows": 3,
+      "safe_haven_demand": 2,
+      "equity_risk_premium": 2,
+      "exchange_rate_pressure": 2,
+      "market_volatility": 2,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 2
+    },
+    "bond_market_liquidity": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 0,
+      "nominal_treasury_yields": 2,
+      "bond_market_liquidity": 0,
+      "term_premium_level": 2,
+      "real_yield_level": 1,
+      "policy_rate_path": 0,
+      "investor_positioning": 2,
+      "portfolio_flows": 2,
+      "safe_haven_demand": 1,
+      "equity_risk_premium": 1,
+      "exchange_rate_pressure": 0,
+      "market_volatility": 3,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 2
+    },
+    "term_premium_level": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 1,
+      "nominal_treasury_yields": 3,
+      "bond_market_liquidity": 1,
+      "term_premium_level": 0,
+      "real_yield_level": 2,
+      "policy_rate_path": 1,
+      "investor_positioning": 2,
+      "portfolio_flows": 2,
+      "safe_haven_demand": 1,
+      "equity_risk_premium": 2,
+      "exchange_rate_pressure": 1,
+      "market_volatility": 1,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 1
+    },
+    "real_yield_level": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 1,
+      "nominal_treasury_yields": 3,
+      "bond_market_liquidity": 0,
+      "term_premium_level": 1,
+      "real_yield_level": 0,
+      "policy_rate_path": 2,
+      "investor_positioning": 2,
+      "portfolio_flows": 3,
+      "safe_haven_demand": 1,
+      "equity_risk_premium": 3,
+      "exchange_rate_pressure": 2,
+      "market_volatility": 2,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 2
+    },
+    "policy_rate_path": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 3,
+      "nominal_treasury_yields": 3,
+      "bond_market_liquidity": 1,
+      "term_premium_level": 2,
+      "real_yield_level": 3,
+      "policy_rate_path": 0,
+      "investor_positioning": 3,
+      "portfolio_flows": 3,
+      "safe_haven_demand": 2,
+      "equity_risk_premium": 2,
+      "exchange_rate_pressure": 3,
+      "market_volatility": 2,
+      "incoming_inflation": 1,
+      "incoming_growth": 1,
+      "market_intervention": 1
+    },
+    "investor_positioning": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 1,
+      "nominal_treasury_yields": 2,
+      "bond_market_liquidity": 2,
+      "term_premium_level": 1,
+      "real_yield_level": 1,
+      "policy_rate_path": 0,
+      "investor_positioning": 0,
+      "portfolio_flows": 3,
+      "safe_haven_demand": 2,
+      "equity_risk_premium": 2,
+      "exchange_rate_pressure": 2,
+      "market_volatility": 3,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 2
+    },
+    "portfolio_flows": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 1,
+      "nominal_treasury_yields": 3,
+      "bond_market_liquidity": 2,
+      "term_premium_level": 1,
+      "real_yield_level": 2,
+      "policy_rate_path": 0,
+      "investor_positioning": 3,
+      "portfolio_flows": 0,
+      "safe_haven_demand": 2,
+      "equity_risk_premium": 2,
+      "exchange_rate_pressure": 3,
+      "market_volatility": 2,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 2
+    },
+    "safe_haven_demand": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 0,
+      "nominal_treasury_yields": 3,
+      "bond_market_liquidity": 1,
+      "term_premium_level": 1,
+      "real_yield_level": 2,
+      "policy_rate_path": 0,
+      "investor_positioning": 2,
+      "portfolio_flows": 3,
+      "safe_haven_demand": 0,
+      "equity_risk_premium": 2,
+      "exchange_rate_pressure": 2,
+      "market_volatility": 2,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 2
+    },
+    "equity_risk_premium": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 0,
+      "nominal_treasury_yields": 2,
+      "bond_market_liquidity": 1,
+      "term_premium_level": 1,
+      "real_yield_level": 2,
+      "policy_rate_path": 0,
+      "investor_positioning": 2,
+      "portfolio_flows": 2,
+      "safe_haven_demand": 1,
+      "equity_risk_premium": 0,
+      "exchange_rate_pressure": 0,
+      "market_volatility": 2,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 0
+    },
+    "exchange_rate_pressure": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 1,
+      "nominal_treasury_yields": 2,
+      "bond_market_liquidity": 0,
+      "term_premium_level": 1,
+      "real_yield_level": 2,
+      "policy_rate_path": 0,
+      "investor_positioning": 2,
+      "portfolio_flows": 3,
+      "safe_haven_demand": 1,
+      "equity_risk_premium": 1,
+      "exchange_rate_pressure": 0,
+      "market_volatility": 2,
+      "incoming_inflation": 1,
+      "incoming_growth": 1,
+      "market_intervention": 3
+    },
+    "market_volatility": {
+      "policy_signal_tone": 0,
+      "inflation_expectations": 1,
+      "nominal_treasury_yields": 2,
+      "bond_market_liquidity": 3,
+      "term_premium_level": 2,
+      "real_yield_level": 1,
+      "policy_rate_path": 0,
+      "investor_positioning": 3,
+      "portfolio_flows": 2,
+      "safe_haven_demand": 2,
+      "equity_risk_premium": 3,
+      "exchange_rate_pressure": 2,
+      "market_volatility": 0,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 2
+    },
+    "incoming_inflation": {
+      "policy_signal_tone": 1,
+      "inflation_expectations": 2,
+      "nominal_treasury_yields": 3,
+      "bond_market_liquidity": 0,
+      "term_premium_level": 1,
+      "real_yield_level": 2,
+      "policy_rate_path": 2,
+      "investor_positioning": 2,
+      "portfolio_flows": 2,
+      "safe_haven_demand": 1,
+      "equity_risk_premium": 1,
+      "exchange_rate_pressure": 1,
+      "market_volatility": 1,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 1
+    },
+    "incoming_growth": {
+      "policy_signal_tone": 1,
+      "inflation_expectations": 1,
+      "nominal_treasury_yields": 2,
+      "bond_market_liquidity": 0,
+      "term_premium_level": 1,
+      "real_yield_level": 2,
+      "policy_rate_path": 2,
+      "investor_positioning": 2,
+      "portfolio_flows": 2,
+      "safe_haven_demand": 1,
+      "equity_risk_premium": 1,
+      "exchange_rate_pressure": 1,
+      "market_volatility": 1,
+      "incoming_inflation": 1,
+      "incoming_growth": 0,
+      "market_intervention": 0
+    },
+    "market_intervention": {
+      "policy_signal_tone": 1,
+      "inflation_expectations": 1,
+      "nominal_treasury_yields": 3,
+      "bond_market_liquidity": 2,
+      "term_premium_level": 2,
+      "real_yield_level": 2,
+      "policy_rate_path": 1,
+      "investor_positioning": 2,
+      "portfolio_flows": 3,
+      "safe_haven_demand": 2,
+      "equity_risk_premium": 1,
+      "exchange_rate_pressure": 3,
+      "market_volatility": 2,
+      "incoming_inflation": 0,
+      "incoming_growth": 0,
+      "market_intervention": 0
+    }
+  },
+  "AS": {
+    "policy_signal_tone": 27,
+    "inflation_expectations": 22,
+    "nominal_treasury_yields": 23,
+    "bond_market_liquidity": 16,
+    "term_premium_level": 18,
+    "real_yield_level": 22,
+    "policy_rate_path": 30,
+    "investor_positioning": 21,
+    "portfolio_flows": 23,
+    "safe_haven_demand": 20,
+    "equity_risk_premium": 13,
+    "exchange_rate_pressure": 20,
+    "market_volatility": 23,
+    "incoming_inflation": 20,
+    "incoming_growth": 18,
+    "market_intervention": 25
+  },
+  "PS": {
+    "policy_signal_tone": 3,
+    "inflation_expectations": 17,
+    "nominal_treasury_yields": 39,
+    "bond_market_liquidity": 16,
+    "term_premium_level": 21,
+    "real_yield_level": 30,
+    "policy_rate_path": 15,
+    "investor_positioning": 33,
+    "portfolio_flows": 37,
+    "safe_haven_demand": 22,
+    "equity_risk_premium": 27,
+    "exchange_rate_pressure": 26,
+    "market_volatility": 29,
+    "incoming_inflation": 3,
+    "incoming_growth": 2,
+    "market_intervention": 21
+  },
+  "med_AS": 21.5,
+  "med_PS": 21.5,
+  "roles": [
+    {
+      "variable": "nominal_treasury_yields",
+      "name": "Nominal Treasury yields",
+      "AS": 23,
+      "PS": 39,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 897,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "portfolio_flows",
+      "name": "Cross-asset portfolio flows",
+      "AS": 23,
+      "PS": 37,
+      "Q=AS/PS": 0.62,
+      "P=AS*PS": 851,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_positioning",
+      "name": "Investor positioning",
+      "AS": 21,
+      "PS": 33,
+      "Q=AS/PS": 0.64,
+      "P=AS*PS": 693,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Market volatility level",
+      "AS": 23,
+      "PS": 29,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 667,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "real_yield_level",
+      "name": "Real yield level",
+      "AS": 22,
+      "PS": 30,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 660,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_intervention",
+      "name": "Market intervention intensity",
+      "AS": 25,
+      "PS": 21,
+      "Q=AS/PS": 1.19,
+      "P=AS*PS": 525,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "exchange_rate_pressure",
+      "name": "Exchange rate pressure",
+      "AS": 20,
+      "PS": 26,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 520,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_rate_path",
+      "name": "Policy rate path expectations",
+      "AS": 30,
+      "PS": 15,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 450,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "safe_haven_demand",
+      "name": "Safe-haven demand",
+      "AS": 20,
+      "PS": 22,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 440,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium_level",
+      "name": "Term premium level",
+      "AS": 18,
+      "PS": 21,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 378,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 22,
+      "PS": 17,
+      "Q=AS/PS": 1.29,
+      "P=AS*PS": 374,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "equity_risk_premium",
+      "name": "Equity risk premium",
+      "AS": 13,
+      "PS": 27,
+      "Q=AS/PS": 0.48,
+      "P=AS*PS": 351,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 16,
+      "PS": 16,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 256,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "policy_signal_tone",
+      "name": "Policy signal tone",
+      "AS": 27,
+      "PS": 3,
+      "Q=AS/PS": 9.0,
+      "P=AS*PS": 81,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "incoming_inflation",
+      "name": "Incoming inflation trend",
+      "AS": 20,
+      "PS": 3,
+      "Q=AS/PS": 6.67,
+      "P=AS*PS": 60,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "incoming_growth",
+      "name": "Incoming growth trend",
+      "AS": 18,
+      "PS": 2,
+      "Q=AS/PS": 9.0,
+      "P=AS*PS": 36,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "policy_signal_tone",
+        "name": "Policy signal tone",
+        "kind": "perception",
+        "AS": 27,
+        "PS": 3
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 17
+      },
+      {
+        "id": "nominal_treasury_yields",
+        "name": "Nominal Treasury yields",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 39
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 16
+      },
+      {
+        "id": "term_premium_level",
+        "name": "Term premium level",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 21
+      },
+      {
+        "id": "real_yield_level",
+        "name": "Real yield level",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 30
+      },
+      {
+        "id": "policy_rate_path",
+        "name": "Policy rate path expectations",
+        "kind": "perception",
+        "AS": 30,
+        "PS": 15
+      },
+      {
+        "id": "investor_positioning",
+        "name": "Investor positioning",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 33
+      },
+      {
+        "id": "portfolio_flows",
+        "name": "Cross-asset portfolio flows",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 37
+      },
+      {
+        "id": "safe_haven_demand",
+        "name": "Safe-haven demand",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 22
+      },
+      {
+        "id": "equity_risk_premium",
+        "name": "Equity risk premium",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 27
+      },
+      {
+        "id": "exchange_rate_pressure",
+        "name": "Exchange rate pressure",
+        "kind": "environment",
+        "AS": 20,
+        "PS": 26
+      },
+      {
+        "id": "market_volatility",
+        "name": "Market volatility level",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 29
+      },
+      {
+        "id": "incoming_inflation",
+        "name": "Incoming inflation trend",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 3
+      },
+      {
+        "id": "incoming_growth",
+        "name": "Incoming growth trend",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 2
+      },
+      {
+        "id": "market_intervention",
+        "name": "Market intervention intensity",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 21
+      }
+    ],
+    "edges": [
+      {
+        "source": "policy_signal_tone",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "real_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "policy_rate_path",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "portfolio_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_path",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "portfolio_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "real_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "policy_rate_path",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "portfolio_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "market_intervention",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "portfolio_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "market_intervention",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "portfolio_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "policy_rate_path",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "portfolio_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "equity_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "market_intervention",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_path",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_path",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_path",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_path",
+        "target": "real_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_path",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_path",
+        "target": "portfolio_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_path",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_path",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_path",
+        "target": "exchange_rate_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_path",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "portfolio_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "market_intervention",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "portfolio_flows",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_flows",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_flows",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_flows",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_flows",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_flows",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_flows",
+        "target": "exchange_rate_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_flows",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_flows",
+        "target": "market_intervention",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "portfolio_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "market_intervention",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "portfolio_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "portfolio_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "market_intervention",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "market_volatility",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "portfolio_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "equity_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "market_intervention",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "incoming_inflation",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "incoming_inflation",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "incoming_inflation",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "incoming_inflation",
+        "target": "policy_rate_path",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "incoming_inflation",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "incoming_inflation",
+        "target": "portfolio_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "incoming_growth",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "incoming_growth",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "incoming_growth",
+        "target": "policy_rate_path",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "incoming_growth",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "incoming_growth",
+        "target": "portfolio_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention",
+        "target": "portfolio_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention",
+        "target": "exchange_rate_pressure",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_follow_up_guidance",
+      "title": "Ongoing Fed hawkish guidance and speeches",
+      "description": "Continued public comments and speeches from Fed officials reinforcing Warsh's inflation warnings and signaling possible further tightening.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-29",
+        "end": "2026-10-31",
+        "label": "next 2 months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "policy_signal_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_path",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: Warsh signals Fed may need to hike; 'Warsh's hawkish turn' and follow-up Fed warnings at Jackson Hole."
+    },
+    {
+      "id": "upcoming_us_inflation_prints",
+      "title": "Near‑term US inflation data releases",
+      "description": "Scheduled monthly inflation prints (PCE/CPI) that will update markets on persistence of above‑target inflation and influence Fed expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-15",
+        "label": "early‑mid September"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "incoming_inflation",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_path",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: Fed's preferred inflation gauge rose; markets reprice after inflation data; Warsh remarks raised rate‑bet sensitivity."
+    },
+    {
+      "id": "treasury_buybacks_and_interventions",
+      "title": "US Treasury buybacks and yield‑cap interventions",
+      "description": "Ongoing Treasury buybacks and ad hoc interventions intended to limit long‑term yields and address market dislocation.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-29",
+        "end": "2026-10-31",
+        "label": "ongoing weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "market_intervention",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Treasury Raises the Stakes', 'Treasury Buybacks Put Bond Market Liquidity Front and Center', interventions ongoing."
+    },
+    {
+      "id": "boj_september_hike",
+      "title": "BOJ policy rate hike (September)",
+      "description": "Anticipated BOJ tightening step that would materially shift global rate differentials and market sentiment.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September 2026"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "policy_rate_path",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_signal_tone",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_pressure",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'BOJ to speed up its tightening campaign, raise key rate to 1.25% in September' (aug 27)."
+    },
+    {
+      "id": "bank_of_korea_tightening",
+      "title": "Bank of Korea continued tightening",
+      "description": "Korea's recent hikes and higher forecasts imply further tightening that can influence regional rates and flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-29",
+        "end": "2026-11-30",
+        "label": "next 3 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_rate_path",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Bank of Korea Hikes Again as It Raises Growth, Inflation Forecasts' (aug 27)."
+    },
+    {
+      "id": "us_treasury_auctions",
+      "title": "Near‑term US Treasury auctions",
+      "description": "Recurring Treasury coupon auctions and their demand/clearing dynamics that can move yields and liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-29",
+        "end": "2026-09-30",
+        "label": "next month"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_intervention",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Yields on Seven‑Year U.S. Treasurys Sold at Auction Near Two‑Year High' and auction references."
+    },
+    {
+      "id": "investor_repositioning_after_warsh",
+      "title": "Investor portfolio rebalancing after Warsh speech",
+      "description": "Active rotation and de‑risking across equities, bonds and FX as market participants respond to renewed hawkish Fed signals.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-29",
+        "end": "2026-09-30",
+        "label": "next month"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "investor_positioning",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "portfolio_flows",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "equity_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Stocks Waver', 'Investors heartened but uncertain', VIX low yet repositioning signaled."
+    },
+    {
+      "id": "fomc_expectations_mid_september",
+      "title": "Market positioning ahead of next FOMC decision window",
+      "description": "Markets will reprice around expectations for the Fed's next policy decision and the likelihood of further hikes.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-17",
+        "label": "by mid‑September"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "policy_rate_path",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_signal_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: Fed officials say hikes warranted if inflation disappoints; markets nudged higher after inflation and Warsh speech."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "upcoming_us_inflation_prints",
+      "title": "Near‑term US inflation data releases",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "early‑mid September",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-15",
+      "probability": 0.85,
+      "impact_score": 301.0,
+      "expected_impact": 255.85,
+      "event_PS": 20.385,
+      "event_AS": 23.154,
+      "n_vars": 5,
+      "affected_ids": "incoming_inflation, inflation_expectations, policy_rate_path, nominal_treasury_yields, market_volatility",
+      "rationale": "Headlines: Fed's preferred inflation gauge rose; markets reprice after inflation data; Warsh remarks raised rate‑bet sensitivity."
+    },
+    {
+      "id": "fomc_expectations_mid_september",
+      "title": "Market positioning ahead of next FOMC decision window",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by mid‑September",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-17",
+      "probability": 0.7,
+      "impact_score": 286.0,
+      "expected_impact": 200.2,
+      "event_PS": 20.818,
+      "event_AS": 26.0,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_path, policy_signal_tone, nominal_treasury_yields, market_volatility",
+      "rationale": "Headlines: Fed officials say hikes warranted if inflation disappoints; markets nudged higher after inflation and Warsh speech."
+    },
+    {
+      "id": "fed_follow_up_guidance",
+      "title": "Ongoing Fed hawkish guidance and speeches",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 months",
+      "date": null,
+      "start": "2026-08-29",
+      "end": "2026-10-31",
+      "probability": 0.9,
+      "impact_score": 255.0,
+      "expected_impact": 229.5,
+      "event_PS": 19.2,
+      "event_AS": 25.5,
+      "n_vars": 5,
+      "affected_ids": "policy_signal_tone, policy_rate_path, inflation_expectations, nominal_treasury_yields, market_volatility",
+      "rationale": "Headlines: Warsh signals Fed may need to hike; 'Warsh's hawkish turn' and follow-up Fed warnings at Jackson Hole."
+    },
+    {
+      "id": "treasury_buybacks_and_interventions",
+      "title": "US Treasury buybacks and yield‑cap interventions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "ongoing weeks",
+      "date": null,
+      "start": "2026-08-29",
+      "end": "2026-10-31",
+      "probability": 0.9,
+      "impact_score": 205.0,
+      "expected_impact": 184.5,
+      "event_PS": 23.1,
+      "event_AS": 20.5,
+      "n_vars": 4,
+      "affected_ids": "market_intervention, bond_market_liquidity, term_premium_level, nominal_treasury_yields",
+      "rationale": "Headlines: 'Treasury Raises the Stakes', 'Treasury Buybacks Put Bond Market Liquidity Front and Center', interventions ongoing."
+    },
+    {
+      "id": "boj_september_hike",
+      "title": "BOJ policy rate hike (September)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September 2026",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.85,
+      "impact_score": 200.0,
+      "expected_impact": 170.0,
+      "event_PS": 20.75,
+      "event_AS": 25.0,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_path, policy_signal_tone, nominal_treasury_yields, exchange_rate_pressure",
+      "rationale": "Headline: 'BOJ to speed up its tightening campaign, raise key rate to 1.25% in September' (aug 27)."
+    },
+    {
+      "id": "investor_repositioning_after_warsh",
+      "title": "Investor portfolio rebalancing after Warsh speech",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next month",
+      "date": null,
+      "start": "2026-08-29",
+      "end": "2026-09-30",
+      "probability": 0.85,
+      "impact_score": 181.0,
+      "expected_impact": 153.85,
+      "event_PS": 31.667,
+      "event_AS": 20.111,
+      "n_vars": 4,
+      "affected_ids": "investor_positioning, portfolio_flows, equity_risk_premium, market_volatility",
+      "rationale": "Headlines: 'Stocks Waver', 'Investors heartened but uncertain', VIX low yet repositioning signaled."
+    },
+    {
+      "id": "us_treasury_auctions",
+      "title": "Near‑term US Treasury auctions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next month",
+      "date": null,
+      "start": "2026-08-29",
+      "end": "2026-09-30",
+      "probability": 0.95,
+      "impact_score": 172.0,
+      "expected_impact": 163.4,
+      "event_PS": 28.5,
+      "event_AS": 21.5,
+      "n_vars": 4,
+      "affected_ids": "nominal_treasury_yields, bond_market_liquidity, market_volatility, market_intervention",
+      "rationale": "Headline: 'Yields on Seven‑Year U.S. Treasurys Sold at Auction Near Two‑Year High' and auction references."
+    },
+    {
+      "id": "bank_of_korea_tightening",
+      "title": "Bank of Korea continued tightening",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-08-29",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 105.0,
+      "expected_impact": 63.0,
+      "event_PS": 21.5,
+      "event_AS": 26.25,
+      "n_vars": 3,
+      "affected_ids": "policy_rate_path, nominal_treasury_yields, inflation_expectations",
+      "rationale": "Headline: 'Bank of Korea Hikes Again as It Raises Growth, Inflation Forecasts' (aug 27)."
+    }
+  ]
+}

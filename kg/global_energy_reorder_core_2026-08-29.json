@@ -1,0 +1,2028 @@
+{
+  "label": "global_energy_reorder",
+  "as_of": "2026-08-29",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-29T04:40:43",
+  "system_description": {
+    "narrative_title": "Geopolitical scramble for energy amid supply shocks and climate-driven demand",
+    "narrative_summary": "News in this window coalesces around a single dominant story: tight global energy markets driven by geopolitics (notably U.S. moves on Venezuelan reserves and Middle East developments), constrained gas inventories/LNG flows, and climate/weather shocks that boost demand and stress food supply chains. Those drivers interact to push oil, gas and agricultural commodity prices higher, prompt state and corporate deals, and generate policy interventions and market volatility. Feedbacks include price-driven investment and political action, climate-driven demand spikes, and inventory buffers that temporally mute or amplify shocks.",
+    "scope": "Global fossil fuel (oil, gas, LNG) production, trade and storage; major state and corporate energy deals and interventions; agricultural commodity markets and supply chains affected by climate (El Niño, heatwaves); short-term price and inventory dynamics.",
+    "super_system": "Global political-economic-climate system (interacting geopolitics, markets, and climate impacts on food and energy security)",
+    "adjacent_subsystems": [
+      "Global oil production & geopolitics (Venezuela, Middle East)",
+      "Natural gas and LNG market infrastructure and European gas security",
+      "Agricultural commodity markets and food supply chains",
+      "Climate/weather system (El Niño, heatwaves) affecting demand and yields"
+    ],
+    "evidence_headlines": [
+      "Trump announces deal with Venezuela to secure more than 65 billion barrels of oil reserves",
+      "Oil prices fall further on M.East diplomacy hopes",
+      "Europe’s gas stores are running low — and prices could top 100 euros this winter",
+      "Wheat Soars to Highest Level in Three Years as Black Sea Crisis Deepens",
+      "El Niño’s looming threat to the global food system",
+      "U.S. Natural Gas Inventories Rise Less Than Expected"
+    ]
+  },
+  "variables": [
+    {
+      "id": "oil_price_level",
+      "name": "Oil price level",
+      "description": "Average market price per barrel of crude oil, capturing broad price pressure in oil markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "gas_price_level",
+      "name": "Natural gas price level",
+      "description": "Average market price for natural gas and LNG on relevant spot and futures markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "agri_price_level",
+      "name": "Agricultural commodity price level",
+      "description": "Average price level for key agricultural commodities (e.g., wheat, corn) across major markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fuel_prod_capacity",
+      "name": "Fuel production capacity",
+      "description": "Aggregate upstream production capacity available for oil and gas extraction and processing.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "lng_gas_flow_volume",
+      "name": "LNG and gas flow volume",
+      "description": "Rate and volume of natural gas and LNG moved through international trade and pipeline networks.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "reserve_access_control",
+      "name": "Reserve access control",
+      "description": "Degree of effective access or control over proven hydrocarbon reserves for market actors.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "gas_storage_levels",
+      "name": "Gas storage levels",
+      "description": "Quantity of natural gas held in commercial and strategic storage facilities relative to norms.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "grain_storage_levels",
+      "name": "Grain storage levels",
+      "description": "Quantity of staple grains held in commercial, strategic and on-farm storage relative to seasonal needs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "climate_anomaly_intensit",
+      "name": "Climate anomaly intensity",
+      "description": "Magnitude of climate-driven extremes (e.g., El Niño strength, heatwave intensity) affecting demand and yields.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_demand_shocks",
+      "name": "Short-term demand shocks",
+      "description": "Transient increases or decreases in energy and food demand driven by weather, seasonal effects, or sudden events.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "energy_investment_flows",
+      "name": "Energy investment flows",
+      "description": "Financial flows into upstream, midstream and downstream energy projects and asset transactions.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "geo_tension_level",
+      "name": "Geopolitical tension level",
+      "description": "Overall intensity of political/geostrategic tensions affecting energy and trade relationships.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "supply_disruption_level",
+      "name": "Supply chain disruption level",
+      "description": "Degree of disruption to transportation, processing and distribution networks for energy and food.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_intervention_rate",
+      "name": "Policy intervention rate",
+      "description": "Frequency and intensity of government and regulatory actions (subsidies, controls, state deals) affecting markets.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility_level",
+      "name": "Market volatility level",
+      "description": "Measured short-term variability in prices and trading volumes across energy and agricultural markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "logistics_capacity",
+      "name": "Logistics capacity",
+      "description": "Available transport, shipping, and storage throughput capacity for moving energy and food commodities.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "oil_price_level",
+    "gas_price_level",
+    "agri_price_level",
+    "fuel_prod_capacity",
+    "lng_gas_flow_volume",
+    "reserve_access_control",
+    "gas_storage_levels",
+    "grain_storage_levels",
+    "climate_anomaly_intensit",
+    "short_term_demand_shocks",
+    "energy_investment_flows",
+    "geo_tension_level",
+    "supply_disruption_level",
+    "policy_intervention_rate",
+    "market_volatility_level",
+    "logistics_capacity"
+  ],
+  "var_names": {
+    "oil_price_level": "Oil price level",
+    "gas_price_level": "Natural gas price level",
+    "agri_price_level": "Agricultural commodity price level",
+    "fuel_prod_capacity": "Fuel production capacity",
+    "lng_gas_flow_volume": "LNG and gas flow volume",
+    "reserve_access_control": "Reserve access control",
+    "gas_storage_levels": "Gas storage levels",
+    "grain_storage_levels": "Grain storage levels",
+    "climate_anomaly_intensit": "Climate anomaly intensity",
+    "short_term_demand_shocks": "Short-term demand shocks",
+    "energy_investment_flows": "Energy investment flows",
+    "geo_tension_level": "Geopolitical tension level",
+    "supply_disruption_level": "Supply chain disruption level",
+    "policy_intervention_rate": "Policy intervention rate",
+    "market_volatility_level": "Market volatility level",
+    "logistics_capacity": "Logistics capacity"
+  },
+  "impact_matrix": {
+    "oil_price_level": {
+      "oil_price_level": 0,
+      "gas_price_level": 2,
+      "agri_price_level": 1,
+      "fuel_prod_capacity": 2,
+      "lng_gas_flow_volume": 1,
+      "reserve_access_control": 1,
+      "gas_storage_levels": 1,
+      "grain_storage_levels": 1,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 1,
+      "energy_investment_flows": 3,
+      "geo_tension_level": 1,
+      "supply_disruption_level": 1,
+      "policy_intervention_rate": 2,
+      "market_volatility_level": 3,
+      "logistics_capacity": 1
+    },
+    "gas_price_level": {
+      "oil_price_level": 2,
+      "gas_price_level": 0,
+      "agri_price_level": 1,
+      "fuel_prod_capacity": 2,
+      "lng_gas_flow_volume": 3,
+      "reserve_access_control": 1,
+      "gas_storage_levels": 2,
+      "grain_storage_levels": 1,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 1,
+      "energy_investment_flows": 3,
+      "geo_tension_level": 1,
+      "supply_disruption_level": 1,
+      "policy_intervention_rate": 2,
+      "market_volatility_level": 3,
+      "logistics_capacity": 2
+    },
+    "agri_price_level": {
+      "oil_price_level": 1,
+      "gas_price_level": 1,
+      "agri_price_level": 0,
+      "fuel_prod_capacity": 1,
+      "lng_gas_flow_volume": 0,
+      "reserve_access_control": 0,
+      "gas_storage_levels": 0,
+      "grain_storage_levels": 3,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 1,
+      "energy_investment_flows": 1,
+      "geo_tension_level": 2,
+      "supply_disruption_level": 1,
+      "policy_intervention_rate": 2,
+      "market_volatility_level": 2,
+      "logistics_capacity": 1
+    },
+    "fuel_prod_capacity": {
+      "oil_price_level": 3,
+      "gas_price_level": 3,
+      "agri_price_level": 1,
+      "fuel_prod_capacity": 0,
+      "lng_gas_flow_volume": 2,
+      "reserve_access_control": 2,
+      "gas_storage_levels": 1,
+      "grain_storage_levels": 0,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 1,
+      "energy_investment_flows": 2,
+      "geo_tension_level": 2,
+      "supply_disruption_level": 2,
+      "policy_intervention_rate": 1,
+      "market_volatility_level": 2,
+      "logistics_capacity": 2
+    },
+    "lng_gas_flow_volume": {
+      "oil_price_level": 1,
+      "gas_price_level": 3,
+      "agri_price_level": 0,
+      "fuel_prod_capacity": 1,
+      "lng_gas_flow_volume": 0,
+      "reserve_access_control": 1,
+      "gas_storage_levels": 2,
+      "grain_storage_levels": 0,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 2,
+      "energy_investment_flows": 2,
+      "geo_tension_level": 2,
+      "supply_disruption_level": 3,
+      "policy_intervention_rate": 2,
+      "market_volatility_level": 2,
+      "logistics_capacity": 3
+    },
+    "reserve_access_control": {
+      "oil_price_level": 3,
+      "gas_price_level": 3,
+      "agri_price_level": 0,
+      "fuel_prod_capacity": 2,
+      "lng_gas_flow_volume": 2,
+      "reserve_access_control": 0,
+      "gas_storage_levels": 1,
+      "grain_storage_levels": 0,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 1,
+      "energy_investment_flows": 2,
+      "geo_tension_level": 3,
+      "supply_disruption_level": 2,
+      "policy_intervention_rate": 2,
+      "market_volatility_level": 2,
+      "logistics_capacity": 1
+    },
+    "gas_storage_levels": {
+      "oil_price_level": 1,
+      "gas_price_level": 3,
+      "agri_price_level": 0,
+      "fuel_prod_capacity": 1,
+      "lng_gas_flow_volume": 2,
+      "reserve_access_control": 0,
+      "gas_storage_levels": 0,
+      "grain_storage_levels": 0,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 3,
+      "energy_investment_flows": 1,
+      "geo_tension_level": 1,
+      "supply_disruption_level": 2,
+      "policy_intervention_rate": 1,
+      "market_volatility_level": 2,
+      "logistics_capacity": 1
+    },
+    "grain_storage_levels": {
+      "oil_price_level": 0,
+      "gas_price_level": 0,
+      "agri_price_level": 3,
+      "fuel_prod_capacity": 0,
+      "lng_gas_flow_volume": 0,
+      "reserve_access_control": 0,
+      "gas_storage_levels": 0,
+      "grain_storage_levels": 0,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 3,
+      "energy_investment_flows": 0,
+      "geo_tension_level": 2,
+      "supply_disruption_level": 2,
+      "policy_intervention_rate": 2,
+      "market_volatility_level": 2,
+      "logistics_capacity": 1
+    },
+    "climate_anomaly_intensit": {
+      "oil_price_level": 1,
+      "gas_price_level": 2,
+      "agri_price_level": 3,
+      "fuel_prod_capacity": 2,
+      "lng_gas_flow_volume": 2,
+      "reserve_access_control": 0,
+      "gas_storage_levels": 2,
+      "grain_storage_levels": 2,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 3,
+      "energy_investment_flows": 1,
+      "geo_tension_level": 1,
+      "supply_disruption_level": 3,
+      "policy_intervention_rate": 2,
+      "market_volatility_level": 2,
+      "logistics_capacity": 2
+    },
+    "short_term_demand_shocks": {
+      "oil_price_level": 3,
+      "gas_price_level": 3,
+      "agri_price_level": 3,
+      "fuel_prod_capacity": 1,
+      "lng_gas_flow_volume": 2,
+      "reserve_access_control": 0,
+      "gas_storage_levels": 2,
+      "grain_storage_levels": 2,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 0,
+      "energy_investment_flows": 1,
+      "geo_tension_level": 1,
+      "supply_disruption_level": 2,
+      "policy_intervention_rate": 2,
+      "market_volatility_level": 3,
+      "logistics_capacity": 2
+    },
+    "energy_investment_flows": {
+      "oil_price_level": 2,
+      "gas_price_level": 2,
+      "agri_price_level": 0,
+      "fuel_prod_capacity": 3,
+      "lng_gas_flow_volume": 2,
+      "reserve_access_control": 1,
+      "gas_storage_levels": 2,
+      "grain_storage_levels": 0,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 0,
+      "energy_investment_flows": 0,
+      "geo_tension_level": 1,
+      "supply_disruption_level": 1,
+      "policy_intervention_rate": 3,
+      "market_volatility_level": 1,
+      "logistics_capacity": 2
+    },
+    "geo_tension_level": {
+      "oil_price_level": 3,
+      "gas_price_level": 3,
+      "agri_price_level": 2,
+      "fuel_prod_capacity": 2,
+      "lng_gas_flow_volume": 3,
+      "reserve_access_control": 2,
+      "gas_storage_levels": 1,
+      "grain_storage_levels": 2,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 1,
+      "energy_investment_flows": 2,
+      "geo_tension_level": 0,
+      "supply_disruption_level": 3,
+      "policy_intervention_rate": 2,
+      "market_volatility_level": 3,
+      "logistics_capacity": 2
+    },
+    "supply_disruption_level": {
+      "oil_price_level": 3,
+      "gas_price_level": 3,
+      "agri_price_level": 3,
+      "fuel_prod_capacity": 2,
+      "lng_gas_flow_volume": 3,
+      "reserve_access_control": 1,
+      "gas_storage_levels": 2,
+      "grain_storage_levels": 2,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 1,
+      "energy_investment_flows": 2,
+      "geo_tension_level": 2,
+      "supply_disruption_level": 0,
+      "policy_intervention_rate": 2,
+      "market_volatility_level": 3,
+      "logistics_capacity": 3
+    },
+    "policy_intervention_rate": {
+      "oil_price_level": 2,
+      "gas_price_level": 3,
+      "agri_price_level": 3,
+      "fuel_prod_capacity": 2,
+      "lng_gas_flow_volume": 2,
+      "reserve_access_control": 2,
+      "gas_storage_levels": 2,
+      "grain_storage_levels": 2,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 1,
+      "energy_investment_flows": 3,
+      "geo_tension_level": 1,
+      "supply_disruption_level": 2,
+      "policy_intervention_rate": 0,
+      "market_volatility_level": 2,
+      "logistics_capacity": 2
+    },
+    "market_volatility_level": {
+      "oil_price_level": 2,
+      "gas_price_level": 2,
+      "agri_price_level": 2,
+      "fuel_prod_capacity": 1,
+      "lng_gas_flow_volume": 1,
+      "reserve_access_control": 0,
+      "gas_storage_levels": 1,
+      "grain_storage_levels": 1,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 1,
+      "energy_investment_flows": 2,
+      "geo_tension_level": 1,
+      "supply_disruption_level": 1,
+      "policy_intervention_rate": 2,
+      "market_volatility_level": 0,
+      "logistics_capacity": 1
+    },
+    "logistics_capacity": {
+      "oil_price_level": 1,
+      "gas_price_level": 2,
+      "agri_price_level": 2,
+      "fuel_prod_capacity": 2,
+      "lng_gas_flow_volume": 3,
+      "reserve_access_control": 0,
+      "gas_storage_levels": 1,
+      "grain_storage_levels": 1,
+      "climate_anomaly_intensit": 0,
+      "short_term_demand_shocks": 1,
+      "energy_investment_flows": 1,
+      "geo_tension_level": 1,
+      "supply_disruption_level": 3,
+      "policy_intervention_rate": 1,
+      "market_volatility_level": 2,
+      "logistics_capacity": 0
+    }
+  },
+  "AS": {
+    "oil_price_level": 21,
+    "gas_price_level": 25,
+    "agri_price_level": 16,
+    "fuel_prod_capacity": 24,
+    "lng_gas_flow_volume": 24,
+    "reserve_access_control": 24,
+    "gas_storage_levels": 18,
+    "grain_storage_levels": 15,
+    "climate_anomaly_intensit": 28,
+    "short_term_demand_shocks": 27,
+    "energy_investment_flows": 20,
+    "geo_tension_level": 31,
+    "supply_disruption_level": 32,
+    "policy_intervention_rate": 29,
+    "market_volatility_level": 18,
+    "logistics_capacity": 21
+  },
+  "PS": {
+    "oil_price_level": 28,
+    "gas_price_level": 35,
+    "agri_price_level": 24,
+    "fuel_prod_capacity": 24,
+    "lng_gas_flow_volume": 28,
+    "reserve_access_control": 11,
+    "gas_storage_levels": 20,
+    "grain_storage_levels": 17,
+    "climate_anomaly_intensit": 0,
+    "short_term_demand_shocks": 21,
+    "energy_investment_flows": 26,
+    "geo_tension_level": 22,
+    "supply_disruption_level": 29,
+    "policy_intervention_rate": 28,
+    "market_volatility_level": 34,
+    "logistics_capacity": 26
+  },
+  "med_AS": 24.0,
+  "med_PS": 25.0,
+  "roles": [
+    {
+      "variable": "supply_disruption_level",
+      "name": "Supply chain disruption level",
+      "AS": 32,
+      "PS": 29,
+      "Q=AS/PS": 1.1,
+      "P=AS*PS": 928,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "gas_price_level",
+      "name": "Natural gas price level",
+      "AS": 25,
+      "PS": 35,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 875,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_intervention_rate",
+      "name": "Policy intervention rate",
+      "AS": 29,
+      "PS": 28,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 812,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "geo_tension_level",
+      "name": "Geopolitical tension level",
+      "AS": 31,
+      "PS": 22,
+      "Q=AS/PS": 1.41,
+      "P=AS*PS": 682,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "lng_gas_flow_volume",
+      "name": "LNG and gas flow volume",
+      "AS": 24,
+      "PS": 28,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 672,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_volatility_level",
+      "name": "Market volatility level",
+      "AS": 18,
+      "PS": 34,
+      "Q=AS/PS": 0.53,
+      "P=AS*PS": 612,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "oil_price_level",
+      "name": "Oil price level",
+      "AS": 21,
+      "PS": 28,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 588,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fuel_prod_capacity",
+      "name": "Fuel production capacity",
+      "AS": 24,
+      "PS": 24,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 576,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "short_term_demand_shocks",
+      "name": "Short-term demand shocks",
+      "AS": 27,
+      "PS": 21,
+      "Q=AS/PS": 1.29,
+      "P=AS*PS": 567,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "logistics_capacity",
+      "name": "Logistics capacity",
+      "AS": 21,
+      "PS": 26,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 546,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "energy_investment_flows",
+      "name": "Energy investment flows",
+      "AS": 20,
+      "PS": 26,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 520,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "agri_price_level",
+      "name": "Agricultural commodity price level",
+      "AS": 16,
+      "PS": 24,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 384,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "gas_storage_levels",
+      "name": "Gas storage levels",
+      "AS": 18,
+      "PS": 20,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 360,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "reserve_access_control",
+      "name": "Reserve access control",
+      "AS": 24,
+      "PS": 11,
+      "Q=AS/PS": 2.18,
+      "P=AS*PS": 264,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "grain_storage_levels",
+      "name": "Grain storage levels",
+      "AS": 15,
+      "PS": 17,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 255,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "climate_anomaly_intensit",
+      "name": "Climate anomaly intensity",
+      "AS": 28,
+      "PS": 0,
+      "Q=AS/PS": 28000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "oil_price_level",
+        "name": "Oil price level",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 28
+      },
+      {
+        "id": "gas_price_level",
+        "name": "Natural gas price level",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 35
+      },
+      {
+        "id": "agri_price_level",
+        "name": "Agricultural commodity price level",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 24
+      },
+      {
+        "id": "fuel_prod_capacity",
+        "name": "Fuel production capacity",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 24
+      },
+      {
+        "id": "lng_gas_flow_volume",
+        "name": "LNG and gas flow volume",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 28
+      },
+      {
+        "id": "reserve_access_control",
+        "name": "Reserve access control",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 11
+      },
+      {
+        "id": "gas_storage_levels",
+        "name": "Gas storage levels",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 20
+      },
+      {
+        "id": "grain_storage_levels",
+        "name": "Grain storage levels",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 17
+      },
+      {
+        "id": "climate_anomaly_intensit",
+        "name": "Climate anomaly intensity",
+        "kind": "environment",
+        "AS": 28,
+        "PS": 0
+      },
+      {
+        "id": "short_term_demand_shocks",
+        "name": "Short-term demand shocks",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 21
+      },
+      {
+        "id": "energy_investment_flows",
+        "name": "Energy investment flows",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 26
+      },
+      {
+        "id": "geo_tension_level",
+        "name": "Geopolitical tension level",
+        "kind": "driver",
+        "AS": 31,
+        "PS": 22
+      },
+      {
+        "id": "supply_disruption_level",
+        "name": "Supply chain disruption level",
+        "kind": "driver",
+        "AS": 32,
+        "PS": 29
+      },
+      {
+        "id": "policy_intervention_rate",
+        "name": "Policy intervention rate",
+        "kind": "institution_field",
+        "AS": 29,
+        "PS": 28
+      },
+      {
+        "id": "market_volatility_level",
+        "name": "Market volatility level",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 34
+      },
+      {
+        "id": "logistics_capacity",
+        "name": "Logistics capacity",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 26
+      }
+    ],
+    "edges": [
+      {
+        "source": "oil_price_level",
+        "target": "gas_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "fuel_prod_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "energy_investment_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "policy_intervention_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "market_volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "gas_price_level",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "gas_price_level",
+        "target": "fuel_prod_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "gas_price_level",
+        "target": "lng_gas_flow_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "gas_price_level",
+        "target": "gas_storage_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "gas_price_level",
+        "target": "energy_investment_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "gas_price_level",
+        "target": "policy_intervention_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "gas_price_level",
+        "target": "market_volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "gas_price_level",
+        "target": "logistics_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "agri_price_level",
+        "target": "grain_storage_levels",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "agri_price_level",
+        "target": "geo_tension_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "agri_price_level",
+        "target": "policy_intervention_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "agri_price_level",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_prod_capacity",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_prod_capacity",
+        "target": "gas_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_prod_capacity",
+        "target": "lng_gas_flow_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_prod_capacity",
+        "target": "reserve_access_control",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_prod_capacity",
+        "target": "energy_investment_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_prod_capacity",
+        "target": "geo_tension_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_prod_capacity",
+        "target": "supply_disruption_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_prod_capacity",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_prod_capacity",
+        "target": "logistics_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "lng_gas_flow_volume",
+        "target": "gas_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "lng_gas_flow_volume",
+        "target": "gas_storage_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "lng_gas_flow_volume",
+        "target": "short_term_demand_shocks",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "lng_gas_flow_volume",
+        "target": "energy_investment_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "lng_gas_flow_volume",
+        "target": "geo_tension_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "lng_gas_flow_volume",
+        "target": "supply_disruption_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "lng_gas_flow_volume",
+        "target": "policy_intervention_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "lng_gas_flow_volume",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "lng_gas_flow_volume",
+        "target": "logistics_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_access_control",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_access_control",
+        "target": "gas_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_access_control",
+        "target": "fuel_prod_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_access_control",
+        "target": "lng_gas_flow_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_access_control",
+        "target": "energy_investment_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_access_control",
+        "target": "geo_tension_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_access_control",
+        "target": "supply_disruption_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_access_control",
+        "target": "policy_intervention_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_access_control",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "gas_storage_levels",
+        "target": "gas_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "gas_storage_levels",
+        "target": "lng_gas_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "gas_storage_levels",
+        "target": "short_term_demand_shocks",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "gas_storage_levels",
+        "target": "supply_disruption_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "gas_storage_levels",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "grain_storage_levels",
+        "target": "agri_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "grain_storage_levels",
+        "target": "short_term_demand_shocks",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "grain_storage_levels",
+        "target": "geo_tension_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "grain_storage_levels",
+        "target": "supply_disruption_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "grain_storage_levels",
+        "target": "policy_intervention_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "grain_storage_levels",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "climate_anomaly_intensit",
+        "target": "gas_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "climate_anomaly_intensit",
+        "target": "agri_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "climate_anomaly_intensit",
+        "target": "fuel_prod_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "climate_anomaly_intensit",
+        "target": "lng_gas_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "climate_anomaly_intensit",
+        "target": "gas_storage_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "climate_anomaly_intensit",
+        "target": "grain_storage_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "climate_anomaly_intensit",
+        "target": "short_term_demand_shocks",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "climate_anomaly_intensit",
+        "target": "supply_disruption_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "climate_anomaly_intensit",
+        "target": "policy_intervention_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "climate_anomaly_intensit",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "climate_anomaly_intensit",
+        "target": "logistics_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_demand_shocks",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shocks",
+        "target": "gas_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shocks",
+        "target": "agri_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shocks",
+        "target": "lng_gas_flow_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shocks",
+        "target": "gas_storage_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_demand_shocks",
+        "target": "grain_storage_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_demand_shocks",
+        "target": "supply_disruption_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shocks",
+        "target": "policy_intervention_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shocks",
+        "target": "market_volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shocks",
+        "target": "logistics_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_investment_flows",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_investment_flows",
+        "target": "gas_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_investment_flows",
+        "target": "fuel_prod_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_investment_flows",
+        "target": "lng_gas_flow_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_investment_flows",
+        "target": "gas_storage_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_investment_flows",
+        "target": "policy_intervention_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "energy_investment_flows",
+        "target": "logistics_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "gas_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "agri_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "fuel_prod_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "lng_gas_flow_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "reserve_access_control",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "grain_storage_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "energy_investment_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "supply_disruption_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "policy_intervention_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "market_volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geo_tension_level",
+        "target": "logistics_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "gas_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "agri_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "fuel_prod_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "lng_gas_flow_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "gas_storage_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "grain_storage_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "energy_investment_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "geo_tension_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "policy_intervention_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "market_volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "supply_disruption_level",
+        "target": "logistics_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "gas_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "agri_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "fuel_prod_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "lng_gas_flow_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "reserve_access_control",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "gas_storage_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "grain_storage_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "energy_investment_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "supply_disruption_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_intervention_rate",
+        "target": "logistics_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "gas_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "agri_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "energy_investment_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "policy_intervention_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "logistics_capacity",
+        "target": "gas_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "logistics_capacity",
+        "target": "agri_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "logistics_capacity",
+        "target": "fuel_prod_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "logistics_capacity",
+        "target": "lng_gas_flow_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "logistics_capacity",
+        "target": "supply_disruption_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "logistics_capacity",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "europe_winter_gas_price_spike",
+      "title": "European winter gas price spike risk",
+      "description": "Low European gas stores and forecasts raise odds of prices surging this coming winter, potentially topping €100/ MWh.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2027-03-31",
+        "label": "this winter"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "gas_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gas_storage_levels",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_demand_shocks",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "supply_disruption_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Europe’s gas stores are running low — and prices could top 100 euros this winter; Germany notes low fills (headlines 2026-08-27, 2026-08-28)."
+    },
+    {
+      "id": "gas_storage_refill_campaign",
+      "title": "Autumn gas storage refill campaign",
+      "description": "European and German injection efforts and improved LNG markets drive a coordinated refill push ahead of winter.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-11-30",
+        "label": "Sept–Nov 2026"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "gas_storage_levels",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "lng_gas_flow_volume",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gas_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "supply_disruption_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Germany says gas storage injections pick up as LNG market conditions improve (headline 2026-08-28)."
+    },
+    {
+      "id": "us_take_control_venezuela_reserves",
+      "title": "U.S. moves to control Venezuelan oil reserves",
+      "description": "U.S. government negotiations and announced steps to secure long-term access to Venezuela's proven reserves proceed, shifting control and policy.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-12-31",
+        "label": "Q4 2026"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "reserve_access_control",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_investment_flows",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "geo_tension_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple reports: U.S. to take control of much of Venezuela’s proven oil reserves; nears deal for long-term access (headlines 2026-08-28, 2026-08-29)."
+    },
+    {
+      "id": "chevron_venezuela_deal_completion",
+      "title": "Chevron and U.S. firms finalize Venezuela investments",
+      "description": "Pending agreements by Chevron and other U.S. firms to invest and migrate projects in Venezuelan fields could restore capacity and spur flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-12-31",
+        "label": "next 3–4 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "fuel_prod_capacity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_investment_flows",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "reserve_access_control",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Chevron to complete deal in Venezuela; U.S. firms near deal to invest billions in Venezuelan oil fields (headlines 2026-08-29)."
+    },
+    {
+      "id": "black_sea_export_disruption",
+      "title": "Black Sea grain export disruption intensifies",
+      "description": "Deepening Black Sea crisis is tightening wheat flows and pushing grain prices higher, with continued export disruptions likely in coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-12-31",
+        "label": "coming months"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "agri_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "grain_storage_levels",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "supply_disruption_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "logistics_capacity",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Wheat soars as Black Sea crisis deepens; corn and wheat at multi-year highs (headlines 2026-08-27, 2026-08-29)."
+    },
+    {
+      "id": "el_nino_food_and_energy_stress",
+      "title": "El Niño amplifies food and energy stress",
+      "description": "The looming El Niño threatens crop yields and drives extreme-heat energy demand, creating broad demand and supply stress into winter/spring.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2027-03-31",
+        "label": "El Niño season"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "climate_anomaly_intensit",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_demand_shocks",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "agri_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "grain_storage_levels",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "energy_investment_flows",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "El Niño’s looming threat to the global food system; investors eye El Niño opportunities (headlines 2026-08-27)."
+    },
+    {
+      "id": "september_gas_contract_rollover",
+      "title": "September natural gas contract expiry/rollover",
+      "description": "Monthly contract expiries and rollovers in U.S. gas markets (September) typically produce short-term price moves and volatility.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "by end of Sept 2026"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "gas_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gas_storage_levels",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "U.S. Natural Gas Gains as September Contract Expires; futures reacting to hot weather (headlines 2026-08-28, 2026-08-27)."
+    },
+    {
+      "id": "heatwave_peak_cooling_demand",
+      "title": "Peak heatwave-driven cooling demand",
+      "description": "Persistent hot weather and heatwaves drive near-term spikes in electricity and gas-for-power demand, pressuring retail costs and supply chains.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-29",
+        "end": "2026-09-30",
+        "label": "next 4–6 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "short_term_demand_shocks",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gas_price_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_investment_flows",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "U.S. Natural Gas Futures Gain on Persistent Hot Weather; heatwaves spark interest in extreme cooling (headlines 2026-08-27, 2026-08-27)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "europe_winter_gas_price_spike",
+      "title": "European winter gas price spike risk",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "this winter",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2027-03-31",
+      "probability": 0.7,
+      "impact_score": 301.0,
+      "expected_impact": 210.7,
+      "event_PS": 28.231,
+      "event_AS": 23.154,
+      "n_vars": 5,
+      "affected_ids": "gas_price_level, gas_storage_levels, market_volatility_level, short_term_demand_shocks, supply_disruption_level",
+      "rationale": "Europe’s gas stores are running low — and prices could top 100 euros this winter; Germany notes low fills (headlines 2026-08-27, 2026-08-28)."
+    },
+    {
+      "id": "black_sea_export_disruption",
+      "title": "Black Sea grain export disruption intensifies",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "coming months",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-12-31",
+      "probability": 0.65,
+      "impact_score": 270.0,
+      "expected_impact": 175.5,
+      "event_PS": 26.692,
+      "event_AS": 20.769,
+      "n_vars": 5,
+      "affected_ids": "agri_price_level, grain_storage_levels, supply_disruption_level, market_volatility_level, logistics_capacity",
+      "rationale": "Wheat soars as Black Sea crisis deepens; corn and wheat at multi-year highs (headlines 2026-08-27, 2026-08-29)."
+    },
+    {
+      "id": "us_take_control_venezuela_reserves",
+      "title": "U.S. moves to control Venezuelan oil reserves",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Q4 2026",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-12-31",
+      "probability": 0.75,
+      "impact_score": 251.0,
+      "expected_impact": 188.25,
+      "event_PS": 22.818,
+      "event_AS": 22.818,
+      "n_vars": 5,
+      "affected_ids": "reserve_access_control, energy_investment_flows, oil_price_level, geo_tension_level, market_volatility_level",
+      "rationale": "Multiple reports: U.S. to take control of much of Venezuela’s proven oil reserves; nears deal for long-term access (headlines 2026-08-28, 2026-08-29)."
+    },
+    {
+      "id": "el_nino_food_and_energy_stress",
+      "title": "El Niño amplifies food and energy stress",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "El Niño season",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2027-03-31",
+      "probability": 0.8,
+      "impact_score": 247.0,
+      "expected_impact": 197.6,
+      "event_PS": 15.545,
+      "event_AS": 22.455,
+      "n_vars": 5,
+      "affected_ids": "climate_anomaly_intensit, short_term_demand_shocks, agri_price_level, grain_storage_levels, energy_investment_flows",
+      "rationale": "El Niño’s looming threat to the global food system; investors eye El Niño opportunities (headlines 2026-08-27)."
+    },
+    {
+      "id": "chevron_venezuela_deal_completion",
+      "title": "Chevron and U.S. firms finalize Venezuela investments",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3–4 months",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 195.0,
+      "expected_impact": 136.5,
+      "event_PS": 23.333,
+      "event_AS": 21.667,
+      "n_vars": 5,
+      "affected_ids": "fuel_prod_capacity, energy_investment_flows, reserve_access_control, oil_price_level, market_volatility_level",
+      "rationale": "Chevron to complete deal in Venezuela; U.S. firms near deal to invest billions in Venezuelan oil fields (headlines 2026-08-29)."
+    },
+    {
+      "id": "gas_storage_refill_campaign",
+      "title": "Autumn gas storage refill campaign",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Sept–Nov 2026",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-11-30",
+      "probability": 0.8,
+      "impact_score": 184.0,
+      "expected_impact": 147.2,
+      "event_PS": 26.875,
+      "event_AS": 23.0,
+      "n_vars": 4,
+      "affected_ids": "gas_storage_levels, lng_gas_flow_volume, gas_price_level, supply_disruption_level",
+      "rationale": "Germany says gas storage injections pick up as LNG market conditions improve (headline 2026-08-28)."
+    },
+    {
+      "id": "heatwave_peak_cooling_demand",
+      "title": "Peak heatwave-driven cooling demand",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4–6 weeks",
+      "date": null,
+      "start": "2026-08-29",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 117.0,
+      "expected_impact": 81.9,
+      "event_PS": 27.4,
+      "event_AS": 23.4,
+      "n_vars": 4,
+      "affected_ids": "short_term_demand_shocks, gas_price_level, energy_investment_flows, market_volatility_level",
+      "rationale": "U.S. Natural Gas Futures Gain on Persistent Hot Weather; heatwaves spark interest in extreme cooling (headlines 2026-08-27, 2026-08-27)."
+    },
+    {
+      "id": "september_gas_contract_rollover",
+      "title": "September natural gas contract expiry/rollover",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of Sept 2026",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.9,
+      "impact_score": 104.0,
+      "expected_impact": 93.6,
+      "event_PS": 31.6,
+      "event_AS": 20.8,
+      "n_vars": 3,
+      "affected_ids": "gas_price_level, market_volatility_level, gas_storage_levels",
+      "rationale": "U.S. Natural Gas Gains as September Contract Expires; futures reacting to hot weather (headlines 2026-08-28, 2026-08-27)."
+    }
+  ]
+}
