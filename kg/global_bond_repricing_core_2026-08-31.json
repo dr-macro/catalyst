@@ -1,0 +1,2117 @@
+{
+  "label": "global_bond_repricing",
+  "as_of": "2026-08-30",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-31T01:55:14",
+  "system_description": {
+    "narrative_title": "Warsh's hawkish Jackson Hole sparks global bond selloff and policy clash",
+    "narrative_summary": "Fed Chair Kevin Warsh's hawkish messaging at Jackson Hole has raised inflation and rate‑hike expectations, driving up global sovereign yields and roiling risk assets. The situation functions as an open system: Fed communications, U.S. Treasury debt issuance and ad‑hoc interventions, investor flows across bonds, FX, equities, gold and crypto, and external macro data continuously exchange information and influence each other via reinforcing and balancing feedbacks. Those feedbacks—higher yields increasing fiscal costs, Treasury interventions influencing market pricing, and central bank signals shaping expectations—create a dynamic that risks a policy clash and contagion into European sovereigns and emerging markets.",
+    "scope": "Inside the boundary: Fed communications and policy expectations (Jackson Hole), U.S. Treasury issuance and interventions (including Scott Bessent actions), U.S Treasury market yields and auctions, global sovereign bond spreads (notably France/Italy), investor flows across fixed income, equities, FX, gold and crypto, and short‑term market price discovery and prediction markets.",
+    "super_system": "Global financial system and international macroeconomy (central banks, sovereign credit markets, cross‑border capital flows).",
+    "adjacent_subsystems": [
+      "U.S. fiscal policy and Treasury operations",
+      "European sovereign bond markets and ECB policy",
+      "Global risk assets (equities, commodities, crypto) and corporate finance",
+      "Emerging markets and capital flow dynamics"
+    ],
+    "evidence_headlines": [
+      "Warsh Says the Fed May Not Be Done Fighting Inflation",
+      "Kevin Warsh’s Jackson Hole Speech Puts Bond Yields on Notice",
+      "Scott Bessent’s bond intervention puts US Treasury on collision course with Fed",
+      "US government debt hits $40tn as borrowing rises at historic rate",
+      "France replaces Italy as European bond investors’ biggest worry",
+      "US long-term bonds slide as Treasury secretary Bessent’s intervention fails to soothe investors"
+    ]
+  },
+  "variables": [
+    {
+      "id": "policy_comm_tone",
+      "name": "Policy communication tone",
+      "description": "The prevailing hawkishness or dovishness signaled in official monetary-policy communications and forward guidance.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_implied_rates",
+      "name": "Market-implied rate path",
+      "description": "The path of expected future short-term policy rates as implied by market prices and derivatives.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_level",
+      "name": "Sovereign yield curve level",
+      "description": "The term-structure level of sovereign bond yields across maturities in the onshore and offshore markets.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_rates",
+      "name": "Short-term interest rate level",
+      "description": "The prevailing short-term interbank or risk-free interest rate used for monetary and cash management operations.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "debt_issuance_rate",
+      "name": "Sovereign debt issuance rate",
+      "description": "The flow rate at which new sovereign debt securities are issued into the market per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "debt_stock",
+      "name": "Sovereign debt stock",
+      "description": "The outstanding stock of government debt securities subject to refinancing and market financing.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_interest_costs",
+      "name": "Fiscal interest costs",
+      "description": "The periodic interest expense burden on public finances determined by yields and the debt stock.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The ease and depth with which bond positions can be transacted without large price impact.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "Aggregate willingness of market participants to assume credit, duration, and market risk instead of holding safe assets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "Net financial flows across borders into or out of local fixed-income, equity and FX markets over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "currency_pressure",
+      "name": "Currency exchange pressure",
+      "description": "Upward or downward market pressure on the exchange rate driven by interest differentials and capital flows.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_prices",
+      "name": "Safe-haven asset prices",
+      "description": "Prices and valuations of assets commonly used as flight-to-quality stores of value relative to risk assets.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Market volatility",
+      "description": "The degree of short-term price variability across fixed income, equity and FX markets reflecting uncertainty.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "auction_clearing_yield",
+      "name": "Auction clearing yield",
+      "description": "The yields at which sovereign debt auctions clear, reflecting primary-market demand-supply and price discovery.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_price_discovery",
+      "name": "Market price discovery efficiency",
+      "description": "The speed and accuracy with which markets incorporate new information into traded prices and quotes.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market and survey-implied expected future inflation trajectory over relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "policy_comm_tone",
+    "market_implied_rates",
+    "yield_curve_level",
+    "short_term_rates",
+    "debt_issuance_rate",
+    "debt_stock",
+    "fiscal_interest_costs",
+    "bond_market_liquidity",
+    "investor_risk_appetite",
+    "cross_border_flows",
+    "currency_pressure",
+    "safe_haven_prices",
+    "market_volatility",
+    "auction_clearing_yield",
+    "market_price_discovery",
+    "inflation_expectations"
+  ],
+  "var_names": {
+    "policy_comm_tone": "Policy communication tone",
+    "market_implied_rates": "Market-implied rate path",
+    "yield_curve_level": "Sovereign yield curve level",
+    "short_term_rates": "Short-term interest rate level",
+    "debt_issuance_rate": "Sovereign debt issuance rate",
+    "debt_stock": "Sovereign debt stock",
+    "fiscal_interest_costs": "Fiscal interest costs",
+    "bond_market_liquidity": "Bond market liquidity",
+    "investor_risk_appetite": "Investor risk appetite",
+    "cross_border_flows": "Cross-border capital flows",
+    "currency_pressure": "Currency exchange pressure",
+    "safe_haven_prices": "Safe-haven asset prices",
+    "market_volatility": "Market volatility",
+    "auction_clearing_yield": "Auction clearing yield",
+    "market_price_discovery": "Market price discovery efficiency",
+    "inflation_expectations": "Inflation expectations"
+  },
+  "impact_matrix": {
+    "policy_comm_tone": {
+      "policy_comm_tone": 0,
+      "market_implied_rates": 3,
+      "yield_curve_level": 3,
+      "short_term_rates": 1,
+      "debt_issuance_rate": 0,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 0,
+      "bond_market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2,
+      "currency_pressure": 2,
+      "safe_haven_prices": 2,
+      "market_volatility": 2,
+      "auction_clearing_yield": 2,
+      "market_price_discovery": 2,
+      "inflation_expectations": 2
+    },
+    "market_implied_rates": {
+      "policy_comm_tone": 1,
+      "market_implied_rates": 0,
+      "yield_curve_level": 3,
+      "short_term_rates": 1,
+      "debt_issuance_rate": 0,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 2,
+      "bond_market_liquidity": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 3,
+      "currency_pressure": 3,
+      "safe_haven_prices": 2,
+      "market_volatility": 3,
+      "auction_clearing_yield": 3,
+      "market_price_discovery": 3,
+      "inflation_expectations": 3
+    },
+    "yield_curve_level": {
+      "policy_comm_tone": 1,
+      "market_implied_rates": 3,
+      "yield_curve_level": 0,
+      "short_term_rates": 3,
+      "debt_issuance_rate": 0,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 3,
+      "bond_market_liquidity": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 3,
+      "currency_pressure": 3,
+      "safe_haven_prices": 2,
+      "market_volatility": 3,
+      "auction_clearing_yield": 3,
+      "market_price_discovery": 2,
+      "inflation_expectations": 2
+    },
+    "short_term_rates": {
+      "policy_comm_tone": 1,
+      "market_implied_rates": 3,
+      "yield_curve_level": 3,
+      "short_term_rates": 0,
+      "debt_issuance_rate": 1,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 2,
+      "bond_market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2,
+      "currency_pressure": 3,
+      "safe_haven_prices": 2,
+      "market_volatility": 2,
+      "auction_clearing_yield": 3,
+      "market_price_discovery": 2,
+      "inflation_expectations": 1
+    },
+    "debt_issuance_rate": {
+      "policy_comm_tone": 0,
+      "market_implied_rates": 2,
+      "yield_curve_level": 2,
+      "short_term_rates": 1,
+      "debt_issuance_rate": 0,
+      "debt_stock": 3,
+      "fiscal_interest_costs": 2,
+      "bond_market_liquidity": 2,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 2,
+      "currency_pressure": 1,
+      "safe_haven_prices": 0,
+      "market_volatility": 2,
+      "auction_clearing_yield": 3,
+      "market_price_discovery": 2,
+      "inflation_expectations": 0
+    },
+    "debt_stock": {
+      "policy_comm_tone": 1,
+      "market_implied_rates": 2,
+      "yield_curve_level": 2,
+      "short_term_rates": 1,
+      "debt_issuance_rate": 1,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 3,
+      "bond_market_liquidity": 2,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 1,
+      "currency_pressure": 1,
+      "safe_haven_prices": 0,
+      "market_volatility": 1,
+      "auction_clearing_yield": 2,
+      "market_price_discovery": 1,
+      "inflation_expectations": 0
+    },
+    "fiscal_interest_costs": {
+      "policy_comm_tone": 0,
+      "market_implied_rates": 1,
+      "yield_curve_level": 1,
+      "short_term_rates": 0,
+      "debt_issuance_rate": 1,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 0,
+      "bond_market_liquidity": 0,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 1,
+      "currency_pressure": 0,
+      "safe_haven_prices": 0,
+      "market_volatility": 1,
+      "auction_clearing_yield": 1,
+      "market_price_discovery": 0,
+      "inflation_expectations": 1
+    },
+    "bond_market_liquidity": {
+      "policy_comm_tone": 1,
+      "market_implied_rates": 2,
+      "yield_curve_level": 2,
+      "short_term_rates": 2,
+      "debt_issuance_rate": 1,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 2,
+      "bond_market_liquidity": 0,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2,
+      "currency_pressure": 1,
+      "safe_haven_prices": 1,
+      "market_volatility": 3,
+      "auction_clearing_yield": 2,
+      "market_price_discovery": 3,
+      "inflation_expectations": 0
+    },
+    "investor_risk_appetite": {
+      "policy_comm_tone": 0,
+      "market_implied_rates": 2,
+      "yield_curve_level": 2,
+      "short_term_rates": 1,
+      "debt_issuance_rate": 1,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 2,
+      "bond_market_liquidity": 2,
+      "investor_risk_appetite": 0,
+      "cross_border_flows": 3,
+      "currency_pressure": 2,
+      "safe_haven_prices": 3,
+      "market_volatility": 2,
+      "auction_clearing_yield": 2,
+      "market_price_discovery": 2,
+      "inflation_expectations": 0
+    },
+    "cross_border_flows": {
+      "policy_comm_tone": 1,
+      "market_implied_rates": 3,
+      "yield_curve_level": 3,
+      "short_term_rates": 2,
+      "debt_issuance_rate": 1,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 2,
+      "bond_market_liquidity": 2,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 0,
+      "currency_pressure": 3,
+      "safe_haven_prices": 2,
+      "market_volatility": 2,
+      "auction_clearing_yield": 3,
+      "market_price_discovery": 2,
+      "inflation_expectations": 0
+    },
+    "currency_pressure": {
+      "policy_comm_tone": 1,
+      "market_implied_rates": 2,
+      "yield_curve_level": 2,
+      "short_term_rates": 2,
+      "debt_issuance_rate": 0,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 2,
+      "bond_market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 3,
+      "currency_pressure": 0,
+      "safe_haven_prices": 2,
+      "market_volatility": 3,
+      "auction_clearing_yield": 2,
+      "market_price_discovery": 2,
+      "inflation_expectations": 2
+    },
+    "safe_haven_prices": {
+      "policy_comm_tone": 0,
+      "market_implied_rates": 2,
+      "yield_curve_level": 2,
+      "short_term_rates": 1,
+      "debt_issuance_rate": 0,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 2,
+      "bond_market_liquidity": 1,
+      "investor_risk_appetite": 3,
+      "cross_border_flows": 3,
+      "currency_pressure": 3,
+      "safe_haven_prices": 0,
+      "market_volatility": 2,
+      "auction_clearing_yield": 2,
+      "market_price_discovery": 1,
+      "inflation_expectations": 0
+    },
+    "market_volatility": {
+      "policy_comm_tone": 1,
+      "market_implied_rates": 3,
+      "yield_curve_level": 2,
+      "short_term_rates": 2,
+      "debt_issuance_rate": 2,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 2,
+      "bond_market_liquidity": 3,
+      "investor_risk_appetite": 3,
+      "cross_border_flows": 3,
+      "currency_pressure": 3,
+      "safe_haven_prices": 3,
+      "market_volatility": 0,
+      "auction_clearing_yield": 3,
+      "market_price_discovery": 3,
+      "inflation_expectations": 1
+    },
+    "auction_clearing_yield": {
+      "policy_comm_tone": 1,
+      "market_implied_rates": 3,
+      "yield_curve_level": 3,
+      "short_term_rates": 2,
+      "debt_issuance_rate": 1,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 3,
+      "bond_market_liquidity": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2,
+      "currency_pressure": 2,
+      "safe_haven_prices": 2,
+      "market_volatility": 2,
+      "auction_clearing_yield": 0,
+      "market_price_discovery": 3,
+      "inflation_expectations": 2
+    },
+    "market_price_discovery": {
+      "policy_comm_tone": 1,
+      "market_implied_rates": 3,
+      "yield_curve_level": 3,
+      "short_term_rates": 2,
+      "debt_issuance_rate": 1,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 2,
+      "bond_market_liquidity": 2,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 2,
+      "currency_pressure": 1,
+      "safe_haven_prices": 1,
+      "market_volatility": 2,
+      "auction_clearing_yield": 3,
+      "market_price_discovery": 0,
+      "inflation_expectations": 2
+    },
+    "inflation_expectations": {
+      "policy_comm_tone": 3,
+      "market_implied_rates": 3,
+      "yield_curve_level": 3,
+      "short_term_rates": 2,
+      "debt_issuance_rate": 0,
+      "debt_stock": 0,
+      "fiscal_interest_costs": 2,
+      "bond_market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2,
+      "currency_pressure": 2,
+      "safe_haven_prices": 1,
+      "market_volatility": 2,
+      "auction_clearing_yield": 3,
+      "market_price_discovery": 2,
+      "inflation_expectations": 0
+    }
+  },
+  "AS": {
+    "policy_comm_tone": 24,
+    "market_implied_rates": 31,
+    "yield_curve_level": 32,
+    "short_term_rates": 28,
+    "debt_issuance_rate": 23,
+    "debt_stock": 19,
+    "fiscal_interest_costs": 8,
+    "bond_market_liquidity": 24,
+    "investor_risk_appetite": 24,
+    "cross_border_flows": 27,
+    "currency_pressure": 26,
+    "safe_haven_prices": 22,
+    "market_volatility": 34,
+    "auction_clearing_yield": 30,
+    "market_price_discovery": 26,
+    "inflation_expectations": 28
+  },
+  "PS": {
+    "policy_comm_tone": 13,
+    "market_implied_rates": 37,
+    "yield_curve_level": 36,
+    "short_term_rates": 23,
+    "debt_issuance_rate": 10,
+    "debt_stock": 3,
+    "fiscal_interest_costs": 31,
+    "bond_market_liquidity": 24,
+    "investor_risk_appetite": 27,
+    "cross_border_flows": 34,
+    "currency_pressure": 30,
+    "safe_haven_prices": 23,
+    "market_volatility": 32,
+    "auction_clearing_yield": 37,
+    "market_price_discovery": 30,
+    "inflation_expectations": 16
+  },
+  "med_AS": 26.0,
+  "med_PS": 28.5,
+  "roles": [
+    {
+      "variable": "yield_curve_level",
+      "name": "Sovereign yield curve level",
+      "AS": 32,
+      "PS": 36,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 1152,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_implied_rates",
+      "name": "Market-implied rate path",
+      "AS": 31,
+      "PS": 37,
+      "Q=AS/PS": 0.84,
+      "P=AS*PS": 1147,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "auction_clearing_yield",
+      "name": "Auction clearing yield",
+      "AS": 30,
+      "PS": 37,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 1110,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Market volatility",
+      "AS": 34,
+      "PS": 32,
+      "Q=AS/PS": 1.06,
+      "P=AS*PS": 1088,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 27,
+      "PS": 34,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 918,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "currency_pressure",
+      "name": "Currency exchange pressure",
+      "AS": 26,
+      "PS": 30,
+      "Q=AS/PS": 0.87,
+      "P=AS*PS": 780,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_price_discovery",
+      "name": "Market price discovery efficiency",
+      "AS": 26,
+      "PS": 30,
+      "Q=AS/PS": 0.87,
+      "P=AS*PS": 780,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 24,
+      "PS": 27,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 648,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "short_term_rates",
+      "name": "Short-term interest rate level",
+      "AS": 28,
+      "PS": 23,
+      "Q=AS/PS": 1.22,
+      "P=AS*PS": 644,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 24,
+      "PS": 24,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 576,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "safe_haven_prices",
+      "name": "Safe-haven asset prices",
+      "AS": 22,
+      "PS": 23,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 506,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 28,
+      "PS": 16,
+      "Q=AS/PS": 1.75,
+      "P=AS*PS": 448,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "policy_comm_tone",
+      "name": "Policy communication tone",
+      "AS": 24,
+      "PS": 13,
+      "Q=AS/PS": 1.85,
+      "P=AS*PS": 312,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fiscal_interest_costs",
+      "name": "Fiscal interest costs",
+      "AS": 8,
+      "PS": 31,
+      "Q=AS/PS": 0.26,
+      "P=AS*PS": 248,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "debt_issuance_rate",
+      "name": "Sovereign debt issuance rate",
+      "AS": 23,
+      "PS": 10,
+      "Q=AS/PS": 2.3,
+      "P=AS*PS": 230,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "debt_stock",
+      "name": "Sovereign debt stock",
+      "AS": 19,
+      "PS": 3,
+      "Q=AS/PS": 6.33,
+      "P=AS*PS": 57,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "policy_comm_tone",
+        "name": "Policy communication tone",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 13
+      },
+      {
+        "id": "market_implied_rates",
+        "name": "Market-implied rate path",
+        "kind": "perception",
+        "AS": 31,
+        "PS": 37
+      },
+      {
+        "id": "yield_curve_level",
+        "name": "Sovereign yield curve level",
+        "kind": "environment",
+        "AS": 32,
+        "PS": 36
+      },
+      {
+        "id": "short_term_rates",
+        "name": "Short-term interest rate level",
+        "kind": "environment",
+        "AS": 28,
+        "PS": 23
+      },
+      {
+        "id": "debt_issuance_rate",
+        "name": "Sovereign debt issuance rate",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 10
+      },
+      {
+        "id": "debt_stock",
+        "name": "Sovereign debt stock",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 3
+      },
+      {
+        "id": "fiscal_interest_costs",
+        "name": "Fiscal interest costs",
+        "kind": "flow",
+        "AS": 8,
+        "PS": 31
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "environment",
+        "AS": 24,
+        "PS": 24
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 27
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 27,
+        "PS": 34
+      },
+      {
+        "id": "currency_pressure",
+        "name": "Currency exchange pressure",
+        "kind": "environment",
+        "AS": 26,
+        "PS": 30
+      },
+      {
+        "id": "safe_haven_prices",
+        "name": "Safe-haven asset prices",
+        "kind": "environment",
+        "AS": 22,
+        "PS": 23
+      },
+      {
+        "id": "market_volatility",
+        "name": "Market volatility",
+        "kind": "environment",
+        "AS": 34,
+        "PS": 32
+      },
+      {
+        "id": "auction_clearing_yield",
+        "name": "Auction clearing yield",
+        "kind": "institution_field",
+        "AS": 30,
+        "PS": 37
+      },
+      {
+        "id": "market_price_discovery",
+        "name": "Market price discovery efficiency",
+        "kind": "institution_field",
+        "AS": 26,
+        "PS": 30
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 28,
+        "PS": 16
+      }
+    ],
+    "edges": [
+      {
+        "source": "policy_comm_tone",
+        "target": "market_implied_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_comm_tone",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_comm_tone",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_comm_tone",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_comm_tone",
+        "target": "currency_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_comm_tone",
+        "target": "safe_haven_prices",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_comm_tone",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_comm_tone",
+        "target": "auction_clearing_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_comm_tone",
+        "target": "market_price_discovery",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_comm_tone",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_implied_rates",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_rates",
+        "target": "fiscal_interest_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_rates",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_implied_rates",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_implied_rates",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_rates",
+        "target": "currency_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_rates",
+        "target": "safe_haven_prices",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "market_implied_rates",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_rates",
+        "target": "auction_clearing_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_rates",
+        "target": "market_price_discovery",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_rates",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "market_implied_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "short_term_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "fiscal_interest_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "currency_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "safe_haven_prices",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "auction_clearing_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "market_price_discovery",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rates",
+        "target": "market_implied_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rates",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rates",
+        "target": "fiscal_interest_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rates",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rates",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rates",
+        "target": "currency_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rates",
+        "target": "safe_haven_prices",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rates",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rates",
+        "target": "auction_clearing_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rates",
+        "target": "market_price_discovery",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "market_implied_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "debt_stock",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "fiscal_interest_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "auction_clearing_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "market_price_discovery",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_stock",
+        "target": "market_implied_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_stock",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_stock",
+        "target": "fiscal_interest_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_stock",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_stock",
+        "target": "auction_clearing_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "market_implied_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "short_term_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "fiscal_interest_costs",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "auction_clearing_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "market_price_discovery",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_implied_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "fiscal_interest_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "currency_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "safe_haven_prices",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "auction_clearing_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_price_discovery",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_implied_rates",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "short_term_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "fiscal_interest_costs",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "currency_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "safe_haven_prices",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "auction_clearing_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_price_discovery",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "market_implied_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "short_term_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "fiscal_interest_costs",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "safe_haven_prices",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "auction_clearing_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "market_price_discovery",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_prices",
+        "target": "market_implied_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_prices",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_prices",
+        "target": "fiscal_interest_costs",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_prices",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_prices",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_prices",
+        "target": "currency_pressure",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_prices",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_prices",
+        "target": "auction_clearing_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "market_implied_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "yield_curve_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "short_term_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "debt_issuance_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "fiscal_interest_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "currency_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "safe_haven_prices",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "auction_clearing_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "market_price_discovery",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "market_implied_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "short_term_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "fiscal_interest_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "currency_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "safe_haven_prices",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "market_price_discovery",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "auction_clearing_yield",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_discovery",
+        "target": "market_implied_rates",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_discovery",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_discovery",
+        "target": "short_term_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_discovery",
+        "target": "fiscal_interest_costs",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_discovery",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_discovery",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_discovery",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_discovery",
+        "target": "auction_clearing_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_discovery",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_comm_tone",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_implied_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_term_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "fiscal_interest_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "currency_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "auction_clearing_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_price_discovery",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fomc_meeting_mid_sep",
+      "title": "Upcoming FOMC decision (mid‑September)",
+      "description": "Next Fed policy meeting and statement likely to crystallise the policy path after Warsh's Jackson Hole hawkishness, shifting market expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-09-18",
+        "label": "mid‑Sep"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "policy_comm_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_implied_rates",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_rates",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Warsh's hawkish Jackson Hole remarks raised rate‑hike bets (e.g. 'Warsh Says the Fed May Not Be Done Fighting Inflation')."
+    },
+    {
+      "id": "treasury_coupon_auctions_2weeks",
+      "title": "Near‑term US Treasury coupon auctions",
+      "description": "Regular sovereign coupon auctions in the coming days/weeks will test demand and likely push clearing yields amid stressed long‑end market.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-31",
+        "end": "2026-09-14",
+        "label": "2 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "auction_clearing_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_price_discovery",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "'Yields on Seven-Year U.S. Treasurys Sold at Auction Near Two-Year High' and auction strain headlines."
+    },
+    {
+      "id": "treasury_yield_cap_operations",
+      "title": "Continued Treasury attempts to cap long‑term yields",
+      "description": "US Treasury interventions to slow rising yields (band‑aid fixes, operations) are likely to continue, affecting primary‑market dynamics and price discovery.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-30",
+        "end": "2026-09-30",
+        "label": "next month"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "market_implied_rates",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "auction_clearing_yield",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_price_discovery",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "'US Treasury Tries to Slow Surging Yields With a Band‑Aid Fix' and Bessent intervention coverage."
+    },
+    {
+      "id": "private_bond_interventions_continue",
+      "title": "Ongoing private‑investor bond buying",
+      "description": "Large private investors' bond interventions (eg. Scott Bessent) may persist, temporarily supporting prices and altering cross‑border flows and liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-30",
+        "end": "2026-09-30",
+        "label": "next month"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_level",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "'Scott Bessent’s bond intervention puts US Treasury on collision course with Fed' and related coverage."
+    },
+    {
+      "id": "elevated_us_debt_issuance_q3",
+      "title": "Elevated US debt issuance (ongoing)",
+      "description": "High stock and flow of US government debt (recent $40tn milestone) will keep issuance pressure and raise financing needs this quarter.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-30",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "debt_issuance_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "debt_stock",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_interest_costs",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "auction_clearing_yield",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'US government debt hits $40tn as borrowing rises at historic rate' and rising yields increase costs."
+    },
+    {
+      "id": "french_bond_stress_nearterm",
+      "title": "Near‑term French government bond stress",
+      "description": "Heightened investor concern about French debt versus peers may intensify selling in European sovereigns, pressuring yields and flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-30",
+        "end": "2026-09-20",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "yield_curve_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'France replaces Italy as European bond investors’ biggest worry' and 'Hawkish ECB Not Helping French Government Bonds'."
+    },
+    {
+      "id": "dollar_strength_continues",
+      "title": "Dollar appreciation and safe‑haven reallocation",
+      "description": "Post‑Jackson Hole hawkish signals are likely to sustain dollar strength and pressure safe‑haven prices (eg. gold), shifting capital flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-08-30",
+        "end": "2026-09-30",
+        "label": "next month"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "currency_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_haven_prices",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "'Dollar climbs after Warsh comments' and 'Gold drops 3% as Fed's Warsh comments lift rate hike bets'."
+    },
+    {
+      "id": "sept_inflation_data_releases",
+      "title": "Early‑to‑mid September inflation data",
+      "description": "Scheduled monthly inflation prints (CPI/PCE and related data) will be key to whether hawkish guidance is reinforced or reversed.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-20",
+        "label": "early‑mid Sep"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_implied_rates",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_comm_tone",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Warsh's inflation warnings and markets bracing for data ('Warsh sharpens inflation warning at Jackson Hole')."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "fomc_meeting_mid_sep",
+      "title": "Upcoming FOMC decision (mid‑September)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid‑Sep",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-09-18",
+      "probability": 0.85,
+      "impact_score": 313.0,
+      "expected_impact": 266.05,
+      "event_PS": 26.091,
+      "event_AS": 28.455,
+      "n_vars": 5,
+      "affected_ids": "policy_comm_tone, market_implied_rates, short_term_rates, market_volatility, investor_risk_appetite",
+      "rationale": "Warsh's hawkish Jackson Hole remarks raised rate‑hike bets (e.g. 'Warsh Says the Fed May Not Be Done Fighting Inflation')."
+    },
+    {
+      "id": "treasury_coupon_auctions_2weeks",
+      "title": "Near‑term US Treasury coupon auctions",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-08-31",
+      "end": "2026-09-14",
+      "probability": 0.9,
+      "impact_score": 286.0,
+      "expected_impact": 257.4,
+      "event_PS": 32.7,
+      "event_AS": 28.6,
+      "n_vars": 4,
+      "affected_ids": "auction_clearing_yield, yield_curve_level, bond_market_liquidity, market_price_discovery",
+      "rationale": "'Yields on Seven-Year U.S. Treasurys Sold at Auction Near Two-Year High' and auction strain headlines."
+    },
+    {
+      "id": "sept_inflation_data_releases",
+      "title": "Early‑to‑mid September inflation data",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "early‑mid Sep",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-20",
+      "probability": 0.75,
+      "impact_score": 262.0,
+      "expected_impact": 196.5,
+      "event_PS": 23.556,
+      "event_AS": 29.111,
+      "n_vars": 4,
+      "affected_ids": "inflation_expectations, market_implied_rates, policy_comm_tone, market_volatility",
+      "rationale": "Warsh's inflation warnings and markets bracing for data ('Warsh sharpens inflation warning at Jackson Hole')."
+    },
+    {
+      "id": "treasury_yield_cap_operations",
+      "title": "Continued Treasury attempts to cap long‑term yields",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next month",
+      "date": null,
+      "start": "2026-08-30",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 222.0,
+      "expected_impact": 155.4,
+      "event_PS": 32.0,
+      "event_AS": 27.75,
+      "n_vars": 4,
+      "affected_ids": "market_implied_rates, auction_clearing_yield, bond_market_liquidity, market_price_discovery",
+      "rationale": "'US Treasury Tries to Slow Surging Yields With a Band‑Aid Fix' and Bessent intervention coverage."
+    },
+    {
+      "id": "french_bond_stress_nearterm",
+      "title": "Near‑term French government bond stress",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-08-30",
+      "end": "2026-09-20",
+      "probability": 0.7,
+      "impact_score": 218.0,
+      "expected_impact": 152.6,
+      "event_PS": 34.286,
+      "event_AS": 31.143,
+      "n_vars": 3,
+      "affected_ids": "yield_curve_level, cross_border_flows, market_volatility",
+      "rationale": "'France replaces Italy as European bond investors’ biggest worry' and 'Hawkish ECB Not Helping French Government Bonds'."
+    },
+    {
+      "id": "elevated_us_debt_issuance_q3",
+      "title": "Elevated US debt issuance (ongoing)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-08-30",
+      "end": "2026-12-31",
+      "probability": 0.95,
+      "impact_score": 210.0,
+      "expected_impact": 199.5,
+      "event_PS": 18.727,
+      "event_AS": 19.091,
+      "n_vars": 4,
+      "affected_ids": "debt_issuance_rate, debt_stock, fiscal_interest_costs, auction_clearing_yield",
+      "rationale": "'US government debt hits $40tn as borrowing rises at historic rate' and rising yields increase costs."
+    },
+    {
+      "id": "dollar_strength_continues",
+      "title": "Dollar appreciation and safe‑haven reallocation",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next month",
+      "date": null,
+      "start": "2026-08-30",
+      "end": "2026-09-30",
+      "probability": 0.8,
+      "impact_score": 173.0,
+      "expected_impact": 138.4,
+      "event_PS": 28.143,
+      "event_AS": 24.714,
+      "n_vars": 4,
+      "affected_ids": "currency_pressure, safe_haven_prices, cross_border_flows, investor_risk_appetite",
+      "rationale": "'Dollar climbs after Warsh comments' and 'Gold drops 3% as Fed's Warsh comments lift rate hike bets'."
+    },
+    {
+      "id": "private_bond_interventions_continue",
+      "title": "Ongoing private‑investor bond buying",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next month",
+      "date": null,
+      "start": "2026-08-30",
+      "end": "2026-09-30",
+      "probability": 0.6,
+      "impact_score": 166.0,
+      "expected_impact": 99.6,
+      "event_PS": 31.333,
+      "event_AS": 27.667,
+      "n_vars": 3,
+      "affected_ids": "cross_border_flows, bond_market_liquidity, yield_curve_level",
+      "rationale": "'Scott Bessent’s bond intervention puts US Treasury on collision course with Fed' and related coverage."
+    }
+  ]
+}
