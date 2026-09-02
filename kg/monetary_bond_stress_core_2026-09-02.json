@@ -1,0 +1,1763 @@
+{
+  "label": "monetary_bond_stress",
+  "as_of": "2026-09-01",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-02T01:25:27",
+  "system_description": {
+    "narrative_title": "Hawkish Fed Signals and a Global Bond Repricing",
+    "narrative_summary": "Kevin Warsh’s hawkish Jackson Hole messaging, amplified by Treasury-Fed debates and market interventions, has triggered a broad repricing of sovereign bonds and raised rate-hike expectations. Rising yields, FX stress (notably the yen), and renewed inflation worries are propagating through equities, commodities and sovereign finances, creating feedbacks that test central-bank coordination and fiscal resilience.",
+    "scope": "The system covers global sovereign bond markets and yield curves, monetary-policy signalling (Fed, ECB, BOJ), U.S. Treasury actions and commentary, investor positioning and market volatility across bonds, foreign exchange, equities and commodities during the late‑Aug/early‑Sep 2026 window.",
+    "super_system": "The global macro‑financial system (interaction of monetary policy, fiscal policy, trade, and geopolitics shaping global capital flows and real economic activity).",
+    "adjacent_subsystems": [
+      "Foreign exchange markets",
+      "Equity markets and investor risk sentiment",
+      "Commodity markets (energy and precious metals)",
+      "Sovereign fiscal/debt dynamics"
+    ],
+    "evidence_headlines": [
+      "Warsh Makes the Case for Higher Rates and Raises the Bar for Standing Pat",
+      "Markets Brace for Possible Rate Hike After Kevin Warsh’s Jackson Hole comments",
+      "Global bond yields soar to multi-decade highs as Middle East turmoil reignites inflation fears",
+      "Bessent says disorderly yen moves can destabilize global markets",
+      "Japan spent record $96.5 billion to support yen over past month, ministry data shows",
+      "Global Bond Selloff Intensifies as Investors Brace for Rate Increases - wsj.com"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_bond_yields",
+      "name": "Long-term bond yields",
+      "description": "The average level of long-dated government bond yields across major markets, reflecting term premia and real rate expectations.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_rate_expectations",
+      "name": "Short-term rate expectations",
+      "description": "Market-implied expected short-term policy interest rates over the next 6–12 months.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The difference between medium/long-term yields and short-term yields that captures the term structure gradient.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Aggregate market and survey-based expected inflation over the medium term (1–5 years).",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "realized_inflation_rate",
+      "name": "Realized inflation rate",
+      "description": "The observed consumer price inflation rate over a recent period, measured on a rolling basis.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_levels",
+      "name": "Exchange rate levels",
+      "description": "Trade-weighted values of major currencies expressed as continuous indices reflecting bilateral and multilateral exchange-rate moves.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fx_volatility",
+      "name": "FX volatility",
+      "description": "Realized or implied volatility in foreign-exchange markets measuring dispersion and uncertainty of currency moves.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_deficit_flow",
+      "name": "Fiscal deficit flow",
+      "description": "Government net borrowing over a period expressed as a percent of GDP, representing fiscal financing needs.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "government_debt_ratio",
+      "name": "Government debt ratio",
+      "description": "The stock of government debt outstanding expressed as a share of GDP.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_borrowing_cost",
+      "name": "Sovereign borrowing costs",
+      "description": "Market pressure on government financing costs as reflected in issuance yields and risk premia/spreads.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "The ease with which large positions can be transacted across bond, FX and related markets without large price impact.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "Aggregate willingness of investors to assume risk, driving allocation between risky and safe assets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "portfolio_flow_volumes",
+      "name": "Portfolio flow volumes",
+      "description": "Net cross-border and cross-asset flows into or out of bonds, equities and commodities over a given period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "equity_implied_vol",
+      "name": "Equity implied volatility",
+      "description": "Market-implied future volatility in equity markets as signalled by options prices and volatility indices.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_price_levels",
+      "name": "Commodity price levels",
+      "description": "Price indices for key commodities, especially energy, that feed into input-cost inflation and producer margins.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_signal_intensity",
+      "name": "Policy signal intensity",
+      "description": "Frequency and hawkishness/dovishness of public communications that alter market expectations of future policy actions.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_bond_yields",
+    "short_rate_expectations",
+    "yield_curve_slope",
+    "inflation_expectations",
+    "realized_inflation_rate",
+    "exchange_rate_levels",
+    "fx_volatility",
+    "fiscal_deficit_flow",
+    "government_debt_ratio",
+    "sovereign_borrowing_cost",
+    "market_liquidity",
+    "investor_risk_appetite",
+    "portfolio_flow_volumes",
+    "equity_implied_vol",
+    "commodity_price_levels",
+    "policy_signal_intensity"
+  ],
+  "var_names": {
+    "long_term_bond_yields": "Long-term bond yields",
+    "short_rate_expectations": "Short-term rate expectations",
+    "yield_curve_slope": "Yield curve slope",
+    "inflation_expectations": "Inflation expectations",
+    "realized_inflation_rate": "Realized inflation rate",
+    "exchange_rate_levels": "Exchange rate levels",
+    "fx_volatility": "FX volatility",
+    "fiscal_deficit_flow": "Fiscal deficit flow",
+    "government_debt_ratio": "Government debt ratio",
+    "sovereign_borrowing_cost": "Sovereign borrowing costs",
+    "market_liquidity": "Market liquidity",
+    "investor_risk_appetite": "Investor risk appetite",
+    "portfolio_flow_volumes": "Portfolio flow volumes",
+    "equity_implied_vol": "Equity implied volatility",
+    "commodity_price_levels": "Commodity price levels",
+    "policy_signal_intensity": "Policy signal intensity"
+  },
+  "impact_matrix": {
+    "long_term_bond_yields": {
+      "long_term_bond_yields": 0,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 3,
+      "inflation_expectations": 2,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 2,
+      "fx_volatility": 1,
+      "fiscal_deficit_flow": 0,
+      "government_debt_ratio": 1,
+      "sovereign_borrowing_cost": 3,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "portfolio_flow_volumes": 2,
+      "equity_implied_vol": 1,
+      "commodity_price_levels": 0,
+      "policy_signal_intensity": 0
+    },
+    "short_rate_expectations": {
+      "long_term_bond_yields": 3,
+      "short_rate_expectations": 0,
+      "yield_curve_slope": 3,
+      "inflation_expectations": 2,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 3,
+      "fx_volatility": 2,
+      "fiscal_deficit_flow": 0,
+      "government_debt_ratio": 0,
+      "sovereign_borrowing_cost": 3,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 2,
+      "portfolio_flow_volumes": 2,
+      "equity_implied_vol": 2,
+      "commodity_price_levels": 1,
+      "policy_signal_intensity": 0
+    },
+    "yield_curve_slope": {
+      "long_term_bond_yields": 2,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 0,
+      "inflation_expectations": 1,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 2,
+      "fx_volatility": 1,
+      "fiscal_deficit_flow": 0,
+      "government_debt_ratio": 0,
+      "sovereign_borrowing_cost": 2,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "portfolio_flow_volumes": 2,
+      "equity_implied_vol": 1,
+      "commodity_price_levels": 1,
+      "policy_signal_intensity": 0
+    },
+    "inflation_expectations": {
+      "long_term_bond_yields": 3,
+      "short_rate_expectations": 3,
+      "yield_curve_slope": 3,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 1,
+      "exchange_rate_levels": 2,
+      "fx_volatility": 1,
+      "fiscal_deficit_flow": 0,
+      "government_debt_ratio": 0,
+      "sovereign_borrowing_cost": 3,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "portfolio_flow_volumes": 2,
+      "equity_implied_vol": 2,
+      "commodity_price_levels": 0,
+      "policy_signal_intensity": 2
+    },
+    "realized_inflation_rate": {
+      "long_term_bond_yields": 3,
+      "short_rate_expectations": 3,
+      "yield_curve_slope": 3,
+      "inflation_expectations": 3,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 2,
+      "fx_volatility": 2,
+      "fiscal_deficit_flow": 1,
+      "government_debt_ratio": 1,
+      "sovereign_borrowing_cost": 2,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "portfolio_flow_volumes": 2,
+      "equity_implied_vol": 2,
+      "commodity_price_levels": 0,
+      "policy_signal_intensity": 3
+    },
+    "exchange_rate_levels": {
+      "long_term_bond_yields": 2,
+      "short_rate_expectations": 2,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 2,
+      "realized_inflation_rate": 2,
+      "exchange_rate_levels": 0,
+      "fx_volatility": 2,
+      "fiscal_deficit_flow": 0,
+      "government_debt_ratio": 0,
+      "sovereign_borrowing_cost": 2,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "portfolio_flow_volumes": 2,
+      "equity_implied_vol": 1,
+      "commodity_price_levels": 2,
+      "policy_signal_intensity": 2
+    },
+    "fx_volatility": {
+      "long_term_bond_yields": 1,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 1,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 2,
+      "fx_volatility": 0,
+      "fiscal_deficit_flow": 0,
+      "government_debt_ratio": 0,
+      "sovereign_borrowing_cost": 1,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 2,
+      "portfolio_flow_volumes": 2,
+      "equity_implied_vol": 1,
+      "commodity_price_levels": 1,
+      "policy_signal_intensity": 1
+    },
+    "fiscal_deficit_flow": {
+      "long_term_bond_yields": 2,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 1,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 1,
+      "fx_volatility": 1,
+      "fiscal_deficit_flow": 0,
+      "government_debt_ratio": 3,
+      "sovereign_borrowing_cost": 2,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "portfolio_flow_volumes": 1,
+      "equity_implied_vol": 1,
+      "commodity_price_levels": 0,
+      "policy_signal_intensity": 0
+    },
+    "government_debt_ratio": {
+      "long_term_bond_yields": 2,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 1,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 1,
+      "fx_volatility": 1,
+      "fiscal_deficit_flow": 0,
+      "government_debt_ratio": 0,
+      "sovereign_borrowing_cost": 3,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "portfolio_flow_volumes": 1,
+      "equity_implied_vol": 1,
+      "commodity_price_levels": 0,
+      "policy_signal_intensity": 0
+    },
+    "sovereign_borrowing_cost": {
+      "long_term_bond_yields": 3,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 2,
+      "inflation_expectations": 1,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 2,
+      "fx_volatility": 1,
+      "fiscal_deficit_flow": 1,
+      "government_debt_ratio": 1,
+      "sovereign_borrowing_cost": 0,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "portfolio_flow_volumes": 2,
+      "equity_implied_vol": 1,
+      "commodity_price_levels": 0,
+      "policy_signal_intensity": 1
+    },
+    "market_liquidity": {
+      "long_term_bond_yields": 2,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 1,
+      "fx_volatility": 2,
+      "fiscal_deficit_flow": 1,
+      "government_debt_ratio": 0,
+      "sovereign_borrowing_cost": 2,
+      "market_liquidity": 0,
+      "investor_risk_appetite": 2,
+      "portfolio_flow_volumes": 2,
+      "equity_implied_vol": 2,
+      "commodity_price_levels": 0,
+      "policy_signal_intensity": 2
+    },
+    "investor_risk_appetite": {
+      "long_term_bond_yields": 2,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 2,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 2,
+      "fx_volatility": 2,
+      "fiscal_deficit_flow": 1,
+      "government_debt_ratio": 0,
+      "sovereign_borrowing_cost": 2,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 0,
+      "portfolio_flow_volumes": 3,
+      "equity_implied_vol": 2,
+      "commodity_price_levels": 1,
+      "policy_signal_intensity": 1
+    },
+    "portfolio_flow_volumes": {
+      "long_term_bond_yields": 3,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 2,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 3,
+      "fx_volatility": 2,
+      "fiscal_deficit_flow": 1,
+      "government_debt_ratio": 0,
+      "sovereign_borrowing_cost": 2,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 0,
+      "portfolio_flow_volumes": 0,
+      "equity_implied_vol": 2,
+      "commodity_price_levels": 1,
+      "policy_signal_intensity": 1
+    },
+    "equity_implied_vol": {
+      "long_term_bond_yields": 1,
+      "short_rate_expectations": 0,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 1,
+      "fx_volatility": 1,
+      "fiscal_deficit_flow": 0,
+      "government_debt_ratio": 0,
+      "sovereign_borrowing_cost": 1,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 3,
+      "portfolio_flow_volumes": 2,
+      "equity_implied_vol": 0,
+      "commodity_price_levels": 1,
+      "policy_signal_intensity": 2
+    },
+    "commodity_price_levels": {
+      "long_term_bond_yields": 2,
+      "short_rate_expectations": 2,
+      "yield_curve_slope": 2,
+      "inflation_expectations": 3,
+      "realized_inflation_rate": 3,
+      "exchange_rate_levels": 2,
+      "fx_volatility": 1,
+      "fiscal_deficit_flow": 1,
+      "government_debt_ratio": 1,
+      "sovereign_borrowing_cost": 1,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "portfolio_flow_volumes": 1,
+      "equity_implied_vol": 2,
+      "commodity_price_levels": 0,
+      "policy_signal_intensity": 2
+    },
+    "policy_signal_intensity": {
+      "long_term_bond_yields": 3,
+      "short_rate_expectations": 3,
+      "yield_curve_slope": 3,
+      "inflation_expectations": 2,
+      "realized_inflation_rate": 0,
+      "exchange_rate_levels": 2,
+      "fx_volatility": 2,
+      "fiscal_deficit_flow": 0,
+      "government_debt_ratio": 0,
+      "sovereign_borrowing_cost": 2,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "portfolio_flow_volumes": 2,
+      "equity_implied_vol": 2,
+      "commodity_price_levels": 1,
+      "policy_signal_intensity": 0
+    }
+  },
+  "AS": {
+    "long_term_bond_yields": 18,
+    "short_rate_expectations": 25,
+    "yield_curve_slope": 15,
+    "inflation_expectations": 25,
+    "realized_inflation_rate": 30,
+    "exchange_rate_levels": 22,
+    "fx_volatility": 16,
+    "fiscal_deficit_flow": 16,
+    "government_debt_ratio": 14,
+    "sovereign_borrowing_cost": 18,
+    "market_liquidity": 18,
+    "investor_risk_appetite": 21,
+    "portfolio_flow_volumes": 20,
+    "equity_implied_vol": 15,
+    "commodity_price_levels": 25,
+    "policy_signal_intensity": 25
+  },
+  "PS": {
+    "long_term_bond_yields": 34,
+    "short_rate_expectations": 22,
+    "yield_curve_slope": 29,
+    "inflation_expectations": 19,
+    "realized_inflation_rate": 6,
+    "exchange_rate_levels": 28,
+    "fx_volatility": 22,
+    "fiscal_deficit_flow": 6,
+    "government_debt_ratio": 7,
+    "sovereign_borrowing_cost": 31,
+    "market_liquidity": 20,
+    "investor_risk_appetite": 22,
+    "portfolio_flow_volumes": 28,
+    "equity_implied_vol": 23,
+    "commodity_price_levels": 9,
+    "policy_signal_intensity": 17
+  },
+  "med_AS": 19.0,
+  "med_PS": 22.0,
+  "roles": [
+    {
+      "variable": "exchange_rate_levels",
+      "name": "Exchange rate levels",
+      "AS": 22,
+      "PS": 28,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 616,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "long_term_bond_yields",
+      "name": "Long-term bond yields",
+      "AS": 18,
+      "PS": 34,
+      "Q=AS/PS": 0.53,
+      "P=AS*PS": 612,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "portfolio_flow_volumes",
+      "name": "Portfolio flow volumes",
+      "AS": 20,
+      "PS": 28,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 560,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_borrowing_cost",
+      "name": "Sovereign borrowing costs",
+      "AS": 18,
+      "PS": 31,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 558,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "short_rate_expectations",
+      "name": "Short-term rate expectations",
+      "AS": 25,
+      "PS": 22,
+      "Q=AS/PS": 1.14,
+      "P=AS*PS": 550,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 25,
+      "PS": 19,
+      "Q=AS/PS": 1.32,
+      "P=AS*PS": 475,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 21,
+      "PS": 22,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 462,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 15,
+      "PS": 29,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 435,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_signal_intensity",
+      "name": "Policy signal intensity",
+      "AS": 25,
+      "PS": 17,
+      "Q=AS/PS": 1.47,
+      "P=AS*PS": 425,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 18,
+      "PS": 20,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 360,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fx_volatility",
+      "name": "FX volatility",
+      "AS": 16,
+      "PS": 22,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 352,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "equity_implied_vol",
+      "name": "Equity implied volatility",
+      "AS": 15,
+      "PS": 23,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 345,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "commodity_price_levels",
+      "name": "Commodity price levels",
+      "AS": 25,
+      "PS": 9,
+      "Q=AS/PS": 2.78,
+      "P=AS*PS": 225,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "realized_inflation_rate",
+      "name": "Realized inflation rate",
+      "AS": 30,
+      "PS": 6,
+      "Q=AS/PS": 5.0,
+      "P=AS*PS": 180,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "government_debt_ratio",
+      "name": "Government debt ratio",
+      "AS": 14,
+      "PS": 7,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 98,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fiscal_deficit_flow",
+      "name": "Fiscal deficit flow",
+      "AS": 16,
+      "PS": 6,
+      "Q=AS/PS": 2.67,
+      "P=AS*PS": 96,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_bond_yields",
+        "name": "Long-term bond yields",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 34
+      },
+      {
+        "id": "short_rate_expectations",
+        "name": "Short-term rate expectations",
+        "kind": "perception",
+        "AS": 25,
+        "PS": 22
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 29
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 25,
+        "PS": 19
+      },
+      {
+        "id": "realized_inflation_rate",
+        "name": "Realized inflation rate",
+        "kind": "environment",
+        "AS": 30,
+        "PS": 6
+      },
+      {
+        "id": "exchange_rate_levels",
+        "name": "Exchange rate levels",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 28
+      },
+      {
+        "id": "fx_volatility",
+        "name": "FX volatility",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 22
+      },
+      {
+        "id": "fiscal_deficit_flow",
+        "name": "Fiscal deficit flow",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 6
+      },
+      {
+        "id": "government_debt_ratio",
+        "name": "Government debt ratio",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 7
+      },
+      {
+        "id": "sovereign_borrowing_cost",
+        "name": "Sovereign borrowing costs",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 31
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 20
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 22
+      },
+      {
+        "id": "portfolio_flow_volumes",
+        "name": "Portfolio flow volumes",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 28
+      },
+      {
+        "id": "equity_implied_vol",
+        "name": "Equity implied volatility",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 23
+      },
+      {
+        "id": "commodity_price_levels",
+        "name": "Commodity price levels",
+        "kind": "environment",
+        "AS": 25,
+        "PS": 9
+      },
+      {
+        "id": "policy_signal_intensity",
+        "name": "Policy signal intensity",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 17
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_bond_yields",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yields",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yields",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yields",
+        "target": "sovereign_borrowing_cost",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yields",
+        "target": "portfolio_flow_volumes",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "long_term_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "exchange_rate_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "fx_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "sovereign_borrowing_cost",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "portfolio_flow_volumes",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "equity_implied_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "long_term_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "sovereign_borrowing_cost",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "portfolio_flow_volumes",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "sovereign_borrowing_cost",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "portfolio_flow_volumes",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_implied_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_signal_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "long_term_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "short_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "fx_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "sovereign_borrowing_cost",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "portfolio_flow_volumes",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "equity_implied_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "policy_signal_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "long_term_bond_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "realized_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "fx_volatility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "sovereign_borrowing_cost",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "portfolio_flow_volumes",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "commodity_price_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "policy_signal_intensity",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "fx_volatility",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "fx_volatility",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_volatility",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_volatility",
+        "target": "portfolio_flow_volumes",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "long_term_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "government_debt_ratio",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "sovereign_borrowing_cost",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_debt_ratio",
+        "target": "long_term_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_debt_ratio",
+        "target": "sovereign_borrowing_cost",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_borrowing_cost",
+        "target": "long_term_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_borrowing_cost",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_borrowing_cost",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_borrowing_cost",
+        "target": "portfolio_flow_volumes",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "long_term_bond_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "fx_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "sovereign_borrowing_cost",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "portfolio_flow_volumes",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "equity_implied_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "policy_signal_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "long_term_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "fx_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "sovereign_borrowing_cost",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "portfolio_flow_volumes",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "equity_implied_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_flow_volumes",
+        "target": "long_term_bond_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_flow_volumes",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_flow_volumes",
+        "target": "exchange_rate_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_flow_volumes",
+        "target": "fx_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_flow_volumes",
+        "target": "sovereign_borrowing_cost",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_flow_volumes",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_flow_volumes",
+        "target": "equity_implied_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_implied_vol",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_implied_vol",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "equity_implied_vol",
+        "target": "portfolio_flow_volumes",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_implied_vol",
+        "target": "policy_signal_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_levels",
+        "target": "long_term_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_levels",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_levels",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_levels",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_levels",
+        "target": "realized_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_levels",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "commodity_price_levels",
+        "target": "equity_implied_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_levels",
+        "target": "policy_signal_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_intensity",
+        "target": "long_term_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_intensity",
+        "target": "short_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_intensity",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_signal_intensity",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_signal_intensity",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_intensity",
+        "target": "fx_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_intensity",
+        "target": "sovereign_borrowing_cost",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_intensity",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_signal_intensity",
+        "target": "portfolio_flow_volumes",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_signal_intensity",
+        "target": "equity_implied_vol",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_sep_policy_decision",
+      "title": "September Fed policy decision (rate hike risk)",
+      "description": "FOMC decision (mid‑September window) that could raise policy rates or signal further hikes following hawkish Jackson Hole commentary.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September 2026"
+      },
+      "probability": 0.55,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_implied_vol",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Warsh's hawkish Jackson Hole remarks and market bets on a September hike (e.g. 'Markets see Warsh endorsing a rate hike in September')."
+    },
+    {
+      "id": "us_jobs_report_aug",
+      "title": "August US jobs report (near-term data shock)",
+      "description": "Monthly US employment release (early September) that could confirm tight labor market and revive rate‑hike expectations or surprise downside.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-09-07",
+        "label": "early Sept (jobs)"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_implied_vol",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Will the Fed’s hawkish stance survive contact with jobs data?' and 'Gold slips as traders await US jobs data'."
+    },
+    {
+      "id": "ecb_sep_meeting",
+      "title": "ECB meeting and possible rate action",
+      "description": "ECB policy meeting likely to react to rising euro‑zone inflation (above 3%), influencing European rates and sovereign spreads.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September 2026 (ECB)"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_borrowing_cost",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Eurozone inflation above 3% 'cementing ECB rate hike bets' and 'Ahead of ECB meeting' headlines."
+    },
+    {
+      "id": "treasury_yield_curve_operations",
+      "title": "US Treasury bond‑market operations / intervention",
+      "description": "Ongoing or renewed Treasury actions (buybacks, curve operations) to cap long yields, creating friction with Fed policy signals.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-10-31",
+        "label": "Sep–Oct 2026"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "long_term_bond_yields",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_borrowing_cost",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "portfolio_flow_volumes",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Articles: 'Scott Bessent’s bond intervention' and 'Treasury Raises the Stakes in a Battle to Cap Long‑Term Yields'."
+    },
+    {
+      "id": "japan_policy_and_fx_action",
+      "title": "Japan policy response: BOJ/FX intervention and rate shift",
+      "description": "Potential BOJ tightening or renewed FX intervention to support the yen after sharp moves and record currency support outlays.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-10-31",
+        "label": "early Sep–Oct 2026"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fx_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_levels",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Bessent expects Japan to take action to boost yen', record FX support outlays and Japan 10‑year at 3%."
+    },
+    {
+      "id": "middle_east_oil_price_spike",
+      "title": "Middle East tensions → oil price spike",
+      "description": "Escalation in Middle East hostilities that pushes oil prices higher, feeding inflation fears and repricing global bond markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-10-31",
+        "label": "near term (weeks–months)"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "commodity_price_levels",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Stories: 'Global bond yields soar as Middle East turmoil reignites inflation fears' and 'Oil Prices Push Global Bond Market Closer to the Edge'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "middle_east_oil_price_spike",
+      "title": "Middle East tensions → oil price spike",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near term (weeks–months)",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 182.0,
+      "expected_impact": 127.4,
+      "event_PS": 19.375,
+      "event_AS": 22.75,
+      "n_vars": 4,
+      "affected_ids": "commodity_price_levels, inflation_expectations, long_term_bond_yields, investor_risk_appetite",
+      "rationale": "Stories: 'Global bond yields soar as Middle East turmoil reignites inflation fears' and 'Oil Prices Push Global Bond Market Closer to the Edge'."
+    },
+    {
+      "id": "fed_sep_policy_decision",
+      "title": "September Fed policy decision (rate hike risk)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September 2026",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.55,
+      "impact_score": 177.0,
+      "expected_impact": 97.35,
+      "event_PS": 26.333,
+      "event_AS": 19.667,
+      "n_vars": 5,
+      "affected_ids": "short_rate_expectations, long_term_bond_yields, yield_curve_slope, investor_risk_appetite, equity_implied_vol",
+      "rationale": "Warsh's hawkish Jackson Hole remarks and market bets on a September hike (e.g. 'Markets see Warsh endorsing a rate hike in September')."
+    },
+    {
+      "id": "japan_policy_and_fx_action",
+      "title": "Japan policy response: BOJ/FX intervention and rate shift",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "early Sep–Oct 2026",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-10-31",
+      "probability": 0.65,
+      "impact_score": 162.0,
+      "expected_impact": 105.3,
+      "event_PS": 26.5,
+      "event_AS": 20.25,
+      "n_vars": 4,
+      "affected_ids": "short_rate_expectations, long_term_bond_yields, fx_volatility, exchange_rate_levels",
+      "rationale": "Headlines: 'Bessent expects Japan to take action to boost yen', record FX support outlays and Japan 10‑year at 3%."
+    },
+    {
+      "id": "treasury_yield_curve_operations",
+      "title": "US Treasury bond‑market operations / intervention",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Sep–Oct 2026",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-10-31",
+      "probability": 0.6,
+      "impact_score": 158.0,
+      "expected_impact": 94.8,
+      "event_PS": 30.0,
+      "event_AS": 17.556,
+      "n_vars": 5,
+      "affected_ids": "long_term_bond_yields, yield_curve_slope, sovereign_borrowing_cost, market_liquidity, portfolio_flow_volumes",
+      "rationale": "Articles: 'Scott Bessent’s bond intervention' and 'Treasury Raises the Stakes in a Battle to Cap Long‑Term Yields'."
+    },
+    {
+      "id": "us_jobs_report_aug",
+      "title": "August US jobs report (near-term data shock)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "early Sept (jobs)",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-09-07",
+      "probability": 0.9,
+      "impact_score": 152.0,
+      "expected_impact": 136.8,
+      "event_PS": 26.125,
+      "event_AS": 19.0,
+      "n_vars": 5,
+      "affected_ids": "short_rate_expectations, long_term_bond_yields, yield_curve_slope, equity_implied_vol, investor_risk_appetite",
+      "rationale": "Headlines: 'Will the Fed’s hawkish stance survive contact with jobs data?' and 'Gold slips as traders await US jobs data'."
+    },
+    {
+      "id": "ecb_sep_meeting",
+      "title": "ECB meeting and possible rate action",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September 2026 (ECB)",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.8,
+      "impact_score": 143.0,
+      "expected_impact": 114.4,
+      "event_PS": 28.0,
+      "event_AS": 20.429,
+      "n_vars": 4,
+      "affected_ids": "short_rate_expectations, long_term_bond_yields, sovereign_borrowing_cost, investor_risk_appetite",
+      "rationale": "Eurozone inflation above 3% 'cementing ECB rate hike bets' and 'Ahead of ECB meeting' headlines."
+    }
+  ]
+}
