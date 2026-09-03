@@ -1,0 +1,1810 @@
+{
+  "label": "global_bond_repricing",
+  "as_of": "2026-09-03",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-03T01:49:36",
+  "system_description": {
+    "narrative_title": "Global bond selloff and rising yields amid hawkish central-bank pivot",
+    "narrative_summary": "A synchronized global surge in government bond yields is reshaping markets as central banks shift toward tighter policy and commodity-driven inflation fears (notably oil and energy) rekindle rate-hike expectations. The situation is an open system: cross-border capital flows, central-bank communication/actions (Fed, ECB, BOJ), fiscal financing needs, and geopolitical shocks continuously interact with investor positioning and market interventions, producing reinforcing and balancing feedbacks across yields, currencies and asset allocation. Market actors' responses (from sovereign treasuries to hedge funds and interventionists) alter the system state in real time, creating contagion risks for borrowing costs and financial stability.",
+    "scope": "Global government bond markets and yield curves; central-bank policy decisions and forward guidance (Fed, ECB, BOJ, RBNZ); inflation drivers (energy prices, supply shocks), investor flows and positioning (funds, sovereigns, hedge funds), currency moves and market interventions; fiscal financing pressures for sovereigns and associated feedback into markets.",
+    "super_system": "Global financial and macroeconomic system (capital markets, international trade, monetary and fiscal policy interaction)",
+    "adjacent_subsystems": [
+      "Global energy and commodity markets (oil, gas)",
+      "Geopolitical risk and regional conflicts (Middle East tensions)",
+      "Sovereign fiscal policy and public debt markets",
+      "Equity and corporate credit markets / financial stability"
+    ],
+    "evidence_headlines": [
+      "Global Bond Yields Surge as Oil Prices Fuel Inflation Worries",
+      "Bond Yields Rocket to 2-Decade High as Global Selloff Deepens",
+      "With Warsh running the Fed, should bond investors be worried?",
+      "Euro zone inflation is back above 3%. Higher interest rates are likely to follow",
+      "Japan’s bonds and yen under pressure after Kevin Warsh’s Jackson Hole speech"
+    ]
+  },
+  "variables": [
+    {
+      "id": "policy_rate_level",
+      "name": "Policy short-term rate level",
+      "description": "The prevailing short-term policy interest rate that anchors short-term funding conditions across the system.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "The market-implied consensus about the future path and timing of short-term policy interest rate changes.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "long_term_yield_level",
+      "name": "Long-term government yield level",
+      "description": "The prevailing yield level on long-dated sovereign debt instruments that reflects discounting of future cash flows.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The component of long-term yields that compensates investors for interest-rate risk and other long-horizon uncertainties.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The difference between long-term and short-term yields indicating the term structure shape and expectations about growth and rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "realized_inflation_rate",
+      "name": "Realized inflation rate",
+      "description": "The measured rate of change in consumer prices over a recent period as experienced in the economy.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The anticipated future inflation trajectory as held by households, firms, and market participants.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_price_level",
+      "name": "Commodity price level",
+      "description": "The current price level of key commodities (notably energy) that drives cost-push inflation pressures.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_financing_need",
+      "name": "Fiscal financing need",
+      "description": "The aggregate government borrowing requirement over a fiscal horizon that determines sovereign issuance pressure.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_spread_level",
+      "name": "Sovereign credit spread level",
+      "description": "The average risk premium demanded over risk-free benchmarks to hold sovereign debt, reflecting credit and liquidity concerns.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "Net financial flows across borders into and out of fixed-income and related markets over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "The ease with which bonds and related assets can be transacted without large price impact, measured by depth and bid-ask dynamics.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_positioning",
+      "name": "Investor positioning",
+      "description": "The aggregate directional exposures of major investor groups, including duration, leverage, and net long/short stances.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "systemic_leverage",
+      "name": "Systemic leverage",
+      "description": "The overall leverage in the financial system, including margining and balance-sheet risk amplification potential.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_intervention_inte",
+      "name": "Market intervention intensity",
+      "description": "The frequency and scale of deliberate market operations or asset transactions by policy actors to influence prices and yields.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "policy_rate_level",
+    "policy_rate_expectations",
+    "long_term_yield_level",
+    "term_premium",
+    "yield_curve_slope",
+    "realized_inflation_rate",
+    "inflation_expectations",
+    "commodity_price_level",
+    "fiscal_financing_need",
+    "sovereign_spread_level",
+    "cross_border_flows",
+    "market_liquidity",
+    "investor_positioning",
+    "systemic_leverage",
+    "market_intervention_inte"
+  ],
+  "var_names": {
+    "policy_rate_level": "Policy short-term rate level",
+    "policy_rate_expectations": "Policy rate expectations",
+    "long_term_yield_level": "Long-term government yield level",
+    "term_premium": "Term premium",
+    "yield_curve_slope": "Yield curve slope",
+    "realized_inflation_rate": "Realized inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "commodity_price_level": "Commodity price level",
+    "fiscal_financing_need": "Fiscal financing need",
+    "sovereign_spread_level": "Sovereign credit spread level",
+    "cross_border_flows": "Cross-border capital flows",
+    "market_liquidity": "Market liquidity",
+    "investor_positioning": "Investor positioning",
+    "systemic_leverage": "Systemic leverage",
+    "market_intervention_inte": "Market intervention intensity"
+  },
+  "impact_matrix": {
+    "policy_rate_level": {
+      "policy_rate_level": 0,
+      "policy_rate_expectations": 3,
+      "long_term_yield_level": 3,
+      "term_premium": 2,
+      "yield_curve_slope": 3,
+      "realized_inflation_rate": 2,
+      "inflation_expectations": 2,
+      "commodity_price_level": 1,
+      "fiscal_financing_need": 1,
+      "sovereign_spread_level": 1,
+      "cross_border_flows": 3,
+      "market_liquidity": 2,
+      "investor_positioning": 2,
+      "systemic_leverage": 2,
+      "market_intervention_inte": 1
+    },
+    "policy_rate_expectations": {
+      "policy_rate_level": 0,
+      "policy_rate_expectations": 0,
+      "long_term_yield_level": 3,
+      "term_premium": 2,
+      "yield_curve_slope": 3,
+      "realized_inflation_rate": 1,
+      "inflation_expectations": 2,
+      "commodity_price_level": 1,
+      "fiscal_financing_need": 0,
+      "sovereign_spread_level": 1,
+      "cross_border_flows": 2,
+      "market_liquidity": 1,
+      "investor_positioning": 3,
+      "systemic_leverage": 2,
+      "market_intervention_inte": 1
+    },
+    "long_term_yield_level": {
+      "policy_rate_level": 0,
+      "policy_rate_expectations": 2,
+      "long_term_yield_level": 0,
+      "term_premium": 1,
+      "yield_curve_slope": 3,
+      "realized_inflation_rate": 0,
+      "inflation_expectations": 3,
+      "commodity_price_level": 1,
+      "fiscal_financing_need": 1,
+      "sovereign_spread_level": 2,
+      "cross_border_flows": 2,
+      "market_liquidity": 2,
+      "investor_positioning": 3,
+      "systemic_leverage": 2,
+      "market_intervention_inte": 2
+    },
+    "term_premium": {
+      "policy_rate_level": 0,
+      "policy_rate_expectations": 1,
+      "long_term_yield_level": 3,
+      "term_premium": 0,
+      "yield_curve_slope": 2,
+      "realized_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "commodity_price_level": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_spread_level": 2,
+      "cross_border_flows": 1,
+      "market_liquidity": 2,
+      "investor_positioning": 2,
+      "systemic_leverage": 1,
+      "market_intervention_inte": 1
+    },
+    "yield_curve_slope": {
+      "policy_rate_level": 0,
+      "policy_rate_expectations": 2,
+      "long_term_yield_level": 2,
+      "term_premium": 1,
+      "yield_curve_slope": 0,
+      "realized_inflation_rate": 1,
+      "inflation_expectations": 2,
+      "commodity_price_level": 1,
+      "fiscal_financing_need": 0,
+      "sovereign_spread_level": 1,
+      "cross_border_flows": 2,
+      "market_liquidity": 1,
+      "investor_positioning": 2,
+      "systemic_leverage": 1,
+      "market_intervention_inte": 1
+    },
+    "realized_inflation_rate": {
+      "policy_rate_level": 3,
+      "policy_rate_expectations": 3,
+      "long_term_yield_level": 3,
+      "term_premium": 2,
+      "yield_curve_slope": 2,
+      "realized_inflation_rate": 0,
+      "inflation_expectations": 3,
+      "commodity_price_level": 0,
+      "fiscal_financing_need": 2,
+      "sovereign_spread_level": 1,
+      "cross_border_flows": 1,
+      "market_liquidity": 1,
+      "investor_positioning": 2,
+      "systemic_leverage": 1,
+      "market_intervention_inte": 2
+    },
+    "inflation_expectations": {
+      "policy_rate_level": 3,
+      "policy_rate_expectations": 3,
+      "long_term_yield_level": 3,
+      "term_premium": 2,
+      "yield_curve_slope": 3,
+      "realized_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "commodity_price_level": 1,
+      "fiscal_financing_need": 0,
+      "sovereign_spread_level": 1,
+      "cross_border_flows": 2,
+      "market_liquidity": 1,
+      "investor_positioning": 3,
+      "systemic_leverage": 1,
+      "market_intervention_inte": 2
+    },
+    "commodity_price_level": {
+      "policy_rate_level": 2,
+      "policy_rate_expectations": 2,
+      "long_term_yield_level": 2,
+      "term_premium": 1,
+      "yield_curve_slope": 1,
+      "realized_inflation_rate": 3,
+      "inflation_expectations": 2,
+      "commodity_price_level": 0,
+      "fiscal_financing_need": 1,
+      "sovereign_spread_level": 1,
+      "cross_border_flows": 1,
+      "market_liquidity": 1,
+      "investor_positioning": 2,
+      "systemic_leverage": 1,
+      "market_intervention_inte": 1
+    },
+    "fiscal_financing_need": {
+      "policy_rate_level": 0,
+      "policy_rate_expectations": 1,
+      "long_term_yield_level": 3,
+      "term_premium": 2,
+      "yield_curve_slope": 2,
+      "realized_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "commodity_price_level": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_spread_level": 3,
+      "cross_border_flows": 2,
+      "market_liquidity": 2,
+      "investor_positioning": 2,
+      "systemic_leverage": 1,
+      "market_intervention_inte": 1
+    },
+    "sovereign_spread_level": {
+      "policy_rate_level": 0,
+      "policy_rate_expectations": 1,
+      "long_term_yield_level": 3,
+      "term_premium": 1,
+      "yield_curve_slope": 2,
+      "realized_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "commodity_price_level": 0,
+      "fiscal_financing_need": 1,
+      "sovereign_spread_level": 0,
+      "cross_border_flows": 2,
+      "market_liquidity": 2,
+      "investor_positioning": 2,
+      "systemic_leverage": 1,
+      "market_intervention_inte": 2
+    },
+    "cross_border_flows": {
+      "policy_rate_level": 2,
+      "policy_rate_expectations": 2,
+      "long_term_yield_level": 2,
+      "term_premium": 1,
+      "yield_curve_slope": 1,
+      "realized_inflation_rate": 1,
+      "inflation_expectations": 1,
+      "commodity_price_level": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_spread_level": 2,
+      "cross_border_flows": 0,
+      "market_liquidity": 3,
+      "investor_positioning": 3,
+      "systemic_leverage": 2,
+      "market_intervention_inte": 2
+    },
+    "market_liquidity": {
+      "policy_rate_level": 1,
+      "policy_rate_expectations": 1,
+      "long_term_yield_level": 2,
+      "term_premium": 2,
+      "yield_curve_slope": 2,
+      "realized_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "commodity_price_level": 0,
+      "fiscal_financing_need": 1,
+      "sovereign_spread_level": 3,
+      "cross_border_flows": 2,
+      "market_liquidity": 0,
+      "investor_positioning": 2,
+      "systemic_leverage": 2,
+      "market_intervention_inte": 2
+    },
+    "investor_positioning": {
+      "policy_rate_level": 0,
+      "policy_rate_expectations": 2,
+      "long_term_yield_level": 2,
+      "term_premium": 1,
+      "yield_curve_slope": 2,
+      "realized_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "commodity_price_level": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_spread_level": 2,
+      "cross_border_flows": 2,
+      "market_liquidity": 2,
+      "investor_positioning": 0,
+      "systemic_leverage": 2,
+      "market_intervention_inte": 1
+    },
+    "systemic_leverage": {
+      "policy_rate_level": 0,
+      "policy_rate_expectations": 1,
+      "long_term_yield_level": 1,
+      "term_premium": 1,
+      "yield_curve_slope": 1,
+      "realized_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "commodity_price_level": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_spread_level": 1,
+      "cross_border_flows": 2,
+      "market_liquidity": 2,
+      "investor_positioning": 3,
+      "systemic_leverage": 0,
+      "market_intervention_inte": 2
+    },
+    "market_intervention_inte": {
+      "policy_rate_level": 1,
+      "policy_rate_expectations": 2,
+      "long_term_yield_level": 3,
+      "term_premium": 3,
+      "yield_curve_slope": 2,
+      "realized_inflation_rate": 0,
+      "inflation_expectations": 2,
+      "commodity_price_level": 0,
+      "fiscal_financing_need": 1,
+      "sovereign_spread_level": 3,
+      "cross_border_flows": 2,
+      "market_liquidity": 3,
+      "investor_positioning": 2,
+      "systemic_leverage": 2,
+      "market_intervention_inte": 0
+    }
+  },
+  "AS": {
+    "policy_rate_level": 28,
+    "policy_rate_expectations": 22,
+    "long_term_yield_level": 24,
+    "term_premium": 16,
+    "yield_curve_slope": 17,
+    "realized_inflation_rate": 26,
+    "inflation_expectations": 25,
+    "commodity_price_level": 21,
+    "fiscal_financing_need": 20,
+    "sovereign_spread_level": 17,
+    "cross_border_flows": 22,
+    "market_liquidity": 21,
+    "investor_positioning": 17,
+    "systemic_leverage": 14,
+    "market_intervention_inte": 26
+  },
+  "PS": {
+    "policy_rate_level": 12,
+    "policy_rate_expectations": 26,
+    "long_term_yield_level": 35,
+    "term_premium": 22,
+    "yield_curve_slope": 29,
+    "realized_inflation_rate": 8,
+    "inflation_expectations": 21,
+    "commodity_price_level": 5,
+    "fiscal_financing_need": 8,
+    "sovereign_spread_level": 24,
+    "cross_border_flows": 26,
+    "market_liquidity": 25,
+    "investor_positioning": 33,
+    "systemic_leverage": 21,
+    "market_intervention_inte": 21
+  },
+  "med_AS": 21.0,
+  "med_PS": 22.0,
+  "roles": [
+    {
+      "variable": "long_term_yield_level",
+      "name": "Long-term government yield level",
+      "AS": 24,
+      "PS": 35,
+      "Q=AS/PS": 0.69,
+      "P=AS*PS": 840,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 22,
+      "PS": 26,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 572,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 22,
+      "PS": 26,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 572,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_positioning",
+      "name": "Investor positioning",
+      "AS": 17,
+      "PS": 33,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 561,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_intervention_inte",
+      "name": "Market intervention intensity",
+      "AS": 26,
+      "PS": 21,
+      "Q=AS/PS": 1.24,
+      "P=AS*PS": 546,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 21,
+      "PS": 25,
+      "Q=AS/PS": 0.84,
+      "P=AS*PS": 525,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 25,
+      "PS": 21,
+      "Q=AS/PS": 1.19,
+      "P=AS*PS": 525,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 17,
+      "PS": 29,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 493,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "sovereign_spread_level",
+      "name": "Sovereign credit spread level",
+      "AS": 17,
+      "PS": 24,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 408,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 16,
+      "PS": 22,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 352,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_rate_level",
+      "name": "Policy short-term rate level",
+      "AS": 28,
+      "PS": 12,
+      "Q=AS/PS": 2.33,
+      "P=AS*PS": 336,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "systemic_leverage",
+      "name": "Systemic leverage",
+      "AS": 14,
+      "PS": 21,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 294,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "realized_inflation_rate",
+      "name": "Realized inflation rate",
+      "AS": 26,
+      "PS": 8,
+      "Q=AS/PS": 3.25,
+      "P=AS*PS": 208,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "fiscal_financing_need",
+      "name": "Fiscal financing need",
+      "AS": 20,
+      "PS": 8,
+      "Q=AS/PS": 2.5,
+      "P=AS*PS": 160,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "commodity_price_level",
+      "name": "Commodity price level",
+      "AS": 21,
+      "PS": 5,
+      "Q=AS/PS": 4.2,
+      "P=AS*PS": 105,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "policy_rate_level",
+        "name": "Policy short-term rate level",
+        "kind": "driver",
+        "AS": 28,
+        "PS": 12
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 26
+      },
+      {
+        "id": "long_term_yield_level",
+        "name": "Long-term government yield level",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 35
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 22
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 29
+      },
+      {
+        "id": "realized_inflation_rate",
+        "name": "Realized inflation rate",
+        "kind": "environment",
+        "AS": 26,
+        "PS": 8
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 25,
+        "PS": 21
+      },
+      {
+        "id": "commodity_price_level",
+        "name": "Commodity price level",
+        "kind": "environment",
+        "AS": 21,
+        "PS": 5
+      },
+      {
+        "id": "fiscal_financing_need",
+        "name": "Fiscal financing need",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 8
+      },
+      {
+        "id": "sovereign_spread_level",
+        "name": "Sovereign credit spread level",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 24
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 26
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 25
+      },
+      {
+        "id": "investor_positioning",
+        "name": "Investor positioning",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 33
+      },
+      {
+        "id": "systemic_leverage",
+        "name": "Systemic leverage",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 21
+      },
+      {
+        "id": "market_intervention_inte",
+        "name": "Market intervention intensity",
+        "kind": "institution_field",
+        "AS": 26,
+        "PS": 21
+      }
+    ],
+    "edges": [
+      {
+        "source": "policy_rate_level",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "long_term_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "realized_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "systemic_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "long_term_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "systemic_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "systemic_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yield_level",
+        "target": "market_intervention_inte",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "long_term_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "policy_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "long_term_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "fiscal_financing_need",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "market_intervention_inte",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_intervention_inte",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "realized_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "long_term_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "long_term_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "market_intervention_inte",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "systemic_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_intervention_inte",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "systemic_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "market_intervention_inte",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "long_term_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "systemic_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_leverage",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_leverage",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "systemic_leverage",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_leverage",
+        "target": "market_intervention_inte",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention_inte",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_inte",
+        "target": "long_term_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_inte",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_inte",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_inte",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention_inte",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_inte",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention_inte",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention_inte",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention_inte",
+        "target": "systemic_leverage",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_sep_rate_decision",
+      "title": "Fed September policy decision",
+      "description": "An FOMC decision in September (possible hike) will directly shift short-term policy and market pricing across yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-30",
+        "label": "September"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "policy_rate_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Markets see Warsh endorsing a rate hike in September; Warsh hints Fed may raise if inflation doesn't fall."
+    },
+    {
+      "id": "ecb_sep_meeting_hike",
+      "title": "ECB September meeting (likely hike)",
+      "description": "Eurozone inflation back above 3% raises odds of an ECB rate increase at the upcoming meeting, pressuring sovereign yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-05",
+        "end": "2026-09-30",
+        "label": "September"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_spread_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Euro zone inflation above 3% cements ECB rate-hike bets; top ECB official urges readiness to lift rates further."
+    },
+    {
+      "id": "boj_sep_rate_hike",
+      "title": "BOJ September rate decision",
+      "description": "BOJ signalling a September hike could end big stimulus, shifting global flows and raising Japanese yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-30",
+        "label": "September"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "BOJ chief signals chance of September rate hike; Japan faces day of policy reckoning after stimulus calls."
+    },
+    {
+      "id": "oil_price_surge_continuation",
+      "title": "Continued oil and energy price surge",
+      "description": "Ongoing energy-price strength (Middle East/gas) sustains cost-push inflation, lifting expectations and long-term yields.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-11-30",
+        "label": "next 3 months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "commodity_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "realized_inflation_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Energy price surge and oil rises jolt bond markets; Middle East turmoil rekindles inflation worries."
+    },
+    {
+      "id": "treasury_yield_cap_operations",
+      "title": "Treasury / investor yield‑capping actions",
+      "description": "Treasury or large investors may undertake operations or big purchases to cap long-term yields, altering market dynamics.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-10-15",
+        "label": "weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "market_intervention_inte",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Coverage cites Bessent/Treasury interventions and talk of 'Operation Twist 2.0' to cap long‑term yields."
+    },
+    {
+      "id": "hawkish_cb_communications",
+      "title": "Sustained hawkish central‑bank communications",
+      "description": "Ongoing hawkish messaging (Warsh, ECB, BOJ) will keep rate-path expectations and yields elevated even absent immediate hikes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-10-15",
+        "label": "next 6 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_positioning",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Warsh's Jackson Hole hawkish stance and ECB/BOJ signals keep markets pricing tighter policy and higher yields."
+    },
+    {
+      "id": "rising_fiscal_financing_pressure",
+      "title": "Rising fiscal financing pressure",
+      "description": "Higher yields push up governments' borrowing costs, increasing fiscal financing needs and widening sovereign spreads.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-12-31",
+        "label": "Q4 2026"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "fiscal_financing_need",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_spread_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines note higher yields add tens of billions to G7 debt costs and strain UK/France bond markets."
+    },
+    {
+      "id": "trading_firm_liquidity_strain",
+      "title": "Trading‑firm market‑structure strain",
+      "description": "Increased activity by trading firms and curbed bank lending could reduce bond-market depth and amplify price moves.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-10-01",
+        "label": "weeks"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_positioning",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "systemic_leverage",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "JPMorgan curbed lending to Jane Street as trading firm muscled into bond market, flagging liquidity and structure risks."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "oil_price_surge_continuation",
+      "title": "Continued oil and energy price surge",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-11-30",
+      "probability": 0.75,
+      "impact_score": 255.0,
+      "expected_impact": 191.25,
+      "event_PS": 15.727,
+      "event_AS": 23.182,
+      "n_vars": 5,
+      "affected_ids": "commodity_price_level, realized_inflation_rate, inflation_expectations, long_term_yield_level, term_premium",
+      "rationale": "Energy price surge and oil rises jolt bond markets; Middle East turmoil rekindles inflation worries."
+    },
+    {
+      "id": "fed_sep_rate_decision",
+      "title": "Fed September policy decision",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-30",
+      "probability": 0.65,
+      "impact_score": 232.0,
+      "expected_impact": 150.8,
+      "event_PS": 24.2,
+      "event_AS": 23.2,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_level, policy_rate_expectations, long_term_yield_level, yield_curve_slope",
+      "rationale": "Markets see Warsh endorsing a rate hike in September; Warsh hints Fed may raise if inflation doesn't fall."
+    },
+    {
+      "id": "treasury_yield_cap_operations",
+      "title": "Treasury / investor yield‑capping actions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-10-15",
+      "probability": 0.6,
+      "impact_score": 224.0,
+      "expected_impact": 134.4,
+      "event_PS": 26.2,
+      "event_AS": 22.4,
+      "n_vars": 4,
+      "affected_ids": "market_intervention_inte, long_term_yield_level, market_liquidity, term_premium",
+      "rationale": "Coverage cites Bessent/Treasury interventions and talk of 'Operation Twist 2.0' to cap long‑term yields."
+    },
+    {
+      "id": "ecb_sep_meeting_hike",
+      "title": "ECB September meeting (likely hike)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September",
+      "date": null,
+      "start": "2026-09-05",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 204.0,
+      "expected_impact": 142.8,
+      "event_PS": 24.444,
+      "event_AS": 22.667,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, policy_rate_level, long_term_yield_level, sovereign_spread_level",
+      "rationale": "Euro zone inflation above 3% cements ECB rate-hike bets; top ECB official urges readiness to lift rates further."
+    },
+    {
+      "id": "boj_sep_rate_hike",
+      "title": "BOJ September rate decision",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-30",
+      "probability": 0.5,
+      "impact_score": 168.0,
+      "expected_impact": 84.0,
+      "event_PS": 23.286,
+      "event_AS": 24.0,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, policy_rate_level, cross_border_flows, long_term_yield_level",
+      "rationale": "BOJ chief signals chance of September rate hike; Japan faces day of policy reckoning after stimulus calls."
+    },
+    {
+      "id": "hawkish_cb_communications",
+      "title": "Sustained hawkish central‑bank communications",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 weeks",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-10-15",
+      "probability": 0.8,
+      "impact_score": 148.0,
+      "expected_impact": 118.4,
+      "event_PS": 30.571,
+      "event_AS": 21.143,
+      "n_vars": 3,
+      "affected_ids": "policy_rate_expectations, long_term_yield_level, investor_positioning",
+      "rationale": "Warsh's Jackson Hole hawkish stance and ECB/BOJ signals keep markets pricing tighter policy and higher yields."
+    },
+    {
+      "id": "rising_fiscal_financing_pressure",
+      "title": "Rising fiscal financing pressure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Q4 2026",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 142.0,
+      "expected_impact": 85.2,
+      "event_PS": 20.286,
+      "event_AS": 20.286,
+      "n_vars": 3,
+      "affected_ids": "fiscal_financing_need, sovereign_spread_level, long_term_yield_level",
+      "rationale": "Headlines note higher yields add tens of billions to G7 debt costs and strain UK/France bond markets."
+    },
+    {
+      "id": "trading_firm_liquidity_strain",
+      "title": "Trading‑firm market‑structure strain",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-10-01",
+      "probability": 0.5,
+      "impact_score": 111.0,
+      "expected_impact": 55.5,
+      "event_PS": 27.0,
+      "event_AS": 18.5,
+      "n_vars": 3,
+      "affected_ids": "market_liquidity, investor_positioning, systemic_leverage",
+      "rationale": "JPMorgan curbed lending to Jane Street as trading firm muscled into bond market, flagging liquidity and structure risks."
+    }
+  ]
+}

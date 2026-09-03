@@ -1,0 +1,1858 @@
+{
+  "label": "us_iran_gulf_escalation",
+  "as_of": "2026-09-03",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-03T01:20:50",
+  "system_description": {
+    "narrative_title": "US–Iran Escalation and Strait of Hormuz Attacks",
+    "narrative_summary": "A rapid cycle of US strikes on Iranian targets and reciprocal Iranian attacks — including assaults on commercial tankers and reported mine warfare in the Strait of Hormuz — is disrupting maritime traffic and pushing global oil prices higher. Treated as an open system, the episode exchanges kinetic actions, economic flows (oil, insurance, shipping), political signaling (US domestic politics, regional allies), and information flows (media, sanctions) with feedback loops that can amplify escalation or force de-escalation. The situation couples military operations, commercial logistics and energy markets, creating cross-domain vulnerabilities that can propagate through global supply chains and regional security architectures.",
+    "scope": "Within the system boundary: US military strikes on Iran and Iranian retaliatory operations; attacks on commercial tankers, mine warfare and transit disruptions in the Strait of Hormuz; oil/commodity flows and price/insurance effects; US sanctions and diplomatic/isolation campaigns; regional state reactions (Saudi, UAE, Qatar, Gulf actors) and related maritime logistics (ship-to-ship transfers, rerouting).",
+    "super_system": "Global geopolitical and energy-security system (international politics, global oil markets, and maritime commerce).",
+    "adjacent_subsystems": [
+      "Global oil markets and commodity trading",
+      "Maritime security, shipping insurance and logistics",
+      "Regional Middle East security architecture (Gulf states, proxies, bases)",
+      "US domestic politics and electoral-calculation drivers"
+    ],
+    "evidence_headlines": [
+      "US launches further strikes on Iran as conflict flares up",
+      "Two tankers carrying Saudi oil attacked in Strait of Hormuz",
+      "U.S. strikes Iran after new Hormuz Strait shipping attacks: Centcom",
+      "This maneuver is boosting oil shipments through the Strait of Hormuz",
+      "Global oil prices extend move over $90 after report of two tankers struck in Hormuz",
+      "US and Iran exchange fire for the first time in more than a month"
+    ]
+  },
+  "variables": [
+    {
+      "id": "kinetic_engagement",
+      "name": "Kinetic engagement intensity",
+      "description": "Measures the aggregate intensity and frequency of armed strikes and direct military exchanges in the maritime and adjacent operational theatre.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "vessel_transit_rate",
+      "name": "Maritime vessel transit rate",
+      "description": "Measures the number of commercial vessels transiting the chokepoint per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "crude_throughput_rate",
+      "name": "Crude oil throughput rate",
+      "description": "Measures the volumetric flow of crude oil (barrels per day) moving through the maritime corridor.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_level",
+      "name": "Global oil price level",
+      "description": "Measures the prevailing market price level for benchmark crude reflecting supply/demand and risk premia.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_premium_level",
+      "name": "Shipping insurance premium level",
+      "description": "Measures the average insurance premium charged for commercial shipping transits through the risky maritime zone.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "rerouting_fraction",
+      "name": "Vessel rerouting fraction",
+      "description": "Measures the proportion of scheduled transits diverted to alternative longer routes or ship-to-ship transfers per time period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "mine_incident_rate",
+      "name": "Maritime mine incident rate",
+      "description": "Measures the frequency of mine-laying, mine encounters, and mine-related damage incidents in the corridor.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_control_balance",
+      "name": "Maritime security control balance",
+      "description": "Measures the relative degree of effective control or denial of freedom of navigation across the maritime chokepoint.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sanctions_enforcement",
+      "name": "Sanctions enforcement intensity",
+      "description": "Measures the rate and strictness of economic enforcement actions applied against targeted trade and financial flows.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diplomatic_pressure",
+      "name": "Diplomatic pressure level",
+      "description": "Measures the aggregate intensity of diplomatic actions aimed at isolating or constraining actors involved in the dispute.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "regional_cohesion",
+      "name": "Regional security cohesion",
+      "description": "Measures the degree of coordination and alignment among proximate states on security and operational responses in the theatre.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_risk_perception",
+      "name": "Market risk perception",
+      "description": "Measures aggregated market participants' perceived probability and severity of supply disruptions due to the security environment.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "supply_chain_disruption",
+      "name": "Oil supply chain disruption level",
+      "description": "Measures the degree to which upstream and downstream commercial logistics and refinery feedstocks are disrupted by the maritime situation.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "ship_to_ship_rate",
+      "name": "Ship-to-ship transfer rate",
+      "description": "Measures the frequency and volume of cargo transfers conducted at sea as an alternative to port-to-port transits.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_utilization",
+      "name": "Tanker capacity utilization",
+      "description": "Measures the proportion of available tanker carrying capacity in use or held in reserve relative to total fleet capacity.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "info_flow_intensity",
+      "name": "Information flow intensity",
+      "description": "Measures the rate and reach of media, official messaging, and information dissemination that amplify situational awareness and narratives.",
+      "kind": "perception",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "kinetic_engagement",
+    "vessel_transit_rate",
+    "crude_throughput_rate",
+    "oil_price_level",
+    "insurance_premium_level",
+    "rerouting_fraction",
+    "mine_incident_rate",
+    "maritime_control_balance",
+    "sanctions_enforcement",
+    "diplomatic_pressure",
+    "regional_cohesion",
+    "market_risk_perception",
+    "supply_chain_disruption",
+    "ship_to_ship_rate",
+    "tanker_utilization",
+    "info_flow_intensity"
+  ],
+  "var_names": {
+    "kinetic_engagement": "Kinetic engagement intensity",
+    "vessel_transit_rate": "Maritime vessel transit rate",
+    "crude_throughput_rate": "Crude oil throughput rate",
+    "oil_price_level": "Global oil price level",
+    "insurance_premium_level": "Shipping insurance premium level",
+    "rerouting_fraction": "Vessel rerouting fraction",
+    "mine_incident_rate": "Maritime mine incident rate",
+    "maritime_control_balance": "Maritime security control balance",
+    "sanctions_enforcement": "Sanctions enforcement intensity",
+    "diplomatic_pressure": "Diplomatic pressure level",
+    "regional_cohesion": "Regional security cohesion",
+    "market_risk_perception": "Market risk perception",
+    "supply_chain_disruption": "Oil supply chain disruption level",
+    "ship_to_ship_rate": "Ship-to-ship transfer rate",
+    "tanker_utilization": "Tanker capacity utilization",
+    "info_flow_intensity": "Information flow intensity"
+  },
+  "impact_matrix": {
+    "kinetic_engagement": {
+      "kinetic_engagement": 0,
+      "vessel_transit_rate": 3,
+      "crude_throughput_rate": 3,
+      "oil_price_level": 2,
+      "insurance_premium_level": 3,
+      "rerouting_fraction": 3,
+      "mine_incident_rate": 2,
+      "maritime_control_balance": 3,
+      "sanctions_enforcement": 1,
+      "diplomatic_pressure": 3,
+      "regional_cohesion": 2,
+      "market_risk_perception": 3,
+      "supply_chain_disruption": 3,
+      "ship_to_ship_rate": 3,
+      "tanker_utilization": 2,
+      "info_flow_intensity": 3
+    },
+    "vessel_transit_rate": {
+      "kinetic_engagement": 0,
+      "vessel_transit_rate": 0,
+      "crude_throughput_rate": 3,
+      "oil_price_level": 2,
+      "insurance_premium_level": 2,
+      "rerouting_fraction": 1,
+      "mine_incident_rate": 1,
+      "maritime_control_balance": 1,
+      "sanctions_enforcement": 0,
+      "diplomatic_pressure": 1,
+      "regional_cohesion": 1,
+      "market_risk_perception": 2,
+      "supply_chain_disruption": 2,
+      "ship_to_ship_rate": 2,
+      "tanker_utilization": 2,
+      "info_flow_intensity": 1
+    },
+    "crude_throughput_rate": {
+      "kinetic_engagement": 0,
+      "vessel_transit_rate": 3,
+      "crude_throughput_rate": 0,
+      "oil_price_level": 3,
+      "insurance_premium_level": 1,
+      "rerouting_fraction": 1,
+      "mine_incident_rate": 0,
+      "maritime_control_balance": 1,
+      "sanctions_enforcement": 0,
+      "diplomatic_pressure": 0,
+      "regional_cohesion": 0,
+      "market_risk_perception": 2,
+      "supply_chain_disruption": 3,
+      "ship_to_ship_rate": 1,
+      "tanker_utilization": 3,
+      "info_flow_intensity": 1
+    },
+    "oil_price_level": {
+      "kinetic_engagement": 0,
+      "vessel_transit_rate": 1,
+      "crude_throughput_rate": 1,
+      "oil_price_level": 0,
+      "insurance_premium_level": 1,
+      "rerouting_fraction": 0,
+      "mine_incident_rate": 0,
+      "maritime_control_balance": 0,
+      "sanctions_enforcement": 1,
+      "diplomatic_pressure": 1,
+      "regional_cohesion": 0,
+      "market_risk_perception": 2,
+      "supply_chain_disruption": 1,
+      "ship_to_ship_rate": 0,
+      "tanker_utilization": 1,
+      "info_flow_intensity": 1
+    },
+    "insurance_premium_level": {
+      "kinetic_engagement": 0,
+      "vessel_transit_rate": 2,
+      "crude_throughput_rate": 2,
+      "oil_price_level": 1,
+      "insurance_premium_level": 0,
+      "rerouting_fraction": 2,
+      "mine_incident_rate": 0,
+      "maritime_control_balance": 1,
+      "sanctions_enforcement": 0,
+      "diplomatic_pressure": 0,
+      "regional_cohesion": 0,
+      "market_risk_perception": 1,
+      "supply_chain_disruption": 2,
+      "ship_to_ship_rate": 2,
+      "tanker_utilization": 2,
+      "info_flow_intensity": 0
+    },
+    "rerouting_fraction": {
+      "kinetic_engagement": 0,
+      "vessel_transit_rate": 3,
+      "crude_throughput_rate": 2,
+      "oil_price_level": 1,
+      "insurance_premium_level": 1,
+      "rerouting_fraction": 0,
+      "mine_incident_rate": 0,
+      "maritime_control_balance": 2,
+      "sanctions_enforcement": 0,
+      "diplomatic_pressure": 0,
+      "regional_cohesion": 0,
+      "market_risk_perception": 1,
+      "supply_chain_disruption": 2,
+      "ship_to_ship_rate": 2,
+      "tanker_utilization": 2,
+      "info_flow_intensity": 0
+    },
+    "mine_incident_rate": {
+      "kinetic_engagement": 2,
+      "vessel_transit_rate": 3,
+      "crude_throughput_rate": 3,
+      "oil_price_level": 2,
+      "insurance_premium_level": 3,
+      "rerouting_fraction": 3,
+      "mine_incident_rate": 0,
+      "maritime_control_balance": 2,
+      "sanctions_enforcement": 1,
+      "diplomatic_pressure": 2,
+      "regional_cohesion": 1,
+      "market_risk_perception": 3,
+      "supply_chain_disruption": 3,
+      "ship_to_ship_rate": 2,
+      "tanker_utilization": 2,
+      "info_flow_intensity": 3
+    },
+    "maritime_control_balance": {
+      "kinetic_engagement": 2,
+      "vessel_transit_rate": 3,
+      "crude_throughput_rate": 3,
+      "oil_price_level": 2,
+      "insurance_premium_level": 2,
+      "rerouting_fraction": 3,
+      "mine_incident_rate": 1,
+      "maritime_control_balance": 0,
+      "sanctions_enforcement": 1,
+      "diplomatic_pressure": 2,
+      "regional_cohesion": 2,
+      "market_risk_perception": 2,
+      "supply_chain_disruption": 3,
+      "ship_to_ship_rate": 2,
+      "tanker_utilization": 2,
+      "info_flow_intensity": 2
+    },
+    "sanctions_enforcement": {
+      "kinetic_engagement": 0,
+      "vessel_transit_rate": 1,
+      "crude_throughput_rate": 2,
+      "oil_price_level": 2,
+      "insurance_premium_level": 1,
+      "rerouting_fraction": 1,
+      "mine_incident_rate": 0,
+      "maritime_control_balance": 1,
+      "sanctions_enforcement": 0,
+      "diplomatic_pressure": 2,
+      "regional_cohesion": 1,
+      "market_risk_perception": 1,
+      "supply_chain_disruption": 2,
+      "ship_to_ship_rate": 1,
+      "tanker_utilization": 1,
+      "info_flow_intensity": 1
+    },
+    "diplomatic_pressure": {
+      "kinetic_engagement": 1,
+      "vessel_transit_rate": 1,
+      "crude_throughput_rate": 1,
+      "oil_price_level": 1,
+      "insurance_premium_level": 1,
+      "rerouting_fraction": 0,
+      "mine_incident_rate": 0,
+      "maritime_control_balance": 2,
+      "sanctions_enforcement": 2,
+      "diplomatic_pressure": 0,
+      "regional_cohesion": 2,
+      "market_risk_perception": 1,
+      "supply_chain_disruption": 0,
+      "ship_to_ship_rate": 0,
+      "tanker_utilization": 0,
+      "info_flow_intensity": 2
+    },
+    "regional_cohesion": {
+      "kinetic_engagement": 2,
+      "vessel_transit_rate": 2,
+      "crude_throughput_rate": 2,
+      "oil_price_level": 1,
+      "insurance_premium_level": 1,
+      "rerouting_fraction": 1,
+      "mine_incident_rate": 1,
+      "maritime_control_balance": 3,
+      "sanctions_enforcement": 2,
+      "diplomatic_pressure": 2,
+      "regional_cohesion": 0,
+      "market_risk_perception": 1,
+      "supply_chain_disruption": 1,
+      "ship_to_ship_rate": 1,
+      "tanker_utilization": 1,
+      "info_flow_intensity": 1
+    },
+    "market_risk_perception": {
+      "kinetic_engagement": 0,
+      "vessel_transit_rate": 1,
+      "crude_throughput_rate": 0,
+      "oil_price_level": 3,
+      "insurance_premium_level": 2,
+      "rerouting_fraction": 1,
+      "mine_incident_rate": 0,
+      "maritime_control_balance": 0,
+      "sanctions_enforcement": 0,
+      "diplomatic_pressure": 1,
+      "regional_cohesion": 0,
+      "market_risk_perception": 0,
+      "supply_chain_disruption": 0,
+      "ship_to_ship_rate": 1,
+      "tanker_utilization": 1,
+      "info_flow_intensity": 1
+    },
+    "supply_chain_disruption": {
+      "kinetic_engagement": 0,
+      "vessel_transit_rate": 2,
+      "crude_throughput_rate": 3,
+      "oil_price_level": 2,
+      "insurance_premium_level": 1,
+      "rerouting_fraction": 2,
+      "mine_incident_rate": 0,
+      "maritime_control_balance": 1,
+      "sanctions_enforcement": 0,
+      "diplomatic_pressure": 1,
+      "regional_cohesion": 0,
+      "market_risk_perception": 2,
+      "supply_chain_disruption": 0,
+      "ship_to_ship_rate": 2,
+      "tanker_utilization": 2,
+      "info_flow_intensity": 1
+    },
+    "ship_to_ship_rate": {
+      "kinetic_engagement": 0,
+      "vessel_transit_rate": 2,
+      "crude_throughput_rate": 2,
+      "oil_price_level": 1,
+      "insurance_premium_level": 1,
+      "rerouting_fraction": 1,
+      "mine_incident_rate": 1,
+      "maritime_control_balance": 1,
+      "sanctions_enforcement": 1,
+      "diplomatic_pressure": 0,
+      "regional_cohesion": 0,
+      "market_risk_perception": 1,
+      "supply_chain_disruption": 1,
+      "ship_to_ship_rate": 0,
+      "tanker_utilization": 2,
+      "info_flow_intensity": 0
+    },
+    "tanker_utilization": {
+      "kinetic_engagement": 0,
+      "vessel_transit_rate": 2,
+      "crude_throughput_rate": 2,
+      "oil_price_level": 1,
+      "insurance_premium_level": 1,
+      "rerouting_fraction": 1,
+      "mine_incident_rate": 0,
+      "maritime_control_balance": 0,
+      "sanctions_enforcement": 0,
+      "diplomatic_pressure": 0,
+      "regional_cohesion": 0,
+      "market_risk_perception": 1,
+      "supply_chain_disruption": 1,
+      "ship_to_ship_rate": 1,
+      "tanker_utilization": 0,
+      "info_flow_intensity": 0
+    },
+    "info_flow_intensity": {
+      "kinetic_engagement": 1,
+      "vessel_transit_rate": 1,
+      "crude_throughput_rate": 0,
+      "oil_price_level": 1,
+      "insurance_premium_level": 1,
+      "rerouting_fraction": 1,
+      "mine_incident_rate": 1,
+      "maritime_control_balance": 1,
+      "sanctions_enforcement": 1,
+      "diplomatic_pressure": 2,
+      "regional_cohesion": 1,
+      "market_risk_perception": 3,
+      "supply_chain_disruption": 0,
+      "ship_to_ship_rate": 0,
+      "tanker_utilization": 0,
+      "info_flow_intensity": 0
+    }
+  },
+  "AS": {
+    "kinetic_engagement": 39,
+    "vessel_transit_rate": 21,
+    "crude_throughput_rate": 19,
+    "oil_price_level": 10,
+    "insurance_premium_level": 15,
+    "rerouting_fraction": 16,
+    "mine_incident_rate": 35,
+    "maritime_control_balance": 32,
+    "sanctions_enforcement": 17,
+    "diplomatic_pressure": 14,
+    "regional_cohesion": 22,
+    "market_risk_perception": 11,
+    "supply_chain_disruption": 19,
+    "ship_to_ship_rate": 14,
+    "tanker_utilization": 10,
+    "info_flow_intensity": 14
+  },
+  "PS": {
+    "kinetic_engagement": 8,
+    "vessel_transit_rate": 30,
+    "crude_throughput_rate": 29,
+    "oil_price_level": 25,
+    "insurance_premium_level": 22,
+    "rerouting_fraction": 21,
+    "mine_incident_rate": 7,
+    "maritime_control_balance": 19,
+    "sanctions_enforcement": 10,
+    "diplomatic_pressure": 17,
+    "regional_cohesion": 10,
+    "market_risk_perception": 26,
+    "supply_chain_disruption": 24,
+    "ship_to_ship_rate": 20,
+    "tanker_utilization": 23,
+    "info_flow_intensity": 17
+  },
+  "med_AS": 16.5,
+  "med_PS": 20.5,
+  "roles": [
+    {
+      "variable": "vessel_transit_rate",
+      "name": "Maritime vessel transit rate",
+      "AS": 21,
+      "PS": 30,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 630,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "maritime_control_balance",
+      "name": "Maritime security control balance",
+      "AS": 32,
+      "PS": 19,
+      "Q=AS/PS": 1.68,
+      "P=AS*PS": 608,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "crude_throughput_rate",
+      "name": "Crude oil throughput rate",
+      "AS": 19,
+      "PS": 29,
+      "Q=AS/PS": 0.66,
+      "P=AS*PS": 551,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "supply_chain_disruption",
+      "name": "Oil supply chain disruption level",
+      "AS": 19,
+      "PS": 24,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 456,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "rerouting_fraction",
+      "name": "Vessel rerouting fraction",
+      "AS": 16,
+      "PS": 21,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 336,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "insurance_premium_level",
+      "name": "Shipping insurance premium level",
+      "AS": 15,
+      "PS": 22,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 330,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "kinetic_engagement",
+      "name": "Kinetic engagement intensity",
+      "AS": 39,
+      "PS": 8,
+      "Q=AS/PS": 4.87,
+      "P=AS*PS": 312,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_risk_perception",
+      "name": "Market risk perception",
+      "AS": 11,
+      "PS": 26,
+      "Q=AS/PS": 0.42,
+      "P=AS*PS": 286,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "ship_to_ship_rate",
+      "name": "Ship-to-ship transfer rate",
+      "AS": 14,
+      "PS": 20,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 280,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "oil_price_level",
+      "name": "Global oil price level",
+      "AS": 10,
+      "PS": 25,
+      "Q=AS/PS": 0.4,
+      "P=AS*PS": 250,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "mine_incident_rate",
+      "name": "Maritime mine incident rate",
+      "AS": 35,
+      "PS": 7,
+      "Q=AS/PS": 5.0,
+      "P=AS*PS": 245,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "diplomatic_pressure",
+      "name": "Diplomatic pressure level",
+      "AS": 14,
+      "PS": 17,
+      "Q=AS/PS": 0.82,
+      "P=AS*PS": 238,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "info_flow_intensity",
+      "name": "Information flow intensity",
+      "AS": 14,
+      "PS": 17,
+      "Q=AS/PS": 0.82,
+      "P=AS*PS": 238,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "tanker_utilization",
+      "name": "Tanker capacity utilization",
+      "AS": 10,
+      "PS": 23,
+      "Q=AS/PS": 0.43,
+      "P=AS*PS": 230,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "regional_cohesion",
+      "name": "Regional security cohesion",
+      "AS": 22,
+      "PS": 10,
+      "Q=AS/PS": 2.2,
+      "P=AS*PS": 220,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sanctions_enforcement",
+      "name": "Sanctions enforcement intensity",
+      "AS": 17,
+      "PS": 10,
+      "Q=AS/PS": 1.7,
+      "P=AS*PS": 170,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "kinetic_engagement",
+        "name": "Kinetic engagement intensity",
+        "kind": "driver",
+        "AS": 39,
+        "PS": 8
+      },
+      {
+        "id": "vessel_transit_rate",
+        "name": "Maritime vessel transit rate",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 30
+      },
+      {
+        "id": "crude_throughput_rate",
+        "name": "Crude oil throughput rate",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 29
+      },
+      {
+        "id": "oil_price_level",
+        "name": "Global oil price level",
+        "kind": "environment",
+        "AS": 10,
+        "PS": 25
+      },
+      {
+        "id": "insurance_premium_level",
+        "name": "Shipping insurance premium level",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 22
+      },
+      {
+        "id": "rerouting_fraction",
+        "name": "Vessel rerouting fraction",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 21
+      },
+      {
+        "id": "mine_incident_rate",
+        "name": "Maritime mine incident rate",
+        "kind": "flow",
+        "AS": 35,
+        "PS": 7
+      },
+      {
+        "id": "maritime_control_balance",
+        "name": "Maritime security control balance",
+        "kind": "stock",
+        "AS": 32,
+        "PS": 19
+      },
+      {
+        "id": "sanctions_enforcement",
+        "name": "Sanctions enforcement intensity",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 10
+      },
+      {
+        "id": "diplomatic_pressure",
+        "name": "Diplomatic pressure level",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 17
+      },
+      {
+        "id": "regional_cohesion",
+        "name": "Regional security cohesion",
+        "kind": "institution_field",
+        "AS": 22,
+        "PS": 10
+      },
+      {
+        "id": "market_risk_perception",
+        "name": "Market risk perception",
+        "kind": "perception",
+        "AS": 11,
+        "PS": 26
+      },
+      {
+        "id": "supply_chain_disruption",
+        "name": "Oil supply chain disruption level",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 24
+      },
+      {
+        "id": "ship_to_ship_rate",
+        "name": "Ship-to-ship transfer rate",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 20
+      },
+      {
+        "id": "tanker_utilization",
+        "name": "Tanker capacity utilization",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 23
+      },
+      {
+        "id": "info_flow_intensity",
+        "name": "Information flow intensity",
+        "kind": "perception",
+        "AS": 14,
+        "PS": 17
+      }
+    ],
+    "edges": [
+      {
+        "source": "kinetic_engagement",
+        "target": "vessel_transit_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "crude_throughput_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "insurance_premium_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "rerouting_fraction",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "mine_incident_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "maritime_control_balance",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "diplomatic_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "regional_cohesion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "market_risk_perception",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "supply_chain_disruption",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "ship_to_ship_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "tanker_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "kinetic_engagement",
+        "target": "info_flow_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "vessel_transit_rate",
+        "target": "crude_throughput_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "vessel_transit_rate",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "vessel_transit_rate",
+        "target": "insurance_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "vessel_transit_rate",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "vessel_transit_rate",
+        "target": "supply_chain_disruption",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "vessel_transit_rate",
+        "target": "ship_to_ship_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "vessel_transit_rate",
+        "target": "tanker_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_throughput_rate",
+        "target": "vessel_transit_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_throughput_rate",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_throughput_rate",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_throughput_rate",
+        "target": "supply_chain_disruption",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_throughput_rate",
+        "target": "tanker_utilization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premium_level",
+        "target": "vessel_transit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premium_level",
+        "target": "crude_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premium_level",
+        "target": "rerouting_fraction",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premium_level",
+        "target": "supply_chain_disruption",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premium_level",
+        "target": "ship_to_ship_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premium_level",
+        "target": "tanker_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_fraction",
+        "target": "vessel_transit_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_fraction",
+        "target": "crude_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_fraction",
+        "target": "maritime_control_balance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_fraction",
+        "target": "supply_chain_disruption",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouting_fraction",
+        "target": "ship_to_ship_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouting_fraction",
+        "target": "tanker_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "kinetic_engagement",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "vessel_transit_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "crude_throughput_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "insurance_premium_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "rerouting_fraction",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "maritime_control_balance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "diplomatic_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "market_risk_perception",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "supply_chain_disruption",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "ship_to_ship_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "tanker_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "mine_incident_rate",
+        "target": "info_flow_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "kinetic_engagement",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "vessel_transit_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "crude_throughput_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "insurance_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "rerouting_fraction",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "diplomatic_pressure",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "regional_cohesion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "supply_chain_disruption",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "ship_to_ship_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "tanker_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_control_balance",
+        "target": "info_flow_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "crude_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "diplomatic_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "supply_chain_disruption",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_pressure",
+        "target": "maritime_control_balance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_pressure",
+        "target": "sanctions_enforcement",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_pressure",
+        "target": "regional_cohesion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_pressure",
+        "target": "info_flow_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regional_cohesion",
+        "target": "kinetic_engagement",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "regional_cohesion",
+        "target": "vessel_transit_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regional_cohesion",
+        "target": "crude_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regional_cohesion",
+        "target": "maritime_control_balance",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "regional_cohesion",
+        "target": "sanctions_enforcement",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regional_cohesion",
+        "target": "diplomatic_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_perception",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_perception",
+        "target": "insurance_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "vessel_transit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "crude_throughput_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "rerouting_fraction",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "market_risk_perception",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "ship_to_ship_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_disruption",
+        "target": "tanker_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "ship_to_ship_rate",
+        "target": "vessel_transit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "ship_to_ship_rate",
+        "target": "crude_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ship_to_ship_rate",
+        "target": "tanker_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_utilization",
+        "target": "vessel_transit_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_utilization",
+        "target": "crude_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "info_flow_intensity",
+        "target": "diplomatic_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "info_flow_intensity",
+        "target": "market_risk_perception",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_sustained_strikes",
+      "title": "Sustained US strike campaign",
+      "description": "Continuation and expansion of US strikes on Iranian targets aiming to degrade capabilities and pressure Tehran.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-10-03",
+        "label": "next 4 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "kinetic_engagement",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_control_balance",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_pressure",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "info_flow_intensity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_risk_perception",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple headlines: 'US launches further strikes on Iran', 'U.S. Tries to Squeeze Iran With New Strikes' (2026-09-01/02)."
+    },
+    {
+      "id": "iran_reciprocal_attacks",
+      "title": "Iranian reciprocal strikes",
+      "description": "Tehran conducts retaliatory strikes against US forces, allied assets, or shipping in response to US actions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-09-30",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "kinetic_engagement",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "mine_incident_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "vessel_transit_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_throughput_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_control_balance",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_perception",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Iran's president says Tehran will reciprocate', 'Iran hits back' after US strikes (2026-09-01/02/03)."
+    },
+    {
+      "id": "mine_incidents_escalation",
+      "title": "Escalation in naval mine incidents",
+      "description": "Increased mine-laying, mine strikes, and disputed mine reports that restrict safe navigation in the Hormuz corridor.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-09-17",
+        "label": "1-2 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "mine_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "vessel_transit_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_throughput_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_control_balance",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "supply_chain_disruption",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Reports: 'Iran says two tankers have hit Hormuz naval mines', 'Mine Warfare With Iran Hampers U.S. Efforts' (2026-09-03/01)."
+    },
+    {
+      "id": "tanker_attack_wave",
+      "title": "Continued tanker attack wave",
+      "description": "Ongoing attacks on commercial tankers in the Strait of Hormuz that suppress traffic and prompt adaptive behavior.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-10-01",
+        "label": "4 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "kinetic_engagement",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "vessel_transit_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "rerouting_fraction",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_throughput_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "ship_to_ship_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_risk_perception",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple reports: 'Two tankers attacked', 'Oil supertankers hit', 'Saudi and South Korean oil tankers hit' (2026-09-01 to 09-03)."
+    },
+    {
+      "id": "ship_to_ship_transfers",
+      "title": "Ramp-up of ship-to-ship cargo transfers",
+      "description": "Expanded use of ship-to-ship transfers outside the Strait to bypass contested waters and maintain flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-09-17",
+        "label": "1-2 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "ship_to_ship_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rerouting_fraction",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_throughput_rate",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_utilization",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "supply_chain_disruption",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Qatari, UAE LNG cargoes transferred via ship-to-ship outside Strait of Hormuz' and transit adaptation reports (2026-09-02)."
+    },
+    {
+      "id": "un_ga_vote_on_iran",
+      "title": "UN/General Assembly contentious vote on Iran",
+      "description": "Diplomatic vote at or around the UN General Assembly that could alter international pressure and sanctions momentum.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-09-20",
+        "label": "mid-Sept"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "diplomatic_pressure",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sanctions_enforcement",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "info_flow_intensity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "regional_cohesion",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'UN faces contentious Iran nuclear vote ahead of General Assembly' (2026-09-02) — scheduled diplomatic event."
+    },
+    {
+      "id": "post_election_intensification",
+      "title": "Potential intensification after US elections",
+      "description": "Possibility that attacks and military operations intensify after the November 2026 US elections when political constraints change.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-06",
+        "end": "2027-01-31",
+        "label": "after Nov elections"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "kinetic_engagement",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "info_flow_intensity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_risk_perception",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "vessel_transit_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diplomatic_pressure",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Trump aides seek \"quiet\" but say attacks may intensify after November elections' (2026-09-03)."
+    },
+    {
+      "id": "shipping_insurance_spike",
+      "title": "Spike in shipping insurance premiums",
+      "description": "Rapid rise in insurance costs for transits through Hormuz as attacks and mine reports increase perceived risk.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-10-03",
+        "label": "next 4 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "insurance_premium_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rerouting_fraction",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "ship_to_ship_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "vessel_transit_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_perception",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple tanker attack and mine headlines ('Two tankers attacked', 'tankers hit', 'mines') imply insurers will raise premiums (2026-09-01 to 09-03)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "iran_reciprocal_attacks",
+      "title": "Iranian reciprocal strikes",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-09-30",
+      "probability": 0.8,
+      "impact_score": 409.0,
+      "expected_impact": 327.2,
+      "event_PS": 19.882,
+      "event_AS": 24.059,
+      "n_vars": 7,
+      "affected_ids": "kinetic_engagement, mine_incident_rate, vessel_transit_rate, crude_throughput_rate, insurance_premium_level, maritime_control_balance, market_risk_perception",
+      "rationale": "Headlines: 'Iran's president says Tehran will reciprocate', 'Iran hits back' after US strikes (2026-09-01/02/03)."
+    },
+    {
+      "id": "mine_incidents_escalation",
+      "title": "Escalation in naval mine incidents",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-2 weeks",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-09-17",
+      "probability": 0.7,
+      "impact_score": 332.0,
+      "expected_impact": 232.4,
+      "event_PS": 20.786,
+      "event_AS": 23.714,
+      "n_vars": 6,
+      "affected_ids": "mine_incident_rate, vessel_transit_rate, crude_throughput_rate, insurance_premium_level, maritime_control_balance, supply_chain_disruption",
+      "rationale": "Reports: 'Iran says two tankers have hit Hormuz naval mines', 'Mine Warfare With Iran Hampers U.S. Efforts' (2026-09-03/01)."
+    },
+    {
+      "id": "tanker_attack_wave",
+      "title": "Continued tanker attack wave",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "4 weeks",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-10-01",
+      "probability": 0.85,
+      "impact_score": 312.0,
+      "expected_impact": 265.2,
+      "event_PS": 22.412,
+      "event_AS": 18.353,
+      "n_vars": 7,
+      "affected_ids": "kinetic_engagement, vessel_transit_rate, rerouting_fraction, crude_throughput_rate, insurance_premium_level, ship_to_ship_rate, market_risk_perception",
+      "rationale": "Multiple reports: 'Two tankers attacked', 'Oil supertankers hit', 'Saudi and South Korean oil tankers hit' (2026-09-01 to 09-03)."
+    },
+    {
+      "id": "us_sustained_strikes",
+      "title": "Sustained US strike campaign",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4 weeks",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-10-03",
+      "probability": 0.85,
+      "impact_score": 259.0,
+      "expected_impact": 220.15,
+      "event_PS": 16.545,
+      "event_AS": 23.545,
+      "n_vars": 5,
+      "affected_ids": "kinetic_engagement, maritime_control_balance, diplomatic_pressure, info_flow_intensity, market_risk_perception",
+      "rationale": "Multiple headlines: 'US launches further strikes on Iran', 'U.S. Tries to Squeeze Iran With New Strikes' (2026-09-01/02)."
+    },
+    {
+      "id": "post_election_intensification",
+      "title": "Potential intensification after US elections",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "after Nov elections",
+      "date": null,
+      "start": "2026-11-06",
+      "end": "2027-01-31",
+      "probability": 0.5,
+      "impact_score": 223.0,
+      "expected_impact": 111.5,
+      "event_PS": 18.7,
+      "event_AS": 22.3,
+      "n_vars": 5,
+      "affected_ids": "kinetic_engagement, info_flow_intensity, market_risk_perception, vessel_transit_rate, diplomatic_pressure",
+      "rationale": "Headline: 'Trump aides seek \"quiet\" but say attacks may intensify after November elections' (2026-09-03)."
+    },
+    {
+      "id": "shipping_insurance_spike",
+      "title": "Spike in shipping insurance premiums",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4 weeks",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-10-03",
+      "probability": 0.75,
+      "impact_score": 148.0,
+      "expected_impact": 111.0,
+      "event_PS": 23.0,
+      "event_AS": 14.8,
+      "n_vars": 5,
+      "affected_ids": "insurance_premium_level, rerouting_fraction, ship_to_ship_rate, vessel_transit_rate, market_risk_perception",
+      "rationale": "Multiple tanker attack and mine headlines ('Two tankers attacked', 'tankers hit', 'mines') imply insurers will raise premiums (2026-09-01 to 09-03)."
+    },
+    {
+      "id": "ship_to_ship_transfers",
+      "title": "Ramp-up of ship-to-ship cargo transfers",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-2 weeks",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-09-17",
+      "probability": 0.75,
+      "impact_score": 122.0,
+      "expected_impact": 91.5,
+      "event_PS": 22.25,
+      "event_AS": 15.25,
+      "n_vars": 5,
+      "affected_ids": "ship_to_ship_rate, rerouting_fraction, crude_throughput_rate, tanker_utilization, supply_chain_disruption",
+      "rationale": "Headline: 'Qatari, UAE LNG cargoes transferred via ship-to-ship outside Strait of Hormuz' and transit adaptation reports (2026-09-02)."
+    },
+    {
+      "id": "un_ga_vote_on_iran",
+      "title": "UN/General Assembly contentious vote on Iran",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-Sept",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-09-20",
+      "probability": 0.6,
+      "impact_score": 95.0,
+      "expected_impact": 57.0,
+      "event_PS": 14.667,
+      "event_AS": 15.833,
+      "n_vars": 4,
+      "affected_ids": "diplomatic_pressure, sanctions_enforcement, info_flow_intensity, regional_cohesion",
+      "rationale": "Headline: 'UN faces contentious Iran nuclear vote ahead of General Assembly' (2026-09-02) — scheduled diplomatic event."
+    }
+  ]
+}
