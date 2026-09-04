@@ -1,0 +1,1617 @@
+{
+  "label": "energy_supply_reordering",
+  "as_of": "2026-09-03",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-04T01:33:25",
+  "system_description": {
+    "narrative_title": "Trump's US–Venezuela Oil Deal and Its Ripple Effects",
+    "narrative_summary": "A sweeping US-backed agreement to open Venezuela's vast oil reserves to American-linked firms has become the dominant story, framed as a fast route to more supply and lower pump prices but provoking legal, political and market pushback. The deal links large capital commitments (eg. Chevron pledges, NABEP concessions) to executive diplomacy, triggers domestic meetings with refiners and regulatory moves, and raises questions about contract transparency, Venezuelan governance, and global energy geopolitics.",
+    "scope": "U.S. administration policy and executive actions on Venezuela oil; Venezuelan oil assets and state institutions; U.S. and international oil firms and refiners (investment, production, concession agreements); market signals around crude and fuel prices; legal, investor and public reactions; short-to-medium-term operational and regulatory changes tied to the deals.",
+    "super_system": "Global energy markets and geopolitics (including international sanctions regimes, oil supply chains, and US foreign policy toward Latin America)",
+    "adjacent_subsystems": [
+      "U.S. domestic politics and consumer price politics (elections, public opinion, regulatory decisions)",
+      "Venezuelan political-institutional dynamics (Maduro regime, opposition, national assembly and legal claims)",
+      "International finance and investor confidence (contracts, courts, capital flows, and sanctions compliance)",
+      "Refining and domestic fuel distribution system (refiners, fuel standards, biofuel waivers, retail networks)"
+    ],
+    "evidence_headlines": [
+      "Trump says US to take control of 65bn barrels of Venezuelan oil",
+      "Venezuela grants U.S.-backed oil firm NABEP 100-year concessions for 17 oil fields, White House says",
+      "Chevron to double Venezuela oil production with $7bn pledge",
+      "US officials defend Venezuela oil deal, say agreement part of path to democracy - reuters.com",
+      "Trump to meet with U.S. oil refiners as White House pushes to lower gas prices",
+      "Experts, lawyers puzzled over US-Venezuela oil deal, call for contract transparency"
+    ]
+  },
+  "variables": [
+    {
+      "id": "foreign_capital_commitme",
+      "name": "Foreign capital commitments",
+      "description": "Total pledged or contracted financial capital allocated to upstream and midstream oil projects within the producing jurisdiction.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "accessible_oil_reserves",
+      "name": "Accessible oil reserve volume",
+      "description": "Estimated volume of proven or likely hydrocarbon reserves that are practically accessible to external operators under current policy and operational conditions.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "upstream_prod_capacity",
+      "name": "Upstream production capacity",
+      "description": "Aggregate daily crude production capability of active oil fields under existing infrastructure and workforce availability.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_export_flow_rate",
+      "name": "Crude export flow rate",
+      "description": "Volume of crude oil leaving the producing jurisdiction for external markets per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_throughput_rate",
+      "name": "Refinery processing throughput",
+      "description": "Combined daily crude input processed by domestic refinery capacity available to refine or swap heavy and light crudes.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "domestic_fuel_price_leve",
+      "name": "Domestic fuel price level",
+      "description": "Average retail price of finished transport fuels within the consuming jurisdiction adjusted for taxes and subsidies.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "global_oil_price_level",
+      "name": "Global oil price level",
+      "description": "Prevailing international benchmark crude price that influences trade valuations and import/export decisions.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sanction_intensity",
+      "name": "Sanctions enforcement intensity",
+      "description": "Degree to which external restrictive measures (financial, trade, or legal) limit transactions, access to services, and cross-border operations with the producing jurisdiction.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "contract_transparency",
+      "name": "Contract transparency and clarity",
+      "description": "Extent to which the terms, ownership stakes, payment structures, and governance of commercial agreements are publicly disclosed and comprehensible to stakeholders.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "legal_enforceability",
+      "name": "Legal enforceability of contracts",
+      "description": "Strength and predictability of the legal framework and adjudicative mechanisms that determine whether contractual rights and remedies can be reliably realized.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_confidence",
+      "name": "Investor confidence in jurisdiction",
+      "description": "Aggregate investor belief about political, legal, and commercial risk that shapes willingness to commit capital and mobilize financing for projects.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "operational_disruptions",
+      "name": "Operational disruption frequency",
+      "description": "Rate at which production or export operations experience stoppages or capacity-reducing incidents per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "political_legitimacy_lev",
+      "name": "Political legitimacy level",
+      "description": "Perceived domestic and international acceptance of governing authority and its mandate to make long-term resource and policy decisions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "regulatory_change_rate",
+      "name": "Regulatory change rate",
+      "description": "Frequency and magnitude of formal policy, regulatory, or administrative alterations affecting hydrocarbon governance and commercial terms.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "project_financing_cost",
+      "name": "Project financing cost",
+      "description": "Effective cost of capital (interest rates, risk premia, fees) for funding oil and refining projects tied to perceived jurisdictional risk.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "supply_chain_bottleneck",
+      "name": "Supply chain bottleneck level",
+      "description": "Degree to which logistics constraints (ports, shipping, storage, transport) impede movement of crude, refined products, or equipment along the value chain.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "foreign_capital_commitme",
+    "accessible_oil_reserves",
+    "upstream_prod_capacity",
+    "crude_export_flow_rate",
+    "refinery_throughput_rate",
+    "domestic_fuel_price_leve",
+    "global_oil_price_level",
+    "sanction_intensity",
+    "contract_transparency",
+    "legal_enforceability",
+    "investor_confidence",
+    "operational_disruptions",
+    "political_legitimacy_lev",
+    "regulatory_change_rate",
+    "project_financing_cost",
+    "supply_chain_bottleneck"
+  ],
+  "var_names": {
+    "foreign_capital_commitme": "Foreign capital commitments",
+    "accessible_oil_reserves": "Accessible oil reserve volume",
+    "upstream_prod_capacity": "Upstream production capacity",
+    "crude_export_flow_rate": "Crude export flow rate",
+    "refinery_throughput_rate": "Refinery processing throughput",
+    "domestic_fuel_price_leve": "Domestic fuel price level",
+    "global_oil_price_level": "Global oil price level",
+    "sanction_intensity": "Sanctions enforcement intensity",
+    "contract_transparency": "Contract transparency and clarity",
+    "legal_enforceability": "Legal enforceability of contracts",
+    "investor_confidence": "Investor confidence in jurisdiction",
+    "operational_disruptions": "Operational disruption frequency",
+    "political_legitimacy_lev": "Political legitimacy level",
+    "regulatory_change_rate": "Regulatory change rate",
+    "project_financing_cost": "Project financing cost",
+    "supply_chain_bottleneck": "Supply chain bottleneck level"
+  },
+  "impact_matrix": {
+    "foreign_capital_commitme": {
+      "foreign_capital_commitme": 0,
+      "accessible_oil_reserves": 2,
+      "upstream_prod_capacity": 3,
+      "crude_export_flow_rate": 2,
+      "refinery_throughput_rate": 2,
+      "domestic_fuel_price_leve": 1,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 0,
+      "contract_transparency": 2,
+      "legal_enforceability": 1,
+      "investor_confidence": 2,
+      "operational_disruptions": 1,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 2,
+      "supply_chain_bottleneck": 2
+    },
+    "accessible_oil_reserves": {
+      "foreign_capital_commitme": 2,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 3,
+      "crude_export_flow_rate": 2,
+      "refinery_throughput_rate": 1,
+      "domestic_fuel_price_leve": 1,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 0,
+      "contract_transparency": 0,
+      "legal_enforceability": 0,
+      "investor_confidence": 2,
+      "operational_disruptions": 1,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 1,
+      "supply_chain_bottleneck": 1
+    },
+    "upstream_prod_capacity": {
+      "foreign_capital_commitme": 2,
+      "accessible_oil_reserves": 1,
+      "upstream_prod_capacity": 0,
+      "crude_export_flow_rate": 3,
+      "refinery_throughput_rate": 2,
+      "domestic_fuel_price_leve": 2,
+      "global_oil_price_level": 1,
+      "sanction_intensity": 0,
+      "contract_transparency": 0,
+      "legal_enforceability": 0,
+      "investor_confidence": 2,
+      "operational_disruptions": 1,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 1,
+      "supply_chain_bottleneck": 2
+    },
+    "crude_export_flow_rate": {
+      "foreign_capital_commitme": 2,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 1,
+      "crude_export_flow_rate": 0,
+      "refinery_throughput_rate": 1,
+      "domestic_fuel_price_leve": 2,
+      "global_oil_price_level": 1,
+      "sanction_intensity": 0,
+      "contract_transparency": 0,
+      "legal_enforceability": 0,
+      "investor_confidence": 1,
+      "operational_disruptions": 1,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 1,
+      "supply_chain_bottleneck": 3
+    },
+    "refinery_throughput_rate": {
+      "foreign_capital_commitme": 2,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 1,
+      "crude_export_flow_rate": 2,
+      "refinery_throughput_rate": 0,
+      "domestic_fuel_price_leve": 3,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 0,
+      "contract_transparency": 0,
+      "legal_enforceability": 0,
+      "investor_confidence": 1,
+      "operational_disruptions": 2,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 1,
+      "supply_chain_bottleneck": 2
+    },
+    "domestic_fuel_price_leve": {
+      "foreign_capital_commitme": 0,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 0,
+      "crude_export_flow_rate": 1,
+      "refinery_throughput_rate": 1,
+      "domestic_fuel_price_leve": 0,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 0,
+      "contract_transparency": 0,
+      "legal_enforceability": 0,
+      "investor_confidence": 1,
+      "operational_disruptions": 0,
+      "political_legitimacy_lev": 2,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 0,
+      "supply_chain_bottleneck": 1
+    },
+    "global_oil_price_level": {
+      "foreign_capital_commitme": 2,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 2,
+      "crude_export_flow_rate": 2,
+      "refinery_throughput_rate": 1,
+      "domestic_fuel_price_leve": 3,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 0,
+      "contract_transparency": 0,
+      "legal_enforceability": 0,
+      "investor_confidence": 2,
+      "operational_disruptions": 0,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 1,
+      "supply_chain_bottleneck": 0
+    },
+    "sanction_intensity": {
+      "foreign_capital_commitme": 3,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 3,
+      "crude_export_flow_rate": 3,
+      "refinery_throughput_rate": 3,
+      "domestic_fuel_price_leve": 2,
+      "global_oil_price_level": 1,
+      "sanction_intensity": 0,
+      "contract_transparency": 1,
+      "legal_enforceability": 2,
+      "investor_confidence": 3,
+      "operational_disruptions": 3,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 2,
+      "project_financing_cost": 3,
+      "supply_chain_bottleneck": 3
+    },
+    "contract_transparency": {
+      "foreign_capital_commitme": 2,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 1,
+      "crude_export_flow_rate": 1,
+      "refinery_throughput_rate": 0,
+      "domestic_fuel_price_leve": 0,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 0,
+      "contract_transparency": 0,
+      "legal_enforceability": 2,
+      "investor_confidence": 3,
+      "operational_disruptions": 1,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 2,
+      "supply_chain_bottleneck": 0
+    },
+    "legal_enforceability": {
+      "foreign_capital_commitme": 3,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 1,
+      "crude_export_flow_rate": 1,
+      "refinery_throughput_rate": 0,
+      "domestic_fuel_price_leve": 0,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 0,
+      "contract_transparency": 1,
+      "legal_enforceability": 0,
+      "investor_confidence": 3,
+      "operational_disruptions": 1,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 3,
+      "supply_chain_bottleneck": 0
+    },
+    "investor_confidence": {
+      "foreign_capital_commitme": 3,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 2,
+      "crude_export_flow_rate": 1,
+      "refinery_throughput_rate": 1,
+      "domestic_fuel_price_leve": 0,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 0,
+      "contract_transparency": 0,
+      "legal_enforceability": 0,
+      "investor_confidence": 0,
+      "operational_disruptions": 1,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 0,
+      "project_financing_cost": 2,
+      "supply_chain_bottleneck": 1
+    },
+    "operational_disruptions": {
+      "foreign_capital_commitme": 2,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 3,
+      "crude_export_flow_rate": 3,
+      "refinery_throughput_rate": 3,
+      "domestic_fuel_price_leve": 2,
+      "global_oil_price_level": 1,
+      "sanction_intensity": 0,
+      "contract_transparency": 0,
+      "legal_enforceability": 0,
+      "investor_confidence": 2,
+      "operational_disruptions": 0,
+      "political_legitimacy_lev": 2,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 2,
+      "supply_chain_bottleneck": 2
+    },
+    "political_legitimacy_lev": {
+      "foreign_capital_commitme": 2,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 1,
+      "crude_export_flow_rate": 1,
+      "refinery_throughput_rate": 0,
+      "domestic_fuel_price_leve": 1,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 1,
+      "contract_transparency": 1,
+      "legal_enforceability": 1,
+      "investor_confidence": 2,
+      "operational_disruptions": 1,
+      "political_legitimacy_lev": 0,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 1,
+      "supply_chain_bottleneck": 0
+    },
+    "regulatory_change_rate": {
+      "foreign_capital_commitme": 2,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 1,
+      "crude_export_flow_rate": 1,
+      "refinery_throughput_rate": 1,
+      "domestic_fuel_price_leve": 2,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 0,
+      "contract_transparency": 2,
+      "legal_enforceability": 1,
+      "investor_confidence": 2,
+      "operational_disruptions": 1,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 0,
+      "project_financing_cost": 2,
+      "supply_chain_bottleneck": 1
+    },
+    "project_financing_cost": {
+      "foreign_capital_commitme": 2,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 2,
+      "crude_export_flow_rate": 1,
+      "refinery_throughput_rate": 1,
+      "domestic_fuel_price_leve": 1,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 0,
+      "contract_transparency": 0,
+      "legal_enforceability": 0,
+      "investor_confidence": 1,
+      "operational_disruptions": 0,
+      "political_legitimacy_lev": 0,
+      "regulatory_change_rate": 0,
+      "project_financing_cost": 0,
+      "supply_chain_bottleneck": 0
+    },
+    "supply_chain_bottleneck": {
+      "foreign_capital_commitme": 2,
+      "accessible_oil_reserves": 0,
+      "upstream_prod_capacity": 2,
+      "crude_export_flow_rate": 3,
+      "refinery_throughput_rate": 2,
+      "domestic_fuel_price_leve": 2,
+      "global_oil_price_level": 0,
+      "sanction_intensity": 0,
+      "contract_transparency": 0,
+      "legal_enforceability": 0,
+      "investor_confidence": 2,
+      "operational_disruptions": 3,
+      "political_legitimacy_lev": 1,
+      "regulatory_change_rate": 1,
+      "project_financing_cost": 2,
+      "supply_chain_bottleneck": 0
+    }
+  },
+  "AS": {
+    "foreign_capital_commitme": 22,
+    "accessible_oil_reserves": 16,
+    "upstream_prod_capacity": 19,
+    "crude_export_flow_rate": 15,
+    "refinery_throughput_rate": 16,
+    "domestic_fuel_price_leve": 7,
+    "global_oil_price_level": 15,
+    "sanction_intensity": 33,
+    "contract_transparency": 14,
+    "legal_enforceability": 15,
+    "investor_confidence": 12,
+    "operational_disruptions": 23,
+    "political_legitimacy_lev": 13,
+    "regulatory_change_rate": 17,
+    "project_financing_cost": 8,
+    "supply_chain_bottleneck": 20
+  },
+  "PS": {
+    "foreign_capital_commitme": 31,
+    "accessible_oil_reserves": 3,
+    "upstream_prod_capacity": 26,
+    "crude_export_flow_rate": 27,
+    "refinery_throughput_rate": 19,
+    "domestic_fuel_price_leve": 22,
+    "global_oil_price_level": 4,
+    "sanction_intensity": 1,
+    "contract_transparency": 7,
+    "legal_enforceability": 7,
+    "investor_confidence": 29,
+    "operational_disruptions": 17,
+    "political_legitimacy_lev": 16,
+    "regulatory_change_rate": 14,
+    "project_financing_cost": 24,
+    "supply_chain_bottleneck": 18
+  },
+  "med_AS": 15.5,
+  "med_PS": 17.5,
+  "roles": [
+    {
+      "variable": "foreign_capital_commitme",
+      "name": "Foreign capital commitments",
+      "AS": 22,
+      "PS": 31,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 682,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "upstream_prod_capacity",
+      "name": "Upstream production capacity",
+      "AS": 19,
+      "PS": 26,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 494,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crude_export_flow_rate",
+      "name": "Crude export flow rate",
+      "AS": 15,
+      "PS": 27,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 405,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "operational_disruptions",
+      "name": "Operational disruption frequency",
+      "AS": 23,
+      "PS": 17,
+      "Q=AS/PS": 1.35,
+      "P=AS*PS": 391,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "supply_chain_bottleneck",
+      "name": "Supply chain bottleneck level",
+      "AS": 20,
+      "PS": 18,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 360,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_confidence",
+      "name": "Investor confidence in jurisdiction",
+      "AS": 12,
+      "PS": 29,
+      "Q=AS/PS": 0.41,
+      "P=AS*PS": 348,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refinery_throughput_rate",
+      "name": "Refinery processing throughput",
+      "AS": 16,
+      "PS": 19,
+      "Q=AS/PS": 0.84,
+      "P=AS*PS": 304,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "regulatory_change_rate",
+      "name": "Regulatory change rate",
+      "AS": 17,
+      "PS": 14,
+      "Q=AS/PS": 1.21,
+      "P=AS*PS": 238,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "political_legitimacy_lev",
+      "name": "Political legitimacy level",
+      "AS": 13,
+      "PS": 16,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 208,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "project_financing_cost",
+      "name": "Project financing cost",
+      "AS": 8,
+      "PS": 24,
+      "Q=AS/PS": 0.33,
+      "P=AS*PS": 192,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "domestic_fuel_price_leve",
+      "name": "Domestic fuel price level",
+      "AS": 7,
+      "PS": 22,
+      "Q=AS/PS": 0.32,
+      "P=AS*PS": 154,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "legal_enforceability",
+      "name": "Legal enforceability of contracts",
+      "AS": 15,
+      "PS": 7,
+      "Q=AS/PS": 2.14,
+      "P=AS*PS": 105,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "contract_transparency",
+      "name": "Contract transparency and clarity",
+      "AS": 14,
+      "PS": 7,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 98,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "global_oil_price_level",
+      "name": "Global oil price level",
+      "AS": 15,
+      "PS": 4,
+      "Q=AS/PS": 3.75,
+      "P=AS*PS": 60,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "accessible_oil_reserves",
+      "name": "Accessible oil reserve volume",
+      "AS": 16,
+      "PS": 3,
+      "Q=AS/PS": 5.33,
+      "P=AS*PS": 48,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sanction_intensity",
+      "name": "Sanctions enforcement intensity",
+      "AS": 33,
+      "PS": 1,
+      "Q=AS/PS": 33.0,
+      "P=AS*PS": 33,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "foreign_capital_commitme",
+        "name": "Foreign capital commitments",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 31
+      },
+      {
+        "id": "accessible_oil_reserves",
+        "name": "Accessible oil reserve volume",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 3
+      },
+      {
+        "id": "upstream_prod_capacity",
+        "name": "Upstream production capacity",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 26
+      },
+      {
+        "id": "crude_export_flow_rate",
+        "name": "Crude export flow rate",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 27
+      },
+      {
+        "id": "refinery_throughput_rate",
+        "name": "Refinery processing throughput",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 19
+      },
+      {
+        "id": "domestic_fuel_price_leve",
+        "name": "Domestic fuel price level",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 22
+      },
+      {
+        "id": "global_oil_price_level",
+        "name": "Global oil price level",
+        "kind": "environment",
+        "AS": 15,
+        "PS": 4
+      },
+      {
+        "id": "sanction_intensity",
+        "name": "Sanctions enforcement intensity",
+        "kind": "environment",
+        "AS": 33,
+        "PS": 1
+      },
+      {
+        "id": "contract_transparency",
+        "name": "Contract transparency and clarity",
+        "kind": "perception",
+        "AS": 14,
+        "PS": 7
+      },
+      {
+        "id": "legal_enforceability",
+        "name": "Legal enforceability of contracts",
+        "kind": "institution_field",
+        "AS": 15,
+        "PS": 7
+      },
+      {
+        "id": "investor_confidence",
+        "name": "Investor confidence in jurisdiction",
+        "kind": "perception",
+        "AS": 12,
+        "PS": 29
+      },
+      {
+        "id": "operational_disruptions",
+        "name": "Operational disruption frequency",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 17
+      },
+      {
+        "id": "political_legitimacy_lev",
+        "name": "Political legitimacy level",
+        "kind": "perception",
+        "AS": 13,
+        "PS": 16
+      },
+      {
+        "id": "regulatory_change_rate",
+        "name": "Regulatory change rate",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 14
+      },
+      {
+        "id": "project_financing_cost",
+        "name": "Project financing cost",
+        "kind": "driver",
+        "AS": 8,
+        "PS": 24
+      },
+      {
+        "id": "supply_chain_bottleneck",
+        "name": "Supply chain bottleneck level",
+        "kind": "environment",
+        "AS": 20,
+        "PS": 18
+      }
+    ],
+    "edges": [
+      {
+        "source": "foreign_capital_commitme",
+        "target": "accessible_oil_reserves",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "foreign_capital_commitme",
+        "target": "upstream_prod_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "foreign_capital_commitme",
+        "target": "crude_export_flow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "foreign_capital_commitme",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "foreign_capital_commitme",
+        "target": "contract_transparency",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "foreign_capital_commitme",
+        "target": "investor_confidence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "foreign_capital_commitme",
+        "target": "project_financing_cost",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "foreign_capital_commitme",
+        "target": "supply_chain_bottleneck",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "accessible_oil_reserves",
+        "target": "foreign_capital_commitme",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "accessible_oil_reserves",
+        "target": "upstream_prod_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "accessible_oil_reserves",
+        "target": "crude_export_flow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "accessible_oil_reserves",
+        "target": "investor_confidence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_prod_capacity",
+        "target": "foreign_capital_commitme",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_prod_capacity",
+        "target": "crude_export_flow_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_prod_capacity",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_prod_capacity",
+        "target": "domestic_fuel_price_leve",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_prod_capacity",
+        "target": "investor_confidence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_prod_capacity",
+        "target": "supply_chain_bottleneck",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_export_flow_rate",
+        "target": "foreign_capital_commitme",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_export_flow_rate",
+        "target": "domestic_fuel_price_leve",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_export_flow_rate",
+        "target": "supply_chain_bottleneck",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "foreign_capital_commitme",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "crude_export_flow_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "domestic_fuel_price_leve",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "operational_disruptions",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "supply_chain_bottleneck",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "domestic_fuel_price_leve",
+        "target": "political_legitimacy_lev",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "foreign_capital_commitme",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "upstream_prod_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "crude_export_flow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "domestic_fuel_price_leve",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "investor_confidence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "foreign_capital_commitme",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "upstream_prod_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "crude_export_flow_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "refinery_throughput_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "domestic_fuel_price_leve",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "legal_enforceability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "investor_confidence",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "operational_disruptions",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "regulatory_change_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "project_financing_cost",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "supply_chain_bottleneck",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "contract_transparency",
+        "target": "foreign_capital_commitme",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contract_transparency",
+        "target": "legal_enforceability",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contract_transparency",
+        "target": "investor_confidence",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "contract_transparency",
+        "target": "project_financing_cost",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "legal_enforceability",
+        "target": "foreign_capital_commitme",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "legal_enforceability",
+        "target": "investor_confidence",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "legal_enforceability",
+        "target": "project_financing_cost",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_confidence",
+        "target": "foreign_capital_commitme",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_confidence",
+        "target": "upstream_prod_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_confidence",
+        "target": "project_financing_cost",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "operational_disruptions",
+        "target": "foreign_capital_commitme",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "operational_disruptions",
+        "target": "upstream_prod_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "operational_disruptions",
+        "target": "crude_export_flow_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "operational_disruptions",
+        "target": "refinery_throughput_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "operational_disruptions",
+        "target": "domestic_fuel_price_leve",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "operational_disruptions",
+        "target": "investor_confidence",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "operational_disruptions",
+        "target": "political_legitimacy_lev",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "operational_disruptions",
+        "target": "project_financing_cost",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "operational_disruptions",
+        "target": "supply_chain_bottleneck",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_legitimacy_lev",
+        "target": "foreign_capital_commitme",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_legitimacy_lev",
+        "target": "investor_confidence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regulatory_change_rate",
+        "target": "foreign_capital_commitme",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "regulatory_change_rate",
+        "target": "domestic_fuel_price_leve",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regulatory_change_rate",
+        "target": "contract_transparency",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "regulatory_change_rate",
+        "target": "investor_confidence",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "regulatory_change_rate",
+        "target": "project_financing_cost",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "project_financing_cost",
+        "target": "foreign_capital_commitme",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "project_financing_cost",
+        "target": "upstream_prod_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_chain_bottleneck",
+        "target": "foreign_capital_commitme",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_chain_bottleneck",
+        "target": "upstream_prod_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_chain_bottleneck",
+        "target": "crude_export_flow_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "supply_chain_bottleneck",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_chain_bottleneck",
+        "target": "domestic_fuel_price_leve",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_bottleneck",
+        "target": "investor_confidence",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_chain_bottleneck",
+        "target": "operational_disruptions",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "supply_chain_bottleneck",
+        "target": "project_financing_cost",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "firms_sign_energy_pacts",
+      "title": "Final energy pacts signed by firms",
+      "description": "Expected signing of final commercial agreements between Venezuela and firms (Chevron, ENI, ONGC, GE Vernova, Shell) formalizing investments and operations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-11-30",
+        "label": "by end of Nov 2026"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "foreign_capital_commitme",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_confidence",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "accessible_oil_reserves",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "upstream_prod_capacity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "contract_transparency",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "project_financing_cost",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"Firms including Chevron, ONGC, GE Vernova on track to sign final pacts\"; \"Chevron, Eni commit to expand oil projects\"."
+    },
+    {
+      "id": "chevron_7bn_expansion_process",
+      "title": "Chevron $7B expansion and five-year ramp",
+      "description": "Chevron's announced $7 billion investment program to more than double Venezuelan output, executing drilling and capacity expansion over five years.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2031-09-03",
+        "label": "5-year ramp"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "upstream_prod_capacity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "foreign_capital_commitme",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_export_flow_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_confidence",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "project_financing_cost",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"Chevron to Invest $7 Billion in Venezuela, Doubling Production\"; \"Chevron expands Venezuela presence\"."
+    },
+    {
+      "id": "refiners_meeting_on_processing",
+      "title": "White House meetings with US refiners",
+      "description": "Planned meetings between the White House and U.S. refiners to discuss processing Venezuelan heavy crude and lowering domestic fuel prices.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "within September 2026"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "refinery_throughput_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "domestic_fuel_price_leve",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_export_flow_rate",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "supply_chain_bottleneck",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"Trump to meet with U.S. oil refiners\"; \"Trump to host oil executives after accusing refiners of gouging consumers.\""
+    },
+    {
+      "id": "legal_litigation_and_immunities",
+      "title": "Court challenges and immunity/legal fights",
+      "description": "Ongoing and upcoming legal actions in U.S. and Venezuelan courts over the deal, immunity claims, and investor disputes that could unsettle contracts.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2027-03-31",
+        "label": "next 6 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "legal_enforceability",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_confidence",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "contract_transparency",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sanction_intensity",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "operational_disruptions",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"Controversial Venezuelan executive courts investors\"; \"Maduro asserts immunity, urges US judge to dismiss charges.\""
+    },
+    {
+      "id": "nabep_asset_handover_concessions",
+      "title": "NABEP concession handover and operational takeover",
+      "description": "Implementation steps for 100-year concessions to NABEP and transfer of field control, enabling operational access to large reserves.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-10-31",
+        "label": "within 2 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "accessible_oil_reserves",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_export_flow_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "upstream_prod_capacity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "operational_disruptions",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_confidence",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"Venezuela grants U.S.-backed oil firm NABEP 100-year concessions\"; \"Trump says US to take control of 65bn barrels.\""
+    },
+    {
+      "id": "heavy_crude_swap_for_spr",
+      "title": "Heavy-crude swaps with US strategic stock",
+      "description": "Potential swap program exchanging Venezuelan heavy crude for U.S. light crude to fill strategic reserves or meet refinery needs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-03",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "crude_export_flow_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refinery_throughput_rate",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "domestic_fuel_price_leve",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "supply_chain_bottleneck",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Explainer: Venezuela's heavy crude could be swapped for American oil to fill emergency reserve, Wright says.\""
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "firms_sign_energy_pacts",
+      "title": "Final energy pacts signed by firms",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of Nov 2026",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-11-30",
+      "probability": 0.75,
+      "impact_score": 204.0,
+      "expected_impact": 153.0,
+      "event_PS": 20.846,
+      "event_AS": 15.692,
+      "n_vars": 6,
+      "affected_ids": "foreign_capital_commitme, investor_confidence, accessible_oil_reserves, upstream_prod_capacity, contract_transparency, project_financing_cost",
+      "rationale": "Headlines: \"Firms including Chevron, ONGC, GE Vernova on track to sign final pacts\"; \"Chevron, Eni commit to expand oil projects\"."
+    },
+    {
+      "id": "nabep_asset_handover_concessions",
+      "title": "NABEP concession handover and operational takeover",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "within 2 months",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 174.0,
+      "expected_impact": 121.8,
+      "event_PS": 17.8,
+      "event_AS": 17.4,
+      "n_vars": 5,
+      "affected_ids": "accessible_oil_reserves, crude_export_flow_rate, upstream_prod_capacity, operational_disruptions, investor_confidence",
+      "rationale": "Headlines: \"Venezuela grants U.S.-backed oil firm NABEP 100-year concessions\"; \"Trump says US to take control of 65bn barrels.\""
+    },
+    {
+      "id": "chevron_7bn_expansion_process",
+      "title": "Chevron $7B expansion and five-year ramp",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "5-year ramp",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2031-09-03",
+      "probability": 0.9,
+      "impact_score": 163.0,
+      "expected_impact": 146.7,
+      "event_PS": 27.6,
+      "event_AS": 16.3,
+      "n_vars": 5,
+      "affected_ids": "upstream_prod_capacity, foreign_capital_commitme, crude_export_flow_rate, investor_confidence, project_financing_cost",
+      "rationale": "Headlines: \"Chevron to Invest $7 Billion in Venezuela, Doubling Production\"; \"Chevron expands Venezuela presence\"."
+    },
+    {
+      "id": "legal_litigation_and_immunities",
+      "title": "Court challenges and immunity/legal fights",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 months",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2027-03-31",
+      "probability": 0.8,
+      "impact_score": 162.0,
+      "expected_impact": 129.6,
+      "event_PS": 13.444,
+      "event_AS": 18.0,
+      "n_vars": 5,
+      "affected_ids": "legal_enforceability, investor_confidence, contract_transparency, sanction_intensity, operational_disruptions",
+      "rationale": "Headlines: \"Controversial Venezuelan executive courts investors\"; \"Maduro asserts immunity, urges US judge to dismiss charges.\""
+    },
+    {
+      "id": "refiners_meeting_on_processing",
+      "title": "White House meetings with US refiners",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "within September 2026",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.85,
+      "impact_score": 81.0,
+      "expected_impact": 68.85,
+      "event_PS": 21.167,
+      "event_AS": 13.5,
+      "n_vars": 4,
+      "affected_ids": "refinery_throughput_rate, domestic_fuel_price_leve, crude_export_flow_rate, supply_chain_bottleneck",
+      "rationale": "Headlines: \"Trump to meet with U.S. oil refiners\"; \"Trump to host oil executives after accusing refiners of gouging consumers.\""
+    },
+    {
+      "id": "heavy_crude_swap_for_spr",
+      "title": "Heavy-crude swaps with US strategic stock",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-09-03",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 73.0,
+      "expected_impact": 43.8,
+      "event_PS": 22.6,
+      "event_AS": 14.6,
+      "n_vars": 4,
+      "affected_ids": "crude_export_flow_rate, refinery_throughput_rate, domestic_fuel_price_leve, supply_chain_bottleneck",
+      "rationale": "Headline: \"Explainer: Venezuela's heavy crude could be swapped for American oil to fill emergency reserve, Wright says.\""
+    }
+  ]
+}
