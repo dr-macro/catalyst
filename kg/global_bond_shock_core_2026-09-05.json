@@ -1,0 +1,1876 @@
+{
+  "label": "global_bond_shock",
+  "as_of": "2026-09-04",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-05T01:22:26",
+  "system_description": {
+    "narrative_title": "Global bond-market sell-off and rising yields",
+    "narrative_summary": "A synchronized global sell-off in sovereign and fixed-income markets — driven by rising inflation fears (fueled by higher oil and gas prices and Middle East tensions), stronger economic data, and central-bank repricing — has pushed yields to multi-year highs. That rise in yields is feeding back into currencies, equity valuations and sovereign borrowing costs, forcing responses from central banks and governments and raising contagion and fiscal-stress risks across markets.",
+    "scope": "Sovereign and corporate bond markets (yields, curves, spreads), investor flows into/out of bond funds, central-bank policy signalling and rate expectations, inflation drivers (oil/gas, wages, services prices), currency moves, and immediate market reactions in equities, gold and credit",
+    "super_system": "Global financial system and macroeconomy (cross-border capital flows, monetary policy, fiscal solvency and global trade/commodity dynamics)",
+    "adjacent_subsystems": [
+      "Energy markets (oil, gas) influencing inflation expectations",
+      "Fiscal policy and sovereign debt management",
+      "Central bank policy coordination and communications (Fed, ECB, BOJ)",
+      "Equity and corporate credit markets (valuations, funding conditions)"
+    ],
+    "evidence_headlines": [
+      "10-year U.S. Treasury yield hits highest level since November 2023",
+      "Global bond yields soar to multi-decade highs as Middle East turmoil reignites inflation fears",
+      "Bond selloff deepens as inflation risks, oil prices jolt markets",
+      "Japan’s borrowing costs hit 30-year high: what does it mean for global markets?",
+      "Energy price surge hits bond markets as European gas reaches three-year high",
+      "Global bond sell-off deepens amid inflation fears"
+    ]
+  },
+  "variables": [
+    {
+      "id": "nominal_long_yield",
+      "name": "Nominal long-term yield",
+      "description": "The prevailing level of long-term sovereign bond yields (eg, 10-year) aggregated across markets, measured as a continuously varying interest-rate level.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_rate_expectations",
+      "name": "Short-term policy rate expectations",
+      "description": "Market-implied expected short-term policy interest rate path over the near to medium term, as it evolves with new information.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The component of long-term yields that compensates investors for interest-rate and reinvestment risk over and above expected short rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread",
+      "name": "Sovereign and corporate credit spreads",
+      "description": "The additional yield over risk-free benchmarks demanded for sovereign and corporate credit, aggregated across markets and maturities.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Market inflation expectations",
+      "description": "Forward-looking inflation expectations priced into financial markets for various horizons, expressed as continuously varying rates.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "realized_inflation_rate",
+      "name": "Realized headline inflation rate",
+      "description": "The observed current headline inflation rate (eg, CPI-type measure) that changes continuously as new price data are recorded.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_price_level",
+      "name": "Energy price level",
+      "description": "Aggregate oil and gas price level (per unit), representing commodity-price pressure that feeds into broader inflation dynamics.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "wage_growth_rate",
+      "name": "Wage growth rate",
+      "description": "The rate of nominal wage increases across the economy, which continuously influences cost pressures and inflation persistence.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "services_inflation_rate",
+      "name": "Services-price inflation rate",
+      "description": "The inflation rate for services-sector prices, capturing the non-tradable component of inflation that tends to be sticky.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity_bonds",
+      "name": "Market liquidity in bond markets",
+      "description": "The depth, bid-ask tightness and ease of transacting in sovereign and corporate bonds, measured as a continuously varying liquidity state.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_capflow_rat",
+      "name": "Cross-border capital flow rate",
+      "description": "The net rate of capital moving across borders into or out of fixed-income assets, measured per unit time and varying continuously.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "bond_fund_net_flows",
+      "name": "Net flows into bond funds",
+      "description": "Net purchases or redemptions into bond mutual funds and ETFs per unit time, representing investor allocation flows to fixed income.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility_bonds",
+      "name": "Bond-market volatility",
+      "description": "Short-term realized and implied volatility in fixed-income markets, reflecting the variability of bond prices and yields over time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "currency_strength_index",
+      "name": "Currency strength index",
+      "description": "A continuous index of major-currency values and directional pressure relative to peers, capturing exchange-rate-driven valuation shifts.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_financing_gap",
+      "name": "Fiscal financing gap",
+      "description": "Aggregate government primary deficit and gross borrowing need relative to available financing capacity, represented as a continuously varying gap.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "The prevailing willingness of investors to accept risk (hold riskier assets versus safe assets), captured as a continuously varying sentiment state.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "nominal_long_yield",
+    "short_rate_expectations",
+    "term_premium",
+    "credit_spread",
+    "inflation_expectations",
+    "realized_inflation_rate",
+    "energy_price_level",
+    "wage_growth_rate",
+    "services_inflation_rate",
+    "market_liquidity_bonds",
+    "cross_border_capflow_rat",
+    "bond_fund_net_flows",
+    "market_volatility_bonds",
+    "currency_strength_index",
+    "fiscal_financing_gap",
+    "investor_risk_appetite"
+  ],
+  "var_names": {
+    "nominal_long_yield": "Nominal long-term yield",
+    "short_rate_expectations": "Short-term policy rate expectations",
+    "term_premium": "Term premium",
+    "credit_spread": "Sovereign and corporate credit spreads",
+    "inflation_expectations": "Market inflation expectations",
+    "realized_inflation_rate": "Realized headline inflation rate",
+    "energy_price_level": "Energy price level",
+    "wage_growth_rate": "Wage growth rate",
+    "services_inflation_rate": "Services-price inflation rate",
+    "market_liquidity_bonds": "Market liquidity in bond markets",
+    "cross_border_capflow_rat": "Cross-border capital flow rate",
+    "bond_fund_net_flows": "Net flows into bond funds",
+    "market_volatility_bonds": "Bond-market volatility",
+    "currency_strength_index": "Currency strength index",
+    "fiscal_financing_gap": "Fiscal financing gap",
+    "investor_risk_appetite": "Investor risk appetite"
+  },
+  "impact_matrix": {
+    "nominal_long_yield": {
+      "nominal_long_yield": 0,
+      "short_rate_expectations": 2,
+      "term_premium": 1,
+      "credit_spread": 1,
+      "inflation_expectations": 2,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 0,
+      "market_liquidity_bonds": 2,
+      "cross_border_capflow_rat": 2,
+      "bond_fund_net_flows": 2,
+      "market_volatility_bonds": 3,
+      "currency_strength_index": 2,
+      "fiscal_financing_gap": 2,
+      "investor_risk_appetite": 1
+    },
+    "short_rate_expectations": {
+      "nominal_long_yield": 3,
+      "short_rate_expectations": 0,
+      "term_premium": 1,
+      "credit_spread": 2,
+      "inflation_expectations": 3,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 0,
+      "market_liquidity_bonds": 1,
+      "cross_border_capflow_rat": 3,
+      "bond_fund_net_flows": 3,
+      "market_volatility_bonds": 2,
+      "currency_strength_index": 3,
+      "fiscal_financing_gap": 0,
+      "investor_risk_appetite": 2
+    },
+    "term_premium": {
+      "nominal_long_yield": 3,
+      "short_rate_expectations": 1,
+      "term_premium": 0,
+      "credit_spread": 1,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 0,
+      "market_liquidity_bonds": 2,
+      "cross_border_capflow_rat": 2,
+      "bond_fund_net_flows": 2,
+      "market_volatility_bonds": 2,
+      "currency_strength_index": 1,
+      "fiscal_financing_gap": 1,
+      "investor_risk_appetite": 2
+    },
+    "credit_spread": {
+      "nominal_long_yield": 1,
+      "short_rate_expectations": 0,
+      "term_premium": 1,
+      "credit_spread": 0,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 0,
+      "market_liquidity_bonds": 2,
+      "cross_border_capflow_rat": 2,
+      "bond_fund_net_flows": 2,
+      "market_volatility_bonds": 2,
+      "currency_strength_index": 1,
+      "fiscal_financing_gap": 1,
+      "investor_risk_appetite": 3
+    },
+    "inflation_expectations": {
+      "nominal_long_yield": 3,
+      "short_rate_expectations": 3,
+      "term_premium": 1,
+      "credit_spread": 1,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 1,
+      "market_liquidity_bonds": 1,
+      "cross_border_capflow_rat": 2,
+      "bond_fund_net_flows": 2,
+      "market_volatility_bonds": 2,
+      "currency_strength_index": 2,
+      "fiscal_financing_gap": 1,
+      "investor_risk_appetite": 1
+    },
+    "realized_inflation_rate": {
+      "nominal_long_yield": 3,
+      "short_rate_expectations": 3,
+      "term_premium": 1,
+      "credit_spread": 1,
+      "inflation_expectations": 3,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 2,
+      "services_inflation_rate": 2,
+      "market_liquidity_bonds": 1,
+      "cross_border_capflow_rat": 2,
+      "bond_fund_net_flows": 2,
+      "market_volatility_bonds": 2,
+      "currency_strength_index": 2,
+      "fiscal_financing_gap": 1,
+      "investor_risk_appetite": 1
+    },
+    "energy_price_level": {
+      "nominal_long_yield": 2,
+      "short_rate_expectations": 2,
+      "term_premium": 1,
+      "credit_spread": 1,
+      "inflation_expectations": 3,
+      "realized_inflation_rate": 3,
+      "energy_price_level": 0,
+      "wage_growth_rate": 1,
+      "services_inflation_rate": 1,
+      "market_liquidity_bonds": 1,
+      "cross_border_capflow_rat": 2,
+      "bond_fund_net_flows": 1,
+      "market_volatility_bonds": 2,
+      "currency_strength_index": 2,
+      "fiscal_financing_gap": 2,
+      "investor_risk_appetite": 2
+    },
+    "wage_growth_rate": {
+      "nominal_long_yield": 2,
+      "short_rate_expectations": 2,
+      "term_premium": 1,
+      "credit_spread": 1,
+      "inflation_expectations": 2,
+      "realized_inflation_rate": 2,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 3,
+      "market_liquidity_bonds": 0,
+      "cross_border_capflow_rat": 0,
+      "bond_fund_net_flows": 1,
+      "market_volatility_bonds": 1,
+      "currency_strength_index": 1,
+      "fiscal_financing_gap": 1,
+      "investor_risk_appetite": 1
+    },
+    "services_inflation_rate": {
+      "nominal_long_yield": 3,
+      "short_rate_expectations": 3,
+      "term_premium": 1,
+      "credit_spread": 1,
+      "inflation_expectations": 3,
+      "realized_inflation_rate": 3,
+      "energy_price_level": 0,
+      "wage_growth_rate": 2,
+      "services_inflation_rate": 0,
+      "market_liquidity_bonds": 1,
+      "cross_border_capflow_rat": 1,
+      "bond_fund_net_flows": 2,
+      "market_volatility_bonds": 2,
+      "currency_strength_index": 1,
+      "fiscal_financing_gap": 1,
+      "investor_risk_appetite": 1
+    },
+    "market_liquidity_bonds": {
+      "nominal_long_yield": 2,
+      "short_rate_expectations": 1,
+      "term_premium": 3,
+      "credit_spread": 2,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 0,
+      "market_liquidity_bonds": 0,
+      "cross_border_capflow_rat": 2,
+      "bond_fund_net_flows": 2,
+      "market_volatility_bonds": 3,
+      "currency_strength_index": 1,
+      "fiscal_financing_gap": 1,
+      "investor_risk_appetite": 2
+    },
+    "cross_border_capflow_rat": {
+      "nominal_long_yield": 3,
+      "short_rate_expectations": 0,
+      "term_premium": 2,
+      "credit_spread": 2,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 0,
+      "market_liquidity_bonds": 3,
+      "cross_border_capflow_rat": 0,
+      "bond_fund_net_flows": 3,
+      "market_volatility_bonds": 3,
+      "currency_strength_index": 3,
+      "fiscal_financing_gap": 1,
+      "investor_risk_appetite": 2
+    },
+    "bond_fund_net_flows": {
+      "nominal_long_yield": 2,
+      "short_rate_expectations": 0,
+      "term_premium": 2,
+      "credit_spread": 2,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 0,
+      "market_liquidity_bonds": 3,
+      "cross_border_capflow_rat": 2,
+      "bond_fund_net_flows": 0,
+      "market_volatility_bonds": 2,
+      "currency_strength_index": 2,
+      "fiscal_financing_gap": 0,
+      "investor_risk_appetite": 1
+    },
+    "market_volatility_bonds": {
+      "nominal_long_yield": 2,
+      "short_rate_expectations": 1,
+      "term_premium": 3,
+      "credit_spread": 2,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 0,
+      "market_liquidity_bonds": 3,
+      "cross_border_capflow_rat": 2,
+      "bond_fund_net_flows": 3,
+      "market_volatility_bonds": 0,
+      "currency_strength_index": 2,
+      "fiscal_financing_gap": 0,
+      "investor_risk_appetite": 3
+    },
+    "currency_strength_index": {
+      "nominal_long_yield": 1,
+      "short_rate_expectations": 1,
+      "term_premium": 1,
+      "credit_spread": 1,
+      "inflation_expectations": 2,
+      "realized_inflation_rate": 2,
+      "energy_price_level": 1,
+      "wage_growth_rate": 1,
+      "services_inflation_rate": 1,
+      "market_liquidity_bonds": 1,
+      "cross_border_capflow_rat": 2,
+      "bond_fund_net_flows": 2,
+      "market_volatility_bonds": 1,
+      "currency_strength_index": 0,
+      "fiscal_financing_gap": 1,
+      "investor_risk_appetite": 1
+    },
+    "fiscal_financing_gap": {
+      "nominal_long_yield": 3,
+      "short_rate_expectations": 1,
+      "term_premium": 3,
+      "credit_spread": 3,
+      "inflation_expectations": 1,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 0,
+      "market_liquidity_bonds": 1,
+      "cross_border_capflow_rat": 2,
+      "bond_fund_net_flows": 2,
+      "market_volatility_bonds": 2,
+      "currency_strength_index": 2,
+      "fiscal_financing_gap": 0,
+      "investor_risk_appetite": 2
+    },
+    "investor_risk_appetite": {
+      "nominal_long_yield": 3,
+      "short_rate_expectations": 0,
+      "term_premium": 3,
+      "credit_spread": 3,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "energy_price_level": 0,
+      "wage_growth_rate": 0,
+      "services_inflation_rate": 0,
+      "market_liquidity_bonds": 2,
+      "cross_border_capflow_rat": 3,
+      "bond_fund_net_flows": 3,
+      "market_volatility_bonds": 2,
+      "currency_strength_index": 2,
+      "fiscal_financing_gap": 1,
+      "investor_risk_appetite": 0
+    }
+  },
+  "AS": {
+    "nominal_long_yield": 20,
+    "short_rate_expectations": 23,
+    "term_premium": 17,
+    "credit_spread": 15,
+    "inflation_expectations": 20,
+    "realized_inflation_rate": 26,
+    "energy_price_level": 26,
+    "wage_growth_rate": 18,
+    "services_inflation_rate": 25,
+    "market_liquidity_bonds": 19,
+    "cross_border_capflow_rat": 22,
+    "bond_fund_net_flows": 16,
+    "market_volatility_bonds": 21,
+    "currency_strength_index": 19,
+    "fiscal_financing_gap": 22,
+    "investor_risk_appetite": 22
+  },
+  "PS": {
+    "nominal_long_yield": 36,
+    "short_rate_expectations": 20,
+    "term_premium": 25,
+    "credit_spread": 24,
+    "inflation_expectations": 19,
+    "realized_inflation_rate": 10,
+    "energy_price_level": 1,
+    "wage_growth_rate": 6,
+    "services_inflation_rate": 8,
+    "market_liquidity_bonds": 24,
+    "cross_border_capflow_rat": 29,
+    "bond_fund_net_flows": 32,
+    "market_volatility_bonds": 31,
+    "currency_strength_index": 27,
+    "fiscal_financing_gap": 14,
+    "investor_risk_appetite": 25
+  },
+  "med_AS": 20.5,
+  "med_PS": 24.0,
+  "roles": [
+    {
+      "variable": "nominal_long_yield",
+      "name": "Nominal long-term yield",
+      "AS": 20,
+      "PS": 36,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 720,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_volatility_bonds",
+      "name": "Bond-market volatility",
+      "AS": 21,
+      "PS": 31,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 651,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_capflow_rat",
+      "name": "Cross-border capital flow rate",
+      "AS": 22,
+      "PS": 29,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 638,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 22,
+      "PS": 25,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 550,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "currency_strength_index",
+      "name": "Currency strength index",
+      "AS": 19,
+      "PS": 27,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 513,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "bond_fund_net_flows",
+      "name": "Net flows into bond funds",
+      "AS": 16,
+      "PS": 32,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 512,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "short_rate_expectations",
+      "name": "Short-term policy rate expectations",
+      "AS": 23,
+      "PS": 20,
+      "Q=AS/PS": 1.15,
+      "P=AS*PS": 460,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_liquidity_bonds",
+      "name": "Market liquidity in bond markets",
+      "AS": 19,
+      "PS": 24,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 456,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 17,
+      "PS": 25,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 425,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Market inflation expectations",
+      "AS": 20,
+      "PS": 19,
+      "Q=AS/PS": 1.05,
+      "P=AS*PS": 380,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "credit_spread",
+      "name": "Sovereign and corporate credit spreads",
+      "AS": 15,
+      "PS": 24,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 360,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fiscal_financing_gap",
+      "name": "Fiscal financing gap",
+      "AS": 22,
+      "PS": 14,
+      "Q=AS/PS": 1.57,
+      "P=AS*PS": 308,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "realized_inflation_rate",
+      "name": "Realized headline inflation rate",
+      "AS": 26,
+      "PS": 10,
+      "Q=AS/PS": 2.6,
+      "P=AS*PS": 260,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "services_inflation_rate",
+      "name": "Services-price inflation rate",
+      "AS": 25,
+      "PS": 8,
+      "Q=AS/PS": 3.12,
+      "P=AS*PS": 200,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "wage_growth_rate",
+      "name": "Wage growth rate",
+      "AS": 18,
+      "PS": 6,
+      "Q=AS/PS": 3.0,
+      "P=AS*PS": 108,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "energy_price_level",
+      "name": "Energy price level",
+      "AS": 26,
+      "PS": 1,
+      "Q=AS/PS": 26.0,
+      "P=AS*PS": 26,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "nominal_long_yield",
+        "name": "Nominal long-term yield",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 36
+      },
+      {
+        "id": "short_rate_expectations",
+        "name": "Short-term policy rate expectations",
+        "kind": "perception",
+        "AS": 23,
+        "PS": 20
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 25
+      },
+      {
+        "id": "credit_spread",
+        "name": "Sovereign and corporate credit spreads",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 24
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Market inflation expectations",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 19
+      },
+      {
+        "id": "realized_inflation_rate",
+        "name": "Realized headline inflation rate",
+        "kind": "driver",
+        "AS": 26,
+        "PS": 10
+      },
+      {
+        "id": "energy_price_level",
+        "name": "Energy price level",
+        "kind": "environment",
+        "AS": 26,
+        "PS": 1
+      },
+      {
+        "id": "wage_growth_rate",
+        "name": "Wage growth rate",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 6
+      },
+      {
+        "id": "services_inflation_rate",
+        "name": "Services-price inflation rate",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 8
+      },
+      {
+        "id": "market_liquidity_bonds",
+        "name": "Market liquidity in bond markets",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 24
+      },
+      {
+        "id": "cross_border_capflow_rat",
+        "name": "Cross-border capital flow rate",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 29
+      },
+      {
+        "id": "bond_fund_net_flows",
+        "name": "Net flows into bond funds",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 32
+      },
+      {
+        "id": "market_volatility_bonds",
+        "name": "Bond-market volatility",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 31
+      },
+      {
+        "id": "currency_strength_index",
+        "name": "Currency strength index",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 27
+      },
+      {
+        "id": "fiscal_financing_gap",
+        "name": "Fiscal financing gap",
+        "kind": "driver",
+        "AS": 22,
+        "PS": 14
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 25
+      }
+    ],
+    "edges": [
+      {
+        "source": "nominal_long_yield",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "market_liquidity_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "cross_border_capflow_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "bond_fund_net_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "market_volatility_bonds",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "currency_strength_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "fiscal_financing_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "cross_border_capflow_rat",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "bond_fund_net_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "market_volatility_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "currency_strength_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "market_liquidity_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "cross_border_capflow_rat",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "term_premium",
+        "target": "bond_fund_net_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "term_premium",
+        "target": "market_volatility_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "market_liquidity_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "cross_border_capflow_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "bond_fund_net_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "market_volatility_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_capflow_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "bond_fund_net_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_volatility_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "currency_strength_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "short_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "wage_growth_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "services_inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "cross_border_capflow_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "bond_fund_net_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "market_volatility_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "currency_strength_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "nominal_long_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "realized_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "cross_border_capflow_rat",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "market_volatility_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "currency_strength_index",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "fiscal_financing_gap",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "nominal_long_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "realized_inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "services_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "services_inflation_rate",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "services_inflation_rate",
+        "target": "short_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "services_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "services_inflation_rate",
+        "target": "realized_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "services_inflation_rate",
+        "target": "wage_growth_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "services_inflation_rate",
+        "target": "bond_fund_net_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "services_inflation_rate",
+        "target": "market_volatility_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_bonds",
+        "target": "nominal_long_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_bonds",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_bonds",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_bonds",
+        "target": "cross_border_capflow_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_bonds",
+        "target": "bond_fund_net_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_bonds",
+        "target": "market_volatility_bonds",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_bonds",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capflow_rat",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capflow_rat",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capflow_rat",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capflow_rat",
+        "target": "market_liquidity_bonds",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capflow_rat",
+        "target": "bond_fund_net_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capflow_rat",
+        "target": "market_volatility_bonds",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capflow_rat",
+        "target": "currency_strength_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capflow_rat",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_fund_net_flows",
+        "target": "nominal_long_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_fund_net_flows",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_fund_net_flows",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_fund_net_flows",
+        "target": "market_liquidity_bonds",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_fund_net_flows",
+        "target": "cross_border_capflow_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_fund_net_flows",
+        "target": "market_volatility_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_fund_net_flows",
+        "target": "currency_strength_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_bonds",
+        "target": "nominal_long_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_bonds",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_bonds",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_bonds",
+        "target": "market_liquidity_bonds",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility_bonds",
+        "target": "cross_border_capflow_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility_bonds",
+        "target": "bond_fund_net_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility_bonds",
+        "target": "currency_strength_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility_bonds",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength_index",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength_index",
+        "target": "realized_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength_index",
+        "target": "cross_border_capflow_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_strength_index",
+        "target": "bond_fund_net_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_gap",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_gap",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_gap",
+        "target": "credit_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_gap",
+        "target": "cross_border_capflow_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_gap",
+        "target": "bond_fund_net_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_gap",
+        "target": "market_volatility_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_gap",
+        "target": "currency_strength_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_gap",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "credit_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_liquidity_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "cross_border_capflow_rat",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "bond_fund_net_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_volatility_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "currency_strength_index",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_september_policy_window",
+      "title": "Federal Reserve September meeting and guidance",
+      "description": "FOMC decision and accompanying guidance in September will reset market-implied policy path and influence yields and risk sentiment.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-09-18",
+        "label": "mid-September"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_long_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility_bonds",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines note Fed officials (Waller/Williams) and a September meeting could alter rate expectations (e.g. 'Fed Governor Waller indicates he will support holding rates steady at September meeting')."
+    },
+    {
+      "id": "boj_september_hiking_risk",
+      "title": "Bank of Japan September rate repricing",
+      "description": "BOJ signals and likely September moves that further tighten policy or signal higher rates, repricing global short-rate expectations and FX.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_strength_index",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_long_yield",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'BOJ chief signals chance of September rate hike' and 'Bank of Japan’s Ueda vows to keep raising interest rates.'"
+    },
+    {
+      "id": "energy_price_surge_mideast",
+      "title": "Ongoing oil and European gas price surge (Middle East tensions)",
+      "description": "Escalating Middle East tensions and Europe gas tightness sustain upward pressure on oil and gas prices, feeding inflation expectations and yields.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-10-15",
+        "label": "next 6 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_long_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple headlines link oil/gas surge and Mideast turmoil to bond sell-off (e.g. 'Energy price surge hits bond markets', 'Global Bond Yields Surge as Oil Prices Fuel Inflation Worries')."
+    },
+    {
+      "id": "bond_fund_inflows_persistence",
+      "title": "Continued net inflows into bond funds",
+      "description": "Ongoing investor purchases of bond funds despite rising yields could absorb supply and temper further yield rises.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2026-10-31",
+        "label": "weeks to quarter"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "bond_fund_net_flows",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_long_yield",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity_bonds",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Rising yields aren’t scaring off investors. Why money is still pouring into bond funds.'"
+    },
+    {
+      "id": "fed_speakers_runup_communications",
+      "title": "Fed officials' communications ahead of policy meeting",
+      "description": "Ongoing public comments from Fed officials will continue to shift market rate expectations and volatility before the FOMC decision.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2026-09-18",
+        "label": "days–two weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility_bonds",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines highlight Waller and Williams remarks moving yields and sentiment (e.g. 'Fed Governor Waller indicates he will support holding rates steady', 'Fed’s Williams “is opening options”')."
+    },
+    {
+      "id": "em_credit_pressure_from_yields",
+      "title": "Emerging-market credit stress from higher global yields",
+      "description": "Sustained higher global yields strain EM borrowing costs and capital flows, widening sovereign and corporate spreads and pressuring fiscal gaps.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2026-11-30",
+        "label": "next 3 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "credit_spread",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_capflow_rat",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fiscal_financing_gap",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "IMF and news warn rising yields threaten developing-country debt and bailouts (e.g. 'IMF's Georgieva says rising bond yields threaten progress', 'IMF agrees $2.2bn bailout for Senegal')."
+    },
+    {
+      "id": "possible_japan_fx_intervention",
+      "title": "Potential BOJ/finance ministry FX intervention to curb yen moves",
+      "description": "Heightened yen moves could prompt intervention, which would quickly affect currency and cross-border flows and jitter bond markets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2026-09-18",
+        "label": "days–two weeks"
+      },
+      "probability": 0.35,
+      "affected": [
+        {
+          "variable_id": "currency_strength_index",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_capflow_rat",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility_bonds",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines note 'intervention chatter' and 'Yen jumps as traders bet on Japan interest rate rises', implying intervention risk."
+    },
+    {
+      "id": "ecb_policy_tightening_path",
+      "title": "ECB policy guidance and rate path",
+      "description": "ECB officials' hawkish signals or a decision to lift rates further will affect euro-area yields, spreads and global rate expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-10-15",
+        "label": "next 6 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_long_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'ECB must be prepared to lift interest rates further' and damage to French government bonds from hawkish ECB remarks."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "fed_september_policy_window",
+      "title": "Federal Reserve September meeting and guidance",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-September",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-09-18",
+      "probability": 0.9,
+      "impact_score": 195.0,
+      "expected_impact": 175.5,
+      "event_PS": 27.111,
+      "event_AS": 21.667,
+      "n_vars": 4,
+      "affected_ids": "short_rate_expectations, nominal_long_yield, market_volatility_bonds, investor_risk_appetite",
+      "rationale": "Headlines note Fed officials (Waller/Williams) and a September meeting could alter rate expectations (e.g. 'Fed Governor Waller indicates he will support holding rates steady at September meeting')."
+    },
+    {
+      "id": "energy_price_surge_mideast",
+      "title": "Ongoing oil and European gas price surge (Middle East tensions)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 weeks",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-10-15",
+      "probability": 0.75,
+      "impact_score": 175.0,
+      "expected_impact": 131.25,
+      "event_PS": 17.25,
+      "event_AS": 21.875,
+      "n_vars": 4,
+      "affected_ids": "energy_price_level, inflation_expectations, nominal_long_yield, term_premium",
+      "rationale": "Multiple headlines link oil/gas surge and Mideast turmoil to bond sell-off (e.g. 'Energy price surge hits bond markets', 'Global Bond Yields Surge as Oil Prices Fuel Inflation Worries')."
+    },
+    {
+      "id": "fed_speakers_runup_communications",
+      "title": "Fed officials' communications ahead of policy meeting",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–two weeks",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2026-09-18",
+      "probability": 0.9,
+      "impact_score": 155.0,
+      "expected_impact": 139.5,
+      "event_PS": 24.571,
+      "event_AS": 22.143,
+      "n_vars": 3,
+      "affected_ids": "short_rate_expectations, market_volatility_bonds, investor_risk_appetite",
+      "rationale": "Headlines highlight Waller and Williams remarks moving yields and sentiment (e.g. 'Fed Governor Waller indicates he will support holding rates steady', 'Fed’s Williams “is opening options”')."
+    },
+    {
+      "id": "boj_september_hiking_risk",
+      "title": "Bank of Japan September rate repricing",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "September",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.65,
+      "impact_score": 104.0,
+      "expected_impact": 67.6,
+      "event_PS": 26.0,
+      "event_AS": 20.8,
+      "n_vars": 3,
+      "affected_ids": "short_rate_expectations, currency_strength_index, nominal_long_yield",
+      "rationale": "Headlines: 'BOJ chief signals chance of September rate hike' and 'Bank of Japan’s Ueda vows to keep raising interest rates.'"
+    },
+    {
+      "id": "ecb_policy_tightening_path",
+      "title": "ECB policy guidance and rate path",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 weeks",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-10-15",
+      "probability": 0.6,
+      "impact_score": 101.0,
+      "expected_impact": 60.6,
+      "event_PS": 27.2,
+      "event_AS": 20.2,
+      "n_vars": 3,
+      "affected_ids": "short_rate_expectations, nominal_long_yield, credit_spread",
+      "rationale": "Headlines: 'ECB must be prepared to lift interest rates further' and damage to French government bonds from hawkish ECB remarks."
+    },
+    {
+      "id": "em_credit_pressure_from_yields",
+      "title": "Emerging-market credit stress from higher global yields",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2026-11-30",
+      "probability": 0.7,
+      "impact_score": 96.0,
+      "expected_impact": 67.2,
+      "event_PS": 24.0,
+      "event_AS": 19.2,
+      "n_vars": 3,
+      "affected_ids": "credit_spread, cross_border_capflow_rat, fiscal_financing_gap",
+      "rationale": "IMF and news warn rising yields threaten developing-country debt and bailouts (e.g. 'IMF's Georgieva says rising bond yields threaten progress', 'IMF agrees $2.2bn bailout for Senegal')."
+    },
+    {
+      "id": "bond_fund_inflows_persistence",
+      "title": "Continued net inflows into bond funds",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks to quarter",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 87.0,
+      "expected_impact": 60.9,
+      "event_PS": 31.2,
+      "event_AS": 17.4,
+      "n_vars": 3,
+      "affected_ids": "bond_fund_net_flows, nominal_long_yield, market_liquidity_bonds",
+      "rationale": "Headline: 'Rising yields aren’t scaring off investors. Why money is still pouring into bond funds.'"
+    },
+    {
+      "id": "possible_japan_fx_intervention",
+      "title": "Potential BOJ/finance ministry FX intervention to curb yen moves",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–two weeks",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2026-09-18",
+      "probability": 0.35,
+      "impact_score": 81.0,
+      "expected_impact": 28.35,
+      "event_PS": 28.5,
+      "event_AS": 20.25,
+      "n_vars": 3,
+      "affected_ids": "currency_strength_index, cross_border_capflow_rat, market_volatility_bonds",
+      "rationale": "Headlines note 'intervention chatter' and 'Yen jumps as traders bet on Japan interest rate rises', implying intervention risk."
+    }
+  ]
+}

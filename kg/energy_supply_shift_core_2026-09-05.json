@@ -1,0 +1,1664 @@
+{
+  "label": "energy_supply_shift",
+  "as_of": "2026-09-04",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-05T01:27:30",
+  "system_description": {
+    "narrative_title": "Global energy shock: Strait of Hormuz attacks meet US–Venezuela oil deals",
+    "narrative_summary": "A concentrated surge of geopolitical violence and maritime interdiction in the Strait of Hormuz is sharply raising supply-risk perceptions and disrupting tanker traffic, while simultaneous U.S.-backed commercial and political moves to unlock Venezuelan crude (notably Chevron’s $7bn expansion) are being presented as alternative supply responses. The twin dynamics—acute Gulf instability and strategic reallocation of Western oil investment into Venezuela—are driving fuel price spikes, corporate capacity cuts (airlines, shipping), and intense political debate over legitimacy and stability. This is an open system where shocks, policy gestures, market price signals and corporate actions feed back on each other across regions and sectors.",
+    "scope": "Events, actors and processes that directly affect physical crude/diesel/jet-fuel flows and price formation over the Sept 2–4 window: attacks and interdictions in the Strait of Hormuz; Iranian and Gulf-state responses; tanker movements and shipping traffic data; U.S.-Venezuela oil agreements and associated corporate investments (Chevron, ENI, others); immediate market effects (diesel/jet-fuel price spikes, airline capacity cuts) and political reactions from regional and global states.",
+    "super_system": "Global energy–geopolitical system (international oil & gas markets integrated with geopolitical security and global trade flows)",
+    "adjacent_subsystems": [
+      "Maritime security and chokepoint management (Strait of Hormuz, naval deployments)",
+      "International oil trading, refining and commodity markets",
+      "Aviation and freight transport (jet fuel demand, airline capacity decisions)",
+      "Regional geopolitics and statecraft (Middle East security dynamics; US–Latin America relations)"
+    ],
+    "evidence_headlines": [
+      "Two Tankers Attacked on Midnight Run Through Hormuz",
+      "Saudi shipping company Bahri says two sailors killed in incident in Hormuz",
+      "Iran blacklists more ships trying to sail through Hormuz, govt website shows",
+      "Chevron to double Venezuela oil production with $7bn pledge",
+      "Chevron, ENI among firms set to sign energy pacts in Venezuela, sources say",
+      "Europe’s largest airline warns of jet-fuel prices hitting $140 this winter as it cuts capacity"
+    ]
+  },
+  "variables": [
+    {
+      "id": "maritime_incident_rate",
+      "name": "Maritime interdiction incident rate",
+      "description": "Frequency and intensity of hostile or obstructive actions against vessels in maritime chokepoints (attacks, mines, seizures) per unit time.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_traffic_vol",
+      "name": "Tanker traffic volume",
+      "description": "Number and aggregate tonnage of crude and product tankers transiting a critical maritime chokepoint per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "perceived_supply_risk",
+      "name": "Perceived supply risk",
+      "description": "Market and stakeholder assessment of the probability and expected severity of supply disruptions to crude and refined fuels.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_transit_delay",
+      "name": "Shipping transit delay",
+      "description": "Average additional transit time for oil and product shipments caused by rerouting, interdiction, or slower port and terminal operations.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "alt_supply_ramp_rate",
+      "name": "Alternative supply ramp-up rate",
+      "description": "Rate at which alternative crude supply sources increase output and exports in response to disruption-driven demand or price signals.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "committed_investment",
+      "name": "Committed investment level",
+      "description": "Stock of contracted or committed capital and long‑term commercial commitments directed toward developing alternative crude supply capacity.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "spare_production_capacit",
+      "name": "Spare production capacity",
+      "description": "Available incremental crude production capacity that can be brought online within a short-to-medium timeframe.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refined_fuel_inventory",
+      "name": "Refined fuel inventories",
+      "description": "Total stocks of diesel, jet fuel and related refined products held across storage, terminals and distribution networks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refined_fuel_demand",
+      "name": "Refined fuel demand",
+      "description": "Consumption rate of diesel and jet fuel across transport, aviation and industrial sectors.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fuel_price_level",
+      "name": "Fuel price level",
+      "description": "Spot and wholesale price level for refined fuels (diesel and jet fuel) in relevant regional markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "airline_capacity_rate",
+      "name": "Airline capacity adjustment rate",
+      "description": "Rate at which air carriers change route frequencies, seat capacity or flight deployments in response to fuel costs and supply concerns.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "freight_insurance_premia",
+      "name": "Shipping freight and insurance premia",
+      "description": "Additional freight rates and war‑risk insurance premia charged for maritime transport through or near high‑risk zones.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_sentiment_vol",
+      "name": "Market sentiment volatility",
+      "description": "Short‑term variability in trader and investor sentiment that affects liquidity, hedging behaviour and price swings in oil and fuel markets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diplomatic_pressure",
+      "name": "Diplomatic and policy pressure intensity",
+      "description": "Intensity and pace of diplomatic, sanctioning, or policy actions and negotiations aimed at influencing oil flows, security arrangements or commercial access.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "regional_political_stab",
+      "name": "Regional political stability",
+      "description": "Overall stability of governance and conflict intensity in supplier and transit regions that affects operational continuity of energy flows.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "maritime_incident_rate",
+    "tanker_traffic_vol",
+    "perceived_supply_risk",
+    "shipping_transit_delay",
+    "alt_supply_ramp_rate",
+    "committed_investment",
+    "spare_production_capacit",
+    "refined_fuel_inventory",
+    "refined_fuel_demand",
+    "fuel_price_level",
+    "airline_capacity_rate",
+    "freight_insurance_premia",
+    "market_sentiment_vol",
+    "diplomatic_pressure",
+    "regional_political_stab"
+  ],
+  "var_names": {
+    "maritime_incident_rate": "Maritime interdiction incident rate",
+    "tanker_traffic_vol": "Tanker traffic volume",
+    "perceived_supply_risk": "Perceived supply risk",
+    "shipping_transit_delay": "Shipping transit delay",
+    "alt_supply_ramp_rate": "Alternative supply ramp-up rate",
+    "committed_investment": "Committed investment level",
+    "spare_production_capacit": "Spare production capacity",
+    "refined_fuel_inventory": "Refined fuel inventories",
+    "refined_fuel_demand": "Refined fuel demand",
+    "fuel_price_level": "Fuel price level",
+    "airline_capacity_rate": "Airline capacity adjustment rate",
+    "freight_insurance_premia": "Shipping freight and insurance premia",
+    "market_sentiment_vol": "Market sentiment volatility",
+    "diplomatic_pressure": "Diplomatic and policy pressure intensity",
+    "regional_political_stab": "Regional political stability"
+  },
+  "impact_matrix": {
+    "maritime_incident_rate": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 3,
+      "perceived_supply_risk": 3,
+      "shipping_transit_delay": 3,
+      "alt_supply_ramp_rate": 0,
+      "committed_investment": 0,
+      "spare_production_capacit": 0,
+      "refined_fuel_inventory": 0,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 2,
+      "airline_capacity_rate": 0,
+      "freight_insurance_premia": 3,
+      "market_sentiment_vol": 2,
+      "diplomatic_pressure": 2,
+      "regional_political_stab": 2
+    },
+    "tanker_traffic_vol": {
+      "maritime_incident_rate": 1,
+      "tanker_traffic_vol": 0,
+      "perceived_supply_risk": 2,
+      "shipping_transit_delay": 2,
+      "alt_supply_ramp_rate": 0,
+      "committed_investment": 0,
+      "spare_production_capacit": 0,
+      "refined_fuel_inventory": 2,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 2,
+      "airline_capacity_rate": 0,
+      "freight_insurance_premia": 2,
+      "market_sentiment_vol": 1,
+      "diplomatic_pressure": 1,
+      "regional_political_stab": 0
+    },
+    "perceived_supply_risk": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 2,
+      "perceived_supply_risk": 0,
+      "shipping_transit_delay": 2,
+      "alt_supply_ramp_rate": 2,
+      "committed_investment": 2,
+      "spare_production_capacit": 0,
+      "refined_fuel_inventory": 2,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 3,
+      "airline_capacity_rate": 1,
+      "freight_insurance_premia": 2,
+      "market_sentiment_vol": 3,
+      "diplomatic_pressure": 2,
+      "regional_political_stab": 0
+    },
+    "shipping_transit_delay": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 3,
+      "perceived_supply_risk": 2,
+      "shipping_transit_delay": 0,
+      "alt_supply_ramp_rate": 0,
+      "committed_investment": 0,
+      "spare_production_capacit": 0,
+      "refined_fuel_inventory": 3,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 2,
+      "airline_capacity_rate": 2,
+      "freight_insurance_premia": 1,
+      "market_sentiment_vol": 1,
+      "diplomatic_pressure": 1,
+      "regional_political_stab": 1
+    },
+    "alt_supply_ramp_rate": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 2,
+      "perceived_supply_risk": 2,
+      "shipping_transit_delay": 0,
+      "alt_supply_ramp_rate": 0,
+      "committed_investment": 0,
+      "spare_production_capacit": 3,
+      "refined_fuel_inventory": 2,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 2,
+      "airline_capacity_rate": 0,
+      "freight_insurance_premia": 1,
+      "market_sentiment_vol": 1,
+      "diplomatic_pressure": 1,
+      "regional_political_stab": 0
+    },
+    "committed_investment": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 1,
+      "perceived_supply_risk": 2,
+      "shipping_transit_delay": 0,
+      "alt_supply_ramp_rate": 3,
+      "committed_investment": 0,
+      "spare_production_capacit": 2,
+      "refined_fuel_inventory": 0,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 1,
+      "airline_capacity_rate": 0,
+      "freight_insurance_premia": 0,
+      "market_sentiment_vol": 1,
+      "diplomatic_pressure": 0,
+      "regional_political_stab": 0
+    },
+    "spare_production_capacit": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 2,
+      "perceived_supply_risk": 3,
+      "shipping_transit_delay": 0,
+      "alt_supply_ramp_rate": 3,
+      "committed_investment": 1,
+      "spare_production_capacit": 0,
+      "refined_fuel_inventory": 2,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 2,
+      "airline_capacity_rate": 1,
+      "freight_insurance_premia": 0,
+      "market_sentiment_vol": 2,
+      "diplomatic_pressure": 0,
+      "regional_political_stab": 0
+    },
+    "refined_fuel_inventory": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 2,
+      "perceived_supply_risk": 3,
+      "shipping_transit_delay": 0,
+      "alt_supply_ramp_rate": 0,
+      "committed_investment": 0,
+      "spare_production_capacit": 0,
+      "refined_fuel_inventory": 0,
+      "refined_fuel_demand": 2,
+      "fuel_price_level": 3,
+      "airline_capacity_rate": 2,
+      "freight_insurance_premia": 0,
+      "market_sentiment_vol": 2,
+      "diplomatic_pressure": 1,
+      "regional_political_stab": 0
+    },
+    "refined_fuel_demand": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 2,
+      "perceived_supply_risk": 0,
+      "shipping_transit_delay": 0,
+      "alt_supply_ramp_rate": 1,
+      "committed_investment": 0,
+      "spare_production_capacit": 0,
+      "refined_fuel_inventory": 3,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 3,
+      "airline_capacity_rate": 2,
+      "freight_insurance_premia": 0,
+      "market_sentiment_vol": 1,
+      "diplomatic_pressure": 0,
+      "regional_political_stab": 0
+    },
+    "fuel_price_level": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 1,
+      "perceived_supply_risk": 2,
+      "shipping_transit_delay": 0,
+      "alt_supply_ramp_rate": 2,
+      "committed_investment": 2,
+      "spare_production_capacit": 0,
+      "refined_fuel_inventory": 1,
+      "refined_fuel_demand": 2,
+      "fuel_price_level": 0,
+      "airline_capacity_rate": 3,
+      "freight_insurance_premia": 0,
+      "market_sentiment_vol": 2,
+      "diplomatic_pressure": 1,
+      "regional_political_stab": 0
+    },
+    "airline_capacity_rate": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 0,
+      "perceived_supply_risk": 0,
+      "shipping_transit_delay": 0,
+      "alt_supply_ramp_rate": 0,
+      "committed_investment": 0,
+      "spare_production_capacit": 0,
+      "refined_fuel_inventory": 1,
+      "refined_fuel_demand": 2,
+      "fuel_price_level": 1,
+      "airline_capacity_rate": 0,
+      "freight_insurance_premia": 0,
+      "market_sentiment_vol": 0,
+      "diplomatic_pressure": 0,
+      "regional_political_stab": 0
+    },
+    "freight_insurance_premia": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 2,
+      "perceived_supply_risk": 2,
+      "shipping_transit_delay": 0,
+      "alt_supply_ramp_rate": 0,
+      "committed_investment": 0,
+      "spare_production_capacit": 0,
+      "refined_fuel_inventory": 0,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 1,
+      "airline_capacity_rate": 0,
+      "freight_insurance_premia": 0,
+      "market_sentiment_vol": 1,
+      "diplomatic_pressure": 1,
+      "regional_political_stab": 0
+    },
+    "market_sentiment_vol": {
+      "maritime_incident_rate": 0,
+      "tanker_traffic_vol": 1,
+      "perceived_supply_risk": 2,
+      "shipping_transit_delay": 0,
+      "alt_supply_ramp_rate": 1,
+      "committed_investment": 1,
+      "spare_production_capacit": 0,
+      "refined_fuel_inventory": 0,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 3,
+      "airline_capacity_rate": 0,
+      "freight_insurance_premia": 1,
+      "market_sentiment_vol": 0,
+      "diplomatic_pressure": 1,
+      "regional_political_stab": 0
+    },
+    "diplomatic_pressure": {
+      "maritime_incident_rate": 2,
+      "tanker_traffic_vol": 2,
+      "perceived_supply_risk": 2,
+      "shipping_transit_delay": 2,
+      "alt_supply_ramp_rate": 1,
+      "committed_investment": 1,
+      "spare_production_capacit": 1,
+      "refined_fuel_inventory": 1,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 1,
+      "airline_capacity_rate": 0,
+      "freight_insurance_premia": 1,
+      "market_sentiment_vol": 1,
+      "diplomatic_pressure": 0,
+      "regional_political_stab": 2
+    },
+    "regional_political_stab": {
+      "maritime_incident_rate": 3,
+      "tanker_traffic_vol": 2,
+      "perceived_supply_risk": 3,
+      "shipping_transit_delay": 2,
+      "alt_supply_ramp_rate": 1,
+      "committed_investment": 2,
+      "spare_production_capacit": 2,
+      "refined_fuel_inventory": 1,
+      "refined_fuel_demand": 0,
+      "fuel_price_level": 2,
+      "airline_capacity_rate": 1,
+      "freight_insurance_premia": 3,
+      "market_sentiment_vol": 2,
+      "diplomatic_pressure": 2,
+      "regional_political_stab": 0
+    }
+  },
+  "AS": {
+    "maritime_incident_rate": 20,
+    "tanker_traffic_vol": 13,
+    "perceived_supply_risk": 21,
+    "shipping_transit_delay": 16,
+    "alt_supply_ramp_rate": 14,
+    "committed_investment": 10,
+    "spare_production_capacit": 16,
+    "refined_fuel_inventory": 15,
+    "refined_fuel_demand": 12,
+    "fuel_price_level": 16,
+    "airline_capacity_rate": 4,
+    "freight_insurance_premia": 7,
+    "market_sentiment_vol": 10,
+    "diplomatic_pressure": 17,
+    "regional_political_stab": 26
+  },
+  "PS": {
+    "maritime_incident_rate": 6,
+    "tanker_traffic_vol": 25,
+    "perceived_supply_risk": 28,
+    "shipping_transit_delay": 11,
+    "alt_supply_ramp_rate": 14,
+    "committed_investment": 9,
+    "spare_production_capacit": 8,
+    "refined_fuel_inventory": 18,
+    "refined_fuel_demand": 6,
+    "fuel_price_level": 28,
+    "airline_capacity_rate": 12,
+    "freight_insurance_premia": 14,
+    "market_sentiment_vol": 20,
+    "diplomatic_pressure": 13,
+    "regional_political_stab": 5
+  },
+  "med_AS": 15.0,
+  "med_PS": 13.0,
+  "roles": [
+    {
+      "variable": "perceived_supply_risk",
+      "name": "Perceived supply risk",
+      "AS": 21,
+      "PS": 28,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 588,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "fuel_price_level",
+      "name": "Fuel price level",
+      "AS": 16,
+      "PS": 28,
+      "Q=AS/PS": 0.57,
+      "P=AS*PS": 448,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "tanker_traffic_vol",
+      "name": "Tanker traffic volume",
+      "AS": 13,
+      "PS": 25,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 325,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refined_fuel_inventory",
+      "name": "Refined fuel inventories",
+      "AS": 15,
+      "PS": 18,
+      "Q=AS/PS": 0.83,
+      "P=AS*PS": 270,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diplomatic_pressure",
+      "name": "Diplomatic and policy pressure intensity",
+      "AS": 17,
+      "PS": 13,
+      "Q=AS/PS": 1.31,
+      "P=AS*PS": 221,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_sentiment_vol",
+      "name": "Market sentiment volatility",
+      "AS": 10,
+      "PS": 20,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 200,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "alt_supply_ramp_rate",
+      "name": "Alternative supply ramp-up rate",
+      "AS": 14,
+      "PS": 14,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 196,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "shipping_transit_delay",
+      "name": "Shipping transit delay",
+      "AS": 16,
+      "PS": 11,
+      "Q=AS/PS": 1.45,
+      "P=AS*PS": 176,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "regional_political_stab",
+      "name": "Regional political stability",
+      "AS": 26,
+      "PS": 5,
+      "Q=AS/PS": 5.2,
+      "P=AS*PS": 130,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "spare_production_capacit",
+      "name": "Spare production capacity",
+      "AS": 16,
+      "PS": 8,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 128,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "maritime_incident_rate",
+      "name": "Maritime interdiction incident rate",
+      "AS": 20,
+      "PS": 6,
+      "Q=AS/PS": 3.33,
+      "P=AS*PS": 120,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "freight_insurance_premia",
+      "name": "Shipping freight and insurance premia",
+      "AS": 7,
+      "PS": 14,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 98,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "committed_investment",
+      "name": "Committed investment level",
+      "AS": 10,
+      "PS": 9,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 90,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "refined_fuel_demand",
+      "name": "Refined fuel demand",
+      "AS": 12,
+      "PS": 6,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 72,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "airline_capacity_rate",
+      "name": "Airline capacity adjustment rate",
+      "AS": 4,
+      "PS": 12,
+      "Q=AS/PS": 0.33,
+      "P=AS*PS": 48,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "maritime_incident_rate",
+        "name": "Maritime interdiction incident rate",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 6
+      },
+      {
+        "id": "tanker_traffic_vol",
+        "name": "Tanker traffic volume",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 25
+      },
+      {
+        "id": "perceived_supply_risk",
+        "name": "Perceived supply risk",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 28
+      },
+      {
+        "id": "shipping_transit_delay",
+        "name": "Shipping transit delay",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 11
+      },
+      {
+        "id": "alt_supply_ramp_rate",
+        "name": "Alternative supply ramp-up rate",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 14
+      },
+      {
+        "id": "committed_investment",
+        "name": "Committed investment level",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 9
+      },
+      {
+        "id": "spare_production_capacit",
+        "name": "Spare production capacity",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 8
+      },
+      {
+        "id": "refined_fuel_inventory",
+        "name": "Refined fuel inventories",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 18
+      },
+      {
+        "id": "refined_fuel_demand",
+        "name": "Refined fuel demand",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 6
+      },
+      {
+        "id": "fuel_price_level",
+        "name": "Fuel price level",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 28
+      },
+      {
+        "id": "airline_capacity_rate",
+        "name": "Airline capacity adjustment rate",
+        "kind": "flow",
+        "AS": 4,
+        "PS": 12
+      },
+      {
+        "id": "freight_insurance_premia",
+        "name": "Shipping freight and insurance premia",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 14
+      },
+      {
+        "id": "market_sentiment_vol",
+        "name": "Market sentiment volatility",
+        "kind": "perception",
+        "AS": 10,
+        "PS": 20
+      },
+      {
+        "id": "diplomatic_pressure",
+        "name": "Diplomatic and policy pressure intensity",
+        "kind": "institution_field",
+        "AS": 17,
+        "PS": 13
+      },
+      {
+        "id": "regional_political_stab",
+        "name": "Regional political stability",
+        "kind": "environment",
+        "AS": 26,
+        "PS": 5
+      }
+    ],
+    "edges": [
+      {
+        "source": "maritime_incident_rate",
+        "target": "tanker_traffic_vol",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "perceived_supply_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "shipping_transit_delay",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "fuel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "freight_insurance_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "market_sentiment_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "diplomatic_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "regional_political_stab",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_traffic_vol",
+        "target": "perceived_supply_risk",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_traffic_vol",
+        "target": "shipping_transit_delay",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_traffic_vol",
+        "target": "refined_fuel_inventory",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_traffic_vol",
+        "target": "fuel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_traffic_vol",
+        "target": "freight_insurance_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "perceived_supply_risk",
+        "target": "tanker_traffic_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "perceived_supply_risk",
+        "target": "shipping_transit_delay",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "perceived_supply_risk",
+        "target": "alt_supply_ramp_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "perceived_supply_risk",
+        "target": "committed_investment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "perceived_supply_risk",
+        "target": "refined_fuel_inventory",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "perceived_supply_risk",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "perceived_supply_risk",
+        "target": "freight_insurance_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "perceived_supply_risk",
+        "target": "market_sentiment_vol",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "perceived_supply_risk",
+        "target": "diplomatic_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_transit_delay",
+        "target": "tanker_traffic_vol",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_transit_delay",
+        "target": "perceived_supply_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_transit_delay",
+        "target": "refined_fuel_inventory",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_transit_delay",
+        "target": "fuel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_transit_delay",
+        "target": "airline_capacity_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "alt_supply_ramp_rate",
+        "target": "tanker_traffic_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "alt_supply_ramp_rate",
+        "target": "perceived_supply_risk",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "alt_supply_ramp_rate",
+        "target": "spare_production_capacit",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "alt_supply_ramp_rate",
+        "target": "refined_fuel_inventory",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "alt_supply_ramp_rate",
+        "target": "fuel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "committed_investment",
+        "target": "perceived_supply_risk",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "committed_investment",
+        "target": "alt_supply_ramp_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "committed_investment",
+        "target": "spare_production_capacit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "tanker_traffic_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "perceived_supply_risk",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "alt_supply_ramp_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "refined_fuel_inventory",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "fuel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "market_sentiment_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "tanker_traffic_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "perceived_supply_risk",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "refined_fuel_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "airline_capacity_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "market_sentiment_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_demand",
+        "target": "tanker_traffic_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_demand",
+        "target": "refined_fuel_inventory",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_demand",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_demand",
+        "target": "airline_capacity_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_price_level",
+        "target": "perceived_supply_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_price_level",
+        "target": "alt_supply_ramp_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_price_level",
+        "target": "committed_investment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_price_level",
+        "target": "refined_fuel_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_price_level",
+        "target": "airline_capacity_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_price_level",
+        "target": "market_sentiment_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "airline_capacity_rate",
+        "target": "refined_fuel_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "freight_insurance_premia",
+        "target": "tanker_traffic_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "freight_insurance_premia",
+        "target": "perceived_supply_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment_vol",
+        "target": "perceived_supply_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment_vol",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_pressure",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_pressure",
+        "target": "tanker_traffic_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_pressure",
+        "target": "perceived_supply_risk",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_pressure",
+        "target": "shipping_transit_delay",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_pressure",
+        "target": "regional_political_stab",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regional_political_stab",
+        "target": "maritime_incident_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "regional_political_stab",
+        "target": "tanker_traffic_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regional_political_stab",
+        "target": "perceived_supply_risk",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "regional_political_stab",
+        "target": "shipping_transit_delay",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "regional_political_stab",
+        "target": "committed_investment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regional_political_stab",
+        "target": "spare_production_capacit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regional_political_stab",
+        "target": "fuel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "regional_political_stab",
+        "target": "freight_insurance_premia",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "regional_political_stab",
+        "target": "market_sentiment_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "regional_political_stab",
+        "target": "diplomatic_pressure",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "hormuz_attacks_continuation",
+      "title": "Continuation/escalation of Hormuz maritime attacks",
+      "description": "Ongoing hostile actions (attacks/mines) in the Strait of Hormuz continue or recur, sustaining pressure on shipping and markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2027-03-04",
+        "label": "weeks–months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_traffic_vol",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_transit_delay",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "freight_insurance_premia",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "perceived_supply_risk",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_sentiment_vol",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "regional_political_stab",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Multiple headlines: 'Two Tankers Attacked…', 'Oil supertankers hit in Strait of Hormuz', 'Iran says two tankers have hit Hormuz naval mines.'"
+    },
+    {
+      "id": "south_korea_deployment_hormuz",
+      "title": "South Korea prepares/dispatches military to Hormuz",
+      "description": "Reported South Korean military deployment to the Strait of Hormuz to protect shipping or signal deterrence.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2026-10-04",
+        "label": "≈1 month"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "perceived_supply_risk",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_traffic_vol",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_pressure",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "freight_insurance_premia",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'South Korea prepares Hormuz military deployment, media reports say.'"
+    },
+    {
+      "id": "venezuela_energy_pacts_signings",
+      "title": "Signing of US–Venezuela energy pacts and investment agreements",
+      "description": "Planned/announced commercial agreements (Chevron, ENI, others) and signings to expand Venezuelan oil output are executed.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2026-10-15",
+        "label": "2–6 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "committed_investment",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "alt_supply_ramp_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "spare_production_capacit",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "perceived_supply_risk",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fuel_price_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_sentiment_vol",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Chevron, ENI among firms set to sign energy pacts in Venezuela'; 'Venezuela's assembly backs oil deal.'"
+    },
+    {
+      "id": "venezuela_grid_stabilization_process",
+      "title": "Venezuela power-grid stabilization (6–12 months)",
+      "description": "US-backed deal implementation to stabilise Venezuela's power grid over 6–12 months, enabling more reliable oil production.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2027-09-04",
+        "label": "6–12 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "spare_production_capacit",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "alt_supply_ramp_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "perceived_supply_risk",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "committed_investment",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'US says deal aims to stabilize Venezuela power grid in 6-12 months.'"
+    },
+    {
+      "id": "ship_to_ship_transfers_rerouting",
+      "title": "Increased ship‑to‑ship transfers and rerouting outside Hormuz",
+      "description": "More cargoes (LNG, oil) moved via ship‑to‑ship transfers and routed around the Strait, altering transit patterns and delays.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2026-12-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "tanker_traffic_vol",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_transit_delay",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "freight_insurance_premia",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Qatari, UAE LNG cargoes transferred via ship-to-ship outside Strait of Hormuz'; 'shipping traffic via Strait of Hormuz stays below 10-day average.'"
+    },
+    {
+      "id": "refinery_outages_supply_crunch",
+      "title": "Continuation of refinery outages and supply tightening",
+      "description": "Ongoing refinery damage/outages from regional conflicts (Ukraine, Iran) deepen refined‑fuel supply crunch and price spikes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2027-03-31",
+        "label": "3–7 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "refined_fuel_inventory",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fuel_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_sentiment_vol",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_fuel_demand",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Diesel hits record high as Ukraine and Iran wars knock out refineries'; 'US diesel prices soar.'"
+    },
+    {
+      "id": "winter_airline_capacity_reductions",
+      "title": "Airlines cut winter capacity due to high jet‑fuel costs",
+      "description": "Carriers reduce winter schedules and seats as jet‑fuel prices and supply risks force capacity adjustments.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-03-31",
+        "label": "this winter"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "airline_capacity_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refined_fuel_demand",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fuel_price_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Ryanair warns of higher fares as it cuts winter flights'; 'Europe’s largest airline warns of jet‑fuel prices hitting $140 this winter.'"
+    },
+    {
+      "id": "major_us_iran_escalation",
+      "title": "Major US–Iran military escalation in/around Hormuz",
+      "description": "A significant bilateral strike or confrontation over control of Hormuz that sharply disrupts shipping and markets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-04",
+        "end": "2026-10-31",
+        "label": "1–8 weeks"
+      },
+      "probability": 0.35,
+      "affected": [
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_traffic_vol",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "freight_insurance_premia",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "perceived_supply_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_sentiment_vol",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "regional_political_stab",
+          "intensity": 3,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'U.S. and Iran trade strikes…', 'Saudi says Iran attacked vessel', 'Two tankers attacked.'"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "major_us_iran_escalation",
+      "title": "Major US–Iran military escalation in/around Hormuz",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "1–8 weeks",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2026-10-31",
+      "probability": 0.35,
+      "impact_score": 291.0,
+      "expected_impact": 101.85,
+      "event_PS": 16.333,
+      "event_AS": 16.167,
+      "n_vars": 6,
+      "affected_ids": "maritime_incident_rate, tanker_traffic_vol, freight_insurance_premia, perceived_supply_risk, market_sentiment_vol, regional_political_stab",
+      "rationale": "Headlines: 'U.S. and Iran trade strikes…', 'Saudi says Iran attacked vessel', 'Two tankers attacked.'"
+    },
+    {
+      "id": "hormuz_attacks_continuation",
+      "title": "Continuation/escalation of Hormuz maritime attacks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2027-03-04",
+      "probability": 0.75,
+      "impact_score": 246.0,
+      "expected_impact": 184.5,
+      "event_PS": 14.933,
+      "event_AS": 16.4,
+      "n_vars": 7,
+      "affected_ids": "maritime_incident_rate, tanker_traffic_vol, shipping_transit_delay, freight_insurance_premia, perceived_supply_risk, market_sentiment_vol, regional_political_stab",
+      "rationale": "Multiple headlines: 'Two Tankers Attacked…', 'Oil supertankers hit in Strait of Hormuz', 'Iran says two tankers have hit Hormuz naval mines.'"
+    },
+    {
+      "id": "south_korea_deployment_hormuz",
+      "title": "South Korea prepares/dispatches military to Hormuz",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "≈1 month",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2026-10-04",
+      "probability": 0.6,
+      "impact_score": 136.0,
+      "expected_impact": 81.6,
+      "event_PS": 16.625,
+      "event_AS": 17.0,
+      "n_vars": 5,
+      "affected_ids": "maritime_incident_rate, perceived_supply_risk, tanker_traffic_vol, diplomatic_pressure, freight_insurance_premia",
+      "rationale": "Headline: 'South Korea prepares Hormuz military deployment, media reports say.'"
+    },
+    {
+      "id": "venezuela_grid_stabilization_process",
+      "title": "Venezuela power-grid stabilization (6–12 months)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6–12 months",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2027-09-04",
+      "probability": 0.6,
+      "impact_score": 128.0,
+      "expected_impact": 76.8,
+      "event_PS": 14.625,
+      "event_AS": 16.0,
+      "n_vars": 4,
+      "affected_ids": "spare_production_capacit, alt_supply_ramp_rate, perceived_supply_risk, committed_investment",
+      "rationale": "Headline: 'US says deal aims to stabilize Venezuela power grid in 6-12 months.'"
+    },
+    {
+      "id": "refinery_outages_supply_crunch",
+      "title": "Continuation of refinery outages and supply tightening",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3–7 months",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2027-03-31",
+      "probability": 0.8,
+      "impact_score": 125.0,
+      "expected_impact": 100.0,
+      "event_PS": 20.444,
+      "event_AS": 13.889,
+      "n_vars": 4,
+      "affected_ids": "refined_fuel_inventory, fuel_price_level, market_sentiment_vol, refined_fuel_demand",
+      "rationale": "Headlines: 'Diesel hits record high as Ukraine and Iran wars knock out refineries'; 'US diesel prices soar.'"
+    },
+    {
+      "id": "venezuela_energy_pacts_signings",
+      "title": "Signing of US–Venezuela energy pacts and investment agreements",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2–6 weeks",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2026-10-15",
+      "probability": 0.8,
+      "impact_score": 121.0,
+      "expected_impact": 96.8,
+      "event_PS": 15.444,
+      "event_AS": 13.444,
+      "n_vars": 6,
+      "affected_ids": "committed_investment, alt_supply_ramp_rate, spare_production_capacit, perceived_supply_risk, fuel_price_level, market_sentiment_vol",
+      "rationale": "Headlines: 'Chevron, ENI among firms set to sign energy pacts in Venezuela'; 'Venezuela's assembly backs oil deal.'"
+    },
+    {
+      "id": "ship_to_ship_transfers_rerouting",
+      "title": "Increased ship‑to‑ship transfers and rerouting outside Hormuz",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-09-04",
+      "end": "2026-12-31",
+      "probability": 0.85,
+      "impact_score": 85.0,
+      "expected_impact": 72.25,
+      "event_PS": 15.333,
+      "event_AS": 14.167,
+      "n_vars": 4,
+      "affected_ids": "tanker_traffic_vol, shipping_transit_delay, maritime_incident_rate, freight_insurance_premia",
+      "rationale": "Headlines: 'Qatari, UAE LNG cargoes transferred via ship-to-ship outside Strait of Hormuz'; 'shipping traffic via Strait of Hormuz stays below 10-day average.'"
+    },
+    {
+      "id": "winter_airline_capacity_reductions",
+      "title": "Airlines cut winter capacity due to high jet‑fuel costs",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "this winter",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-03-31",
+      "probability": 0.9,
+      "impact_score": 52.0,
+      "expected_impact": 46.8,
+      "event_PS": 12.667,
+      "event_AS": 8.667,
+      "n_vars": 3,
+      "affected_ids": "airline_capacity_rate, refined_fuel_demand, fuel_price_level",
+      "rationale": "Headlines: 'Ryanair warns of higher fares as it cuts winter flights'; 'Europe’s largest airline warns of jet‑fuel prices hitting $140 this winter.'"
+    }
+  ]
+}
