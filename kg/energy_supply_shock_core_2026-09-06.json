@@ -1,0 +1,1665 @@
+{
+  "label": "energy_supply_shock",
+  "as_of": "2026-09-06",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-06T01:26:41",
+  "system_description": {
+    "narrative_title": "Geopolitical energy shock and scramble for supply",
+    "narrative_summary": "The dominant narrative is a geopolitically-driven global energy supply shock: wars, sanctions, shipping disruptions and refinery outages are tightening oil, diesel and gas flows, driving record fuel prices and inflationary pressure. The system is open — exogenous shocks (conflict, sanctions, weather) and endogenous responses (strategic oil deals, stockpiling, policy measures) change stocks (inventories), flows (exports, shipments, refining) and feedbacks (prices → political pressure → policy → market behaviour). Consequences cascade into Europe’s winter gas security, markets and fiscal/political responses, prompting state and corporate actions to secure or redistribute supply.",
+    "scope": "Crude oil, refined products (diesel, gasoline), natural gas, storage/inventories, refineries and logistics (shipping routes, tanker flows, chokepoints like Hormuz), major producing and consuming states, energy firms and traders, commodity markets and futures, related policy instruments (sanctions, strategic deals, EU energy policy), and near-term demand shocks (seasonal winter demand, El Niño).",
+    "super_system": "Global geopolitical-economy and energy-security nexus",
+    "adjacent_subsystems": [
+      "European domestic politics and migration policy",
+      "Global commodity and financial markets (trading, insurers)",
+      "Energy transition, climate policy and renewable investment",
+      "Regional security dynamics in the Middle East and Latin America"
+    ],
+    "evidence_headlines": [
+      "US diesel prices hit record high as conflicts intensify supply crunch",
+      "Diesel hits record high as Ukraine and Iran wars knock out refineries, fueling inflation worries",
+      "Venezuela’s jumbo oil deal does little to appease its creditors",
+      "Trump-linked companies race to secure deals for Venezuela’s oil",
+      "EU enters winter with lowest gas stocks on record",
+      "Oil supertankers hit in Strait of Hormuz"
+    ]
+  },
+  "variables": [
+    {
+      "id": "energy_supply_flow",
+      "name": "Energy supply flow rate",
+      "description": "Net volumetric flow of energy commodities (crude oil, refined fuels, natural gas) delivered to global markets per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "crude_capacity_util",
+      "name": "Crude production capacity utilization",
+      "description": "Percentage of installed crude oil production capacity currently operating and contributing output.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_capacity_oper",
+      "name": "Refinery operational capacity",
+      "description": "Proportion of global refining capacity that is operational and available to convert crude into refined products.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refined_inventory_level",
+      "name": "Refined fuel inventories",
+      "description": "Aggregate on‑hand stock levels of refined petroleum products (diesel, gasoline, kerosene) held in commercial and reserve storage.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "gas_storage_level",
+      "name": "Natural gas storage level",
+      "description": "Total volume of natural gas held in storage facilities available for seasonal withdrawal or emergency supply.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_availability",
+      "name": "Tanker and shipping availability",
+      "description": "Effective availability of tanker and specialized maritime shipping capacity for transporting crude and refined products.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_transit_risk",
+      "name": "Chokepoint transit risk",
+      "description": "Probability-weighted risk of disruption to maritime energy transit through key narrow passages and chokepoints.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sanction_intensity",
+      "name": "Sanctions and trade restriction intensity",
+      "description": "Degree and breadth of trade, financial and legal restrictions affecting energy-related transactions and exports.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_stockpile_rate",
+      "name": "Strategic stockpiling rate",
+      "description": "Rate at which strategic or commercial actors are adding to or withdrawing from strategic energy reserves.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "energy_price_level",
+      "name": "Energy price level",
+      "description": " prevailing market price level for energy commodities (spot prices for oil, refined fuels and natural gas).",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "price_volatility",
+      "name": "Price volatility",
+      "description": "Magnitude and frequency of short‑term fluctuations in energy commodity prices.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "aggregate_demand_level",
+      "name": "Aggregate energy demand level",
+      "description": "Total consumption demand for energy commodities across sectors and regions, adjusted for current activity and economic conditions.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "seasonal_demand_pressure",
+      "name": "Seasonal demand pressure",
+      "description": "Intensity of seasonal and climate-related demand drivers (e.g., winter heating demand, El Niño impacts) on short-term consumption.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "speculative_positioning",
+      "name": "Market speculative positioning",
+      "description": "Net size and directional bias of speculative and hedging positions in energy derivatives that shape forward price signals and liquidity.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_response_intensit",
+      "name": "Policy and fiscal response intensity",
+      "description": "Strength and rapidity of government fiscal, regulatory and emergency policy measures deployed to influence energy supply, demand or prices.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "energy_investment_flow",
+      "name": "Energy supply investment flow",
+      "description": "Rate of capital investment directed toward exploration, production, refining, storage and transport capacity in the energy sector.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "energy_supply_flow",
+    "crude_capacity_util",
+    "refinery_capacity_oper",
+    "refined_inventory_level",
+    "gas_storage_level",
+    "tanker_availability",
+    "chokepoint_transit_risk",
+    "sanction_intensity",
+    "strategic_stockpile_rate",
+    "energy_price_level",
+    "price_volatility",
+    "aggregate_demand_level",
+    "seasonal_demand_pressure",
+    "speculative_positioning",
+    "policy_response_intensit",
+    "energy_investment_flow"
+  ],
+  "var_names": {
+    "energy_supply_flow": "Energy supply flow rate",
+    "crude_capacity_util": "Crude production capacity utilization",
+    "refinery_capacity_oper": "Refinery operational capacity",
+    "refined_inventory_level": "Refined fuel inventories",
+    "gas_storage_level": "Natural gas storage level",
+    "tanker_availability": "Tanker and shipping availability",
+    "chokepoint_transit_risk": "Chokepoint transit risk",
+    "sanction_intensity": "Sanctions and trade restriction intensity",
+    "strategic_stockpile_rate": "Strategic stockpiling rate",
+    "energy_price_level": "Energy price level",
+    "price_volatility": "Price volatility",
+    "aggregate_demand_level": "Aggregate energy demand level",
+    "seasonal_demand_pressure": "Seasonal demand pressure",
+    "speculative_positioning": "Market speculative positioning",
+    "policy_response_intensit": "Policy and fiscal response intensity",
+    "energy_investment_flow": "Energy supply investment flow"
+  },
+  "impact_matrix": {
+    "energy_supply_flow": {
+      "energy_supply_flow": 0,
+      "crude_capacity_util": 1,
+      "refinery_capacity_oper": 1,
+      "refined_inventory_level": 2,
+      "gas_storage_level": 1,
+      "tanker_availability": 2,
+      "chokepoint_transit_risk": 1,
+      "sanction_intensity": 0,
+      "strategic_stockpile_rate": 2,
+      "energy_price_level": 3,
+      "price_volatility": 2,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 0,
+      "speculative_positioning": 2,
+      "policy_response_intensit": 1,
+      "energy_investment_flow": 1
+    },
+    "crude_capacity_util": {
+      "energy_supply_flow": 3,
+      "crude_capacity_util": 0,
+      "refinery_capacity_oper": 1,
+      "refined_inventory_level": 2,
+      "gas_storage_level": 1,
+      "tanker_availability": 2,
+      "chokepoint_transit_risk": 1,
+      "sanction_intensity": 0,
+      "strategic_stockpile_rate": 1,
+      "energy_price_level": 3,
+      "price_volatility": 2,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 0,
+      "speculative_positioning": 2,
+      "policy_response_intensit": 1,
+      "energy_investment_flow": 2
+    },
+    "refinery_capacity_oper": {
+      "energy_supply_flow": 2,
+      "crude_capacity_util": 1,
+      "refinery_capacity_oper": 0,
+      "refined_inventory_level": 3,
+      "gas_storage_level": 0,
+      "tanker_availability": 1,
+      "chokepoint_transit_risk": 0,
+      "sanction_intensity": 0,
+      "strategic_stockpile_rate": 1,
+      "energy_price_level": 2,
+      "price_volatility": 1,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 0,
+      "speculative_positioning": 1,
+      "policy_response_intensit": 1,
+      "energy_investment_flow": 1
+    },
+    "refined_inventory_level": {
+      "energy_supply_flow": 2,
+      "crude_capacity_util": 1,
+      "refinery_capacity_oper": 3,
+      "refined_inventory_level": 0,
+      "gas_storage_level": 0,
+      "tanker_availability": 1,
+      "chokepoint_transit_risk": 0,
+      "sanction_intensity": 0,
+      "strategic_stockpile_rate": 2,
+      "energy_price_level": 3,
+      "price_volatility": 2,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 1,
+      "speculative_positioning": 2,
+      "policy_response_intensit": 1,
+      "energy_investment_flow": 1
+    },
+    "gas_storage_level": {
+      "energy_supply_flow": 1,
+      "crude_capacity_util": 0,
+      "refinery_capacity_oper": 0,
+      "refined_inventory_level": 0,
+      "gas_storage_level": 0,
+      "tanker_availability": 0,
+      "chokepoint_transit_risk": 0,
+      "sanction_intensity": 0,
+      "strategic_stockpile_rate": 2,
+      "energy_price_level": 2,
+      "price_volatility": 1,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 2,
+      "speculative_positioning": 1,
+      "policy_response_intensit": 1,
+      "energy_investment_flow": 1
+    },
+    "tanker_availability": {
+      "energy_supply_flow": 2,
+      "crude_capacity_util": 2,
+      "refinery_capacity_oper": 1,
+      "refined_inventory_level": 1,
+      "gas_storage_level": 0,
+      "tanker_availability": 0,
+      "chokepoint_transit_risk": 1,
+      "sanction_intensity": 1,
+      "strategic_stockpile_rate": 1,
+      "energy_price_level": 1,
+      "price_volatility": 1,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 0,
+      "speculative_positioning": 0,
+      "policy_response_intensit": 1,
+      "energy_investment_flow": 1
+    },
+    "chokepoint_transit_risk": {
+      "energy_supply_flow": 1,
+      "crude_capacity_util": 1,
+      "refinery_capacity_oper": 0,
+      "refined_inventory_level": 0,
+      "gas_storage_level": 0,
+      "tanker_availability": 1,
+      "chokepoint_transit_risk": 0,
+      "sanction_intensity": 1,
+      "strategic_stockpile_rate": 1,
+      "energy_price_level": 2,
+      "price_volatility": 2,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 0,
+      "speculative_positioning": 1,
+      "policy_response_intensit": 2,
+      "energy_investment_flow": 1
+    },
+    "sanction_intensity": {
+      "energy_supply_flow": 2,
+      "crude_capacity_util": 2,
+      "refinery_capacity_oper": 1,
+      "refined_inventory_level": 1,
+      "gas_storage_level": 1,
+      "tanker_availability": 2,
+      "chokepoint_transit_risk": 1,
+      "sanction_intensity": 0,
+      "strategic_stockpile_rate": 2,
+      "energy_price_level": 3,
+      "price_volatility": 2,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 0,
+      "speculative_positioning": 2,
+      "policy_response_intensit": 2,
+      "energy_investment_flow": 2
+    },
+    "strategic_stockpile_rate": {
+      "energy_supply_flow": 2,
+      "crude_capacity_util": 1,
+      "refinery_capacity_oper": 1,
+      "refined_inventory_level": 2,
+      "gas_storage_level": 2,
+      "tanker_availability": 1,
+      "chokepoint_transit_risk": 1,
+      "sanction_intensity": 1,
+      "strategic_stockpile_rate": 0,
+      "energy_price_level": 2,
+      "price_volatility": 1,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 0,
+      "speculative_positioning": 1,
+      "policy_response_intensit": 2,
+      "energy_investment_flow": 1
+    },
+    "energy_price_level": {
+      "energy_supply_flow": 3,
+      "crude_capacity_util": 3,
+      "refinery_capacity_oper": 2,
+      "refined_inventory_level": 3,
+      "gas_storage_level": 2,
+      "tanker_availability": 1,
+      "chokepoint_transit_risk": 2,
+      "sanction_intensity": 3,
+      "strategic_stockpile_rate": 2,
+      "energy_price_level": 0,
+      "price_volatility": 3,
+      "aggregate_demand_level": 1,
+      "seasonal_demand_pressure": 1,
+      "speculative_positioning": 3,
+      "policy_response_intensit": 2,
+      "energy_investment_flow": 3
+    },
+    "price_volatility": {
+      "energy_supply_flow": 2,
+      "crude_capacity_util": 2,
+      "refinery_capacity_oper": 1,
+      "refined_inventory_level": 2,
+      "gas_storage_level": 1,
+      "tanker_availability": 1,
+      "chokepoint_transit_risk": 2,
+      "sanction_intensity": 2,
+      "strategic_stockpile_rate": 1,
+      "energy_price_level": 3,
+      "price_volatility": 0,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 1,
+      "speculative_positioning": 2,
+      "policy_response_intensit": 2,
+      "energy_investment_flow": 1
+    },
+    "aggregate_demand_level": {
+      "energy_supply_flow": 0,
+      "crude_capacity_util": 0,
+      "refinery_capacity_oper": 0,
+      "refined_inventory_level": 0,
+      "gas_storage_level": 0,
+      "tanker_availability": 0,
+      "chokepoint_transit_risk": 0,
+      "sanction_intensity": 0,
+      "strategic_stockpile_rate": 0,
+      "energy_price_level": 2,
+      "price_volatility": 0,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 2,
+      "speculative_positioning": 0,
+      "policy_response_intensit": 1,
+      "energy_investment_flow": 1
+    },
+    "seasonal_demand_pressure": {
+      "energy_supply_flow": 1,
+      "crude_capacity_util": 1,
+      "refinery_capacity_oper": 0,
+      "refined_inventory_level": 1,
+      "gas_storage_level": 2,
+      "tanker_availability": 0,
+      "chokepoint_transit_risk": 0,
+      "sanction_intensity": 0,
+      "strategic_stockpile_rate": 1,
+      "energy_price_level": 2,
+      "price_volatility": 1,
+      "aggregate_demand_level": 2,
+      "seasonal_demand_pressure": 0,
+      "speculative_positioning": 0,
+      "policy_response_intensit": 1,
+      "energy_investment_flow": 0
+    },
+    "speculative_positioning": {
+      "energy_supply_flow": 1,
+      "crude_capacity_util": 1,
+      "refinery_capacity_oper": 0,
+      "refined_inventory_level": 1,
+      "gas_storage_level": 0,
+      "tanker_availability": 0,
+      "chokepoint_transit_risk": 0,
+      "sanction_intensity": 0,
+      "strategic_stockpile_rate": 0,
+      "energy_price_level": 3,
+      "price_volatility": 2,
+      "aggregate_demand_level": 0,
+      "seasonal_demand_pressure": 0,
+      "speculative_positioning": 0,
+      "policy_response_intensit": 1,
+      "energy_investment_flow": 1
+    },
+    "policy_response_intensit": {
+      "energy_supply_flow": 2,
+      "crude_capacity_util": 1,
+      "refinery_capacity_oper": 1,
+      "refined_inventory_level": 2,
+      "gas_storage_level": 2,
+      "tanker_availability": 1,
+      "chokepoint_transit_risk": 1,
+      "sanction_intensity": 2,
+      "strategic_stockpile_rate": 2,
+      "energy_price_level": 2,
+      "price_volatility": 1,
+      "aggregate_demand_level": 1,
+      "seasonal_demand_pressure": 0,
+      "speculative_positioning": 1,
+      "policy_response_intensit": 0,
+      "energy_investment_flow": 2
+    },
+    "energy_investment_flow": {
+      "energy_supply_flow": 1,
+      "crude_capacity_util": 2,
+      "refinery_capacity_oper": 2,
+      "refined_inventory_level": 0,
+      "gas_storage_level": 1,
+      "tanker_availability": 1,
+      "chokepoint_transit_risk": 1,
+      "sanction_intensity": 1,
+      "strategic_stockpile_rate": 1,
+      "energy_price_level": 3,
+      "price_volatility": 1,
+      "aggregate_demand_level": 1,
+      "seasonal_demand_pressure": 0,
+      "speculative_positioning": 0,
+      "policy_response_intensit": 2,
+      "energy_investment_flow": 0
+    }
+  },
+  "AS": {
+    "energy_supply_flow": 19,
+    "crude_capacity_util": 21,
+    "refinery_capacity_oper": 14,
+    "refined_inventory_level": 19,
+    "gas_storage_level": 11,
+    "tanker_availability": 13,
+    "chokepoint_transit_risk": 13,
+    "sanction_intensity": 23,
+    "strategic_stockpile_rate": 18,
+    "energy_price_level": 34,
+    "price_volatility": 23,
+    "aggregate_demand_level": 6,
+    "seasonal_demand_pressure": 12,
+    "speculative_positioning": 10,
+    "policy_response_intensit": 21,
+    "energy_investment_flow": 17
+  },
+  "PS": {
+    "energy_supply_flow": 25,
+    "crude_capacity_util": 19,
+    "refinery_capacity_oper": 14,
+    "refined_inventory_level": 20,
+    "gas_storage_level": 13,
+    "tanker_availability": 14,
+    "chokepoint_transit_risk": 11,
+    "sanction_intensity": 11,
+    "strategic_stockpile_rate": 19,
+    "energy_price_level": 36,
+    "price_volatility": 22,
+    "aggregate_demand_level": 5,
+    "seasonal_demand_pressure": 7,
+    "speculative_positioning": 18,
+    "policy_response_intensit": 21,
+    "energy_investment_flow": 19
+  },
+  "med_AS": 17.5,
+  "med_PS": 18.5,
+  "roles": [
+    {
+      "variable": "energy_price_level",
+      "name": "Energy price level",
+      "AS": 34,
+      "PS": 36,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 1224,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "price_volatility",
+      "name": "Price volatility",
+      "AS": 23,
+      "PS": 22,
+      "Q=AS/PS": 1.05,
+      "P=AS*PS": 506,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "energy_supply_flow",
+      "name": "Energy supply flow rate",
+      "AS": 19,
+      "PS": 25,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 475,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_response_intensit",
+      "name": "Policy and fiscal response intensity",
+      "AS": 21,
+      "PS": 21,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 441,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crude_capacity_util",
+      "name": "Crude production capacity utilization",
+      "AS": 21,
+      "PS": 19,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 399,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refined_inventory_level",
+      "name": "Refined fuel inventories",
+      "AS": 19,
+      "PS": 20,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 380,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "strategic_stockpile_rate",
+      "name": "Strategic stockpiling rate",
+      "AS": 18,
+      "PS": 19,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 342,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "energy_investment_flow",
+      "name": "Energy supply investment flow",
+      "AS": 17,
+      "PS": 19,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 323,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "sanction_intensity",
+      "name": "Sanctions and trade restriction intensity",
+      "AS": 23,
+      "PS": 11,
+      "Q=AS/PS": 2.09,
+      "P=AS*PS": 253,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refinery_capacity_oper",
+      "name": "Refinery operational capacity",
+      "AS": 14,
+      "PS": 14,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 196,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "tanker_availability",
+      "name": "Tanker and shipping availability",
+      "AS": 13,
+      "PS": 14,
+      "Q=AS/PS": 0.93,
+      "P=AS*PS": 182,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "speculative_positioning",
+      "name": "Market speculative positioning",
+      "AS": 10,
+      "PS": 18,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 180,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "chokepoint_transit_risk",
+      "name": "Chokepoint transit risk",
+      "AS": 13,
+      "PS": 11,
+      "Q=AS/PS": 1.18,
+      "P=AS*PS": 143,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "gas_storage_level",
+      "name": "Natural gas storage level",
+      "AS": 11,
+      "PS": 13,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 143,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "seasonal_demand_pressure",
+      "name": "Seasonal demand pressure",
+      "AS": 12,
+      "PS": 7,
+      "Q=AS/PS": 1.71,
+      "P=AS*PS": 84,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "aggregate_demand_level",
+      "name": "Aggregate energy demand level",
+      "AS": 6,
+      "PS": 5,
+      "Q=AS/PS": 1.2,
+      "P=AS*PS": 30,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "energy_supply_flow",
+        "name": "Energy supply flow rate",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 25
+      },
+      {
+        "id": "crude_capacity_util",
+        "name": "Crude production capacity utilization",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 19
+      },
+      {
+        "id": "refinery_capacity_oper",
+        "name": "Refinery operational capacity",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 14
+      },
+      {
+        "id": "refined_inventory_level",
+        "name": "Refined fuel inventories",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 20
+      },
+      {
+        "id": "gas_storage_level",
+        "name": "Natural gas storage level",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 13
+      },
+      {
+        "id": "tanker_availability",
+        "name": "Tanker and shipping availability",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 14
+      },
+      {
+        "id": "chokepoint_transit_risk",
+        "name": "Chokepoint transit risk",
+        "kind": "environment",
+        "AS": 13,
+        "PS": 11
+      },
+      {
+        "id": "sanction_intensity",
+        "name": "Sanctions and trade restriction intensity",
+        "kind": "driver",
+        "AS": 23,
+        "PS": 11
+      },
+      {
+        "id": "strategic_stockpile_rate",
+        "name": "Strategic stockpiling rate",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 19
+      },
+      {
+        "id": "energy_price_level",
+        "name": "Energy price level",
+        "kind": "driver",
+        "AS": 34,
+        "PS": 36
+      },
+      {
+        "id": "price_volatility",
+        "name": "Price volatility",
+        "kind": "driver",
+        "AS": 23,
+        "PS": 22
+      },
+      {
+        "id": "aggregate_demand_level",
+        "name": "Aggregate energy demand level",
+        "kind": "driver",
+        "AS": 6,
+        "PS": 5
+      },
+      {
+        "id": "seasonal_demand_pressure",
+        "name": "Seasonal demand pressure",
+        "kind": "environment",
+        "AS": 12,
+        "PS": 7
+      },
+      {
+        "id": "speculative_positioning",
+        "name": "Market speculative positioning",
+        "kind": "perception",
+        "AS": 10,
+        "PS": 18
+      },
+      {
+        "id": "policy_response_intensit",
+        "name": "Policy and fiscal response intensity",
+        "kind": "institution_field",
+        "AS": 21,
+        "PS": 21
+      },
+      {
+        "id": "energy_investment_flow",
+        "name": "Energy supply investment flow",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 19
+      }
+    ],
+    "edges": [
+      {
+        "source": "energy_supply_flow",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_supply_flow",
+        "target": "tanker_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_supply_flow",
+        "target": "strategic_stockpile_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_supply_flow",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "energy_supply_flow",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_supply_flow",
+        "target": "speculative_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_capacity_util",
+        "target": "energy_supply_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_capacity_util",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_capacity_util",
+        "target": "tanker_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_capacity_util",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_capacity_util",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_capacity_util",
+        "target": "speculative_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_capacity_util",
+        "target": "energy_investment_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_capacity_oper",
+        "target": "energy_supply_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_capacity_oper",
+        "target": "refined_inventory_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_capacity_oper",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_inventory_level",
+        "target": "energy_supply_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_inventory_level",
+        "target": "refinery_capacity_oper",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refined_inventory_level",
+        "target": "strategic_stockpile_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_inventory_level",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refined_inventory_level",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_inventory_level",
+        "target": "speculative_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "gas_storage_level",
+        "target": "strategic_stockpile_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "gas_storage_level",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "gas_storage_level",
+        "target": "seasonal_demand_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "energy_supply_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "crude_capacity_util",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_risk",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_risk",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_risk",
+        "target": "policy_response_intensit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "energy_supply_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "crude_capacity_util",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "tanker_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "strategic_stockpile_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "speculative_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "policy_response_intensit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_intensity",
+        "target": "energy_investment_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_stockpile_rate",
+        "target": "energy_supply_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_stockpile_rate",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_stockpile_rate",
+        "target": "gas_storage_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_stockpile_rate",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_stockpile_rate",
+        "target": "policy_response_intensit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "energy_supply_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "crude_capacity_util",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "refinery_capacity_oper",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "refined_inventory_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "gas_storage_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "chokepoint_transit_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "sanction_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "strategic_stockpile_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "speculative_positioning",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "policy_response_intensit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "energy_investment_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "price_volatility",
+        "target": "energy_supply_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "price_volatility",
+        "target": "crude_capacity_util",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "price_volatility",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "price_volatility",
+        "target": "chokepoint_transit_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "price_volatility",
+        "target": "sanction_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "price_volatility",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "price_volatility",
+        "target": "speculative_positioning",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "price_volatility",
+        "target": "policy_response_intensit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "aggregate_demand_level",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "aggregate_demand_level",
+        "target": "seasonal_demand_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seasonal_demand_pressure",
+        "target": "gas_storage_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seasonal_demand_pressure",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seasonal_demand_pressure",
+        "target": "aggregate_demand_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "speculative_positioning",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "speculative_positioning",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_response_intensit",
+        "target": "energy_supply_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_response_intensit",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_response_intensit",
+        "target": "gas_storage_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_response_intensit",
+        "target": "sanction_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_response_intensit",
+        "target": "strategic_stockpile_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_response_intensit",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_response_intensit",
+        "target": "energy_investment_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_investment_flow",
+        "target": "crude_capacity_util",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_investment_flow",
+        "target": "refinery_capacity_oper",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_investment_flow",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "energy_investment_flow",
+        "target": "policy_response_intensit",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "venezuela_oil_deals_and_chevron_push",
+      "title": "US-linked Venezuela oil deals & Chevron pledge",
+      "description": "Ongoing commercial and investment deals by US-linked firms and Chevron to expand Venezuelan output, likely increasing exports to global markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-06",
+        "end": "2027-09-06",
+        "label": "6-12 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "energy_supply_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_capacity_util",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_investment_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sanction_intensity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refined_inventory_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Trump-linked companies race to secure deals for Venezuela’s oil'; 'Chevron to double Venezuela oil production with $7bn pledge'."
+    },
+    {
+      "id": "continued_hormuz_tanker_attacks",
+      "title": "Ongoing tanker attacks / Strait of Hormuz risk",
+      "description": "Repeated strikes on supertankers and continued Middle East military friction raise likelihood of further maritime disruption to energy transit.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-06",
+        "end": "2026-12-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "chokepoint_transit_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_availability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_supply_flow",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Oil supertankers hit in Strait of Hormuz'; 'renewed Middle East tensions', 'Donald Trump’s Iran war...'."
+    },
+    {
+      "id": "eu_low_gas_stocks_this_winter",
+      "title": "Europe enters winter with record-low gas stocks",
+      "description": "Very low EU gas inventories entering the heating season will drive withdrawals, price pressure and potential emergency measures over winter.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2027-03-31",
+        "label": "this winter"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "gas_storage_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "seasonal_demand_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "strategic_stockpile_rate",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'EU enters winter with lowest gas stocks on record'; 'Winter Is Approaching and Europe Is Running Low on Natural Gas'."
+    },
+    {
+      "id": "refinery_outages_from_conflicts",
+      "title": "Persisting refinery outages from Ukraine & Iran wars",
+      "description": "Damage and operational losses at refineries linked to regional conflicts are likely to continue suppressing refining capacity and product stocks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-06",
+        "end": "2027-03-06",
+        "label": "3–6 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "refinery_capacity_oper",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refined_inventory_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_supply_flow",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Diesel hits record high as Ukraine and Iran wars knock out refineries'; 'U.S. Retail Diesel Prices Hit Record High'."
+    },
+    {
+      "id": "venezuela_power_grid_stab_6_12m",
+      "title": "US-backed stabilization of Venezuela power grid (6–12m)",
+      "description": "A stated US plan to stabilize Venezuela's power grid in 6–12 months could enable higher oil production and export reliability if implemented.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2027-03-06",
+        "end": "2027-09-06",
+        "label": "6–12 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "crude_capacity_util",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_supply_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_investment_flow",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'US says deal aims to stabilize Venezuela power grid in 6-12 months'."
+    },
+    {
+      "id": "eu_oil_gas_tax_debate",
+      "title": "EU debate on oil & gas tax proposal",
+      "description": "Spain's push for an EU oil and gas tax could raise policy intervention and fiscal measures affecting prices and market incentives during debate and votes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-06",
+        "end": "2027-06-30",
+        "label": "months"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "policy_response_intensit",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Spain pushes for EU oil and gas tax to pay for climate change response'."
+    },
+    {
+      "id": "insurance_losses_shipping_repricing",
+      "title": "Insurance losses prompt shipping repricing",
+      "description": "Large insurer losses from Gulf conflict look set to drive higher marine insurance premiums and could constrain tanker economics and availability.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-06",
+        "end": "2027-03-06",
+        "label": "months"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "tanker_availability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Lloyd’s of London faces £1.4bn losses in Gulf from US-Iran war' and tanker attack reports."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "eu_low_gas_stocks_this_winter",
+      "title": "Europe enters winter with record-low gas stocks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "this winter",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2027-03-31",
+      "probability": 0.9,
+      "impact_score": 253.0,
+      "expected_impact": 227.7,
+      "event_PS": 19.231,
+      "event_AS": 19.462,
+      "n_vars": 5,
+      "affected_ids": "gas_storage_level, seasonal_demand_pressure, energy_price_level, price_volatility, strategic_stockpile_rate",
+      "rationale": "Headlines: 'EU enters winter with lowest gas stocks on record'; 'Winter Is Approaching and Europe Is Running Low on Natural Gas'."
+    },
+    {
+      "id": "refinery_outages_from_conflicts",
+      "title": "Persisting refinery outages from Ukraine & Iran wars",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3–6 months",
+      "date": null,
+      "start": "2026-09-06",
+      "end": "2027-03-06",
+      "probability": 0.8,
+      "impact_score": 251.0,
+      "expected_impact": 200.8,
+      "event_PS": 22.333,
+      "event_AS": 20.917,
+      "n_vars": 5,
+      "affected_ids": "refinery_capacity_oper, refined_inventory_level, energy_price_level, price_volatility, energy_supply_flow",
+      "rationale": "Headlines: 'Diesel hits record high as Ukraine and Iran wars knock out refineries'; 'U.S. Retail Diesel Prices Hit Record High'."
+    },
+    {
+      "id": "continued_hormuz_tanker_attacks",
+      "title": "Ongoing tanker attacks / Strait of Hormuz risk",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-09-06",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 240.0,
+      "expected_impact": 168.0,
+      "event_PS": 20.75,
+      "event_AS": 20.0,
+      "n_vars": 5,
+      "affected_ids": "chokepoint_transit_risk, tanker_availability, energy_price_level, price_volatility, energy_supply_flow",
+      "rationale": "Headlines: 'Oil supertankers hit in Strait of Hormuz'; 'renewed Middle East tensions', 'Donald Trump’s Iran war...'."
+    },
+    {
+      "id": "venezuela_oil_deals_and_chevron_push",
+      "title": "US-linked Venezuela oil deals & Chevron pledge",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6-12 months",
+      "date": null,
+      "start": "2026-09-06",
+      "end": "2027-09-06",
+      "probability": 0.8,
+      "impact_score": 179.0,
+      "expected_impact": 143.2,
+      "event_PS": 18.667,
+      "event_AS": 19.889,
+      "n_vars": 5,
+      "affected_ids": "energy_supply_flow, crude_capacity_util, energy_investment_flow, sanction_intensity, refined_inventory_level",
+      "rationale": "Headlines: 'Trump-linked companies race to secure deals for Venezuela’s oil'; 'Chevron to double Venezuela oil production with $7bn pledge'."
+    },
+    {
+      "id": "venezuela_power_grid_stab_6_12m",
+      "title": "US-backed stabilization of Venezuela power grid (6–12m)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6–12 months",
+      "date": null,
+      "start": "2027-03-06",
+      "end": "2027-09-06",
+      "probability": 0.6,
+      "impact_score": 97.0,
+      "expected_impact": 58.2,
+      "event_PS": 21.4,
+      "event_AS": 19.4,
+      "n_vars": 3,
+      "affected_ids": "crude_capacity_util, energy_supply_flow, energy_investment_flow",
+      "rationale": "Headline: 'US says deal aims to stabilize Venezuela power grid in 6-12 months'."
+    },
+    {
+      "id": "insurance_losses_shipping_repricing",
+      "title": "Insurance losses prompt shipping repricing",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-09-06",
+      "end": "2027-03-06",
+      "probability": 0.65,
+      "impact_score": 83.0,
+      "expected_impact": 53.95,
+      "event_PS": 21.5,
+      "event_AS": 20.75,
+      "n_vars": 3,
+      "affected_ids": "tanker_availability, energy_price_level, price_volatility",
+      "rationale": "Headline: 'Lloyd’s of London faces £1.4bn losses in Gulf from US-Iran war' and tanker attack reports."
+    },
+    {
+      "id": "eu_oil_gas_tax_debate",
+      "title": "EU debate on oil & gas tax proposal",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-09-06",
+      "end": "2027-06-30",
+      "probability": 0.5,
+      "impact_score": 76.0,
+      "expected_impact": 38.0,
+      "event_PS": 26.0,
+      "event_AS": 25.333,
+      "n_vars": 2,
+      "affected_ids": "policy_response_intensit, energy_price_level",
+      "rationale": "Headline: 'Spain pushes for EU oil and gas tax to pay for climate change response'."
+    }
+  ]
+}

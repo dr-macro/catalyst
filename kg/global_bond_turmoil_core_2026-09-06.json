@@ -1,0 +1,1550 @@
+{
+  "label": "global_bond_turmoil",
+  "as_of": "2026-09-06",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-06T01:22:18",
+  "system_description": {
+    "narrative_title": "Hot US Jobs Drive Bond Sell-off, Fed Odds Rise, Markets React",
+    "narrative_summary": "A stronger-than-expected US August jobs report pushed Treasury yields sharply higher, reviving bets on Fed rate hikes and triggering a global bond sell-off that rippled through equities and FX (notably the yen). Fed communication — notably comments from Governor Waller urging patience — intermittently calmed markets, but investor focus remains on the interaction between US labor strength, inflation persistence, rate expectations, and sovereign borrowing stress. The result is elevated market volatility and shifting cross-border capital flows as participants reprice risk and duration. ",
+    "scope": "Short- to medium-term global financial markets reacting to US macro data (nonfarm payrolls, unemployment, services activity), central bank communications and policy expectations (especially the Fed), bond yields and curves, equity valuations, and major FX moves (USD/JPY); includes investor sentiment and sovereign funding pressures.",
+    "super_system": "Global macro-financial system (real economy, global monetary policy regime, cross-border capital flows and sovereign credit markets).",
+    "adjacent_subsystems": [
+      "Sovereign fiscal positions and government debt issuance",
+      "Corporate credit markets and banking sector vulnerability",
+      "Country-specific monetary regimes and FX intervention (e.g., Japan)",
+      "Geopolitical/commodity shocks that pressure risk premia"
+    ],
+    "evidence_headlines": [
+      "US nonfarm payrolls surge in August; unemployment rate steady at 4.1%",
+      "Strong August jobs report sends yields higher",
+      "Treasury Yields, Fed Rate-Hike Bets Rise After Strong U.S. Jobs Data",
+      "Global bond sell-off deepens amid inflation fears",
+      "Waller Urges Patience as Bond Yields Signal Tightening Ahead",
+      "Yen surges as traders bet on Japan interest rate rises"
+    ]
+  },
+  "variables": [
+    {
+      "id": "labor_market_tightness",
+      "name": "Labor market tightness",
+      "description": "The gap between available job vacancies and search-ready workers, capturing structural and cyclical imbalances in labor demand versus supply.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "unemployment_rate",
+      "name": "Unemployment rate",
+      "description": "The proportion of the labor force actively seeking work but currently without employment, measured as a continuous share.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "wage_growth_rate",
+      "name": "Wage growth rate",
+      "description": "The periodic rate of change in nominal compensation per worker, reflecting labor cost pressures over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "services_price_pressure",
+      "name": "Services-sector price pressure",
+      "description": "The rate of change in input and output prices within the services sector that contributes to overall domestic price dynamics.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and agent beliefs about the future path of overall consumer price inflation over relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_persistence",
+      "name": "Inflation persistence",
+      "description": "The tendency for current inflation shocks to feed through and remain elevated over successive periods rather than dissipate quickly.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "Market-implied and participant expectations of the future level and path of short-term policy interest rates.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_level",
+      "name": "Policy rate level",
+      "description": "The prevailing short-term official interest rate benchmark that anchors monetary policy stances at a point in time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "long_term_bond_yield",
+      "name": "Long-term bond yield",
+      "description": "The prevailing yield on long-duration sovereign debt instruments that reflects discounting of future cash flows and risk premia.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium_level",
+      "name": "Term premium level",
+      "description": "The additional yield investors require to hold longer-duration bonds versus a series of expected short rates, representing duration and risk compensation.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_funding_stress",
+      "name": "Sovereign funding stress",
+      "description": "The aggregate pressure on public-sector borrowing conditions, including roll-over risks, demand for issuance, and financing costs.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread_levels",
+      "name": "Credit spread levels",
+      "description": "The average premium above risk-free yields demanded to compensate for default and liquidity risk across rated debt instruments.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_volatility",
+      "name": "Bond market volatility",
+      "description": "The magnitude and frequency of price and yield swings in fixed-income markets, capturing uncertainty about rates and risk premia.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "Net financial flows across jurisdictions over time, including portfolio, banking and direct investment movements that reallocate global liquidity.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "The ease with which financial assets can be traded at stable prices, measured by bid-ask spreads, depth and price impact.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_comm_credibility",
+      "name": "Policy communication credibility",
+      "description": "The degree to which market participants trust and reliably interpret official forward guidance and public communications about policy intent.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "labor_market_tightness",
+    "unemployment_rate",
+    "wage_growth_rate",
+    "services_price_pressure",
+    "inflation_expectations",
+    "inflation_persistence",
+    "policy_rate_expectations",
+    "policy_rate_level",
+    "long_term_bond_yield",
+    "term_premium_level",
+    "sovereign_funding_stress",
+    "credit_spread_levels",
+    "bond_market_volatility",
+    "cross_border_flows",
+    "market_liquidity",
+    "policy_comm_credibility"
+  ],
+  "var_names": {
+    "labor_market_tightness": "Labor market tightness",
+    "unemployment_rate": "Unemployment rate",
+    "wage_growth_rate": "Wage growth rate",
+    "services_price_pressure": "Services-sector price pressure",
+    "inflation_expectations": "Inflation expectations",
+    "inflation_persistence": "Inflation persistence",
+    "policy_rate_expectations": "Policy rate expectations",
+    "policy_rate_level": "Policy rate level",
+    "long_term_bond_yield": "Long-term bond yield",
+    "term_premium_level": "Term premium level",
+    "sovereign_funding_stress": "Sovereign funding stress",
+    "credit_spread_levels": "Credit spread levels",
+    "bond_market_volatility": "Bond market volatility",
+    "cross_border_flows": "Cross-border capital flows",
+    "market_liquidity": "Market liquidity",
+    "policy_comm_credibility": "Policy communication credibility"
+  },
+  "impact_matrix": {
+    "labor_market_tightness": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 3,
+      "wage_growth_rate": 3,
+      "services_price_pressure": 2,
+      "inflation_expectations": 1,
+      "inflation_persistence": 1,
+      "policy_rate_expectations": 2,
+      "policy_rate_level": 2,
+      "long_term_bond_yield": 1,
+      "term_premium_level": 1,
+      "sovereign_funding_stress": 0,
+      "credit_spread_levels": 0,
+      "bond_market_volatility": 1,
+      "cross_border_flows": 1,
+      "market_liquidity": 0,
+      "policy_comm_credibility": 0
+    },
+    "unemployment_rate": {
+      "labor_market_tightness": 3,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 2,
+      "services_price_pressure": 1,
+      "inflation_expectations": 1,
+      "inflation_persistence": 1,
+      "policy_rate_expectations": 1,
+      "policy_rate_level": 1,
+      "long_term_bond_yield": 1,
+      "term_premium_level": 0,
+      "sovereign_funding_stress": 0,
+      "credit_spread_levels": 0,
+      "bond_market_volatility": 0,
+      "cross_border_flows": 0,
+      "market_liquidity": 0,
+      "policy_comm_credibility": 0
+    },
+    "wage_growth_rate": {
+      "labor_market_tightness": 1,
+      "unemployment_rate": 1,
+      "wage_growth_rate": 0,
+      "services_price_pressure": 3,
+      "inflation_expectations": 2,
+      "inflation_persistence": 2,
+      "policy_rate_expectations": 2,
+      "policy_rate_level": 1,
+      "long_term_bond_yield": 2,
+      "term_premium_level": 1,
+      "sovereign_funding_stress": 0,
+      "credit_spread_levels": 1,
+      "bond_market_volatility": 1,
+      "cross_border_flows": 1,
+      "market_liquidity": 0,
+      "policy_comm_credibility": 0
+    },
+    "services_price_pressure": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 1,
+      "services_price_pressure": 0,
+      "inflation_expectations": 3,
+      "inflation_persistence": 2,
+      "policy_rate_expectations": 2,
+      "policy_rate_level": 1,
+      "long_term_bond_yield": 2,
+      "term_premium_level": 1,
+      "sovereign_funding_stress": 1,
+      "credit_spread_levels": 1,
+      "bond_market_volatility": 2,
+      "cross_border_flows": 1,
+      "market_liquidity": 0,
+      "policy_comm_credibility": 1
+    },
+    "inflation_expectations": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 1,
+      "services_price_pressure": 1,
+      "inflation_expectations": 0,
+      "inflation_persistence": 2,
+      "policy_rate_expectations": 3,
+      "policy_rate_level": 1,
+      "long_term_bond_yield": 3,
+      "term_premium_level": 2,
+      "sovereign_funding_stress": 1,
+      "credit_spread_levels": 1,
+      "bond_market_volatility": 2,
+      "cross_border_flows": 2,
+      "market_liquidity": 0,
+      "policy_comm_credibility": 1
+    },
+    "inflation_persistence": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 1,
+      "services_price_pressure": 1,
+      "inflation_expectations": 2,
+      "inflation_persistence": 0,
+      "policy_rate_expectations": 3,
+      "policy_rate_level": 2,
+      "long_term_bond_yield": 2,
+      "term_premium_level": 2,
+      "sovereign_funding_stress": 1,
+      "credit_spread_levels": 1,
+      "bond_market_volatility": 2,
+      "cross_border_flows": 1,
+      "market_liquidity": 0,
+      "policy_comm_credibility": 1
+    },
+    "policy_rate_expectations": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "services_price_pressure": 0,
+      "inflation_expectations": 1,
+      "inflation_persistence": 0,
+      "policy_rate_expectations": 0,
+      "policy_rate_level": 2,
+      "long_term_bond_yield": 3,
+      "term_premium_level": 2,
+      "sovereign_funding_stress": 1,
+      "credit_spread_levels": 1,
+      "bond_market_volatility": 2,
+      "cross_border_flows": 2,
+      "market_liquidity": 1,
+      "policy_comm_credibility": 2
+    },
+    "policy_rate_level": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "services_price_pressure": 0,
+      "inflation_expectations": 1,
+      "inflation_persistence": 1,
+      "policy_rate_expectations": 1,
+      "policy_rate_level": 0,
+      "long_term_bond_yield": 3,
+      "term_premium_level": 1,
+      "sovereign_funding_stress": 2,
+      "credit_spread_levels": 2,
+      "bond_market_volatility": 2,
+      "cross_border_flows": 2,
+      "market_liquidity": 1,
+      "policy_comm_credibility": 1
+    },
+    "long_term_bond_yield": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "services_price_pressure": 0,
+      "inflation_expectations": 1,
+      "inflation_persistence": 0,
+      "policy_rate_expectations": 1,
+      "policy_rate_level": 0,
+      "long_term_bond_yield": 0,
+      "term_premium_level": 1,
+      "sovereign_funding_stress": 2,
+      "credit_spread_levels": 2,
+      "bond_market_volatility": 2,
+      "cross_border_flows": 2,
+      "market_liquidity": 1,
+      "policy_comm_credibility": 0
+    },
+    "term_premium_level": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "services_price_pressure": 0,
+      "inflation_expectations": 1,
+      "inflation_persistence": 0,
+      "policy_rate_expectations": 1,
+      "policy_rate_level": 0,
+      "long_term_bond_yield": 3,
+      "term_premium_level": 0,
+      "sovereign_funding_stress": 1,
+      "credit_spread_levels": 1,
+      "bond_market_volatility": 2,
+      "cross_border_flows": 1,
+      "market_liquidity": 1,
+      "policy_comm_credibility": 0
+    },
+    "sovereign_funding_stress": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "services_price_pressure": 0,
+      "inflation_expectations": 0,
+      "inflation_persistence": 0,
+      "policy_rate_expectations": 0,
+      "policy_rate_level": 0,
+      "long_term_bond_yield": 1,
+      "term_premium_level": 0,
+      "sovereign_funding_stress": 0,
+      "credit_spread_levels": 2,
+      "bond_market_volatility": 2,
+      "cross_border_flows": 2,
+      "market_liquidity": 2,
+      "policy_comm_credibility": 1
+    },
+    "credit_spread_levels": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "services_price_pressure": 0,
+      "inflation_expectations": 0,
+      "inflation_persistence": 0,
+      "policy_rate_expectations": 0,
+      "policy_rate_level": 0,
+      "long_term_bond_yield": 1,
+      "term_premium_level": 0,
+      "sovereign_funding_stress": 2,
+      "credit_spread_levels": 0,
+      "bond_market_volatility": 2,
+      "cross_border_flows": 1,
+      "market_liquidity": 2,
+      "policy_comm_credibility": 0
+    },
+    "bond_market_volatility": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "services_price_pressure": 0,
+      "inflation_expectations": 0,
+      "inflation_persistence": 0,
+      "policy_rate_expectations": 0,
+      "policy_rate_level": 0,
+      "long_term_bond_yield": 1,
+      "term_premium_level": 1,
+      "sovereign_funding_stress": 1,
+      "credit_spread_levels": 2,
+      "bond_market_volatility": 0,
+      "cross_border_flows": 1,
+      "market_liquidity": 3,
+      "policy_comm_credibility": 1
+    },
+    "cross_border_flows": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "services_price_pressure": 0,
+      "inflation_expectations": 0,
+      "inflation_persistence": 0,
+      "policy_rate_expectations": 1,
+      "policy_rate_level": 1,
+      "long_term_bond_yield": 2,
+      "term_premium_level": 1,
+      "sovereign_funding_stress": 1,
+      "credit_spread_levels": 1,
+      "bond_market_volatility": 1,
+      "cross_border_flows": 0,
+      "market_liquidity": 2,
+      "policy_comm_credibility": 0
+    },
+    "market_liquidity": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "services_price_pressure": 0,
+      "inflation_expectations": 0,
+      "inflation_persistence": 0,
+      "policy_rate_expectations": 0,
+      "policy_rate_level": 0,
+      "long_term_bond_yield": 1,
+      "term_premium_level": 1,
+      "sovereign_funding_stress": 1,
+      "credit_spread_levels": 2,
+      "bond_market_volatility": 3,
+      "cross_border_flows": 2,
+      "market_liquidity": 0,
+      "policy_comm_credibility": 0
+    },
+    "policy_comm_credibility": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "services_price_pressure": 0,
+      "inflation_expectations": 2,
+      "inflation_persistence": 1,
+      "policy_rate_expectations": 3,
+      "policy_rate_level": 1,
+      "long_term_bond_yield": 1,
+      "term_premium_level": 0,
+      "sovereign_funding_stress": 0,
+      "credit_spread_levels": 0,
+      "bond_market_volatility": 1,
+      "cross_border_flows": 1,
+      "market_liquidity": 0,
+      "policy_comm_credibility": 0
+    }
+  },
+  "AS": {
+    "labor_market_tightness": 18,
+    "unemployment_rate": 11,
+    "wage_growth_rate": 18,
+    "services_price_pressure": 18,
+    "inflation_expectations": 20,
+    "inflation_persistence": 19,
+    "policy_rate_expectations": 17,
+    "policy_rate_level": 17,
+    "long_term_bond_yield": 12,
+    "term_premium_level": 11,
+    "sovereign_funding_stress": 10,
+    "credit_spread_levels": 8,
+    "bond_market_volatility": 10,
+    "cross_border_flows": 10,
+    "market_liquidity": 10,
+    "policy_comm_credibility": 10
+  },
+  "PS": {
+    "labor_market_tightness": 4,
+    "unemployment_rate": 4,
+    "wage_growth_rate": 8,
+    "services_price_pressure": 8,
+    "inflation_expectations": 15,
+    "inflation_persistence": 10,
+    "policy_rate_expectations": 20,
+    "policy_rate_level": 12,
+    "long_term_bond_yield": 27,
+    "term_premium_level": 14,
+    "sovereign_funding_stress": 14,
+    "credit_spread_levels": 17,
+    "bond_market_volatility": 25,
+    "cross_border_flows": 20,
+    "market_liquidity": 13,
+    "policy_comm_credibility": 8
+  },
+  "med_AS": 11.5,
+  "med_PS": 13.5,
+  "roles": [
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 17,
+      "PS": 20,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 340,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "long_term_bond_yield",
+      "name": "Long-term bond yield",
+      "AS": 12,
+      "PS": 27,
+      "Q=AS/PS": 0.44,
+      "P=AS*PS": 324,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 20,
+      "PS": 15,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 300,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_market_volatility",
+      "name": "Bond market volatility",
+      "AS": 10,
+      "PS": 25,
+      "Q=AS/PS": 0.4,
+      "P=AS*PS": 250,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_rate_level",
+      "name": "Policy rate level",
+      "AS": 17,
+      "PS": 12,
+      "Q=AS/PS": 1.42,
+      "P=AS*PS": 204,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 10,
+      "PS": 20,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 200,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_persistence",
+      "name": "Inflation persistence",
+      "AS": 19,
+      "PS": 10,
+      "Q=AS/PS": 1.9,
+      "P=AS*PS": 190,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "term_premium_level",
+      "name": "Term premium level",
+      "AS": 11,
+      "PS": 14,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 154,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "services_price_pressure",
+      "name": "Services-sector price pressure",
+      "AS": 18,
+      "PS": 8,
+      "Q=AS/PS": 2.25,
+      "P=AS*PS": 144,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "wage_growth_rate",
+      "name": "Wage growth rate",
+      "AS": 18,
+      "PS": 8,
+      "Q=AS/PS": 2.25,
+      "P=AS*PS": 144,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sovereign_funding_stress",
+      "name": "Sovereign funding stress",
+      "AS": 10,
+      "PS": 14,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 140,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "credit_spread_levels",
+      "name": "Credit spread levels",
+      "AS": 8,
+      "PS": 17,
+      "Q=AS/PS": 0.47,
+      "P=AS*PS": 136,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 10,
+      "PS": 13,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 130,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "policy_comm_credibility",
+      "name": "Policy communication credibility",
+      "AS": 10,
+      "PS": 8,
+      "Q=AS/PS": 1.25,
+      "P=AS*PS": 80,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "labor_market_tightness",
+      "name": "Labor market tightness",
+      "AS": 18,
+      "PS": 4,
+      "Q=AS/PS": 4.5,
+      "P=AS*PS": 72,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "unemployment_rate",
+      "name": "Unemployment rate",
+      "AS": 11,
+      "PS": 4,
+      "Q=AS/PS": 2.75,
+      "P=AS*PS": 44,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "labor_market_tightness",
+        "name": "Labor market tightness",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 4
+      },
+      {
+        "id": "unemployment_rate",
+        "name": "Unemployment rate",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 4
+      },
+      {
+        "id": "wage_growth_rate",
+        "name": "Wage growth rate",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 8
+      },
+      {
+        "id": "services_price_pressure",
+        "name": "Services-sector price pressure",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 8
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 15
+      },
+      {
+        "id": "inflation_persistence",
+        "name": "Inflation persistence",
+        "kind": "driver",
+        "AS": 19,
+        "PS": 10
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 17,
+        "PS": 20
+      },
+      {
+        "id": "policy_rate_level",
+        "name": "Policy rate level",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 12
+      },
+      {
+        "id": "long_term_bond_yield",
+        "name": "Long-term bond yield",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 27
+      },
+      {
+        "id": "term_premium_level",
+        "name": "Term premium level",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 14
+      },
+      {
+        "id": "sovereign_funding_stress",
+        "name": "Sovereign funding stress",
+        "kind": "environment",
+        "AS": 10,
+        "PS": 14
+      },
+      {
+        "id": "credit_spread_levels",
+        "name": "Credit spread levels",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 17
+      },
+      {
+        "id": "bond_market_volatility",
+        "name": "Bond market volatility",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 25
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 10,
+        "PS": 20
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 13
+      },
+      {
+        "id": "policy_comm_credibility",
+        "name": "Policy communication credibility",
+        "kind": "perception",
+        "AS": 10,
+        "PS": 8
+      }
+    ],
+    "edges": [
+      {
+        "source": "labor_market_tightness",
+        "target": "unemployment_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "wage_growth_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "services_price_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "labor_market_tightness",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "wage_growth_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "services_price_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "inflation_persistence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "services_price_pressure",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "services_price_pressure",
+        "target": "inflation_persistence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "services_price_pressure",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "services_price_pressure",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "services_price_pressure",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "inflation_persistence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "policy_comm_credibility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "sovereign_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "credit_spread_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "sovereign_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "credit_spread_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_funding_stress",
+        "target": "credit_spread_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_funding_stress",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_funding_stress",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_funding_stress",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_levels",
+        "target": "sovereign_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_levels",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_levels",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "credit_spread_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_spread_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "bond_market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_comm_credibility",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_comm_credibility",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_cpi_release_august",
+      "title": "US CPI (August) release",
+      "description": "Upcoming US consumer-price index for August is likely to move inflation readings, rates expectations and bond yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-08",
+        "end": "2026-09-15",
+        "label": "next 1-2 weeks"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "services_price_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_persistence",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines note markets are 'pares ahead of CPI' and CPI will shape inflation/rates after hot jobs."
+    },
+    {
+      "id": "fed_communications_and_speakers",
+      "title": "Fed officials' communications and speeches",
+      "description": "Ongoing Fed public comments (e.g., Waller) will continue to shape market interpretation of policy path and credibility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-06",
+        "end": "2026-10-06",
+        "label": "next month"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "policy_comm_credibility",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_rate_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Multiple headlines show Waller and top Fed remarks moving yields and market bets on hikes/holds."
+    },
+    {
+      "id": "global_bond_selloff_continuation",
+      "title": "Continuation of global bond sell-off",
+      "description": "Momentum from recent hot US jobs and inflation fears could sustain a broader global bond sell-off, pushing yields and volatility higher.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-06",
+        "end": "2026-10-20",
+        "label": "2-6 weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread_levels",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Stories state 'global bond sell-off likely not over yet' and 'sell-off deepens amid inflation fears.'"
+    },
+    {
+      "id": "treasury_selloff_pressure_on_weak_borrowers",
+      "title": "Treasury sell-off pressures weakest borrowers",
+      "description": "Rising Treasury yields are already straining weaker US borrowers and could widen credit spreads and sovereign funding stress.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-06",
+        "end": "2026-10-15",
+        "label": "weeks ahead"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "sovereign_funding_stress",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread_levels",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Treasury sell-off piles pressure on weakest US borrowers' — direct stress on funding and spreads."
+    },
+    {
+      "id": "us_2026_midterm_election",
+      "title": "US 2026 midterm election outcome",
+      "description": "November midterms could alter fiscal expectations and investor positioning, shifting bond demand and yields around Q4.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-11-04",
+        "start": null,
+        "end": null,
+        "label": "Election Day"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_funding_stress",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline links a 'Democratic midterm sweep' to bond demand shifts and Q4 contrarian bond trade."
+    },
+    {
+      "id": "boj_yen_repricing_and_intervention_risk",
+      "title": "BOJ/yen repricing and intervention chatter",
+      "description": "Sharp yen moves and bets on Japanese rate rises can trigger cross-border flows and global yield repricing.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-06",
+        "end": "2026-10-06",
+        "label": "next month"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Yen surges as traders bet on Japan interest rate rises' and intervention chatter could shift flows."
+    },
+    {
+      "id": "delayed_fed_rate_cut_expectations",
+      "title": "Market repricing: delayed Fed rate cuts",
+      "description": "Major banks pushing rate-cut forecasts later (e.g., Citi to June 2027) implies an ongoing repricing of the timing of Fed easing.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-06",
+        "end": "2027-06-30",
+        "label": "through H1 2027"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Citigroup delays Fed rate-cut forecast to June 2027' — markets will reprice cut timing and yields."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_cpi_release_august",
+      "title": "US CPI (August) release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1-2 weeks",
+      "date": null,
+      "start": "2026-09-08",
+      "end": "2026-09-15",
+      "probability": 0.95,
+      "impact_score": 239.0,
+      "expected_impact": 227.05,
+      "event_PS": 17.667,
+      "event_AS": 15.933,
+      "n_vars": 6,
+      "affected_ids": "services_price_pressure, inflation_persistence, inflation_expectations, policy_rate_expectations, long_term_bond_yield, bond_market_volatility",
+      "rationale": "Headlines note markets are 'pares ahead of CPI' and CPI will shape inflation/rates after hot jobs."
+    },
+    {
+      "id": "fed_communications_and_speakers",
+      "title": "Fed officials' communications and speeches",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next month",
+      "date": null,
+      "start": "2026-09-06",
+      "end": "2026-10-06",
+      "probability": 0.9,
+      "impact_score": 135.0,
+      "expected_impact": 121.5,
+      "event_PS": 15.8,
+      "event_AS": 13.5,
+      "n_vars": 4,
+      "affected_ids": "policy_comm_credibility, policy_rate_expectations, policy_rate_level, bond_market_volatility",
+      "rationale": "Multiple headlines show Waller and top Fed remarks moving yields and market bets on hikes/holds."
+    },
+    {
+      "id": "global_bond_selloff_continuation",
+      "title": "Continuation of global bond sell-off",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-6 weeks",
+      "date": null,
+      "start": "2026-09-06",
+      "end": "2026-10-20",
+      "probability": 0.65,
+      "impact_score": 116.0,
+      "expected_impact": 75.4,
+      "event_PS": 20.636,
+      "event_AS": 10.545,
+      "n_vars": 5,
+      "affected_ids": "long_term_bond_yield, bond_market_volatility, term_premium_level, credit_spread_levels, market_liquidity",
+      "rationale": "Stories state 'global bond sell-off likely not over yet' and 'sell-off deepens amid inflation fears.'"
+    },
+    {
+      "id": "delayed_fed_rate_cut_expectations",
+      "title": "Market repricing: delayed Fed rate cuts",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through H1 2027",
+      "date": null,
+      "start": "2026-09-06",
+      "end": "2027-06-30",
+      "probability": 0.7,
+      "impact_score": 96.0,
+      "expected_impact": 67.2,
+      "event_PS": 21.857,
+      "event_AS": 13.714,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, long_term_bond_yield, term_premium_level, bond_market_volatility",
+      "rationale": "Headlines: 'Citigroup delays Fed rate-cut forecast to June 2027' — markets will reprice cut timing and yields."
+    },
+    {
+      "id": "treasury_selloff_pressure_on_weak_borrowers",
+      "title": "Treasury sell-off pressures weakest borrowers",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks ahead",
+      "date": null,
+      "start": "2026-09-06",
+      "end": "2026-10-15",
+      "probability": 0.8,
+      "impact_score": 70.0,
+      "expected_impact": 56.0,
+      "event_PS": 18.571,
+      "event_AS": 10.0,
+      "n_vars": 3,
+      "affected_ids": "sovereign_funding_stress, credit_spread_levels, long_term_bond_yield",
+      "rationale": "Headline: 'Treasury sell-off piles pressure on weakest US borrowers' — direct stress on funding and spreads."
+    },
+    {
+      "id": "boj_yen_repricing_and_intervention_risk",
+      "title": "BOJ/yen repricing and intervention chatter",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next month",
+      "date": null,
+      "start": "2026-09-06",
+      "end": "2026-10-06",
+      "probability": 0.6,
+      "impact_score": 65.0,
+      "expected_impact": 39.0,
+      "event_PS": 21.333,
+      "event_AS": 10.833,
+      "n_vars": 3,
+      "affected_ids": "cross_border_flows, long_term_bond_yield, term_premium_level",
+      "rationale": "Headlines: 'Yen surges as traders bet on Japan interest rate rises' and intervention chatter could shift flows."
+    },
+    {
+      "id": "us_2026_midterm_election",
+      "title": "US 2026 midterm election outcome",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "Election Day",
+      "date": "2026-11-04",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 61.0,
+      "expected_impact": 57.95,
+      "event_PS": 21.6,
+      "event_AS": 12.2,
+      "n_vars": 4,
+      "affected_ids": "long_term_bond_yield, policy_rate_expectations, sovereign_funding_stress, cross_border_flows",
+      "rationale": "Headline links a 'Democratic midterm sweep' to bond demand shifts and Q4 contrarian bond trade."
+    }
+  ]
+}
