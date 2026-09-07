@@ -1,0 +1,1637 @@
+{
+  "label": "global_energy_shocks",
+  "as_of": "2026-09-07",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-07T01:23:23",
+  "system_description": {
+    "narrative_title": "Geopolitical shocks tighten energy markets, pushing fuel prices to records",
+    "narrative_summary": "A cluster of geopolitical shocks — renewed US‑Iran strikes, ongoing Russia‑Ukraine disruptions, and shipping incidents in the Strait of Hormuz — combined with OPEC+ maintaining output has sharply tightened global oil and gas supplies. The result is record diesel and retail gasoline prices, elevated European gas benchmarks and low winter stocks, which are feeding inflationary pressure, hitting bond and equity sentiment, and provoking fiscal and regulatory responses in the EU and national capitals. Feedbacks include monetary policy tightening risk, political fallout from high energy costs, and secondary impacts on food and transport-dependent sectors.",
+    "scope": "The system covers global oil and gas supply chains (production, OPEC+ output decisions, refining, shipping and chokepoints like Hormuz, storage/stocks), wholesale and retail fuel markets (diesel, gasoline, TTF), short-term demand shocks (seasonality, weather), and immediate macroeconomic/financial responses (inflation, bond markets, central bank signals) plus near-term policy measures by states and regional bodies.",
+    "super_system": "Global geopolitical-economic system (energy markets embedded in international trade, finance, and geopolitics).",
+    "adjacent_subsystems": [
+      "Financial markets and monetary policy (bonds, central banks, inflation expectations)",
+      "Food and agricultural supply chains (fertilisers, crop risk, food prices)",
+      "EU domestic policy and fiscal responses (energy taxes, subsidies, regulatory measures)",
+      "Maritime security and global shipping/logistics (Strait of Hormuz, tanker risk)"
+    ],
+    "evidence_headlines": [
+      "Diesel hits record high as Ukraine and Iran wars knock out refineries, fueling inflation worries",
+      "Donald Trump’s Iran war sends US diesel prices to record high - ft.com",
+      "Energy price surge hits bond markets as European gas reaches three-year high - ft.com",
+      "EU enters winter with lowest gas stocks on record - ft.com",
+      "Gulf shipping traffic via Hormuz keeps below 10-day average, data shows",
+      "OPEC, Allies Agree to Keep Oil Output Steady in October - wsj.com"
+    ]
+  },
+  "variables": [
+    {
+      "id": "crude_prod_rate",
+      "name": "Global crude production rate",
+      "description": "Aggregate rate of crude oil being produced across the system (e.g., barrels per day).",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refining_throughput",
+      "name": "Global refining throughput rate",
+      "description": "Volume of crude processed into refined products per unit time across all refineries.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_availability",
+      "name": "Refinery operational availability",
+      "description": "Proportion of total refining capacity that is operational and able to process feedstock.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_risk",
+      "name": "Shipping chokepoint disruption risk",
+      "description": "Probability-weighted level of interruptions or constraints in major maritime transit routes affecting commodity flows.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commercial_fuel_stocks",
+      "name": "Commercial fuel stocks level",
+      "description": "Aggregate volume of commercially held crude and refined product inventories available to the market.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "spare_prod_capacity",
+      "name": "Spare production capacity",
+      "description": "Available additional upstream production capacity relative to prevailing demand.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_transport_flow",
+      "name": "Maritime transport flow rate",
+      "description": "Volume of oil and gas commodities transported by sea per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "wholesale_gas_price",
+      "name": "Wholesale gas price level",
+      "description": "Benchmark wholesale natural gas price level averaged across relevant markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "retail_fuel_price",
+      "name": "Retail fuel price level",
+      "description": "Consumer-facing gasoline and diesel price index (average retail pump prices).",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "middle_distillate_prem",
+      "name": "Middle‑distillate price premium",
+      "description": "Price differential of middle‑distillates (e.g., diesel) relative to other refined products or benchmarks.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_demand_shock",
+      "name": "Short‑term energy demand shock",
+      "description": "Near‑term deviation in energy demand from seasonal norms due to weather, travel, or transient economic shocks.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "energy_market_volatility",
+      "name": "Energy market volatility",
+      "description": "Realized or implied short‑horizon variability of energy prices and market uncertainty.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_inflation_share",
+      "name": "Energy inflation contribution",
+      "description": "Contribution of energy price changes to headline inflation metrics (percentage-point contribution or share).",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_tightening_expect",
+      "name": "Monetary policy tightening expectation",
+      "description": "Market-implied probability or intensity of monetary policy tightening in response to inflationary pressures.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_support_intensity",
+      "name": "Fiscal support intensity for consumers",
+      "description": "Scale and frequency of fiscal measures (subsidies, transfers, tax changes) aimed at reducing consumer energy costs.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "regulatory_intervention",
+      "name": "Regulatory intervention intensity",
+      "description": "Degree and scope of regulatory measures affecting energy supply, pricing, trade or market structure.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "crude_prod_rate",
+    "refining_throughput",
+    "refinery_availability",
+    "chokepoint_risk",
+    "commercial_fuel_stocks",
+    "spare_prod_capacity",
+    "maritime_transport_flow",
+    "wholesale_gas_price",
+    "retail_fuel_price",
+    "middle_distillate_prem",
+    "short_term_demand_shock",
+    "energy_market_volatility",
+    "energy_inflation_share",
+    "policy_tightening_expect",
+    "fiscal_support_intensity",
+    "regulatory_intervention"
+  ],
+  "var_names": {
+    "crude_prod_rate": "Global crude production rate",
+    "refining_throughput": "Global refining throughput rate",
+    "refinery_availability": "Refinery operational availability",
+    "chokepoint_risk": "Shipping chokepoint disruption risk",
+    "commercial_fuel_stocks": "Commercial fuel stocks level",
+    "spare_prod_capacity": "Spare production capacity",
+    "maritime_transport_flow": "Maritime transport flow rate",
+    "wholesale_gas_price": "Wholesale gas price level",
+    "retail_fuel_price": "Retail fuel price level",
+    "middle_distillate_prem": "Middle‑distillate price premium",
+    "short_term_demand_shock": "Short‑term energy demand shock",
+    "energy_market_volatility": "Energy market volatility",
+    "energy_inflation_share": "Energy inflation contribution",
+    "policy_tightening_expect": "Monetary policy tightening expectation",
+    "fiscal_support_intensity": "Fiscal support intensity for consumers",
+    "regulatory_intervention": "Regulatory intervention intensity"
+  },
+  "impact_matrix": {
+    "crude_prod_rate": {
+      "crude_prod_rate": 0,
+      "refining_throughput": 2,
+      "refinery_availability": 1,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 2,
+      "spare_prod_capacity": 2,
+      "maritime_transport_flow": 2,
+      "wholesale_gas_price": 2,
+      "retail_fuel_price": 1,
+      "middle_distillate_prem": 1,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 1,
+      "energy_inflation_share": 1,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 0,
+      "regulatory_intervention": 0
+    },
+    "refining_throughput": {
+      "crude_prod_rate": 0,
+      "refining_throughput": 0,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 2,
+      "spare_prod_capacity": 0,
+      "maritime_transport_flow": 1,
+      "wholesale_gas_price": 2,
+      "retail_fuel_price": 2,
+      "middle_distillate_prem": 2,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 1,
+      "energy_inflation_share": 1,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 0,
+      "regulatory_intervention": 0
+    },
+    "refinery_availability": {
+      "crude_prod_rate": 0,
+      "refining_throughput": 3,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 3,
+      "spare_prod_capacity": 0,
+      "maritime_transport_flow": 2,
+      "wholesale_gas_price": 2,
+      "retail_fuel_price": 2,
+      "middle_distillate_prem": 3,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 2,
+      "energy_inflation_share": 1,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 1,
+      "regulatory_intervention": 1
+    },
+    "chokepoint_risk": {
+      "crude_prod_rate": 1,
+      "refining_throughput": 2,
+      "refinery_availability": 1,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 2,
+      "spare_prod_capacity": 1,
+      "maritime_transport_flow": 3,
+      "wholesale_gas_price": 2,
+      "retail_fuel_price": 2,
+      "middle_distillate_prem": 2,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 3,
+      "energy_inflation_share": 1,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 1,
+      "regulatory_intervention": 1
+    },
+    "commercial_fuel_stocks": {
+      "crude_prod_rate": 2,
+      "refining_throughput": 1,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 0,
+      "spare_prod_capacity": 1,
+      "maritime_transport_flow": 1,
+      "wholesale_gas_price": 2,
+      "retail_fuel_price": 2,
+      "middle_distillate_prem": 2,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 2,
+      "energy_inflation_share": 1,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 1,
+      "regulatory_intervention": 1
+    },
+    "spare_prod_capacity": {
+      "crude_prod_rate": 2,
+      "refining_throughput": 1,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 2,
+      "spare_prod_capacity": 0,
+      "maritime_transport_flow": 1,
+      "wholesale_gas_price": 2,
+      "retail_fuel_price": 1,
+      "middle_distillate_prem": 1,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 2,
+      "energy_inflation_share": 1,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 0,
+      "regulatory_intervention": 0
+    },
+    "maritime_transport_flow": {
+      "crude_prod_rate": 1,
+      "refining_throughput": 2,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 2,
+      "spare_prod_capacity": 0,
+      "maritime_transport_flow": 0,
+      "wholesale_gas_price": 2,
+      "retail_fuel_price": 2,
+      "middle_distillate_prem": 2,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 2,
+      "energy_inflation_share": 1,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 0,
+      "regulatory_intervention": 1
+    },
+    "wholesale_gas_price": {
+      "crude_prod_rate": 2,
+      "refining_throughput": 1,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 2,
+      "spare_prod_capacity": 2,
+      "maritime_transport_flow": 1,
+      "wholesale_gas_price": 0,
+      "retail_fuel_price": 3,
+      "middle_distillate_prem": 2,
+      "short_term_demand_shock": 1,
+      "energy_market_volatility": 1,
+      "energy_inflation_share": 2,
+      "policy_tightening_expect": 2,
+      "fiscal_support_intensity": 1,
+      "regulatory_intervention": 1
+    },
+    "retail_fuel_price": {
+      "crude_prod_rate": 0,
+      "refining_throughput": 1,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 1,
+      "spare_prod_capacity": 1,
+      "maritime_transport_flow": 0,
+      "wholesale_gas_price": 0,
+      "retail_fuel_price": 0,
+      "middle_distillate_prem": 1,
+      "short_term_demand_shock": 1,
+      "energy_market_volatility": 0,
+      "energy_inflation_share": 3,
+      "policy_tightening_expect": 2,
+      "fiscal_support_intensity": 2,
+      "regulatory_intervention": 2
+    },
+    "middle_distillate_prem": {
+      "crude_prod_rate": 1,
+      "refining_throughput": 1,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 2,
+      "spare_prod_capacity": 1,
+      "maritime_transport_flow": 1,
+      "wholesale_gas_price": 1,
+      "retail_fuel_price": 2,
+      "middle_distillate_prem": 0,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 1,
+      "energy_inflation_share": 1,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 1,
+      "regulatory_intervention": 1
+    },
+    "short_term_demand_shock": {
+      "crude_prod_rate": 2,
+      "refining_throughput": 2,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 2,
+      "spare_prod_capacity": 2,
+      "maritime_transport_flow": 2,
+      "wholesale_gas_price": 3,
+      "retail_fuel_price": 2,
+      "middle_distillate_prem": 2,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 3,
+      "energy_inflation_share": 2,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 1,
+      "regulatory_intervention": 1
+    },
+    "energy_market_volatility": {
+      "crude_prod_rate": 1,
+      "refining_throughput": 1,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 2,
+      "spare_prod_capacity": 1,
+      "maritime_transport_flow": 1,
+      "wholesale_gas_price": 1,
+      "retail_fuel_price": 1,
+      "middle_distillate_prem": 1,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 0,
+      "energy_inflation_share": 1,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 1,
+      "regulatory_intervention": 1
+    },
+    "energy_inflation_share": {
+      "crude_prod_rate": 0,
+      "refining_throughput": 0,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 0,
+      "spare_prod_capacity": 0,
+      "maritime_transport_flow": 0,
+      "wholesale_gas_price": 0,
+      "retail_fuel_price": 0,
+      "middle_distillate_prem": 0,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 0,
+      "energy_inflation_share": 0,
+      "policy_tightening_expect": 3,
+      "fiscal_support_intensity": 2,
+      "regulatory_intervention": 1
+    },
+    "policy_tightening_expect": {
+      "crude_prod_rate": 1,
+      "refining_throughput": 1,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 1,
+      "spare_prod_capacity": 1,
+      "maritime_transport_flow": 0,
+      "wholesale_gas_price": 1,
+      "retail_fuel_price": 0,
+      "middle_distillate_prem": 0,
+      "short_term_demand_shock": 0,
+      "energy_market_volatility": 2,
+      "energy_inflation_share": 1,
+      "policy_tightening_expect": 0,
+      "fiscal_support_intensity": 0,
+      "regulatory_intervention": 0
+    },
+    "fiscal_support_intensity": {
+      "crude_prod_rate": 1,
+      "refining_throughput": 1,
+      "refinery_availability": 0,
+      "chokepoint_risk": 0,
+      "commercial_fuel_stocks": 0,
+      "spare_prod_capacity": 0,
+      "maritime_transport_flow": 0,
+      "wholesale_gas_price": 1,
+      "retail_fuel_price": 3,
+      "middle_distillate_prem": 1,
+      "short_term_demand_shock": 1,
+      "energy_market_volatility": 1,
+      "energy_inflation_share": 2,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 0,
+      "regulatory_intervention": 1
+    },
+    "regulatory_intervention": {
+      "crude_prod_rate": 2,
+      "refining_throughput": 2,
+      "refinery_availability": 1,
+      "chokepoint_risk": 1,
+      "commercial_fuel_stocks": 2,
+      "spare_prod_capacity": 1,
+      "maritime_transport_flow": 2,
+      "wholesale_gas_price": 2,
+      "retail_fuel_price": 2,
+      "middle_distillate_prem": 1,
+      "short_term_demand_shock": 1,
+      "energy_market_volatility": 2,
+      "energy_inflation_share": 1,
+      "policy_tightening_expect": 1,
+      "fiscal_support_intensity": 1,
+      "regulatory_intervention": 0
+    }
+  },
+  "AS": {
+    "crude_prod_rate": 16,
+    "refining_throughput": 12,
+    "refinery_availability": 21,
+    "chokepoint_risk": 23,
+    "commercial_fuel_stocks": 17,
+    "spare_prod_capacity": 14,
+    "maritime_transport_flow": 16,
+    "wholesale_gas_price": 21,
+    "retail_fuel_price": 14,
+    "middle_distillate_prem": 14,
+    "short_term_demand_shock": 25,
+    "energy_market_volatility": 13,
+    "energy_inflation_share": 6,
+    "policy_tightening_expect": 8,
+    "fiscal_support_intensity": 13,
+    "regulatory_intervention": 22
+  },
+  "PS": {
+    "crude_prod_rate": 16,
+    "refining_throughput": 21,
+    "refinery_availability": 3,
+    "chokepoint_risk": 1,
+    "commercial_fuel_stocks": 25,
+    "spare_prod_capacity": 13,
+    "maritime_transport_flow": 17,
+    "wholesale_gas_price": 23,
+    "retail_fuel_price": 25,
+    "middle_distillate_prem": 21,
+    "short_term_demand_shock": 4,
+    "energy_market_volatility": 23,
+    "energy_inflation_share": 20,
+    "policy_tightening_expect": 19,
+    "fiscal_support_intensity": 12,
+    "regulatory_intervention": 12
+  },
+  "med_AS": 15.0,
+  "med_PS": 18.0,
+  "roles": [
+    {
+      "variable": "wholesale_gas_price",
+      "name": "Wholesale gas price level",
+      "AS": 21,
+      "PS": 23,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 483,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "commercial_fuel_stocks",
+      "name": "Commercial fuel stocks level",
+      "AS": 17,
+      "PS": 25,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 425,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "retail_fuel_price",
+      "name": "Retail fuel price level",
+      "AS": 14,
+      "PS": 25,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 350,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "energy_market_volatility",
+      "name": "Energy market volatility",
+      "AS": 13,
+      "PS": 23,
+      "Q=AS/PS": 0.57,
+      "P=AS*PS": 299,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "middle_distillate_prem",
+      "name": "Middle‑distillate price premium",
+      "AS": 14,
+      "PS": 21,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 294,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "maritime_transport_flow",
+      "name": "Maritime transport flow rate",
+      "AS": 16,
+      "PS": 17,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 272,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "regulatory_intervention",
+      "name": "Regulatory intervention intensity",
+      "AS": 22,
+      "PS": 12,
+      "Q=AS/PS": 1.83,
+      "P=AS*PS": 264,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "crude_prod_rate",
+      "name": "Global crude production rate",
+      "AS": 16,
+      "PS": 16,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 256,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refining_throughput",
+      "name": "Global refining throughput rate",
+      "AS": 12,
+      "PS": 21,
+      "Q=AS/PS": 0.57,
+      "P=AS*PS": 252,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "spare_prod_capacity",
+      "name": "Spare production capacity",
+      "AS": 14,
+      "PS": 13,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 182,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fiscal_support_intensity",
+      "name": "Fiscal support intensity for consumers",
+      "AS": 13,
+      "PS": 12,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 156,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "policy_tightening_expect",
+      "name": "Monetary policy tightening expectation",
+      "AS": 8,
+      "PS": 19,
+      "Q=AS/PS": 0.42,
+      "P=AS*PS": 152,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "energy_inflation_share",
+      "name": "Energy inflation contribution",
+      "AS": 6,
+      "PS": 20,
+      "Q=AS/PS": 0.3,
+      "P=AS*PS": 120,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "short_term_demand_shock",
+      "name": "Short‑term energy demand shock",
+      "AS": 25,
+      "PS": 4,
+      "Q=AS/PS": 6.25,
+      "P=AS*PS": 100,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refinery_availability",
+      "name": "Refinery operational availability",
+      "AS": 21,
+      "PS": 3,
+      "Q=AS/PS": 7.0,
+      "P=AS*PS": 63,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "chokepoint_risk",
+      "name": "Shipping chokepoint disruption risk",
+      "AS": 23,
+      "PS": 1,
+      "Q=AS/PS": 23.0,
+      "P=AS*PS": 23,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "crude_prod_rate",
+        "name": "Global crude production rate",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 16
+      },
+      {
+        "id": "refining_throughput",
+        "name": "Global refining throughput rate",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 21
+      },
+      {
+        "id": "refinery_availability",
+        "name": "Refinery operational availability",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 3
+      },
+      {
+        "id": "chokepoint_risk",
+        "name": "Shipping chokepoint disruption risk",
+        "kind": "environment",
+        "AS": 23,
+        "PS": 1
+      },
+      {
+        "id": "commercial_fuel_stocks",
+        "name": "Commercial fuel stocks level",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 25
+      },
+      {
+        "id": "spare_prod_capacity",
+        "name": "Spare production capacity",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 13
+      },
+      {
+        "id": "maritime_transport_flow",
+        "name": "Maritime transport flow rate",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 17
+      },
+      {
+        "id": "wholesale_gas_price",
+        "name": "Wholesale gas price level",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 23
+      },
+      {
+        "id": "retail_fuel_price",
+        "name": "Retail fuel price level",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 25
+      },
+      {
+        "id": "middle_distillate_prem",
+        "name": "Middle‑distillate price premium",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 21
+      },
+      {
+        "id": "short_term_demand_shock",
+        "name": "Short‑term energy demand shock",
+        "kind": "flow",
+        "AS": 25,
+        "PS": 4
+      },
+      {
+        "id": "energy_market_volatility",
+        "name": "Energy market volatility",
+        "kind": "perception",
+        "AS": 13,
+        "PS": 23
+      },
+      {
+        "id": "energy_inflation_share",
+        "name": "Energy inflation contribution",
+        "kind": "driver",
+        "AS": 6,
+        "PS": 20
+      },
+      {
+        "id": "policy_tightening_expect",
+        "name": "Monetary policy tightening expectation",
+        "kind": "perception",
+        "AS": 8,
+        "PS": 19
+      },
+      {
+        "id": "fiscal_support_intensity",
+        "name": "Fiscal support intensity for consumers",
+        "kind": "institution_field",
+        "AS": 13,
+        "PS": 12
+      },
+      {
+        "id": "regulatory_intervention",
+        "name": "Regulatory intervention intensity",
+        "kind": "institution_field",
+        "AS": 22,
+        "PS": 12
+      }
+    ],
+    "edges": [
+      {
+        "source": "crude_prod_rate",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "commercial_fuel_stocks",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "spare_prod_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "maritime_transport_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "wholesale_gas_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "commercial_fuel_stocks",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "wholesale_gas_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "retail_fuel_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "middle_distillate_prem",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_availability",
+        "target": "refining_throughput",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_availability",
+        "target": "commercial_fuel_stocks",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_availability",
+        "target": "maritime_transport_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_availability",
+        "target": "wholesale_gas_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_availability",
+        "target": "retail_fuel_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_availability",
+        "target": "middle_distillate_prem",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_availability",
+        "target": "energy_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_risk",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_risk",
+        "target": "commercial_fuel_stocks",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "chokepoint_risk",
+        "target": "maritime_transport_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_risk",
+        "target": "wholesale_gas_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_risk",
+        "target": "retail_fuel_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_risk",
+        "target": "middle_distillate_prem",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_risk",
+        "target": "energy_market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commercial_fuel_stocks",
+        "target": "crude_prod_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_fuel_stocks",
+        "target": "wholesale_gas_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_fuel_stocks",
+        "target": "retail_fuel_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_fuel_stocks",
+        "target": "middle_distillate_prem",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_fuel_stocks",
+        "target": "energy_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "crude_prod_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "commercial_fuel_stocks",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "wholesale_gas_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "energy_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transport_flow",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transport_flow",
+        "target": "commercial_fuel_stocks",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transport_flow",
+        "target": "wholesale_gas_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transport_flow",
+        "target": "retail_fuel_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transport_flow",
+        "target": "middle_distillate_prem",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transport_flow",
+        "target": "energy_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "wholesale_gas_price",
+        "target": "crude_prod_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wholesale_gas_price",
+        "target": "commercial_fuel_stocks",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "wholesale_gas_price",
+        "target": "spare_prod_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "wholesale_gas_price",
+        "target": "retail_fuel_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "wholesale_gas_price",
+        "target": "middle_distillate_prem",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wholesale_gas_price",
+        "target": "energy_inflation_share",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wholesale_gas_price",
+        "target": "policy_tightening_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "retail_fuel_price",
+        "target": "energy_inflation_share",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "retail_fuel_price",
+        "target": "policy_tightening_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "retail_fuel_price",
+        "target": "fiscal_support_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "retail_fuel_price",
+        "target": "regulatory_intervention",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "middle_distillate_prem",
+        "target": "commercial_fuel_stocks",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "middle_distillate_prem",
+        "target": "retail_fuel_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shock",
+        "target": "crude_prod_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shock",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shock",
+        "target": "commercial_fuel_stocks",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_demand_shock",
+        "target": "spare_prod_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_demand_shock",
+        "target": "maritime_transport_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shock",
+        "target": "wholesale_gas_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shock",
+        "target": "retail_fuel_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shock",
+        "target": "middle_distillate_prem",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shock",
+        "target": "energy_market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_demand_shock",
+        "target": "energy_inflation_share",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_market_volatility",
+        "target": "commercial_fuel_stocks",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_inflation_share",
+        "target": "policy_tightening_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_inflation_share",
+        "target": "fiscal_support_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_tightening_expect",
+        "target": "energy_market_volatility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "fiscal_support_intensity",
+        "target": "retail_fuel_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_support_intensity",
+        "target": "energy_inflation_share",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "regulatory_intervention",
+        "target": "crude_prod_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "regulatory_intervention",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "regulatory_intervention",
+        "target": "commercial_fuel_stocks",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "regulatory_intervention",
+        "target": "maritime_transport_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "regulatory_intervention",
+        "target": "wholesale_gas_price",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "regulatory_intervention",
+        "target": "retail_fuel_price",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "regulatory_intervention",
+        "target": "energy_market_volatility",
+        "strength": 2,
+        "sign": "?"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "opec_steady_output_october",
+      "title": "OPEC+ keeps output steady for October",
+      "description": "OPEC+ decision to maintain current production through October will restrain additional supply coming to market for the month.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "October 2026"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "crude_prod_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "spare_prod_capacity",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "commercial_fuel_stocks",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "energy_market_volatility",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "retail_fuel_price",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'OPEC+ keeps oil output policy unchanged for October'; limits near-term additional supply into market."
+    },
+    {
+      "id": "hormuz_shipping_disruption",
+      "title": "Escalating strikes and lower traffic through Strait of Hormuz",
+      "description": "Damage to tankers and persistently below-average traffic in Hormuz raises maritime disruption risk, constraining seaborne flows from Gulf producers.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-06",
+        "end": "2026-10-15",
+        "label": "4–6 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "chokepoint_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_transport_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "commercial_fuel_stocks",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "energy_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "wholesale_gas_price",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Oil supertankers hit in Strait of Hormuz' and 'Gulf shipping traffic via Hormuz keeps below 10-day average'."
+    },
+    {
+      "id": "conflict_refinery_outages",
+      "title": "Ongoing conflict-driven refinery outages",
+      "description": "Refinery damage and outages tied to the Ukraine and Iran conflicts continue to lower available refining capacity and diesel supply.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-12-31",
+        "label": "coming months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "refinery_availability",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refining_throughput",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "middle_distillate_prem",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "retail_fuel_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commercial_fuel_stocks",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Diesel hits record high as Ukraine and Iran wars knock out refineries'; 'Donald Trump’s Iran war sends US diesel prices to record high'."
+    },
+    {
+      "id": "eu_low_gas_winter_pressure",
+      "title": "Low EU gas stocks entering winter",
+      "description": "Record-low European gas inventories ahead of heating season will increase winter demand pressure and likely support higher wholesale gas prices.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2027-03-31",
+        "label": "winter 2026–27"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "wholesale_gas_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commercial_fuel_stocks",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "short_term_demand_shock",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_inflation_share",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'EU enters winter with lowest gas stocks on record' and 'Is TTF gas fairly priced as Hormuz, winter risks keep prices elevated?'."
+    },
+    {
+      "id": "us_output_boost_policy",
+      "title": "U.S. policy push to boost oil output",
+      "description": "U.S. administration focus on raising oil output could lead to increased upstream activity and additional supply over coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-12-31",
+        "label": "next 3 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "crude_prod_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "spare_prod_capacity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commercial_fuel_stocks",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_market_volatility",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Trump administration focuses on boosting oil output, Wright says' — official drive to raise supply."
+    },
+    {
+      "id": "policy_tightening_due_energy_prices",
+      "title": "Central bank tightening expectations from energy surge",
+      "description": "Sharp energy-driven inflation and bond market moves raise the odds of monetary tightening, altering market rates and investor reaction to energy prices.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_tightening_expect",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_inflation_share",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_support_intensity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Energy price surge hits bond markets' and 'Trump turns up the heat on Warsh as Fed rate hike looms'."
+    },
+    {
+      "id": "eu_oil_gas_tax_push",
+      "title": "EU oil & gas tax proposal momentum",
+      "description": "Spain's push for an EU oil and gas tax to fund climate response could generate regulatory change and fiscal reallocations over coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-05",
+        "end": "2027-03-31",
+        "label": "next 6 months"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "regulatory_intervention",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_support_intensity",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "retail_fuel_price",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_market_volatility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Spain pushes for EU oil and gas tax to pay for climate change response' — potential regulatory/fiscal shift."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "conflict_refinery_outages",
+      "title": "Ongoing conflict-driven refinery outages",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "coming months",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-12-31",
+      "probability": 0.85,
+      "impact_score": 203.0,
+      "expected_impact": 172.55,
+      "event_PS": 18.077,
+      "event_AS": 15.615,
+      "n_vars": 5,
+      "affected_ids": "refinery_availability, refining_throughput, middle_distillate_prem, retail_fuel_price, commercial_fuel_stocks",
+      "rationale": "Headlines: 'Diesel hits record high as Ukraine and Iran wars knock out refineries'; 'Donald Trump’s Iran war sends US diesel prices to record high'."
+    },
+    {
+      "id": "eu_low_gas_winter_pressure",
+      "title": "Low EU gas stocks entering winter",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "winter 2026–27",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2027-03-31",
+      "probability": 0.9,
+      "impact_score": 185.0,
+      "expected_impact": 166.5,
+      "event_PS": 19.364,
+      "event_AS": 16.818,
+      "n_vars": 5,
+      "affected_ids": "wholesale_gas_price, commercial_fuel_stocks, short_term_demand_shock, energy_market_volatility, energy_inflation_share",
+      "rationale": "Headlines: 'EU enters winter with lowest gas stocks on record' and 'Is TTF gas fairly priced as Hormuz, winter risks keep prices elevated?'."
+    },
+    {
+      "id": "hormuz_shipping_disruption",
+      "title": "Escalating strikes and lower traffic through Strait of Hormuz",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "4–6 weeks",
+      "date": null,
+      "start": "2026-09-06",
+      "end": "2026-10-15",
+      "probability": 0.7,
+      "impact_score": 182.0,
+      "expected_impact": 127.4,
+      "event_PS": 15.6,
+      "event_AS": 18.2,
+      "n_vars": 5,
+      "affected_ids": "chokepoint_risk, maritime_transport_flow, commercial_fuel_stocks, energy_market_volatility, wholesale_gas_price",
+      "rationale": "Headlines: 'Oil supertankers hit in Strait of Hormuz' and 'Gulf shipping traffic via Hormuz keeps below 10-day average'."
+    },
+    {
+      "id": "opec_steady_output_october",
+      "title": "OPEC+ keeps output steady for October",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "October 2026",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.95,
+      "impact_score": 121.0,
+      "expected_impact": 114.95,
+      "event_PS": 21.0,
+      "event_AS": 15.125,
+      "n_vars": 5,
+      "affected_ids": "crude_prod_rate, spare_prod_capacity, commercial_fuel_stocks, energy_market_volatility, retail_fuel_price",
+      "rationale": "Headlines: 'OPEC+ keeps oil output policy unchanged for October'; limits near-term additional supply into market."
+    },
+    {
+      "id": "us_output_boost_policy",
+      "title": "U.S. policy push to boost oil output",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 90.0,
+      "expected_impact": 54.0,
+      "event_PS": 17.667,
+      "event_AS": 15.0,
+      "n_vars": 4,
+      "affected_ids": "crude_prod_rate, spare_prod_capacity, commercial_fuel_stocks, energy_market_volatility",
+      "rationale": "Headline: 'Trump administration focuses on boosting oil output, Wright says' — official drive to raise supply."
+    },
+    {
+      "id": "eu_oil_gas_tax_push",
+      "title": "EU oil & gas tax proposal momentum",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 months",
+      "date": null,
+      "start": "2026-09-05",
+      "end": "2027-03-31",
+      "probability": 0.5,
+      "impact_score": 84.0,
+      "expected_impact": 42.0,
+      "event_PS": 16.8,
+      "event_AS": 16.8,
+      "n_vars": 4,
+      "affected_ids": "regulatory_intervention, fiscal_support_intensity, retail_fuel_price, energy_market_volatility",
+      "rationale": "Headline: 'Spain pushes for EU oil and gas tax to pay for climate change response' — potential regulatory/fiscal shift."
+    },
+    {
+      "id": "policy_tightening_due_energy_prices",
+      "title": "Central bank tightening expectations from energy surge",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 75.0,
+      "expected_impact": 45.0,
+      "event_PS": 19.375,
+      "event_AS": 9.375,
+      "n_vars": 4,
+      "affected_ids": "policy_tightening_expect, energy_market_volatility, energy_inflation_share, fiscal_support_intensity",
+      "rationale": "Headlines: 'Energy price surge hits bond markets' and 'Trump turns up the heat on Warsh as Fed rate hike looms'."
+    }
+  ]
+}
