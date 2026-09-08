@@ -1,0 +1,1902 @@
+{
+  "label": "global_bond_turmoil",
+  "as_of": "2026-09-07",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-08T01:47:30",
+  "system_description": {
+    "narrative_title": "Bond-market repricing after hot US jobs: yields, policy, and spillovers",
+    "narrative_summary": "A stronger-than-expected US jobs report has triggered a rapid repricing of expectations for Fed policy, lifting Treasury yields and sparking a broad global bond selloff. The move is cascading across markets — pressuring equities and weak borrowers, shifting FX and safe‑haven flows, provoking central‑bank reactions (notably in Japan) and amplifying strain in private credit and non‑bank funding. These dynamics create feedback loops between macro data, policy signaling and asset‑price liquidity that propagate through the global financial system.",
+    "scope": "Inside the system boundary: US macro data (especially payrolls and unemployment), Treasury and global bond markets (yields, curves, liquidity), market expectations of central‑bank policy (Fed, BoJ, ECB), FX moves and central‑bank reserve/FX intervention, safe‑haven assets (gold, bitcoin), credit markets including private credit and corporate borrowers, asset managers and banks whose balance sheets/intermediation affect market functioning.",
+    "super_system": "The global financial and macroeconomic system (global monetary policy framework, cross‑border capital flows and international market plumbing).",
+    "adjacent_subsystems": [
+      "Private credit and non‑bank lending markets",
+      "FX markets and central‑bank reserves / currency intervention",
+      "Equity markets and corporate earnings/valuation",
+      "Commodities and safe‑haven assets (gold, oil, crypto)"
+    ],
+    "evidence_headlines": [
+      "US economy smashes forecast with 162,000 jobs added in August",
+      "Treasury Yields, Fed Rate-Hike Bets Rise After Strong U.S. Jobs Data",
+      "Bond Yields Rocket to 2-Decade High as Global Selloff Deepens",
+      "Yen surges as traders bet on Japan interest rate rises",
+      "Japan's August foreign reserves post largest-ever drop after record intervention",
+      "Treasury sell-off piles pressure on weakest US borrowers"
+    ]
+  },
+  "variables": [
+    {
+      "id": "payrolls_change",
+      "name": "Payrolls change",
+      "description": "The month‑to‑month change in total payroll employment, measuring labour demand momentum.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "unemployment_rate",
+      "name": "Unemployment rate",
+      "description": "The proportion of the labour force without work and actively seeking employment, indicating spare capacity in labour markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and agent expectations of future inflation over relevant horizons, summarising anticipated price‑level trends.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "The market‑implied expected path and level of short‑term policy interest rates over time.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "nominal_treasury_yields",
+      "name": "Nominal Treasury yields",
+      "description": "Market yields on government debt instruments at prevailing maturities, reflecting time‑value and risk premia.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The difference between long‑term and short‑term government bond yields, indicating term‑structure signalling of future rates and growth.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The ease and cost of transacting in fixed‑income markets, measured by bid‑ask spreads, depth and immediacy of execution.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spreads",
+      "name": "Credit spreads",
+      "description": "The premium that borrowers pay over risk‑free rates for credit risk across corporate and sovereign issuers.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "nonbank_funding_stress",
+      "name": "Non‑bank funding stress",
+      "description": "The degree of strain in funding channels outside the banking system, including private credit and shadow‑bank liquidity conditions.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_asset_flows",
+      "name": "Safe‑haven asset flows",
+      "description": "Net capital flows into assets perceived as safe stores of value (e.g., high‑grade bonds, gold, cash equivalents) over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_levels",
+      "name": "Exchange rate levels",
+      "description": "Cross‑border currency valuations and pressures, measured as bilateral and effective exchange rate movements.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_interventio",
+      "name": "Central‑bank intervention activity",
+      "description": "The frequency and magnitude of central‑bank market operations (FX intervention, asset purchases/sales) aimed at stabilising markets or prices.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "asset_manager_outflows",
+      "name": "Asset‑manager outflows",
+      "description": "Net redemptions from pooled investment vehicles and funds, representing liquidity drains from asset managers.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "bank_balance_capacity",
+      "name": "Bank balance‑sheet capacity",
+      "description": "The available capacity of banks' balance sheets to intermediate credit and provide market liquidity, proxied by capital, liquidity buffers and leverage headroom.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility_level",
+      "name": "Market volatility level",
+      "description": "The prevailing level of realised and implied price volatility across key asset classes, indicating risk and uncertainty in markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "public_bond_supply_rate",
+      "name": "Public bond supply rate",
+      "description": "The pace of government debt issuance over time, measured as net supply of public bonds entering the market.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "payrolls_change",
+    "unemployment_rate",
+    "inflation_expectations",
+    "policy_rate_expectations",
+    "nominal_treasury_yields",
+    "yield_curve_slope",
+    "bond_market_liquidity",
+    "credit_spreads",
+    "nonbank_funding_stress",
+    "safe_haven_asset_flows",
+    "exchange_rate_levels",
+    "central_bank_interventio",
+    "asset_manager_outflows",
+    "bank_balance_capacity",
+    "market_volatility_level",
+    "public_bond_supply_rate"
+  ],
+  "var_names": {
+    "payrolls_change": "Payrolls change",
+    "unemployment_rate": "Unemployment rate",
+    "inflation_expectations": "Inflation expectations",
+    "policy_rate_expectations": "Policy rate expectations",
+    "nominal_treasury_yields": "Nominal Treasury yields",
+    "yield_curve_slope": "Yield curve slope",
+    "bond_market_liquidity": "Bond market liquidity",
+    "credit_spreads": "Credit spreads",
+    "nonbank_funding_stress": "Non‑bank funding stress",
+    "safe_haven_asset_flows": "Safe‑haven asset flows",
+    "exchange_rate_levels": "Exchange rate levels",
+    "central_bank_interventio": "Central‑bank intervention activity",
+    "asset_manager_outflows": "Asset‑manager outflows",
+    "bank_balance_capacity": "Bank balance‑sheet capacity",
+    "market_volatility_level": "Market volatility level",
+    "public_bond_supply_rate": "Public bond supply rate"
+  },
+  "impact_matrix": {
+    "payrolls_change": {
+      "payrolls_change": 0,
+      "unemployment_rate": 2,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 2,
+      "nominal_treasury_yields": 2,
+      "yield_curve_slope": 1,
+      "bond_market_liquidity": 0,
+      "credit_spreads": 1,
+      "nonbank_funding_stress": 0,
+      "safe_haven_asset_flows": 1,
+      "exchange_rate_levels": 1,
+      "central_bank_interventio": 0,
+      "asset_manager_outflows": 0,
+      "bank_balance_capacity": 0,
+      "market_volatility_level": 2,
+      "public_bond_supply_rate": 0
+    },
+    "unemployment_rate": {
+      "payrolls_change": 1,
+      "unemployment_rate": 0,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 2,
+      "nominal_treasury_yields": 2,
+      "yield_curve_slope": 1,
+      "bond_market_liquidity": 1,
+      "credit_spreads": 2,
+      "nonbank_funding_stress": 1,
+      "safe_haven_asset_flows": 1,
+      "exchange_rate_levels": 1,
+      "central_bank_interventio": 0,
+      "asset_manager_outflows": 1,
+      "bank_balance_capacity": 1,
+      "market_volatility_level": 2,
+      "public_bond_supply_rate": 0
+    },
+    "inflation_expectations": {
+      "payrolls_change": 0,
+      "unemployment_rate": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 3,
+      "nominal_treasury_yields": 3,
+      "yield_curve_slope": 2,
+      "bond_market_liquidity": 1,
+      "credit_spreads": 1,
+      "nonbank_funding_stress": 1,
+      "safe_haven_asset_flows": 2,
+      "exchange_rate_levels": 2,
+      "central_bank_interventio": 1,
+      "asset_manager_outflows": 2,
+      "bank_balance_capacity": 1,
+      "market_volatility_level": 2,
+      "public_bond_supply_rate": 0
+    },
+    "policy_rate_expectations": {
+      "payrolls_change": 0,
+      "unemployment_rate": 0,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 0,
+      "nominal_treasury_yields": 3,
+      "yield_curve_slope": 3,
+      "bond_market_liquidity": 2,
+      "credit_spreads": 2,
+      "nonbank_funding_stress": 2,
+      "safe_haven_asset_flows": 2,
+      "exchange_rate_levels": 3,
+      "central_bank_interventio": 1,
+      "asset_manager_outflows": 2,
+      "bank_balance_capacity": 1,
+      "market_volatility_level": 2,
+      "public_bond_supply_rate": 0
+    },
+    "nominal_treasury_yields": {
+      "payrolls_change": 0,
+      "unemployment_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 3,
+      "nominal_treasury_yields": 0,
+      "yield_curve_slope": 3,
+      "bond_market_liquidity": 1,
+      "credit_spreads": 2,
+      "nonbank_funding_stress": 2,
+      "safe_haven_asset_flows": 2,
+      "exchange_rate_levels": 2,
+      "central_bank_interventio": 1,
+      "asset_manager_outflows": 2,
+      "bank_balance_capacity": 2,
+      "market_volatility_level": 3,
+      "public_bond_supply_rate": 0
+    },
+    "yield_curve_slope": {
+      "payrolls_change": 0,
+      "unemployment_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "nominal_treasury_yields": 1,
+      "yield_curve_slope": 0,
+      "bond_market_liquidity": 1,
+      "credit_spreads": 1,
+      "nonbank_funding_stress": 2,
+      "safe_haven_asset_flows": 1,
+      "exchange_rate_levels": 1,
+      "central_bank_interventio": 0,
+      "asset_manager_outflows": 1,
+      "bank_balance_capacity": 2,
+      "market_volatility_level": 2,
+      "public_bond_supply_rate": 0
+    },
+    "bond_market_liquidity": {
+      "payrolls_change": 0,
+      "unemployment_rate": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 2,
+      "nominal_treasury_yields": 2,
+      "yield_curve_slope": 2,
+      "bond_market_liquidity": 0,
+      "credit_spreads": 3,
+      "nonbank_funding_stress": 3,
+      "safe_haven_asset_flows": 2,
+      "exchange_rate_levels": 1,
+      "central_bank_interventio": 2,
+      "asset_manager_outflows": 2,
+      "bank_balance_capacity": 2,
+      "market_volatility_level": 3,
+      "public_bond_supply_rate": 1
+    },
+    "credit_spreads": {
+      "payrolls_change": 0,
+      "unemployment_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 0,
+      "nominal_treasury_yields": 0,
+      "yield_curve_slope": 0,
+      "bond_market_liquidity": 2,
+      "credit_spreads": 0,
+      "nonbank_funding_stress": 2,
+      "safe_haven_asset_flows": 2,
+      "exchange_rate_levels": 1,
+      "central_bank_interventio": 1,
+      "asset_manager_outflows": 2,
+      "bank_balance_capacity": 2,
+      "market_volatility_level": 2,
+      "public_bond_supply_rate": 0
+    },
+    "nonbank_funding_stress": {
+      "payrolls_change": 1,
+      "unemployment_rate": 1,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 2,
+      "nominal_treasury_yields": 2,
+      "yield_curve_slope": 2,
+      "bond_market_liquidity": 3,
+      "credit_spreads": 3,
+      "nonbank_funding_stress": 0,
+      "safe_haven_asset_flows": 3,
+      "exchange_rate_levels": 2,
+      "central_bank_interventio": 3,
+      "asset_manager_outflows": 3,
+      "bank_balance_capacity": 2,
+      "market_volatility_level": 3,
+      "public_bond_supply_rate": 0
+    },
+    "safe_haven_asset_flows": {
+      "payrolls_change": 0,
+      "unemployment_rate": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "nominal_treasury_yields": 3,
+      "yield_curve_slope": 2,
+      "bond_market_liquidity": 2,
+      "credit_spreads": 2,
+      "nonbank_funding_stress": 1,
+      "safe_haven_asset_flows": 0,
+      "exchange_rate_levels": 2,
+      "central_bank_interventio": 1,
+      "asset_manager_outflows": 1,
+      "bank_balance_capacity": 0,
+      "market_volatility_level": 2,
+      "public_bond_supply_rate": 0
+    },
+    "exchange_rate_levels": {
+      "payrolls_change": 1,
+      "unemployment_rate": 1,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 2,
+      "nominal_treasury_yields": 2,
+      "yield_curve_slope": 1,
+      "bond_market_liquidity": 1,
+      "credit_spreads": 2,
+      "nonbank_funding_stress": 2,
+      "safe_haven_asset_flows": 2,
+      "exchange_rate_levels": 0,
+      "central_bank_interventio": 3,
+      "asset_manager_outflows": 1,
+      "bank_balance_capacity": 1,
+      "market_volatility_level": 2,
+      "public_bond_supply_rate": 0
+    },
+    "central_bank_interventio": {
+      "payrolls_change": 0,
+      "unemployment_rate": 1,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 3,
+      "nominal_treasury_yields": 3,
+      "yield_curve_slope": 3,
+      "bond_market_liquidity": 3,
+      "credit_spreads": 2,
+      "nonbank_funding_stress": 3,
+      "safe_haven_asset_flows": 2,
+      "exchange_rate_levels": 3,
+      "central_bank_interventio": 0,
+      "asset_manager_outflows": 2,
+      "bank_balance_capacity": 2,
+      "market_volatility_level": 3,
+      "public_bond_supply_rate": 1
+    },
+    "asset_manager_outflows": {
+      "payrolls_change": 0,
+      "unemployment_rate": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "nominal_treasury_yields": 2,
+      "yield_curve_slope": 2,
+      "bond_market_liquidity": 3,
+      "credit_spreads": 2,
+      "nonbank_funding_stress": 2,
+      "safe_haven_asset_flows": 2,
+      "exchange_rate_levels": 1,
+      "central_bank_interventio": 2,
+      "asset_manager_outflows": 0,
+      "bank_balance_capacity": 1,
+      "market_volatility_level": 3,
+      "public_bond_supply_rate": 0
+    },
+    "bank_balance_capacity": {
+      "payrolls_change": 2,
+      "unemployment_rate": 2,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "nominal_treasury_yields": 1,
+      "yield_curve_slope": 1,
+      "bond_market_liquidity": 3,
+      "credit_spreads": 2,
+      "nonbank_funding_stress": 2,
+      "safe_haven_asset_flows": 0,
+      "exchange_rate_levels": 1,
+      "central_bank_interventio": 1,
+      "asset_manager_outflows": 1,
+      "bank_balance_capacity": 0,
+      "market_volatility_level": 2,
+      "public_bond_supply_rate": 1
+    },
+    "market_volatility_level": {
+      "payrolls_change": 0,
+      "unemployment_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 2,
+      "nominal_treasury_yields": 2,
+      "yield_curve_slope": 1,
+      "bond_market_liquidity": 3,
+      "credit_spreads": 2,
+      "nonbank_funding_stress": 2,
+      "safe_haven_asset_flows": 3,
+      "exchange_rate_levels": 2,
+      "central_bank_interventio": 2,
+      "asset_manager_outflows": 2,
+      "bank_balance_capacity": 1,
+      "market_volatility_level": 0,
+      "public_bond_supply_rate": 1
+    },
+    "public_bond_supply_rate": {
+      "payrolls_change": 1,
+      "unemployment_rate": 1,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "nominal_treasury_yields": 3,
+      "yield_curve_slope": 2,
+      "bond_market_liquidity": 2,
+      "credit_spreads": 1,
+      "nonbank_funding_stress": 1,
+      "safe_haven_asset_flows": 1,
+      "exchange_rate_levels": 1,
+      "central_bank_interventio": 1,
+      "asset_manager_outflows": 0,
+      "bank_balance_capacity": 1,
+      "market_volatility_level": 2,
+      "public_bond_supply_rate": 0
+    }
+  },
+  "AS": {
+    "payrolls_change": 14,
+    "unemployment_rate": 18,
+    "inflation_expectations": 21,
+    "policy_rate_expectations": 25,
+    "nominal_treasury_yields": 25,
+    "yield_curve_slope": 15,
+    "bond_market_liquidity": 26,
+    "credit_spreads": 16,
+    "nonbank_funding_stress": 30,
+    "safe_haven_asset_flows": 17,
+    "exchange_rate_levels": 23,
+    "central_bank_interventio": 33,
+    "asset_manager_outflows": 21,
+    "bank_balance_capacity": 20,
+    "market_volatility_level": 25,
+    "public_bond_supply_rate": 18
+  },
+  "PS": {
+    "payrolls_change": 6,
+    "unemployment_rate": 12,
+    "inflation_expectations": 15,
+    "policy_rate_expectations": 26,
+    "nominal_treasury_yields": 31,
+    "yield_curve_slope": 26,
+    "bond_market_liquidity": 28,
+    "credit_spreads": 28,
+    "nonbank_funding_stress": 26,
+    "safe_haven_asset_flows": 26,
+    "exchange_rate_levels": 24,
+    "central_bank_interventio": 19,
+    "asset_manager_outflows": 22,
+    "bank_balance_capacity": 19,
+    "market_volatility_level": 35,
+    "public_bond_supply_rate": 4
+  },
+  "med_AS": 21.0,
+  "med_PS": 25.0,
+  "roles": [
+    {
+      "variable": "market_volatility_level",
+      "name": "Market volatility level",
+      "AS": 25,
+      "PS": 35,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 875,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "nonbank_funding_stress",
+      "name": "Non‑bank funding stress",
+      "AS": 30,
+      "PS": 26,
+      "Q=AS/PS": 1.15,
+      "P=AS*PS": 780,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "nominal_treasury_yields",
+      "name": "Nominal Treasury yields",
+      "AS": 25,
+      "PS": 31,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 775,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 26,
+      "PS": 28,
+      "Q=AS/PS": 0.93,
+      "P=AS*PS": 728,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 25,
+      "PS": 26,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 650,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "central_bank_interventio",
+      "name": "Central‑bank intervention activity",
+      "AS": 33,
+      "PS": 19,
+      "Q=AS/PS": 1.74,
+      "P=AS*PS": 627,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "exchange_rate_levels",
+      "name": "Exchange rate levels",
+      "AS": 23,
+      "PS": 24,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 552,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "asset_manager_outflows",
+      "name": "Asset‑manager outflows",
+      "AS": 21,
+      "PS": 22,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 462,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "credit_spreads",
+      "name": "Credit spreads",
+      "AS": 16,
+      "PS": 28,
+      "Q=AS/PS": 0.57,
+      "P=AS*PS": 448,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "safe_haven_asset_flows",
+      "name": "Safe‑haven asset flows",
+      "AS": 17,
+      "PS": 26,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 442,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 15,
+      "PS": 26,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 390,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "bank_balance_capacity",
+      "name": "Bank balance‑sheet capacity",
+      "AS": 20,
+      "PS": 19,
+      "Q=AS/PS": 1.05,
+      "P=AS*PS": 380,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 21,
+      "PS": 15,
+      "Q=AS/PS": 1.4,
+      "P=AS*PS": 315,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "unemployment_rate",
+      "name": "Unemployment rate",
+      "AS": 18,
+      "PS": 12,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 216,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "payrolls_change",
+      "name": "Payrolls change",
+      "AS": 14,
+      "PS": 6,
+      "Q=AS/PS": 2.33,
+      "P=AS*PS": 84,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "public_bond_supply_rate",
+      "name": "Public bond supply rate",
+      "AS": 18,
+      "PS": 4,
+      "Q=AS/PS": 4.5,
+      "P=AS*PS": 72,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "payrolls_change",
+        "name": "Payrolls change",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 6
+      },
+      {
+        "id": "unemployment_rate",
+        "name": "Unemployment rate",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 12
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 15
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 25,
+        "PS": 26
+      },
+      {
+        "id": "nominal_treasury_yields",
+        "name": "Nominal Treasury yields",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 31
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 26
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "stock",
+        "AS": 26,
+        "PS": 28
+      },
+      {
+        "id": "credit_spreads",
+        "name": "Credit spreads",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 28
+      },
+      {
+        "id": "nonbank_funding_stress",
+        "name": "Non‑bank funding stress",
+        "kind": "stock",
+        "AS": 30,
+        "PS": 26
+      },
+      {
+        "id": "safe_haven_asset_flows",
+        "name": "Safe‑haven asset flows",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 26
+      },
+      {
+        "id": "exchange_rate_levels",
+        "name": "Exchange rate levels",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 24
+      },
+      {
+        "id": "central_bank_interventio",
+        "name": "Central‑bank intervention activity",
+        "kind": "flow",
+        "AS": 33,
+        "PS": 19
+      },
+      {
+        "id": "asset_manager_outflows",
+        "name": "Asset‑manager outflows",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 22
+      },
+      {
+        "id": "bank_balance_capacity",
+        "name": "Bank balance‑sheet capacity",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 19
+      },
+      {
+        "id": "market_volatility_level",
+        "name": "Market volatility level",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 35
+      },
+      {
+        "id": "public_bond_supply_rate",
+        "name": "Public bond supply rate",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 4
+      }
+    ],
+    "edges": [
+      {
+        "source": "payrolls_change",
+        "target": "unemployment_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "payrolls_change",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "payrolls_change",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "payrolls_change",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "payrolls_change",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "safe_haven_asset_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "asset_manager_outflows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "nonbank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "safe_haven_asset_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "exchange_rate_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "asset_manager_outflows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "nonbank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "safe_haven_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "asset_manager_outflows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "bank_balance_capacity",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "nominal_treasury_yields",
+        "target": "market_volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "nonbank_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "bank_balance_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "nonbank_funding_stress",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "safe_haven_asset_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "central_bank_interventio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "asset_manager_outflows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "bank_balance_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "market_volatility_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "nonbank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "safe_haven_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "asset_manager_outflows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "bank_balance_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonbank_funding_stress",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonbank_funding_stress",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonbank_funding_stress",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonbank_funding_stress",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "nonbank_funding_stress",
+        "target": "credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nonbank_funding_stress",
+        "target": "safe_haven_asset_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nonbank_funding_stress",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonbank_funding_stress",
+        "target": "central_bank_interventio",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nonbank_funding_stress",
+        "target": "asset_manager_outflows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nonbank_funding_stress",
+        "target": "bank_balance_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonbank_funding_stress",
+        "target": "market_volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_asset_flows",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_asset_flows",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_asset_flows",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_asset_flows",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_asset_flows",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_asset_flows",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "nonbank_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "safe_haven_asset_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "central_bank_interventio",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "nonbank_funding_stress",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "safe_haven_asset_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "exchange_rate_levels",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "asset_manager_outflows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "bank_balance_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_interventio",
+        "target": "market_volatility_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "asset_manager_outflows",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_manager_outflows",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_manager_outflows",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "asset_manager_outflows",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_manager_outflows",
+        "target": "nonbank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_manager_outflows",
+        "target": "safe_haven_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_manager_outflows",
+        "target": "central_bank_interventio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_manager_outflows",
+        "target": "market_volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bank_balance_capacity",
+        "target": "payrolls_change",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_balance_capacity",
+        "target": "unemployment_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bank_balance_capacity",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bank_balance_capacity",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bank_balance_capacity",
+        "target": "nonbank_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bank_balance_capacity",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "nominal_treasury_yields",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "nonbank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "safe_haven_asset_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "central_bank_interventio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "asset_manager_outflows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "public_bond_supply_rate",
+        "target": "nominal_treasury_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "public_bond_supply_rate",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "public_bond_supply_rate",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "public_bond_supply_rate",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_cpi_release_sep",
+      "title": "US CPI (consumer inflation) release",
+      "description": "Scheduled release of US consumer inflation data (CPI) likely to re‑price expectations and short‑term yields when published in September.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-08",
+        "end": "2026-09-15",
+        "label": "next 1-2 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Investors set to 'pore over inflation data' and 'inflation data in focus' ahead of CPI (headlines 2026-09-05/06/07)."
+    },
+    {
+      "id": "fed_fomc_sep_decision",
+      "title": "Federal Reserve (FOMC) September decision/communications",
+      "description": "Mid‑September Fed policy decision and accompanying communications that will update the market on the policy path and reaction to recent jobs data.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-09-22",
+        "label": "mid‑September"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Fed rate stance under scrutiny after hot jobs; headlines ask if inflation will 'persuade the Fed to raise rates this month' (2026-09-05/06)."
+    },
+    {
+      "id": "ecb_policy_decision_2026_09_10",
+      "title": "ECB policy decision (Thursday focus)",
+      "description": "ECB meeting and decision called out as in‑focus by markets and expected to influence euro‑area yields and global rate pricing.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-10",
+        "start": null,
+        "end": null,
+        "label": "2026-09-10"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "exchange_rate_levels",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "‘Eurozone Bond Yields Open Higher, Thursday’s ECB Decision in Focus’ and DB expects further ECB hikes (2026-09-07)."
+    },
+    {
+      "id": "boj_policy_shift_sep",
+      "title": "BOJ policy shift / September rate expectations",
+      "description": "Market anticipation of a Bank of Japan policy shift (rate rise or easing of accommodation) in September that could reprice global and local yields and exchange rates.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "label": "September"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_levels",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Takaichi aide projects BOJ rate hike in September; yen rate‑outlook stories driving markets (2026-09-07, 2026-09-05)."
+    },
+    {
+      "id": "japan_fx_intervention_continues",
+      "title": "Continued Japanese FX intervention",
+      "description": "Ongoing Japanese foreign‑reserve operations and interventions to support the yen following recent large reserve drawdowns, likely to recur near term.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-07",
+        "end": "2026-09-30",
+        "label": "through Sept"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "central_bank_interventio",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_levels",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "safe_haven_asset_flows",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Japan's foreign reserves posted record drop after intervention; yen surges and traders 'alert for signs of intervention' (2026-09-07/06)."
+    },
+    {
+      "id": "private_credit_stress_outflows",
+      "title": "Private credit stress and outflow pressure",
+      "description": "After a property‑developer collapse and caps on private credit outflows, further strains or redemptions in private credit could raise funding stress and spreads.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-07",
+        "end": "2026-10-31",
+        "label": "1-8 weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "nonbank_funding_stress",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "asset_manager_outflows",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spreads",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Australian developer collapse 'ripples into private credit' and Blackstone's cap on private credit outflows remains in place (2026-09-05/06)."
+    },
+    {
+      "id": "public_bond_supply_fiscal_pressure",
+      "title": "Rising public bond supply / fiscal pressures",
+      "description": "Ongoing fiscal stress and higher government borrowing expectations that increase public bond issuance and test yields and liquidity into Q4.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-07",
+        "end": "2026-12-31",
+        "label": "through Q4"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "public_bond_supply_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_treasury_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines warn 'Treasury yields face 4.8% test', 'Why America's debt binge is starting to matter' and political fiscal reassurances (2026-09-05/07)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_cpi_release_sep",
+      "title": "US CPI (consumer inflation) release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1-2 weeks",
+      "date": null,
+      "start": "2026-09-08",
+      "end": "2026-09-15",
+      "probability": 0.85,
+      "impact_score": 293.0,
+      "expected_impact": 249.05,
+      "event_PS": 26.0,
+      "event_AS": 22.538,
+      "n_vars": 5,
+      "affected_ids": "inflation_expectations, policy_rate_expectations, nominal_treasury_yields, yield_curve_slope, market_volatility_level",
+      "rationale": "Investors set to 'pore over inflation data' and 'inflation data in focus' ahead of CPI (headlines 2026-09-05/06/07)."
+    },
+    {
+      "id": "fed_fomc_sep_decision",
+      "title": "Federal Reserve (FOMC) September decision/communications",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid‑September",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-09-22",
+      "probability": 0.75,
+      "impact_score": 251.0,
+      "expected_impact": 188.25,
+      "event_PS": 28.0,
+      "event_AS": 22.818,
+      "n_vars": 5,
+      "affected_ids": "policy_rate_expectations, nominal_treasury_yields, yield_curve_slope, market_volatility_level, inflation_expectations",
+      "rationale": "Fed rate stance under scrutiny after hot jobs; headlines ask if inflation will 'persuade the Fed to raise rates this month' (2026-09-05/06)."
+    },
+    {
+      "id": "public_bond_supply_fiscal_pressure",
+      "title": "Rising public bond supply / fiscal pressures",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through Q4",
+      "date": null,
+      "start": "2026-09-07",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 231.0,
+      "expected_impact": 138.6,
+      "event_PS": 23.1,
+      "event_AS": 23.1,
+      "n_vars": 4,
+      "affected_ids": "public_bond_supply_rate, nominal_treasury_yields, bond_market_liquidity, market_volatility_level",
+      "rationale": "Headlines warn 'Treasury yields face 4.8% test', 'Why America's debt binge is starting to matter' and political fiscal reassurances (2026-09-05/07)."
+    },
+    {
+      "id": "japan_fx_intervention_continues",
+      "title": "Continued Japanese FX intervention",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through Sept",
+      "date": null,
+      "start": "2026-09-07",
+      "end": "2026-09-30",
+      "probability": 0.75,
+      "impact_score": 210.0,
+      "expected_impact": 157.5,
+      "event_PS": 23.75,
+      "event_AS": 26.25,
+      "n_vars": 4,
+      "affected_ids": "central_bank_interventio, exchange_rate_levels, safe_haven_asset_flows, market_volatility_level",
+      "rationale": "Japan's foreign reserves posted record drop after intervention; yen surges and traders 'alert for signs of intervention' (2026-09-07/06)."
+    },
+    {
+      "id": "private_credit_stress_outflows",
+      "title": "Private credit stress and outflow pressure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-8 weeks",
+      "date": null,
+      "start": "2026-09-07",
+      "end": "2026-10-31",
+      "probability": 0.65,
+      "impact_score": 190.0,
+      "expected_impact": 123.5,
+      "event_PS": 25.75,
+      "event_AS": 23.75,
+      "n_vars": 4,
+      "affected_ids": "nonbank_funding_stress, asset_manager_outflows, credit_spreads, bond_market_liquidity",
+      "rationale": "Australian developer collapse 'ripples into private credit' and Blackstone's cap on private credit outflows remains in place (2026-09-05/06)."
+    },
+    {
+      "id": "ecb_policy_decision_2026_09_10",
+      "title": "ECB policy decision (Thursday focus)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-09-10",
+      "date": "2026-09-10",
+      "start": null,
+      "end": null,
+      "probability": 0.9,
+      "impact_score": 188.0,
+      "expected_impact": 169.2,
+      "event_PS": 28.125,
+      "event_AS": 23.5,
+      "n_vars": 5,
+      "affected_ids": "policy_rate_expectations, nominal_treasury_yields, yield_curve_slope, exchange_rate_levels, market_volatility_level",
+      "rationale": "‘Eurozone Bond Yields Open Higher, Thursday’s ECB Decision in Focus’ and DB expects further ECB hikes (2026-09-07)."
+    },
+    {
+      "id": "boj_policy_shift_sep",
+      "title": "BOJ policy shift / September rate expectations",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "probability": 0.6,
+      "impact_score": 146.0,
+      "expected_impact": 87.6,
+      "event_PS": 27.667,
+      "event_AS": 24.333,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, exchange_rate_levels, nominal_treasury_yields, market_volatility_level",
+      "rationale": "Takaichi aide projects BOJ rate hike in September; yen rate‑outlook stories driving markets (2026-09-07, 2026-09-05)."
+    }
+  ]
+}
