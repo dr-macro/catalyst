@@ -1,0 +1,2028 @@
+{
+  "label": "global_bond_repricing",
+  "as_of": "2026-09-09",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-09T01:44:09",
+  "system_description": {
+    "narrative_title": "Global bond-market repricing and cross-asset contagion",
+    "narrative_summary": "A worldwide repricing of interest-rate expectations—sparked by strong US jobs data and hawkish central-bank signals—is driving a broad bond-market selloff that is propagating through currencies, safe-haven assets and credit markets. Abstract system processes (rising real yields, tightening liquidity, widening credit spreads, shifting inflation and rate expectations) are interacting with concrete actors and assets (Fed, BOJ, sovereign yields, yen, gold, central-bank reserves), producing feedbacks such as FX intervention, reserve drawdowns and portfolio reallocation. Policymakers and investors are reacting in real time, linking monetary policy, fiscal strains and market liquidity into an open, dynamic system.",
+    "scope": "Global fixed-income market and interest-rate expectations and their immediate cross-asset impacts: sovereign and corporate bond markets, FX (notably JPY and USD), gold and safe-haven flows, central-bank reserve actions/interventions, and short-term liquidity/credit conditions.",
+    "super_system": "The global macro-financial system (world economy, international capital flows and geopolitical-financial stability).",
+    "adjacent_subsystems": [
+      "Central-bank policy framework and communications (Fed, BOJ, ECB)",
+      "Sovereign fiscal policy and government debt markets",
+      "FX markets and official reserve management / FX intervention",
+      "Commodity and safe-haven markets (gold, bitcoin, oil)"
+    ],
+    "evidence_headlines": [
+      "Bond Yields Rocket to 2-Decade High as Global Selloff Deepens",
+      "Global Bond Markets at a Tipping Point",
+      "Japan's August foreign reserves post largest-ever drop after record intervention",
+      "Is the U.S. losing its safe-haven status? Why global central banks are pulling gold out of New York.",
+      "Gold Falls on Rising Fed Rate Hike Expectations",
+      "US nonfarm payrolls blow past expectations in August; unemployment rate steady at 4.1%"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_bond_yield",
+      "name": "Long-term bond yield",
+      "description": "Level of market yields on long-dated government-grade bonds reflecting term premium and long-horizon rate expectations.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_rate",
+      "name": "Short-term interest rate",
+      "description": "Market and policy-related yields at the short end of the curve that set near-term funding costs.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "real_yield_level",
+      "name": "Real yield level",
+      "description": "Inflation-adjusted yield demanded by investors, representing expected real returns across fixed-income instruments.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "Difference between long-term and short-term yields indicating the steepness or inversion of the term structure.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and survey-implied expected inflation over relevant horizons that influence nominal rates and real returns.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "rate_expectations",
+      "name": "Interest-rate expectations",
+      "description": "Market consensus about the future path and timing of policy rate changes and central-bank tightening/loosening.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread_level",
+      "name": "Credit spread level",
+      "description": "Average premium over risk-free yields demanded by non-sovereign and lower-rated sovereign borrowers reflecting credit risk pricing.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity condition",
+      "description": "Ease of transacting in fixed-income, FX and related markets as indicated by depth, bid-ask spreads and execution capacity.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "funding_stress",
+      "name": "Short-term funding stress",
+      "description": "Pressure and constraints in short-term wholesale funding and secured funding markets that affect liquidity availability.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "capital_flow_net",
+      "name": "Cross-border capital flow (net)",
+      "description": "Net international portfolio and capital movements into or out of jurisdictions that shift asset supply and demand balances.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "currency_strength",
+      "name": "Currency strength differential",
+      "description": "Relative valuation shifts between major currencies reflecting appreciation or depreciation pressure against peers.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "intervention_pressure",
+      "name": "Currency intervention pressure",
+      "description": "Degree of political and market tension that raises the likelihood or intensity of official foreign-exchange intervention and reserve use.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_demand",
+      "name": "Safe-haven demand",
+      "description": "Investor appetite for low-risk stores of value, including high-grade debt and alternative safe assets, during risk-off episodes.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "precious_metal_price",
+      "name": "Precious metal price level",
+      "description": "Market price level of key precious metals used as store-of-value instruments, indicating alternative-asset demand dynamics.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "portfolio_reallocation",
+      "name": "Portfolio reallocation rate",
+      "description": "Speed and magnitude of investor shifts between asset classes (bonds, equities, FX, commodities) in response to market signals.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_financing_pressur",
+      "name": "Fiscal financing pressure",
+      "description": "Government borrowing needs and perceived fiscal sustainability pressures that influence sovereign supply, yield risk and investor confidence.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_bond_yield",
+    "short_term_rate",
+    "real_yield_level",
+    "yield_curve_slope",
+    "inflation_expectations",
+    "rate_expectations",
+    "credit_spread_level",
+    "market_liquidity",
+    "funding_stress",
+    "capital_flow_net",
+    "currency_strength",
+    "intervention_pressure",
+    "safe_haven_demand",
+    "precious_metal_price",
+    "portfolio_reallocation",
+    "fiscal_financing_pressur"
+  ],
+  "var_names": {
+    "long_term_bond_yield": "Long-term bond yield",
+    "short_term_rate": "Short-term interest rate",
+    "real_yield_level": "Real yield level",
+    "yield_curve_slope": "Yield curve slope",
+    "inflation_expectations": "Inflation expectations",
+    "rate_expectations": "Interest-rate expectations",
+    "credit_spread_level": "Credit spread level",
+    "market_liquidity": "Market liquidity condition",
+    "funding_stress": "Short-term funding stress",
+    "capital_flow_net": "Cross-border capital flow (net)",
+    "currency_strength": "Currency strength differential",
+    "intervention_pressure": "Currency intervention pressure",
+    "safe_haven_demand": "Safe-haven demand",
+    "precious_metal_price": "Precious metal price level",
+    "portfolio_reallocation": "Portfolio reallocation rate",
+    "fiscal_financing_pressur": "Fiscal financing pressure"
+  },
+  "impact_matrix": {
+    "long_term_bond_yield": {
+      "long_term_bond_yield": 0,
+      "short_term_rate": 1,
+      "real_yield_level": 3,
+      "yield_curve_slope": 3,
+      "inflation_expectations": 1,
+      "rate_expectations": 2,
+      "credit_spread_level": 2,
+      "market_liquidity": 1,
+      "funding_stress": 1,
+      "capital_flow_net": 2,
+      "currency_strength": 2,
+      "intervention_pressure": 1,
+      "safe_haven_demand": 1,
+      "precious_metal_price": 1,
+      "portfolio_reallocation": 2,
+      "fiscal_financing_pressur": 1
+    },
+    "short_term_rate": {
+      "long_term_bond_yield": 2,
+      "short_term_rate": 0,
+      "real_yield_level": 2,
+      "yield_curve_slope": 3,
+      "inflation_expectations": 2,
+      "rate_expectations": 3,
+      "credit_spread_level": 2,
+      "market_liquidity": 2,
+      "funding_stress": 3,
+      "capital_flow_net": 3,
+      "currency_strength": 3,
+      "intervention_pressure": 2,
+      "safe_haven_demand": 1,
+      "precious_metal_price": 1,
+      "portfolio_reallocation": 3,
+      "fiscal_financing_pressur": 2
+    },
+    "real_yield_level": {
+      "long_term_bond_yield": 3,
+      "short_term_rate": 1,
+      "real_yield_level": 0,
+      "yield_curve_slope": 2,
+      "inflation_expectations": 2,
+      "rate_expectations": 2,
+      "credit_spread_level": 2,
+      "market_liquidity": 1,
+      "funding_stress": 1,
+      "capital_flow_net": 2,
+      "currency_strength": 2,
+      "intervention_pressure": 1,
+      "safe_haven_demand": 1,
+      "precious_metal_price": 1,
+      "portfolio_reallocation": 2,
+      "fiscal_financing_pressur": 1
+    },
+    "yield_curve_slope": {
+      "long_term_bond_yield": 2,
+      "short_term_rate": 2,
+      "real_yield_level": 1,
+      "yield_curve_slope": 0,
+      "inflation_expectations": 2,
+      "rate_expectations": 3,
+      "credit_spread_level": 1,
+      "market_liquidity": 1,
+      "funding_stress": 1,
+      "capital_flow_net": 2,
+      "currency_strength": 2,
+      "intervention_pressure": 1,
+      "safe_haven_demand": 2,
+      "precious_metal_price": 1,
+      "portfolio_reallocation": 3,
+      "fiscal_financing_pressur": 1
+    },
+    "inflation_expectations": {
+      "long_term_bond_yield": 3,
+      "short_term_rate": 2,
+      "real_yield_level": 3,
+      "yield_curve_slope": 2,
+      "inflation_expectations": 0,
+      "rate_expectations": 3,
+      "credit_spread_level": 2,
+      "market_liquidity": 1,
+      "funding_stress": 1,
+      "capital_flow_net": 2,
+      "currency_strength": 2,
+      "intervention_pressure": 1,
+      "safe_haven_demand": 2,
+      "precious_metal_price": 2,
+      "portfolio_reallocation": 3,
+      "fiscal_financing_pressur": 2
+    },
+    "rate_expectations": {
+      "long_term_bond_yield": 3,
+      "short_term_rate": 3,
+      "real_yield_level": 2,
+      "yield_curve_slope": 3,
+      "inflation_expectations": 2,
+      "rate_expectations": 0,
+      "credit_spread_level": 2,
+      "market_liquidity": 1,
+      "funding_stress": 2,
+      "capital_flow_net": 3,
+      "currency_strength": 3,
+      "intervention_pressure": 2,
+      "safe_haven_demand": 2,
+      "precious_metal_price": 2,
+      "portfolio_reallocation": 3,
+      "fiscal_financing_pressur": 2
+    },
+    "credit_spread_level": {
+      "long_term_bond_yield": 2,
+      "short_term_rate": 1,
+      "real_yield_level": 1,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 1,
+      "rate_expectations": 1,
+      "credit_spread_level": 0,
+      "market_liquidity": 2,
+      "funding_stress": 3,
+      "capital_flow_net": 2,
+      "currency_strength": 1,
+      "intervention_pressure": 1,
+      "safe_haven_demand": 2,
+      "precious_metal_price": 1,
+      "portfolio_reallocation": 3,
+      "fiscal_financing_pressur": 2
+    },
+    "market_liquidity": {
+      "long_term_bond_yield": 2,
+      "short_term_rate": 2,
+      "real_yield_level": 1,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 1,
+      "rate_expectations": 1,
+      "credit_spread_level": 2,
+      "market_liquidity": 0,
+      "funding_stress": 3,
+      "capital_flow_net": 2,
+      "currency_strength": 1,
+      "intervention_pressure": 1,
+      "safe_haven_demand": 2,
+      "precious_metal_price": 1,
+      "portfolio_reallocation": 3,
+      "fiscal_financing_pressur": 1
+    },
+    "funding_stress": {
+      "long_term_bond_yield": 2,
+      "short_term_rate": 3,
+      "real_yield_level": 1,
+      "yield_curve_slope": 2,
+      "inflation_expectations": 1,
+      "rate_expectations": 2,
+      "credit_spread_level": 3,
+      "market_liquidity": 3,
+      "funding_stress": 0,
+      "capital_flow_net": 2,
+      "currency_strength": 2,
+      "intervention_pressure": 2,
+      "safe_haven_demand": 2,
+      "precious_metal_price": 1,
+      "portfolio_reallocation": 3,
+      "fiscal_financing_pressur": 2
+    },
+    "capital_flow_net": {
+      "long_term_bond_yield": 2,
+      "short_term_rate": 2,
+      "real_yield_level": 1,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 1,
+      "rate_expectations": 2,
+      "credit_spread_level": 1,
+      "market_liquidity": 2,
+      "funding_stress": 1,
+      "capital_flow_net": 0,
+      "currency_strength": 3,
+      "intervention_pressure": 2,
+      "safe_haven_demand": 1,
+      "precious_metal_price": 1,
+      "portfolio_reallocation": 2,
+      "fiscal_financing_pressur": 1
+    },
+    "currency_strength": {
+      "long_term_bond_yield": 1,
+      "short_term_rate": 1,
+      "real_yield_level": 1,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 1,
+      "rate_expectations": 1,
+      "credit_spread_level": 1,
+      "market_liquidity": 1,
+      "funding_stress": 1,
+      "capital_flow_net": 2,
+      "currency_strength": 0,
+      "intervention_pressure": 3,
+      "safe_haven_demand": 2,
+      "precious_metal_price": 1,
+      "portfolio_reallocation": 2,
+      "fiscal_financing_pressur": 1
+    },
+    "intervention_pressure": {
+      "long_term_bond_yield": 1,
+      "short_term_rate": 1,
+      "real_yield_level": 1,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 1,
+      "rate_expectations": 1,
+      "credit_spread_level": 1,
+      "market_liquidity": 1,
+      "funding_stress": 2,
+      "capital_flow_net": 1,
+      "currency_strength": 2,
+      "intervention_pressure": 0,
+      "safe_haven_demand": 1,
+      "precious_metal_price": 1,
+      "portfolio_reallocation": 1,
+      "fiscal_financing_pressur": 1
+    },
+    "safe_haven_demand": {
+      "long_term_bond_yield": 3,
+      "short_term_rate": 1,
+      "real_yield_level": 1,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 1,
+      "rate_expectations": 1,
+      "credit_spread_level": 2,
+      "market_liquidity": 2,
+      "funding_stress": 2,
+      "capital_flow_net": 2,
+      "currency_strength": 2,
+      "intervention_pressure": 1,
+      "safe_haven_demand": 0,
+      "precious_metal_price": 3,
+      "portfolio_reallocation": 3,
+      "fiscal_financing_pressur": 1
+    },
+    "precious_metal_price": {
+      "long_term_bond_yield": 1,
+      "short_term_rate": 1,
+      "real_yield_level": 1,
+      "yield_curve_slope": 0,
+      "inflation_expectations": 1,
+      "rate_expectations": 1,
+      "credit_spread_level": 0,
+      "market_liquidity": 0,
+      "funding_stress": 0,
+      "capital_flow_net": 0,
+      "currency_strength": 1,
+      "intervention_pressure": 0,
+      "safe_haven_demand": 1,
+      "precious_metal_price": 0,
+      "portfolio_reallocation": 1,
+      "fiscal_financing_pressur": 0
+    },
+    "portfolio_reallocation": {
+      "long_term_bond_yield": 3,
+      "short_term_rate": 2,
+      "real_yield_level": 2,
+      "yield_curve_slope": 2,
+      "inflation_expectations": 1,
+      "rate_expectations": 2,
+      "credit_spread_level": 2,
+      "market_liquidity": 3,
+      "funding_stress": 2,
+      "capital_flow_net": 3,
+      "currency_strength": 3,
+      "intervention_pressure": 1,
+      "safe_haven_demand": 2,
+      "precious_metal_price": 2,
+      "portfolio_reallocation": 0,
+      "fiscal_financing_pressur": 1
+    },
+    "fiscal_financing_pressur": {
+      "long_term_bond_yield": 3,
+      "short_term_rate": 1,
+      "real_yield_level": 2,
+      "yield_curve_slope": 1,
+      "inflation_expectations": 2,
+      "rate_expectations": 2,
+      "credit_spread_level": 3,
+      "market_liquidity": 1,
+      "funding_stress": 2,
+      "capital_flow_net": 2,
+      "currency_strength": 1,
+      "intervention_pressure": 1,
+      "safe_haven_demand": 2,
+      "precious_metal_price": 1,
+      "portfolio_reallocation": 2,
+      "fiscal_financing_pressur": 0
+    }
+  },
+  "AS": {
+    "long_term_bond_yield": 24,
+    "short_term_rate": 34,
+    "real_yield_level": 24,
+    "yield_curve_slope": 25,
+    "inflation_expectations": 31,
+    "rate_expectations": 35,
+    "credit_spread_level": 24,
+    "market_liquidity": 24,
+    "funding_stress": 31,
+    "capital_flow_net": 23,
+    "currency_strength": 20,
+    "intervention_pressure": 17,
+    "safe_haven_demand": 26,
+    "precious_metal_price": 8,
+    "portfolio_reallocation": 31,
+    "fiscal_financing_pressur": 26
+  },
+  "PS": {
+    "long_term_bond_yield": 33,
+    "short_term_rate": 24,
+    "real_yield_level": 23,
+    "yield_curve_slope": 24,
+    "inflation_expectations": 20,
+    "rate_expectations": 27,
+    "credit_spread_level": 26,
+    "market_liquidity": 22,
+    "funding_stress": 25,
+    "capital_flow_net": 30,
+    "currency_strength": 30,
+    "intervention_pressure": 20,
+    "safe_haven_demand": 24,
+    "precious_metal_price": 20,
+    "portfolio_reallocation": 36,
+    "fiscal_financing_pressur": 19
+  },
+  "med_AS": 24.5,
+  "med_PS": 24.0,
+  "roles": [
+    {
+      "variable": "portfolio_reallocation",
+      "name": "Portfolio reallocation rate",
+      "AS": 31,
+      "PS": 36,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 1116,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "rate_expectations",
+      "name": "Interest-rate expectations",
+      "AS": 35,
+      "PS": 27,
+      "Q=AS/PS": 1.3,
+      "P=AS*PS": 945,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "short_term_rate",
+      "name": "Short-term interest rate",
+      "AS": 34,
+      "PS": 24,
+      "Q=AS/PS": 1.42,
+      "P=AS*PS": 816,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "long_term_bond_yield",
+      "name": "Long-term bond yield",
+      "AS": 24,
+      "PS": 33,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 792,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "funding_stress",
+      "name": "Short-term funding stress",
+      "AS": 31,
+      "PS": 25,
+      "Q=AS/PS": 1.24,
+      "P=AS*PS": 775,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "capital_flow_net",
+      "name": "Cross-border capital flow (net)",
+      "AS": 23,
+      "PS": 30,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 690,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "safe_haven_demand",
+      "name": "Safe-haven demand",
+      "AS": 26,
+      "PS": 24,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 624,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "credit_spread_level",
+      "name": "Credit spread level",
+      "AS": 24,
+      "PS": 26,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 624,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 31,
+      "PS": 20,
+      "Q=AS/PS": 1.55,
+      "P=AS*PS": 620,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "currency_strength",
+      "name": "Currency strength differential",
+      "AS": 20,
+      "PS": 30,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 600,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 25,
+      "PS": 24,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 600,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "real_yield_level",
+      "name": "Real yield level",
+      "AS": 24,
+      "PS": 23,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 552,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity condition",
+      "AS": 24,
+      "PS": 22,
+      "Q=AS/PS": 1.09,
+      "P=AS*PS": 528,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fiscal_financing_pressur",
+      "name": "Fiscal financing pressure",
+      "AS": 26,
+      "PS": 19,
+      "Q=AS/PS": 1.37,
+      "P=AS*PS": 494,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "intervention_pressure",
+      "name": "Currency intervention pressure",
+      "AS": 17,
+      "PS": 20,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 340,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "precious_metal_price",
+      "name": "Precious metal price level",
+      "AS": 8,
+      "PS": 20,
+      "Q=AS/PS": 0.4,
+      "P=AS*PS": 160,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_bond_yield",
+        "name": "Long-term bond yield",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 33
+      },
+      {
+        "id": "short_term_rate",
+        "name": "Short-term interest rate",
+        "kind": "driver",
+        "AS": 34,
+        "PS": 24
+      },
+      {
+        "id": "real_yield_level",
+        "name": "Real yield level",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 23
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 24
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 31,
+        "PS": 20
+      },
+      {
+        "id": "rate_expectations",
+        "name": "Interest-rate expectations",
+        "kind": "perception",
+        "AS": 35,
+        "PS": 27
+      },
+      {
+        "id": "credit_spread_level",
+        "name": "Credit spread level",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 26
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity condition",
+        "kind": "environment",
+        "AS": 24,
+        "PS": 22
+      },
+      {
+        "id": "funding_stress",
+        "name": "Short-term funding stress",
+        "kind": "driver",
+        "AS": 31,
+        "PS": 25
+      },
+      {
+        "id": "capital_flow_net",
+        "name": "Cross-border capital flow (net)",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 30
+      },
+      {
+        "id": "currency_strength",
+        "name": "Currency strength differential",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 30
+      },
+      {
+        "id": "intervention_pressure",
+        "name": "Currency intervention pressure",
+        "kind": "perception",
+        "AS": 17,
+        "PS": 20
+      },
+      {
+        "id": "safe_haven_demand",
+        "name": "Safe-haven demand",
+        "kind": "perception",
+        "AS": 26,
+        "PS": 24
+      },
+      {
+        "id": "precious_metal_price",
+        "name": "Precious metal price level",
+        "kind": "driver",
+        "AS": 8,
+        "PS": 20
+      },
+      {
+        "id": "portfolio_reallocation",
+        "name": "Portfolio reallocation rate",
+        "kind": "flow",
+        "AS": 31,
+        "PS": 36
+      },
+      {
+        "id": "fiscal_financing_pressur",
+        "name": "Fiscal financing pressure",
+        "kind": "driver",
+        "AS": 26,
+        "PS": 19
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_bond_yield",
+        "target": "real_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_bond_yield",
+        "target": "portfolio_reallocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "funding_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "capital_flow_net",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "currency_strength",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "intervention_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "portfolio_reallocation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "fiscal_financing_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "portfolio_reallocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "short_term_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "portfolio_reallocation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_term_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "real_yield_level",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "precious_metal_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "portfolio_reallocation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "fiscal_financing_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "short_term_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "capital_flow_net",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "currency_strength",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "intervention_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "precious_metal_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "portfolio_reallocation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "fiscal_financing_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "funding_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "portfolio_reallocation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "fiscal_financing_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "short_term_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "funding_stress",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "portfolio_reallocation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "funding_stress",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "funding_stress",
+        "target": "short_term_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "funding_stress",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "funding_stress",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "funding_stress",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "funding_stress",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "funding_stress",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "funding_stress",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "funding_stress",
+        "target": "intervention_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "funding_stress",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "funding_stress",
+        "target": "portfolio_reallocation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "funding_stress",
+        "target": "fiscal_financing_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "long_term_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "short_term_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "currency_strength",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "intervention_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "portfolio_reallocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_strength",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_strength",
+        "target": "intervention_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "currency_strength",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "currency_strength",
+        "target": "portfolio_reallocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_pressure",
+        "target": "funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_pressure",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "precious_metal_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "portfolio_reallocation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "short_term_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "capital_flow_net",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "currency_strength",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_reallocation",
+        "target": "precious_metal_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "long_term_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "portfolio_reallocation",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_cpi_inflation_release_this_week",
+      "title": "US CPI inflation release (this week)",
+      "description": "Market-moving US inflation prints due this week that will reprice nominal yields, inflation expectations and Fed path pricing.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-09",
+        "end": "2026-09-15",
+        "label": "this week"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "real_yield_level",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "portfolio_reallocation",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'This week’s inflation data in focus'; 'Gold falls...as strong payrolls revive Fed hike bets' — CPI will rewire rate and asset pricing."
+    },
+    {
+      "id": "fomc_mid_september_meeting",
+      "title": "September FOMC (mid-September)",
+      "description": "Mid-September Fed meeting and statement likely to confirm or delay further rate hikes, shifting short-end pricing and curve shape.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-09-18",
+        "label": "mid-September"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "short_term_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "funding_stress",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Strong jobs report sends yields higher'; 'Waller Urges Patience' — FOMC will recalibrate market tightening bets."
+    },
+    {
+      "id": "ecb_sep10_policy_decision",
+      "title": "ECB policy decision (Sep 10)",
+      "description": "Scheduled ECB interest-rate decision likely to extend or halt hikes, driving euro-area short rates and regional bond yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-10",
+        "start": null,
+        "end": null,
+        "label": "2026-09-10"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "short_term_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Thursday’s ECB Decision in Focus'; 'Deutsche Bank expects ECB to extend rate hikes through December.'"
+    },
+    {
+      "id": "boj_september_rate_hike_risk",
+      "title": "Bank of Japan rate-hike in September (risk)",
+      "description": "Elevated odds of a BOJ move in September as economic data and political signals shift policy stance, affecting JGBs and FX.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-30",
+        "label": "September"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "short_term_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_strength",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "portfolio_reallocation",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "capital_flow_net",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Takaichi's reflationist aide projects BOJ rate hike in September'; 'Japan Q2 GDP beats forecast, supporting case for BOJ rate hike.'"
+    },
+    {
+      "id": "japan_fx_intervention_ongoing",
+      "title": "Continued Japanese FX intervention and reserve drawdown",
+      "description": "Ongoing interventions reflected in record reserve drawdowns as authorities respond to rapid yen moves, raising intervention pressure and FX volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-07",
+        "end": "2026-09-30",
+        "label": "ongoing September"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "intervention_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_strength",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "portfolio_reallocation",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Japan's foreign reserves drop by a record $80 billion...following yen intervention'; 'Yen surges...traders stay alert for signs of intervention.'"
+    },
+    {
+      "id": "ecb_hike_path_sep_to_dec",
+      "title": "ECB hikes expected through December (path)",
+      "description": "Market consensus that ECB will continue tightening through year-end, gradually repricing euro-area rates and cross-border flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-12-31",
+        "label": "Sep-Dec"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_strength",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Deutsche Bank expects ECB to extend rate hikes through December'; 'Another rate hike...five questions for the ECB.'"
+    },
+    {
+      "id": "amazon_sterling_bond_sale",
+      "title": "Amazon sterling bond issuance (near-term)",
+      "description": "Amazon's planned first-ever sterling bond sale will add supply to sterling credit markets and attract cross-border demand.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-08",
+        "end": "2026-09-30",
+        "label": "by end of month"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "capital_flow_net",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_strength",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Amazon hires banks for first ever sterling bond sale' — corporate issuance to influence sterling credit markets."
+    },
+    {
+      "id": "continued_us_treasury_selloff",
+      "title": "Continued US Treasury sell-off and 4.8% yield test",
+      "description": "Ongoing Treasury repricing that could push long yields toward the cited 4.8% test, widening spreads and stressing funding conditions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-09",
+        "end": "2026-09-30",
+        "label": "rest of September"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "long_term_bond_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "funding_stress",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "portfolio_reallocation",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Treasury yields face 4.8% test'; 'Bond Yields Rocket to 2-Decade High' — ongoing sell-off risks wider spillovers."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_cpi_inflation_release_this_week",
+      "title": "US CPI inflation release (this week)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-09-09",
+      "end": "2026-09-15",
+      "probability": 0.9,
+      "impact_score": 356.0,
+      "expected_impact": 320.4,
+      "event_PS": 27.917,
+      "event_AS": 29.667,
+      "n_vars": 5,
+      "affected_ids": "inflation_expectations, rate_expectations, long_term_bond_yield, real_yield_level, portfolio_reallocation",
+      "rationale": "Headlines: 'This week’s inflation data in focus'; 'Gold falls...as strong payrolls revive Fed hike bets' — CPI will rewire rate and asset pricing."
+    },
+    {
+      "id": "fomc_mid_september_meeting",
+      "title": "September FOMC (mid-September)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-September",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-09-18",
+      "probability": 0.8,
+      "impact_score": 336.0,
+      "expected_impact": 268.8,
+      "event_PS": 26.545,
+      "event_AS": 30.545,
+      "n_vars": 5,
+      "affected_ids": "short_term_rate, rate_expectations, yield_curve_slope, long_term_bond_yield, funding_stress",
+      "rationale": "Headlines: 'Strong jobs report sends yields higher'; 'Waller Urges Patience' — FOMC will recalibrate market tightening bets."
+    },
+    {
+      "id": "boj_september_rate_hike_risk",
+      "title": "Bank of Japan rate-hike in September (risk)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "September",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 318.0,
+      "expected_impact": 222.6,
+      "event_PS": 30.0,
+      "event_AS": 26.5,
+      "n_vars": 5,
+      "affected_ids": "short_term_rate, long_term_bond_yield, currency_strength, portfolio_reallocation, capital_flow_net",
+      "rationale": "Headlines: 'Takaichi's reflationist aide projects BOJ rate hike in September'; 'Japan Q2 GDP beats forecast, supporting case for BOJ rate hike.'"
+    },
+    {
+      "id": "ecb_sep10_policy_decision",
+      "title": "ECB policy decision (Sep 10)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-09-10",
+      "date": "2026-09-10",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 304.0,
+      "expected_impact": 288.8,
+      "event_PS": 26.9,
+      "event_AS": 30.4,
+      "n_vars": 5,
+      "affected_ids": "short_term_rate, rate_expectations, long_term_bond_yield, yield_curve_slope, credit_spread_level",
+      "rationale": "Headlines: 'Thursday’s ECB Decision in Focus'; 'Deutsche Bank expects ECB to extend rate hikes through December.'"
+    },
+    {
+      "id": "ecb_hike_path_sep_to_dec",
+      "title": "ECB hikes expected through December (path)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Sep-Dec",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-12-31",
+      "probability": 0.75,
+      "impact_score": 285.0,
+      "expected_impact": 213.75,
+      "event_PS": 28.1,
+      "event_AS": 28.5,
+      "n_vars": 5,
+      "affected_ids": "rate_expectations, short_term_rate, long_term_bond_yield, currency_strength, credit_spread_level",
+      "rationale": "Headlines: 'Deutsche Bank expects ECB to extend rate hikes through December'; 'Another rate hike...five questions for the ECB.'"
+    },
+    {
+      "id": "continued_us_treasury_selloff",
+      "title": "Continued US Treasury sell-off and 4.8% yield test",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "rest of September",
+      "date": null,
+      "start": "2026-09-09",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 244.0,
+      "expected_impact": 170.8,
+      "event_PS": 30.333,
+      "event_AS": 27.111,
+      "n_vars": 4,
+      "affected_ids": "long_term_bond_yield, credit_spread_level, funding_stress, portfolio_reallocation",
+      "rationale": "Headlines: 'Treasury yields face 4.8% test'; 'Bond Yields Rocket to 2-Decade High' — ongoing sell-off risks wider spillovers."
+    },
+    {
+      "id": "japan_fx_intervention_ongoing",
+      "title": "Continued Japanese FX intervention and reserve drawdown",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "ongoing September",
+      "date": null,
+      "start": "2026-09-07",
+      "end": "2026-09-30",
+      "probability": 0.8,
+      "impact_score": 166.0,
+      "expected_impact": 132.8,
+      "event_PS": 26.0,
+      "event_AS": 20.75,
+      "n_vars": 4,
+      "affected_ids": "intervention_pressure, currency_strength, market_liquidity, portfolio_reallocation",
+      "rationale": "Headlines: 'Japan's foreign reserves drop by a record $80 billion...following yen intervention'; 'Yen surges...traders stay alert for signs of intervention.'"
+    },
+    {
+      "id": "amazon_sterling_bond_sale",
+      "title": "Amazon sterling bond issuance (near-term)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of month",
+      "date": null,
+      "start": "2026-09-08",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 67.0,
+      "expected_impact": 46.9,
+      "event_PS": 28.667,
+      "event_AS": 22.333,
+      "n_vars": 3,
+      "affected_ids": "credit_spread_level, capital_flow_net, currency_strength",
+      "rationale": "Headline: 'Amazon hires banks for first ever sterling bond sale' — corporate issuance to influence sterling credit markets."
+    }
+  ]
+}
