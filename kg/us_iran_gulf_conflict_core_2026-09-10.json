@@ -1,0 +1,1633 @@
+{
+  "label": "us_iran_gulf_conflict",
+  "as_of": "2026-09-10",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-10T01:28:01",
+  "system_description": {
+    "narrative_title": "U.S.-Iran-Houthi Escalation Driving Oil Supply Shock",
+    "narrative_summary": "A cycle of tit‑for‑tat strikes and reprisals among the U.S., Iran, and Iran‑aligned Houthi forces is disrupting Gulf shipping, hitting Saudi energy facilities and tankers, and prompting sanctions and defensive measures. Those security shocks, combined with draws from strategic reserves and refining bottlenecks, are driving oil prices toward and above $100/bbl and reshaping market risk premia. The dynamic is creating cascading economic and logistical stresses—fuel shortages, elevated volatility in financial markets, and broader geopolitical realignments across the region.",
+    "scope": "Gulf oil production, export flows through chokepoints (Strait of Hormuz), tanker and port security, attacks on energy infrastructure (Saudi facilities, tankers), military responses and sanctions (U.S., Iran, Saudi coalition), global oil markets and prices (Brent/WTI), strategic petroleum reserve draws, refining and logistics capacity, and market/ investor sentiment.",
+    "super_system": "Global energy-economy-financial system",
+    "adjacent_subsystems": [
+      "Global maritime shipping and insurance",
+      "Regional security architecture (Middle East military & diplomatic networks)",
+      "International sanctions and finance networks",
+      "Refining and downstream fuel logistics"
+    ],
+    "evidence_headlines": [
+      "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears - wsj.com",
+      "Wave of Houthi strikes halts work at energy facilities in four Saudi cities",
+      "U.S. military destroys five Iranian oil tankers after attempted attack on American warship, Centcom says",
+      "Oil Nears $100 a Barrel as Fresh Attacks on Saudi Energy Operations Raise Supply Concerns",
+      "Oil stocks in US Strategic Petroleum Reserve fall by 1.2 million barrels to lowest level since 1982",
+      "Iran warns of maritime exclusion zone, strikes on U.S. Gulf energy assets"
+    ]
+  },
+  "variables": [
+    {
+      "id": "gulf_crude_prod_rate",
+      "name": "Regional crude production rate",
+      "description": "Rate of crude oil production in the regional producing area relevant to the system, measured in barrels per day.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_transit_vol",
+      "name": "Chokepoint transit volume",
+      "description": "Volume of crude oil and petroleum products transiting strategic maritime chokepoints per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "energy_infra_attack_rate",
+      "name": "Energy infrastructure attack rate",
+      "description": "Frequency and intensity of hostile actions targeting energy infrastructure (refineries, terminals, pipelines, tankers) per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_incident_rate",
+      "name": "Maritime security incident rate",
+      "description": "Frequency of maritime security incidents affecting commercial shipping (attacks, seizures, boarding incidents, near-misses) per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "military_escalation_leve",
+      "name": "Military escalation intensity",
+      "description": "Aggregate intensity and tempo of military operations and retaliatory actions in the region, measured by frequency, scale and kinetic activity.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sanctions_pressure_level",
+      "name": "Sanctions pressure level",
+      "description": "Aggregate intensity of economic restrictions and enforcement actions affecting energy trade and financial flows.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserve_stock",
+      "name": "Strategic reserve stock",
+      "description": "Volume of oil held in strategic emergency reserves available to the market, measured in barrels.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_withdrawal_rat",
+      "name": "Strategic reserve withdrawal rate",
+      "description": "Rate at which strategic reserves are being drawn down and released to markets, measured in barrels per day.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "description": "Share of total refining capacity that is operational and processing crude at a given time, expressed as a percentage.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refining_bottleneck_sev",
+      "name": "Refining and logistics bottleneck severity",
+      "description": "Degree of downstream constraints in refining, storage and distribution that limit product availability, measured by delays, backlog and unmet product demand.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "global_oil_price",
+      "name": "Global oil price level",
+      "description": "Market price level for benchmark crude oil, measured in dollars per barrel.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_market_risk_premium",
+      "name": "Oil market risk premium",
+      "description": "Incremental price component that reflects market-perceived supply disruption risk above fundamentals.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "freight_insurance_premia",
+      "name": "Freight and insurance premia",
+      "description": "Level of shipping freight rates and marine insurance premia for crude and product tankers, measured relative to historical norms.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "financial_volatility",
+      "name": "Financial market volatility",
+      "description": "Amplitude of short-term price movements and uncertainty in financial markets relevant to energy and broader assets, measured by volatility indices or realized volatility.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "retail_fuel_availability",
+      "name": "Retail fuel availability",
+      "description": "Availability of refined fuel products at retail and local distribution points, measured as inventory days or share of outlets with supply.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_energy_sentimen",
+      "name": "Investor sentiment toward energy",
+      "description": "Aggregate investor attitude and positioning toward energy assets, measured by flows, net positions and sentiment indicators.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "gulf_crude_prod_rate",
+    "chokepoint_transit_vol",
+    "energy_infra_attack_rate",
+    "maritime_incident_rate",
+    "military_escalation_leve",
+    "sanctions_pressure_level",
+    "strategic_reserve_stock",
+    "strategic_withdrawal_rat",
+    "refinery_utilization_rat",
+    "refining_bottleneck_sev",
+    "global_oil_price",
+    "oil_market_risk_premium",
+    "freight_insurance_premia",
+    "financial_volatility",
+    "retail_fuel_availability",
+    "investor_energy_sentimen"
+  ],
+  "var_names": {
+    "gulf_crude_prod_rate": "Regional crude production rate",
+    "chokepoint_transit_vol": "Chokepoint transit volume",
+    "energy_infra_attack_rate": "Energy infrastructure attack rate",
+    "maritime_incident_rate": "Maritime security incident rate",
+    "military_escalation_leve": "Military escalation intensity",
+    "sanctions_pressure_level": "Sanctions pressure level",
+    "strategic_reserve_stock": "Strategic reserve stock",
+    "strategic_withdrawal_rat": "Strategic reserve withdrawal rate",
+    "refinery_utilization_rat": "Refinery utilization rate",
+    "refining_bottleneck_sev": "Refining and logistics bottleneck severity",
+    "global_oil_price": "Global oil price level",
+    "oil_market_risk_premium": "Oil market risk premium",
+    "freight_insurance_premia": "Freight and insurance premia",
+    "financial_volatility": "Financial market volatility",
+    "retail_fuel_availability": "Retail fuel availability",
+    "investor_energy_sentimen": "Investor sentiment toward energy"
+  },
+  "impact_matrix": {
+    "gulf_crude_prod_rate": {
+      "gulf_crude_prod_rate": 0,
+      "chokepoint_transit_vol": 2,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 0,
+      "refinery_utilization_rat": 2,
+      "refining_bottleneck_sev": 1,
+      "global_oil_price": 2,
+      "oil_market_risk_premium": 1,
+      "freight_insurance_premia": 0,
+      "financial_volatility": 1,
+      "retail_fuel_availability": 1,
+      "investor_energy_sentimen": 1
+    },
+    "chokepoint_transit_vol": {
+      "gulf_crude_prod_rate": 0,
+      "chokepoint_transit_vol": 0,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 2,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 0,
+      "refinery_utilization_rat": 1,
+      "refining_bottleneck_sev": 1,
+      "global_oil_price": 2,
+      "oil_market_risk_premium": 2,
+      "freight_insurance_premia": 3,
+      "financial_volatility": 1,
+      "retail_fuel_availability": 1,
+      "investor_energy_sentimen": 2
+    },
+    "energy_infra_attack_rate": {
+      "gulf_crude_prod_rate": 3,
+      "chokepoint_transit_vol": 2,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 2,
+      "military_escalation_leve": 2,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 1,
+      "refinery_utilization_rat": 2,
+      "refining_bottleneck_sev": 2,
+      "global_oil_price": 3,
+      "oil_market_risk_premium": 3,
+      "freight_insurance_premia": 3,
+      "financial_volatility": 2,
+      "retail_fuel_availability": 2,
+      "investor_energy_sentimen": 2
+    },
+    "maritime_incident_rate": {
+      "gulf_crude_prod_rate": 1,
+      "chokepoint_transit_vol": 3,
+      "energy_infra_attack_rate": 1,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 2,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 1,
+      "refinery_utilization_rat": 1,
+      "refining_bottleneck_sev": 1,
+      "global_oil_price": 2,
+      "oil_market_risk_premium": 2,
+      "freight_insurance_premia": 3,
+      "financial_volatility": 2,
+      "retail_fuel_availability": 1,
+      "investor_energy_sentimen": 2
+    },
+    "military_escalation_leve": {
+      "gulf_crude_prod_rate": 3,
+      "chokepoint_transit_vol": 3,
+      "energy_infra_attack_rate": 3,
+      "maritime_incident_rate": 3,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 1,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 2,
+      "refinery_utilization_rat": 2,
+      "refining_bottleneck_sev": 2,
+      "global_oil_price": 3,
+      "oil_market_risk_premium": 3,
+      "freight_insurance_premia": 3,
+      "financial_volatility": 3,
+      "retail_fuel_availability": 2,
+      "investor_energy_sentimen": 3
+    },
+    "sanctions_pressure_level": {
+      "gulf_crude_prod_rate": 2,
+      "chokepoint_transit_vol": 2,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 1,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 1,
+      "refinery_utilization_rat": 1,
+      "refining_bottleneck_sev": 1,
+      "global_oil_price": 2,
+      "oil_market_risk_premium": 2,
+      "freight_insurance_premia": 1,
+      "financial_volatility": 2,
+      "retail_fuel_availability": 1,
+      "investor_energy_sentimen": 2
+    },
+    "strategic_reserve_stock": {
+      "gulf_crude_prod_rate": 0,
+      "chokepoint_transit_vol": 0,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 2,
+      "refinery_utilization_rat": 0,
+      "refining_bottleneck_sev": 0,
+      "global_oil_price": 1,
+      "oil_market_risk_premium": 1,
+      "freight_insurance_premia": 0,
+      "financial_volatility": 1,
+      "retail_fuel_availability": 0,
+      "investor_energy_sentimen": 1
+    },
+    "strategic_withdrawal_rat": {
+      "gulf_crude_prod_rate": 0,
+      "chokepoint_transit_vol": 0,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 3,
+      "strategic_withdrawal_rat": 0,
+      "refinery_utilization_rat": 1,
+      "refining_bottleneck_sev": 1,
+      "global_oil_price": 3,
+      "oil_market_risk_premium": 2,
+      "freight_insurance_premia": 0,
+      "financial_volatility": 2,
+      "retail_fuel_availability": 2,
+      "investor_energy_sentimen": 2
+    },
+    "refinery_utilization_rat": {
+      "gulf_crude_prod_rate": 1,
+      "chokepoint_transit_vol": 1,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 0,
+      "refinery_utilization_rat": 0,
+      "refining_bottleneck_sev": 3,
+      "global_oil_price": 2,
+      "oil_market_risk_premium": 1,
+      "freight_insurance_premia": 0,
+      "financial_volatility": 1,
+      "retail_fuel_availability": 3,
+      "investor_energy_sentimen": 1
+    },
+    "refining_bottleneck_sev": {
+      "gulf_crude_prod_rate": 0,
+      "chokepoint_transit_vol": 0,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 0,
+      "refinery_utilization_rat": 2,
+      "refining_bottleneck_sev": 0,
+      "global_oil_price": 2,
+      "oil_market_risk_premium": 1,
+      "freight_insurance_premia": 0,
+      "financial_volatility": 1,
+      "retail_fuel_availability": 2,
+      "investor_energy_sentimen": 1
+    },
+    "global_oil_price": {
+      "gulf_crude_prod_rate": 1,
+      "chokepoint_transit_vol": 0,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 1,
+      "refinery_utilization_rat": 1,
+      "refining_bottleneck_sev": 0,
+      "global_oil_price": 0,
+      "oil_market_risk_premium": 1,
+      "freight_insurance_premia": 0,
+      "financial_volatility": 2,
+      "retail_fuel_availability": 1,
+      "investor_energy_sentimen": 2
+    },
+    "oil_market_risk_premium": {
+      "gulf_crude_prod_rate": 0,
+      "chokepoint_transit_vol": 0,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 0,
+      "refinery_utilization_rat": 0,
+      "refining_bottleneck_sev": 0,
+      "global_oil_price": 3,
+      "oil_market_risk_premium": 0,
+      "freight_insurance_premia": 1,
+      "financial_volatility": 2,
+      "retail_fuel_availability": 0,
+      "investor_energy_sentimen": 2
+    },
+    "freight_insurance_premia": {
+      "gulf_crude_prod_rate": 0,
+      "chokepoint_transit_vol": 1,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 0,
+      "refinery_utilization_rat": 0,
+      "refining_bottleneck_sev": 0,
+      "global_oil_price": 1,
+      "oil_market_risk_premium": 1,
+      "freight_insurance_premia": 0,
+      "financial_volatility": 1,
+      "retail_fuel_availability": 0,
+      "investor_energy_sentimen": 1
+    },
+    "financial_volatility": {
+      "gulf_crude_prod_rate": 0,
+      "chokepoint_transit_vol": 0,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 0,
+      "refinery_utilization_rat": 0,
+      "refining_bottleneck_sev": 0,
+      "global_oil_price": 2,
+      "oil_market_risk_premium": 2,
+      "freight_insurance_premia": 1,
+      "financial_volatility": 0,
+      "retail_fuel_availability": 0,
+      "investor_energy_sentimen": 3
+    },
+    "retail_fuel_availability": {
+      "gulf_crude_prod_rate": 0,
+      "chokepoint_transit_vol": 0,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 0,
+      "refinery_utilization_rat": 2,
+      "refining_bottleneck_sev": 2,
+      "global_oil_price": 1,
+      "oil_market_risk_premium": 0,
+      "freight_insurance_premia": 0,
+      "financial_volatility": 0,
+      "retail_fuel_availability": 0,
+      "investor_energy_sentimen": 1
+    },
+    "investor_energy_sentimen": {
+      "gulf_crude_prod_rate": 0,
+      "chokepoint_transit_vol": 0,
+      "energy_infra_attack_rate": 0,
+      "maritime_incident_rate": 0,
+      "military_escalation_leve": 0,
+      "sanctions_pressure_level": 0,
+      "strategic_reserve_stock": 0,
+      "strategic_withdrawal_rat": 0,
+      "refinery_utilization_rat": 0,
+      "refining_bottleneck_sev": 0,
+      "global_oil_price": 1,
+      "oil_market_risk_premium": 1,
+      "freight_insurance_premia": 0,
+      "financial_volatility": 2,
+      "retail_fuel_availability": 0,
+      "investor_energy_sentimen": 0
+    }
+  },
+  "AS": {
+    "gulf_crude_prod_rate": 11,
+    "chokepoint_transit_vol": 15,
+    "energy_infra_attack_rate": 29,
+    "maritime_incident_rate": 22,
+    "military_escalation_leve": 36,
+    "sanctions_pressure_level": 18,
+    "strategic_reserve_stock": 6,
+    "strategic_withdrawal_rat": 16,
+    "refinery_utilization_rat": 13,
+    "refining_bottleneck_sev": 9,
+    "global_oil_price": 9,
+    "oil_market_risk_premium": 8,
+    "freight_insurance_premia": 5,
+    "financial_volatility": 8,
+    "retail_fuel_availability": 6,
+    "investor_energy_sentimen": 4
+  },
+  "PS": {
+    "gulf_crude_prod_rate": 11,
+    "chokepoint_transit_vol": 14,
+    "energy_infra_attack_rate": 4,
+    "maritime_incident_rate": 7,
+    "military_escalation_leve": 5,
+    "sanctions_pressure_level": 1,
+    "strategic_reserve_stock": 3,
+    "strategic_withdrawal_rat": 8,
+    "refinery_utilization_rat": 15,
+    "refining_bottleneck_sev": 14,
+    "global_oil_price": 30,
+    "oil_market_risk_premium": 23,
+    "freight_insurance_premia": 15,
+    "financial_volatility": 23,
+    "retail_fuel_availability": 16,
+    "investor_energy_sentimen": 26
+  },
+  "med_AS": 10.0,
+  "med_PS": 14.0,
+  "roles": [
+    {
+      "variable": "global_oil_price",
+      "name": "Global oil price level",
+      "AS": 9,
+      "PS": 30,
+      "Q=AS/PS": 0.3,
+      "P=AS*PS": 270,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "chokepoint_transit_vol",
+      "name": "Chokepoint transit volume",
+      "AS": 15,
+      "PS": 14,
+      "Q=AS/PS": 1.07,
+      "P=AS*PS": 210,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "AS": 13,
+      "PS": 15,
+      "Q=AS/PS": 0.87,
+      "P=AS*PS": 195,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "oil_market_risk_premium",
+      "name": "Oil market risk premium",
+      "AS": 8,
+      "PS": 23,
+      "Q=AS/PS": 0.35,
+      "P=AS*PS": 184,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "financial_volatility",
+      "name": "Financial market volatility",
+      "AS": 8,
+      "PS": 23,
+      "Q=AS/PS": 0.35,
+      "P=AS*PS": 184,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "military_escalation_leve",
+      "name": "Military escalation intensity",
+      "AS": 36,
+      "PS": 5,
+      "Q=AS/PS": 7.2,
+      "P=AS*PS": 180,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "maritime_incident_rate",
+      "name": "Maritime security incident rate",
+      "AS": 22,
+      "PS": 7,
+      "Q=AS/PS": 3.14,
+      "P=AS*PS": 154,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "strategic_withdrawal_rat",
+      "name": "Strategic reserve withdrawal rate",
+      "AS": 16,
+      "PS": 8,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 128,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refining_bottleneck_sev",
+      "name": "Refining and logistics bottleneck severity",
+      "AS": 9,
+      "PS": 14,
+      "Q=AS/PS": 0.64,
+      "P=AS*PS": 126,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "gulf_crude_prod_rate",
+      "name": "Regional crude production rate",
+      "AS": 11,
+      "PS": 11,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 121,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "energy_infra_attack_rate",
+      "name": "Energy infrastructure attack rate",
+      "AS": 29,
+      "PS": 4,
+      "Q=AS/PS": 7.25,
+      "P=AS*PS": 116,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "investor_energy_sentimen",
+      "name": "Investor sentiment toward energy",
+      "AS": 4,
+      "PS": 26,
+      "Q=AS/PS": 0.15,
+      "P=AS*PS": 104,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "retail_fuel_availability",
+      "name": "Retail fuel availability",
+      "AS": 6,
+      "PS": 16,
+      "Q=AS/PS": 0.38,
+      "P=AS*PS": 96,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "freight_insurance_premia",
+      "name": "Freight and insurance premia",
+      "AS": 5,
+      "PS": 15,
+      "Q=AS/PS": 0.33,
+      "P=AS*PS": 75,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "strategic_reserve_stock",
+      "name": "Strategic reserve stock",
+      "AS": 6,
+      "PS": 3,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 18,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "sanctions_pressure_level",
+      "name": "Sanctions pressure level",
+      "AS": 18,
+      "PS": 1,
+      "Q=AS/PS": 18.0,
+      "P=AS*PS": 18,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "gulf_crude_prod_rate",
+        "name": "Regional crude production rate",
+        "kind": "flow",
+        "AS": 11,
+        "PS": 11
+      },
+      {
+        "id": "chokepoint_transit_vol",
+        "name": "Chokepoint transit volume",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 14
+      },
+      {
+        "id": "energy_infra_attack_rate",
+        "name": "Energy infrastructure attack rate",
+        "kind": "flow",
+        "AS": 29,
+        "PS": 4
+      },
+      {
+        "id": "maritime_incident_rate",
+        "name": "Maritime security incident rate",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 7
+      },
+      {
+        "id": "military_escalation_leve",
+        "name": "Military escalation intensity",
+        "kind": "driver",
+        "AS": 36,
+        "PS": 5
+      },
+      {
+        "id": "sanctions_pressure_level",
+        "name": "Sanctions pressure level",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 1
+      },
+      {
+        "id": "strategic_reserve_stock",
+        "name": "Strategic reserve stock",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 3
+      },
+      {
+        "id": "strategic_withdrawal_rat",
+        "name": "Strategic reserve withdrawal rate",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 8
+      },
+      {
+        "id": "refinery_utilization_rat",
+        "name": "Refinery utilization rate",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 15
+      },
+      {
+        "id": "refining_bottleneck_sev",
+        "name": "Refining and logistics bottleneck severity",
+        "kind": "environment",
+        "AS": 9,
+        "PS": 14
+      },
+      {
+        "id": "global_oil_price",
+        "name": "Global oil price level",
+        "kind": "driver",
+        "AS": 9,
+        "PS": 30
+      },
+      {
+        "id": "oil_market_risk_premium",
+        "name": "Oil market risk premium",
+        "kind": "perception",
+        "AS": 8,
+        "PS": 23
+      },
+      {
+        "id": "freight_insurance_premia",
+        "name": "Freight and insurance premia",
+        "kind": "driver",
+        "AS": 5,
+        "PS": 15
+      },
+      {
+        "id": "financial_volatility",
+        "name": "Financial market volatility",
+        "kind": "perception",
+        "AS": 8,
+        "PS": 23
+      },
+      {
+        "id": "retail_fuel_availability",
+        "name": "Retail fuel availability",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 16
+      },
+      {
+        "id": "investor_energy_sentimen",
+        "name": "Investor sentiment toward energy",
+        "kind": "perception",
+        "AS": 4,
+        "PS": 26
+      }
+    ],
+    "edges": [
+      {
+        "source": "gulf_crude_prod_rate",
+        "target": "chokepoint_transit_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "gulf_crude_prod_rate",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "gulf_crude_prod_rate",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_vol",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_vol",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_vol",
+        "target": "oil_market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_vol",
+        "target": "freight_insurance_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_vol",
+        "target": "investor_energy_sentimen",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "gulf_crude_prod_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "chokepoint_transit_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "military_escalation_leve",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "refining_bottleneck_sev",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "global_oil_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "oil_market_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "freight_insurance_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "financial_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "retail_fuel_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "investor_energy_sentimen",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "chokepoint_transit_vol",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "military_escalation_leve",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "oil_market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "freight_insurance_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "financial_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "investor_energy_sentimen",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "gulf_crude_prod_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "chokepoint_transit_vol",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "energy_infra_attack_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "maritime_incident_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "strategic_withdrawal_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "refining_bottleneck_sev",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "global_oil_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "oil_market_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "freight_insurance_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "financial_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "retail_fuel_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "military_escalation_leve",
+        "target": "investor_energy_sentimen",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_pressure_level",
+        "target": "gulf_crude_prod_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_pressure_level",
+        "target": "chokepoint_transit_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_pressure_level",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_pressure_level",
+        "target": "oil_market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_pressure_level",
+        "target": "financial_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_pressure_level",
+        "target": "investor_energy_sentimen",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_stock",
+        "target": "strategic_withdrawal_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_withdrawal_rat",
+        "target": "strategic_reserve_stock",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_withdrawal_rat",
+        "target": "global_oil_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_withdrawal_rat",
+        "target": "oil_market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_withdrawal_rat",
+        "target": "financial_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_withdrawal_rat",
+        "target": "retail_fuel_availability",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_withdrawal_rat",
+        "target": "investor_energy_sentimen",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "refining_bottleneck_sev",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "retail_fuel_availability",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_bottleneck_sev",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_bottleneck_sev",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_bottleneck_sev",
+        "target": "retail_fuel_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_price",
+        "target": "financial_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price",
+        "target": "investor_energy_sentimen",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_market_risk_premium",
+        "target": "global_oil_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_market_risk_premium",
+        "target": "financial_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_market_risk_premium",
+        "target": "investor_energy_sentimen",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_volatility",
+        "target": "global_oil_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_volatility",
+        "target": "oil_market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_volatility",
+        "target": "investor_energy_sentimen",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "retail_fuel_availability",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "retail_fuel_availability",
+        "target": "refining_bottleneck_sev",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_energy_sentimen",
+        "target": "financial_volatility",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "opec_plus_steady_output_oct",
+      "title": "OPEC+ keeps output steady in October",
+      "description": "OPEC and allied producers have agreed to hold output steady for October, keeping regional supply unchanged despite rising demand and disruptions.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "October 2026"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "gulf_crude_prod_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_market_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "strategic_withdrawal_rat",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'OPEC, Allies Agree to Keep Oil Output Steady in October'."
+    },
+    {
+      "id": "continued_houthi_energy_attacks",
+      "title": "Renewed Houthi attacks on energy facilities",
+      "description": "Sustained Houthi strikes on Saudi energy facilities and cities are likely to continue, interrupting operations and prompting defensive responses.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-10-10",
+        "label": "next 4 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "energy_infra_attack_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "military_escalation_leve",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refinery_utilization_rat",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "chokepoint_transit_vol",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "freight_insurance_premia",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_market_risk_premium",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Wave of Houthi strikes halts work...', 'Houthis attack southern Saudi cities for second day'."
+    },
+    {
+      "id": "us_strikes_on_iranian_tankers",
+      "title": "U.S. continues strikes on Iranian oil tankers",
+      "description": "Ongoing U.S. kinetic actions against Iranian tankers are likely to persist, increasing attacks on maritime assets and regional retaliation risks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-10-10",
+        "label": "next 4 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "military_escalation_leve",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "chokepoint_transit_vol",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "freight_insurance_premia",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_market_risk_premium",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'U.S. Strikes Iranian Oil Tankers...', 'U.S. Launches New Round of Strikes on Iranian Oil Tankers'."
+    },
+    {
+      "id": "iran_maritime_exclusion_threat",
+      "title": "Iran threatens maritime exclusion/strictures in Gulf",
+      "description": "Iran's warnings of a maritime exclusion zone and threats against Gulf energy assets could lead to formal restrictions or intensified harassment of shipping.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-30",
+        "label": "next 3 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "chokepoint_transit_vol",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_market_risk_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "military_escalation_leve",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Iran warns of maritime exclusion zone, strikes on U.S. Gulf energy assets'."
+    },
+    {
+      "id": "expanded_sanctions_on_iran",
+      "title": "Further sanctions and enforcement on Iran",
+      "description": "U.S., UK and allied moves to tighten sanctions (aviation, financial) are likely to expand, squeezing Iran's financial and trade channels including energy revenues.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-09",
+        "end": "2026-11-30",
+        "label": "weeks–months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "sanctions_pressure_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gulf_crude_prod_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "strategic_withdrawal_rat",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'US issues fresh Iran-related sanctions', 'UK publishes legislation for tougher sanctions on Iran'."
+    },
+    {
+      "id": "further_spr_withdrawals",
+      "title": "Additional strategic reserve withdrawals",
+      "description": "Governments may authorize further releases from strategic petroleum reserves to offset supply losses and calm markets as stockpiles fall.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-11-30",
+        "label": "next 3 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "strategic_withdrawal_rat",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "strategic_reserve_stock",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_price",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "retail_fuel_availability",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Oil stocks in US Strategic Petroleum Reserve fall...', 'U.S. EIA hikes oil price forecasts as Iran war drains global stockpile'."
+    },
+    {
+      "id": "refining_bottlenecks_worsen",
+      "title": "Refining and logistics bottlenecks intensify",
+      "description": "War-related disruptions and shifting refinery priorities are likely to worsen downstream bottlenecks, creating product shortages and distribution delays.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-09",
+        "end": "2026-10-31",
+        "label": "next 6–8 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "refining_bottleneck_sev",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refinery_utilization_rat",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "retail_fuel_availability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "freight_insurance_premia",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Refining bottlenecks are emerging...', 'Ship fuel shortage looms as refiners strained by war'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "continued_houthi_energy_attacks",
+      "title": "Renewed Houthi attacks on energy facilities",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4 weeks",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-10-10",
+      "probability": 0.85,
+      "impact_score": 383.0,
+      "expected_impact": 325.55,
+      "event_PS": 14.091,
+      "event_AS": 17.409,
+      "n_vars": 8,
+      "affected_ids": "energy_infra_attack_rate, maritime_incident_rate, military_escalation_leve, refinery_utilization_rat, chokepoint_transit_vol, freight_insurance_premia, global_oil_price, oil_market_risk_premium",
+      "rationale": "Headlines: 'Wave of Houthi strikes halts work...', 'Houthis attack southern Saudi cities for second day'."
+    },
+    {
+      "id": "us_strikes_on_iranian_tankers",
+      "title": "U.S. continues strikes on Iranian oil tankers",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4 weeks",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-10-10",
+      "probability": 0.75,
+      "impact_score": 261.0,
+      "expected_impact": 195.75,
+      "event_PS": 14.875,
+      "event_AS": 16.312,
+      "n_vars": 6,
+      "affected_ids": "maritime_incident_rate, military_escalation_leve, chokepoint_transit_vol, freight_insurance_premia, global_oil_price, oil_market_risk_premium",
+      "rationale": "Headlines: 'U.S. Strikes Iranian Oil Tankers...', 'U.S. Launches New Round of Strikes on Iranian Oil Tankers'."
+    },
+    {
+      "id": "iran_maritime_exclusion_threat",
+      "title": "Iran threatens maritime exclusion/strictures in Gulf",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 weeks",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-30",
+      "probability": 0.6,
+      "impact_score": 234.0,
+      "expected_impact": 140.4,
+      "event_PS": 16.571,
+      "event_AS": 16.714,
+      "n_vars": 5,
+      "affected_ids": "chokepoint_transit_vol, maritime_incident_rate, global_oil_price, oil_market_risk_premium, military_escalation_leve",
+      "rationale": "Headline: 'Iran warns of maritime exclusion zone, strikes on U.S. Gulf energy assets'."
+    },
+    {
+      "id": "expanded_sanctions_on_iran",
+      "title": "Further sanctions and enforcement on Iran",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-09-09",
+      "end": "2026-11-30",
+      "probability": 0.75,
+      "impact_score": 110.0,
+      "expected_impact": 82.5,
+      "event_PS": 11.625,
+      "event_AS": 13.75,
+      "n_vars": 4,
+      "affected_ids": "sanctions_pressure_level, gulf_crude_prod_rate, strategic_withdrawal_rat, global_oil_price",
+      "rationale": "Headlines: 'US issues fresh Iran-related sanctions', 'UK publishes legislation for tougher sanctions on Iran'."
+    },
+    {
+      "id": "further_spr_withdrawals",
+      "title": "Additional strategic reserve withdrawals",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-11-30",
+      "probability": 0.7,
+      "impact_score": 90.0,
+      "expected_impact": 63.0,
+      "event_PS": 12.111,
+      "event_AS": 10.0,
+      "n_vars": 4,
+      "affected_ids": "strategic_withdrawal_rat, strategic_reserve_stock, global_oil_price, retail_fuel_availability",
+      "rationale": "Headlines: 'Oil stocks in US Strategic Petroleum Reserve fall...', 'U.S. EIA hikes oil price forecasts as Iran war drains global stockpile'."
+    },
+    {
+      "id": "refining_bottlenecks_worsen",
+      "title": "Refining and logistics bottlenecks intensify",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6–8 weeks",
+      "date": null,
+      "start": "2026-09-09",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 88.0,
+      "expected_impact": 70.4,
+      "event_PS": 17.9,
+      "event_AS": 8.8,
+      "n_vars": 5,
+      "affected_ids": "refining_bottleneck_sev, refinery_utilization_rat, retail_fuel_availability, freight_insurance_premia, global_oil_price",
+      "rationale": "Headlines: 'Refining bottlenecks are emerging...', 'Ship fuel shortage looms as refiners strained by war'."
+    },
+    {
+      "id": "opec_plus_steady_output_oct",
+      "title": "OPEC+ keeps output steady in October",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "October 2026",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.95,
+      "impact_score": 72.0,
+      "expected_impact": 68.4,
+      "event_PS": 19.429,
+      "event_AS": 10.286,
+      "n_vars": 4,
+      "affected_ids": "gulf_crude_prod_rate, global_oil_price, oil_market_risk_premium, strategic_withdrawal_rat",
+      "rationale": "Headline: 'OPEC, Allies Agree to Keep Oil Output Steady in October'."
+    }
+  ]
+}

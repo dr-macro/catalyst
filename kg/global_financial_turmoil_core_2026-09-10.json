@@ -1,0 +1,2170 @@
+{
+  "label": "global_financial_turmoil",
+  "as_of": "2026-09-10",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-10T01:40:25",
+  "system_description": {
+    "narrative_title": "Global Bond Sell-Off and Spillovers to Currencies, Credit and Fiscal Costs",
+    "narrative_summary": "A coordinated story of rising government bond yields and a repricing of rate and credit risk is driving sharp moves across currencies (notably a surging yen), higher sovereign and corporate borrowing costs, and volatile asset-price reactions (gold, equities). Central-bank rate expectations, Treasury fiscal operations (including a $6bn buyback), and fiscal funding pressures are interacting with investor positioning and carry trades, producing cross-market spillovers and tests of market functioning. The episode is framed as an open, system-wide adjustment in interest-rate risk that cascades into FX, credit spreads, fiscal budgets and asset allocation.",
+    "scope": "Government bond markets (US Treasuries, gilts, global sovereigns), yield curves and interest-rate expectations; central-bank policy signalling and intervention (Fed, BOJ, ECB, BoE); currency markets (yen, dollar, renminbi); sovereign and corporate funding operations (debt issuance, buybacks, private-credit borrowing); related asset classes affected (equities, gold, commodities) and investor positioning (carry trades, leveraged strategies).",
+    "super_system": "Global macro-financial system / global economy (monetary policy, fiscal sustainability, international capital flows)",
+    "adjacent_subsystems": [
+      "Central bank monetary policy and market operations",
+      "Sovereign fiscal management and debt issuance",
+      "Currency and carry-trade mechanics",
+      "Corporate credit markets and private-asset financing"
+    ],
+    "evidence_headlines": [
+      "Treasury yields face 4.8% test as fiscal risks threaten to spill into other assets",
+      "Yen extends rally to new seven-month high; dollar subdued ahead of CPI",
+      "Treasury yields jump as Bessent’s $6bn buyback plan disappoints investors - ft.com",
+      "Bond Yields Rocket to 2-Decade High as Global Selloff Deepens",
+      "UK pays highest borrowing cost since 1998 at gilt sale",
+      "The world’s $2tn interest bill"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_gov_yield",
+      "name": "Long-term government bond yield",
+      "description": "The prevailing average yield on longer-dated sovereign bonds, capturing the level of long-term interest rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_rate_expectations",
+      "name": "Short-term policy rate expectations",
+      "description": "Market-implied expected path for short-term policy interest rates over the near to medium term.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The difference between yields at longer and shorter maturities, measuring the term-structure shape.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_credit_spreads",
+      "name": "Sovereign credit spreads",
+      "description": "Risk premia demanded over a reference risk-free rate for sovereign debt, reflecting perceived fiscal/default risk.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_credit_spreads",
+      "name": "Corporate credit spreads",
+      "description": "Average risk premia on corporate debt over risk-free rates, reflecting credit risk and liquidity conditions for issuers.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "currency_dispersion",
+      "name": "Currency valuation dispersion",
+      "description": "Cross-currency deviations and relative exchange-rate movements across major currencies against their typical baselines.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fx_intervention_pressure",
+      "name": "FX intervention pressure",
+      "description": "Aggregate degree of market pressure and policy incentive for authorities to intervene in foreign-exchange markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_leverage",
+      "name": "Investor leverage levels",
+      "description": "Aggregate leverage employed by investors across fixed-income, carry and related strategies.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "carry_trade_exposure",
+      "name": "Carry-trade exposure",
+      "description": "Net positioning and exposure in carry-driven strategies that borrow in low-yielding assets to invest in higher-yielding ones.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity depth",
+      "description": "The depth and resiliency of markets, measured by the ease of executing large trades without outsized price impact.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_asset_volatility",
+      "name": "Cross-asset volatility",
+      "description": "Realized and implied volatility across bond, equity, currency and commodity markets reflecting market turbulence.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "Net and gross capital flows across borders that reallocate savings and funding between jurisdictions over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_funding_pressure",
+      "name": "Fiscal funding pressure",
+      "description": "Degree of strain on sovereign budgets from interest costs, deficits and rollover requirements.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_issuance_need",
+      "name": "Sovereign issuance need",
+      "description": "Gross borrowing requirement for sovereigns over a given horizon (maturities to refinance plus new net issuance required).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_signal",
+      "name": "Central-bank signalling intensity",
+      "description": "Frequency, clarity and forcefulness of central-bank forward guidance and communication about policy intentions.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market- and survey-based expectations of future inflation over short and medium horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_gov_yield",
+    "short_rate_expectations",
+    "yield_curve_slope",
+    "sovereign_credit_spreads",
+    "corporate_credit_spreads",
+    "currency_dispersion",
+    "fx_intervention_pressure",
+    "investor_leverage",
+    "carry_trade_exposure",
+    "market_liquidity",
+    "cross_asset_volatility",
+    "cross_border_flows",
+    "fiscal_funding_pressure",
+    "sovereign_issuance_need",
+    "central_bank_signal",
+    "inflation_expectations"
+  ],
+  "var_names": {
+    "long_gov_yield": "Long-term government bond yield",
+    "short_rate_expectations": "Short-term policy rate expectations",
+    "yield_curve_slope": "Yield curve slope",
+    "sovereign_credit_spreads": "Sovereign credit spreads",
+    "corporate_credit_spreads": "Corporate credit spreads",
+    "currency_dispersion": "Currency valuation dispersion",
+    "fx_intervention_pressure": "FX intervention pressure",
+    "investor_leverage": "Investor leverage levels",
+    "carry_trade_exposure": "Carry-trade exposure",
+    "market_liquidity": "Market liquidity depth",
+    "cross_asset_volatility": "Cross-asset volatility",
+    "cross_border_flows": "Cross-border capital flows",
+    "fiscal_funding_pressure": "Fiscal funding pressure",
+    "sovereign_issuance_need": "Sovereign issuance need",
+    "central_bank_signal": "Central-bank signalling intensity",
+    "inflation_expectations": "Inflation expectations"
+  },
+  "impact_matrix": {
+    "long_gov_yield": {
+      "long_gov_yield": 0,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 3,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 1,
+      "currency_dispersion": 2,
+      "fx_intervention_pressure": 1,
+      "investor_leverage": 2,
+      "carry_trade_exposure": 2,
+      "market_liquidity": 2,
+      "cross_asset_volatility": 3,
+      "cross_border_flows": 3,
+      "fiscal_funding_pressure": 3,
+      "sovereign_issuance_need": 1,
+      "central_bank_signal": 1,
+      "inflation_expectations": 1
+    },
+    "short_rate_expectations": {
+      "long_gov_yield": 3,
+      "short_rate_expectations": 0,
+      "yield_curve_slope": 3,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 2,
+      "currency_dispersion": 3,
+      "fx_intervention_pressure": 2,
+      "investor_leverage": 2,
+      "carry_trade_exposure": 3,
+      "market_liquidity": 2,
+      "cross_asset_volatility": 3,
+      "cross_border_flows": 3,
+      "fiscal_funding_pressure": 2,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 1,
+      "inflation_expectations": 1
+    },
+    "yield_curve_slope": {
+      "long_gov_yield": 1,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 0,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 2,
+      "currency_dispersion": 2,
+      "fx_intervention_pressure": 1,
+      "investor_leverage": 2,
+      "carry_trade_exposure": 2,
+      "market_liquidity": 1,
+      "cross_asset_volatility": 2,
+      "cross_border_flows": 2,
+      "fiscal_funding_pressure": 2,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 1,
+      "inflation_expectations": 1
+    },
+    "sovereign_credit_spreads": {
+      "long_gov_yield": 2,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 0,
+      "corporate_credit_spreads": 3,
+      "currency_dispersion": 3,
+      "fx_intervention_pressure": 2,
+      "investor_leverage": 2,
+      "carry_trade_exposure": 2,
+      "market_liquidity": 3,
+      "cross_asset_volatility": 3,
+      "cross_border_flows": 3,
+      "fiscal_funding_pressure": 3,
+      "sovereign_issuance_need": 1,
+      "central_bank_signal": 2,
+      "inflation_expectations": 0
+    },
+    "corporate_credit_spreads": {
+      "long_gov_yield": 1,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 1,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 0,
+      "currency_dispersion": 1,
+      "fx_intervention_pressure": 1,
+      "investor_leverage": 2,
+      "carry_trade_exposure": 2,
+      "market_liquidity": 3,
+      "cross_asset_volatility": 3,
+      "cross_border_flows": 2,
+      "fiscal_funding_pressure": 0,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 2,
+      "inflation_expectations": 0
+    },
+    "currency_dispersion": {
+      "long_gov_yield": 2,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 1,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 2,
+      "currency_dispersion": 0,
+      "fx_intervention_pressure": 3,
+      "investor_leverage": 2,
+      "carry_trade_exposure": 3,
+      "market_liquidity": 2,
+      "cross_asset_volatility": 3,
+      "cross_border_flows": 3,
+      "fiscal_funding_pressure": 2,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 2,
+      "inflation_expectations": 2
+    },
+    "fx_intervention_pressure": {
+      "long_gov_yield": 1,
+      "short_rate_expectations": 2,
+      "yield_curve_slope": 1,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 1,
+      "currency_dispersion": 3,
+      "fx_intervention_pressure": 0,
+      "investor_leverage": 1,
+      "carry_trade_exposure": 2,
+      "market_liquidity": 1,
+      "cross_asset_volatility": 2,
+      "cross_border_flows": 2,
+      "fiscal_funding_pressure": 0,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 3,
+      "inflation_expectations": 1
+    },
+    "investor_leverage": {
+      "long_gov_yield": 2,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 1,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 3,
+      "currency_dispersion": 2,
+      "fx_intervention_pressure": 1,
+      "investor_leverage": 0,
+      "carry_trade_exposure": 3,
+      "market_liquidity": 3,
+      "cross_asset_volatility": 3,
+      "cross_border_flows": 2,
+      "fiscal_funding_pressure": 0,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 2,
+      "inflation_expectations": 0
+    },
+    "carry_trade_exposure": {
+      "long_gov_yield": 2,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 1,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 1,
+      "currency_dispersion": 3,
+      "fx_intervention_pressure": 2,
+      "investor_leverage": 3,
+      "carry_trade_exposure": 0,
+      "market_liquidity": 2,
+      "cross_asset_volatility": 3,
+      "cross_border_flows": 3,
+      "fiscal_funding_pressure": 0,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 1,
+      "inflation_expectations": 0
+    },
+    "market_liquidity": {
+      "long_gov_yield": 3,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 3,
+      "corporate_credit_spreads": 3,
+      "currency_dispersion": 3,
+      "fx_intervention_pressure": 2,
+      "investor_leverage": 3,
+      "carry_trade_exposure": 2,
+      "market_liquidity": 0,
+      "cross_asset_volatility": 3,
+      "cross_border_flows": 2,
+      "fiscal_funding_pressure": 2,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 2,
+      "inflation_expectations": 0
+    },
+    "cross_asset_volatility": {
+      "long_gov_yield": 3,
+      "short_rate_expectations": 2,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 3,
+      "corporate_credit_spreads": 3,
+      "currency_dispersion": 3,
+      "fx_intervention_pressure": 2,
+      "investor_leverage": 3,
+      "carry_trade_exposure": 3,
+      "market_liquidity": 3,
+      "cross_asset_volatility": 0,
+      "cross_border_flows": 3,
+      "fiscal_funding_pressure": 2,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 2,
+      "inflation_expectations": 1
+    },
+    "cross_border_flows": {
+      "long_gov_yield": 3,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 2,
+      "currency_dispersion": 3,
+      "fx_intervention_pressure": 3,
+      "investor_leverage": 1,
+      "carry_trade_exposure": 2,
+      "market_liquidity": 2,
+      "cross_asset_volatility": 2,
+      "cross_border_flows": 0,
+      "fiscal_funding_pressure": 1,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 1,
+      "inflation_expectations": 0
+    },
+    "fiscal_funding_pressure": {
+      "long_gov_yield": 3,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 3,
+      "sovereign_credit_spreads": 3,
+      "corporate_credit_spreads": 2,
+      "currency_dispersion": 2,
+      "fx_intervention_pressure": 2,
+      "investor_leverage": 1,
+      "carry_trade_exposure": 1,
+      "market_liquidity": 2,
+      "cross_asset_volatility": 3,
+      "cross_border_flows": 2,
+      "fiscal_funding_pressure": 0,
+      "sovereign_issuance_need": 1,
+      "central_bank_signal": 2,
+      "inflation_expectations": 2
+    },
+    "sovereign_issuance_need": {
+      "long_gov_yield": 3,
+      "short_rate_expectations": 1,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 0,
+      "currency_dispersion": 1,
+      "fx_intervention_pressure": 1,
+      "investor_leverage": 1,
+      "carry_trade_exposure": 0,
+      "market_liquidity": 1,
+      "cross_asset_volatility": 1,
+      "cross_border_flows": 1,
+      "fiscal_funding_pressure": 3,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 1,
+      "inflation_expectations": 0
+    },
+    "central_bank_signal": {
+      "long_gov_yield": 3,
+      "short_rate_expectations": 3,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 2,
+      "currency_dispersion": 2,
+      "fx_intervention_pressure": 2,
+      "investor_leverage": 2,
+      "carry_trade_exposure": 2,
+      "market_liquidity": 1,
+      "cross_asset_volatility": 2,
+      "cross_border_flows": 2,
+      "fiscal_funding_pressure": 0,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 0,
+      "inflation_expectations": 3
+    },
+    "inflation_expectations": {
+      "long_gov_yield": 3,
+      "short_rate_expectations": 3,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 1,
+      "corporate_credit_spreads": 1,
+      "currency_dispersion": 2,
+      "fx_intervention_pressure": 1,
+      "investor_leverage": 1,
+      "carry_trade_exposure": 1,
+      "market_liquidity": 1,
+      "cross_asset_volatility": 2,
+      "cross_border_flows": 1,
+      "fiscal_funding_pressure": 2,
+      "sovereign_issuance_need": 0,
+      "central_bank_signal": 3,
+      "inflation_expectations": 0
+    }
+  },
+  "AS": {
+    "long_gov_yield": 28,
+    "short_rate_expectations": 32,
+    "yield_curve_slope": 22,
+    "sovereign_credit_spreads": 32,
+    "corporate_credit_spreads": 21,
+    "currency_dispersion": 30,
+    "fx_intervention_pressure": 22,
+    "investor_leverage": 25,
+    "carry_trade_exposure": 24,
+    "market_liquidity": 31,
+    "cross_asset_volatility": 35,
+    "cross_border_flows": 25,
+    "fiscal_funding_pressure": 30,
+    "sovereign_issuance_need": 18,
+    "central_bank_signal": 28,
+    "inflation_expectations": 24
+  },
+  "PS": {
+    "long_gov_yield": 35,
+    "short_rate_expectations": 21,
+    "yield_curve_slope": 28,
+    "sovereign_credit_spreads": 32,
+    "corporate_credit_spreads": 28,
+    "currency_dispersion": 35,
+    "fx_intervention_pressure": 26,
+    "investor_leverage": 28,
+    "carry_trade_exposure": 30,
+    "market_liquidity": 29,
+    "cross_asset_volatility": 38,
+    "cross_border_flows": 34,
+    "fiscal_funding_pressure": 22,
+    "sovereign_issuance_need": 3,
+    "central_bank_signal": 26,
+    "inflation_expectations": 12
+  },
+  "med_AS": 26.5,
+  "med_PS": 28.0,
+  "roles": [
+    {
+      "variable": "cross_asset_volatility",
+      "name": "Cross-asset volatility",
+      "AS": 35,
+      "PS": 38,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 1330,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "currency_dispersion",
+      "name": "Currency valuation dispersion",
+      "AS": 30,
+      "PS": 35,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 1050,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_credit_spreads",
+      "name": "Sovereign credit spreads",
+      "AS": 32,
+      "PS": 32,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 1024,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "long_gov_yield",
+      "name": "Long-term government bond yield",
+      "AS": 28,
+      "PS": 35,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 980,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity depth",
+      "AS": 31,
+      "PS": 29,
+      "Q=AS/PS": 1.07,
+      "P=AS*PS": 899,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 25,
+      "PS": 34,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 850,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "central_bank_signal",
+      "name": "Central-bank signalling intensity",
+      "AS": 28,
+      "PS": 26,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 728,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "carry_trade_exposure",
+      "name": "Carry-trade exposure",
+      "AS": 24,
+      "PS": 30,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 720,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "investor_leverage",
+      "name": "Investor leverage levels",
+      "AS": 25,
+      "PS": 28,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 700,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "short_rate_expectations",
+      "name": "Short-term policy rate expectations",
+      "AS": 32,
+      "PS": 21,
+      "Q=AS/PS": 1.52,
+      "P=AS*PS": 672,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "fiscal_funding_pressure",
+      "name": "Fiscal funding pressure",
+      "AS": 30,
+      "PS": 22,
+      "Q=AS/PS": 1.36,
+      "P=AS*PS": 660,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 22,
+      "PS": 28,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 616,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "corporate_credit_spreads",
+      "name": "Corporate credit spreads",
+      "AS": 21,
+      "PS": 28,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 588,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fx_intervention_pressure",
+      "name": "FX intervention pressure",
+      "AS": 22,
+      "PS": 26,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 572,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 24,
+      "PS": 12,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 288,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "sovereign_issuance_need",
+      "name": "Sovereign issuance need",
+      "AS": 18,
+      "PS": 3,
+      "Q=AS/PS": 6.0,
+      "P=AS*PS": 54,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_gov_yield",
+        "name": "Long-term government bond yield",
+        "kind": "driver",
+        "AS": 28,
+        "PS": 35
+      },
+      {
+        "id": "short_rate_expectations",
+        "name": "Short-term policy rate expectations",
+        "kind": "perception",
+        "AS": 32,
+        "PS": 21
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "driver",
+        "AS": 22,
+        "PS": 28
+      },
+      {
+        "id": "sovereign_credit_spreads",
+        "name": "Sovereign credit spreads",
+        "kind": "driver",
+        "AS": 32,
+        "PS": 32
+      },
+      {
+        "id": "corporate_credit_spreads",
+        "name": "Corporate credit spreads",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 28
+      },
+      {
+        "id": "currency_dispersion",
+        "name": "Currency valuation dispersion",
+        "kind": "environment",
+        "AS": 30,
+        "PS": 35
+      },
+      {
+        "id": "fx_intervention_pressure",
+        "name": "FX intervention pressure",
+        "kind": "driver",
+        "AS": 22,
+        "PS": 26
+      },
+      {
+        "id": "investor_leverage",
+        "name": "Investor leverage levels",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 28
+      },
+      {
+        "id": "carry_trade_exposure",
+        "name": "Carry-trade exposure",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 30
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity depth",
+        "kind": "stock",
+        "AS": 31,
+        "PS": 29
+      },
+      {
+        "id": "cross_asset_volatility",
+        "name": "Cross-asset volatility",
+        "kind": "perception",
+        "AS": 35,
+        "PS": 38
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 25,
+        "PS": 34
+      },
+      {
+        "id": "fiscal_funding_pressure",
+        "name": "Fiscal funding pressure",
+        "kind": "driver",
+        "AS": 30,
+        "PS": 22
+      },
+      {
+        "id": "sovereign_issuance_need",
+        "name": "Sovereign issuance need",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 3
+      },
+      {
+        "id": "central_bank_signal",
+        "name": "Central-bank signalling intensity",
+        "kind": "driver",
+        "AS": 28,
+        "PS": 26
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 12
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_gov_yield",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_gov_yield",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_gov_yield",
+        "target": "currency_dispersion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_gov_yield",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_gov_yield",
+        "target": "carry_trade_exposure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_gov_yield",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_gov_yield",
+        "target": "cross_asset_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_gov_yield",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_gov_yield",
+        "target": "fiscal_funding_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "long_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "currency_dispersion",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "fx_intervention_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "carry_trade_exposure",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "cross_asset_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_rate_expectations",
+        "target": "fiscal_funding_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "currency_dispersion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "carry_trade_exposure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "cross_asset_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "fiscal_funding_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "long_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "corporate_credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "currency_dispersion",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "fx_intervention_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "carry_trade_exposure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "cross_asset_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "fiscal_funding_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "central_bank_signal",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "carry_trade_exposure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "cross_asset_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "central_bank_signal",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "long_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "fx_intervention_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "carry_trade_exposure",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "cross_asset_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "fiscal_funding_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "central_bank_signal",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_dispersion",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_intervention_pressure",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_intervention_pressure",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_intervention_pressure",
+        "target": "currency_dispersion",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fx_intervention_pressure",
+        "target": "carry_trade_exposure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_intervention_pressure",
+        "target": "cross_asset_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_intervention_pressure",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_intervention_pressure",
+        "target": "central_bank_signal",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "long_gov_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "corporate_credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "currency_dispersion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "carry_trade_exposure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "cross_asset_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "central_bank_signal",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "carry_trade_exposure",
+        "target": "long_gov_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "carry_trade_exposure",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "carry_trade_exposure",
+        "target": "currency_dispersion",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "carry_trade_exposure",
+        "target": "fx_intervention_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "carry_trade_exposure",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "carry_trade_exposure",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "carry_trade_exposure",
+        "target": "cross_asset_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "carry_trade_exposure",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "long_gov_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "sovereign_credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "corporate_credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "currency_dispersion",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "fx_intervention_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "carry_trade_exposure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "cross_asset_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "fiscal_funding_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "central_bank_signal",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "long_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "short_rate_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "sovereign_credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "corporate_credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "currency_dispersion",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "fx_intervention_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "carry_trade_exposure",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "fiscal_funding_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_volatility",
+        "target": "central_bank_signal",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "long_gov_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "currency_dispersion",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "fx_intervention_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "carry_trade_exposure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "cross_asset_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_funding_pressure",
+        "target": "long_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_funding_pressure",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_funding_pressure",
+        "target": "sovereign_credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_funding_pressure",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_funding_pressure",
+        "target": "currency_dispersion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_funding_pressure",
+        "target": "fx_intervention_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_funding_pressure",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_funding_pressure",
+        "target": "cross_asset_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_funding_pressure",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_funding_pressure",
+        "target": "central_bank_signal",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_funding_pressure",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_issuance_need",
+        "target": "long_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_issuance_need",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_issuance_need",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_issuance_need",
+        "target": "fiscal_funding_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "long_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "short_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "currency_dispersion",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "fx_intervention_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "carry_trade_exposure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "cross_asset_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_signal",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "currency_dispersion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_asset_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "fiscal_funding_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "central_bank_signal",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_treasury_sep10_buyback",
+      "title": "US Treasury Sept 10 buyback",
+      "description": "Confirmed Treasury operation to buy up to $6bn of longer-term bonds on Sept 10; a one-off liquidity/supply shock to the long-end.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-10",
+        "start": null,
+        "end": null,
+        "label": "2026-09-10"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "long_gov_yield",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_issuance_need",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_asset_volatility",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "US Treasury to buy up to $6 billion in Sept 10 buyback operation; headlines cite investor reaction."
+    },
+    {
+      "id": "us_inflation_reports_early_sep",
+      "title": "US CPI/inflation prints (early Sep)",
+      "description": "Near-term US inflation reports that markets are watching; likely to move rate expectations, yields and volatility.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-12",
+        "label": "next 3 days"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_gov_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_asset_volatility",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Investors await U.S. CPI; 'Fed rate hike hinges on two key inflation reports' — data will move expectations and yields."
+    },
+    {
+      "id": "ecb_sep10_rate_hike",
+      "title": "ECB policy rate hike (mid‑September)",
+      "description": "A widely-expected ECB rate increase in mid-September that will reprice European short rates and signalling.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-10",
+        "start": null,
+        "end": null,
+        "label": "2026-09-10"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "central_bank_signal",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "currency_dispersion",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'The ECB is virtually certain to hike rates Thursday' — will lift short‑rate pricing and signalling."
+    },
+    {
+      "id": "boj_sep_hike_risk",
+      "title": "BOJ September rate‑hike risk",
+      "description": "Rising market bets and politicians' reflationist comments increase odds of a BOJ hike in September, affecting yen and carry trades.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-30",
+        "label": "by end of Sep"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "short_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "carry_trade_exposure",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "currency_dispersion",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fx_intervention_pressure",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Takaichi aide projects BOJ hike in September; 'Yen hits seven‑month high' — fuels rate/FX repricing and carry unwind."
+    },
+    {
+      "id": "japan_fx_intervention_continuation",
+      "title": "Ongoing Japanese FX intervention",
+      "description": "Record foreign‑reserve drawdown and interventions suggest continued FX authorities' activity, sustaining FX market pressure and volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-24",
+        "label": "2 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "fx_intervention_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_dispersion",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Japan's foreign reserves fell a record $80bn after intervention; headlines note ongoing intervention and market alertness."
+    },
+    {
+      "id": "uk_gilt_auctions_and_fiscal_pressure",
+      "title": "UK gilt auctions / fiscal stress",
+      "description": "High yields at recent gilt sales and political reassurance signalling point to ongoing funding pressure across UK sovereign markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-30",
+        "label": "rest of Sep"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "long_gov_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_funding_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_credit_spreads",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_issuance_need",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'UK pays highest borrowing cost since 1998 at gilt sale' and 'John Healey seeks to reassure bond markets' — ongoing funding strain."
+    },
+    {
+      "id": "treasury_bessent_buyback_program",
+      "title": "Treasury buyback programme & messaging",
+      "description": "Ongoing Treasury buyback program and secretary Bessent's market‑dominant messaging ('I am the house now') that reshape market positioning.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-24",
+        "label": "2 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "long_gov_yield",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_leverage",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Bessent bond plan details' and 'I am the house now' — signalling plus active buybacks reshape supply/liquidity."
+    },
+    {
+      "id": "yen_carry_trade_unwind",
+      "title": "Carry‑trade unwind from yen surge",
+      "description": "Rapid yen appreciation has started to disrupt carry strategies, an ongoing process that can amplify FX and bond moves.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-24",
+        "label": "2 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "carry_trade_exposure",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_leverage",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "currency_dispersion",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple headlines: 'Yen's sudden surge is upsetting the carry trade faithful' and 'Yen hits seven‑month high' — ongoing unwind risk."
+    },
+    {
+      "id": "offshore_rmb_borrowing_record",
+      "title": "Record offshore RMB borrowing",
+      "description": "Surging offshore renminbi borrowing activity which could shift cross‑border flows and FX funding patterns in the near term.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-10-10",
+        "label": "next month"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_dispersion",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Offshore borrowing in renminbi hits record high of nearly $150bn' — shifts cross‑border funding and FX demand."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_inflation_reports_early_sep",
+      "title": "US CPI/inflation prints (early Sep)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 days",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-12",
+      "probability": 0.9,
+      "impact_score": 297.0,
+      "expected_impact": 267.3,
+      "event_PS": 26.2,
+      "event_AS": 29.7,
+      "n_vars": 4,
+      "affected_ids": "inflation_expectations, short_rate_expectations, long_gov_yield, cross_asset_volatility",
+      "rationale": "Investors await U.S. CPI; 'Fed rate hike hinges on two key inflation reports' — data will move expectations and yields."
+    },
+    {
+      "id": "uk_gilt_auctions_and_fiscal_pressure",
+      "title": "UK gilt auctions / fiscal stress",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "rest of Sep",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-30",
+      "probability": 0.85,
+      "impact_score": 274.0,
+      "expected_impact": 232.9,
+      "event_PS": 24.1,
+      "event_AS": 27.4,
+      "n_vars": 4,
+      "affected_ids": "long_gov_yield, fiscal_funding_pressure, sovereign_credit_spreads, sovereign_issuance_need",
+      "rationale": "'UK pays highest borrowing cost since 1998 at gilt sale' and 'John Healey seeks to reassure bond markets' — ongoing funding strain."
+    },
+    {
+      "id": "ecb_sep10_rate_hike",
+      "title": "ECB policy rate hike (mid‑September)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-09-10",
+      "date": "2026-09-10",
+      "start": null,
+      "end": null,
+      "probability": 0.85,
+      "impact_score": 254.0,
+      "expected_impact": 215.9,
+      "event_PS": 25.778,
+      "event_AS": 28.222,
+      "n_vars": 4,
+      "affected_ids": "short_rate_expectations, central_bank_signal, yield_curve_slope, currency_dispersion",
+      "rationale": "Headline: 'The ECB is virtually certain to hike rates Thursday' — will lift short‑rate pricing and signalling."
+    },
+    {
+      "id": "us_treasury_sep10_buyback",
+      "title": "US Treasury Sept 10 buyback",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-09-10",
+      "date": "2026-09-10",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 252.0,
+      "expected_impact": 239.4,
+      "event_PS": 27.222,
+      "event_AS": 28.0,
+      "n_vars": 4,
+      "affected_ids": "long_gov_yield, sovereign_issuance_need, market_liquidity, cross_asset_volatility",
+      "rationale": "US Treasury to buy up to $6 billion in Sept 10 buyback operation; headlines cite investor reaction."
+    },
+    {
+      "id": "boj_sep_hike_risk",
+      "title": "BOJ September rate‑hike risk",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of Sep",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-30",
+      "probability": 0.6,
+      "impact_score": 240.0,
+      "expected_impact": 144.0,
+      "event_PS": 28.222,
+      "event_AS": 26.667,
+      "n_vars": 4,
+      "affected_ids": "short_rate_expectations, carry_trade_exposure, currency_dispersion, fx_intervention_pressure",
+      "rationale": "Takaichi aide projects BOJ hike in September; 'Yen hits seven‑month high' — fuels rate/FX repricing and carry unwind."
+    },
+    {
+      "id": "yen_carry_trade_unwind",
+      "title": "Carry‑trade unwind from yen surge",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-24",
+      "probability": 0.7,
+      "impact_score": 182.0,
+      "expected_impact": 127.4,
+      "event_PS": 30.857,
+      "event_AS": 26.0,
+      "n_vars": 3,
+      "affected_ids": "carry_trade_exposure, investor_leverage, currency_dispersion",
+      "rationale": "Multiple headlines: 'Yen's sudden surge is upsetting the carry trade faithful' and 'Yen hits seven‑month high' — ongoing unwind risk."
+    },
+    {
+      "id": "japan_fx_intervention_continuation",
+      "title": "Ongoing Japanese FX intervention",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-24",
+      "probability": 0.8,
+      "impact_score": 157.0,
+      "expected_impact": 125.6,
+      "event_PS": 29.5,
+      "event_AS": 26.167,
+      "n_vars": 3,
+      "affected_ids": "fx_intervention_pressure, currency_dispersion, market_liquidity",
+      "rationale": "Japan's foreign reserves fell a record $80bn after intervention; headlines note ongoing intervention and market alertness."
+    },
+    {
+      "id": "treasury_bessent_buyback_program",
+      "title": "Treasury buyback programme & messaging",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-24",
+      "probability": 0.75,
+      "impact_score": 143.0,
+      "expected_impact": 107.25,
+      "event_PS": 31.2,
+      "event_AS": 28.6,
+      "n_vars": 3,
+      "affected_ids": "long_gov_yield, market_liquidity, investor_leverage",
+      "rationale": "Headlines: 'Bessent bond plan details' and 'I am the house now' — signalling plus active buybacks reshape supply/liquidity."
+    },
+    {
+      "id": "offshore_rmb_borrowing_record",
+      "title": "Record offshore RMB borrowing",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next month",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-10-10",
+      "probability": 0.7,
+      "impact_score": 80.0,
+      "expected_impact": 56.0,
+      "event_PS": 34.333,
+      "event_AS": 26.667,
+      "n_vars": 2,
+      "affected_ids": "cross_border_flows, currency_dispersion",
+      "rationale": "Headline: 'Offshore borrowing in renminbi hits record high of nearly $150bn' — shifts cross‑border funding and FX demand."
+    }
+  ]
+}
