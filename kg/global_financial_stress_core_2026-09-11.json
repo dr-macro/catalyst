@@ -1,0 +1,1919 @@
+{
+  "label": "global_financial_stress",
+  "as_of": "2026-09-10",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-11T01:55:09",
+  "system_description": {
+    "narrative_title": "Bond-market repricing amid hawkish central banks and inflation shock",
+    "narrative_summary": "Across headlines the single dominant thread is a broad repricing of fixed-income markets: rising bond yields, central-bank hawkishness and renewed inflation fears (partly driven by oil) are raising sovereign and corporate borrowing costs and unsettling investors. Policy actions (ECB hikes, Fed deliberations) and fiscal/market interventions (US Treasury buybacks) are interacting with commodities, credit-market strain and portfolio flows, creating contagion across equities, credit and safe-haven assets.",
+    "scope": "Developed-market sovereign and corporate bond markets and their immediate drivers: central bank policy decisions and communications, inflation and energy price shocks, government debt operations (e.g., Treasury buybacks), investor risk appetite and portfolio rebalancing, and spillovers into credit markets, equities and safe-haven assets (gold).",
+    "super_system": "Global macro-financial system (real economy, trade, sovereign balance sheets, cross-border capital flows and geopolitics)",
+    "adjacent_subsystems": [
+      "Commodity markets (especially crude oil and precious metals)",
+      "Banking and credit markets (lending, credit spreads, shadow banking)",
+      "Equity and corporate financing (tech/AI, buybacks, M&A, private equity)",
+      "Geopolitics and sanctions (trade frictions, capital flows, commodity supply shocks)"
+    ],
+    "evidence_headlines": [
+      "Global bond sell-off reignites as oil jumps to $107",
+      "US Treasury yields jump as plans for $6bn buybacks disappoint investors - ft.com",
+      "Global Bond Yields Hit Multiyear Highs Ahead of ECB Decision, U.S. Treasury Buybacks",
+      "The ECB Just Raised Interest Rates. Here’s What to Know.",
+      "Bonds have become bonds again"
+    ]
+  },
+  "variables": [
+    {
+      "id": "sovereign_yield_level",
+      "name": "Sovereign bond yield level",
+      "description": "The prevailing yield (interest rate) on benchmark sovereign bonds across the developed-market yield curve.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_spread_level",
+      "name": "Corporate bond spread level",
+      "description": "The average credit spread between corporate bonds and comparable-maturity sovereign bonds, reflecting compensation for credit and liquidity risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_interest_rate",
+      "name": "Policy interest rate",
+      "description": "The short-term policy interest rate set by central banks that anchors short-term funding costs.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_tone",
+      "name": "Monetary policy communication tone",
+      "description": "The hawkishness or dovishness expressed in central-bank communications and forward guidance about future policy paths.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "headline_inflation_rate",
+      "name": "Headline inflation rate",
+      "description": "The observed inflation rate for broad price indices (including energy and food) in the real economy.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and investor expectations of future inflation over short- and medium-term horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_price_level",
+      "name": "Energy price level",
+      "description": "The prevailing price level of major energy commodities (eg oil and gas) that transmits into production and headline inflation.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "government_net_bond_supp",
+      "name": "Government net bond supply",
+      "description": "The net flow of government debt issuance into the market after accounting for maturities and routine operations.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "treasury_buyback_intensi",
+      "name": "Government bond buyback intensity",
+      "description": "The scale and frequency of active government debt repurchase operations that remove outstanding bonds from the market.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The ease and depth with which bond positions can be transacted without large price impact, across maturities and issuers.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "portfolio_rebalancing_fl",
+      "name": "Portfolio rebalancing flow",
+      "description": "Net investor reallocations across asset classes (eg bonds to equities or cash) driven by yield, risk and strategic shifts.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_capital_flo",
+      "name": "Cross-border capital flow",
+      "description": "Net international financial flows into or out of developed-market fixed-income and related asset markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "Aggregate propensity of investors to accept risk, influencing demand for higher-yielding and riskier assets versus safe havens.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_market_stress_lev",
+      "name": "Credit market stress level",
+      "description": "The degree of strain in credit markets measured by indicators such as widening funding spreads, issuance freezes and default pressures.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_demand_flow",
+      "name": "Safe-haven asset demand",
+      "description": "The flow of investor demand into traditionally safe assets (eg high-grade sovereigns, gold) in response to risk or inflation shocks.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium_level",
+      "name": "Term premium level",
+      "description": "The compensation investors require for bearing duration risk over and above expected short-term rates across the yield curve.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "sovereign_yield_level",
+    "corporate_spread_level",
+    "policy_interest_rate",
+    "monetary_policy_tone",
+    "headline_inflation_rate",
+    "inflation_expectations",
+    "energy_price_level",
+    "government_net_bond_supp",
+    "treasury_buyback_intensi",
+    "market_liquidity",
+    "portfolio_rebalancing_fl",
+    "cross_border_capital_flo",
+    "investor_risk_appetite",
+    "credit_market_stress_lev",
+    "safe_haven_demand_flow",
+    "term_premium_level"
+  ],
+  "var_names": {
+    "sovereign_yield_level": "Sovereign bond yield level",
+    "corporate_spread_level": "Corporate bond spread level",
+    "policy_interest_rate": "Policy interest rate",
+    "monetary_policy_tone": "Monetary policy communication tone",
+    "headline_inflation_rate": "Headline inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "energy_price_level": "Energy price level",
+    "government_net_bond_supp": "Government net bond supply",
+    "treasury_buyback_intensi": "Government bond buyback intensity",
+    "market_liquidity": "Bond market liquidity",
+    "portfolio_rebalancing_fl": "Portfolio rebalancing flow",
+    "cross_border_capital_flo": "Cross-border capital flow",
+    "investor_risk_appetite": "Investor risk appetite",
+    "credit_market_stress_lev": "Credit market stress level",
+    "safe_haven_demand_flow": "Safe-haven asset demand",
+    "term_premium_level": "Term premium level"
+  },
+  "impact_matrix": {
+    "sovereign_yield_level": {
+      "sovereign_yield_level": 0,
+      "corporate_spread_level": 2,
+      "policy_interest_rate": 1,
+      "monetary_policy_tone": 1,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 2,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 1,
+      "portfolio_rebalancing_fl": 2,
+      "cross_border_capital_flo": 2,
+      "investor_risk_appetite": 1,
+      "credit_market_stress_lev": 2,
+      "safe_haven_demand_flow": 1,
+      "term_premium_level": 1
+    },
+    "corporate_spread_level": {
+      "sovereign_yield_level": 2,
+      "corporate_spread_level": 0,
+      "policy_interest_rate": 1,
+      "monetary_policy_tone": 1,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 2,
+      "portfolio_rebalancing_fl": 2,
+      "cross_border_capital_flo": 1,
+      "investor_risk_appetite": 2,
+      "credit_market_stress_lev": 3,
+      "safe_haven_demand_flow": 2,
+      "term_premium_level": 1
+    },
+    "policy_interest_rate": {
+      "sovereign_yield_level": 3,
+      "corporate_spread_level": 2,
+      "policy_interest_rate": 0,
+      "monetary_policy_tone": 1,
+      "headline_inflation_rate": 2,
+      "inflation_expectations": 2,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 2,
+      "portfolio_rebalancing_fl": 3,
+      "cross_border_capital_flo": 3,
+      "investor_risk_appetite": 2,
+      "credit_market_stress_lev": 2,
+      "safe_haven_demand_flow": 1,
+      "term_premium_level": 2
+    },
+    "monetary_policy_tone": {
+      "sovereign_yield_level": 3,
+      "corporate_spread_level": 2,
+      "policy_interest_rate": 1,
+      "monetary_policy_tone": 0,
+      "headline_inflation_rate": 1,
+      "inflation_expectations": 3,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 1,
+      "portfolio_rebalancing_fl": 2,
+      "cross_border_capital_flo": 2,
+      "investor_risk_appetite": 2,
+      "credit_market_stress_lev": 1,
+      "safe_haven_demand_flow": 2,
+      "term_premium_level": 2
+    },
+    "headline_inflation_rate": {
+      "sovereign_yield_level": 3,
+      "corporate_spread_level": 2,
+      "policy_interest_rate": 3,
+      "monetary_policy_tone": 3,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 3,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 1,
+      "portfolio_rebalancing_fl": 2,
+      "cross_border_capital_flo": 2,
+      "investor_risk_appetite": 1,
+      "credit_market_stress_lev": 2,
+      "safe_haven_demand_flow": 2,
+      "term_premium_level": 3
+    },
+    "inflation_expectations": {
+      "sovereign_yield_level": 3,
+      "corporate_spread_level": 2,
+      "policy_interest_rate": 3,
+      "monetary_policy_tone": 3,
+      "headline_inflation_rate": 1,
+      "inflation_expectations": 0,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 1,
+      "portfolio_rebalancing_fl": 2,
+      "cross_border_capital_flo": 2,
+      "investor_risk_appetite": 1,
+      "credit_market_stress_lev": 1,
+      "safe_haven_demand_flow": 2,
+      "term_premium_level": 3
+    },
+    "energy_price_level": {
+      "sovereign_yield_level": 1,
+      "corporate_spread_level": 1,
+      "policy_interest_rate": 2,
+      "monetary_policy_tone": 2,
+      "headline_inflation_rate": 3,
+      "inflation_expectations": 2,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 1,
+      "portfolio_rebalancing_fl": 1,
+      "cross_border_capital_flo": 1,
+      "investor_risk_appetite": 1,
+      "credit_market_stress_lev": 1,
+      "safe_haven_demand_flow": 2,
+      "term_premium_level": 1
+    },
+    "government_net_bond_supp": {
+      "sovereign_yield_level": 3,
+      "corporate_spread_level": 1,
+      "policy_interest_rate": 0,
+      "monetary_policy_tone": 0,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 2,
+      "portfolio_rebalancing_fl": 2,
+      "cross_border_capital_flo": 2,
+      "investor_risk_appetite": 0,
+      "credit_market_stress_lev": 0,
+      "safe_haven_demand_flow": 1,
+      "term_premium_level": 2
+    },
+    "treasury_buyback_intensi": {
+      "sovereign_yield_level": 2,
+      "corporate_spread_level": 1,
+      "policy_interest_rate": 0,
+      "monetary_policy_tone": 0,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 3,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 2,
+      "portfolio_rebalancing_fl": 1,
+      "cross_border_capital_flo": 1,
+      "investor_risk_appetite": 0,
+      "credit_market_stress_lev": 0,
+      "safe_haven_demand_flow": 1,
+      "term_premium_level": 2
+    },
+    "market_liquidity": {
+      "sovereign_yield_level": 2,
+      "corporate_spread_level": 3,
+      "policy_interest_rate": 0,
+      "monetary_policy_tone": 1,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 0,
+      "portfolio_rebalancing_fl": 3,
+      "cross_border_capital_flo": 2,
+      "investor_risk_appetite": 2,
+      "credit_market_stress_lev": 3,
+      "safe_haven_demand_flow": 2,
+      "term_premium_level": 2
+    },
+    "portfolio_rebalancing_fl": {
+      "sovereign_yield_level": 3,
+      "corporate_spread_level": 3,
+      "policy_interest_rate": 0,
+      "monetary_policy_tone": 1,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 3,
+      "portfolio_rebalancing_fl": 0,
+      "cross_border_capital_flo": 3,
+      "investor_risk_appetite": 2,
+      "credit_market_stress_lev": 2,
+      "safe_haven_demand_flow": 3,
+      "term_premium_level": 2
+    },
+    "cross_border_capital_flo": {
+      "sovereign_yield_level": 3,
+      "corporate_spread_level": 2,
+      "policy_interest_rate": 0,
+      "monetary_policy_tone": 1,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 2,
+      "portfolio_rebalancing_fl": 3,
+      "cross_border_capital_flo": 0,
+      "investor_risk_appetite": 2,
+      "credit_market_stress_lev": 1,
+      "safe_haven_demand_flow": 2,
+      "term_premium_level": 2
+    },
+    "investor_risk_appetite": {
+      "sovereign_yield_level": 2,
+      "corporate_spread_level": 3,
+      "policy_interest_rate": 0,
+      "monetary_policy_tone": 1,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 2,
+      "portfolio_rebalancing_fl": 3,
+      "cross_border_capital_flo": 2,
+      "investor_risk_appetite": 0,
+      "credit_market_stress_lev": 3,
+      "safe_haven_demand_flow": 3,
+      "term_premium_level": 2
+    },
+    "credit_market_stress_lev": {
+      "sovereign_yield_level": 2,
+      "corporate_spread_level": 3,
+      "policy_interest_rate": 0,
+      "monetary_policy_tone": 1,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 3,
+      "portfolio_rebalancing_fl": 3,
+      "cross_border_capital_flo": 2,
+      "investor_risk_appetite": 3,
+      "credit_market_stress_lev": 0,
+      "safe_haven_demand_flow": 3,
+      "term_premium_level": 2
+    },
+    "safe_haven_demand_flow": {
+      "sovereign_yield_level": 3,
+      "corporate_spread_level": 2,
+      "policy_interest_rate": 0,
+      "monetary_policy_tone": 1,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 2,
+      "portfolio_rebalancing_fl": 3,
+      "cross_border_capital_flo": 3,
+      "investor_risk_appetite": 3,
+      "credit_market_stress_lev": 2,
+      "safe_haven_demand_flow": 0,
+      "term_premium_level": 2
+    },
+    "term_premium_level": {
+      "sovereign_yield_level": 3,
+      "corporate_spread_level": 1,
+      "policy_interest_rate": 0,
+      "monetary_policy_tone": 1,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "government_net_bond_supp": 0,
+      "treasury_buyback_intensi": 0,
+      "market_liquidity": 2,
+      "portfolio_rebalancing_fl": 2,
+      "cross_border_capital_flo": 1,
+      "investor_risk_appetite": 1,
+      "credit_market_stress_lev": 1,
+      "safe_haven_demand_flow": 2,
+      "term_premium_level": 0
+    }
+  },
+  "AS": {
+    "sovereign_yield_level": 16,
+    "corporate_spread_level": 18,
+    "policy_interest_rate": 25,
+    "monetary_policy_tone": 22,
+    "headline_inflation_rate": 27,
+    "inflation_expectations": 24,
+    "energy_price_level": 19,
+    "government_net_bond_supp": 14,
+    "treasury_buyback_intensi": 14,
+    "market_liquidity": 21,
+    "portfolio_rebalancing_fl": 23,
+    "cross_border_capital_flo": 19,
+    "investor_risk_appetite": 22,
+    "credit_market_stress_lev": 23,
+    "safe_haven_demand_flow": 22,
+    "term_premium_level": 15
+  },
+  "PS": {
+    "sovereign_yield_level": 38,
+    "corporate_spread_level": 30,
+    "policy_interest_rate": 11,
+    "monetary_policy_tone": 18,
+    "headline_inflation_rate": 7,
+    "inflation_expectations": 22,
+    "energy_price_level": 0,
+    "government_net_bond_supp": 3,
+    "treasury_buyback_intensi": 0,
+    "market_liquidity": 27,
+    "portfolio_rebalancing_fl": 34,
+    "cross_border_capital_flo": 29,
+    "investor_risk_appetite": 23,
+    "credit_market_stress_lev": 24,
+    "safe_haven_demand_flow": 29,
+    "term_premium_level": 29
+  },
+  "med_AS": 21.5,
+  "med_PS": 23.5,
+  "roles": [
+    {
+      "variable": "portfolio_rebalancing_fl",
+      "name": "Portfolio rebalancing flow",
+      "AS": 23,
+      "PS": 34,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 782,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "safe_haven_demand_flow",
+      "name": "Safe-haven asset demand",
+      "AS": 22,
+      "PS": 29,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 638,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_yield_level",
+      "name": "Sovereign bond yield level",
+      "AS": 16,
+      "PS": 38,
+      "Q=AS/PS": 0.42,
+      "P=AS*PS": 608,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 21,
+      "PS": 27,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 567,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "credit_market_stress_lev",
+      "name": "Credit market stress level",
+      "AS": 23,
+      "PS": 24,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 552,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_capital_flo",
+      "name": "Cross-border capital flow",
+      "AS": 19,
+      "PS": 29,
+      "Q=AS/PS": 0.66,
+      "P=AS*PS": 551,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "corporate_spread_level",
+      "name": "Corporate bond spread level",
+      "AS": 18,
+      "PS": 30,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 540,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 24,
+      "PS": 22,
+      "Q=AS/PS": 1.09,
+      "P=AS*PS": 528,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 22,
+      "PS": 23,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 506,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "term_premium_level",
+      "name": "Term premium level",
+      "AS": 15,
+      "PS": 29,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 435,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "monetary_policy_tone",
+      "name": "Monetary policy communication tone",
+      "AS": 22,
+      "PS": 18,
+      "Q=AS/PS": 1.22,
+      "P=AS*PS": 396,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "policy_interest_rate",
+      "name": "Policy interest rate",
+      "AS": 25,
+      "PS": 11,
+      "Q=AS/PS": 2.27,
+      "P=AS*PS": 275,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "headline_inflation_rate",
+      "name": "Headline inflation rate",
+      "AS": 27,
+      "PS": 7,
+      "Q=AS/PS": 3.86,
+      "P=AS*PS": 189,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "government_net_bond_supp",
+      "name": "Government net bond supply",
+      "AS": 14,
+      "PS": 3,
+      "Q=AS/PS": 4.67,
+      "P=AS*PS": 42,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "energy_price_level",
+      "name": "Energy price level",
+      "AS": 19,
+      "PS": 0,
+      "Q=AS/PS": 19000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "treasury_buyback_intensi",
+      "name": "Government bond buyback intensity",
+      "AS": 14,
+      "PS": 0,
+      "Q=AS/PS": 14000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "sovereign_yield_level",
+        "name": "Sovereign bond yield level",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 38
+      },
+      {
+        "id": "corporate_spread_level",
+        "name": "Corporate bond spread level",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 30
+      },
+      {
+        "id": "policy_interest_rate",
+        "name": "Policy interest rate",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 11
+      },
+      {
+        "id": "monetary_policy_tone",
+        "name": "Monetary policy communication tone",
+        "kind": "driver",
+        "AS": 22,
+        "PS": 18
+      },
+      {
+        "id": "headline_inflation_rate",
+        "name": "Headline inflation rate",
+        "kind": "environment",
+        "AS": 27,
+        "PS": 7
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 22
+      },
+      {
+        "id": "energy_price_level",
+        "name": "Energy price level",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 0
+      },
+      {
+        "id": "government_net_bond_supp",
+        "name": "Government net bond supply",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 3
+      },
+      {
+        "id": "treasury_buyback_intensi",
+        "name": "Government bond buyback intensity",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 0
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 27
+      },
+      {
+        "id": "portfolio_rebalancing_fl",
+        "name": "Portfolio rebalancing flow",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 34
+      },
+      {
+        "id": "cross_border_capital_flo",
+        "name": "Cross-border capital flow",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 29
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 23
+      },
+      {
+        "id": "credit_market_stress_lev",
+        "name": "Credit market stress level",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 24
+      },
+      {
+        "id": "safe_haven_demand_flow",
+        "name": "Safe-haven asset demand",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 29
+      },
+      {
+        "id": "term_premium_level",
+        "name": "Term premium level",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 29
+      }
+    ],
+    "edges": [
+      {
+        "source": "sovereign_yield_level",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "credit_market_stress_lev",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_spread_level",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_spread_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_spread_level",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_spread_level",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_spread_level",
+        "target": "credit_market_stress_lev",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_spread_level",
+        "target": "safe_haven_demand_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "headline_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "cross_border_capital_flo",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "credit_market_stress_lev",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "safe_haven_demand_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "policy_interest_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "monetary_policy_tone",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "credit_market_stress_lev",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "safe_haven_demand_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "term_premium_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_interest_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "monetary_policy_tone",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "safe_haven_demand_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "monetary_policy_tone",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "headline_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "safe_haven_demand_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_net_bond_supp",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "government_net_bond_supp",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "government_net_bond_supp",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_net_bond_supp",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_net_bond_supp",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "treasury_buyback_intensi",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "treasury_buyback_intensi",
+        "target": "government_net_bond_supp",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "treasury_buyback_intensi",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "treasury_buyback_intensi",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "corporate_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_market_stress_lev",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "safe_haven_demand_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_rebalancing_fl",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_rebalancing_fl",
+        "target": "corporate_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_fl",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_fl",
+        "target": "cross_border_capital_flo",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_fl",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_rebalancing_fl",
+        "target": "credit_market_stress_lev",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_fl",
+        "target": "safe_haven_demand_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_fl",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "safe_haven_demand_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "corporate_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "credit_market_stress_lev",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "safe_haven_demand_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_market_stress_lev",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_market_stress_lev",
+        "target": "corporate_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_market_stress_lev",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "credit_market_stress_lev",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_market_stress_lev",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_market_stress_lev",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "credit_market_stress_lev",
+        "target": "safe_haven_demand_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_market_stress_lev",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand_flow",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand_flow",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand_flow",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand_flow",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand_flow",
+        "target": "cross_border_capital_flo",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand_flow",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand_flow",
+        "target": "credit_market_stress_lev",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand_flow",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "portfolio_rebalancing_fl",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "safe_haven_demand_flow",
+        "strength": 2,
+        "sign": "?"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_treasury_sept10_buyback",
+      "title": "US Treasury $6bn buyback (Sept 10)",
+      "description": "Scheduled US Treasury buyback operation to repurchase up to $6bn of 10–20 year debt, expected to affect supply and yields on the day.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-10",
+        "start": null,
+        "end": null,
+        "label": "2026-09-10"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "treasury_buyback_intensi",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "government_net_bond_supp",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "“US Treasury to buy up to $6 billion in Sept 10 buyback operation”; “Treasury yields jump as plans for $6bn buybacks disappoint investors.”"
+    },
+    {
+      "id": "us_inflation_prints_early_sep",
+      "title": "Key US inflation releases (CPI/PPI)",
+      "description": "Near-term US inflation data (producer/consumer) that will influence Fed policy bets, inflation expectations and yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-09-13",
+        "label": "next 2–3 days"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "headline_inflation_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "monetary_policy_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Fed rate hike hinges on two key inflation reports in the next two days”; “Wall St opens lower after hotter-than-expected producer inflation data.”"
+    },
+    {
+      "id": "fed_policy_decision_mid_sep",
+      "title": "Fed policy decision / possible hike",
+      "description": "Upcoming Fed decision (and market reassessment) that may tighten policy expectations and move US yields depending on inflation prints.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-14",
+        "end": "2026-09-21",
+        "label": "next 1–2 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "monetary_policy_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“The likelihood of a Fed interest rate hike next week just got a lot higher”; “Fed rate hike hinges on two key inflation reports…”"
+    },
+    {
+      "id": "possible_ecb_oct_hike",
+      "title": "Potential ECB rate hike (October)",
+      "description": "Market-facing possibility of another ECB rate increase in October as officials prepare for persistent inflation pressures.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "October 2026"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "monetary_policy_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“Markets see a near 50-50 chance the European Central Bank will hike again in October”; “ECB prepares for ‘longer-lasting’ inflation…”"
+    },
+    {
+      "id": "oil_price_rally_middle_east_tension",
+      "title": "Oil-price rally driven by Middle East tensions",
+      "description": "Sustained higher oil prices from geopolitical tensions that raise headline inflation and reinforce hawkish central-bank positioning.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-11-01",
+        "label": "1–8 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "headline_inflation_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "monetary_policy_tone",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Global bond sell-off reignites as oil jumps to $107”; “ECB to hike rates as Iran war fuels fresh inflation fears”; “Major central banks strike a more hawkish tone as energy costs jump.”"
+    },
+    {
+      "id": "persistently_hawkish_central_banks",
+      "title": "Continued hawkish central-bank communications",
+      "description": "Ongoing hawkish tone from major central banks as they respond to rising energy-driven inflation, shaping rate expectations and term premia.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-12-10",
+        "label": "next 1–3 months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“Major central banks strike a more hawkish tone as energy costs jump”; “ECB prepares for ‘longer-lasting’ inflation”; “RBA’s Hawkish Comments Have Lit Fuse for September Rate Increase.”"
+    },
+    {
+      "id": "portfolio_rebalancing_for_income",
+      "title": "Investor rebalancing toward income-bearing assets",
+      "description": "Flows as investors chase higher yields and income outside traditional bonds, shifting allocations and affecting credit spreads and liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-11-10",
+        "label": "next 1–8 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "portfolio_rebalancing_fl",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "corporate_spread_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“Bond sell-off, stock boom: Why rebalancing is a good strategy right now”; “Where investors are finding income outside traditional bonds as rates rise.”"
+    },
+    {
+      "id": "offshore_renminbi_borrowing_trend",
+      "title": "Record offshore renminbi borrowing trend",
+      "description": "Rising offshore renminbi borrowing that alters cross-border funding patterns and capital flows into fixed-income markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-12-31",
+        "label": "next 3 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "cross_border_capital_flo",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "corporate_spread_level",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“Offshore borrowing in renminbi hits record high of nearly $150bn.”"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_inflation_prints_early_sep",
+      "title": "Key US inflation releases (CPI/PPI)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2–3 days",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-09-13",
+      "probability": 0.95,
+      "impact_score": 301.0,
+      "expected_impact": 285.95,
+      "event_PS": 18.385,
+      "event_AS": 23.154,
+      "n_vars": 5,
+      "affected_ids": "headline_inflation_rate, inflation_expectations, monetary_policy_tone, policy_interest_rate, sovereign_yield_level",
+      "rationale": "“Fed rate hike hinges on two key inflation reports in the next two days”; “Wall St opens lower after hotter-than-expected producer inflation data.”"
+    },
+    {
+      "id": "fed_policy_decision_mid_sep",
+      "title": "Fed policy decision / possible hike",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1–2 weeks",
+      "date": null,
+      "start": "2026-09-14",
+      "end": "2026-09-21",
+      "probability": 0.6,
+      "impact_score": 267.0,
+      "expected_impact": 160.2,
+      "event_PS": 23.308,
+      "event_AS": 20.538,
+      "n_vars": 5,
+      "affected_ids": "policy_interest_rate, monetary_policy_tone, sovereign_yield_level, inflation_expectations, term_premium_level",
+      "rationale": "“The likelihood of a Fed interest rate hike next week just got a lot higher”; “Fed rate hike hinges on two key inflation reports…”"
+    },
+    {
+      "id": "oil_price_rally_middle_east_tension",
+      "title": "Oil-price rally driven by Middle East tensions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1–8 weeks",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-11-01",
+      "probability": 0.8,
+      "impact_score": 235.0,
+      "expected_impact": 188.0,
+      "event_PS": 15.455,
+      "event_AS": 21.364,
+      "n_vars": 5,
+      "affected_ids": "energy_price_level, headline_inflation_rate, sovereign_yield_level, inflation_expectations, monetary_policy_tone",
+      "rationale": "“Global bond sell-off reignites as oil jumps to $107”; “ECB to hike rates as Iran war fuels fresh inflation fears”; “Major central banks strike a more hawkish tone as energy costs jump.”"
+    },
+    {
+      "id": "persistently_hawkish_central_banks",
+      "title": "Continued hawkish central-bank communications",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1–3 months",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-12-10",
+      "probability": 0.75,
+      "impact_score": 226.0,
+      "expected_impact": 169.5,
+      "event_PS": 23.091,
+      "event_AS": 20.545,
+      "n_vars": 5,
+      "affected_ids": "monetary_policy_tone, policy_interest_rate, term_premium_level, sovereign_yield_level, inflation_expectations",
+      "rationale": "“Major central banks strike a more hawkish tone as energy costs jump”; “ECB prepares for ‘longer-lasting’ inflation”; “RBA’s Hawkish Comments Have Lit Fuse for September Rate Increase.”"
+    },
+    {
+      "id": "possible_ecb_oct_hike",
+      "title": "Potential ECB rate hike (October)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "October 2026",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.6,
+      "impact_score": 219.0,
+      "expected_impact": 131.4,
+      "event_PS": 23.545,
+      "event_AS": 19.909,
+      "n_vars": 4,
+      "affected_ids": "policy_interest_rate, monetary_policy_tone, sovereign_yield_level, term_premium_level",
+      "rationale": "“Markets see a near 50-50 chance the European Central Bank will hike again in October”; “ECB prepares for ‘longer-lasting’ inflation…”"
+    },
+    {
+      "id": "us_treasury_sept10_buyback",
+      "title": "US Treasury $6bn buyback (Sept 10)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-09-10",
+      "date": "2026-09-10",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 153.0,
+      "expected_impact": 145.35,
+      "event_PS": 16.7,
+      "event_AS": 15.3,
+      "n_vars": 5,
+      "affected_ids": "treasury_buyback_intensi, government_net_bond_supp, sovereign_yield_level, term_premium_level, market_liquidity",
+      "rationale": "“US Treasury to buy up to $6 billion in Sept 10 buyback operation”; “Treasury yields jump as plans for $6bn buybacks disappoint investors.”"
+    },
+    {
+      "id": "portfolio_rebalancing_for_income",
+      "title": "Investor rebalancing toward income-bearing assets",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1–8 weeks",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-11-10",
+      "probability": 0.7,
+      "impact_score": 148.0,
+      "expected_impact": 103.6,
+      "event_PS": 30.286,
+      "event_AS": 21.143,
+      "n_vars": 4,
+      "affected_ids": "portfolio_rebalancing_fl, corporate_spread_level, market_liquidity, investor_risk_appetite",
+      "rationale": "“Bond sell-off, stock boom: Why rebalancing is a good strategy right now”; “Where investors are finding income outside traditional bonds as rates rise.”"
+    },
+    {
+      "id": "offshore_renminbi_borrowing_trend",
+      "title": "Record offshore renminbi borrowing trend",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 72.0,
+      "expected_impact": 43.2,
+      "event_PS": 31.5,
+      "event_AS": 18.0,
+      "n_vars": 3,
+      "affected_ids": "cross_border_capital_flo, sovereign_yield_level, corporate_spread_level",
+      "rationale": "“Offshore borrowing in renminbi hits record high of nearly $150bn.”"
+    }
+  ]
+}

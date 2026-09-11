@@ -1,0 +1,1817 @@
+{
+  "label": "iran_houthi_escalation",
+  "as_of": "2026-09-10",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-11T01:21:41",
+  "system_description": {
+    "narrative_title": "Middle East escalation disrupts oil supplies and global shipping",
+    "narrative_summary": "The dominant narrative is an escalating U.S.–Iran–Houthi confrontation that is disrupting maritime trade and oil flows, sending Brent to around $100+/bbl and tightening diesel and LNG markets. Viewed as an open system, it takes geopolitical actions (attacks, strikes, sanctions), physical constraints (chokepoints, drought-impacted canals, refinery bottlenecks) and market reactions (inventory draws, price discovery) as inputs; it produces outputs such as higher energy prices, trade rerouting, inflationary pressure and policy responses; and it contains reinforcing feedbacks (price gains funding actors, sanctions/evaders changing flows, military reprisals provoking further disruption). This system mixes abstract variables (supply, demand, inventories, contagion, feedback loops) with concrete actors and assets (U.S., Iran, Houthis, Saudi facilities, tankers, Panama Canal, SPRs).",
+    "scope": "Inside the boundary: Gulf and Red Sea maritime routes (Strait of Hormuz, Bab el-Mandeb), oil and refined-fuels physical flows, global trading of crude and refined products, inventories (SPRs), major state and non-state actors (U.S., Iran, Saudi Arabia, Houthis, allied navies), sanctions and financial channels, shipping industry and port/canal operations, market price formation and immediate economic impacts (diesel, gasoline, LNG, inflation).",
+    "super_system": "Global political-economic order (international security + world markets and trade system)",
+    "adjacent_subsystems": [
+      "Global energy markets (OPEC, LNG, refining capacity, commodity traders)",
+      "Maritime trade and logistics (shipping lines, ports, canals, insurers)",
+      "Regional Middle East security dynamics (state & proxy warfare, alliances)",
+      "Global financial markets and inflation/monetary policy"
+    ],
+    "evidence_headlines": [
+      "U.S. Strikes Three Iranian Ships After Missiles Fired at American Aircraft Carrier",
+      "Global shipping authorities warn of maritime trade breakdown amid geopolitical turmoil",
+      "Oil hits $100 for first time since July",
+      "Wave of Houthi strikes halts work at energy facilities in four Saudi cities",
+      "Brent crude rises above $100 a barrel as Middle East conflict intensifies"
+    ]
+  },
+  "variables": [
+    {
+      "id": "crude_supply_flow",
+      "name": "Crude oil supply flow",
+      "description": "Net physical rate at which crude oil is produced and made available to global markets (barrels per day).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refined_product_flow",
+      "name": "Refined fuels flow",
+      "description": "Net rate at which refined petroleum products (diesel, gasoline, fuel oil) are delivered into distribution and export channels.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserve_level",
+      "name": "Strategic petroleum reserve level",
+      "description": "Aggregate stock level of publicly held strategic oil reserves available for release to stabilize markets (volume).",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_throughput_rate",
+      "name": "Refinery throughput rate",
+      "description": "Rate at which refining capacity converts crude into refined products (percentage of capacity utilized or barrels per day).",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_incident_rate",
+      "name": "Maritime security incident frequency",
+      "description": "Rate of hostile actions, strikes, seizures, or major accidents affecting vessels and infrastructure in key sea lanes (incidents per time).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "geopolitical_escalation_",
+      "name": "Geopolitical escalation pressure",
+      "description": "Intensity of ongoing geopolitical/military confrontation that raises the probability of further disruptive actions (qualitative-to-quantitative index).",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_transit_capacit",
+      "name": "Maritime transit capacity",
+      "description": "Effective throughput capacity of key maritime routes and chokepoints measured as maximum safe transit volume per time.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "waterway_draft_availabil",
+      "name": "Waterway draft availability",
+      "description": "Average navigable water depth/draft availability limiting vessel size and cargo per transit in critical canals and straits (meters or relative index).",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_reroute_distanc",
+      "name": "Average shipping reroute distance/time",
+      "description": "Additional distance or transit time required on average when vessels avoid high-risk routes (nautical miles or hours).",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_operating_costs",
+      "name": "Shipping operating costs and insurance",
+      "description": "Average per-voyage incremental costs including fuel, insurance premiums, security and diversion costs faced by maritime carriers.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "global_trade_flow_volume",
+      "name": "Global oil and product trade volume",
+      "description": "Aggregate volume of crude and refined product flows crossing borders and sea lanes per time period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_price_level",
+      "name": "Benchmark oil market price level",
+      "description": " prevailing benchmark price level for crude oil used in price formation and contracts (e.g., $/barrel index).",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility_index",
+      "name": "Price discovery volatility and risk premium",
+      "description": "Measured volatility and market-implied risk premium that affect short-term price swings and hedging costs.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sanctions_intensity",
+      "name": "Sanctions and trade-restriction intensity",
+      "description": "Degree to which trade, shipping and financial restrictions are applied and enforced, affecting legal access to markets and services.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "financial_channel_disrup",
+      "name": "Financial channel disruption",
+      "description": "Extent to which payment, banking and settlement channels for energy trade are impaired or rerouted (access and speed).",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "demand_elasticity_fuels",
+      "name": "Demand elasticity for fuels",
+      "description": "Price responsiveness of consumption for oil and refined fuels across major end uses (percentage change in demand per percent price change).",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "crude_supply_flow",
+    "refined_product_flow",
+    "strategic_reserve_level",
+    "refinery_throughput_rate",
+    "maritime_incident_rate",
+    "geopolitical_escalation_",
+    "maritime_transit_capacit",
+    "waterway_draft_availabil",
+    "shipping_reroute_distanc",
+    "shipping_operating_costs",
+    "global_trade_flow_volume",
+    "market_price_level",
+    "market_volatility_index",
+    "sanctions_intensity",
+    "financial_channel_disrup",
+    "demand_elasticity_fuels"
+  ],
+  "var_names": {
+    "crude_supply_flow": "Crude oil supply flow",
+    "refined_product_flow": "Refined fuels flow",
+    "strategic_reserve_level": "Strategic petroleum reserve level",
+    "refinery_throughput_rate": "Refinery throughput rate",
+    "maritime_incident_rate": "Maritime security incident frequency",
+    "geopolitical_escalation_": "Geopolitical escalation pressure",
+    "maritime_transit_capacit": "Maritime transit capacity",
+    "waterway_draft_availabil": "Waterway draft availability",
+    "shipping_reroute_distanc": "Average shipping reroute distance/time",
+    "shipping_operating_costs": "Shipping operating costs and insurance",
+    "global_trade_flow_volume": "Global oil and product trade volume",
+    "market_price_level": "Benchmark oil market price level",
+    "market_volatility_index": "Price discovery volatility and risk premium",
+    "sanctions_intensity": "Sanctions and trade-restriction intensity",
+    "financial_channel_disrup": "Financial channel disruption",
+    "demand_elasticity_fuels": "Demand elasticity for fuels"
+  },
+  "impact_matrix": {
+    "crude_supply_flow": {
+      "crude_supply_flow": 0,
+      "refined_product_flow": 3,
+      "strategic_reserve_level": 1,
+      "refinery_throughput_rate": 3,
+      "maritime_incident_rate": 1,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 0,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 0,
+      "shipping_operating_costs": 1,
+      "global_trade_flow_volume": 3,
+      "market_price_level": 3,
+      "market_volatility_index": 2,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 0,
+      "demand_elasticity_fuels": 0
+    },
+    "refined_product_flow": {
+      "crude_supply_flow": 0,
+      "refined_product_flow": 0,
+      "strategic_reserve_level": 1,
+      "refinery_throughput_rate": 0,
+      "maritime_incident_rate": 1,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 0,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 1,
+      "shipping_operating_costs": 1,
+      "global_trade_flow_volume": 3,
+      "market_price_level": 2,
+      "market_volatility_index": 1,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 0,
+      "demand_elasticity_fuels": 0
+    },
+    "strategic_reserve_level": {
+      "crude_supply_flow": 2,
+      "refined_product_flow": 1,
+      "strategic_reserve_level": 0,
+      "refinery_throughput_rate": 1,
+      "maritime_incident_rate": 0,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 0,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 0,
+      "shipping_operating_costs": 0,
+      "global_trade_flow_volume": 1,
+      "market_price_level": 2,
+      "market_volatility_index": 1,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 0,
+      "demand_elasticity_fuels": 0
+    },
+    "refinery_throughput_rate": {
+      "crude_supply_flow": 1,
+      "refined_product_flow": 3,
+      "strategic_reserve_level": 0,
+      "refinery_throughput_rate": 0,
+      "maritime_incident_rate": 0,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 0,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 0,
+      "shipping_operating_costs": 1,
+      "global_trade_flow_volume": 2,
+      "market_price_level": 2,
+      "market_volatility_index": 1,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 0,
+      "demand_elasticity_fuels": 0
+    },
+    "maritime_incident_rate": {
+      "crude_supply_flow": 3,
+      "refined_product_flow": 3,
+      "strategic_reserve_level": 0,
+      "refinery_throughput_rate": 2,
+      "maritime_incident_rate": 0,
+      "geopolitical_escalation_": 2,
+      "maritime_transit_capacit": 3,
+      "waterway_draft_availabil": 2,
+      "shipping_reroute_distanc": 3,
+      "shipping_operating_costs": 3,
+      "global_trade_flow_volume": 3,
+      "market_price_level": 3,
+      "market_volatility_index": 3,
+      "sanctions_intensity": 1,
+      "financial_channel_disrup": 1,
+      "demand_elasticity_fuels": 0
+    },
+    "geopolitical_escalation_": {
+      "crude_supply_flow": 3,
+      "refined_product_flow": 3,
+      "strategic_reserve_level": 1,
+      "refinery_throughput_rate": 2,
+      "maritime_incident_rate": 3,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 3,
+      "waterway_draft_availabil": 1,
+      "shipping_reroute_distanc": 3,
+      "shipping_operating_costs": 3,
+      "global_trade_flow_volume": 3,
+      "market_price_level": 3,
+      "market_volatility_index": 3,
+      "sanctions_intensity": 3,
+      "financial_channel_disrup": 2,
+      "demand_elasticity_fuels": 0
+    },
+    "maritime_transit_capacit": {
+      "crude_supply_flow": 3,
+      "refined_product_flow": 3,
+      "strategic_reserve_level": 0,
+      "refinery_throughput_rate": 1,
+      "maritime_incident_rate": 1,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 0,
+      "waterway_draft_availabil": 3,
+      "shipping_reroute_distanc": 2,
+      "shipping_operating_costs": 2,
+      "global_trade_flow_volume": 3,
+      "market_price_level": 2,
+      "market_volatility_index": 1,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 0,
+      "demand_elasticity_fuels": 0
+    },
+    "waterway_draft_availabil": {
+      "crude_supply_flow": 2,
+      "refined_product_flow": 2,
+      "strategic_reserve_level": 0,
+      "refinery_throughput_rate": 1,
+      "maritime_incident_rate": 0,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 3,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 2,
+      "shipping_operating_costs": 2,
+      "global_trade_flow_volume": 2,
+      "market_price_level": 1,
+      "market_volatility_index": 1,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 0,
+      "demand_elasticity_fuels": 0
+    },
+    "shipping_reroute_distanc": {
+      "crude_supply_flow": 2,
+      "refined_product_flow": 2,
+      "strategic_reserve_level": 0,
+      "refinery_throughput_rate": 1,
+      "maritime_incident_rate": 1,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 0,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 0,
+      "shipping_operating_costs": 3,
+      "global_trade_flow_volume": 2,
+      "market_price_level": 2,
+      "market_volatility_index": 2,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 0,
+      "demand_elasticity_fuels": 0
+    },
+    "shipping_operating_costs": {
+      "crude_supply_flow": 1,
+      "refined_product_flow": 1,
+      "strategic_reserve_level": 0,
+      "refinery_throughput_rate": 0,
+      "maritime_incident_rate": 0,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 0,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 0,
+      "shipping_operating_costs": 0,
+      "global_trade_flow_volume": 2,
+      "market_price_level": 2,
+      "market_volatility_index": 1,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 0,
+      "demand_elasticity_fuels": 0
+    },
+    "global_trade_flow_volume": {
+      "crude_supply_flow": 2,
+      "refined_product_flow": 2,
+      "strategic_reserve_level": 0,
+      "refinery_throughput_rate": 1,
+      "maritime_incident_rate": 1,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 1,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 1,
+      "shipping_operating_costs": 1,
+      "global_trade_flow_volume": 0,
+      "market_price_level": 2,
+      "market_volatility_index": 1,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 1,
+      "demand_elasticity_fuels": 0
+    },
+    "market_price_level": {
+      "crude_supply_flow": 2,
+      "refined_product_flow": 2,
+      "strategic_reserve_level": 2,
+      "refinery_throughput_rate": 1,
+      "maritime_incident_rate": 0,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 0,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 0,
+      "shipping_operating_costs": 1,
+      "global_trade_flow_volume": 2,
+      "market_price_level": 0,
+      "market_volatility_index": 2,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 0,
+      "demand_elasticity_fuels": 0
+    },
+    "market_volatility_index": {
+      "crude_supply_flow": 1,
+      "refined_product_flow": 1,
+      "strategic_reserve_level": 1,
+      "refinery_throughput_rate": 1,
+      "maritime_incident_rate": 0,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 0,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 0,
+      "shipping_operating_costs": 2,
+      "global_trade_flow_volume": 1,
+      "market_price_level": 1,
+      "market_volatility_index": 0,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 2,
+      "demand_elasticity_fuels": 0
+    },
+    "sanctions_intensity": {
+      "crude_supply_flow": 3,
+      "refined_product_flow": 3,
+      "strategic_reserve_level": 1,
+      "refinery_throughput_rate": 2,
+      "maritime_incident_rate": 2,
+      "geopolitical_escalation_": 2,
+      "maritime_transit_capacit": 2,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 3,
+      "shipping_operating_costs": 3,
+      "global_trade_flow_volume": 3,
+      "market_price_level": 3,
+      "market_volatility_index": 3,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 3,
+      "demand_elasticity_fuels": 0
+    },
+    "financial_channel_disrup": {
+      "crude_supply_flow": 3,
+      "refined_product_flow": 3,
+      "strategic_reserve_level": 0,
+      "refinery_throughput_rate": 2,
+      "maritime_incident_rate": 0,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 0,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 1,
+      "shipping_operating_costs": 2,
+      "global_trade_flow_volume": 3,
+      "market_price_level": 2,
+      "market_volatility_index": 3,
+      "sanctions_intensity": 1,
+      "financial_channel_disrup": 0,
+      "demand_elasticity_fuels": 0
+    },
+    "demand_elasticity_fuels": {
+      "crude_supply_flow": 1,
+      "refined_product_flow": 1,
+      "strategic_reserve_level": 0,
+      "refinery_throughput_rate": 0,
+      "maritime_incident_rate": 0,
+      "geopolitical_escalation_": 0,
+      "maritime_transit_capacit": 0,
+      "waterway_draft_availabil": 0,
+      "shipping_reroute_distanc": 0,
+      "shipping_operating_costs": 0,
+      "global_trade_flow_volume": 1,
+      "market_price_level": 1,
+      "market_volatility_index": 1,
+      "sanctions_intensity": 0,
+      "financial_channel_disrup": 0,
+      "demand_elasticity_fuels": 0
+    }
+  },
+  "AS": {
+    "crude_supply_flow": 17,
+    "refined_product_flow": 10,
+    "strategic_reserve_level": 8,
+    "refinery_throughput_rate": 10,
+    "maritime_incident_rate": 32,
+    "geopolitical_escalation_": 36,
+    "maritime_transit_capacit": 21,
+    "waterway_draft_availabil": 16,
+    "shipping_reroute_distanc": 15,
+    "shipping_operating_costs": 7,
+    "global_trade_flow_volume": 13,
+    "market_price_level": 12,
+    "market_volatility_index": 10,
+    "sanctions_intensity": 33,
+    "financial_channel_disrup": 20,
+    "demand_elasticity_fuels": 5
+  },
+  "PS": {
+    "crude_supply_flow": 29,
+    "refined_product_flow": 33,
+    "strategic_reserve_level": 7,
+    "refinery_throughput_rate": 18,
+    "maritime_incident_rate": 10,
+    "geopolitical_escalation_": 4,
+    "maritime_transit_capacit": 12,
+    "waterway_draft_availabil": 6,
+    "shipping_reroute_distanc": 16,
+    "shipping_operating_costs": 25,
+    "global_trade_flow_volume": 34,
+    "market_price_level": 31,
+    "market_volatility_index": 26,
+    "sanctions_intensity": 5,
+    "financial_channel_disrup": 9,
+    "demand_elasticity_fuels": 0
+  },
+  "med_AS": 14.0,
+  "med_PS": 14.0,
+  "roles": [
+    {
+      "variable": "crude_supply_flow",
+      "name": "Crude oil supply flow",
+      "AS": 17,
+      "PS": 29,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 493,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "global_trade_flow_volume",
+      "name": "Global oil and product trade volume",
+      "AS": 13,
+      "PS": 34,
+      "Q=AS/PS": 0.38,
+      "P=AS*PS": 442,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_price_level",
+      "name": "Benchmark oil market price level",
+      "AS": 12,
+      "PS": 31,
+      "Q=AS/PS": 0.39,
+      "P=AS*PS": 372,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refined_product_flow",
+      "name": "Refined fuels flow",
+      "AS": 10,
+      "PS": 33,
+      "Q=AS/PS": 0.3,
+      "P=AS*PS": 330,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "maritime_incident_rate",
+      "name": "Maritime security incident frequency",
+      "AS": 32,
+      "PS": 10,
+      "Q=AS/PS": 3.2,
+      "P=AS*PS": 320,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_volatility_index",
+      "name": "Price discovery volatility and risk premium",
+      "AS": 10,
+      "PS": 26,
+      "Q=AS/PS": 0.38,
+      "P=AS*PS": 260,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "maritime_transit_capacit",
+      "name": "Maritime transit capacity",
+      "AS": 21,
+      "PS": 12,
+      "Q=AS/PS": 1.75,
+      "P=AS*PS": 252,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "shipping_reroute_distanc",
+      "name": "Average shipping reroute distance/time",
+      "AS": 15,
+      "PS": 16,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 240,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "financial_channel_disrup",
+      "name": "Financial channel disruption",
+      "AS": 20,
+      "PS": 9,
+      "Q=AS/PS": 2.22,
+      "P=AS*PS": 180,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refinery_throughput_rate",
+      "name": "Refinery throughput rate",
+      "AS": 10,
+      "PS": 18,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 180,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "shipping_operating_costs",
+      "name": "Shipping operating costs and insurance",
+      "AS": 7,
+      "PS": 25,
+      "Q=AS/PS": 0.28,
+      "P=AS*PS": 175,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "sanctions_intensity",
+      "name": "Sanctions and trade-restriction intensity",
+      "AS": 33,
+      "PS": 5,
+      "Q=AS/PS": 6.6,
+      "P=AS*PS": 165,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "geopolitical_escalation_",
+      "name": "Geopolitical escalation pressure",
+      "AS": 36,
+      "PS": 4,
+      "Q=AS/PS": 9.0,
+      "P=AS*PS": 144,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "waterway_draft_availabil",
+      "name": "Waterway draft availability",
+      "AS": 16,
+      "PS": 6,
+      "Q=AS/PS": 2.67,
+      "P=AS*PS": 96,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "strategic_reserve_level",
+      "name": "Strategic petroleum reserve level",
+      "AS": 8,
+      "PS": 7,
+      "Q=AS/PS": 1.14,
+      "P=AS*PS": 56,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "demand_elasticity_fuels",
+      "name": "Demand elasticity for fuels",
+      "AS": 5,
+      "PS": 0,
+      "Q=AS/PS": 5000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "crude_supply_flow",
+        "name": "Crude oil supply flow",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 29
+      },
+      {
+        "id": "refined_product_flow",
+        "name": "Refined fuels flow",
+        "kind": "flow",
+        "AS": 10,
+        "PS": 33
+      },
+      {
+        "id": "strategic_reserve_level",
+        "name": "Strategic petroleum reserve level",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 7
+      },
+      {
+        "id": "refinery_throughput_rate",
+        "name": "Refinery throughput rate",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 18
+      },
+      {
+        "id": "maritime_incident_rate",
+        "name": "Maritime security incident frequency",
+        "kind": "flow",
+        "AS": 32,
+        "PS": 10
+      },
+      {
+        "id": "geopolitical_escalation_",
+        "name": "Geopolitical escalation pressure",
+        "kind": "driver",
+        "AS": 36,
+        "PS": 4
+      },
+      {
+        "id": "maritime_transit_capacit",
+        "name": "Maritime transit capacity",
+        "kind": "environment",
+        "AS": 21,
+        "PS": 12
+      },
+      {
+        "id": "waterway_draft_availabil",
+        "name": "Waterway draft availability",
+        "kind": "environment",
+        "AS": 16,
+        "PS": 6
+      },
+      {
+        "id": "shipping_reroute_distanc",
+        "name": "Average shipping reroute distance/time",
+        "kind": "environment",
+        "AS": 15,
+        "PS": 16
+      },
+      {
+        "id": "shipping_operating_costs",
+        "name": "Shipping operating costs and insurance",
+        "kind": "driver",
+        "AS": 7,
+        "PS": 25
+      },
+      {
+        "id": "global_trade_flow_volume",
+        "name": "Global oil and product trade volume",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 34
+      },
+      {
+        "id": "market_price_level",
+        "name": "Benchmark oil market price level",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 31
+      },
+      {
+        "id": "market_volatility_index",
+        "name": "Price discovery volatility and risk premium",
+        "kind": "perception",
+        "AS": 10,
+        "PS": 26
+      },
+      {
+        "id": "sanctions_intensity",
+        "name": "Sanctions and trade-restriction intensity",
+        "kind": "driver",
+        "AS": 33,
+        "PS": 5
+      },
+      {
+        "id": "financial_channel_disrup",
+        "name": "Financial channel disruption",
+        "kind": "institution_field",
+        "AS": 20,
+        "PS": 9
+      },
+      {
+        "id": "demand_elasticity_fuels",
+        "name": "Demand elasticity for fuels",
+        "kind": "driver",
+        "AS": 5,
+        "PS": 0
+      }
+    ],
+    "edges": [
+      {
+        "source": "crude_supply_flow",
+        "target": "refined_product_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_supply_flow",
+        "target": "refinery_throughput_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_supply_flow",
+        "target": "global_trade_flow_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_supply_flow",
+        "target": "market_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_supply_flow",
+        "target": "market_volatility_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_product_flow",
+        "target": "global_trade_flow_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_product_flow",
+        "target": "market_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "crude_supply_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "market_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "refined_product_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "global_trade_flow_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "market_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "crude_supply_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "refined_product_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "geopolitical_escalation_",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "maritime_transit_capacit",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "waterway_draft_availabil",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "shipping_reroute_distanc",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "shipping_operating_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "global_trade_flow_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "market_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_incident_rate",
+        "target": "market_volatility_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "crude_supply_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "refined_product_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "maritime_incident_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "maritime_transit_capacit",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "shipping_reroute_distanc",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "shipping_operating_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "global_trade_flow_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "market_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "market_volatility_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "sanctions_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_escalation_",
+        "target": "financial_channel_disrup",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "crude_supply_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "refined_product_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "waterway_draft_availabil",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "shipping_reroute_distanc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "shipping_operating_costs",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "global_trade_flow_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_capacit",
+        "target": "market_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "waterway_draft_availabil",
+        "target": "crude_supply_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "waterway_draft_availabil",
+        "target": "refined_product_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "waterway_draft_availabil",
+        "target": "maritime_transit_capacit",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "waterway_draft_availabil",
+        "target": "shipping_reroute_distanc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "waterway_draft_availabil",
+        "target": "shipping_operating_costs",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "waterway_draft_availabil",
+        "target": "global_trade_flow_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_reroute_distanc",
+        "target": "crude_supply_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_reroute_distanc",
+        "target": "refined_product_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_reroute_distanc",
+        "target": "shipping_operating_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_reroute_distanc",
+        "target": "global_trade_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_reroute_distanc",
+        "target": "market_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_reroute_distanc",
+        "target": "market_volatility_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_operating_costs",
+        "target": "global_trade_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_operating_costs",
+        "target": "market_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_trade_flow_volume",
+        "target": "crude_supply_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_trade_flow_volume",
+        "target": "refined_product_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_trade_flow_volume",
+        "target": "market_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_level",
+        "target": "crude_supply_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_level",
+        "target": "refined_product_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_level",
+        "target": "strategic_reserve_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_level",
+        "target": "global_trade_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_level",
+        "target": "market_volatility_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_index",
+        "target": "shipping_operating_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_index",
+        "target": "financial_channel_disrup",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "crude_supply_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "refined_product_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "maritime_incident_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "geopolitical_escalation_",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "maritime_transit_capacit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "shipping_reroute_distanc",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "shipping_operating_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "global_trade_flow_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "market_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "market_volatility_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_intensity",
+        "target": "financial_channel_disrup",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "financial_channel_disrup",
+        "target": "crude_supply_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "financial_channel_disrup",
+        "target": "refined_product_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "financial_channel_disrup",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_channel_disrup",
+        "target": "shipping_operating_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_channel_disrup",
+        "target": "global_trade_flow_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "financial_channel_disrup",
+        "target": "market_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_channel_disrup",
+        "target": "market_volatility_index",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "houthi_bab_el_mandeb_control",
+      "title": "Houthi push to control Bab el-Mandeb",
+      "description": "Houthis' capture of Red Sea ports and advance toward Bab el‑Mandeb could restrict transits, force reroutes and raise shipping risks for weeks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-10-31",
+        "label": "2-8 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_transit_capacit",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_reroute_distanc",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_operating_costs",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_supply_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refined_product_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_trade_flow_volume",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_price_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Houthis capture Red Sea port', 'Yemen’s Houthis Sweep Toward Bab al‑Mandeb' — threatens key chokepoint and shipping."
+    },
+    {
+      "id": "us_iran_naval_strikes_escalation",
+      "title": "U.S.–Iran naval strikes continue",
+      "description": "Ongoing tit‑for‑tat strikes on tankers and naval vessels raise risk of further attacks on shipping and Gulf energy infrastructure.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-08",
+        "end": "2026-10-31",
+        "label": "weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "geopolitical_escalation_",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_incident_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_supply_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility_index",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "strategic_reserve_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Multiple reports: 'U.S. Strikes Iranian Oil Tankers', 'Iran and US hit tankers' — continued naval exchanges raise supply risk."
+    },
+    {
+      "id": "saudi_opec_output_cut",
+      "title": "Saudi/OPEC output cuts persist",
+      "description": "Saudi and broader OPEC output weakness and deliberate cuts keep physical crude availability lower into coming weeks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-10-31",
+        "label": "weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "crude_supply_flow",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_product_flow",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "strategic_reserve_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Saudi Arabia cuts oil output', 'OPEC oil output falls in August' — reduces available crude to markets."
+    },
+    {
+      "id": "panama_canal_transit_cuts",
+      "title": "Panama Canal transit restrictions continue",
+      "description": "Drought‑related draft limits and management changes at the Panama Canal lead to transit slot cuts, raising rerouting and cost pressures.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-08",
+        "end": "2026-12-31",
+        "label": "through dry season"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "waterway_draft_availabil",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "maritime_transit_capacit",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_reroute_distanc",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_operating_costs",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_product_flow",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Shipping through Panama Canal faces new cuts', 'New Panama Canal Chief Must Navigate a Drought' — constrains canal capacity."
+    },
+    {
+      "id": "winter_diesel_tightness",
+      "title": "Seasonal diesel tightness and refining bottlenecks",
+      "description": "Refining bottlenecks plus rising winter diesel demand forecast keep product supplies tight and prices elevated into winter.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-12-31",
+        "label": "through winter"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "refined_product_flow",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refinery_throughput_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility_index",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Global diesel supply to stay tight through winter', 'Refining bottlenecks emerging' — implies product shortages."
+    },
+    {
+      "id": "sanctions_intensification",
+      "title": "New sanctions packages and enforcement",
+      "description": "Fresh U.S. and UK sanctions (aviation, financial) against Iran and affiliates increase trade restrictions and complicate shipping and payments.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-08",
+        "end": "2026-11-30",
+        "label": "weeks-months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "sanctions_intensity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "financial_channel_disrup",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_supply_flow",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_price_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'U.S. sanctions Iranian airlines', 'UK publishes legislation for tougher sanctions' — tightens trade restrictions."
+    },
+    {
+      "id": "sanctions_evasion_china",
+      "title": "Sanctions‑evasion flows and Chinese support",
+      "description": "Reported Chinese‑linked sanctions dodging and trade channels could keep some Iranian oil and goods flowing despite restrictions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-11-30",
+        "label": "weeks-months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "crude_supply_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sanctions_intensity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "financial_channel_disrup",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_price_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'How a billion‑dollar sanctions dodge kept Chinese goods flowing to Iran', 'China helped keep lid on oil price'."
+    },
+    {
+      "id": "us_midterm_election_2026",
+      "title": "U.S. midterm elections (2026)",
+      "description": "U.S. midterm elections could shift policy timing on the Iran conflict and influence escalation expectations and market sentiment.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-11-04",
+        "start": null,
+        "end": null,
+        "label": "election day"
+      },
+      "probability": 1.0,
+      "affected": [
+        {
+          "variable_id": "geopolitical_escalation_",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility_index",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sanctions_intensity",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Trump says Iran war will end right after U.S. midterm elections' — elections affect policy timing and market expectations."
+    },
+    {
+      "id": "spr_release_likelihood",
+      "title": "Possible strategic reserve releases",
+      "description": "Consumer governments may release strategic stocks to blunt price spikes as inventories fall and EIA raises price forecasts.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-10",
+        "end": "2026-11-30",
+        "label": "next 2-12 weeks"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "strategic_reserve_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_supply_flow",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Oil stocks in US SPR fall', 'EIA hikes oil price forecasts as Iran war drains global stockpile' — suggests reserve draws/releases."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "houthi_bab_el_mandeb_control",
+      "title": "Houthi push to control Bab el-Mandeb",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-8 weeks",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 329.0,
+      "expected_impact": 263.2,
+      "event_PS": 22.15,
+      "event_AS": 16.45,
+      "n_vars": 8,
+      "affected_ids": "maritime_incident_rate, maritime_transit_capacit, shipping_reroute_distanc, shipping_operating_costs, crude_supply_flow, refined_product_flow, global_trade_flow_volume, market_price_level",
+      "rationale": "Headlines: 'Houthis capture Red Sea port', 'Yemen’s Houthis Sweep Toward Bab al‑Mandeb' — threatens key chokepoint and shipping."
+    },
+    {
+      "id": "us_iran_naval_strikes_escalation",
+      "title": "U.S.–Iran naval strikes continue",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-08",
+      "end": "2026-10-31",
+      "probability": 0.75,
+      "impact_score": 290.0,
+      "expected_impact": 217.5,
+      "event_PS": 17.0,
+      "event_AS": 22.308,
+      "n_vars": 6,
+      "affected_ids": "geopolitical_escalation_, maritime_incident_rate, crude_supply_flow, market_price_level, market_volatility_index, strategic_reserve_level",
+      "rationale": "Multiple reports: 'U.S. Strikes Iranian Oil Tankers', 'Iran and US hit tankers' — continued naval exchanges raise supply risk."
+    },
+    {
+      "id": "sanctions_intensification",
+      "title": "New sanctions packages and enforcement",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks-months",
+      "date": null,
+      "start": "2026-09-08",
+      "end": "2026-11-30",
+      "probability": 0.7,
+      "impact_score": 168.0,
+      "expected_impact": 117.6,
+      "event_PS": 13.286,
+      "event_AS": 24.0,
+      "n_vars": 4,
+      "affected_ids": "sanctions_intensity, financial_channel_disrup, crude_supply_flow, market_price_level",
+      "rationale": "Headlines: 'U.S. sanctions Iranian airlines', 'UK publishes legislation for tougher sanctions' — tightens trade restrictions."
+    },
+    {
+      "id": "sanctions_evasion_china",
+      "title": "Sanctions‑evasion flows and Chinese support",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks-months",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 152.0,
+      "expected_impact": 91.2,
+      "event_PS": 16.714,
+      "event_AS": 21.714,
+      "n_vars": 4,
+      "affected_ids": "crude_supply_flow, sanctions_intensity, financial_channel_disrup, market_price_level",
+      "rationale": "Headlines: 'How a billion‑dollar sanctions dodge kept Chinese goods flowing to Iran', 'China helped keep lid on oil price'."
+    },
+    {
+      "id": "panama_canal_transit_cuts",
+      "title": "Panama Canal transit restrictions continue",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through dry season",
+      "date": null,
+      "start": "2026-09-08",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 144.0,
+      "expected_impact": 100.8,
+      "event_PS": 15.7,
+      "event_AS": 14.4,
+      "n_vars": 5,
+      "affected_ids": "waterway_draft_availabil, maritime_transit_capacit, shipping_reroute_distanc, shipping_operating_costs, refined_product_flow",
+      "rationale": "Headlines: 'Shipping through Panama Canal faces new cuts', 'New Panama Canal Chief Must Navigate a Drought' — constrains canal capacity."
+    },
+    {
+      "id": "us_midterm_election_2026",
+      "title": "U.S. midterm elections (2026)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "election day",
+      "date": "2026-11-04",
+      "start": null,
+      "end": null,
+      "probability": 1.0,
+      "impact_score": 125.0,
+      "expected_impact": 125.0,
+      "event_PS": 13.0,
+      "event_AS": 25.0,
+      "n_vars": 3,
+      "affected_ids": "geopolitical_escalation_, market_volatility_index, sanctions_intensity",
+      "rationale": "Headlines: 'Trump says Iran war will end right after U.S. midterm elections' — elections affect policy timing and market expectations."
+    },
+    {
+      "id": "winter_diesel_tightness",
+      "title": "Seasonal diesel tightness and refining bottlenecks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through winter",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-12-31",
+      "probability": 0.8,
+      "impact_score": 94.0,
+      "expected_impact": 75.2,
+      "event_PS": 27.667,
+      "event_AS": 10.444,
+      "n_vars": 4,
+      "affected_ids": "refined_product_flow, refinery_throughput_rate, market_price_level, market_volatility_index",
+      "rationale": "Headlines: 'Global diesel supply to stay tight through winter', 'Refining bottlenecks emerging' — implies product shortages."
+    },
+    {
+      "id": "saudi_opec_output_cut",
+      "title": "Saudi/OPEC output cuts persist",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-10-31",
+      "probability": 0.9,
+      "impact_score": 93.0,
+      "expected_impact": 83.7,
+      "event_PS": 27.0,
+      "event_AS": 13.286,
+      "n_vars": 4,
+      "affected_ids": "crude_supply_flow, market_price_level, refined_product_flow, strategic_reserve_level",
+      "rationale": "Headlines: 'Saudi Arabia cuts oil output', 'OPEC oil output falls in August' — reduces available crude to markets."
+    },
+    {
+      "id": "spr_release_likelihood",
+      "title": "Possible strategic reserve releases",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2-12 weeks",
+      "date": null,
+      "start": "2026-09-10",
+      "end": "2026-11-30",
+      "probability": 0.5,
+      "impact_score": 65.0,
+      "expected_impact": 32.5,
+      "event_PS": 18.667,
+      "event_AS": 10.833,
+      "n_vars": 3,
+      "affected_ids": "strategic_reserve_level, market_price_level, crude_supply_flow",
+      "rationale": "Headlines: 'Oil stocks in US SPR fall', 'EIA hikes oil price forecasts as Iran war drains global stockpile' — suggests reserve draws/releases."
+    }
+  ]
+}
