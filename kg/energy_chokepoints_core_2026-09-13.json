@@ -1,0 +1,1530 @@
+{
+  "label": "energy_chokepoints",
+  "as_of": "2026-09-13",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-13T01:21:58",
+  "system_description": {
+    "narrative_title": "Middle East chokepoints and Houthi attacks driving a global oil shock",
+    "narrative_summary": "A cascade of Houthi advances in the Red Sea and repeated strikes on Gulf infrastructure has tightened physical oil and shipping flows through critical chokepoints (Bab al-Mandeb, Strait of Hormuz). That disruption propagates through the open system of production, refining, tanker logistics, and futures markets to lift crude and diesel prices, spike tanker rates, and feed consumer inflation — prompting policy, military and industrial responses. Feedbacks include supply losses -> higher prices -> political/economic countermeasures (pipeline shutdowns, defence postures, refinery measures) that can either mitigate or further exacerbate disruptions.",
+    "scope": "The system boundary covers the global oil supply chain and price-formation system as affected by Middle East maritime security: production/export infrastructure, shipping lanes and chokepoints (Hormuz, Bab al-Mandeb), tanker logistics and freight rates, inventories and refining capacity, futures/spot markets, and downstream consumer fuel prices and economic demand.",
+    "super_system": "Global energy–economic–financial system (global trade, commodity markets, macroeconomy and geopolitical stability).",
+    "adjacent_subsystems": [
+      "Maritime security and naval/military operations in the Red Sea and Persian Gulf",
+      "Global shipping and logistics (tanker markets, freight rates, insurance)",
+      "Domestic inflation and transport/industrial fuel demand",
+      "International diplomacy and regional security arrangements (Iran, Gulf states, Pakistan, US)"
+    ],
+    "evidence_headlines": [
+      "Iran-backed Houthis seize key port in Yemen, advance on another vital oil choke point",
+      "Saudi Arabia shuts East-West pipeline that bypasses Hormuz after attacks",
+      "U.S. diesel price tops $6 per gallon, a record high as Ukraine and Iran wars ripple through economy",
+      "IEA warns 2026 oil supply gap will widen on delayed return of normal Gulf flows - reuters.com",
+      "Oil tanker rates hit record highs following Iran, US shipping attacks"
+    ]
+  },
+  "variables": [
+    {
+      "id": "chokepoint_security",
+      "name": "Chokepoint security level",
+      "description": "The operational openness and security of major maritime chokepoints measured as the degree to which transit is safe and unrestricted.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_throughput",
+      "name": "Crude export throughput",
+      "description": "The volumetric flow rate of crude oil transiting export routes and chokepoints (e.g., barrels per day).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "global_production_rate",
+      "name": "Global crude production rate",
+      "description": "The aggregate rate at which crude oil is produced across producing regions at any given time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "export_infra_capacity",
+      "name": "Export infrastructure operational capacity",
+      "description": "The available operational capacity of export-related infrastructure (pipelines, terminals, export facilities) as a proportion of total installed capacity.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_availability",
+      "name": "Tanker fleet availability",
+      "description": "The effective supply of tankers available for international crude and product movements, adjusted for idling, safety restrictions, and routing changes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_freight_rate",
+      "name": "Tanker freight rates",
+      "description": "The market price level for shipping crude and refined products (time-charter or voyage rates) that determines transport cost per unit.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_inventories",
+      "name": "Crude and product inventories",
+      "description": "The total stock levels of crude oil and refined products held in commercial and strategic storage globally.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization",
+      "name": "Refinery utilization rate",
+      "description": "The fraction of refining capacity currently in operation, indicating how much of installed refining capability is being used.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refined_throughput",
+      "name": "Refined product throughput",
+      "description": "The flow rate of refined petroleum products produced by the refining system over a given period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "oil_spot_price",
+      "name": "Oil spot price level",
+      "description": "The current market price level for near-term physical crude oil transactions reflecting immediate supply–demand balance and risk premia.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "description": "The degree of short- to medium-term variability in oil prices as measured by realized or implied volatility metrics.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "futures_net_positions",
+      "name": "Futures market net positioning",
+      "description": "The aggregate net long or short exposure of speculators and commercial actors in oil derivatives markets (positioning balance).",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "consumer_fuel_price",
+      "name": "Consumer fuel retail price",
+      "description": "The retail price level consumers pay for refined fuels (e.g., gasoline, diesel), inclusive of taxes and distribution margins.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "global_oil_demand",
+      "name": "Global oil demand level",
+      "description": "The aggregate rate of final consumption of oil-derived fuels and feedstocks across end-use sectors worldwide.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_premium",
+      "name": "Shipping insurance premium level",
+      "description": "The additional cost levied on maritime insurance for crude and product shipments reflecting perceived transit risk.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "security_deployment",
+      "name": "Defense and security deployment intensity",
+      "description": "The active level of security and defense measures deployed to protect maritime routes and export infrastructure, measured by scale and frequency of operations.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "chokepoint_security",
+    "crude_throughput",
+    "global_production_rate",
+    "export_infra_capacity",
+    "tanker_availability",
+    "tanker_freight_rate",
+    "oil_inventories",
+    "refinery_utilization",
+    "refined_throughput",
+    "oil_spot_price",
+    "oil_price_volatility",
+    "futures_net_positions",
+    "consumer_fuel_price",
+    "global_oil_demand",
+    "insurance_premium",
+    "security_deployment"
+  ],
+  "var_names": {
+    "chokepoint_security": "Chokepoint security level",
+    "crude_throughput": "Crude export throughput",
+    "global_production_rate": "Global crude production rate",
+    "export_infra_capacity": "Export infrastructure operational capacity",
+    "tanker_availability": "Tanker fleet availability",
+    "tanker_freight_rate": "Tanker freight rates",
+    "oil_inventories": "Crude and product inventories",
+    "refinery_utilization": "Refinery utilization rate",
+    "refined_throughput": "Refined product throughput",
+    "oil_spot_price": "Oil spot price level",
+    "oil_price_volatility": "Oil price volatility",
+    "futures_net_positions": "Futures market net positioning",
+    "consumer_fuel_price": "Consumer fuel retail price",
+    "global_oil_demand": "Global oil demand level",
+    "insurance_premium": "Shipping insurance premium level",
+    "security_deployment": "Defense and security deployment intensity"
+  },
+  "impact_matrix": {
+    "chokepoint_security": {
+      "chokepoint_security": 0,
+      "crude_throughput": 3,
+      "global_production_rate": 0,
+      "export_infra_capacity": 2,
+      "tanker_availability": 2,
+      "tanker_freight_rate": 2,
+      "oil_inventories": 0,
+      "refinery_utilization": 0,
+      "refined_throughput": 0,
+      "oil_spot_price": 2,
+      "oil_price_volatility": 2,
+      "futures_net_positions": 1,
+      "consumer_fuel_price": 0,
+      "global_oil_demand": 0,
+      "insurance_premium": 3,
+      "security_deployment": 2
+    },
+    "crude_throughput": {
+      "chokepoint_security": 0,
+      "crude_throughput": 0,
+      "global_production_rate": 1,
+      "export_infra_capacity": 0,
+      "tanker_availability": 2,
+      "tanker_freight_rate": 2,
+      "oil_inventories": 3,
+      "refinery_utilization": 1,
+      "refined_throughput": 1,
+      "oil_spot_price": 3,
+      "oil_price_volatility": 2,
+      "futures_net_positions": 1,
+      "consumer_fuel_price": 1,
+      "global_oil_demand": 0,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "global_production_rate": {
+      "chokepoint_security": 0,
+      "crude_throughput": 2,
+      "global_production_rate": 0,
+      "export_infra_capacity": 0,
+      "tanker_availability": 1,
+      "tanker_freight_rate": 2,
+      "oil_inventories": 2,
+      "refinery_utilization": 1,
+      "refined_throughput": 1,
+      "oil_spot_price": 2,
+      "oil_price_volatility": 1,
+      "futures_net_positions": 1,
+      "consumer_fuel_price": 0,
+      "global_oil_demand": 0,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "export_infra_capacity": {
+      "chokepoint_security": 0,
+      "crude_throughput": 3,
+      "global_production_rate": 1,
+      "export_infra_capacity": 0,
+      "tanker_availability": 1,
+      "tanker_freight_rate": 1,
+      "oil_inventories": 2,
+      "refinery_utilization": 0,
+      "refined_throughput": 0,
+      "oil_spot_price": 2,
+      "oil_price_volatility": 1,
+      "futures_net_positions": 1,
+      "consumer_fuel_price": 0,
+      "global_oil_demand": 0,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "tanker_availability": {
+      "chokepoint_security": 0,
+      "crude_throughput": 2,
+      "global_production_rate": 0,
+      "export_infra_capacity": 0,
+      "tanker_availability": 0,
+      "tanker_freight_rate": 3,
+      "oil_inventories": 1,
+      "refinery_utilization": 1,
+      "refined_throughput": 1,
+      "oil_spot_price": 2,
+      "oil_price_volatility": 1,
+      "futures_net_positions": 1,
+      "consumer_fuel_price": 0,
+      "global_oil_demand": 0,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "tanker_freight_rate": {
+      "chokepoint_security": 0,
+      "crude_throughput": 1,
+      "global_production_rate": 0,
+      "export_infra_capacity": 0,
+      "tanker_availability": 1,
+      "tanker_freight_rate": 0,
+      "oil_inventories": 1,
+      "refinery_utilization": 0,
+      "refined_throughput": 0,
+      "oil_spot_price": 1,
+      "oil_price_volatility": 0,
+      "futures_net_positions": 0,
+      "consumer_fuel_price": 1,
+      "global_oil_demand": 0,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "oil_inventories": {
+      "chokepoint_security": 0,
+      "crude_throughput": 1,
+      "global_production_rate": 1,
+      "export_infra_capacity": 0,
+      "tanker_availability": 0,
+      "tanker_freight_rate": 0,
+      "oil_inventories": 0,
+      "refinery_utilization": 1,
+      "refined_throughput": 1,
+      "oil_spot_price": 3,
+      "oil_price_volatility": 2,
+      "futures_net_positions": 1,
+      "consumer_fuel_price": 1,
+      "global_oil_demand": 0,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "refinery_utilization": {
+      "chokepoint_security": 0,
+      "crude_throughput": 1,
+      "global_production_rate": 0,
+      "export_infra_capacity": 0,
+      "tanker_availability": 0,
+      "tanker_freight_rate": 0,
+      "oil_inventories": 2,
+      "refinery_utilization": 0,
+      "refined_throughput": 3,
+      "oil_spot_price": 1,
+      "oil_price_volatility": 1,
+      "futures_net_positions": 0,
+      "consumer_fuel_price": 2,
+      "global_oil_demand": 0,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "refined_throughput": {
+      "chokepoint_security": 0,
+      "crude_throughput": 0,
+      "global_production_rate": 0,
+      "export_infra_capacity": 0,
+      "tanker_availability": 0,
+      "tanker_freight_rate": 0,
+      "oil_inventories": 2,
+      "refinery_utilization": 2,
+      "refined_throughput": 0,
+      "oil_spot_price": 1,
+      "oil_price_volatility": 0,
+      "futures_net_positions": 0,
+      "consumer_fuel_price": 2,
+      "global_oil_demand": 0,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "oil_spot_price": {
+      "chokepoint_security": 0,
+      "crude_throughput": 0,
+      "global_production_rate": 1,
+      "export_infra_capacity": 0,
+      "tanker_availability": 0,
+      "tanker_freight_rate": 1,
+      "oil_inventories": 1,
+      "refinery_utilization": 1,
+      "refined_throughput": 0,
+      "oil_spot_price": 0,
+      "oil_price_volatility": 1,
+      "futures_net_positions": 3,
+      "consumer_fuel_price": 3,
+      "global_oil_demand": 1,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "oil_price_volatility": {
+      "chokepoint_security": 0,
+      "crude_throughput": 0,
+      "global_production_rate": 0,
+      "export_infra_capacity": 0,
+      "tanker_availability": 0,
+      "tanker_freight_rate": 1,
+      "oil_inventories": 0,
+      "refinery_utilization": 0,
+      "refined_throughput": 0,
+      "oil_spot_price": 1,
+      "oil_price_volatility": 0,
+      "futures_net_positions": 2,
+      "consumer_fuel_price": 0,
+      "global_oil_demand": 0,
+      "insurance_premium": 1,
+      "security_deployment": 0
+    },
+    "futures_net_positions": {
+      "chokepoint_security": 0,
+      "crude_throughput": 0,
+      "global_production_rate": 0,
+      "export_infra_capacity": 0,
+      "tanker_availability": 0,
+      "tanker_freight_rate": 0,
+      "oil_inventories": 0,
+      "refinery_utilization": 0,
+      "refined_throughput": 0,
+      "oil_spot_price": 2,
+      "oil_price_volatility": 2,
+      "futures_net_positions": 0,
+      "consumer_fuel_price": 0,
+      "global_oil_demand": 0,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "consumer_fuel_price": {
+      "chokepoint_security": 0,
+      "crude_throughput": 0,
+      "global_production_rate": 0,
+      "export_infra_capacity": 0,
+      "tanker_availability": 0,
+      "tanker_freight_rate": 0,
+      "oil_inventories": 0,
+      "refinery_utilization": 0,
+      "refined_throughput": 0,
+      "oil_spot_price": 0,
+      "oil_price_volatility": 0,
+      "futures_net_positions": 0,
+      "consumer_fuel_price": 0,
+      "global_oil_demand": 2,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "global_oil_demand": {
+      "chokepoint_security": 0,
+      "crude_throughput": 2,
+      "global_production_rate": 2,
+      "export_infra_capacity": 0,
+      "tanker_availability": 1,
+      "tanker_freight_rate": 2,
+      "oil_inventories": 2,
+      "refinery_utilization": 2,
+      "refined_throughput": 2,
+      "oil_spot_price": 3,
+      "oil_price_volatility": 1,
+      "futures_net_positions": 1,
+      "consumer_fuel_price": 0,
+      "global_oil_demand": 0,
+      "insurance_premium": 0,
+      "security_deployment": 0
+    },
+    "insurance_premium": {
+      "chokepoint_security": 0,
+      "crude_throughput": 1,
+      "global_production_rate": 0,
+      "export_infra_capacity": 0,
+      "tanker_availability": 1,
+      "tanker_freight_rate": 2,
+      "oil_inventories": 0,
+      "refinery_utilization": 0,
+      "refined_throughput": 0,
+      "oil_spot_price": 1,
+      "oil_price_volatility": 0,
+      "futures_net_positions": 0,
+      "consumer_fuel_price": 1,
+      "global_oil_demand": 0,
+      "insurance_premium": 0,
+      "security_deployment": 1
+    },
+    "security_deployment": {
+      "chokepoint_security": 3,
+      "crude_throughput": 2,
+      "global_production_rate": 0,
+      "export_infra_capacity": 1,
+      "tanker_availability": 1,
+      "tanker_freight_rate": 1,
+      "oil_inventories": 0,
+      "refinery_utilization": 0,
+      "refined_throughput": 0,
+      "oil_spot_price": 1,
+      "oil_price_volatility": 1,
+      "futures_net_positions": 0,
+      "consumer_fuel_price": 0,
+      "global_oil_demand": 0,
+      "insurance_premium": 2,
+      "security_deployment": 0
+    }
+  },
+  "AS": {
+    "chokepoint_security": 19,
+    "crude_throughput": 17,
+    "global_production_rate": 13,
+    "export_infra_capacity": 12,
+    "tanker_availability": 12,
+    "tanker_freight_rate": 5,
+    "oil_inventories": 11,
+    "refinery_utilization": 10,
+    "refined_throughput": 7,
+    "oil_spot_price": 12,
+    "oil_price_volatility": 5,
+    "futures_net_positions": 4,
+    "consumer_fuel_price": 2,
+    "global_oil_demand": 18,
+    "insurance_premium": 7,
+    "security_deployment": 12
+  },
+  "PS": {
+    "chokepoint_security": 3,
+    "crude_throughput": 18,
+    "global_production_rate": 6,
+    "export_infra_capacity": 3,
+    "tanker_availability": 10,
+    "tanker_freight_rate": 17,
+    "oil_inventories": 16,
+    "refinery_utilization": 9,
+    "refined_throughput": 9,
+    "oil_spot_price": 25,
+    "oil_price_volatility": 15,
+    "futures_net_positions": 12,
+    "consumer_fuel_price": 11,
+    "global_oil_demand": 3,
+    "insurance_premium": 6,
+    "security_deployment": 3
+  },
+  "med_AS": 11.5,
+  "med_PS": 9.5,
+  "roles": [
+    {
+      "variable": "crude_throughput",
+      "name": "Crude export throughput",
+      "AS": 17,
+      "PS": 18,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 306,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "oil_spot_price",
+      "name": "Oil spot price level",
+      "AS": 12,
+      "PS": 25,
+      "Q=AS/PS": 0.48,
+      "P=AS*PS": 300,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "oil_inventories",
+      "name": "Crude and product inventories",
+      "AS": 11,
+      "PS": 16,
+      "Q=AS/PS": 0.69,
+      "P=AS*PS": 176,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tanker_availability",
+      "name": "Tanker fleet availability",
+      "AS": 12,
+      "PS": 10,
+      "Q=AS/PS": 1.2,
+      "P=AS*PS": 120,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refinery_utilization",
+      "name": "Refinery utilization rate",
+      "AS": 10,
+      "PS": 9,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 90,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "tanker_freight_rate",
+      "name": "Tanker freight rates",
+      "AS": 5,
+      "PS": 17,
+      "Q=AS/PS": 0.29,
+      "P=AS*PS": 85,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "global_production_rate",
+      "name": "Global crude production rate",
+      "AS": 13,
+      "PS": 6,
+      "Q=AS/PS": 2.17,
+      "P=AS*PS": 78,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "AS": 5,
+      "PS": 15,
+      "Q=AS/PS": 0.33,
+      "P=AS*PS": 75,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refined_throughput",
+      "name": "Refined product throughput",
+      "AS": 7,
+      "PS": 9,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 63,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "chokepoint_security",
+      "name": "Chokepoint security level",
+      "AS": 19,
+      "PS": 3,
+      "Q=AS/PS": 6.33,
+      "P=AS*PS": 57,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "global_oil_demand",
+      "name": "Global oil demand level",
+      "AS": 18,
+      "PS": 3,
+      "Q=AS/PS": 6.0,
+      "P=AS*PS": 54,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "futures_net_positions",
+      "name": "Futures market net positioning",
+      "AS": 4,
+      "PS": 12,
+      "Q=AS/PS": 0.33,
+      "P=AS*PS": 48,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "insurance_premium",
+      "name": "Shipping insurance premium level",
+      "AS": 7,
+      "PS": 6,
+      "Q=AS/PS": 1.17,
+      "P=AS*PS": 42,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "export_infra_capacity",
+      "name": "Export infrastructure operational capacity",
+      "AS": 12,
+      "PS": 3,
+      "Q=AS/PS": 4.0,
+      "P=AS*PS": 36,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "security_deployment",
+      "name": "Defense and security deployment intensity",
+      "AS": 12,
+      "PS": 3,
+      "Q=AS/PS": 4.0,
+      "P=AS*PS": 36,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "consumer_fuel_price",
+      "name": "Consumer fuel retail price",
+      "AS": 2,
+      "PS": 11,
+      "Q=AS/PS": 0.18,
+      "P=AS*PS": 22,
+      "role": "reactive (sensor)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "chokepoint_security",
+        "name": "Chokepoint security level",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 3
+      },
+      {
+        "id": "crude_throughput",
+        "name": "Crude export throughput",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 18
+      },
+      {
+        "id": "global_production_rate",
+        "name": "Global crude production rate",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 6
+      },
+      {
+        "id": "export_infra_capacity",
+        "name": "Export infrastructure operational capacity",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 3
+      },
+      {
+        "id": "tanker_availability",
+        "name": "Tanker fleet availability",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 10
+      },
+      {
+        "id": "tanker_freight_rate",
+        "name": "Tanker freight rates",
+        "kind": "driver",
+        "AS": 5,
+        "PS": 17
+      },
+      {
+        "id": "oil_inventories",
+        "name": "Crude and product inventories",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 16
+      },
+      {
+        "id": "refinery_utilization",
+        "name": "Refinery utilization rate",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 9
+      },
+      {
+        "id": "refined_throughput",
+        "name": "Refined product throughput",
+        "kind": "flow",
+        "AS": 7,
+        "PS": 9
+      },
+      {
+        "id": "oil_spot_price",
+        "name": "Oil spot price level",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 25
+      },
+      {
+        "id": "oil_price_volatility",
+        "name": "Oil price volatility",
+        "kind": "perception",
+        "AS": 5,
+        "PS": 15
+      },
+      {
+        "id": "futures_net_positions",
+        "name": "Futures market net positioning",
+        "kind": "perception",
+        "AS": 4,
+        "PS": 12
+      },
+      {
+        "id": "consumer_fuel_price",
+        "name": "Consumer fuel retail price",
+        "kind": "driver",
+        "AS": 2,
+        "PS": 11
+      },
+      {
+        "id": "global_oil_demand",
+        "name": "Global oil demand level",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 3
+      },
+      {
+        "id": "insurance_premium",
+        "name": "Shipping insurance premium level",
+        "kind": "driver",
+        "AS": 7,
+        "PS": 6
+      },
+      {
+        "id": "security_deployment",
+        "name": "Defense and security deployment intensity",
+        "kind": "institution_field",
+        "AS": 12,
+        "PS": 3
+      }
+    ],
+    "edges": [
+      {
+        "source": "chokepoint_security",
+        "target": "crude_throughput",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_security",
+        "target": "export_infra_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_security",
+        "target": "tanker_availability",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_security",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_security",
+        "target": "oil_spot_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_security",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_security",
+        "target": "insurance_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_security",
+        "target": "security_deployment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_throughput",
+        "target": "tanker_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_throughput",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_throughput",
+        "target": "oil_inventories",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_throughput",
+        "target": "oil_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_throughput",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_production_rate",
+        "target": "crude_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_production_rate",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_production_rate",
+        "target": "oil_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_production_rate",
+        "target": "oil_spot_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_infra_capacity",
+        "target": "crude_throughput",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "export_infra_capacity",
+        "target": "oil_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_infra_capacity",
+        "target": "oil_spot_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "crude_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "tanker_freight_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "oil_spot_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_inventories",
+        "target": "oil_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "oil_inventories",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "oil_inventories",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "refined_throughput",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "consumer_fuel_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_throughput",
+        "target": "oil_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_throughput",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_throughput",
+        "target": "consumer_fuel_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_spot_price",
+        "target": "futures_net_positions",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_spot_price",
+        "target": "consumer_fuel_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "futures_net_positions",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "futures_net_positions",
+        "target": "oil_spot_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "futures_net_positions",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_fuel_price",
+        "target": "global_oil_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_demand",
+        "target": "crude_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_demand",
+        "target": "global_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_demand",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_demand",
+        "target": "oil_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_demand",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_demand",
+        "target": "refined_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_demand",
+        "target": "oil_spot_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premium",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_deployment",
+        "target": "chokepoint_security",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "security_deployment",
+        "target": "crude_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_deployment",
+        "target": "insurance_premium",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "houthi_red_sea_control",
+      "title": "Houthi control of Bab al‑Mandeb and Red Sea islands",
+      "description": "Rapid Houthi seizure and effective control of islands and approaches to Bab al‑Mandeb, sustaining denial of safe commercial transit through the southern Red Sea. Ongoing operations and garrisons likely to persist and disrupt shipping.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-10-31",
+        "label": "2-7 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "chokepoint_security",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_throughput",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_freight_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_availability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_spot_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "export_infra_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "security_deployment",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Houthis take effective control of key Red Sea chokepoint', 'Houthis seize Red Sea islands' (2026-09-11—09-13)."
+    },
+    {
+      "id": "oman_hormuz_meeting_2026_09_14",
+      "title": "Oman-hosted Iran–Gulf meeting on Strait of Hormuz",
+      "description": "Diplomatic meeting in Oman among Iran and Gulf states intended to negotiate a Hormuz security/traffic arrangement; outcome could either partially restore or leave closed transit confidence low.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-14",
+        "start": null,
+        "end": null,
+        "label": "one day"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "chokepoint_security",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "crude_throughput",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "oil_spot_price",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "tanker_freight_rate",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Iran and Gulf states to meet in push for Hormuz deal' and 'No signed Hormuz deal expected yet from Oman meeting on Monday' (2026-09-11—09-12)."
+    },
+    {
+      "id": "saudi_pipeline_shutdown_persistence",
+      "title": "Prolonged East‑West pipeline shutdown in Saudi Arabia",
+      "description": "Extended closure of the East‑West pipeline that bypasses Hormuz after repeated attacks, constraining Saudi export routing and placing more burden on alternate routes and storage.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-12",
+        "end": "2026-11-30",
+        "label": "weeks–months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "export_infra_capacity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_throughput",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_production_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_freight_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_spot_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refinery_utilization",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Saudi Arabia shut down East‑West crude oil pipeline after multiple attacks' and related coverage (2026-09-11—09-12)."
+    },
+    {
+      "id": "us_air_defense_time_limits",
+      "title": "U.S. limits air‑defense time slots for tankers",
+      "description": "U.S. restriction on air‑defence escort time slots for tankers transiting Hormuz that reduces available secure transit windows and complicates scheduling and routing.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-12",
+        "start": null,
+        "end": null,
+        "label": "immediate"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "tanker_availability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "chokepoint_security",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_freight_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "security_deployment",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'US limits air defence time slots for tankers sailing through Hormuz' (2026-09-12)."
+    },
+    {
+      "id": "iea_warnings_supply_gap",
+      "title": "IEA warns delayed return of Gulf flows and widening 2026 supply gap",
+      "description": "IEA forecast that normal Gulf output and flows will be delayed, widening a 2026 supply gap and keeping markets tight for months unless flows resume.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-11",
+        "end": "2026-12-31",
+        "label": "months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "global_production_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_throughput",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_spot_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_inventories",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'IEA warns 2026 oil supply gap will widen on delayed return of normal Gulf flows' (2026-09-11)."
+    },
+    {
+      "id": "white_house_dpa_refining",
+      "title": "White House weighs DPA to expand U.S. refining capacity",
+      "description": "U.S. administration consideration of invoking the Defense Production Act to accelerate expansions or conversions in refining, potentially increasing domestic throughput over months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-11",
+        "end": "2026-12-31",
+        "label": "3 months"
+      },
+      "probability": 0.45,
+      "affected": [
+        {
+          "variable_id": "refinery_utilization",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_throughput",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_inventories",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_spot_price",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'White House weighs how to use Defense Production Act to expand US oil refining capacity' (2026-09-11)."
+    },
+    {
+      "id": "potential_coalition_strikes",
+      "title": "Risk of coalition/US strikes on Houthi/IR-linked targets",
+      "description": "Political pressure and previous requests for strikes create a meaningful near‑term risk of military strikes against Houthi or Iranian-linked facilities, which would sharply escalate supply disruption.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-10-15",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.35,
+      "affected": [
+        {
+          "variable_id": "chokepoint_security",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_throughput",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "security_deployment",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_spot_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_availability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: calls for strikes, Trump declined earlier but pressure remains; regional exchanges on ships and pipeline attacks (2026-09-11—09-12)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "houthi_red_sea_control",
+      "title": "Houthi control of Bab al‑Mandeb and Red Sea islands",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-7 weeks",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-10-31",
+      "probability": 0.9,
+      "impact_score": 267.0,
+      "expected_impact": 240.3,
+      "event_PS": 11.833,
+      "event_AS": 11.125,
+      "n_vars": 9,
+      "affected_ids": "chokepoint_security, crude_throughput, tanker_freight_rate, tanker_availability, insurance_premium, oil_spot_price, oil_price_volatility, export_infra_capacity, security_deployment",
+      "rationale": "Headlines: 'Houthis take effective control of key Red Sea chokepoint', 'Houthis seize Red Sea islands' (2026-09-11—09-13)."
+    },
+    {
+      "id": "potential_coalition_strikes",
+      "title": "Risk of coalition/US strikes on Houthi/IR-linked targets",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-10-15",
+      "probability": 0.35,
+      "impact_score": 240.0,
+      "expected_impact": 84.0,
+      "event_PS": 11.5,
+      "event_AS": 12.0,
+      "n_vars": 7,
+      "affected_ids": "chokepoint_security, crude_throughput, security_deployment, oil_spot_price, oil_price_volatility, tanker_availability, insurance_premium",
+      "rationale": "Headlines: calls for strikes, Trump declined earlier but pressure remains; regional exchanges on ships and pipeline attacks (2026-09-11—09-12)."
+    },
+    {
+      "id": "saudi_pipeline_shutdown_persistence",
+      "title": "Prolonged East‑West pipeline shutdown in Saudi Arabia",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-09-12",
+      "end": "2026-11-30",
+      "probability": 0.8,
+      "impact_score": 167.0,
+      "expected_impact": 133.6,
+      "event_PS": 13.2,
+      "event_AS": 11.133,
+      "n_vars": 7,
+      "affected_ids": "export_infra_capacity, crude_throughput, global_production_rate, tanker_freight_rate, oil_spot_price, oil_price_volatility, refinery_utilization",
+      "rationale": "Headlines: 'Saudi Arabia shut down East‑West crude oil pipeline after multiple attacks' and related coverage (2026-09-11—09-12)."
+    },
+    {
+      "id": "iea_warnings_supply_gap",
+      "title": "IEA warns delayed return of Gulf flows and widening 2026 supply gap",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-09-11",
+      "end": "2026-12-31",
+      "probability": 0.85,
+      "impact_score": 116.0,
+      "expected_impact": 98.6,
+      "event_PS": 16.0,
+      "event_AS": 11.6,
+      "n_vars": 5,
+      "affected_ids": "global_production_rate, crude_throughput, oil_spot_price, oil_price_volatility, oil_inventories",
+      "rationale": "Headline: 'IEA warns 2026 oil supply gap will widen on delayed return of normal Gulf flows' (2026-09-11)."
+    },
+    {
+      "id": "oman_hormuz_meeting_2026_09_14",
+      "title": "Oman-hosted Iran–Gulf meeting on Strait of Hormuz",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "one day",
+      "date": "2026-09-14",
+      "start": null,
+      "end": null,
+      "probability": 0.9,
+      "impact_score": 111.0,
+      "expected_impact": 99.9,
+      "event_PS": 15.444,
+      "event_AS": 12.333,
+      "n_vars": 5,
+      "affected_ids": "chokepoint_security, crude_throughput, oil_spot_price, oil_price_volatility, tanker_freight_rate",
+      "rationale": "Headlines: 'Iran and Gulf states to meet in push for Hormuz deal' and 'No signed Hormuz deal expected yet from Oman meeting on Monday' (2026-09-11—09-12)."
+    },
+    {
+      "id": "us_air_defense_time_limits",
+      "title": "U.S. limits air‑defense time slots for tankers",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "immediate",
+      "date": "2026-09-12",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 98.0,
+      "expected_impact": 93.1,
+      "event_PS": 8.333,
+      "event_AS": 10.889,
+      "n_vars": 5,
+      "affected_ids": "tanker_availability, chokepoint_security, insurance_premium, tanker_freight_rate, security_deployment",
+      "rationale": "Headline: 'US limits air defence time slots for tankers sailing through Hormuz' (2026-09-12)."
+    },
+    {
+      "id": "white_house_dpa_refining",
+      "title": "White House weighs DPA to expand U.S. refining capacity",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3 months",
+      "date": null,
+      "start": "2026-09-11",
+      "end": "2026-12-31",
+      "probability": 0.45,
+      "impact_score": 57.0,
+      "expected_impact": 25.65,
+      "event_PS": 12.833,
+      "event_AS": 9.5,
+      "n_vars": 4,
+      "affected_ids": "refinery_utilization, refined_throughput, oil_inventories, oil_spot_price",
+      "rationale": "Headline: 'White House weighs how to use Defense Production Act to expand US oil refining capacity' (2026-09-11)."
+    }
+  ]
+}

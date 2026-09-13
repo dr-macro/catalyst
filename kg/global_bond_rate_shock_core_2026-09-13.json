@@ -1,0 +1,2024 @@
+{
+  "label": "global_bond_rate_shock",
+  "as_of": "2026-09-13",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-13T01:36:38",
+  "system_description": {
+    "narrative_title": "Global bond-market selloff: rising yields, inflation, and failed interventions",
+    "narrative_summary": "A global bond-market selloff driven by hotter-than-expected inflation and a sharp oil-price shock is pushing government yields to multi-year highs and rebuilding expectations of further central-bank tightening. Market interventions (notably Scott Bessent’s Treasury buyback) have so far failed to calm the long end, amplifying spillovers to credit costs, fiscal interest bills and equity/FX markets. Feedback loops between commodity shocks, sticky inflation and policy tightening are making the system highly sensitive to small new data or events.",
+    "scope": "Global government bond markets and yields, central-bank policy expectations and rate decisions, inflation and oil-price dynamics, large market interventions (Treasury buybacks, sanctions signalling), investor positioning and short-term market liquidity; and direct spillovers to credit, fiscal interest costs, equities and FX.",
+    "super_system": "Global macro-financial system / world economy and monetary-financial order",
+    "adjacent_subsystems": [
+      "Energy markets (oil price dynamics)",
+      "Private credit and banking sector (corporate borrowing costs, covenant stress)",
+      "Equity markets and portfolio reallocation",
+      "Foreign exchange and reserve flows"
+    ],
+    "evidence_headlines": [
+      "Treasury yields surge after Bessent’s beefed-up buyback operation fails to calm market",
+      "Global bond selloff keeps 10-year US yield near 5% on oil, rate-hike fears - reuters.com",
+      "US consumer inflation picks up in August",
+      "BOJ set to lift rates next week but offer few clues on terminal, sources say - reuters.com",
+      "Global bonds buckle as surging oil prices inflame inflation risks",
+      "ECB raises interest rates to fight off inflation jump"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_yield",
+      "name": "Long-term government bond yield",
+      "description": "The prevailing interest rate investors require for long-maturity sovereign debt, reflecting compensation for time, inflation and risk over extended horizons.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_rate",
+      "name": "Short-term policy interest rate",
+      "description": "The benchmark overnight or short-maturity policy interest rate set by monetary authorities that anchors short-term funding costs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "headline_inflation",
+      "name": "Headline inflation rate",
+      "description": "The observed year-on-year change in a broad price index capturing overall consumer price inflation including volatile components.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_persistence",
+      "name": "Inflation persistence",
+      "description": "The rate at which elevated inflationary pressures decay or are sustained over time, indicating stickiness in price dynamics.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Long-term inflation expectations",
+      "description": "Market and agent expectations for average inflation over multi-year horizons as revealed by surveys, breakevens or forward indicators.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_price_level",
+      "name": "Commodity price level",
+      "description": "The aggregate price level of key commodities (notably energy) that feeds directly into production costs and consumer prices.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_price_vol",
+      "name": "Commodity price volatility",
+      "description": "The magnitude and frequency of swings in commodity prices, capturing uncertainty and shock intensity in commodity markets.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tightening_expectations",
+      "name": "Central-bank tightening expectations",
+      "description": "The market-implied likelihood and anticipated magnitude of future monetary policy rate increases by central authorities.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Bond term premium",
+      "description": "The extra yield investors demand to hold longer-duration bonds versus a sequence of expected short rates, reflecting risk and liquidity compensation.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Short-term market liquidity",
+      "description": "The ease and cost of executing large transactions in fixed-income markets without significantly moving prices over short horizons.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_pos",
+      "name": "Investor risk positioning",
+      "description": "The aggregate net exposure of market participants to risk assets, indicating propensity to buy or sell in response to shocks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_leverage",
+      "name": "Aggregate investor leverage",
+      "description": "The average level of borrowed exposure across investors in financial markets, amplifying gains and losses when positions are adjusted.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "intervention_activity",
+      "name": "Market intervention activity",
+      "description": "The flow and intensity of purposeful market operations (e.g., large-scale asset purchases or sales) executed to influence prices or liquidity.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread_level",
+      "name": "Credit spread level",
+      "description": "The average premium investors demand for holding non-sovereign debt over risk-free sovereign bonds, reflecting credit and liquidity risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "public_interest_burden",
+      "name": "Public sector interest burden",
+      "description": "The ongoing flow of government interest payments relative to the size of the economy, indicating fiscal sensitivity to yields.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation",
+      "name": "Equity market valuation level",
+      "description": "The average pricing of equities relative to fundamentals (e.g., earnings), capturing sensitivity of equity prices to changes in rates and risk sentiment.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_yield",
+    "short_term_rate",
+    "headline_inflation",
+    "inflation_persistence",
+    "inflation_expectations",
+    "commodity_price_level",
+    "commodity_price_vol",
+    "tightening_expectations",
+    "term_premium",
+    "market_liquidity",
+    "investor_risk_pos",
+    "investor_leverage",
+    "intervention_activity",
+    "credit_spread_level",
+    "public_interest_burden",
+    "equity_valuation"
+  ],
+  "var_names": {
+    "long_term_yield": "Long-term government bond yield",
+    "short_term_rate": "Short-term policy interest rate",
+    "headline_inflation": "Headline inflation rate",
+    "inflation_persistence": "Inflation persistence",
+    "inflation_expectations": "Long-term inflation expectations",
+    "commodity_price_level": "Commodity price level",
+    "commodity_price_vol": "Commodity price volatility",
+    "tightening_expectations": "Central-bank tightening expectations",
+    "term_premium": "Bond term premium",
+    "market_liquidity": "Short-term market liquidity",
+    "investor_risk_pos": "Investor risk positioning",
+    "investor_leverage": "Aggregate investor leverage",
+    "intervention_activity": "Market intervention activity",
+    "credit_spread_level": "Credit spread level",
+    "public_interest_burden": "Public sector interest burden",
+    "equity_valuation": "Equity market valuation level"
+  },
+  "impact_matrix": {
+    "long_term_yield": {
+      "long_term_yield": 0,
+      "short_term_rate": 1,
+      "headline_inflation": 0,
+      "inflation_persistence": 0,
+      "inflation_expectations": 2,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 0,
+      "tightening_expectations": 3,
+      "term_premium": 2,
+      "market_liquidity": 1,
+      "investor_risk_pos": 2,
+      "investor_leverage": 1,
+      "intervention_activity": 3,
+      "credit_spread_level": 2,
+      "public_interest_burden": 3,
+      "equity_valuation": 3
+    },
+    "short_term_rate": {
+      "long_term_yield": 3,
+      "short_term_rate": 0,
+      "headline_inflation": 2,
+      "inflation_persistence": 2,
+      "inflation_expectations": 3,
+      "commodity_price_level": 1,
+      "commodity_price_vol": 1,
+      "tightening_expectations": 2,
+      "term_premium": 2,
+      "market_liquidity": 3,
+      "investor_risk_pos": 3,
+      "investor_leverage": 3,
+      "intervention_activity": 1,
+      "credit_spread_level": 2,
+      "public_interest_burden": 3,
+      "equity_valuation": 3
+    },
+    "headline_inflation": {
+      "long_term_yield": 3,
+      "short_term_rate": 3,
+      "headline_inflation": 0,
+      "inflation_persistence": 1,
+      "inflation_expectations": 3,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 0,
+      "tightening_expectations": 3,
+      "term_premium": 2,
+      "market_liquidity": 1,
+      "investor_risk_pos": 2,
+      "investor_leverage": 1,
+      "intervention_activity": 2,
+      "credit_spread_level": 1,
+      "public_interest_burden": 1,
+      "equity_valuation": 2
+    },
+    "inflation_persistence": {
+      "long_term_yield": 3,
+      "short_term_rate": 3,
+      "headline_inflation": 1,
+      "inflation_persistence": 0,
+      "inflation_expectations": 3,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 0,
+      "tightening_expectations": 3,
+      "term_premium": 2,
+      "market_liquidity": 1,
+      "investor_risk_pos": 2,
+      "investor_leverage": 1,
+      "intervention_activity": 2,
+      "credit_spread_level": 2,
+      "public_interest_burden": 2,
+      "equity_valuation": 2
+    },
+    "inflation_expectations": {
+      "long_term_yield": 3,
+      "short_term_rate": 2,
+      "headline_inflation": 1,
+      "inflation_persistence": 2,
+      "inflation_expectations": 0,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 0,
+      "tightening_expectations": 3,
+      "term_premium": 1,
+      "market_liquidity": 1,
+      "investor_risk_pos": 2,
+      "investor_leverage": 1,
+      "intervention_activity": 2,
+      "credit_spread_level": 1,
+      "public_interest_burden": 2,
+      "equity_valuation": 2
+    },
+    "commodity_price_level": {
+      "long_term_yield": 2,
+      "short_term_rate": 2,
+      "headline_inflation": 3,
+      "inflation_persistence": 2,
+      "inflation_expectations": 2,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 0,
+      "tightening_expectations": 2,
+      "term_premium": 2,
+      "market_liquidity": 0,
+      "investor_risk_pos": 1,
+      "investor_leverage": 0,
+      "intervention_activity": 1,
+      "credit_spread_level": 2,
+      "public_interest_burden": 1,
+      "equity_valuation": 1
+    },
+    "commodity_price_vol": {
+      "long_term_yield": 2,
+      "short_term_rate": 1,
+      "headline_inflation": 1,
+      "inflation_persistence": 1,
+      "inflation_expectations": 2,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 0,
+      "tightening_expectations": 1,
+      "term_premium": 3,
+      "market_liquidity": 2,
+      "investor_risk_pos": 2,
+      "investor_leverage": 3,
+      "intervention_activity": 2,
+      "credit_spread_level": 2,
+      "public_interest_burden": 0,
+      "equity_valuation": 2
+    },
+    "tightening_expectations": {
+      "long_term_yield": 3,
+      "short_term_rate": 1,
+      "headline_inflation": 1,
+      "inflation_persistence": 1,
+      "inflation_expectations": 2,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 0,
+      "tightening_expectations": 0,
+      "term_premium": 2,
+      "market_liquidity": 1,
+      "investor_risk_pos": 3,
+      "investor_leverage": 2,
+      "intervention_activity": 1,
+      "credit_spread_level": 2,
+      "public_interest_burden": 1,
+      "equity_valuation": 3
+    },
+    "term_premium": {
+      "long_term_yield": 3,
+      "short_term_rate": 0,
+      "headline_inflation": 0,
+      "inflation_persistence": 0,
+      "inflation_expectations": 1,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 0,
+      "tightening_expectations": 1,
+      "term_premium": 0,
+      "market_liquidity": 1,
+      "investor_risk_pos": 1,
+      "investor_leverage": 1,
+      "intervention_activity": 2,
+      "credit_spread_level": 1,
+      "public_interest_burden": 2,
+      "equity_valuation": 2
+    },
+    "market_liquidity": {
+      "long_term_yield": 2,
+      "short_term_rate": 1,
+      "headline_inflation": 0,
+      "inflation_persistence": 0,
+      "inflation_expectations": 1,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 2,
+      "tightening_expectations": 1,
+      "term_premium": 3,
+      "market_liquidity": 0,
+      "investor_risk_pos": 3,
+      "investor_leverage": 3,
+      "intervention_activity": 3,
+      "credit_spread_level": 3,
+      "public_interest_burden": 0,
+      "equity_valuation": 2
+    },
+    "investor_risk_pos": {
+      "long_term_yield": 2,
+      "short_term_rate": 0,
+      "headline_inflation": 0,
+      "inflation_persistence": 0,
+      "inflation_expectations": 0,
+      "commodity_price_level": 1,
+      "commodity_price_vol": 1,
+      "tightening_expectations": 2,
+      "term_premium": 2,
+      "market_liquidity": 2,
+      "investor_risk_pos": 0,
+      "investor_leverage": 3,
+      "intervention_activity": 1,
+      "credit_spread_level": 3,
+      "public_interest_burden": 0,
+      "equity_valuation": 3
+    },
+    "investor_leverage": {
+      "long_term_yield": 2,
+      "short_term_rate": 1,
+      "headline_inflation": 0,
+      "inflation_persistence": 0,
+      "inflation_expectations": 0,
+      "commodity_price_level": 1,
+      "commodity_price_vol": 2,
+      "tightening_expectations": 1,
+      "term_premium": 2,
+      "market_liquidity": 3,
+      "investor_risk_pos": 2,
+      "investor_leverage": 0,
+      "intervention_activity": 2,
+      "credit_spread_level": 2,
+      "public_interest_burden": 0,
+      "equity_valuation": 2
+    },
+    "intervention_activity": {
+      "long_term_yield": 3,
+      "short_term_rate": 2,
+      "headline_inflation": 1,
+      "inflation_persistence": 1,
+      "inflation_expectations": 2,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 2,
+      "tightening_expectations": 2,
+      "term_premium": 3,
+      "market_liquidity": 3,
+      "investor_risk_pos": 3,
+      "investor_leverage": 2,
+      "intervention_activity": 0,
+      "credit_spread_level": 2,
+      "public_interest_burden": 1,
+      "equity_valuation": 2
+    },
+    "credit_spread_level": {
+      "long_term_yield": 1,
+      "short_term_rate": 0,
+      "headline_inflation": 0,
+      "inflation_persistence": 0,
+      "inflation_expectations": 0,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 0,
+      "tightening_expectations": 1,
+      "term_premium": 1,
+      "market_liquidity": 2,
+      "investor_risk_pos": 2,
+      "investor_leverage": 2,
+      "intervention_activity": 2,
+      "credit_spread_level": 0,
+      "public_interest_burden": 1,
+      "equity_valuation": 2
+    },
+    "public_interest_burden": {
+      "long_term_yield": 2,
+      "short_term_rate": 1,
+      "headline_inflation": 0,
+      "inflation_persistence": 0,
+      "inflation_expectations": 2,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 0,
+      "tightening_expectations": 1,
+      "term_premium": 2,
+      "market_liquidity": 1,
+      "investor_risk_pos": 1,
+      "investor_leverage": 1,
+      "intervention_activity": 2,
+      "credit_spread_level": 1,
+      "public_interest_burden": 0,
+      "equity_valuation": 2
+    },
+    "equity_valuation": {
+      "long_term_yield": 1,
+      "short_term_rate": 0,
+      "headline_inflation": 0,
+      "inflation_persistence": 0,
+      "inflation_expectations": 0,
+      "commodity_price_level": 0,
+      "commodity_price_vol": 0,
+      "tightening_expectations": 1,
+      "term_premium": 1,
+      "market_liquidity": 1,
+      "investor_risk_pos": 3,
+      "investor_leverage": 2,
+      "intervention_activity": 1,
+      "credit_spread_level": 2,
+      "public_interest_burden": 0,
+      "equity_valuation": 0
+    }
+  },
+  "AS": {
+    "long_term_yield": 23,
+    "short_term_rate": 34,
+    "headline_inflation": 25,
+    "inflation_persistence": 27,
+    "inflation_expectations": 23,
+    "commodity_price_level": 21,
+    "commodity_price_vol": 24,
+    "tightening_expectations": 23,
+    "term_premium": 15,
+    "market_liquidity": 24,
+    "investor_risk_pos": 20,
+    "investor_leverage": 20,
+    "intervention_activity": 29,
+    "credit_spread_level": 14,
+    "public_interest_burden": 16,
+    "equity_valuation": 12
+  },
+  "PS": {
+    "long_term_yield": 35,
+    "short_term_rate": 18,
+    "headline_inflation": 10,
+    "inflation_persistence": 10,
+    "inflation_expectations": 23,
+    "commodity_price_level": 3,
+    "commodity_price_vol": 8,
+    "tightening_expectations": 27,
+    "term_premium": 30,
+    "market_liquidity": 23,
+    "investor_risk_pos": 32,
+    "investor_leverage": 26,
+    "intervention_activity": 27,
+    "credit_spread_level": 28,
+    "public_interest_burden": 17,
+    "equity_valuation": 33
+  },
+  "med_AS": 23.0,
+  "med_PS": 24.5,
+  "roles": [
+    {
+      "variable": "long_term_yield",
+      "name": "Long-term government bond yield",
+      "AS": 23,
+      "PS": 35,
+      "Q=AS/PS": 0.66,
+      "P=AS*PS": 805,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "intervention_activity",
+      "name": "Market intervention activity",
+      "AS": 29,
+      "PS": 27,
+      "Q=AS/PS": 1.07,
+      "P=AS*PS": 783,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_risk_pos",
+      "name": "Investor risk positioning",
+      "AS": 20,
+      "PS": 32,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 640,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tightening_expectations",
+      "name": "Central-bank tightening expectations",
+      "AS": 23,
+      "PS": 27,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 621,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "short_term_rate",
+      "name": "Short-term policy interest rate",
+      "AS": 34,
+      "PS": 18,
+      "Q=AS/PS": 1.89,
+      "P=AS*PS": 612,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Short-term market liquidity",
+      "AS": 24,
+      "PS": 23,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 552,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Long-term inflation expectations",
+      "AS": 23,
+      "PS": 23,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 529,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "investor_leverage",
+      "name": "Aggregate investor leverage",
+      "AS": 20,
+      "PS": 26,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 520,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Bond term premium",
+      "AS": 15,
+      "PS": 30,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 450,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "equity_valuation",
+      "name": "Equity market valuation level",
+      "AS": 12,
+      "PS": 33,
+      "Q=AS/PS": 0.36,
+      "P=AS*PS": 396,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "credit_spread_level",
+      "name": "Credit spread level",
+      "AS": 14,
+      "PS": 28,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 392,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "public_interest_burden",
+      "name": "Public sector interest burden",
+      "AS": 16,
+      "PS": 17,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 272,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_persistence",
+      "name": "Inflation persistence",
+      "AS": 27,
+      "PS": 10,
+      "Q=AS/PS": 2.7,
+      "P=AS*PS": 270,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "headline_inflation",
+      "name": "Headline inflation rate",
+      "AS": 25,
+      "PS": 10,
+      "Q=AS/PS": 2.5,
+      "P=AS*PS": 250,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "commodity_price_vol",
+      "name": "Commodity price volatility",
+      "AS": 24,
+      "PS": 8,
+      "Q=AS/PS": 3.0,
+      "P=AS*PS": 192,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "commodity_price_level",
+      "name": "Commodity price level",
+      "AS": 21,
+      "PS": 3,
+      "Q=AS/PS": 7.0,
+      "P=AS*PS": 63,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_yield",
+        "name": "Long-term government bond yield",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 35
+      },
+      {
+        "id": "short_term_rate",
+        "name": "Short-term policy interest rate",
+        "kind": "stock",
+        "AS": 34,
+        "PS": 18
+      },
+      {
+        "id": "headline_inflation",
+        "name": "Headline inflation rate",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 10
+      },
+      {
+        "id": "inflation_persistence",
+        "name": "Inflation persistence",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 10
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Long-term inflation expectations",
+        "kind": "perception",
+        "AS": 23,
+        "PS": 23
+      },
+      {
+        "id": "commodity_price_level",
+        "name": "Commodity price level",
+        "kind": "environment",
+        "AS": 21,
+        "PS": 3
+      },
+      {
+        "id": "commodity_price_vol",
+        "name": "Commodity price volatility",
+        "kind": "environment",
+        "AS": 24,
+        "PS": 8
+      },
+      {
+        "id": "tightening_expectations",
+        "name": "Central-bank tightening expectations",
+        "kind": "perception",
+        "AS": 23,
+        "PS": 27
+      },
+      {
+        "id": "term_premium",
+        "name": "Bond term premium",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 30
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Short-term market liquidity",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 23
+      },
+      {
+        "id": "investor_risk_pos",
+        "name": "Investor risk positioning",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 32
+      },
+      {
+        "id": "investor_leverage",
+        "name": "Aggregate investor leverage",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 26
+      },
+      {
+        "id": "intervention_activity",
+        "name": "Market intervention activity",
+        "kind": "flow",
+        "AS": 29,
+        "PS": 27
+      },
+      {
+        "id": "credit_spread_level",
+        "name": "Credit spread level",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 28
+      },
+      {
+        "id": "public_interest_burden",
+        "name": "Public sector interest burden",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 17
+      },
+      {
+        "id": "equity_valuation",
+        "name": "Equity market valuation level",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 33
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_yield",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "tightening_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "investor_risk_pos",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "intervention_activity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "public_interest_burden",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "headline_inflation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "inflation_persistence",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "tightening_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "investor_risk_pos",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "public_interest_burden",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_rate",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "headline_inflation",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation",
+        "target": "short_term_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation",
+        "target": "tightening_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation",
+        "target": "investor_risk_pos",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "headline_inflation",
+        "target": "intervention_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "short_term_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "tightening_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "investor_risk_pos",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "intervention_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "public_interest_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_persistence",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_term_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "inflation_persistence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "tightening_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_risk_pos",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "intervention_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "public_interest_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "short_term_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "headline_inflation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "inflation_persistence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "tightening_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_vol",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_vol",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_vol",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_vol",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commodity_price_vol",
+        "target": "investor_risk_pos",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commodity_price_vol",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "commodity_price_vol",
+        "target": "intervention_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_vol",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_vol",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tightening_expectations",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tightening_expectations",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tightening_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tightening_expectations",
+        "target": "investor_risk_pos",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tightening_expectations",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tightening_expectations",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tightening_expectations",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "intervention_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "public_interest_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "commodity_price_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_risk_pos",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "intervention_activity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_pos",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_pos",
+        "target": "tightening_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_pos",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_pos",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_pos",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_pos",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_pos",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "commodity_price_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "investor_risk_pos",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "intervention_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_activity",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_activity",
+        "target": "short_term_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_activity",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_activity",
+        "target": "commodity_price_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_activity",
+        "target": "tightening_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_activity",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_activity",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_activity",
+        "target": "investor_risk_pos",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_activity",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intervention_activity",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "intervention_activity",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "investor_risk_pos",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "intervention_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "public_interest_burden",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "public_interest_burden",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "public_interest_burden",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "public_interest_burden",
+        "target": "intervention_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "public_interest_burden",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_valuation",
+        "target": "investor_risk_pos",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_rate_decision_midsep",
+      "title": "FOMC rate decision (mid‑September)",
+      "description": "Scheduled Fed policy decision expected to raise the policy rate; market consensus and headlines signal a high chance of another hike. The decision will directly alter short‑term policy rates and reshape rate‑expectation pricing.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-09-18",
+        "label": "mid‑September"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "short_term_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tightening_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_pos",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'The Fed Is Poised for a Rate Hike', 'All Eyes on Fed Rate Decision', 'Firm Inflation Reading Pushes Fed Closer to a Rate Increase'."
+    },
+    {
+      "id": "boj_rate_lift_nextweek",
+      "title": "BOJ set to lift rates",
+      "description": "Bank of Japan expected to raise its policy rate next week, a notable policy shift that will alter short‑term rates and affect global carry and yield curves.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-09-22",
+        "label": "next week"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "short_term_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tightening_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "intervention_activity",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'BOJ set to lift rates next week but offer few clues on terminal'."
+    },
+    {
+      "id": "sustained_oil_price_rise",
+      "title": "Sustained oil-price surge",
+      "description": "Oil has jumped sharply and further price increases or persistent elevation would feed directly into headline inflation and rate‑hopes across central banks, sustaining yield pressure.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-10-10",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "commodity_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_price_vol",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "headline_inflation",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_persistence",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tightening_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Global bond selloff reignites as oil jumps to $109', 'surging oil prices inflame inflation risks'."
+    },
+    {
+      "id": "treasury_bessent_buyback_activity",
+      "title": "Follow‑on Treasury/buyback interventions",
+      "description": "Additional buybacks or large-scale purchases (private or Treasury‑led) are likely as market actors try to cap yields; effectiveness is uncertain and will influence liquidity and yields.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-11",
+        "end": "2026-09-25",
+        "label": "near term"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "intervention_activity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Treasury Plans $6 Billion Buyback', 'Bessent’s beefed-up buyback operation fails to calm market'."
+    },
+    {
+      "id": "ecb_additional_hikes_q4",
+      "title": "ECB further‑rate hikes (possible)",
+      "description": "ECB officials have signalled additional hikes are conditional on energy-driven inflation; further tightening would raise short‑term rates and European yields over coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-12-31",
+        "label": "Q4 2026"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "short_term_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tightening_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "public_interest_burden",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'ECB policymakers open door to more rate hikes', 'ECB prepares for ‘longer‑lasting’ inflation as it lifts interest rates to 2.5%'."
+    },
+    {
+      "id": "market_repricing_tightening",
+      "title": "Rapid market repricing of tightening expectations",
+      "description": "Markets are repricing a more aggressive multi‑hike Fed path after hotter inflation prints, pushing yields and term premium higher in the short term.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-10-05",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "tightening_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_pos",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Firm Inflation Reading Pushes Fed Closer to a Rate Increase', 'The Fed could raise interest rates three times.'"
+    },
+    {
+      "id": "investor_deleveraging_and_margin_calls",
+      "title": "Deleveraging / margin‑call pressure",
+      "description": "Widening yields and credit stress are likely to trigger margin calls and deleveraging in private credit and leveraged positions, reducing liquidity and risk appetite.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-10-15",
+        "label": "weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "investor_leverage",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_pos",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Lenders say show me the money as bond carnage spreads', 'The oil shock is testing private credit borrowers already burdened by high debt costs'."
+    },
+    {
+      "id": "us_sanction_large_bank_0914",
+      "title": "Planned U.S. sanction on 'large' bank (Monday)",
+      "description": "Announced sanction on an unnamed large bank is scheduled for the coming Monday; such action could disrupt interbank flows and market confidence, pressuring liquidity and risk sentiment.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-14",
+        "start": null,
+        "end": null,
+        "label": "2026-09-14"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_pos",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'Trump administration to sanction unnamed 'large' bank on Monday, Bessent says'."
+    },
+    {
+      "id": "rising_public_interest_burden",
+      "title": "Rising public‑sector interest burden",
+      "description": "Higher yields are increasing governments' interest bills, pressuring fiscal balances and potentially prompting issuance or fiscal adjustments through year‑end.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-12-31",
+        "label": "remainder of 2026"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "public_interest_burden",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_valuation",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'France’s debt interest bill to jump 25% this year', 'The world’s $2tn interest bill'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "sustained_oil_price_rise",
+      "title": "Sustained oil-price surge",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-10-10",
+      "probability": 0.75,
+      "impact_score": 307.0,
+      "expected_impact": 230.25,
+      "event_PS": 14.538,
+      "event_AS": 23.615,
+      "n_vars": 6,
+      "affected_ids": "commodity_price_level, commodity_price_vol, headline_inflation, inflation_persistence, tightening_expectations, long_term_yield",
+      "rationale": "Headlines: 'Global bond selloff reignites as oil jumps to $109', 'surging oil prices inflame inflation risks'."
+    },
+    {
+      "id": "fed_rate_decision_midsep",
+      "title": "FOMC rate decision (mid‑September)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid‑September",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-09-18",
+      "probability": 0.9,
+      "impact_score": 272.0,
+      "expected_impact": 244.8,
+      "event_PS": 27.182,
+      "event_AS": 24.727,
+      "n_vars": 5,
+      "affected_ids": "short_term_rate, tightening_expectations, long_term_yield, term_premium, investor_risk_pos",
+      "rationale": "Headlines: 'The Fed Is Poised for a Rate Hike', 'All Eyes on Fed Rate Decision', 'Firm Inflation Reading Pushes Fed Closer to a Rate Increase'."
+    },
+    {
+      "id": "boj_rate_lift_nextweek",
+      "title": "BOJ set to lift rates",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next week",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-09-22",
+      "probability": 0.8,
+      "impact_score": 252.0,
+      "expected_impact": 201.6,
+      "event_PS": 25.778,
+      "event_AS": 28.0,
+      "n_vars": 4,
+      "affected_ids": "short_term_rate, tightening_expectations, long_term_yield, intervention_activity",
+      "rationale": "Headline: 'BOJ set to lift rates next week but offer few clues on terminal'."
+    },
+    {
+      "id": "ecb_additional_hikes_q4",
+      "title": "ECB further‑rate hikes (possible)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Q4 2026",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 210.0,
+      "expected_impact": 126.0,
+      "event_PS": 24.375,
+      "event_AS": 26.25,
+      "n_vars": 4,
+      "affected_ids": "short_term_rate, tightening_expectations, long_term_yield, public_interest_burden",
+      "rationale": "Headlines: 'ECB policymakers open door to more rate hikes', 'ECB prepares for ‘longer‑lasting’ inflation as it lifts interest rates to 2.5%'."
+    },
+    {
+      "id": "market_repricing_tightening",
+      "title": "Rapid market repricing of tightening expectations",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-10-05",
+      "probability": 0.9,
+      "impact_score": 208.0,
+      "expected_impact": 187.2,
+      "event_PS": 31.0,
+      "event_AS": 20.8,
+      "n_vars": 4,
+      "affected_ids": "tightening_expectations, long_term_yield, term_premium, investor_risk_pos",
+      "rationale": "Headlines: 'Firm Inflation Reading Pushes Fed Closer to a Rate Increase', 'The Fed could raise interest rates three times.'"
+    },
+    {
+      "id": "investor_deleveraging_and_margin_calls",
+      "title": "Deleveraging / margin‑call pressure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-10-15",
+      "probability": 0.65,
+      "impact_score": 196.0,
+      "expected_impact": 127.4,
+      "event_PS": 27.6,
+      "event_AS": 19.6,
+      "n_vars": 4,
+      "affected_ids": "investor_leverage, market_liquidity, investor_risk_pos, credit_spread_level",
+      "rationale": "Headlines: 'Lenders say show me the money as bond carnage spreads', 'The oil shock is testing private credit borrowers already burdened by high debt costs'."
+    },
+    {
+      "id": "treasury_bessent_buyback_activity",
+      "title": "Follow‑on Treasury/buyback interventions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near term",
+      "date": null,
+      "start": "2026-09-11",
+      "end": "2026-09-25",
+      "probability": 0.7,
+      "impact_score": 172.0,
+      "expected_impact": 120.4,
+      "event_PS": 29.143,
+      "event_AS": 24.571,
+      "n_vars": 4,
+      "affected_ids": "intervention_activity, long_term_yield, term_premium, market_liquidity",
+      "rationale": "Headlines: 'Treasury Plans $6 Billion Buyback', 'Bessent’s beefed-up buyback operation fails to calm market'."
+    },
+    {
+      "id": "us_sanction_large_bank_0914",
+      "title": "Planned U.S. sanction on 'large' bank (Monday)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-09-14",
+      "date": "2026-09-14",
+      "start": null,
+      "end": null,
+      "probability": 0.6,
+      "impact_score": 125.0,
+      "expected_impact": 75.0,
+      "event_PS": 28.833,
+      "event_AS": 20.833,
+      "n_vars": 4,
+      "affected_ids": "market_liquidity, investor_risk_pos, credit_spread_level, long_term_yield",
+      "rationale": "Headline: 'Trump administration to sanction unnamed 'large' bank on Monday, Bessent says'."
+    },
+    {
+      "id": "rising_public_interest_burden",
+      "title": "Rising public‑sector interest burden",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "remainder of 2026",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-12-31",
+      "probability": 0.9,
+      "impact_score": 120.0,
+      "expected_impact": 108.0,
+      "event_PS": 26.0,
+      "event_AS": 17.143,
+      "n_vars": 4,
+      "affected_ids": "public_interest_burden, credit_spread_level, long_term_yield, equity_valuation",
+      "rationale": "Headlines: 'France’s debt interest bill to jump 25% this year', 'The world’s $2tn interest bill'."
+    }
+  ]
+}
