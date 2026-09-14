@@ -1,0 +1,1709 @@
+{
+  "label": "global_bond_inflation",
+  "as_of": "2026-09-13",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-14T01:37:25",
+  "system_description": {
+    "narrative_title": "Bond selloff from sticky inflation and oil-driven rate fears",
+    "narrative_summary": "The dominant narrative is that global government bond yields are surging as sticky inflation readings and a jump in oil push markets to price more central-bank rate hikes. Market interventions (notably Scott Bessent's large Treasury buyback) have so far failed to stop the repricing, highlighting limited short-term control by policy or fiscal actors. This is an open system: exogenous shocks (oil, geopolitics, CPI prints) feed expectations, which drive yields that in turn tighten financial conditions and feed back into growth and inflation prospects.",
+    "scope": "Within the system: government bond markets (US Treasuries, Bunds, JGBs), inflation data and expectations, energy (oil) price shock, central-bank policy expectations and rate decisions (Fed, ECB, BOJ), market interventions (Treasury buybacks), and the immediate transmission to equities, gold and FX.",
+    "super_system": "Global macroeconomic and financial system (monetary policy, international trade, and real economic activity)",
+    "adjacent_subsystems": [
+      "Energy markets (oil producers, prices, and supply shocks)",
+      "Equity markets (risk asset valuations and flows)",
+      "Foreign-exchange markets (dollar/yen/euro dynamics and carry)",
+      "Banking/credit and regulatory actions (sanctions, bank health, liquidity)"
+    ],
+    "evidence_headlines": [
+      "Treasury yields surge after Bessent’s beefed-up buyback operation fails to calm market",
+      "Global bond selloff keeps 10-year US yield near 5% on oil, rate-hike fears - reuters.com",
+      "Scott Bessent fails to break ‘fever’ in US bond market",
+      "U.S. 10-Year Treasury Yield Nears 5% as Oil Fuels Inflation Fears",
+      "Fed rate-hike case builds as inflation fails to cool",
+      "ECB prepares for ‘longer-lasting’ inflation as it lifts interest rates to 2.5%"
+    ]
+  },
+  "variables": [
+    {
+      "id": "headline_inflation_rate",
+      "name": "Headline inflation rate",
+      "description": "The measured overall consumer price inflation rate including volatile items such as energy and food.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "core_inflation_rate",
+      "name": "Core inflation rate",
+      "description": "Consumer price inflation excluding volatile components, representing underlying inflation momentum.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market and public's expected future inflation path over relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_level",
+      "name": "Oil price level",
+      "description": "The prevailing market price level for crude oil as a broad energy-price indicator.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "description": "The magnitude and frequency of short-term fluctuations in oil prices.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "long_term_gov_yield",
+      "name": "Long-term government bond yield",
+      "description": "The prevailing market yield on long-dated sovereign bonds representing the cost of long-term government borrowing.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium_level",
+      "name": "Term premium level",
+      "description": "The component of long-term yields that compensates investors for interest-rate and reinvestment risk over the term.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_policy_rate",
+      "name": "Short-term policy rate",
+      "description": "The current short-term policy interest rate set by monetary authorities that anchors overnight borrowing costs.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "The market-implied expected future path of short-term policy rates over coming policy cycles.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_intervention_flow",
+      "name": "Market intervention intensity",
+      "description": "The rate and scale of active market-support operations (e.g., asset purchases or buybacks) implemented to influence market prices.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The ease, depth and breadth with which bonds can be transacted without large price impact.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "financial_conditions_ind",
+      "name": "Financial conditions",
+      "description": "A composite measure of overall financial tightness including rates, spreads, credit availability and volatility.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread_level",
+      "name": "Credit spread level",
+      "description": "The average difference between corporate borrowing yields and sovereign yields reflecting credit risk premia.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation_level",
+      "name": "Equity market valuation",
+      "description": "The prevailing valuation metric of equity markets (e.g., aggregate price-to-earnings) reflecting price relative to fundamentals.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_level",
+      "name": "Exchange rate level",
+      "description": "The prevailing value of the currency exchange rate relevant to the system (e.g., broad trade-weighted or a major bilateral rate).",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "growth_expectations",
+      "name": "Real growth expectations",
+      "description": "The expected path of real economic activity or GDP growth over the medium term.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "headline_inflation_rate",
+    "core_inflation_rate",
+    "inflation_expectations",
+    "oil_price_level",
+    "oil_price_volatility",
+    "long_term_gov_yield",
+    "term_premium_level",
+    "short_term_policy_rate",
+    "policy_rate_expectations",
+    "market_intervention_flow",
+    "bond_market_liquidity",
+    "financial_conditions_ind",
+    "credit_spread_level",
+    "equity_valuation_level",
+    "exchange_rate_level",
+    "growth_expectations"
+  ],
+  "var_names": {
+    "headline_inflation_rate": "Headline inflation rate",
+    "core_inflation_rate": "Core inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "oil_price_level": "Oil price level",
+    "oil_price_volatility": "Oil price volatility",
+    "long_term_gov_yield": "Long-term government bond yield",
+    "term_premium_level": "Term premium level",
+    "short_term_policy_rate": "Short-term policy rate",
+    "policy_rate_expectations": "Policy rate expectations",
+    "market_intervention_flow": "Market intervention intensity",
+    "bond_market_liquidity": "Bond market liquidity",
+    "financial_conditions_ind": "Financial conditions",
+    "credit_spread_level": "Credit spread level",
+    "equity_valuation_level": "Equity market valuation",
+    "exchange_rate_level": "Exchange rate level",
+    "growth_expectations": "Real growth expectations"
+  },
+  "impact_matrix": {
+    "headline_inflation_rate": {
+      "headline_inflation_rate": 0,
+      "core_inflation_rate": 1,
+      "inflation_expectations": 3,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 3,
+      "term_premium_level": 2,
+      "short_term_policy_rate": 1,
+      "policy_rate_expectations": 3,
+      "market_intervention_flow": 0,
+      "bond_market_liquidity": 1,
+      "financial_conditions_ind": 2,
+      "credit_spread_level": 1,
+      "equity_valuation_level": 1,
+      "exchange_rate_level": 1,
+      "growth_expectations": 2
+    },
+    "core_inflation_rate": {
+      "headline_inflation_rate": 3,
+      "core_inflation_rate": 0,
+      "inflation_expectations": 3,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 3,
+      "term_premium_level": 2,
+      "short_term_policy_rate": 2,
+      "policy_rate_expectations": 3,
+      "market_intervention_flow": 0,
+      "bond_market_liquidity": 1,
+      "financial_conditions_ind": 2,
+      "credit_spread_level": 1,
+      "equity_valuation_level": 1,
+      "exchange_rate_level": 1,
+      "growth_expectations": 2
+    },
+    "inflation_expectations": {
+      "headline_inflation_rate": 1,
+      "core_inflation_rate": 1,
+      "inflation_expectations": 0,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 3,
+      "term_premium_level": 2,
+      "short_term_policy_rate": 1,
+      "policy_rate_expectations": 3,
+      "market_intervention_flow": 0,
+      "bond_market_liquidity": 1,
+      "financial_conditions_ind": 2,
+      "credit_spread_level": 1,
+      "equity_valuation_level": 2,
+      "exchange_rate_level": 2,
+      "growth_expectations": 1
+    },
+    "oil_price_level": {
+      "headline_inflation_rate": 3,
+      "core_inflation_rate": 1,
+      "inflation_expectations": 2,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 2,
+      "term_premium_level": 1,
+      "short_term_policy_rate": 2,
+      "policy_rate_expectations": 2,
+      "market_intervention_flow": 0,
+      "bond_market_liquidity": 0,
+      "financial_conditions_ind": 1,
+      "credit_spread_level": 1,
+      "equity_valuation_level": 1,
+      "exchange_rate_level": 2,
+      "growth_expectations": 1
+    },
+    "oil_price_volatility": {
+      "headline_inflation_rate": 1,
+      "core_inflation_rate": 1,
+      "inflation_expectations": 2,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 2,
+      "term_premium_level": 2,
+      "short_term_policy_rate": 1,
+      "policy_rate_expectations": 1,
+      "market_intervention_flow": 1,
+      "bond_market_liquidity": 2,
+      "financial_conditions_ind": 1,
+      "credit_spread_level": 2,
+      "equity_valuation_level": 1,
+      "exchange_rate_level": 1,
+      "growth_expectations": 1
+    },
+    "long_term_gov_yield": {
+      "headline_inflation_rate": 0,
+      "core_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 0,
+      "term_premium_level": 0,
+      "short_term_policy_rate": 1,
+      "policy_rate_expectations": 2,
+      "market_intervention_flow": 1,
+      "bond_market_liquidity": 1,
+      "financial_conditions_ind": 3,
+      "credit_spread_level": 1,
+      "equity_valuation_level": 3,
+      "exchange_rate_level": 1,
+      "growth_expectations": 2
+    },
+    "term_premium_level": {
+      "headline_inflation_rate": 0,
+      "core_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 3,
+      "term_premium_level": 0,
+      "short_term_policy_rate": 0,
+      "policy_rate_expectations": 1,
+      "market_intervention_flow": 1,
+      "bond_market_liquidity": 2,
+      "financial_conditions_ind": 2,
+      "credit_spread_level": 2,
+      "equity_valuation_level": 2,
+      "exchange_rate_level": 0,
+      "growth_expectations": 1
+    },
+    "short_term_policy_rate": {
+      "headline_inflation_rate": 0,
+      "core_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 2,
+      "term_premium_level": 1,
+      "short_term_policy_rate": 0,
+      "policy_rate_expectations": 2,
+      "market_intervention_flow": 0,
+      "bond_market_liquidity": 1,
+      "financial_conditions_ind": 3,
+      "credit_spread_level": 2,
+      "equity_valuation_level": 2,
+      "exchange_rate_level": 2,
+      "growth_expectations": 2
+    },
+    "policy_rate_expectations": {
+      "headline_inflation_rate": 0,
+      "core_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 3,
+      "term_premium_level": 1,
+      "short_term_policy_rate": 2,
+      "policy_rate_expectations": 0,
+      "market_intervention_flow": 1,
+      "bond_market_liquidity": 1,
+      "financial_conditions_ind": 2,
+      "credit_spread_level": 2,
+      "equity_valuation_level": 2,
+      "exchange_rate_level": 2,
+      "growth_expectations": 2
+    },
+    "market_intervention_flow": {
+      "headline_inflation_rate": 0,
+      "core_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 3,
+      "term_premium_level": 3,
+      "short_term_policy_rate": 0,
+      "policy_rate_expectations": 1,
+      "market_intervention_flow": 0,
+      "bond_market_liquidity": 3,
+      "financial_conditions_ind": 3,
+      "credit_spread_level": 2,
+      "equity_valuation_level": 1,
+      "exchange_rate_level": 1,
+      "growth_expectations": 1
+    },
+    "bond_market_liquidity": {
+      "headline_inflation_rate": 0,
+      "core_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price_level": 0,
+      "oil_price_volatility": 1,
+      "long_term_gov_yield": 2,
+      "term_premium_level": 2,
+      "short_term_policy_rate": 0,
+      "policy_rate_expectations": 0,
+      "market_intervention_flow": 1,
+      "bond_market_liquidity": 0,
+      "financial_conditions_ind": 2,
+      "credit_spread_level": 2,
+      "equity_valuation_level": 1,
+      "exchange_rate_level": 0,
+      "growth_expectations": 0
+    },
+    "financial_conditions_ind": {
+      "headline_inflation_rate": 0,
+      "core_inflation_rate": 0,
+      "inflation_expectations": 1,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 1,
+      "term_premium_level": 1,
+      "short_term_policy_rate": 0,
+      "policy_rate_expectations": 1,
+      "market_intervention_flow": 1,
+      "bond_market_liquidity": 2,
+      "financial_conditions_ind": 0,
+      "credit_spread_level": 3,
+      "equity_valuation_level": 2,
+      "exchange_rate_level": 1,
+      "growth_expectations": 3
+    },
+    "credit_spread_level": {
+      "headline_inflation_rate": 0,
+      "core_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 1,
+      "term_premium_level": 1,
+      "short_term_policy_rate": 0,
+      "policy_rate_expectations": 0,
+      "market_intervention_flow": 1,
+      "bond_market_liquidity": 1,
+      "financial_conditions_ind": 3,
+      "credit_spread_level": 0,
+      "equity_valuation_level": 2,
+      "exchange_rate_level": 0,
+      "growth_expectations": 2
+    },
+    "equity_valuation_level": {
+      "headline_inflation_rate": 0,
+      "core_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 0,
+      "term_premium_level": 0,
+      "short_term_policy_rate": 0,
+      "policy_rate_expectations": 0,
+      "market_intervention_flow": 1,
+      "bond_market_liquidity": 1,
+      "financial_conditions_ind": 1,
+      "credit_spread_level": 1,
+      "equity_valuation_level": 0,
+      "exchange_rate_level": 0,
+      "growth_expectations": 1
+    },
+    "exchange_rate_level": {
+      "headline_inflation_rate": 2,
+      "core_inflation_rate": 1,
+      "inflation_expectations": 2,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 1,
+      "term_premium_level": 0,
+      "short_term_policy_rate": 0,
+      "policy_rate_expectations": 1,
+      "market_intervention_flow": 1,
+      "bond_market_liquidity": 0,
+      "financial_conditions_ind": 1,
+      "credit_spread_level": 0,
+      "equity_valuation_level": 1,
+      "exchange_rate_level": 0,
+      "growth_expectations": 1
+    },
+    "growth_expectations": {
+      "headline_inflation_rate": 1,
+      "core_inflation_rate": 1,
+      "inflation_expectations": 1,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "long_term_gov_yield": 2,
+      "term_premium_level": 1,
+      "short_term_policy_rate": 0,
+      "policy_rate_expectations": 1,
+      "market_intervention_flow": 0,
+      "bond_market_liquidity": 0,
+      "financial_conditions_ind": 2,
+      "credit_spread_level": 2,
+      "equity_valuation_level": 2,
+      "exchange_rate_level": 0,
+      "growth_expectations": 0
+    }
+  },
+  "AS": {
+    "headline_inflation_rate": 21,
+    "core_inflation_rate": 24,
+    "inflation_expectations": 20,
+    "oil_price_level": 19,
+    "oil_price_volatility": 19,
+    "long_term_gov_yield": 16,
+    "term_premium_level": 15,
+    "short_term_policy_rate": 18,
+    "policy_rate_expectations": 19,
+    "market_intervention_flow": 18,
+    "bond_market_liquidity": 11,
+    "financial_conditions_ind": 16,
+    "credit_spread_level": 11,
+    "equity_valuation_level": 5,
+    "exchange_rate_level": 11,
+    "growth_expectations": 13
+  },
+  "PS": {
+    "headline_inflation_rate": 11,
+    "core_inflation_rate": 6,
+    "inflation_expectations": 18,
+    "oil_price_level": 0,
+    "oil_price_volatility": 1,
+    "long_term_gov_yield": 31,
+    "term_premium_level": 19,
+    "short_term_policy_rate": 10,
+    "policy_rate_expectations": 21,
+    "market_intervention_flow": 9,
+    "bond_market_liquidity": 17,
+    "financial_conditions_ind": 30,
+    "credit_spread_level": 23,
+    "equity_valuation_level": 24,
+    "exchange_rate_level": 14,
+    "growth_expectations": 22
+  },
+  "med_AS": 17.0,
+  "med_PS": 17.5,
+  "roles": [
+    {
+      "variable": "long_term_gov_yield",
+      "name": "Long-term government bond yield",
+      "AS": 16,
+      "PS": 31,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 496,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "financial_conditions_ind",
+      "name": "Financial conditions",
+      "AS": 16,
+      "PS": 30,
+      "Q=AS/PS": 0.53,
+      "P=AS*PS": 480,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 19,
+      "PS": 21,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 399,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 20,
+      "PS": 18,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 360,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "growth_expectations",
+      "name": "Real growth expectations",
+      "AS": 13,
+      "PS": 22,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 286,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium_level",
+      "name": "Term premium level",
+      "AS": 15,
+      "PS": 19,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 285,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "credit_spread_level",
+      "name": "Credit spread level",
+      "AS": 11,
+      "PS": 23,
+      "Q=AS/PS": 0.48,
+      "P=AS*PS": 253,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "headline_inflation_rate",
+      "name": "Headline inflation rate",
+      "AS": 21,
+      "PS": 11,
+      "Q=AS/PS": 1.91,
+      "P=AS*PS": 231,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 11,
+      "PS": 17,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 187,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "short_term_policy_rate",
+      "name": "Short-term policy rate",
+      "AS": 18,
+      "PS": 10,
+      "Q=AS/PS": 1.8,
+      "P=AS*PS": 180,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_intervention_flow",
+      "name": "Market intervention intensity",
+      "AS": 18,
+      "PS": 9,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 162,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "exchange_rate_level",
+      "name": "Exchange rate level",
+      "AS": 11,
+      "PS": 14,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 154,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "core_inflation_rate",
+      "name": "Core inflation rate",
+      "AS": 24,
+      "PS": 6,
+      "Q=AS/PS": 4.0,
+      "P=AS*PS": 144,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "equity_valuation_level",
+      "name": "Equity market valuation",
+      "AS": 5,
+      "PS": 24,
+      "Q=AS/PS": 0.21,
+      "P=AS*PS": 120,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "AS": 19,
+      "PS": 1,
+      "Q=AS/PS": 19.0,
+      "P=AS*PS": 19,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "oil_price_level",
+      "name": "Oil price level",
+      "AS": 19,
+      "PS": 0,
+      "Q=AS/PS": 19000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "headline_inflation_rate",
+        "name": "Headline inflation rate",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 11
+      },
+      {
+        "id": "core_inflation_rate",
+        "name": "Core inflation rate",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 6
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 18
+      },
+      {
+        "id": "oil_price_level",
+        "name": "Oil price level",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 0
+      },
+      {
+        "id": "oil_price_volatility",
+        "name": "Oil price volatility",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 1
+      },
+      {
+        "id": "long_term_gov_yield",
+        "name": "Long-term government bond yield",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 31
+      },
+      {
+        "id": "term_premium_level",
+        "name": "Term premium level",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 19
+      },
+      {
+        "id": "short_term_policy_rate",
+        "name": "Short-term policy rate",
+        "kind": "institution_field",
+        "AS": 18,
+        "PS": 10
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 19,
+        "PS": 21
+      },
+      {
+        "id": "market_intervention_flow",
+        "name": "Market intervention intensity",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 9
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 17
+      },
+      {
+        "id": "financial_conditions_ind",
+        "name": "Financial conditions",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 30
+      },
+      {
+        "id": "credit_spread_level",
+        "name": "Credit spread level",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 23
+      },
+      {
+        "id": "equity_valuation_level",
+        "name": "Equity market valuation",
+        "kind": "stock",
+        "AS": 5,
+        "PS": 24
+      },
+      {
+        "id": "exchange_rate_level",
+        "name": "Exchange rate level",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 14
+      },
+      {
+        "id": "growth_expectations",
+        "name": "Real growth expectations",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 22
+      }
+    ],
+    "edges": [
+      {
+        "source": "headline_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "long_term_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "financial_conditions_ind",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "growth_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "headline_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "long_term_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "short_term_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "financial_conditions_ind",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "core_inflation_rate",
+        "target": "growth_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "financial_conditions_ind",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "headline_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "short_term_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "equity_valuation_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "growth_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "long_term_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "financial_conditions_ind",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "growth_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "long_term_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "short_term_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "financial_conditions_ind",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "growth_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "long_term_gov_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "term_premium_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_intervention_flow",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "financial_conditions_ind",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "growth_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "growth_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "headline_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "growth_expectations",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_expectations",
+        "target": "financial_conditions_ind",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "growth_expectations",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "growth_expectations",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_sep_meeting_likely_hike",
+      "title": "FOMC meeting — likely rate hike",
+      "description": "September Fed policy decision (mid‑September) expected to raise the short‑term policy rate, shifting rate expectations and yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-14",
+        "end": "2026-09-18",
+        "label": "this week"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "short_term_policy_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "financial_conditions_ind",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"The Fed Is Poised to Raise Interest Rates\"; \"All Eyes on Fed Rate Decision\"; \"likelihood of a Fed interest rate hike next week\""
+    },
+    {
+      "id": "boj_rate_lift_next_week",
+      "title": "BOJ rate lift (scheduled)",
+      "description": "Bank of Japan expected to lift policy rates next week, influencing global rate pricing and term premium signals.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-14",
+        "end": "2026-09-18",
+        "label": "next week"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "short_term_policy_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"BOJ set to lift rates next week but offer few clues on terminal\""
+    },
+    {
+      "id": "oil_price_surge_continuation",
+      "title": "Sustained oil price pressure",
+      "description": "Elevated oil prices and volatility (recent jump toward $109) persist, feeding inflationary pressure and risk premia in bond markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-10-13",
+        "label": "4 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "headline_inflation_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"Global bonds buckle as surging oil prices\"; \"oil jumps to $109\"; \"oil fuels inflation fears\""
+    },
+    {
+      "id": "treasury_6bn_buyback_operation",
+      "title": "Treasury $6bn buyback execution",
+      "description": "Planned Treasury buyback(s) around mid‑September intended to support long bonds — may or may not calm yields depending on scale/credibility.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-14",
+        "end": "2026-09-21",
+        "label": "within 1 week"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "financial_conditions_ind",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"U.S. Treasury Plans $6 Billion Buyback\"; \"Scott Bessent’s $6bn buyback plan disappoints investors\""
+    },
+    {
+      "id": "next_us_cpi_release_mid_oct",
+      "title": "Next US CPI release (mid‑October)",
+      "description": "Upcoming monthly CPI print (next scheduled release) will materially move inflation metrics and market pricing; direction depends on the print.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-10-16",
+        "label": "mid-October"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "headline_inflation_rate",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "core_inflation_rate",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: \"Friday's CPI inflation report is even more important than usual\"; \"A Tiny Shift in the Inflation Rate Could Decide the Fed’s Next Move\""
+    },
+    {
+      "id": "trump_bank_sanction_monday",
+      "title": "Planned bank sanction announcement",
+      "description": "Reported imminent sanctioning of an unnamed large bank could disrupt credit markets and raise risk premia if announced.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-14",
+        "start": null,
+        "end": null,
+        "label": "2026-09-14"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "financial_conditions_ind",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Trump administration to sanction unnamed 'large' bank on Monday, Bessent says\""
+    },
+    {
+      "id": "ecb_hawkish_hike_cycle",
+      "title": "ECB hawkish hiking cycle (ongoing)",
+      "description": "ECB has signalled longer‑lasting inflation and opened the door to further hikes; a multi‑week tightening cycle could lift European yields.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-12-31",
+        "label": "Q4 2026"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "short_term_policy_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"ECB prepares for 'longer-lasting' inflation as it lifts interest rates\"; \"Further European rate hikes 'very much dependent' on energy costs\""
+    },
+    {
+      "id": "bessent_credibility_erosion",
+      "title": "Market skepticism of Treasury buybacks (ongoing)",
+      "description": "Market remains unconvinced by recent buybacks, sustaining selloff dynamics and higher term premia unless interventions scale up.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-10-01",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "financial_conditions_ind",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"Scott Bessent fails to break ‘fever’ in US bond market\"; \"Bessent’s Latest Buyback Move Leaves Investors Wanting More\""
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "next_us_cpi_release_mid_oct",
+      "title": "Next US CPI release (mid‑October)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-October",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-10-16",
+      "probability": 0.95,
+      "impact_score": 245.0,
+      "expected_impact": 232.75,
+      "event_PS": 15.917,
+      "event_AS": 20.417,
+      "n_vars": 5,
+      "affected_ids": "headline_inflation_rate, core_inflation_rate, inflation_expectations, policy_rate_expectations, long_term_gov_yield",
+      "rationale": "Headlines: \"Friday's CPI inflation report is even more important than usual\"; \"A Tiny Shift in the Inflation Rate Could Decide the Fed’s Next Move\""
+    },
+    {
+      "id": "fed_sep_meeting_likely_hike",
+      "title": "FOMC meeting — likely rate hike",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-09-14",
+      "end": "2026-09-18",
+      "probability": 0.8,
+      "impact_score": 225.0,
+      "expected_impact": 180.0,
+      "event_PS": 20.846,
+      "event_AS": 17.308,
+      "n_vars": 6,
+      "affected_ids": "short_term_policy_rate, policy_rate_expectations, long_term_gov_yield, term_premium_level, financial_conditions_ind, inflation_expectations",
+      "rationale": "Headlines: \"The Fed Is Poised to Raise Interest Rates\"; \"All Eyes on Fed Rate Decision\"; \"likelihood of a Fed interest rate hike next week\""
+    },
+    {
+      "id": "oil_price_surge_continuation",
+      "title": "Sustained oil price pressure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "4 weeks",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-10-13",
+      "probability": 0.75,
+      "impact_score": 209.0,
+      "expected_impact": 156.75,
+      "event_PS": 11.091,
+      "event_AS": 19.0,
+      "n_vars": 5,
+      "affected_ids": "oil_price_level, oil_price_volatility, headline_inflation_rate, inflation_expectations, long_term_gov_yield",
+      "rationale": "Headlines: \"Global bonds buckle as surging oil prices\"; \"oil jumps to $109\"; \"oil fuels inflation fears\""
+    },
+    {
+      "id": "ecb_hawkish_hike_cycle",
+      "title": "ECB hawkish hiking cycle (ongoing)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Q4 2026",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 141.0,
+      "expected_impact": 84.6,
+      "event_PS": 20.125,
+      "event_AS": 17.625,
+      "n_vars": 5,
+      "affected_ids": "short_term_policy_rate, policy_rate_expectations, long_term_gov_yield, term_premium_level, inflation_expectations",
+      "rationale": "Headlines: \"ECB prepares for 'longer-lasting' inflation as it lifts interest rates\"; \"Further European rate hikes 'very much dependent' on energy costs\""
+    },
+    {
+      "id": "bessent_credibility_erosion",
+      "title": "Market skepticism of Treasury buybacks (ongoing)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-10-01",
+      "probability": 0.65,
+      "impact_score": 116.0,
+      "expected_impact": 75.4,
+      "event_PS": 24.25,
+      "event_AS": 14.5,
+      "n_vars": 4,
+      "affected_ids": "long_term_gov_yield, term_premium_level, bond_market_liquidity, financial_conditions_ind",
+      "rationale": "Headlines: \"Scott Bessent fails to break ‘fever’ in US bond market\"; \"Bessent’s Latest Buyback Move Leaves Investors Wanting More\""
+    },
+    {
+      "id": "boj_rate_lift_next_week",
+      "title": "BOJ rate lift (scheduled)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next week",
+      "date": null,
+      "start": "2026-09-14",
+      "end": "2026-09-18",
+      "probability": 0.75,
+      "impact_score": 105.0,
+      "expected_impact": 78.75,
+      "event_PS": 18.667,
+      "event_AS": 17.5,
+      "n_vars": 4,
+      "affected_ids": "short_term_policy_rate, policy_rate_expectations, long_term_gov_yield, term_premium_level",
+      "rationale": "Headline: \"BOJ set to lift rates next week but offer few clues on terminal\""
+    },
+    {
+      "id": "trump_bank_sanction_monday",
+      "title": "Planned bank sanction announcement",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-09-14",
+      "date": "2026-09-14",
+      "start": null,
+      "end": null,
+      "probability": 0.6,
+      "impact_score": 103.0,
+      "expected_impact": 61.8,
+      "event_PS": 24.25,
+      "event_AS": 12.875,
+      "n_vars": 4,
+      "affected_ids": "credit_spread_level, financial_conditions_ind, bond_market_liquidity, long_term_gov_yield",
+      "rationale": "Headline: \"Trump administration to sanction unnamed 'large' bank on Monday, Bessent says\""
+    },
+    {
+      "id": "treasury_6bn_buyback_operation",
+      "title": "Treasury $6bn buyback execution",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "within 1 week",
+      "date": null,
+      "start": "2026-09-14",
+      "end": "2026-09-21",
+      "probability": 0.85,
+      "impact_score": 74.0,
+      "expected_impact": 62.9,
+      "event_PS": 25.6,
+      "event_AS": 14.8,
+      "n_vars": 4,
+      "affected_ids": "long_term_gov_yield, term_premium_level, bond_market_liquidity, financial_conditions_ind",
+      "rationale": "Headlines: \"U.S. Treasury Plans $6 Billion Buyback\"; \"Scott Bessent’s $6bn buyback plan disappoints investors\""
+    }
+  ]
+}
