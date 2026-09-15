@@ -1,0 +1,1794 @@
+{
+  "label": "middle_east_chokepoints",
+  "as_of": "2026-09-15",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-15T01:49:11",
+  "system_description": {
+    "narrative_title": "Maritime escalation in the Middle East threatens global oil and shipping",
+    "narrative_summary": "A rapid escalation of attacks on shipping and energy infrastructure around the Strait of Hormuz and Red Sea — driven by Iran-aligned forces (including the Houthis) and entangled regional states — is disrupting oil flows, raising prices and forcing operational and military adjustments. Diplomatic efforts (Gulf talks, BRICS calls for restraint) and great-power manoeuvres (US naval posture, limits on tanker defence windows, China/India engagement) are simultaneously trying to contain contagion, creating feedbacks between security, markets and diplomacy. The situation is an open system: tactical attacks and infrastructure outages feed market reactions and alliance choices, which in turn alter incentives for further escalation or restraint.",
+    "scope": "Inside: maritime chokepoints and routes (Strait of Hormuz, Bab el-Mandeb/Red Sea), oil export infrastructure (Saudi East-West pipeline, ports, tankers), state and non-state military actors (Iran, Saudi Arabia, UAE, Houthis, Iraqi militias, US and allied naval forces), operational responses (air-defence time slots, rerouting, insurance), market variables (oil supply, prices, risk premium), and diplomatic processes (Gulf-Iran talks, BRICS mediation). This system contains both abstract systemic variables (supply shocks, risk perception, escalation dynamics, diplomatic leverage) and concrete entities/events (pipelines, seized islands, specific state actors and naval deployments).",
+    "super_system": "Global geopolitical-economy: the intersection of international security, global energy markets and great-power competition (US, China, Russia and the expanding BRICS).",
+    "adjacent_subsystems": [
+      "Global oil & energy markets (production, inventories, pricing, traders)",
+      "International shipping and logistics (routes, insurance, commercial operators)",
+      "Great-power strategic competition and diplomacy (US-China-Russia, BRICS influence)",
+      "Regional security architectures and state politics (Gulf states, Iran, Yemen conflict dynamics)"
+    ],
+    "evidence_headlines": [
+      "Saudi Arabia shuts East-West pipeline that bypasses Hormuz after attacks",
+      "New Strait of Hormuz ship attack raises oil supply fears as Iran war widens",
+      "Houthis seize Red Sea islands in lightning offensive",
+      "Iran says Hormuz reopening depends on U.S. meeting its conditions",
+      "BRICS adopts joint declaration, urges 'maximum restraint' in Mideast",
+      "US limits air defence time slots for tankers sailing through Hormuz"
+    ]
+  },
+  "variables": [
+    {
+      "id": "maritime_attack_freq",
+      "name": "Maritime attack frequency",
+      "description": "The rate at which hostile incidents (attacks, strikes, interdictions) occur against commercial ships and maritime infrastructure in the region.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "nonstate_offense_cap",
+      "name": "Non-state offensive capability",
+      "description": "The aggregate kinetic and logistical capability of irregular or proxy forces to carry out maritime or energy-infrastructure attacks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "naval_presence_level",
+      "name": "Naval/military presence level",
+      "description": "The aggregate deployed military assets, patrol intensity and readiness in maritime areas affecting commercial transit.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "protective_window_dur",
+      "name": "Protective window duration",
+      "description": "Average length of time per transit that commercial vessels receive active defensive coverage or escort protection.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "rerouting_burden",
+      "name": "Shipping rerouting burden",
+      "description": "Average additional distance, time and operational burden imposed on commercial shipping due to avoidance of high-risk routes.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_transit_vol",
+      "name": "Chokepoint transit volume",
+      "description": "Volume of commercial maritime traffic transiting critical maritime chokepoints per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "infra_outage_rate",
+      "name": "Infrastructure outage rate",
+      "description": "Frequency and duration-weighted rate of outages and service interruptions across oil export pipelines, terminals and related facilities.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "oil_export_flow",
+      "name": "Oil export flow",
+      "description": "Volume of crude oil and refined product exports moving through regional routes and facilities per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "export_capacity",
+      "name": "Oil export capacity",
+      "description": "Maximum technically available throughput of export infrastructure (pipelines, terminals, tanker availability) absent operational disruptions.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_risk_premium",
+      "name": "Market risk premium",
+      "description": "Incremental price component embedded in oil and shipping markets that reflects perceived geopolitical and conflict risk.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_level",
+      "name": "Oil price level",
+      "description": " prevailing market price level for benchmark crude oil relevant to global trade and regional export economics.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_premium_level",
+      "name": "Insurance and security premium",
+      "description": "Average insurance, armed-guard and security surcharge applied to vessels and cargo operating in the affected maritime zone.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Market volatility",
+      "description": "Short-term variability and uncertainty in commodity, freight and financial markets driven by the maritime-security situation.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diplomatic_engagement",
+      "name": "Diplomatic engagement intensity",
+      "description": "Frequency, scale and depth of diplomatic interactions, negotiations and mediation efforts aimed at conflict containment or resolution.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diplomatic_leverage",
+      "name": "Diplomatic leverage balance",
+      "description": "Net capacity of diplomatic incentives, sanctions and bargaining power to influence actors' choices toward escalation or restraint.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "great_power_competition",
+      "name": "Great-power competition intensity",
+      "description": "Degree of strategic rivalry and external-state involvement that shapes incentives, support networks and constraints in the regional system.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "maritime_attack_freq",
+    "nonstate_offense_cap",
+    "naval_presence_level",
+    "protective_window_dur",
+    "rerouting_burden",
+    "chokepoint_transit_vol",
+    "infra_outage_rate",
+    "oil_export_flow",
+    "export_capacity",
+    "market_risk_premium",
+    "oil_price_level",
+    "insurance_premium_level",
+    "market_volatility",
+    "diplomatic_engagement",
+    "diplomatic_leverage",
+    "great_power_competition"
+  ],
+  "var_names": {
+    "maritime_attack_freq": "Maritime attack frequency",
+    "nonstate_offense_cap": "Non-state offensive capability",
+    "naval_presence_level": "Naval/military presence level",
+    "protective_window_dur": "Protective window duration",
+    "rerouting_burden": "Shipping rerouting burden",
+    "chokepoint_transit_vol": "Chokepoint transit volume",
+    "infra_outage_rate": "Infrastructure outage rate",
+    "oil_export_flow": "Oil export flow",
+    "export_capacity": "Oil export capacity",
+    "market_risk_premium": "Market risk premium",
+    "oil_price_level": "Oil price level",
+    "insurance_premium_level": "Insurance and security premium",
+    "market_volatility": "Market volatility",
+    "diplomatic_engagement": "Diplomatic engagement intensity",
+    "diplomatic_leverage": "Diplomatic leverage balance",
+    "great_power_competition": "Great-power competition intensity"
+  },
+  "impact_matrix": {
+    "maritime_attack_freq": {
+      "maritime_attack_freq": 0,
+      "nonstate_offense_cap": 1,
+      "naval_presence_level": 3,
+      "protective_window_dur": 2,
+      "rerouting_burden": 3,
+      "chokepoint_transit_vol": 2,
+      "infra_outage_rate": 2,
+      "oil_export_flow": 2,
+      "export_capacity": 1,
+      "market_risk_premium": 3,
+      "oil_price_level": 2,
+      "insurance_premium_level": 3,
+      "market_volatility": 3,
+      "diplomatic_engagement": 2,
+      "diplomatic_leverage": 1,
+      "great_power_competition": 2
+    },
+    "nonstate_offense_cap": {
+      "maritime_attack_freq": 3,
+      "nonstate_offense_cap": 0,
+      "naval_presence_level": 2,
+      "protective_window_dur": 1,
+      "rerouting_burden": 2,
+      "chokepoint_transit_vol": 2,
+      "infra_outage_rate": 2,
+      "oil_export_flow": 2,
+      "export_capacity": 1,
+      "market_risk_premium": 3,
+      "oil_price_level": 2,
+      "insurance_premium_level": 3,
+      "market_volatility": 3,
+      "diplomatic_engagement": 1,
+      "diplomatic_leverage": 1,
+      "great_power_competition": 2
+    },
+    "naval_presence_level": {
+      "maritime_attack_freq": 2,
+      "nonstate_offense_cap": 1,
+      "naval_presence_level": 0,
+      "protective_window_dur": 3,
+      "rerouting_burden": 2,
+      "chokepoint_transit_vol": 2,
+      "infra_outage_rate": 1,
+      "oil_export_flow": 2,
+      "export_capacity": 1,
+      "market_risk_premium": 2,
+      "oil_price_level": 1,
+      "insurance_premium_level": 2,
+      "market_volatility": 2,
+      "diplomatic_engagement": 2,
+      "diplomatic_leverage": 2,
+      "great_power_competition": 3
+    },
+    "protective_window_dur": {
+      "maritime_attack_freq": 1,
+      "nonstate_offense_cap": 0,
+      "naval_presence_level": 1,
+      "protective_window_dur": 0,
+      "rerouting_burden": 2,
+      "chokepoint_transit_vol": 1,
+      "infra_outage_rate": 1,
+      "oil_export_flow": 2,
+      "export_capacity": 1,
+      "market_risk_premium": 1,
+      "oil_price_level": 1,
+      "insurance_premium_level": 1,
+      "market_volatility": 1,
+      "diplomatic_engagement": 0,
+      "diplomatic_leverage": 0,
+      "great_power_competition": 0
+    },
+    "rerouting_burden": {
+      "maritime_attack_freq": 0,
+      "nonstate_offense_cap": 0,
+      "naval_presence_level": 1,
+      "protective_window_dur": 0,
+      "rerouting_burden": 0,
+      "chokepoint_transit_vol": 2,
+      "infra_outage_rate": 0,
+      "oil_export_flow": 2,
+      "export_capacity": 1,
+      "market_risk_premium": 2,
+      "oil_price_level": 2,
+      "insurance_premium_level": 1,
+      "market_volatility": 2,
+      "diplomatic_engagement": 0,
+      "diplomatic_leverage": 0,
+      "great_power_competition": 0
+    },
+    "chokepoint_transit_vol": {
+      "maritime_attack_freq": 1,
+      "nonstate_offense_cap": 0,
+      "naval_presence_level": 2,
+      "protective_window_dur": 0,
+      "rerouting_burden": 1,
+      "chokepoint_transit_vol": 0,
+      "infra_outage_rate": 1,
+      "oil_export_flow": 3,
+      "export_capacity": 2,
+      "market_risk_premium": 1,
+      "oil_price_level": 2,
+      "insurance_premium_level": 1,
+      "market_volatility": 1,
+      "diplomatic_engagement": 1,
+      "diplomatic_leverage": 1,
+      "great_power_competition": 1
+    },
+    "infra_outage_rate": {
+      "maritime_attack_freq": 0,
+      "nonstate_offense_cap": 0,
+      "naval_presence_level": 2,
+      "protective_window_dur": 1,
+      "rerouting_burden": 1,
+      "chokepoint_transit_vol": 2,
+      "infra_outage_rate": 0,
+      "oil_export_flow": 3,
+      "export_capacity": 2,
+      "market_risk_premium": 3,
+      "oil_price_level": 3,
+      "insurance_premium_level": 2,
+      "market_volatility": 3,
+      "diplomatic_engagement": 2,
+      "diplomatic_leverage": 1,
+      "great_power_competition": 1
+    },
+    "oil_export_flow": {
+      "maritime_attack_freq": 0,
+      "nonstate_offense_cap": 0,
+      "naval_presence_level": 1,
+      "protective_window_dur": 0,
+      "rerouting_burden": 0,
+      "chokepoint_transit_vol": 2,
+      "infra_outage_rate": 0,
+      "oil_export_flow": 0,
+      "export_capacity": 0,
+      "market_risk_premium": 2,
+      "oil_price_level": 3,
+      "insurance_premium_level": 1,
+      "market_volatility": 2,
+      "diplomatic_engagement": 1,
+      "diplomatic_leverage": 1,
+      "great_power_competition": 1
+    },
+    "export_capacity": {
+      "maritime_attack_freq": 0,
+      "nonstate_offense_cap": 0,
+      "naval_presence_level": 1,
+      "protective_window_dur": 0,
+      "rerouting_burden": 0,
+      "chokepoint_transit_vol": 2,
+      "infra_outage_rate": 1,
+      "oil_export_flow": 2,
+      "export_capacity": 0,
+      "market_risk_premium": 1,
+      "oil_price_level": 1,
+      "insurance_premium_level": 0,
+      "market_volatility": 1,
+      "diplomatic_engagement": 1,
+      "diplomatic_leverage": 1,
+      "great_power_competition": 0
+    },
+    "market_risk_premium": {
+      "maritime_attack_freq": 0,
+      "nonstate_offense_cap": 0,
+      "naval_presence_level": 1,
+      "protective_window_dur": 0,
+      "rerouting_burden": 0,
+      "chokepoint_transit_vol": 0,
+      "infra_outage_rate": 0,
+      "oil_export_flow": 0,
+      "export_capacity": 0,
+      "market_risk_premium": 0,
+      "oil_price_level": 3,
+      "insurance_premium_level": 2,
+      "market_volatility": 3,
+      "diplomatic_engagement": 1,
+      "diplomatic_leverage": 0,
+      "great_power_competition": 0
+    },
+    "oil_price_level": {
+      "maritime_attack_freq": 0,
+      "nonstate_offense_cap": 1,
+      "naval_presence_level": 1,
+      "protective_window_dur": 0,
+      "rerouting_burden": 0,
+      "chokepoint_transit_vol": 0,
+      "infra_outage_rate": 0,
+      "oil_export_flow": 0,
+      "export_capacity": 0,
+      "market_risk_premium": 1,
+      "oil_price_level": 0,
+      "insurance_premium_level": 0,
+      "market_volatility": 2,
+      "diplomatic_engagement": 1,
+      "diplomatic_leverage": 0,
+      "great_power_competition": 1
+    },
+    "insurance_premium_level": {
+      "maritime_attack_freq": 0,
+      "nonstate_offense_cap": 1,
+      "naval_presence_level": 1,
+      "protective_window_dur": 0,
+      "rerouting_burden": 2,
+      "chokepoint_transit_vol": 2,
+      "infra_outage_rate": 0,
+      "oil_export_flow": 2,
+      "export_capacity": 0,
+      "market_risk_premium": 1,
+      "oil_price_level": 1,
+      "insurance_premium_level": 0,
+      "market_volatility": 1,
+      "diplomatic_engagement": 0,
+      "diplomatic_leverage": 0,
+      "great_power_competition": 0
+    },
+    "market_volatility": {
+      "maritime_attack_freq": 0,
+      "nonstate_offense_cap": 0,
+      "naval_presence_level": 0,
+      "protective_window_dur": 0,
+      "rerouting_burden": 0,
+      "chokepoint_transit_vol": 0,
+      "infra_outage_rate": 0,
+      "oil_export_flow": 0,
+      "export_capacity": 0,
+      "market_risk_premium": 2,
+      "oil_price_level": 2,
+      "insurance_premium_level": 1,
+      "market_volatility": 0,
+      "diplomatic_engagement": 1,
+      "diplomatic_leverage": 0,
+      "great_power_competition": 0
+    },
+    "diplomatic_engagement": {
+      "maritime_attack_freq": 2,
+      "nonstate_offense_cap": 1,
+      "naval_presence_level": 1,
+      "protective_window_dur": 1,
+      "rerouting_burden": 1,
+      "chokepoint_transit_vol": 1,
+      "infra_outage_rate": 1,
+      "oil_export_flow": 2,
+      "export_capacity": 1,
+      "market_risk_premium": 2,
+      "oil_price_level": 1,
+      "insurance_premium_level": 1,
+      "market_volatility": 2,
+      "diplomatic_engagement": 0,
+      "diplomatic_leverage": 2,
+      "great_power_competition": 1
+    },
+    "diplomatic_leverage": {
+      "maritime_attack_freq": 2,
+      "nonstate_offense_cap": 1,
+      "naval_presence_level": 1,
+      "protective_window_dur": 1,
+      "rerouting_burden": 1,
+      "chokepoint_transit_vol": 1,
+      "infra_outage_rate": 1,
+      "oil_export_flow": 2,
+      "export_capacity": 1,
+      "market_risk_premium": 2,
+      "oil_price_level": 1,
+      "insurance_premium_level": 1,
+      "market_volatility": 2,
+      "diplomatic_engagement": 2,
+      "diplomatic_leverage": 0,
+      "great_power_competition": 1
+    },
+    "great_power_competition": {
+      "maritime_attack_freq": 1,
+      "nonstate_offense_cap": 2,
+      "naval_presence_level": 3,
+      "protective_window_dur": 1,
+      "rerouting_burden": 1,
+      "chokepoint_transit_vol": 1,
+      "infra_outage_rate": 1,
+      "oil_export_flow": 1,
+      "export_capacity": 0,
+      "market_risk_premium": 2,
+      "oil_price_level": 1,
+      "insurance_premium_level": 2,
+      "market_volatility": 2,
+      "diplomatic_engagement": 2,
+      "diplomatic_leverage": 2,
+      "great_power_competition": 0
+    }
+  },
+  "AS": {
+    "maritime_attack_freq": 32,
+    "nonstate_offense_cap": 30,
+    "naval_presence_level": 28,
+    "protective_window_dur": 13,
+    "rerouting_burden": 13,
+    "chokepoint_transit_vol": 18,
+    "infra_outage_rate": 26,
+    "oil_export_flow": 14,
+    "export_capacity": 11,
+    "market_risk_premium": 10,
+    "oil_price_level": 7,
+    "insurance_premium_level": 11,
+    "market_volatility": 6,
+    "diplomatic_engagement": 20,
+    "diplomatic_leverage": 20,
+    "great_power_competition": 22
+  },
+  "PS": {
+    "maritime_attack_freq": 12,
+    "nonstate_offense_cap": 8,
+    "naval_presence_level": 21,
+    "protective_window_dur": 10,
+    "rerouting_burden": 16,
+    "chokepoint_transit_vol": 20,
+    "infra_outage_rate": 11,
+    "oil_export_flow": 25,
+    "export_capacity": 11,
+    "market_risk_premium": 28,
+    "oil_price_level": 26,
+    "insurance_premium_level": 21,
+    "market_volatility": 30,
+    "diplomatic_engagement": 17,
+    "diplomatic_leverage": 12,
+    "great_power_competition": 13
+  },
+  "med_AS": 16.0,
+  "med_PS": 16.5,
+  "roles": [
+    {
+      "variable": "naval_presence_level",
+      "name": "Naval/military presence level",
+      "AS": 28,
+      "PS": 21,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 588,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "maritime_attack_freq",
+      "name": "Maritime attack frequency",
+      "AS": 32,
+      "PS": 12,
+      "Q=AS/PS": 2.67,
+      "P=AS*PS": 384,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "chokepoint_transit_vol",
+      "name": "Chokepoint transit volume",
+      "AS": 18,
+      "PS": 20,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 360,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "oil_export_flow",
+      "name": "Oil export flow",
+      "AS": 14,
+      "PS": 25,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 350,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "diplomatic_engagement",
+      "name": "Diplomatic engagement intensity",
+      "AS": 20,
+      "PS": 17,
+      "Q=AS/PS": 1.18,
+      "P=AS*PS": 340,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "infra_outage_rate",
+      "name": "Infrastructure outage rate",
+      "AS": 26,
+      "PS": 11,
+      "Q=AS/PS": 2.36,
+      "P=AS*PS": 286,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "great_power_competition",
+      "name": "Great-power competition intensity",
+      "AS": 22,
+      "PS": 13,
+      "Q=AS/PS": 1.69,
+      "P=AS*PS": 286,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_risk_premium",
+      "name": "Market risk premium",
+      "AS": 10,
+      "PS": 28,
+      "Q=AS/PS": 0.36,
+      "P=AS*PS": 280,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "nonstate_offense_cap",
+      "name": "Non-state offensive capability",
+      "AS": 30,
+      "PS": 8,
+      "Q=AS/PS": 3.75,
+      "P=AS*PS": 240,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "diplomatic_leverage",
+      "name": "Diplomatic leverage balance",
+      "AS": 20,
+      "PS": 12,
+      "Q=AS/PS": 1.67,
+      "P=AS*PS": 240,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "insurance_premium_level",
+      "name": "Insurance and security premium",
+      "AS": 11,
+      "PS": 21,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 231,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "rerouting_burden",
+      "name": "Shipping rerouting burden",
+      "AS": 13,
+      "PS": 16,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 208,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "oil_price_level",
+      "name": "Oil price level",
+      "AS": 7,
+      "PS": 26,
+      "Q=AS/PS": 0.27,
+      "P=AS*PS": 182,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Market volatility",
+      "AS": 6,
+      "PS": 30,
+      "Q=AS/PS": 0.2,
+      "P=AS*PS": 180,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "protective_window_dur",
+      "name": "Protective window duration",
+      "AS": 13,
+      "PS": 10,
+      "Q=AS/PS": 1.3,
+      "P=AS*PS": 130,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "export_capacity",
+      "name": "Oil export capacity",
+      "AS": 11,
+      "PS": 11,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 121,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "maritime_attack_freq",
+        "name": "Maritime attack frequency",
+        "kind": "flow",
+        "AS": 32,
+        "PS": 12
+      },
+      {
+        "id": "nonstate_offense_cap",
+        "name": "Non-state offensive capability",
+        "kind": "stock",
+        "AS": 30,
+        "PS": 8
+      },
+      {
+        "id": "naval_presence_level",
+        "name": "Naval/military presence level",
+        "kind": "stock",
+        "AS": 28,
+        "PS": 21
+      },
+      {
+        "id": "protective_window_dur",
+        "name": "Protective window duration",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 10
+      },
+      {
+        "id": "rerouting_burden",
+        "name": "Shipping rerouting burden",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 16
+      },
+      {
+        "id": "chokepoint_transit_vol",
+        "name": "Chokepoint transit volume",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 20
+      },
+      {
+        "id": "infra_outage_rate",
+        "name": "Infrastructure outage rate",
+        "kind": "flow",
+        "AS": 26,
+        "PS": 11
+      },
+      {
+        "id": "oil_export_flow",
+        "name": "Oil export flow",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 25
+      },
+      {
+        "id": "export_capacity",
+        "name": "Oil export capacity",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 11
+      },
+      {
+        "id": "market_risk_premium",
+        "name": "Market risk premium",
+        "kind": "perception",
+        "AS": 10,
+        "PS": 28
+      },
+      {
+        "id": "oil_price_level",
+        "name": "Oil price level",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 26
+      },
+      {
+        "id": "insurance_premium_level",
+        "name": "Insurance and security premium",
+        "kind": "perception",
+        "AS": 11,
+        "PS": 21
+      },
+      {
+        "id": "market_volatility",
+        "name": "Market volatility",
+        "kind": "perception",
+        "AS": 6,
+        "PS": 30
+      },
+      {
+        "id": "diplomatic_engagement",
+        "name": "Diplomatic engagement intensity",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 17
+      },
+      {
+        "id": "diplomatic_leverage",
+        "name": "Diplomatic leverage balance",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 12
+      },
+      {
+        "id": "great_power_competition",
+        "name": "Great-power competition intensity",
+        "kind": "environment",
+        "AS": 22,
+        "PS": 13
+      }
+    ],
+    "edges": [
+      {
+        "source": "maritime_attack_freq",
+        "target": "naval_presence_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_freq",
+        "target": "protective_window_dur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_freq",
+        "target": "rerouting_burden",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_freq",
+        "target": "chokepoint_transit_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_attack_freq",
+        "target": "infra_outage_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_freq",
+        "target": "oil_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_attack_freq",
+        "target": "market_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_freq",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_freq",
+        "target": "insurance_premium_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_freq",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_freq",
+        "target": "diplomatic_engagement",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_freq",
+        "target": "great_power_competition",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonstate_offense_cap",
+        "target": "maritime_attack_freq",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nonstate_offense_cap",
+        "target": "naval_presence_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonstate_offense_cap",
+        "target": "rerouting_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonstate_offense_cap",
+        "target": "chokepoint_transit_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonstate_offense_cap",
+        "target": "infra_outage_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonstate_offense_cap",
+        "target": "oil_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonstate_offense_cap",
+        "target": "market_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nonstate_offense_cap",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonstate_offense_cap",
+        "target": "insurance_premium_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nonstate_offense_cap",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nonstate_offense_cap",
+        "target": "great_power_competition",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "naval_presence_level",
+        "target": "maritime_attack_freq",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "naval_presence_level",
+        "target": "protective_window_dur",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "naval_presence_level",
+        "target": "rerouting_burden",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "naval_presence_level",
+        "target": "chokepoint_transit_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "naval_presence_level",
+        "target": "oil_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "naval_presence_level",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "naval_presence_level",
+        "target": "insurance_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "naval_presence_level",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "naval_presence_level",
+        "target": "diplomatic_engagement",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "naval_presence_level",
+        "target": "diplomatic_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "naval_presence_level",
+        "target": "great_power_competition",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "protective_window_dur",
+        "target": "rerouting_burden",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "protective_window_dur",
+        "target": "oil_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouting_burden",
+        "target": "chokepoint_transit_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_burden",
+        "target": "oil_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_burden",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouting_burden",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouting_burden",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_vol",
+        "target": "naval_presence_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_vol",
+        "target": "oil_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_vol",
+        "target": "export_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_vol",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "infra_outage_rate",
+        "target": "naval_presence_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "infra_outage_rate",
+        "target": "chokepoint_transit_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "infra_outage_rate",
+        "target": "oil_export_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "infra_outage_rate",
+        "target": "export_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "infra_outage_rate",
+        "target": "market_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "infra_outage_rate",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "infra_outage_rate",
+        "target": "insurance_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "infra_outage_rate",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "infra_outage_rate",
+        "target": "diplomatic_engagement",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_export_flow",
+        "target": "chokepoint_transit_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_export_flow",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_export_flow",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "oil_export_flow",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_capacity",
+        "target": "chokepoint_transit_vol",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_capacity",
+        "target": "oil_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_premium",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_premium",
+        "target": "insurance_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_premium",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premium_level",
+        "target": "rerouting_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premium_level",
+        "target": "chokepoint_transit_vol",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premium_level",
+        "target": "oil_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "diplomatic_engagement",
+        "target": "maritime_attack_freq",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_engagement",
+        "target": "oil_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_engagement",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_engagement",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_engagement",
+        "target": "diplomatic_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_leverage",
+        "target": "maritime_attack_freq",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_leverage",
+        "target": "oil_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_leverage",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_leverage",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_leverage",
+        "target": "diplomatic_engagement",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "great_power_competition",
+        "target": "nonstate_offense_cap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "great_power_competition",
+        "target": "naval_presence_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "great_power_competition",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "great_power_competition",
+        "target": "insurance_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "great_power_competition",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "great_power_competition",
+        "target": "diplomatic_engagement",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "great_power_competition",
+        "target": "diplomatic_leverage",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "iran_gulf_hormuz_meeting",
+      "title": "Iran–Gulf talks on Strait of Hormuz",
+      "description": "Planned negotiations between Iran and Gulf states to reach an agreement on Hormuz navigation and security, potentially altering transit rules and escorts.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-10-15",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "diplomatic_engagement",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_leverage",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_attack_freq",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "chokepoint_transit_vol",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_export_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Iran and Gulf states to meet in push for Hormuz deal'; 'No signed Hormuz deal expected yet'; Oman meeting postponed."
+    },
+    {
+      "id": "houthi_redsea_consolidation",
+      "title": "Houthi consolidation in Red Sea/Bab el-Mandeb",
+      "description": "Houthis solidify control of Red Sea islands and approaches to Bab el‑Mandeb, enabling sustained interdiction of shipping and chokepoint disruption.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-10-15",
+        "label": "weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "maritime_attack_freq",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nonstate_offense_cap",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "chokepoint_transit_vol",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "rerouting_burden",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premium_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "naval_presence_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_export_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Houthis seize Red Sea islands'; 'Houthis take effective control of key Red Sea chokepoint'; 'Houthis reach Dhubab'."
+    },
+    {
+      "id": "saudi_east_west_pipeline_outage",
+      "title": "East–West pipeline outage and repair process",
+      "description": "Damage to Saudi East–West pipeline forces prolonged shutdown and repair decisions, threatening near-term export capacity and flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-10-01",
+        "label": "days–weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "infra_outage_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_export_flow",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "export_capacity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Saudi Arabia shuts East-West pipeline'; 'Satellite images show extent of damage'; 'pipeline outage threatens loss of 4% of global oil supply.'"
+    },
+    {
+      "id": "us_air_defence_timeslot_limits",
+      "title": "US limits air-defense time slots for tankers",
+      "description": "US policy reducing scheduled air-defense coverage windows for tankers transiting Hormuz, changing protective arrangements for commercial shipping.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-09-30",
+        "label": "immediate"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "protective_window_dur",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_attack_freq",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "naval_presence_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'US limits air defence time slots for tankers sailing through Hormuz' — immediate policy reducing coverage."
+    },
+    {
+      "id": "hormuz_deminining_mission",
+      "title": "Demining mission in Strait of Hormuz",
+      "description": "Planned or ongoing mine-clearance operations in the Strait of Hormuz to restore safe transit lanes and reduce explosive hazards to shipping.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-10-15",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "maritime_attack_freq",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "chokepoint_transit_vol",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "protective_window_dur",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premium_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_export_flow",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'The risky mission to de-mine the Strait of Hormuz' — demining likely to be undertaken near term."
+    },
+    {
+      "id": "militia_followup_pipeline_attacks",
+      "title": "Follow‑up militia/proxy strikes on oil infrastructure",
+      "description": "Further drone/strike operations by militias or proxies targeting pipelines and terminals, prolonging outages and export disruptions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-14",
+        "end": "2026-10-14",
+        "label": "weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "infra_outage_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nonstate_offense_cap",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_export_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premium_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Saudi pipeline attack exposes potent Iraqi militia threat'; 'drone attacks against Saudi Arabia' signal risk of follow-ups."
+    },
+    {
+      "id": "brics_gulf_peace_push",
+      "title": "BRICS diplomatic push for Gulf restraint",
+      "description": "BRICS leaders and finance ministers press for restraint and mediation in the Gulf, potentially catalysing alternate diplomatic channels.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-13",
+        "end": "2026-10-15",
+        "label": "weeks"
+      },
+      "probability": 0.55,
+      "affected": [
+        {
+          "variable_id": "diplomatic_engagement",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_leverage",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "great_power_competition",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Brics push for Gulf peace'; 'BRICS adopts joint declaration, urges maximum restraint'; Xi urges BRICS peace role."
+    },
+    {
+      "id": "us_ambassador_nomination_saudi",
+      "title": "US ambassador nomination to Saudi Arabia",
+      "description": "US nomination of a new ambassador to Riyadh (confirmation process) could affect bilateral diplomatic channels and military coordination.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-11-15",
+        "label": "confirmation period"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "diplomatic_engagement",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_leverage",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Trump nominates Republican lawmaker as ambassador to Saudi Arabia' — nomination may change bilateral engagement."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "houthi_redsea_consolidation",
+      "title": "Houthi consolidation in Red Sea/Bab el-Mandeb",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-10-15",
+      "probability": 0.8,
+      "impact_score": 438.0,
+      "expected_impact": 350.4,
+      "event_PS": 19.458,
+      "event_AS": 18.25,
+      "n_vars": 9,
+      "affected_ids": "maritime_attack_freq, nonstate_offense_cap, chokepoint_transit_vol, rerouting_burden, insurance_premium_level, naval_presence_level, oil_export_flow, market_risk_premium, market_volatility",
+      "rationale": "Headlines: 'Houthis seize Red Sea islands'; 'Houthis take effective control of key Red Sea chokepoint'; 'Houthis reach Dhubab'."
+    },
+    {
+      "id": "iran_gulf_hormuz_meeting",
+      "title": "Iran–Gulf talks on Strait of Hormuz",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-10-15",
+      "probability": 0.6,
+      "impact_score": 259.0,
+      "expected_impact": 155.4,
+      "event_PS": 19.0,
+      "event_AS": 18.5,
+      "n_vars": 7,
+      "affected_ids": "diplomatic_engagement, diplomatic_leverage, maritime_attack_freq, chokepoint_transit_vol, oil_export_flow, market_risk_premium, insurance_premium_level",
+      "rationale": "Headlines: 'Iran and Gulf states to meet in push for Hormuz deal'; 'No signed Hormuz deal expected yet'; Oman meeting postponed."
+    },
+    {
+      "id": "saudi_east_west_pipeline_outage",
+      "title": "East–West pipeline outage and repair process",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–weeks",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-10-01",
+      "probability": 0.9,
+      "impact_score": 216.0,
+      "expected_impact": 194.4,
+      "event_PS": 21.353,
+      "event_AS": 12.706,
+      "n_vars": 6,
+      "affected_ids": "infra_outage_rate, oil_export_flow, export_capacity, oil_price_level, market_risk_premium, market_volatility",
+      "rationale": "Headlines: 'Saudi Arabia shuts East-West pipeline'; 'Satellite images show extent of damage'; 'pipeline outage threatens loss of 4% of global oil supply.'"
+    },
+    {
+      "id": "militia_followup_pipeline_attacks",
+      "title": "Follow‑up militia/proxy strikes on oil infrastructure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-14",
+      "end": "2026-10-14",
+      "probability": 0.65,
+      "impact_score": 208.0,
+      "expected_impact": 135.2,
+      "event_PS": 17.909,
+      "event_AS": 18.909,
+      "n_vars": 5,
+      "affected_ids": "infra_outage_rate, nonstate_offense_cap, oil_export_flow, market_risk_premium, insurance_premium_level",
+      "rationale": "Headlines: 'Saudi pipeline attack exposes potent Iraqi militia threat'; 'drone attacks against Saudi Arabia' signal risk of follow-ups."
+    },
+    {
+      "id": "hormuz_deminining_mission",
+      "title": "Demining mission in Strait of Hormuz",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-10-15",
+      "probability": 0.6,
+      "impact_score": 138.0,
+      "expected_impact": 82.8,
+      "event_PS": 17.143,
+      "event_AS": 19.714,
+      "n_vars": 5,
+      "affected_ids": "maritime_attack_freq, chokepoint_transit_vol, protective_window_dur, insurance_premium_level, oil_export_flow",
+      "rationale": "Headline: 'The risky mission to de-mine the Strait of Hormuz' — demining likely to be undertaken near term."
+    },
+    {
+      "id": "us_air_defence_timeslot_limits",
+      "title": "US limits air-defense time slots for tankers",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "immediate",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-09-30",
+      "probability": 0.85,
+      "impact_score": 121.0,
+      "expected_impact": 102.85,
+      "event_PS": 15.0,
+      "event_AS": 17.286,
+      "n_vars": 4,
+      "affected_ids": "protective_window_dur, insurance_premium_level, maritime_attack_freq, naval_presence_level",
+      "rationale": "Headline: 'US limits air defence time slots for tankers sailing through Hormuz' — immediate policy reducing coverage."
+    },
+    {
+      "id": "brics_gulf_peace_push",
+      "title": "BRICS diplomatic push for Gulf restraint",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-13",
+      "end": "2026-10-15",
+      "probability": 0.55,
+      "impact_score": 112.0,
+      "expected_impact": 61.6,
+      "event_PS": 17.333,
+      "event_AS": 18.667,
+      "n_vars": 4,
+      "affected_ids": "diplomatic_engagement, diplomatic_leverage, market_risk_premium, great_power_competition",
+      "rationale": "Headlines: 'Brics push for Gulf peace'; 'BRICS adopts joint declaration, urges maximum restraint'; Xi urges BRICS peace role."
+    },
+    {
+      "id": "us_ambassador_nomination_saudi",
+      "title": "US ambassador nomination to Saudi Arabia",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "confirmation period",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-11-15",
+      "probability": 0.5,
+      "impact_score": 40.0,
+      "expected_impact": 20.0,
+      "event_PS": 14.5,
+      "event_AS": 20.0,
+      "n_vars": 2,
+      "affected_ids": "diplomatic_engagement, diplomatic_leverage",
+      "rationale": "Headline: 'Trump nominates Republican lawmaker as ambassador to Saudi Arabia' — nomination may change bilateral engagement."
+    }
+  ]
+}
