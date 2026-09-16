@@ -1,0 +1,1892 @@
+{
+  "label": "gulf_energy_flashpoint",
+  "as_of": "2026-09-15",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-16T01:49:43",
+  "system_description": {
+    "narrative_title": "Middle East attacks disrupt oil supply, push prices above $100",
+    "narrative_summary": "A wave of attacks on Gulf export infrastructure and shipping (notably Saudi's East–West pipeline and strikes in the Strait of Hormuz/Red Sea) is tightening physical oil supply and spiking crude and diesel prices, forcing markets and policymakers to react. The disruption creates reinforcing feedbacks between higher energy costs, inflationary pressure (pressuring central banks on rates), strained shipping/insurance routes, and accelerated geopolitical escalation that could further throttle flows or prompt strategic responses. Traders, inventories (SPR), refiners and import-dependent economies sit inside this dynamic, while diplomacy and military postures attempt to stabilize it.",
+    "scope": "Physical Gulf oil production and export infrastructure (pipelines, tankers, Strait of Hormuz, Red Sea chokepoints), state and non‑state regional actors (Saudi Arabia, Iran, Houthis, Iraqi militias), global oil markets and traders, inventories and refining/transport logistics, financial market reactions and central bank policy, and immediate diplomatic/military responses.",
+    "super_system": "Global energy–financial system (global economy, inflation/monetary policy, and geopolitics)",
+    "adjacent_subsystems": [
+      "Global financial markets & central banks",
+      "International shipping, logistics & marine insurance",
+      "Regional security architecture (Gulf/Middle East military-diplomatic alignments)",
+      "Energy refining, storage & strategic petroleum reserves"
+    ],
+    "evidence_headlines": [
+      "Saudi Arabia shuts East-West pipeline that bypasses Hormuz after attacks",
+      "Oil hits $100 for first time since July",
+      "New Strait of Hormuz ship attack raises oil supply fears as Iran war widens",
+      "Saudi pipeline outage threatens loss of 4% of global oil supply",
+      "High oil prices could force ECB to raise rates further, warns top policymaker",
+      "Oil Prices Rise as Middle East Supply Concerns Persist"
+    ]
+  },
+  "variables": [
+    {
+      "id": "global_oil_price_level",
+      "name": "Global oil price level",
+      "description": "The prevailing average market price of crude oil (benchmark blend) measured continuously across global markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "physical_export_capacity",
+      "name": "Physical export capacity",
+      "description": "Aggregate daily volume that export infrastructure (ports, loading facilities, pipelines) can physically move to market.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "pipeline_integrity",
+      "name": "Pipeline operational integrity",
+      "description": "Functional status and throughput capability of major oil pipeline infrastructure enabling exports.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_route_security",
+      "name": "Shipping route security",
+      "description": "Degree of safe, uninterrupted maritime transit through key chokepoints for oil shipments.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_availability",
+      "name": "Tanker fleet availability",
+      "description": "Proportion of the commercial tanker fleet available and deployable for oil transport at any time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_insurance_cost",
+      "name": "Shipping insurance cost",
+      "description": "Average insurance premia charged for insuring oil shipments transiting riskier routes.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "global_oil_inventories",
+      "name": "Global oil inventories",
+      "description": "Total stocks of crude and refined petroleum held in commercial and strategic storages worldwide.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_throughput_rate",
+      "name": "Refinery throughput rate",
+      "description": "Aggregate rate at which crude oil is being processed into refined products across the system.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refined_fuel_premium",
+      "name": "Refined fuel price premium",
+      "description": "The price gap or scarcity premium of refined products (diesel/gasoline) relative to crude benchmarks.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "supply_risk_perception",
+      "name": "Market supply risk perception",
+      "description": "Market participants' perceived probability and expected severity of supply disruptions to oil flows.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "geopolitical_tension",
+      "name": "Geopolitical escalation intensity",
+      "description": "Frequency and severity of hostile actions, military postures, and political tensions that threaten energy flows.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diplomatic_activity",
+      "name": "Diplomatic negotiation activity",
+      "description": "Intensity and progress of formal and informal diplomatic efforts aimed at de‑escalation or securing transit routes.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_stance",
+      "name": "Monetary policy stance",
+      "description": "Aggregate tightness of central bank policy as reflected in policy rates, guidance, and liquidity provision.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_inflation",
+      "name": "Energy-driven inflationary pressure",
+      "description": "Contribution of energy price changes to overall inflation expectations and realized consumer price growth.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Financial market volatility",
+      "description": "Volatility and liquidity conditions in financial markets relevant to energy assets and broader markets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "reserve_release_rate",
+      "name": "Strategic reserve release rate",
+      "description": "Rate at which strategic petroleum reserves are being released (or accumulated) into commercial supply.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "global_oil_price_level",
+    "physical_export_capacity",
+    "pipeline_integrity",
+    "shipping_route_security",
+    "tanker_availability",
+    "shipping_insurance_cost",
+    "global_oil_inventories",
+    "refinery_throughput_rate",
+    "refined_fuel_premium",
+    "supply_risk_perception",
+    "geopolitical_tension",
+    "diplomatic_activity",
+    "monetary_policy_stance",
+    "energy_inflation",
+    "market_volatility",
+    "reserve_release_rate"
+  ],
+  "var_names": {
+    "global_oil_price_level": "Global oil price level",
+    "physical_export_capacity": "Physical export capacity",
+    "pipeline_integrity": "Pipeline operational integrity",
+    "shipping_route_security": "Shipping route security",
+    "tanker_availability": "Tanker fleet availability",
+    "shipping_insurance_cost": "Shipping insurance cost",
+    "global_oil_inventories": "Global oil inventories",
+    "refinery_throughput_rate": "Refinery throughput rate",
+    "refined_fuel_premium": "Refined fuel price premium",
+    "supply_risk_perception": "Market supply risk perception",
+    "geopolitical_tension": "Geopolitical escalation intensity",
+    "diplomatic_activity": "Diplomatic negotiation activity",
+    "monetary_policy_stance": "Monetary policy stance",
+    "energy_inflation": "Energy-driven inflationary pressure",
+    "market_volatility": "Financial market volatility",
+    "reserve_release_rate": "Strategic reserve release rate"
+  },
+  "impact_matrix": {
+    "global_oil_price_level": {
+      "global_oil_price_level": 0,
+      "physical_export_capacity": 0,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 1,
+      "shipping_insurance_cost": 0,
+      "global_oil_inventories": 2,
+      "refinery_throughput_rate": 1,
+      "refined_fuel_premium": 2,
+      "supply_risk_perception": 1,
+      "geopolitical_tension": 0,
+      "diplomatic_activity": 0,
+      "monetary_policy_stance": 1,
+      "energy_inflation": 3,
+      "market_volatility": 1,
+      "reserve_release_rate": 2
+    },
+    "physical_export_capacity": {
+      "global_oil_price_level": 3,
+      "physical_export_capacity": 0,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 1,
+      "shipping_insurance_cost": 0,
+      "global_oil_inventories": 2,
+      "refinery_throughput_rate": 1,
+      "refined_fuel_premium": 1,
+      "supply_risk_perception": 2,
+      "geopolitical_tension": 0,
+      "diplomatic_activity": 0,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 2,
+      "market_volatility": 2,
+      "reserve_release_rate": 1
+    },
+    "pipeline_integrity": {
+      "global_oil_price_level": 3,
+      "physical_export_capacity": 3,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 1,
+      "shipping_insurance_cost": 0,
+      "global_oil_inventories": 2,
+      "refinery_throughput_rate": 3,
+      "refined_fuel_premium": 2,
+      "supply_risk_perception": 3,
+      "geopolitical_tension": 2,
+      "diplomatic_activity": 1,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 2,
+      "market_volatility": 2,
+      "reserve_release_rate": 2
+    },
+    "shipping_route_security": {
+      "global_oil_price_level": 3,
+      "physical_export_capacity": 3,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 3,
+      "shipping_insurance_cost": 3,
+      "global_oil_inventories": 2,
+      "refinery_throughput_rate": 2,
+      "refined_fuel_premium": 2,
+      "supply_risk_perception": 3,
+      "geopolitical_tension": 2,
+      "diplomatic_activity": 2,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 2,
+      "market_volatility": 3,
+      "reserve_release_rate": 2
+    },
+    "tanker_availability": {
+      "global_oil_price_level": 2,
+      "physical_export_capacity": 2,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 0,
+      "shipping_insurance_cost": 0,
+      "global_oil_inventories": 2,
+      "refinery_throughput_rate": 2,
+      "refined_fuel_premium": 2,
+      "supply_risk_perception": 2,
+      "geopolitical_tension": 0,
+      "diplomatic_activity": 0,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 1,
+      "market_volatility": 2,
+      "reserve_release_rate": 1
+    },
+    "shipping_insurance_cost": {
+      "global_oil_price_level": 1,
+      "physical_export_capacity": 1,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 2,
+      "shipping_insurance_cost": 0,
+      "global_oil_inventories": 1,
+      "refinery_throughput_rate": 1,
+      "refined_fuel_premium": 1,
+      "supply_risk_perception": 2,
+      "geopolitical_tension": 0,
+      "diplomatic_activity": 1,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 1,
+      "market_volatility": 1,
+      "reserve_release_rate": 1
+    },
+    "global_oil_inventories": {
+      "global_oil_price_level": 3,
+      "physical_export_capacity": 0,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 1,
+      "shipping_insurance_cost": 0,
+      "global_oil_inventories": 0,
+      "refinery_throughput_rate": 2,
+      "refined_fuel_premium": 2,
+      "supply_risk_perception": 3,
+      "geopolitical_tension": 0,
+      "diplomatic_activity": 0,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 2,
+      "market_volatility": 2,
+      "reserve_release_rate": 1
+    },
+    "refinery_throughput_rate": {
+      "global_oil_price_level": 2,
+      "physical_export_capacity": 0,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 1,
+      "shipping_insurance_cost": 0,
+      "global_oil_inventories": 2,
+      "refinery_throughput_rate": 0,
+      "refined_fuel_premium": 3,
+      "supply_risk_perception": 2,
+      "geopolitical_tension": 0,
+      "diplomatic_activity": 0,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 2,
+      "market_volatility": 2,
+      "reserve_release_rate": 1
+    },
+    "refined_fuel_premium": {
+      "global_oil_price_level": 1,
+      "physical_export_capacity": 0,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 1,
+      "shipping_insurance_cost": 0,
+      "global_oil_inventories": 1,
+      "refinery_throughput_rate": 2,
+      "refined_fuel_premium": 0,
+      "supply_risk_perception": 2,
+      "geopolitical_tension": 0,
+      "diplomatic_activity": 0,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 3,
+      "market_volatility": 2,
+      "reserve_release_rate": 1
+    },
+    "supply_risk_perception": {
+      "global_oil_price_level": 3,
+      "physical_export_capacity": 0,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 1,
+      "tanker_availability": 2,
+      "shipping_insurance_cost": 3,
+      "global_oil_inventories": 2,
+      "refinery_throughput_rate": 1,
+      "refined_fuel_premium": 2,
+      "supply_risk_perception": 0,
+      "geopolitical_tension": 1,
+      "diplomatic_activity": 2,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 2,
+      "market_volatility": 3,
+      "reserve_release_rate": 2
+    },
+    "geopolitical_tension": {
+      "global_oil_price_level": 3,
+      "physical_export_capacity": 3,
+      "pipeline_integrity": 3,
+      "shipping_route_security": 3,
+      "tanker_availability": 3,
+      "shipping_insurance_cost": 3,
+      "global_oil_inventories": 2,
+      "refinery_throughput_rate": 2,
+      "refined_fuel_premium": 3,
+      "supply_risk_perception": 3,
+      "geopolitical_tension": 0,
+      "diplomatic_activity": 3,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 2,
+      "market_volatility": 3,
+      "reserve_release_rate": 3
+    },
+    "diplomatic_activity": {
+      "global_oil_price_level": 2,
+      "physical_export_capacity": 2,
+      "pipeline_integrity": 1,
+      "shipping_route_security": 2,
+      "tanker_availability": 2,
+      "shipping_insurance_cost": 2,
+      "global_oil_inventories": 0,
+      "refinery_throughput_rate": 1,
+      "refined_fuel_premium": 1,
+      "supply_risk_perception": 3,
+      "geopolitical_tension": 3,
+      "diplomatic_activity": 0,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 1,
+      "market_volatility": 2,
+      "reserve_release_rate": 0
+    },
+    "monetary_policy_stance": {
+      "global_oil_price_level": 1,
+      "physical_export_capacity": 0,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 0,
+      "shipping_insurance_cost": 0,
+      "global_oil_inventories": 0,
+      "refinery_throughput_rate": 0,
+      "refined_fuel_premium": 0,
+      "supply_risk_perception": 0,
+      "geopolitical_tension": 0,
+      "diplomatic_activity": 0,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 1,
+      "market_volatility": 2,
+      "reserve_release_rate": 0
+    },
+    "energy_inflation": {
+      "global_oil_price_level": 0,
+      "physical_export_capacity": 0,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 0,
+      "shipping_insurance_cost": 0,
+      "global_oil_inventories": 0,
+      "refinery_throughput_rate": 0,
+      "refined_fuel_premium": 0,
+      "supply_risk_perception": 0,
+      "geopolitical_tension": 0,
+      "diplomatic_activity": 0,
+      "monetary_policy_stance": 3,
+      "energy_inflation": 0,
+      "market_volatility": 2,
+      "reserve_release_rate": 1
+    },
+    "market_volatility": {
+      "global_oil_price_level": 1,
+      "physical_export_capacity": 0,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 1,
+      "shipping_insurance_cost": 1,
+      "global_oil_inventories": 1,
+      "refinery_throughput_rate": 1,
+      "refined_fuel_premium": 1,
+      "supply_risk_perception": 2,
+      "geopolitical_tension": 0,
+      "diplomatic_activity": 0,
+      "monetary_policy_stance": 1,
+      "energy_inflation": 0,
+      "market_volatility": 0,
+      "reserve_release_rate": 1
+    },
+    "reserve_release_rate": {
+      "global_oil_price_level": 3,
+      "physical_export_capacity": 1,
+      "pipeline_integrity": 0,
+      "shipping_route_security": 0,
+      "tanker_availability": 1,
+      "shipping_insurance_cost": 1,
+      "global_oil_inventories": 3,
+      "refinery_throughput_rate": 2,
+      "refined_fuel_premium": 2,
+      "supply_risk_perception": 2,
+      "geopolitical_tension": 1,
+      "diplomatic_activity": 1,
+      "monetary_policy_stance": 0,
+      "energy_inflation": 2,
+      "market_volatility": 2,
+      "reserve_release_rate": 0
+    }
+  },
+  "AS": {
+    "global_oil_price_level": 14,
+    "physical_export_capacity": 15,
+    "pipeline_integrity": 26,
+    "shipping_route_security": 32,
+    "tanker_availability": 16,
+    "shipping_insurance_cost": 13,
+    "global_oil_inventories": 16,
+    "refinery_throughput_rate": 15,
+    "refined_fuel_premium": 13,
+    "supply_risk_perception": 24,
+    "geopolitical_tension": 39,
+    "diplomatic_activity": 22,
+    "monetary_policy_stance": 4,
+    "energy_inflation": 6,
+    "market_volatility": 10,
+    "reserve_release_rate": 21
+  },
+  "PS": {
+    "global_oil_price_level": 31,
+    "physical_export_capacity": 15,
+    "pipeline_integrity": 4,
+    "shipping_route_security": 6,
+    "tanker_availability": 20,
+    "shipping_insurance_cost": 13,
+    "global_oil_inventories": 22,
+    "refinery_throughput_rate": 21,
+    "refined_fuel_premium": 24,
+    "supply_risk_perception": 30,
+    "geopolitical_tension": 9,
+    "diplomatic_activity": 10,
+    "monetary_policy_stance": 5,
+    "energy_inflation": 26,
+    "market_volatility": 31,
+    "reserve_release_rate": 19
+  },
+  "med_AS": 15.5,
+  "med_PS": 19.5,
+  "roles": [
+    {
+      "variable": "supply_risk_perception",
+      "name": "Market supply risk perception",
+      "AS": 24,
+      "PS": 30,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 720,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "global_oil_price_level",
+      "name": "Global oil price level",
+      "AS": 14,
+      "PS": 31,
+      "Q=AS/PS": 0.45,
+      "P=AS*PS": 434,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "reserve_release_rate",
+      "name": "Strategic reserve release rate",
+      "AS": 21,
+      "PS": 19,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 399,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "global_oil_inventories",
+      "name": "Global oil inventories",
+      "AS": 16,
+      "PS": 22,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 352,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "geopolitical_tension",
+      "name": "Geopolitical escalation intensity",
+      "AS": 39,
+      "PS": 9,
+      "Q=AS/PS": 4.33,
+      "P=AS*PS": 351,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "tanker_availability",
+      "name": "Tanker fleet availability",
+      "AS": 16,
+      "PS": 20,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 320,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refinery_throughput_rate",
+      "name": "Refinery throughput rate",
+      "AS": 15,
+      "PS": 21,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 315,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refined_fuel_premium",
+      "name": "Refined fuel price premium",
+      "AS": 13,
+      "PS": 24,
+      "Q=AS/PS": 0.54,
+      "P=AS*PS": 312,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Financial market volatility",
+      "AS": 10,
+      "PS": 31,
+      "Q=AS/PS": 0.32,
+      "P=AS*PS": 310,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "physical_export_capacity",
+      "name": "Physical export capacity",
+      "AS": 15,
+      "PS": 15,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 225,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "diplomatic_activity",
+      "name": "Diplomatic negotiation activity",
+      "AS": 22,
+      "PS": 10,
+      "Q=AS/PS": 2.2,
+      "P=AS*PS": 220,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "shipping_route_security",
+      "name": "Shipping route security",
+      "AS": 32,
+      "PS": 6,
+      "Q=AS/PS": 5.33,
+      "P=AS*PS": 192,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "shipping_insurance_cost",
+      "name": "Shipping insurance cost",
+      "AS": 13,
+      "PS": 13,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 169,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "energy_inflation",
+      "name": "Energy-driven inflationary pressure",
+      "AS": 6,
+      "PS": 26,
+      "Q=AS/PS": 0.23,
+      "P=AS*PS": 156,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "pipeline_integrity",
+      "name": "Pipeline operational integrity",
+      "AS": 26,
+      "PS": 4,
+      "Q=AS/PS": 6.5,
+      "P=AS*PS": 104,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "monetary_policy_stance",
+      "name": "Monetary policy stance",
+      "AS": 4,
+      "PS": 5,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 20,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "global_oil_price_level",
+        "name": "Global oil price level",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 31
+      },
+      {
+        "id": "physical_export_capacity",
+        "name": "Physical export capacity",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 15
+      },
+      {
+        "id": "pipeline_integrity",
+        "name": "Pipeline operational integrity",
+        "kind": "environment",
+        "AS": 26,
+        "PS": 4
+      },
+      {
+        "id": "shipping_route_security",
+        "name": "Shipping route security",
+        "kind": "environment",
+        "AS": 32,
+        "PS": 6
+      },
+      {
+        "id": "tanker_availability",
+        "name": "Tanker fleet availability",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 20
+      },
+      {
+        "id": "shipping_insurance_cost",
+        "name": "Shipping insurance cost",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 13
+      },
+      {
+        "id": "global_oil_inventories",
+        "name": "Global oil inventories",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 22
+      },
+      {
+        "id": "refinery_throughput_rate",
+        "name": "Refinery throughput rate",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 21
+      },
+      {
+        "id": "refined_fuel_premium",
+        "name": "Refined fuel price premium",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 24
+      },
+      {
+        "id": "supply_risk_perception",
+        "name": "Market supply risk perception",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 30
+      },
+      {
+        "id": "geopolitical_tension",
+        "name": "Geopolitical escalation intensity",
+        "kind": "environment",
+        "AS": 39,
+        "PS": 9
+      },
+      {
+        "id": "diplomatic_activity",
+        "name": "Diplomatic negotiation activity",
+        "kind": "institution_field",
+        "AS": 22,
+        "PS": 10
+      },
+      {
+        "id": "monetary_policy_stance",
+        "name": "Monetary policy stance",
+        "kind": "institution_field",
+        "AS": 4,
+        "PS": 5
+      },
+      {
+        "id": "energy_inflation",
+        "name": "Energy-driven inflationary pressure",
+        "kind": "driver",
+        "AS": 6,
+        "PS": 26
+      },
+      {
+        "id": "market_volatility",
+        "name": "Financial market volatility",
+        "kind": "perception",
+        "AS": 10,
+        "PS": 31
+      },
+      {
+        "id": "reserve_release_rate",
+        "name": "Strategic reserve release rate",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 19
+      }
+    ],
+    "edges": [
+      {
+        "source": "global_oil_price_level",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "refined_fuel_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "energy_inflation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_price_level",
+        "target": "reserve_release_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "physical_export_capacity",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "physical_export_capacity",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "physical_export_capacity",
+        "target": "supply_risk_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "physical_export_capacity",
+        "target": "energy_inflation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "physical_export_capacity",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_integrity",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_integrity",
+        "target": "physical_export_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "pipeline_integrity",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_integrity",
+        "target": "refinery_throughput_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "pipeline_integrity",
+        "target": "refined_fuel_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_integrity",
+        "target": "supply_risk_perception",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_integrity",
+        "target": "geopolitical_tension",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_integrity",
+        "target": "energy_inflation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_integrity",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_integrity",
+        "target": "reserve_release_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "physical_export_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "tanker_availability",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "shipping_insurance_cost",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "refined_fuel_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "supply_risk_perception",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "geopolitical_tension",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "diplomatic_activity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "energy_inflation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_security",
+        "target": "reserve_release_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "global_oil_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "physical_export_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "refined_fuel_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "supply_risk_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_insurance_cost",
+        "target": "tanker_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_insurance_cost",
+        "target": "supply_risk_perception",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_inventories",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_inventories",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_inventories",
+        "target": "refined_fuel_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_inventories",
+        "target": "supply_risk_perception",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_inventories",
+        "target": "energy_inflation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_inventories",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "global_oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "refined_fuel_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "supply_risk_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "energy_inflation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_throughput_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_premium",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_premium",
+        "target": "supply_risk_perception",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_premium",
+        "target": "energy_inflation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_premium",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_risk_perception",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "supply_risk_perception",
+        "target": "tanker_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_risk_perception",
+        "target": "shipping_insurance_cost",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "supply_risk_perception",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_risk_perception",
+        "target": "refined_fuel_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_risk_perception",
+        "target": "diplomatic_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_risk_perception",
+        "target": "energy_inflation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_risk_perception",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "supply_risk_perception",
+        "target": "reserve_release_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "physical_export_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "pipeline_integrity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "shipping_route_security",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "tanker_availability",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "shipping_insurance_cost",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "refined_fuel_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "supply_risk_perception",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "diplomatic_activity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "energy_inflation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "reserve_release_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "global_oil_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "physical_export_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "shipping_route_security",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "tanker_availability",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "shipping_insurance_cost",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "supply_risk_perception",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "geopolitical_tension",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_inflation",
+        "target": "monetary_policy_stance",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_inflation",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "supply_risk_perception",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "global_oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "global_oil_inventories",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "refinery_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "refined_fuel_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "supply_risk_perception",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "energy_inflation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "saudi_pipeline_restart",
+      "title": "Saudi East‑West pipeline restart",
+      "description": "Saudi efforts to bring the East‑West (pipeline that bypasses Hormuz) back online within days; would restore a key export bypass if successful.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-09-22",
+        "label": "within days"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "physical_export_capacity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "pipeline_integrity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_route_security",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "supply_risk_perception",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "US energy chief: pipeline should be back online within days; satellite images show damage to East‑West pipeline."
+    },
+    {
+      "id": "houthi_control_redsea_chokepoints",
+      "title": "Houthi control of Red Sea chokepoints",
+      "description": "Continued Houthi advances and tighter control of islands and Red Sea routes, sustaining threats to maritime transit and tankers.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-12-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "shipping_route_security",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_insurance_cost",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_availability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "supply_risk_perception",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "geopolitical_tension",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'Iran‑Backed Houthis Take Effective Control of Key Red Sea Chokepoint'; Houthi advances tighten grip."
+    },
+    {
+      "id": "gulf_iran_hormuz_talks_success",
+      "title": "Successful Gulf‑Iran Hormuz negotiations",
+      "description": "A credible de‑escalation agreement from Gulf states and Iran to secure Hormuz transit, improving security and easing price pressure if achieved.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-10-15",
+        "label": "2–4 weeks"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "diplomatic_activity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_route_security",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "supply_risk_perception",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Iran and Gulf states to meet in push for Hormuz deal' but talks stalled/postponed."
+    },
+    {
+      "id": "talks_postponement_or_failure",
+      "title": "Postponement or failure of Hormuz talks",
+      "description": "Further delays or breakdown of mediation (Oman/Gulf/Iran) that prolong diplomatic impasse and heighten risk perceptions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-10-31",
+        "label": "weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "diplomatic_activity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "geopolitical_tension",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "supply_risk_perception",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple headlines: 'Gulf states postpone talks with Iran' and 'Oman meeting ... postponed'."
+    },
+    {
+      "id": "us_air_defence_policy_for_tankers",
+      "title": "US limits on tanker air‑defence coverage",
+      "description": "Policy limiting U.S. air‑defence time slots for tankers transiting Hormuz, reducing protective coverage and altering transit risk calculus.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-09-30",
+        "label": "days–weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "shipping_route_security",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_availability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_insurance_cost",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "supply_risk_perception",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "FT: 'US limits air defence time slots for tankers sailing through Hormuz.'"
+    },
+    {
+      "id": "strategic_reserve_release",
+      "title": "Coordinated strategic reserve releases",
+      "description": "Potential coordinated releases of SPRs by major consumers to calm markets and replenish short‑term supply shortfalls.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-10-16",
+        "label": "~1 month"
+      },
+      "probability": 0.35,
+      "affected": [
+        {
+          "variable_id": "reserve_release_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_inventories",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "supply_risk_perception",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: US SPR at lowest since 1982 and IEA warnings about supply gaps prompt consideration of releases."
+    },
+    {
+      "id": "central_bank_rate_response",
+      "title": "Central bank rate tightening in response to oil",
+      "description": "ECB/BoE (and others) may raise policy rates this year as high oil prices feed inflation, tightening monetary stance.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_stance",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_inflation",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'High oil prices could force ECB to raise rates further' and BoE rate rise prospect revived."
+    },
+    {
+      "id": "refinery_outage_risk",
+      "title": "Further refinery outages and throughput disruption",
+      "description": "Recent refinery shutdowns (e.g., Joliet) raise the risk of additional or prolonged refinery outages that cut throughput and lift product premiums.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-10-31",
+        "label": "weeks"
+      },
+      "probability": 0.55,
+      "affected": [
+        {
+          "variable_id": "refinery_throughput_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refined_fuel_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Exxon Mobil Joliet refinery shutdown and wider 'great fuel crisis' warnings increase outage risk."
+    },
+    {
+      "id": "extended_saudi_export_curtailment",
+      "title": "Extended Saudi export curtailment",
+      "description": "If the damaged East‑West pipeline remains offline, Saudi exports could fall further or remain constrained for days to weeks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-10-15",
+        "label": "days–weeks"
+      },
+      "probability": 0.45,
+      "affected": [
+        {
+          "variable_id": "physical_export_capacity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_oil_inventories",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "supply_risk_perception",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "pipeline_integrity",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Saudi pipeline outage threatens loss of 4% of global oil supply'; 'may be just days away from not being able to export much oil.'"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "houthi_control_redsea_chokepoints",
+      "title": "Houthi control of Red Sea chokepoints",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-12-31",
+      "probability": 0.85,
+      "impact_score": 398.0,
+      "expected_impact": 338.3,
+      "event_PS": 18.059,
+      "event_AS": 23.412,
+      "n_vars": 6,
+      "affected_ids": "shipping_route_security, shipping_insurance_cost, tanker_availability, supply_risk_perception, global_oil_price_level, geopolitical_tension",
+      "rationale": "'Iran‑Backed Houthis Take Effective Control of Key Red Sea Chokepoint'; Houthi advances tighten grip."
+    },
+    {
+      "id": "talks_postponement_or_failure",
+      "title": "Postponement or failure of Hormuz talks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-10-31",
+      "probability": 0.6,
+      "impact_score": 220.0,
+      "expected_impact": 132.0,
+      "event_PS": 18.889,
+      "event_AS": 24.444,
+      "n_vars": 4,
+      "affected_ids": "diplomatic_activity, geopolitical_tension, supply_risk_perception, global_oil_price_level",
+      "rationale": "Multiple headlines: 'Gulf states postpone talks with Iran' and 'Oman meeting ... postponed'."
+    },
+    {
+      "id": "saudi_pipeline_restart",
+      "title": "Saudi East‑West pipeline restart",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "within days",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-09-22",
+      "probability": 0.7,
+      "impact_score": 219.0,
+      "expected_impact": 153.3,
+      "event_PS": 19.273,
+      "event_AS": 19.909,
+      "n_vars": 5,
+      "affected_ids": "physical_export_capacity, pipeline_integrity, global_oil_price_level, shipping_route_security, supply_risk_perception",
+      "rationale": "US energy chief: pipeline should be back online within days; satellite images show damage to East‑West pipeline."
+    },
+    {
+      "id": "extended_saudi_export_curtailment",
+      "title": "Extended Saudi export curtailment",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–weeks",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-10-15",
+      "probability": 0.45,
+      "impact_score": 219.0,
+      "expected_impact": 98.55,
+      "event_PS": 20.833,
+      "event_AS": 18.25,
+      "n_vars": 5,
+      "affected_ids": "physical_export_capacity, global_oil_price_level, global_oil_inventories, supply_risk_perception, pipeline_integrity",
+      "rationale": "Headlines: 'Saudi pipeline outage threatens loss of 4% of global oil supply'; 'may be just days away from not being able to export much oil.'"
+    },
+    {
+      "id": "gulf_iran_hormuz_talks_success",
+      "title": "Successful Gulf‑Iran Hormuz negotiations",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2–4 weeks",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-10-15",
+      "probability": 0.4,
+      "impact_score": 206.0,
+      "expected_impact": 82.4,
+      "event_PS": 18.222,
+      "event_AS": 22.889,
+      "n_vars": 4,
+      "affected_ids": "diplomatic_activity, shipping_route_security, supply_risk_perception, global_oil_price_level",
+      "rationale": "Headlines: 'Iran and Gulf states to meet in push for Hormuz deal' but talks stalled/postponed."
+    },
+    {
+      "id": "strategic_reserve_release",
+      "title": "Coordinated strategic reserve releases",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "~1 month",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-10-16",
+      "probability": 0.35,
+      "impact_score": 201.0,
+      "expected_impact": 70.35,
+      "event_PS": 25.091,
+      "event_AS": 18.273,
+      "n_vars": 4,
+      "affected_ids": "reserve_release_rate, global_oil_inventories, global_oil_price_level, supply_risk_perception",
+      "rationale": "Headlines: US SPR at lowest since 1982 and IEA warnings about supply gaps prompt consideration of releases."
+    },
+    {
+      "id": "us_air_defence_policy_for_tankers",
+      "title": "US limits on tanker air‑defence coverage",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–weeks",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-09-30",
+      "probability": 0.7,
+      "impact_score": 170.0,
+      "expected_impact": 119.0,
+      "event_PS": 17.25,
+      "event_AS": 21.25,
+      "n_vars": 4,
+      "affected_ids": "shipping_route_security, tanker_availability, shipping_insurance_cost, supply_risk_perception",
+      "rationale": "FT: 'US limits air defence time slots for tankers sailing through Hormuz.'"
+    },
+    {
+      "id": "refinery_outage_risk",
+      "title": "Further refinery outages and throughput disruption",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-10-31",
+      "probability": 0.55,
+      "impact_score": 122.0,
+      "expected_impact": 67.1,
+      "event_PS": 25.333,
+      "event_AS": 13.556,
+      "n_vars": 4,
+      "affected_ids": "refinery_throughput_rate, refined_fuel_premium, global_oil_price_level, market_volatility",
+      "rationale": "Exxon Mobil Joliet refinery shutdown and wider 'great fuel crisis' warnings increase outage risk."
+    },
+    {
+      "id": "central_bank_rate_response",
+      "title": "Central bank rate tightening in response to oil",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-12-31",
+      "probability": 0.5,
+      "impact_score": 38.0,
+      "expected_impact": 19.0,
+      "event_PS": 17.167,
+      "event_AS": 6.333,
+      "n_vars": 3,
+      "affected_ids": "monetary_policy_stance, market_volatility, energy_inflation",
+      "rationale": "Headlines: 'High oil prices could force ECB to raise rates further' and BoE rate rise prospect revived."
+    }
+  ]
+}

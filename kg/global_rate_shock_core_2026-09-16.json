@@ -1,0 +1,2057 @@
+{
+  "label": "global_rate_shock",
+  "as_of": "2026-09-15",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-16T02:06:48",
+  "system_description": {
+    "narrative_title": "Bond-market rout and the Fed/Treasury policy squeeze",
+    "narrative_summary": "The dominant narrative is a global bond-market selloff driven by persistent inflation, a surge in oil prices, and shifting central-bank expectations that have pushed the US 10-year yield toward the 5% threshold. Markets are pricing imminent Fed tightening under Warsh while US Treasury interventions (Scott Bessent’s buybacks/jawboning) and political signals (Trump comments, fiscal risk) struggle to contain long yields, re‑pricing risk across equities, housing, commodities and emerging markets.",
+    "scope": "US and global government bond markets and yields; central-bank policy decisions and expectations (Fed, BoJ, ECB); inflation readings and commodity drivers (oil, gold); US Treasury debt issuance and interventions; major market participants (banks, hedge funds, institutional investors); related exchange-rate and mortgage-rate effects.",
+    "super_system": "Global financial and macroeconomic system (monetary policy, sovereign debt, international capital flows)",
+    "adjacent_subsystems": [
+      "Equity markets and risk sentiment",
+      "Housing and mortgage markets",
+      "Commodity markets (oil, gold) and inflation pass-through",
+      "Political/fiscal policy and election cycle"
+    ],
+    "evidence_headlines": [
+      "10-Year Treasury Yield Hits 5%",
+      "Global Bond Selloff Deepens as 10-Year Yields Hit Multiyear Highs",
+      "The Fed Is Poised for a Rate Hike. It Rarely Stops at One.",
+      "Bessent Can Hold Down the Long Bond, But He Can’t Make the Bill Disappear",
+      "US consumer prices accelerate in August, push Fed closer to rate hike",
+      "Oil and Treasury yields haven’t moved this closely in seven years. That’s bad news for markets"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_nominal_yields",
+      "name": "Long-term nominal government bond yields",
+      "description": "The prevailing nominal interest rates on long-dated sovereign bonds as priced in financial markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Monetary policy rate expectations",
+      "description": "Market-implied and forecasted path for short-term central-bank policy rates over the policy horizon.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The additional yield investors require to hold longer-dated bonds versus the expected path of short rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_rate",
+      "name": "Inflation rate",
+      "description": "The rate of change in the general price level of goods and services over a given period.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market and household expectations about future inflation over various horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price",
+      "name": "Oil price",
+      "description": "The spot or front-month market price of crude oil, affecting production costs and import prices.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_debt_issuance",
+      "name": "Sovereign debt issuance rate",
+      "description": "The flow of newly issued government debt offered to the market over a defined period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_ops",
+      "name": "Central bank market operations",
+      "description": "The sequence and scale of liquidity provision, asset purchases/sales and other market operations conducted by monetary authorities.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_market_support",
+      "name": "Sovereign market-support operations",
+      "description": "Government interventions in debt markets such as buybacks, reinvestments or ad hoc support operations.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "The ease and cost of executing transactions in bond and related markets, as reflected in spreads and depth.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "risk_premia",
+      "name": "Risk premia across assets",
+      "description": "The additional returns demanded by investors for bearing various market, credit and duration risks across asset classes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_levels",
+      "name": "Exchange rate levels",
+      "description": "The prevailing bilateral or effective values of major currencies relative to others, affecting trade and capital flows.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "mortgage_borrowing_rates",
+      "name": "Mortgage borrowing rates",
+      "description": "Typical quoted interest rates for long-term residential mortgage loans that influence housing demand and affordability.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spreads",
+      "name": "Credit spreads",
+      "description": "The yield differential between non-sovereign credit instruments and comparable risk-free government bonds reflecting credit risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "The collective willingness of market participants to hold risky assets versus safe assets, varying with sentiment and conditions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "Net flows of capital across borders into debt and equity instruments, including portfolio and direct investment flows.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_nominal_yields",
+    "policy_rate_expectations",
+    "term_premium",
+    "inflation_rate",
+    "inflation_expectations",
+    "oil_price",
+    "sovereign_debt_issuance",
+    "central_bank_ops",
+    "sovereign_market_support",
+    "market_liquidity",
+    "risk_premia",
+    "exchange_rate_levels",
+    "mortgage_borrowing_rates",
+    "credit_spreads",
+    "investor_risk_appetite",
+    "cross_border_flows"
+  ],
+  "var_names": {
+    "long_term_nominal_yields": "Long-term nominal government bond yields",
+    "policy_rate_expectations": "Monetary policy rate expectations",
+    "term_premium": "Term premium",
+    "inflation_rate": "Inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "oil_price": "Oil price",
+    "sovereign_debt_issuance": "Sovereign debt issuance rate",
+    "central_bank_ops": "Central bank market operations",
+    "sovereign_market_support": "Sovereign market-support operations",
+    "market_liquidity": "Market liquidity",
+    "risk_premia": "Risk premia across assets",
+    "exchange_rate_levels": "Exchange rate levels",
+    "mortgage_borrowing_rates": "Mortgage borrowing rates",
+    "credit_spreads": "Credit spreads",
+    "investor_risk_appetite": "Investor risk appetite",
+    "cross_border_flows": "Cross-border capital flows"
+  },
+  "impact_matrix": {
+    "long_term_nominal_yields": {
+      "long_term_nominal_yields": 0,
+      "policy_rate_expectations": 3,
+      "term_premium": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 1,
+      "central_bank_ops": 1,
+      "sovereign_market_support": 1,
+      "market_liquidity": 1,
+      "risk_premia": 1,
+      "exchange_rate_levels": 2,
+      "mortgage_borrowing_rates": 3,
+      "credit_spreads": 1,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 3
+    },
+    "policy_rate_expectations": {
+      "long_term_nominal_yields": 3,
+      "policy_rate_expectations": 0,
+      "term_premium": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 3,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 1,
+      "central_bank_ops": 1,
+      "sovereign_market_support": 1,
+      "market_liquidity": 1,
+      "risk_premia": 1,
+      "exchange_rate_levels": 3,
+      "mortgage_borrowing_rates": 3,
+      "credit_spreads": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 3
+    },
+    "term_premium": {
+      "long_term_nominal_yields": 3,
+      "policy_rate_expectations": 0,
+      "term_premium": 0,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 1,
+      "central_bank_ops": 1,
+      "sovereign_market_support": 1,
+      "market_liquidity": 2,
+      "risk_premia": 2,
+      "exchange_rate_levels": 1,
+      "mortgage_borrowing_rates": 2,
+      "credit_spreads": 1,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 2
+    },
+    "inflation_rate": {
+      "long_term_nominal_yields": 3,
+      "policy_rate_expectations": 3,
+      "term_premium": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 3,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 1,
+      "central_bank_ops": 3,
+      "sovereign_market_support": 1,
+      "market_liquidity": 1,
+      "risk_premia": 2,
+      "exchange_rate_levels": 3,
+      "mortgage_borrowing_rates": 3,
+      "credit_spreads": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2
+    },
+    "inflation_expectations": {
+      "long_term_nominal_yields": 3,
+      "policy_rate_expectations": 3,
+      "term_premium": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 1,
+      "central_bank_ops": 3,
+      "sovereign_market_support": 1,
+      "market_liquidity": 1,
+      "risk_premia": 1,
+      "exchange_rate_levels": 2,
+      "mortgage_borrowing_rates": 3,
+      "credit_spreads": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2
+    },
+    "oil_price": {
+      "long_term_nominal_yields": 2,
+      "policy_rate_expectations": 2,
+      "term_premium": 2,
+      "inflation_rate": 3,
+      "inflation_expectations": 2,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 1,
+      "central_bank_ops": 1,
+      "sovereign_market_support": 1,
+      "market_liquidity": 1,
+      "risk_premia": 2,
+      "exchange_rate_levels": 2,
+      "mortgage_borrowing_rates": 1,
+      "credit_spreads": 2,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 2
+    },
+    "sovereign_debt_issuance": {
+      "long_term_nominal_yields": 3,
+      "policy_rate_expectations": 1,
+      "term_premium": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 0,
+      "central_bank_ops": 2,
+      "sovereign_market_support": 1,
+      "market_liquidity": 2,
+      "risk_premia": 2,
+      "exchange_rate_levels": 1,
+      "mortgage_borrowing_rates": 2,
+      "credit_spreads": 1,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 2
+    },
+    "central_bank_ops": {
+      "long_term_nominal_yields": 3,
+      "policy_rate_expectations": 3,
+      "term_premium": 3,
+      "inflation_rate": 2,
+      "inflation_expectations": 3,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 3,
+      "central_bank_ops": 0,
+      "sovereign_market_support": 3,
+      "market_liquidity": 3,
+      "risk_premia": 3,
+      "exchange_rate_levels": 3,
+      "mortgage_borrowing_rates": 3,
+      "credit_spreads": 3,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 3
+    },
+    "sovereign_market_support": {
+      "long_term_nominal_yields": 3,
+      "policy_rate_expectations": 1,
+      "term_premium": 3,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 3,
+      "central_bank_ops": 1,
+      "sovereign_market_support": 0,
+      "market_liquidity": 3,
+      "risk_premia": 3,
+      "exchange_rate_levels": 1,
+      "mortgage_borrowing_rates": 3,
+      "credit_spreads": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2
+    },
+    "market_liquidity": {
+      "long_term_nominal_yields": 2,
+      "policy_rate_expectations": 1,
+      "term_premium": 3,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 2,
+      "central_bank_ops": 2,
+      "sovereign_market_support": 1,
+      "market_liquidity": 0,
+      "risk_premia": 3,
+      "exchange_rate_levels": 2,
+      "mortgage_borrowing_rates": 2,
+      "credit_spreads": 3,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2
+    },
+    "risk_premia": {
+      "long_term_nominal_yields": 3,
+      "policy_rate_expectations": 0,
+      "term_premium": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 2,
+      "central_bank_ops": 1,
+      "sovereign_market_support": 1,
+      "market_liquidity": 2,
+      "risk_premia": 0,
+      "exchange_rate_levels": 2,
+      "mortgage_borrowing_rates": 2,
+      "credit_spreads": 3,
+      "investor_risk_appetite": 3,
+      "cross_border_flows": 2
+    },
+    "exchange_rate_levels": {
+      "long_term_nominal_yields": 2,
+      "policy_rate_expectations": 1,
+      "term_premium": 1,
+      "inflation_rate": 2,
+      "inflation_expectations": 2,
+      "oil_price": 1,
+      "sovereign_debt_issuance": 1,
+      "central_bank_ops": 2,
+      "sovereign_market_support": 1,
+      "market_liquidity": 1,
+      "risk_premia": 2,
+      "exchange_rate_levels": 0,
+      "mortgage_borrowing_rates": 1,
+      "credit_spreads": 2,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 3
+    },
+    "mortgage_borrowing_rates": {
+      "long_term_nominal_yields": 0,
+      "policy_rate_expectations": 0,
+      "term_premium": 0,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 0,
+      "central_bank_ops": 0,
+      "sovereign_market_support": 0,
+      "market_liquidity": 1,
+      "risk_premia": 1,
+      "exchange_rate_levels": 0,
+      "mortgage_borrowing_rates": 0,
+      "credit_spreads": 1,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 1
+    },
+    "credit_spreads": {
+      "long_term_nominal_yields": 0,
+      "policy_rate_expectations": 0,
+      "term_premium": 0,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 1,
+      "central_bank_ops": 1,
+      "sovereign_market_support": 1,
+      "market_liquidity": 2,
+      "risk_premia": 3,
+      "exchange_rate_levels": 1,
+      "mortgage_borrowing_rates": 2,
+      "credit_spreads": 0,
+      "investor_risk_appetite": 3,
+      "cross_border_flows": 2
+    },
+    "investor_risk_appetite": {
+      "long_term_nominal_yields": 3,
+      "policy_rate_expectations": 1,
+      "term_premium": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 2,
+      "central_bank_ops": 1,
+      "sovereign_market_support": 1,
+      "market_liquidity": 3,
+      "risk_premia": 3,
+      "exchange_rate_levels": 2,
+      "mortgage_borrowing_rates": 2,
+      "credit_spreads": 3,
+      "investor_risk_appetite": 0,
+      "cross_border_flows": 3
+    },
+    "cross_border_flows": {
+      "long_term_nominal_yields": 3,
+      "policy_rate_expectations": 1,
+      "term_premium": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "oil_price": 0,
+      "sovereign_debt_issuance": 2,
+      "central_bank_ops": 2,
+      "sovereign_market_support": 1,
+      "market_liquidity": 3,
+      "risk_premia": 2,
+      "exchange_rate_levels": 3,
+      "mortgage_borrowing_rates": 1,
+      "credit_spreads": 2,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 0
+    }
+  },
+  "AS": {
+    "long_term_nominal_yields": 20,
+    "policy_rate_expectations": 24,
+    "term_premium": 17,
+    "inflation_rate": 30,
+    "inflation_expectations": 24,
+    "oil_price": 25,
+    "sovereign_debt_issuance": 20,
+    "central_bank_ops": 40,
+    "sovereign_market_support": 28,
+    "market_liquidity": 25,
+    "risk_premia": 23,
+    "exchange_rate_levels": 23,
+    "mortgage_borrowing_rates": 5,
+    "credit_spreads": 16,
+    "investor_risk_appetite": 26,
+    "cross_border_flows": 23
+  },
+  "PS": {
+    "long_term_nominal_yields": 36,
+    "policy_rate_expectations": 20,
+    "term_premium": 25,
+    "inflation_rate": 7,
+    "inflation_expectations": 15,
+    "oil_price": 1,
+    "sovereign_debt_issuance": 22,
+    "central_bank_ops": 22,
+    "sovereign_market_support": 16,
+    "market_liquidity": 27,
+    "risk_premia": 31,
+    "exchange_rate_levels": 28,
+    "mortgage_borrowing_rates": 33,
+    "credit_spreads": 27,
+    "investor_risk_appetite": 25,
+    "cross_border_flows": 34
+  },
+  "med_AS": 23.5,
+  "med_PS": 25.0,
+  "roles": [
+    {
+      "variable": "central_bank_ops",
+      "name": "Central bank market operations",
+      "AS": 40,
+      "PS": 22,
+      "Q=AS/PS": 1.82,
+      "P=AS*PS": 880,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 23,
+      "PS": 34,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 782,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "long_term_nominal_yields",
+      "name": "Long-term nominal government bond yields",
+      "AS": 20,
+      "PS": 36,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 720,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "risk_premia",
+      "name": "Risk premia across assets",
+      "AS": 23,
+      "PS": 31,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 713,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 25,
+      "PS": 27,
+      "Q=AS/PS": 0.93,
+      "P=AS*PS": 675,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 26,
+      "PS": 25,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 650,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "exchange_rate_levels",
+      "name": "Exchange rate levels",
+      "AS": 23,
+      "PS": 28,
+      "Q=AS/PS": 0.82,
+      "P=AS*PS": 644,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Monetary policy rate expectations",
+      "AS": 24,
+      "PS": 20,
+      "Q=AS/PS": 1.2,
+      "P=AS*PS": 480,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sovereign_market_support",
+      "name": "Sovereign market-support operations",
+      "AS": 28,
+      "PS": 16,
+      "Q=AS/PS": 1.75,
+      "P=AS*PS": 448,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sovereign_debt_issuance",
+      "name": "Sovereign debt issuance rate",
+      "AS": 20,
+      "PS": 22,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 440,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "credit_spreads",
+      "name": "Credit spreads",
+      "AS": 16,
+      "PS": 27,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 432,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 17,
+      "PS": 25,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 425,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 24,
+      "PS": 15,
+      "Q=AS/PS": 1.6,
+      "P=AS*PS": 360,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_rate",
+      "name": "Inflation rate",
+      "AS": 30,
+      "PS": 7,
+      "Q=AS/PS": 4.29,
+      "P=AS*PS": 210,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "mortgage_borrowing_rates",
+      "name": "Mortgage borrowing rates",
+      "AS": 5,
+      "PS": 33,
+      "Q=AS/PS": 0.15,
+      "P=AS*PS": 165,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "oil_price",
+      "name": "Oil price",
+      "AS": 25,
+      "PS": 1,
+      "Q=AS/PS": 25.0,
+      "P=AS*PS": 25,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_nominal_yields",
+        "name": "Long-term nominal government bond yields",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 36
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Monetary policy rate expectations",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 20
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 25
+      },
+      {
+        "id": "inflation_rate",
+        "name": "Inflation rate",
+        "kind": "driver",
+        "AS": 30,
+        "PS": 7
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 15
+      },
+      {
+        "id": "oil_price",
+        "name": "Oil price",
+        "kind": "environment",
+        "AS": 25,
+        "PS": 1
+      },
+      {
+        "id": "sovereign_debt_issuance",
+        "name": "Sovereign debt issuance rate",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 22
+      },
+      {
+        "id": "central_bank_ops",
+        "name": "Central bank market operations",
+        "kind": "institution_field",
+        "AS": 40,
+        "PS": 22
+      },
+      {
+        "id": "sovereign_market_support",
+        "name": "Sovereign market-support operations",
+        "kind": "institution_field",
+        "AS": 28,
+        "PS": 16
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 27
+      },
+      {
+        "id": "risk_premia",
+        "name": "Risk premia across assets",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 31
+      },
+      {
+        "id": "exchange_rate_levels",
+        "name": "Exchange rate levels",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 28
+      },
+      {
+        "id": "mortgage_borrowing_rates",
+        "name": "Mortgage borrowing rates",
+        "kind": "stock",
+        "AS": 5,
+        "PS": 33
+      },
+      {
+        "id": "credit_spreads",
+        "name": "Credit spreads",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 27
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 26,
+        "PS": 25
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 34
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_nominal_yields",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_nominal_yields",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_nominal_yields",
+        "target": "mortgage_borrowing_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_nominal_yields",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "exchange_rate_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "mortgage_borrowing_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "mortgage_borrowing_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "central_bank_ops",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "exchange_rate_levels",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "mortgage_borrowing_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "central_bank_ops",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "mortgage_borrowing_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price",
+        "target": "long_term_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price",
+        "target": "inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "oil_price",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_debt_issuance",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_debt_issuance",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_debt_issuance",
+        "target": "central_bank_ops",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_debt_issuance",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_debt_issuance",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_debt_issuance",
+        "target": "mortgage_borrowing_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_debt_issuance",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "sovereign_debt_issuance",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "sovereign_market_support",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "risk_premia",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "exchange_rate_levels",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "mortgage_borrowing_rates",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_ops",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_market_support",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_market_support",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_market_support",
+        "target": "sovereign_debt_issuance",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_market_support",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_market_support",
+        "target": "risk_premia",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_market_support",
+        "target": "mortgage_borrowing_rates",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_market_support",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_market_support",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_market_support",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "long_term_nominal_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "sovereign_debt_issuance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "central_bank_ops",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "risk_premia",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "mortgage_borrowing_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia",
+        "target": "sovereign_debt_issuance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premia",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premia",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premia",
+        "target": "mortgage_borrowing_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia",
+        "target": "credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premia",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "long_term_nominal_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "central_bank_ops",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_levels",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "risk_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "mortgage_borrowing_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "sovereign_debt_issuance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "risk_premia",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "exchange_rate_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "mortgage_borrowing_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "sovereign_debt_issuance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "central_bank_ops",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "exchange_rate_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_interest_rate_decision_2026_09_16",
+      "title": "Fed policy-rate decision",
+      "description": "The Federal Reserve's policy meeting and rate decision expected mid-September, which will materially reprice short-rate expectations and long yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-16",
+        "start": null,
+        "end": null,
+        "label": "Fed meeting day"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Fed's table is set for a rate hike', 'The Fed Is Poised to Raise Interest Rates', 'Fed rate-hike case builds'."
+    },
+    {
+      "id": "treasury_secretary_bessent_testimony",
+      "title": "Treasury Secretary Bessent congressional testimony",
+      "description": "Scott Bessent's testimony before Congress could clarify Treasury buyback strategy, sanctions stance and market support plans, shifting bond market sentiment.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-09-23",
+        "label": "this week"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "sovereign_market_support",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'What to watch as Treasury Secretary Scott Bessent testifies', 'Bessent Can Hold Down the Long Bond', 'Bond Market Rejects Bessent’s Buyback'."
+    },
+    {
+      "id": "uk_gilt_auction_sep2026",
+      "title": "UK gilt auction: £4.75bn",
+      "description": "Scheduled UK Treasury auction of £4.75bn in gilts next week that will add supply to the gilt market and test investor demand.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-09-23",
+        "label": "next week"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "sovereign_debt_issuance",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'UK to auction £4.75 billion in treasury gilts next week'."
+    },
+    {
+      "id": "oil_price_rally_continues",
+      "title": "Sustained oil-price upside",
+      "description": "An ongoing oil-price rally (>$100) that is feeding inflationary pressures and raising rate-hike odds, likely to persist near term.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-10-15",
+        "label": "1 month"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "oil_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Global bond sell-off reignites as oil jumps to $109', 'Gold Stays Under Pressure as Oil Heightens Inflation Fears'."
+    },
+    {
+      "id": "global_bond_selloff_continuation",
+      "title": "Continuation of global bond selloff",
+      "description": "Ongoing global bond selloff and repricing to multi-year highs that could further widen term premia and stress market liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-10-15",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "risk_premia",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Global Bond Selloff Deepens', 'Global bond yields hit 2008 highs', 'Bond Market Turmoil Is a Warning Shot'."
+    },
+    {
+      "id": "vietnam_sovereign_dollar_sale",
+      "title": "Possible Vietnam sovereign dollar bond sale",
+      "description": "Vietnam considering its first sovereign dollar bond sale since 2014, which would add EM supply to dollar markets and attract cross-border flows.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-10-31",
+        "label": "weeks"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "sovereign_debt_issuance",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'EXCLUSIVE: Vietnam considering first sovereign dollar bond sale since 2014, sources say'."
+    },
+    {
+      "id": "boj_policy_decision_window",
+      "title": "Bank of Japan policy decision / market reaction",
+      "description": "BOJ decision or guidance that could disappoint markets (or surprise) and precipitate volatile yen moves and cross-border capital shifts.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-09-20",
+        "label": "this week"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "exchange_rate_levels",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Yen rally faces moment of truth as BOJ risks disappointing markets', 'Fed and BoJ expect rate hikes'."
+    },
+    {
+      "id": "market_pricing_of_future_fed_hikes",
+      "title": "Re-pricing of multi-hike Fed path",
+      "description": "Market consensus shifting to price multiple Fed hikes over the next year, lifting short- and long-rate expectations and mortgage costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2027-09-15",
+        "label": "12 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "mortgage_borrowing_rates",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'No one and done: The Fed will hike at least two times', 'Fed rate-hike case builds', 'The Fed Is Poised to Raise Interest Rates'."
+    },
+    {
+      "id": "hedge_fund_deleveraging_risk",
+      "title": "Hedge-fund deleveraging and liquidity stress",
+      "description": "Hedge funds, positioned as 'wild cards', could deleverage into thinner markets, amplifying selloffs and widening risk premia.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-10-15",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "risk_premia",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spreads",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Hedge Funds Are the Wild Card in the Turbulent Bond Market'."
+    },
+    {
+      "id": "us_treasury_buyback_operations_on_watch",
+      "title": "US Treasury buyback / market-support actions",
+      "description": "Potential continued or adjusted Treasury buyback and market-support operations as officials respond to high yields and market stress.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-15",
+        "end": "2026-10-31",
+        "label": "weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "sovereign_market_support",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Bessent Can Hold Down the Long Bond', 'Bond Market Rejects Bessent’s Buyback', 'Bessent Brings a Pea Shooter to a Trillion'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "oil_price_rally_continues",
+      "title": "Sustained oil-price upside",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1 month",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-10-15",
+      "probability": 0.65,
+      "impact_score": 247.0,
+      "expected_impact": 160.55,
+      "event_PS": 13.9,
+      "event_AS": 24.7,
+      "n_vars": 5,
+      "affected_ids": "oil_price, inflation_rate, inflation_expectations, long_term_nominal_yields, policy_rate_expectations",
+      "rationale": "Headlines: 'Global bond sell-off reignites as oil jumps to $109', 'Gold Stays Under Pressure as Oil Heightens Inflation Fears'."
+    },
+    {
+      "id": "global_bond_selloff_continuation",
+      "title": "Continuation of global bond selloff",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-10-15",
+      "probability": 0.75,
+      "impact_score": 242.0,
+      "expected_impact": 181.5,
+      "event_PS": 29.455,
+      "event_AS": 22.0,
+      "n_vars": 5,
+      "affected_ids": "long_term_nominal_yields, term_premium, market_liquidity, risk_premia, investor_risk_appetite",
+      "rationale": "Headlines: 'Global Bond Selloff Deepens', 'Global bond yields hit 2008 highs', 'Bond Market Turmoil Is a Warning Shot'."
+    },
+    {
+      "id": "fed_interest_rate_decision_2026_09_16",
+      "title": "Fed policy-rate decision",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "Fed meeting day",
+      "date": "2026-09-16",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 215.0,
+      "expected_impact": 204.25,
+      "event_PS": 26.0,
+      "event_AS": 21.5,
+      "n_vars": 5,
+      "affected_ids": "policy_rate_expectations, long_term_nominal_yields, term_premium, inflation_expectations, market_liquidity",
+      "rationale": "Headlines: 'Fed's table is set for a rate hike', 'The Fed Is Poised to Raise Interest Rates', 'Fed rate-hike case builds'."
+    },
+    {
+      "id": "market_pricing_of_future_fed_hikes",
+      "title": "Re-pricing of multi-hike Fed path",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "12 months",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2027-09-15",
+      "probability": 0.8,
+      "impact_score": 174.0,
+      "expected_impact": 139.2,
+      "event_PS": 27.556,
+      "event_AS": 19.333,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, long_term_nominal_yields, mortgage_borrowing_rates, investor_risk_appetite",
+      "rationale": "Headlines: 'No one and done: The Fed will hike at least two times', 'Fed rate-hike case builds', 'The Fed Is Poised to Raise Interest Rates'."
+    },
+    {
+      "id": "us_treasury_buyback_operations_on_watch",
+      "title": "US Treasury buyback / market-support actions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-10-31",
+      "probability": 0.6,
+      "impact_score": 166.0,
+      "expected_impact": 99.6,
+      "event_PS": 24.571,
+      "event_AS": 23.714,
+      "n_vars": 4,
+      "affected_ids": "sovereign_market_support, long_term_nominal_yields, term_premium, market_liquidity",
+      "rationale": "Headlines: 'Bessent Can Hold Down the Long Bond', 'Bond Market Rejects Bessent’s Buyback', 'Bessent Brings a Pea Shooter to a Trillion'."
+    },
+    {
+      "id": "uk_gilt_auction_sep2026",
+      "title": "UK gilt auction: £4.75bn",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next week",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-09-23",
+      "probability": 0.95,
+      "impact_score": 148.0,
+      "expected_impact": 140.6,
+      "event_PS": 28.429,
+      "event_AS": 21.143,
+      "n_vars": 4,
+      "affected_ids": "sovereign_debt_issuance, long_term_nominal_yields, market_liquidity, cross_border_flows",
+      "rationale": "Headline: 'UK to auction £4.75 billion in treasury gilts next week'."
+    },
+    {
+      "id": "treasury_secretary_bessent_testimony",
+      "title": "Treasury Secretary Bessent congressional testimony",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-09-23",
+      "probability": 0.9,
+      "impact_score": 147.0,
+      "expected_impact": 132.3,
+      "event_PS": 26.0,
+      "event_AS": 24.5,
+      "n_vars": 4,
+      "affected_ids": "sovereign_market_support, long_term_nominal_yields, market_liquidity, investor_risk_appetite",
+      "rationale": "Headlines: 'What to watch as Treasury Secretary Scott Bessent testifies', 'Bessent Can Hold Down the Long Bond', 'Bond Market Rejects Bessent’s Buyback'."
+    },
+    {
+      "id": "hedge_fund_deleveraging_risk",
+      "title": "Hedge-fund deleveraging and liquidity stress",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-10-15",
+      "probability": 0.5,
+      "impact_score": 135.0,
+      "expected_impact": 67.5,
+      "event_PS": 29.5,
+      "event_AS": 22.5,
+      "n_vars": 4,
+      "affected_ids": "market_liquidity, risk_premia, credit_spreads, cross_border_flows",
+      "rationale": "Headline: 'Hedge Funds Are the Wild Card in the Turbulent Bond Market'."
+    },
+    {
+      "id": "boj_policy_decision_window",
+      "title": "Bank of Japan policy decision / market reaction",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-09-20",
+      "probability": 0.6,
+      "impact_score": 89.0,
+      "expected_impact": 53.4,
+      "event_PS": 31.5,
+      "event_AS": 22.25,
+      "n_vars": 3,
+      "affected_ids": "exchange_rate_levels, cross_border_flows, long_term_nominal_yields",
+      "rationale": "Headlines: 'Yen rally faces moment of truth as BOJ risks disappointing markets', 'Fed and BoJ expect rate hikes'."
+    },
+    {
+      "id": "vietnam_sovereign_dollar_sale",
+      "title": "Possible Vietnam sovereign dollar bond sale",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-15",
+      "end": "2026-10-31",
+      "probability": 0.5,
+      "impact_score": 83.0,
+      "expected_impact": 41.5,
+      "event_PS": 28.5,
+      "event_AS": 20.75,
+      "n_vars": 3,
+      "affected_ids": "sovereign_debt_issuance, cross_border_flows, long_term_nominal_yields",
+      "rationale": "Headline: 'EXCLUSIVE: Vietnam considering first sovereign dollar bond sale since 2014, sources say'."
+    }
+  ]
+}
