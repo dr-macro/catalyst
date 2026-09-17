@@ -1,0 +1,1345 @@
+{
+  "label": "red_sea_hormuz_crisis",
+  "as_of": "2026-09-16",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-17T01:44:06",
+  "system_description": {
+    "narrative_title": "Middle East chokepoint attacks driving oil-price shock and financial spillovers",
+    "narrative_summary": "A cluster of Houthi attacks, pipeline sabotage and incidents in the Strait of Hormuz/Red Sea has materially reduced effective global export capacity and prompted a sharp rise in crude and gas prices. The disruption is propagating through open-system feedbacks — physical supply constraints and shipping risk raise market expectations, which amplify inflationary pressure and influence central-bank rate signalling, while exporters, refiners and strategic reserves adjust flows. The dominant dynamic is a security-driven energy shock with rapid economic and financial spillovers.",
+    "scope": "Physical and market links between Middle East export routes (Strait of Hormuz, Red Sea, Saudi East-West pipeline), regional armed actors and militias, Saudi oil infrastructure and cargoes, global crude and gas spot/futures markets, refineries and strategic petroleum reserves, shipping security/insurance, and monetary/financial market responses.",
+    "super_system": "Global economy and international security architecture (energy security integrated with financial stability and trade flows).",
+    "adjacent_subsystems": [
+      "Global financial and monetary system (central banks, rates, inflation expectations)",
+      "Maritime security and logistics (shipping routes, insurance, demining operations)",
+      "Regional Middle East political-military dynamics (Iran, Gulf states, Yemen/Houthis)",
+      "Energy downstream infrastructure (refineries, storage, strategic reserves)"
+    ],
+    "evidence_headlines": [
+      "Saudi Arabia shuts East-West pipeline that bypasses Hormuz after attacks - ft.com",
+      "Brent crude tops $109 after Saudi Arabia shuts down critical pipeline that bypasses Strait of Hormuz",
+      "Houthis seize Red Sea islands in lightning offensive - ft.com",
+      "Vessel struck in Strait of Hormuz, UKMTO says, as prospects for U.S.",
+      "Oil price surge revives prospect of Bank of England rate rise this year - ft.com",
+      "Oil stocks in US Strategic Petroleum Reserve fall to lowest level since 1982"
+    ]
+  },
+  "variables": [
+    {
+      "id": "global_oil_export_capaci",
+      "name": "Global oil export capacity",
+      "description": "The effective volumetric throughput capacity available for exporting crude and refined petroleum products from producer regions to international markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_attack_rate",
+      "name": "Chokepoint attack frequency",
+      "description": "The rate at which hostile or disruptive incidents occur at maritime or pipeline chokepoints that can impede energy transport.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_security_risk",
+      "name": "Perceived maritime security risk",
+      "description": "Market and operator perceptions of the probability and severity of security threats to shipping lanes and port operations.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "marine_insurance_premium",
+      "name": "Marine insurance premium level",
+      "description": "The prevailing cost (premium rates) charged for insuring vessels and cargoes against maritime security and piracy-related losses.",
+      "kind": "flow",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_spot_price",
+      "name": "Crude spot price level",
+      "description": "The prevailing spot-market price per barrel for benchmark crude grades reflecting immediate supply/demand and risk conditions.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "natural_gas_spot_price",
+      "name": "Natural gas spot price level",
+      "description": "The prevailing spot-market price for natural gas reflecting regional supply constraints, demand, and related risks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "futures_curve_slope",
+      "name": "Futures curve slope",
+      "description": "The shape and slope of the commodity futures term structure (contango/backwardation) that signals market expectations about future supply/demand balance.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "description": "The proportion of refining capacity actively processing crude into products, indicating downstream throughput and bottlenecks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserve_level",
+      "name": "Strategic reserve stock level",
+      "description": "The quantity of petroleum held in strategic reserves available for release to mitigate supply shocks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "spare_production_capacit",
+      "name": "Spare production capacity",
+      "description": "The amount of additional upstream production that can be brought online within a relevant timeframe without sustained new investment.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_transit_time",
+      "name": "Shipping transit time",
+      "description": "The expected duration for maritime cargoes to transit between origin and destination, including delays from routing changes or inspections.",
+      "kind": "flow",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cargo_rerouting_volume",
+      "name": "Cargo rerouting volume",
+      "description": "The volume of oil and refined product cargoes actively rerouted or withheld from original voyages due to perceived or actual route disruption.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market and public expectation of future general price-level changes driven by commodity shocks and demand conditions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "Market-implied expectations for the path of short-term policy interest rates in response to economic conditions and inflation signals.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "financial_market_volatil",
+      "name": "Financial market volatility",
+      "description": "The degree of realized and implied volatility in financial markets, reflecting uncertainty and risk premia across asset classes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_capital_flows",
+      "name": "Capital flows to energy assets",
+      "description": "The net flow of investment capital into or out of energy-sector assets, including commodity-backed trading and energy equities.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "global_oil_export_capaci",
+    "chokepoint_attack_rate",
+    "maritime_security_risk",
+    "marine_insurance_premium",
+    "crude_spot_price",
+    "natural_gas_spot_price",
+    "futures_curve_slope",
+    "refinery_utilization_rat",
+    "strategic_reserve_level",
+    "spare_production_capacit",
+    "shipping_transit_time",
+    "cargo_rerouting_volume",
+    "inflation_expectations",
+    "policy_rate_expectations",
+    "financial_market_volatil",
+    "energy_capital_flows"
+  ],
+  "var_names": {
+    "global_oil_export_capaci": "Global oil export capacity",
+    "chokepoint_attack_rate": "Chokepoint attack frequency",
+    "maritime_security_risk": "Perceived maritime security risk",
+    "marine_insurance_premium": "Marine insurance premium level",
+    "crude_spot_price": "Crude spot price level",
+    "natural_gas_spot_price": "Natural gas spot price level",
+    "futures_curve_slope": "Futures curve slope",
+    "refinery_utilization_rat": "Refinery utilization rate",
+    "strategic_reserve_level": "Strategic reserve stock level",
+    "spare_production_capacit": "Spare production capacity",
+    "shipping_transit_time": "Shipping transit time",
+    "cargo_rerouting_volume": "Cargo rerouting volume",
+    "inflation_expectations": "Inflation expectations",
+    "policy_rate_expectations": "Policy rate expectations",
+    "financial_market_volatil": "Financial market volatility",
+    "energy_capital_flows": "Capital flows to energy assets"
+  },
+  "impact_matrix": {
+    "global_oil_export_capaci": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 3,
+      "natural_gas_spot_price": 1,
+      "futures_curve_slope": 2,
+      "refinery_utilization_rat": 2,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 1,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "financial_market_volatil": 1,
+      "energy_capital_flows": 1
+    },
+    "chokepoint_attack_rate": {
+      "global_oil_export_capaci": 2,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 3,
+      "marine_insurance_premium": 3,
+      "crude_spot_price": 2,
+      "natural_gas_spot_price": 2,
+      "futures_curve_slope": 1,
+      "refinery_utilization_rat": 1,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 3,
+      "cargo_rerouting_volume": 3,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "financial_market_volatil": 2,
+      "energy_capital_flows": 1
+    },
+    "maritime_security_risk": {
+      "global_oil_export_capaci": 1,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 3,
+      "crude_spot_price": 2,
+      "natural_gas_spot_price": 1,
+      "futures_curve_slope": 1,
+      "refinery_utilization_rat": 1,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 2,
+      "cargo_rerouting_volume": 2,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "financial_market_volatil": 2,
+      "energy_capital_flows": 1
+    },
+    "marine_insurance_premium": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 1,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 0,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 1,
+      "cargo_rerouting_volume": 2,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "financial_market_volatil": 1,
+      "energy_capital_flows": 1
+    },
+    "crude_spot_price": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 0,
+      "natural_gas_spot_price": 1,
+      "futures_curve_slope": 3,
+      "refinery_utilization_rat": 2,
+      "strategic_reserve_level": 1,
+      "spare_production_capacit": 2,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 0,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 2,
+      "financial_market_volatil": 2,
+      "energy_capital_flows": 3
+    },
+    "natural_gas_spot_price": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 1,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 1,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "financial_market_volatil": 1,
+      "energy_capital_flows": 2
+    },
+    "futures_curve_slope": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 1,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 0,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 1,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "financial_market_volatil": 1,
+      "energy_capital_flows": 2
+    },
+    "refinery_utilization_rat": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 2,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 0,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 0,
+      "financial_market_volatil": 1,
+      "energy_capital_flows": 1
+    },
+    "strategic_reserve_level": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 2,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 1,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 0,
+      "financial_market_volatil": 1,
+      "energy_capital_flows": 0
+    },
+    "spare_production_capacit": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 3,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 2,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "financial_market_volatil": 1,
+      "energy_capital_flows": 1
+    },
+    "shipping_transit_time": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 1,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 0,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 1,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "financial_market_volatil": 1,
+      "energy_capital_flows": 0
+    },
+    "cargo_rerouting_volume": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 2,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 0,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 3,
+      "cargo_rerouting_volume": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "financial_market_volatil": 1,
+      "energy_capital_flows": 1
+    },
+    "inflation_expectations": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 0,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 0,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 3,
+      "financial_market_volatil": 2,
+      "energy_capital_flows": 1
+    },
+    "policy_rate_expectations": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 0,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 1,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 0,
+      "financial_market_volatil": 2,
+      "energy_capital_flows": 1
+    },
+    "financial_market_volatil": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 1,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 1,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 0,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "financial_market_volatil": 0,
+      "energy_capital_flows": 2
+    },
+    "energy_capital_flows": {
+      "global_oil_export_capaci": 0,
+      "chokepoint_attack_rate": 0,
+      "maritime_security_risk": 0,
+      "marine_insurance_premium": 0,
+      "crude_spot_price": 0,
+      "natural_gas_spot_price": 0,
+      "futures_curve_slope": 1,
+      "refinery_utilization_rat": 0,
+      "strategic_reserve_level": 0,
+      "spare_production_capacit": 1,
+      "shipping_transit_time": 0,
+      "cargo_rerouting_volume": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "financial_market_volatil": 2,
+      "energy_capital_flows": 0
+    }
+  },
+  "AS": {
+    "global_oil_export_capaci": 13,
+    "chokepoint_attack_rate": 25,
+    "maritime_security_risk": 18,
+    "marine_insurance_premium": 6,
+    "crude_spot_price": 18,
+    "natural_gas_spot_price": 7,
+    "futures_curve_slope": 5,
+    "refinery_utilization_rat": 5,
+    "strategic_reserve_level": 5,
+    "spare_production_capacit": 7,
+    "shipping_transit_time": 3,
+    "cargo_rerouting_volume": 7,
+    "inflation_expectations": 6,
+    "policy_rate_expectations": 5,
+    "financial_market_volatil": 6,
+    "energy_capital_flows": 4
+  },
+  "PS": {
+    "global_oil_export_capaci": 3,
+    "chokepoint_attack_rate": 0,
+    "maritime_security_risk": 3,
+    "marine_insurance_premium": 6,
+    "crude_spot_price": 21,
+    "natural_gas_spot_price": 5,
+    "futures_curve_slope": 14,
+    "refinery_utilization_rat": 6,
+    "strategic_reserve_level": 1,
+    "spare_production_capacit": 4,
+    "shipping_transit_time": 9,
+    "cargo_rerouting_volume": 9,
+    "inflation_expectations": 10,
+    "policy_rate_expectations": 10,
+    "financial_market_volatil": 21,
+    "energy_capital_flows": 18
+  },
+  "med_AS": 6.0,
+  "med_PS": 7.5,
+  "roles": [
+    {
+      "variable": "crude_spot_price",
+      "name": "Crude spot price level",
+      "AS": 18,
+      "PS": 21,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 378,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "financial_market_volatil",
+      "name": "Financial market volatility",
+      "AS": 6,
+      "PS": 21,
+      "Q=AS/PS": 0.29,
+      "P=AS*PS": 126,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "energy_capital_flows",
+      "name": "Capital flows to energy assets",
+      "AS": 4,
+      "PS": 18,
+      "Q=AS/PS": 0.22,
+      "P=AS*PS": 72,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "futures_curve_slope",
+      "name": "Futures curve slope",
+      "AS": 5,
+      "PS": 14,
+      "Q=AS/PS": 0.36,
+      "P=AS*PS": 70,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "cargo_rerouting_volume",
+      "name": "Cargo rerouting volume",
+      "AS": 7,
+      "PS": 9,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 63,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 6,
+      "PS": 10,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 60,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "maritime_security_risk",
+      "name": "Perceived maritime security risk",
+      "AS": 18,
+      "PS": 3,
+      "Q=AS/PS": 6.0,
+      "P=AS*PS": 54,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 5,
+      "PS": 10,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 50,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "global_oil_export_capaci",
+      "name": "Global oil export capacity",
+      "AS": 13,
+      "PS": 3,
+      "Q=AS/PS": 4.33,
+      "P=AS*PS": 39,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "marine_insurance_premium",
+      "name": "Marine insurance premium level",
+      "AS": 6,
+      "PS": 6,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 36,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "natural_gas_spot_price",
+      "name": "Natural gas spot price level",
+      "AS": 7,
+      "PS": 5,
+      "Q=AS/PS": 1.4,
+      "P=AS*PS": 35,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "AS": 5,
+      "PS": 6,
+      "Q=AS/PS": 0.83,
+      "P=AS*PS": 30,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "spare_production_capacit",
+      "name": "Spare production capacity",
+      "AS": 7,
+      "PS": 4,
+      "Q=AS/PS": 1.75,
+      "P=AS*PS": 28,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "shipping_transit_time",
+      "name": "Shipping transit time",
+      "AS": 3,
+      "PS": 9,
+      "Q=AS/PS": 0.33,
+      "P=AS*PS": 27,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "strategic_reserve_level",
+      "name": "Strategic reserve stock level",
+      "AS": 5,
+      "PS": 1,
+      "Q=AS/PS": 5.0,
+      "P=AS*PS": 5,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "chokepoint_attack_rate",
+      "name": "Chokepoint attack frequency",
+      "AS": 25,
+      "PS": 0,
+      "Q=AS/PS": 25000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "global_oil_export_capaci",
+        "name": "Global oil export capacity",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 3
+      },
+      {
+        "id": "chokepoint_attack_rate",
+        "name": "Chokepoint attack frequency",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 0
+      },
+      {
+        "id": "maritime_security_risk",
+        "name": "Perceived maritime security risk",
+        "kind": "perception",
+        "AS": 18,
+        "PS": 3
+      },
+      {
+        "id": "marine_insurance_premium",
+        "name": "Marine insurance premium level",
+        "kind": "flow",
+        "AS": 6,
+        "PS": 6
+      },
+      {
+        "id": "crude_spot_price",
+        "name": "Crude spot price level",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 21
+      },
+      {
+        "id": "natural_gas_spot_price",
+        "name": "Natural gas spot price level",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 5
+      },
+      {
+        "id": "futures_curve_slope",
+        "name": "Futures curve slope",
+        "kind": "perception",
+        "AS": 5,
+        "PS": 14
+      },
+      {
+        "id": "refinery_utilization_rat",
+        "name": "Refinery utilization rate",
+        "kind": "stock",
+        "AS": 5,
+        "PS": 6
+      },
+      {
+        "id": "strategic_reserve_level",
+        "name": "Strategic reserve stock level",
+        "kind": "stock",
+        "AS": 5,
+        "PS": 1
+      },
+      {
+        "id": "spare_production_capacit",
+        "name": "Spare production capacity",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 4
+      },
+      {
+        "id": "shipping_transit_time",
+        "name": "Shipping transit time",
+        "kind": "flow",
+        "AS": 3,
+        "PS": 9
+      },
+      {
+        "id": "cargo_rerouting_volume",
+        "name": "Cargo rerouting volume",
+        "kind": "flow",
+        "AS": 7,
+        "PS": 9
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 6,
+        "PS": 10
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 5,
+        "PS": 10
+      },
+      {
+        "id": "financial_market_volatil",
+        "name": "Financial market volatility",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 21
+      },
+      {
+        "id": "energy_capital_flows",
+        "name": "Capital flows to energy assets",
+        "kind": "flow",
+        "AS": 4,
+        "PS": 18
+      }
+    ],
+    "edges": [
+      {
+        "source": "global_oil_export_capaci",
+        "target": "crude_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_export_capaci",
+        "target": "futures_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_export_capaci",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_attack_rate",
+        "target": "global_oil_export_capaci",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_attack_rate",
+        "target": "maritime_security_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_attack_rate",
+        "target": "marine_insurance_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_attack_rate",
+        "target": "crude_spot_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_attack_rate",
+        "target": "natural_gas_spot_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_attack_rate",
+        "target": "shipping_transit_time",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_attack_rate",
+        "target": "cargo_rerouting_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_attack_rate",
+        "target": "financial_market_volatil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "marine_insurance_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "crude_spot_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "shipping_transit_time",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "cargo_rerouting_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "financial_market_volatil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "marine_insurance_premium",
+        "target": "cargo_rerouting_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_spot_price",
+        "target": "futures_curve_slope",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "crude_spot_price",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "crude_spot_price",
+        "target": "spare_production_capacit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_spot_price",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_spot_price",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_spot_price",
+        "target": "financial_market_volatil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_spot_price",
+        "target": "energy_capital_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "natural_gas_spot_price",
+        "target": "energy_capital_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "futures_curve_slope",
+        "target": "energy_capital_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "crude_spot_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "crude_spot_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "crude_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "spare_production_capacit",
+        "target": "futures_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cargo_rerouting_volume",
+        "target": "crude_spot_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cargo_rerouting_volume",
+        "target": "shipping_transit_time",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "financial_market_volatil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "financial_market_volatil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_market_volatil",
+        "target": "energy_capital_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_capital_flows",
+        "target": "financial_market_volatil",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "saudi_pipeline_restart",
+      "title": "Attempted restart of Saudi East–West pipeline",
+      "description": "Saudi efforts to repair and bring the East–West pipeline back online, restoring bypass capacity around the Strait of Hormuz.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-09-21",
+        "label": "within days"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "global_oil_export_capaci",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_spot_price",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cargo_rerouting_volume",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_transit_time",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Saudi racing to restart key pipeline; US says pipeline should be back online within days (headlines 2026-09-15/16)."
+    },
+    {
+      "id": "houthi_operational_escalation",
+      "title": "Escalation of Houthi strikes and Red Sea operations",
+      "description": "Continued Houthi offensive, seizures and strikes that obstruct Red Sea and Hormuz-area shipping and threaten export routes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-10-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "chokepoint_attack_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_security_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "marine_insurance_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cargo_rerouting_volume",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_spot_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "futures_curve_slope",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Houthis seize Red Sea islands, strike pipeline and Saudi targets; fresh attacks heighten supply concerns (multiple 2026-09-14 to 09-16 headlines)."
+    },
+    {
+      "id": "demining_strait_operation",
+      "title": "Demining and clearance operations in the Strait of Hormuz",
+      "description": "Risky demining and clearance missions to reopen secure transit lanes in the Strait of Hormuz, affecting tanker movements.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-10-31",
+        "label": "weeks"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "maritime_security_risk",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_transit_time",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cargo_rerouting_volume",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "chokepoint_attack_rate",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "FT headline: 'The risky mission to de-mine the Strait of Hormuz' signals planned clearance efforts that could restore transit."
+    },
+    {
+      "id": "gulf_iran_hormuz_talks",
+      "title": "Diplomatic push: Iran–Gulf talks over Hormuz",
+      "description": "Planned/expected meetings between Iran and Gulf states (Oman-facilitated) to negotiate security arrangements for Hormuz transit.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-17",
+        "end": "2026-09-30",
+        "label": "2 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "maritime_security_risk",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "chokepoint_attack_rate",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "marine_insurance_premium",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "crude_spot_price",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Iran and Gulf states to meet in push for Hormuz deal' and Oman meeting postponement indicate imminent diplomacy with uncertain outcome."
+    },
+    {
+      "id": "saudi_oman_loading_rampup",
+      "title": "Saudi increases Oman loading and alternate exports",
+      "description": "Saudi offers more crude via Oman loadings and buyers chase alternatives after pipeline attacks, shifting export flows and routes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-09-30",
+        "label": "days–2 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "global_oil_export_capaci",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cargo_rerouting_volume",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_transit_time",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_spot_price",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Saudi offers more crude via Oman loading after pipeline attacks' and buyers chase alternatives after cancellations."
+    },
+    {
+      "id": "fed_rate_decision_nearterm",
+      "title": "Upcoming central bank (Fed) policy decision",
+      "description": "Near-term Fed policy decision and statement that will affect rate expectations and market volatility amid the oil shock.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-09-18",
+        "label": "Fed day / within days"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "financial_market_volatil",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Multiple headlines: 'Oil Prices Edge Lower Ahead of Fed Decision' and 'Fed Day' indicate imminent policy move affecting markets."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "houthi_operational_escalation",
+      "title": "Escalation of Houthi strikes and Red Sea operations",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-10-31",
+      "probability": 0.85,
+      "impact_score": 232.0,
+      "expected_impact": 197.2,
+      "event_PS": 8.529,
+      "event_AS": 13.647,
+      "n_vars": 6,
+      "affected_ids": "chokepoint_attack_rate, maritime_security_risk, marine_insurance_premium, cargo_rerouting_volume, crude_spot_price, futures_curve_slope",
+      "rationale": "Houthis seize Red Sea islands, strike pipeline and Saudi targets; fresh attacks heighten supply concerns (multiple 2026-09-14 to 09-16 headlines)."
+    },
+    {
+      "id": "saudi_pipeline_restart",
+      "title": "Attempted restart of Saudi East–West pipeline",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "within days",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-09-21",
+      "probability": 0.7,
+      "impact_score": 113.0,
+      "expected_impact": 79.1,
+      "event_PS": 10.8,
+      "event_AS": 11.3,
+      "n_vars": 4,
+      "affected_ids": "global_oil_export_capaci, crude_spot_price, cargo_rerouting_volume, shipping_transit_time",
+      "rationale": "Saudi racing to restart key pipeline; US says pipeline should be back online within days (headlines 2026-09-15/16)."
+    },
+    {
+      "id": "gulf_iran_hormuz_talks",
+      "title": "Diplomatic push: Iran–Gulf talks over Hormuz",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-09-17",
+      "end": "2026-09-30",
+      "probability": 0.6,
+      "impact_score": 85.0,
+      "expected_impact": 51.0,
+      "event_PS": 6.6,
+      "event_AS": 17.0,
+      "n_vars": 4,
+      "affected_ids": "maritime_security_risk, chokepoint_attack_rate, marine_insurance_premium, crude_spot_price",
+      "rationale": "Headlines: 'Iran and Gulf states to meet in push for Hormuz deal' and Oman meeting postponement indicate imminent diplomacy with uncertain outcome."
+    },
+    {
+      "id": "demining_strait_operation",
+      "title": "Demining and clearance operations in the Strait of Hormuz",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-10-31",
+      "probability": 0.5,
+      "impact_score": 74.0,
+      "expected_impact": 37.0,
+      "event_PS": 5.5,
+      "event_AS": 12.333,
+      "n_vars": 4,
+      "affected_ids": "maritime_security_risk, shipping_transit_time, cargo_rerouting_volume, chokepoint_attack_rate",
+      "rationale": "FT headline: 'The risky mission to de-mine the Strait of Hormuz' signals planned clearance efforts that could restore transit."
+    },
+    {
+      "id": "saudi_oman_loading_rampup",
+      "title": "Saudi increases Oman loading and alternate exports",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–2 weeks",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-09-30",
+      "probability": 0.8,
+      "impact_score": 61.0,
+      "expected_impact": 48.8,
+      "event_PS": 9.0,
+      "event_AS": 10.167,
+      "n_vars": 4,
+      "affected_ids": "global_oil_export_capaci, cargo_rerouting_volume, shipping_transit_time, crude_spot_price",
+      "rationale": "Headline: 'Saudi offers more crude via Oman loading after pipeline attacks' and buyers chase alternatives after cancellations."
+    },
+    {
+      "id": "fed_rate_decision_nearterm",
+      "title": "Upcoming central bank (Fed) policy decision",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "Fed day / within days",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-09-18",
+      "probability": 0.75,
+      "impact_score": 33.0,
+      "expected_impact": 24.75,
+      "event_PS": 13.667,
+      "event_AS": 5.5,
+      "n_vars": 3,
+      "affected_ids": "policy_rate_expectations, financial_market_volatil, inflation_expectations",
+      "rationale": "Multiple headlines: 'Oil Prices Edge Lower Ahead of Fed Decision' and 'Fed Day' indicate imminent policy move affecting markets."
+    }
+  ]
+}

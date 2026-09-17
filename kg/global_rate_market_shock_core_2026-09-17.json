@@ -1,0 +1,1820 @@
+{
+  "label": "global_rate_market_shock",
+  "as_of": "2026-09-16",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-17T01:57:43",
+  "system_description": {
+    "narrative_title": "Resurgent rate shock: bond yields surge as central banks tighten",
+    "narrative_summary": "A widespread bond market sell-off driven by persistent inflation and rising commodity (notably oil) prices has pushed 10-year sovereign yields toward multiyear highs (~5%), forcing central banks (especially the Fed and BoJ) back into a tightening cycle. The dynamic links inflation, central‑bank rate decisions, fiscal borrowing costs and investor risk appetite, producing tightening financial conditions that reverberate through equities, gold and household finances.",
+    "scope": "Sovereign and corporate bond markets, central bank policy decisions (Fed, BoJ, ECB), inflation dynamics and commodity (oil, gold) price shocks, investor sentiment/liquidity, and the immediate transmission to equities, household real incomes and government debt servicing.",
+    "super_system": "Global macro‑financial system (real economy, cross‑border capital flows, major central banks and fiscal frameworks)",
+    "adjacent_subsystems": [
+      "Household finances / consumer sector (wages, savings, credit costs)",
+      "Corporate credit and banking / leverage and buybacks",
+      "Commodity markets (oil and gold) and supply shocks",
+      "Sovereign fiscal policy and debt issuance"
+    ],
+    "evidence_headlines": [
+      "10-year Treasury yield hits 5%",
+      "U.S. 10-year yields reach 5%, highest since 2023 - reuters.com",
+      "Global bond sell-off reignites as oil jumps to $109 - ft.com",
+      "Fed and BoJ expect rate hikes as US bond market flails - ft.com",
+      "Inflation is outpacing wage growth again, squeezing Americans’ paychecks",
+      "Fed Issues First Rate Hike Since 2023"
+    ]
+  },
+  "variables": [
+    {
+      "id": "inflation_rate",
+      "name": "Inflation rate",
+      "description": "The pace of change in the general price level for consumer goods and services over time.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "wage_growth_rate",
+      "name": "Wage growth rate",
+      "description": "The rate at which nominal wages for workers change over time.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_price_index",
+      "name": "Commodity price index",
+      "description": "A broad measure of market prices for key commodities (e.g., energy and metals) that influence input costs and inflation.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_yield_level",
+      "name": "Sovereign yield level",
+      "description": "The prevailing market yield on benchmark sovereign debt at a given maturity, expressed as a continuous level.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_policy_rate",
+      "name": "Central bank policy rate",
+      "description": "The official short-term policy interest rate set by monetary authorities that influences broader interest rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "Market and economic agents' consensus view of the future path and timing of policy interest rates.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The component of long-term bond yields that compensates investors for duration and uncertainty beyond expected short rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_borrowing_costs",
+      "name": "Fiscal borrowing costs",
+      "description": "The flow of interest expense governments incur on newly issued and rolled-over public debt over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "The prevailing willingness of investors to hold risky assets rather than safe assets, reflecting risk tolerance and demand for yield.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "The ease and cost with which assets can be traded in financial markets without large price impact.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation_level",
+      "name": "Equity valuation level",
+      "description": "Aggregate market valuation metrics for equities (e.g., price-to-earnings ratios) reflecting pricing of future profits.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "household_real_income",
+      "name": "Household real income",
+      "description": "Household income adjusted for inflation, measuring purchasing power available to consumers.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "household_debt_burden",
+      "name": "Household debt burden",
+      "description": "The ratio of household interest and principal servicing obligations to income, indicating financial strain on consumers.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_credit_spread",
+      "name": "Corporate credit spread",
+      "description": "The additional yield corporate borrowers pay over comparable sovereign yields, reflecting credit risk and liquidity premia.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_capital_flo",
+      "name": "Cross-border capital flows",
+      "description": "Net flows of portfolio and debt capital across borders over time, affecting financing availability and external demand for assets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "financial_conditions_ind",
+      "name": "Financial conditions index",
+      "description": "A composite measure capturing overall ease or tightness of financial conditions, including rates, spreads, liquidity and volatility.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "inflation_rate",
+    "wage_growth_rate",
+    "commodity_price_index",
+    "sovereign_yield_level",
+    "central_bank_policy_rate",
+    "policy_rate_expectations",
+    "term_premium",
+    "fiscal_borrowing_costs",
+    "investor_risk_appetite",
+    "market_liquidity",
+    "equity_valuation_level",
+    "household_real_income",
+    "household_debt_burden",
+    "corporate_credit_spread",
+    "cross_border_capital_flo",
+    "financial_conditions_ind"
+  ],
+  "var_names": {
+    "inflation_rate": "Inflation rate",
+    "wage_growth_rate": "Wage growth rate",
+    "commodity_price_index": "Commodity price index",
+    "sovereign_yield_level": "Sovereign yield level",
+    "central_bank_policy_rate": "Central bank policy rate",
+    "policy_rate_expectations": "Policy rate expectations",
+    "term_premium": "Term premium",
+    "fiscal_borrowing_costs": "Fiscal borrowing costs",
+    "investor_risk_appetite": "Investor risk appetite",
+    "market_liquidity": "Market liquidity",
+    "equity_valuation_level": "Equity valuation level",
+    "household_real_income": "Household real income",
+    "household_debt_burden": "Household debt burden",
+    "corporate_credit_spread": "Corporate credit spread",
+    "cross_border_capital_flo": "Cross-border capital flows",
+    "financial_conditions_ind": "Financial conditions index"
+  },
+  "impact_matrix": {
+    "inflation_rate": {
+      "inflation_rate": 0,
+      "wage_growth_rate": 2,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 2,
+      "central_bank_policy_rate": 3,
+      "policy_rate_expectations": 3,
+      "term_premium": 2,
+      "fiscal_borrowing_costs": 2,
+      "investor_risk_appetite": 1,
+      "market_liquidity": 0,
+      "equity_valuation_level": 2,
+      "household_real_income": 3,
+      "household_debt_burden": 2,
+      "corporate_credit_spread": 2,
+      "cross_border_capital_flo": 1,
+      "financial_conditions_ind": 3
+    },
+    "wage_growth_rate": {
+      "inflation_rate": 3,
+      "wage_growth_rate": 0,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 1,
+      "central_bank_policy_rate": 2,
+      "policy_rate_expectations": 2,
+      "term_premium": 1,
+      "fiscal_borrowing_costs": 0,
+      "investor_risk_appetite": 0,
+      "market_liquidity": 0,
+      "equity_valuation_level": 1,
+      "household_real_income": 3,
+      "household_debt_burden": 2,
+      "corporate_credit_spread": 1,
+      "cross_border_capital_flo": 0,
+      "financial_conditions_ind": 1
+    },
+    "commodity_price_index": {
+      "inflation_rate": 3,
+      "wage_growth_rate": 0,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 1,
+      "central_bank_policy_rate": 2,
+      "policy_rate_expectations": 2,
+      "term_premium": 1,
+      "fiscal_borrowing_costs": 1,
+      "investor_risk_appetite": 1,
+      "market_liquidity": 1,
+      "equity_valuation_level": 1,
+      "household_real_income": 1,
+      "household_debt_burden": 0,
+      "corporate_credit_spread": 1,
+      "cross_border_capital_flo": 1,
+      "financial_conditions_ind": 1
+    },
+    "sovereign_yield_level": {
+      "inflation_rate": 1,
+      "wage_growth_rate": 1,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 0,
+      "central_bank_policy_rate": 1,
+      "policy_rate_expectations": 2,
+      "term_premium": 1,
+      "fiscal_borrowing_costs": 3,
+      "investor_risk_appetite": 2,
+      "market_liquidity": 1,
+      "equity_valuation_level": 3,
+      "household_real_income": 0,
+      "household_debt_burden": 2,
+      "corporate_credit_spread": 1,
+      "cross_border_capital_flo": 3,
+      "financial_conditions_ind": 3
+    },
+    "central_bank_policy_rate": {
+      "inflation_rate": 2,
+      "wage_growth_rate": 1,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 3,
+      "central_bank_policy_rate": 0,
+      "policy_rate_expectations": 3,
+      "term_premium": 2,
+      "fiscal_borrowing_costs": 3,
+      "investor_risk_appetite": 3,
+      "market_liquidity": 3,
+      "equity_valuation_level": 3,
+      "household_real_income": 2,
+      "household_debt_burden": 3,
+      "corporate_credit_spread": 2,
+      "cross_border_capital_flo": 3,
+      "financial_conditions_ind": 3
+    },
+    "policy_rate_expectations": {
+      "inflation_rate": 1,
+      "wage_growth_rate": 1,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 3,
+      "central_bank_policy_rate": 2,
+      "policy_rate_expectations": 0,
+      "term_premium": 1,
+      "fiscal_borrowing_costs": 2,
+      "investor_risk_appetite": 2,
+      "market_liquidity": 1,
+      "equity_valuation_level": 3,
+      "household_real_income": 1,
+      "household_debt_burden": 2,
+      "corporate_credit_spread": 2,
+      "cross_border_capital_flo": 1,
+      "financial_conditions_ind": 3
+    },
+    "term_premium": {
+      "inflation_rate": 1,
+      "wage_growth_rate": 0,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 3,
+      "central_bank_policy_rate": 1,
+      "policy_rate_expectations": 1,
+      "term_premium": 0,
+      "fiscal_borrowing_costs": 1,
+      "investor_risk_appetite": 1,
+      "market_liquidity": 1,
+      "equity_valuation_level": 2,
+      "household_real_income": 0,
+      "household_debt_burden": 0,
+      "corporate_credit_spread": 1,
+      "cross_border_capital_flo": 1,
+      "financial_conditions_ind": 2
+    },
+    "fiscal_borrowing_costs": {
+      "inflation_rate": 0,
+      "wage_growth_rate": 0,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 2,
+      "central_bank_policy_rate": 0,
+      "policy_rate_expectations": 0,
+      "term_premium": 0,
+      "fiscal_borrowing_costs": 0,
+      "investor_risk_appetite": 1,
+      "market_liquidity": 1,
+      "equity_valuation_level": 0,
+      "household_real_income": 0,
+      "household_debt_burden": 0,
+      "corporate_credit_spread": 1,
+      "cross_border_capital_flo": 1,
+      "financial_conditions_ind": 2
+    },
+    "investor_risk_appetite": {
+      "inflation_rate": 0,
+      "wage_growth_rate": 0,
+      "commodity_price_index": 1,
+      "sovereign_yield_level": 3,
+      "central_bank_policy_rate": 1,
+      "policy_rate_expectations": 1,
+      "term_premium": 1,
+      "fiscal_borrowing_costs": 1,
+      "investor_risk_appetite": 0,
+      "market_liquidity": 3,
+      "equity_valuation_level": 3,
+      "household_real_income": 0,
+      "household_debt_burden": 0,
+      "corporate_credit_spread": 3,
+      "cross_border_capital_flo": 3,
+      "financial_conditions_ind": 3
+    },
+    "market_liquidity": {
+      "inflation_rate": 0,
+      "wage_growth_rate": 0,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 2,
+      "central_bank_policy_rate": 0,
+      "policy_rate_expectations": 0,
+      "term_premium": 1,
+      "fiscal_borrowing_costs": 2,
+      "investor_risk_appetite": 2,
+      "market_liquidity": 0,
+      "equity_valuation_level": 2,
+      "household_real_income": 0,
+      "household_debt_burden": 1,
+      "corporate_credit_spread": 3,
+      "cross_border_capital_flo": 2,
+      "financial_conditions_ind": 3
+    },
+    "equity_valuation_level": {
+      "inflation_rate": 1,
+      "wage_growth_rate": 0,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 1,
+      "central_bank_policy_rate": 1,
+      "policy_rate_expectations": 1,
+      "term_premium": 1,
+      "fiscal_borrowing_costs": 0,
+      "investor_risk_appetite": 1,
+      "market_liquidity": 1,
+      "equity_valuation_level": 0,
+      "household_real_income": 2,
+      "household_debt_burden": 0,
+      "corporate_credit_spread": 1,
+      "cross_border_capital_flo": 1,
+      "financial_conditions_ind": 2
+    },
+    "household_real_income": {
+      "inflation_rate": 2,
+      "wage_growth_rate": 1,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 0,
+      "central_bank_policy_rate": 0,
+      "policy_rate_expectations": 0,
+      "term_premium": 0,
+      "fiscal_borrowing_costs": 0,
+      "investor_risk_appetite": 1,
+      "market_liquidity": 0,
+      "equity_valuation_level": 1,
+      "household_real_income": 0,
+      "household_debt_burden": 2,
+      "corporate_credit_spread": 0,
+      "cross_border_capital_flo": 0,
+      "financial_conditions_ind": 1
+    },
+    "household_debt_burden": {
+      "inflation_rate": 0,
+      "wage_growth_rate": 0,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 0,
+      "central_bank_policy_rate": 0,
+      "policy_rate_expectations": 0,
+      "term_premium": 0,
+      "fiscal_borrowing_costs": 0,
+      "investor_risk_appetite": 1,
+      "market_liquidity": 1,
+      "equity_valuation_level": 0,
+      "household_real_income": 3,
+      "household_debt_burden": 0,
+      "corporate_credit_spread": 0,
+      "cross_border_capital_flo": 0,
+      "financial_conditions_ind": 1
+    },
+    "corporate_credit_spread": {
+      "inflation_rate": 0,
+      "wage_growth_rate": 0,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 1,
+      "central_bank_policy_rate": 0,
+      "policy_rate_expectations": 0,
+      "term_premium": 0,
+      "fiscal_borrowing_costs": 0,
+      "investor_risk_appetite": 3,
+      "market_liquidity": 3,
+      "equity_valuation_level": 2,
+      "household_real_income": 0,
+      "household_debt_burden": 0,
+      "corporate_credit_spread": 0,
+      "cross_border_capital_flo": 0,
+      "financial_conditions_ind": 3
+    },
+    "cross_border_capital_flo": {
+      "inflation_rate": 0,
+      "wage_growth_rate": 0,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 3,
+      "central_bank_policy_rate": 1,
+      "policy_rate_expectations": 1,
+      "term_premium": 1,
+      "fiscal_borrowing_costs": 2,
+      "investor_risk_appetite": 2,
+      "market_liquidity": 2,
+      "equity_valuation_level": 2,
+      "household_real_income": 0,
+      "household_debt_burden": 0,
+      "corporate_credit_spread": 0,
+      "cross_border_capital_flo": 0,
+      "financial_conditions_ind": 3
+    },
+    "financial_conditions_ind": {
+      "inflation_rate": 2,
+      "wage_growth_rate": 1,
+      "commodity_price_index": 0,
+      "sovereign_yield_level": 3,
+      "central_bank_policy_rate": 2,
+      "policy_rate_expectations": 2,
+      "term_premium": 1,
+      "fiscal_borrowing_costs": 2,
+      "investor_risk_appetite": 2,
+      "market_liquidity": 3,
+      "equity_valuation_level": 3,
+      "household_real_income": 2,
+      "household_debt_burden": 2,
+      "corporate_credit_spread": 3,
+      "cross_border_capital_flo": 2,
+      "financial_conditions_ind": 0
+    }
+  },
+  "AS": {
+    "inflation_rate": 28,
+    "wage_growth_rate": 17,
+    "commodity_price_index": 17,
+    "sovereign_yield_level": 24,
+    "central_bank_policy_rate": 36,
+    "policy_rate_expectations": 25,
+    "term_premium": 15,
+    "fiscal_borrowing_costs": 8,
+    "investor_risk_appetite": 23,
+    "market_liquidity": 18,
+    "equity_valuation_level": 13,
+    "household_real_income": 8,
+    "household_debt_burden": 6,
+    "corporate_credit_spread": 12,
+    "cross_border_capital_flo": 17,
+    "financial_conditions_ind": 30
+  },
+  "PS": {
+    "inflation_rate": 16,
+    "wage_growth_rate": 7,
+    "commodity_price_index": 1,
+    "sovereign_yield_level": 28,
+    "central_bank_policy_rate": 16,
+    "policy_rate_expectations": 18,
+    "term_premium": 13,
+    "fiscal_borrowing_costs": 19,
+    "investor_risk_appetite": 23,
+    "market_liquidity": 21,
+    "equity_valuation_level": 28,
+    "household_real_income": 17,
+    "household_debt_burden": 16,
+    "corporate_credit_spread": 21,
+    "cross_border_capital_flo": 19,
+    "financial_conditions_ind": 34
+  },
+  "med_AS": 17.0,
+  "med_PS": 18.5,
+  "roles": [
+    {
+      "variable": "financial_conditions_ind",
+      "name": "Financial conditions index",
+      "AS": 30,
+      "PS": 34,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 1020,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_yield_level",
+      "name": "Sovereign yield level",
+      "AS": 24,
+      "PS": 28,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 672,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "central_bank_policy_rate",
+      "name": "Central bank policy rate",
+      "AS": 36,
+      "PS": 16,
+      "Q=AS/PS": 2.25,
+      "P=AS*PS": 576,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 23,
+      "PS": 23,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 529,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 25,
+      "PS": 18,
+      "Q=AS/PS": 1.39,
+      "P=AS*PS": 450,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_rate",
+      "name": "Inflation rate",
+      "AS": 28,
+      "PS": 16,
+      "Q=AS/PS": 1.75,
+      "P=AS*PS": 448,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 18,
+      "PS": 21,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 378,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "equity_valuation_level",
+      "name": "Equity valuation level",
+      "AS": 13,
+      "PS": 28,
+      "Q=AS/PS": 0.46,
+      "P=AS*PS": 364,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "cross_border_capital_flo",
+      "name": "Cross-border capital flows",
+      "AS": 17,
+      "PS": 19,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 323,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "corporate_credit_spread",
+      "name": "Corporate credit spread",
+      "AS": 12,
+      "PS": 21,
+      "Q=AS/PS": 0.57,
+      "P=AS*PS": 252,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 15,
+      "PS": 13,
+      "Q=AS/PS": 1.15,
+      "P=AS*PS": 195,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fiscal_borrowing_costs",
+      "name": "Fiscal borrowing costs",
+      "AS": 8,
+      "PS": 19,
+      "Q=AS/PS": 0.42,
+      "P=AS*PS": 152,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "household_real_income",
+      "name": "Household real income",
+      "AS": 8,
+      "PS": 17,
+      "Q=AS/PS": 0.47,
+      "P=AS*PS": 136,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "wage_growth_rate",
+      "name": "Wage growth rate",
+      "AS": 17,
+      "PS": 7,
+      "Q=AS/PS": 2.43,
+      "P=AS*PS": 119,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "household_debt_burden",
+      "name": "Household debt burden",
+      "AS": 6,
+      "PS": 16,
+      "Q=AS/PS": 0.38,
+      "P=AS*PS": 96,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "commodity_price_index",
+      "name": "Commodity price index",
+      "AS": 17,
+      "PS": 1,
+      "Q=AS/PS": 17.0,
+      "P=AS*PS": 17,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "inflation_rate",
+        "name": "Inflation rate",
+        "kind": "driver",
+        "AS": 28,
+        "PS": 16
+      },
+      {
+        "id": "wage_growth_rate",
+        "name": "Wage growth rate",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 7
+      },
+      {
+        "id": "commodity_price_index",
+        "name": "Commodity price index",
+        "kind": "environment",
+        "AS": 17,
+        "PS": 1
+      },
+      {
+        "id": "sovereign_yield_level",
+        "name": "Sovereign yield level",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 28
+      },
+      {
+        "id": "central_bank_policy_rate",
+        "name": "Central bank policy rate",
+        "kind": "driver",
+        "AS": 36,
+        "PS": 16
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 25,
+        "PS": 18
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 13
+      },
+      {
+        "id": "fiscal_borrowing_costs",
+        "name": "Fiscal borrowing costs",
+        "kind": "flow",
+        "AS": 8,
+        "PS": 19
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 23,
+        "PS": 23
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 21
+      },
+      {
+        "id": "equity_valuation_level",
+        "name": "Equity valuation level",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 28
+      },
+      {
+        "id": "household_real_income",
+        "name": "Household real income",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 17
+      },
+      {
+        "id": "household_debt_burden",
+        "name": "Household debt burden",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 16
+      },
+      {
+        "id": "corporate_credit_spread",
+        "name": "Corporate credit spread",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 21
+      },
+      {
+        "id": "cross_border_capital_flo",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 19
+      },
+      {
+        "id": "financial_conditions_ind",
+        "name": "Financial conditions index",
+        "kind": "driver",
+        "AS": 30,
+        "PS": 34
+      }
+    ],
+    "edges": [
+      {
+        "source": "inflation_rate",
+        "target": "wage_growth_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "central_bank_policy_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "fiscal_borrowing_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "household_real_income",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "household_debt_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "central_bank_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "household_real_income",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "household_debt_burden",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commodity_price_index",
+        "target": "inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_index",
+        "target": "central_bank_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price_index",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "fiscal_borrowing_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "equity_valuation_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "household_debt_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "cross_border_capital_flo",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "fiscal_borrowing_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "equity_valuation_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "household_real_income",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "household_debt_burden",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "cross_border_capital_flo",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "central_bank_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "fiscal_borrowing_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "equity_valuation_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "household_debt_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "financial_conditions_ind",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_borrowing_costs",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_borrowing_costs",
+        "target": "financial_conditions_ind",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "equity_valuation_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "corporate_credit_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "cross_border_capital_flo",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "fiscal_borrowing_costs",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "corporate_credit_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "equity_valuation_level",
+        "target": "household_real_income",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation_level",
+        "target": "financial_conditions_ind",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "household_real_income",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "household_real_income",
+        "target": "household_debt_burden",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "household_debt_burden",
+        "target": "household_real_income",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "fiscal_borrowing_costs",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "financial_conditions_ind",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "central_bank_policy_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "fiscal_borrowing_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "equity_valuation_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "household_real_income",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "household_debt_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "corporate_credit_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions_ind",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_additional_hikes_end2026",
+      "title": "Additional Fed rate hikes through year-end",
+      "description": "Market and Fed communications point to at least one more Fed rate increase before year-end, extending tightening and supporting higher yields.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-17",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "central_bank_policy_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "financial_conditions_ind",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_valuation_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "corporate_credit_spread",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "household_debt_burden",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines show Fed delivered first hike and policymakers forecast another this year (2026-09-16, 2026-09-16)."
+    },
+    {
+      "id": "warsh_public_guidance",
+      "title": "Warsh speeches and Fed guidance",
+      "description": "Public remarks and post-meeting guidance from Fed Chair Warsh can shift expectations and yields sharply in the near term.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-09-30",
+        "label": "next 2 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Analysis and commentary stress Warsh's words matter after the Fed hike (2026-09-16; 2026-09-16)."
+    },
+    {
+      "id": "boj_imminent_hike",
+      "title": "Bank of Japan imminent rate hike",
+      "description": "BOJ is widely expected to lift policy rates in the coming days, marking a significant global-policy tightening step.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-09-30",
+        "label": "within 2 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "central_bank_policy_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_capital_flo",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Multiple headlines report BOJ set to deliver a pivotal/fastest hike of cycle (2026-09-14; 2026-09-15)."
+    },
+    {
+      "id": "ecb_december_hike",
+      "title": "ECB rate move expected in December",
+      "description": "Market forecasts and bank reports have shifted to expecting an ECB rate increase in December, tightening Euro-area rates.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2026-12-31",
+        "label": "December 2026"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "central_bank_policy_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "financial_conditions_ind",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "corporate_credit_spread",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Morgan Stanley and others now see an ECB hike in December (2026-09-15)."
+    },
+    {
+      "id": "sustained_oil_price_surge",
+      "title": "Sustained oil-price surge",
+      "description": "Recent jump to ~$109 risks a continued oil rally that would lift commodity prices and feed inflation and rate bets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-11-15",
+        "label": "1-2 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "commodity_price_index",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "household_real_income",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines link global bond sell-off and rate bets to oil jumping to $109 (2026-09-14; 2026-09-16)."
+    },
+    {
+      "id": "us_treasury_auctions_issuance",
+      "title": "Ongoing US Treasury auctions and higher issuance",
+      "description": "Heavy Treasury supply and auction dynamics are likely to continue shaping yields and borrowing costs over coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-12-16",
+        "label": "next 3 months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "fiscal_borrowing_costs",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "corporate_credit_spread",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "financial_conditions_ind",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Coverage highlights auctions, Treasury supply and rising yields as central to market moves (2026-09-14; 2026-09-15)."
+    },
+    {
+      "id": "vietnam_dollar_bond_sale",
+      "title": "Vietnam sovereign dollar bond sale",
+      "description": "Vietnam is reportedly considering its first sovereign dollar issue since 2014; a sale would attract external demand and affect EM flows.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-10-31",
+        "label": "weeks"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "cross_border_capital_flo",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_borrowing_costs",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Exclusive report: Vietnam considering first sovereign dollar sale since 2014 (2026-09-15)."
+    },
+    {
+      "id": "central_bank_market_backstop",
+      "title": "Possible central-bank market backstop",
+      "description": "Severe bond-market stress could prompt emergency central-bank intervention or backstops, which would materially compress yields and risk premia if used.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-16",
+        "end": "2026-12-16",
+        "label": "next 3 months"
+      },
+      "probability": 0.2,
+      "affected": [
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "financial_conditions_ind",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline notes bond woes could factor for Fed but intervention seen unlikely (2026-09-16)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "fed_additional_hikes_end2026",
+      "title": "Additional Fed rate hikes through year-end",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-09-17",
+      "end": "2026-12-31",
+      "probability": 0.75,
+      "impact_score": 437.0,
+      "expected_impact": 327.75,
+      "event_PS": 22.2,
+      "event_AS": 21.85,
+      "n_vars": 8,
+      "affected_ids": "central_bank_policy_rate, policy_rate_expectations, sovereign_yield_level, term_premium, financial_conditions_ind, equity_valuation_level, corporate_credit_spread, household_debt_burden",
+      "rationale": "Headlines show Fed delivered first hike and policymakers forecast another this year (2026-09-16, 2026-09-16)."
+    },
+    {
+      "id": "ecb_december_hike",
+      "title": "ECB rate move expected in December",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "December 2026",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 303.0,
+      "expected_impact": 181.8,
+      "event_PS": 22.455,
+      "event_AS": 27.545,
+      "n_vars": 5,
+      "affected_ids": "central_bank_policy_rate, policy_rate_expectations, sovereign_yield_level, financial_conditions_ind, corporate_credit_spread",
+      "rationale": "Morgan Stanley and others now see an ECB hike in December (2026-09-15)."
+    },
+    {
+      "id": "central_bank_market_backstop",
+      "title": "Possible central-bank market backstop",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-12-16",
+      "probability": 0.2,
+      "impact_score": 289.0,
+      "expected_impact": 57.8,
+      "event_PS": 24.077,
+      "event_AS": 22.231,
+      "n_vars": 5,
+      "affected_ids": "sovereign_yield_level, term_premium, market_liquidity, investor_risk_appetite, financial_conditions_ind",
+      "rationale": "Headline notes bond woes could factor for Fed but intervention seen unlikely (2026-09-16)."
+    },
+    {
+      "id": "boj_imminent_hike",
+      "title": "Bank of Japan imminent rate hike",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "within 2 weeks",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-09-30",
+      "probability": 0.85,
+      "impact_score": 263.0,
+      "expected_impact": 223.55,
+      "event_PS": 20.1,
+      "event_AS": 26.3,
+      "n_vars": 5,
+      "affected_ids": "central_bank_policy_rate, policy_rate_expectations, sovereign_yield_level, cross_border_capital_flo, investor_risk_appetite",
+      "rationale": "Multiple headlines report BOJ set to deliver a pivotal/fastest hike of cycle (2026-09-14; 2026-09-15)."
+    },
+    {
+      "id": "sustained_oil_price_surge",
+      "title": "Sustained oil-price surge",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-2 months",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-11-15",
+      "probability": 0.7,
+      "impact_score": 244.0,
+      "expected_impact": 170.8,
+      "event_PS": 15.333,
+      "event_AS": 20.333,
+      "n_vars": 6,
+      "affected_ids": "commodity_price_index, inflation_rate, policy_rate_expectations, sovereign_yield_level, household_real_income, investor_risk_appetite",
+      "rationale": "Headlines link global bond sell-off and rate bets to oil jumping to $109 (2026-09-14; 2026-09-16)."
+    },
+    {
+      "id": "us_treasury_auctions_issuance",
+      "title": "Ongoing US Treasury auctions and higher issuance",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-12-16",
+      "probability": 0.9,
+      "impact_score": 216.0,
+      "expected_impact": 194.4,
+      "event_PS": 24.417,
+      "event_AS": 18.0,
+      "n_vars": 5,
+      "affected_ids": "fiscal_borrowing_costs, sovereign_yield_level, market_liquidity, corporate_credit_spread, financial_conditions_ind",
+      "rationale": "Coverage highlights auctions, Treasury supply and rising yields as central to market moves (2026-09-14; 2026-09-15)."
+    },
+    {
+      "id": "warsh_public_guidance",
+      "title": "Warsh speeches and Fed guidance",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 weeks",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-09-30",
+      "probability": 0.9,
+      "impact_score": 146.0,
+      "expected_impact": 131.4,
+      "event_PS": 22.167,
+      "event_AS": 24.333,
+      "n_vars": 3,
+      "affected_ids": "policy_rate_expectations, sovereign_yield_level, investor_risk_appetite",
+      "rationale": "Analysis and commentary stress Warsh's words matter after the Fed hike (2026-09-16; 2026-09-16)."
+    },
+    {
+      "id": "vietnam_dollar_bond_sale",
+      "title": "Vietnam sovereign dollar bond sale",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-16",
+      "end": "2026-10-31",
+      "probability": 0.5,
+      "impact_score": 66.0,
+      "expected_impact": 33.0,
+      "event_PS": 21.25,
+      "event_AS": 16.5,
+      "n_vars": 3,
+      "affected_ids": "cross_border_capital_flo, sovereign_yield_level, fiscal_borrowing_costs",
+      "rationale": "Exclusive report: Vietnam considering first sovereign dollar sale since 2014 (2026-09-15)."
+    }
+  ]
+}
