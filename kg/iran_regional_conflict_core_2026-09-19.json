@@ -1,0 +1,1685 @@
+{
+  "label": "iran_regional_conflict",
+  "as_of": "2026-09-18",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-19T01:21:01",
+  "system_description": {
+    "narrative_title": "Iran war destabilizes global energy markets and geopolitics",
+    "narrative_summary": "A widening conflict centered on Iran, its proxies (notably the Houthis) and Gulf states — and the U.S. role — is disrupting oil production, exports and shipping (pipeline strikes, Hormuz bottlenecks and ship-to-ship transfers), driving price volatility and large economic costs for households and governments. The military and diplomatic responses (arms sales, interceptor use, meetings in Oman/China/UN) and collateral impacts (cyberattacks, cloud outages, refugee/humanitarian crises, regional spillovers into Lebanon, Gaza and Yemen) create reinforcing feedbacks that amplify supply shocks, financial market moves and political polarization.",
+    "scope": "Inside: state and non-state actors in the Iran-Gulf conflict (Iran, Houthis, Saudi Arabia, UAE, US, Israel, Gulf states), oil production/export infrastructure (East-West pipeline, tankers, Hormuz transit), global oil markets and prices, financial markets (stocks/bonds), military logistics and munitions inventories, diplomatic negotiations, cyber/cloud infrastructure in the Gulf, and near-term humanitarian impacts and refugee flows. Variables include supply disruptions, freight routes, oil price, household energy costs, munitions stock levels, diplomatic engagement, and cyber-resilience.",
+    "super_system": "Global geopolitical-economic system (energy markets, international trade, finance, and security architectures)",
+    "adjacent_subsystems": [
+      "Global financial markets and investor sentiment",
+      "Global logistics, shipping and refinery supply chains",
+      "Regional humanitarian and security subsystem (Gaza, Lebanon, Yemen)",
+      "Technology and cybersecurity infrastructure (cloud providers, maritime cyber)"
+    ],
+    "evidence_headlines": [
+      "How the Iran war is transforming the relationship between stocks, bonds and oil",
+      "Oil hits $109 after Saudi Arabia closes vital export pipeline - ft.com",
+      "Saudi cancels some oil cargoes after pipeline hit, top buyer chasing alternatives",
+      "Americans Have Spent $100 Billion More on Fuel During the Iran War",
+      "The U.S. Is Burning Through Its Supply of Interceptors to Counter Iran’s Attacks",
+      "AWS says it can't restore service to Bahrain, UAE facilities 6 months after Iran strikes"
+    ]
+  },
+  "variables": [
+    {
+      "id": "oil_supply_level",
+      "name": "Physical oil supply level",
+      "description": "The aggregated available volume of crude oil and refined products physically available for global markets at a given time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_level",
+      "name": "Oil price level",
+      "description": "The prevailing market price per barrel of crude oil expressed as a continuous market price metric.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "description": "The short- to medium-term variability or dispersion of oil prices measured as a continuous volatility metric.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_transit_cap",
+      "name": "Shipping chokepoint transit capacity",
+      "description": "The maximum continuous throughput of maritime crude and product shipments that can transit critical narrow sea routes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "pipeline_operational_cap",
+      "name": "Pipeline operational capacity",
+      "description": "The aggregate functional throughput capacity of overland oil export pipelines, accounting for damage and repairs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_utilization_rate",
+      "name": "Tanker fleet utilization rate",
+      "description": "The proportion of the available tanker fleet actively engaged in transport or under transit relative to total fleet capacity.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserve_level",
+      "name": "Strategic reserve level",
+      "description": "The aggregated quantity of emergency crude and fuel held in strategic stockpiles available to mitigate supply shocks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_operational_cap",
+      "name": "Refinery operational capacity",
+      "description": "The effective processing capacity of refineries able to convert crude into refined products given outages and maintenance.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "household_energy_burden",
+      "name": "Household energy cost burden",
+      "description": "The average share of household income spent on energy and transport fuels, measured continuously across households.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_pressure_level",
+      "name": "Government fiscal pressure level",
+      "description": "The degree of fiscal strain on public budgets measured by deficits, emergency spending needs and revenue shortfalls.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "munitions_inventory",
+      "name": "Munitions inventory level",
+      "description": "The aggregated stock of deployable munitions, interceptors and expendable ordnance available to armed forces.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "conflict_intensity",
+      "name": "Military engagement intensity",
+      "description": "The rate and scale of kinetic and offensive military actions occurring in the conflict theatre measured continuously.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diplomatic_activity",
+      "name": "Diplomatic engagement activity",
+      "description": "The frequency and intensity of sustained diplomatic negotiations, mediation efforts and multilateral interactions.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "cloud_service_avail",
+      "name": "Cloud service availability",
+      "description": "The operational availability and reliability of regional cloud and critical IT services supporting commerce and logistics.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "displacement_flow_rate",
+      "name": "Forced displacement flow rate",
+      "description": "The continuous flow rate of people being displaced or seeking refuge as a result of conflict and related disruptions.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "financial_risk_premium",
+      "name": "Financial market risk premium",
+      "description": "The incremental cost of capital reflected in spreads, insurance rates and required returns due to heightened geopolitical risk.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "oil_supply_level",
+    "oil_price_level",
+    "oil_price_volatility",
+    "chokepoint_transit_cap",
+    "pipeline_operational_cap",
+    "tanker_utilization_rate",
+    "strategic_reserve_level",
+    "refinery_operational_cap",
+    "household_energy_burden",
+    "fiscal_pressure_level",
+    "munitions_inventory",
+    "conflict_intensity",
+    "diplomatic_activity",
+    "cloud_service_avail",
+    "displacement_flow_rate",
+    "financial_risk_premium"
+  ],
+  "var_names": {
+    "oil_supply_level": "Physical oil supply level",
+    "oil_price_level": "Oil price level",
+    "oil_price_volatility": "Oil price volatility",
+    "chokepoint_transit_cap": "Shipping chokepoint transit capacity",
+    "pipeline_operational_cap": "Pipeline operational capacity",
+    "tanker_utilization_rate": "Tanker fleet utilization rate",
+    "strategic_reserve_level": "Strategic reserve level",
+    "refinery_operational_cap": "Refinery operational capacity",
+    "household_energy_burden": "Household energy cost burden",
+    "fiscal_pressure_level": "Government fiscal pressure level",
+    "munitions_inventory": "Munitions inventory level",
+    "conflict_intensity": "Military engagement intensity",
+    "diplomatic_activity": "Diplomatic engagement activity",
+    "cloud_service_avail": "Cloud service availability",
+    "displacement_flow_rate": "Forced displacement flow rate",
+    "financial_risk_premium": "Financial market risk premium"
+  },
+  "impact_matrix": {
+    "oil_supply_level": {
+      "oil_supply_level": 0,
+      "oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 2,
+      "strategic_reserve_level": 0,
+      "refinery_operational_cap": 0,
+      "household_energy_burden": 0,
+      "fiscal_pressure_level": 0,
+      "munitions_inventory": 0,
+      "conflict_intensity": 0,
+      "diplomatic_activity": 0,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 2
+    },
+    "oil_price_level": {
+      "oil_supply_level": 2,
+      "oil_price_level": 0,
+      "oil_price_volatility": 1,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 1,
+      "strategic_reserve_level": 1,
+      "refinery_operational_cap": 1,
+      "household_energy_burden": 3,
+      "fiscal_pressure_level": 2,
+      "munitions_inventory": 0,
+      "conflict_intensity": 1,
+      "diplomatic_activity": 1,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 2
+    },
+    "oil_price_volatility": {
+      "oil_supply_level": 1,
+      "oil_price_level": 1,
+      "oil_price_volatility": 0,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 1,
+      "strategic_reserve_level": 1,
+      "refinery_operational_cap": 1,
+      "household_energy_burden": 1,
+      "fiscal_pressure_level": 1,
+      "munitions_inventory": 0,
+      "conflict_intensity": 1,
+      "diplomatic_activity": 1,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 2
+    },
+    "chokepoint_transit_cap": {
+      "oil_supply_level": 3,
+      "oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 2,
+      "strategic_reserve_level": 1,
+      "refinery_operational_cap": 0,
+      "household_energy_burden": 0,
+      "fiscal_pressure_level": 1,
+      "munitions_inventory": 1,
+      "conflict_intensity": 1,
+      "diplomatic_activity": 2,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 2
+    },
+    "pipeline_operational_cap": {
+      "oil_supply_level": 3,
+      "oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 1,
+      "strategic_reserve_level": 1,
+      "refinery_operational_cap": 1,
+      "household_energy_burden": 0,
+      "fiscal_pressure_level": 1,
+      "munitions_inventory": 0,
+      "conflict_intensity": 1,
+      "diplomatic_activity": 1,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 2
+    },
+    "tanker_utilization_rate": {
+      "oil_supply_level": 2,
+      "oil_price_level": 2,
+      "oil_price_volatility": 1,
+      "chokepoint_transit_cap": 1,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 0,
+      "strategic_reserve_level": 0,
+      "refinery_operational_cap": 1,
+      "household_energy_burden": 0,
+      "fiscal_pressure_level": 0,
+      "munitions_inventory": 0,
+      "conflict_intensity": 1,
+      "diplomatic_activity": 1,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 1
+    },
+    "strategic_reserve_level": {
+      "oil_supply_level": 3,
+      "oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 1,
+      "strategic_reserve_level": 0,
+      "refinery_operational_cap": 1,
+      "household_energy_burden": 1,
+      "fiscal_pressure_level": 2,
+      "munitions_inventory": 0,
+      "conflict_intensity": 0,
+      "diplomatic_activity": 0,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 2
+    },
+    "refinery_operational_cap": {
+      "oil_supply_level": 3,
+      "oil_price_level": 3,
+      "oil_price_volatility": 2,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 1,
+      "strategic_reserve_level": 0,
+      "refinery_operational_cap": 0,
+      "household_energy_burden": 2,
+      "fiscal_pressure_level": 1,
+      "munitions_inventory": 0,
+      "conflict_intensity": 0,
+      "diplomatic_activity": 0,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 1
+    },
+    "household_energy_burden": {
+      "oil_supply_level": 0,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 0,
+      "strategic_reserve_level": 0,
+      "refinery_operational_cap": 0,
+      "household_energy_burden": 0,
+      "fiscal_pressure_level": 2,
+      "munitions_inventory": 0,
+      "conflict_intensity": 1,
+      "diplomatic_activity": 0,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 1,
+      "financial_risk_premium": 1
+    },
+    "fiscal_pressure_level": {
+      "oil_supply_level": 0,
+      "oil_price_level": 1,
+      "oil_price_volatility": 0,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 0,
+      "strategic_reserve_level": 2,
+      "refinery_operational_cap": 1,
+      "household_energy_burden": 2,
+      "fiscal_pressure_level": 0,
+      "munitions_inventory": 2,
+      "conflict_intensity": 1,
+      "diplomatic_activity": 1,
+      "cloud_service_avail": 1,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 2
+    },
+    "munitions_inventory": {
+      "oil_supply_level": 0,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 0,
+      "strategic_reserve_level": 0,
+      "refinery_operational_cap": 0,
+      "household_energy_burden": 0,
+      "fiscal_pressure_level": 2,
+      "munitions_inventory": 0,
+      "conflict_intensity": 3,
+      "diplomatic_activity": 1,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 1,
+      "financial_risk_premium": 1
+    },
+    "conflict_intensity": {
+      "oil_supply_level": 3,
+      "oil_price_level": 3,
+      "oil_price_volatility": 3,
+      "chokepoint_transit_cap": 3,
+      "pipeline_operational_cap": 3,
+      "tanker_utilization_rate": 2,
+      "strategic_reserve_level": 1,
+      "refinery_operational_cap": 3,
+      "household_energy_burden": 2,
+      "fiscal_pressure_level": 3,
+      "munitions_inventory": 2,
+      "conflict_intensity": 0,
+      "diplomatic_activity": 3,
+      "cloud_service_avail": 2,
+      "displacement_flow_rate": 3,
+      "financial_risk_premium": 3
+    },
+    "diplomatic_activity": {
+      "oil_supply_level": 1,
+      "oil_price_level": 2,
+      "oil_price_volatility": 2,
+      "chokepoint_transit_cap": 2,
+      "pipeline_operational_cap": 1,
+      "tanker_utilization_rate": 1,
+      "strategic_reserve_level": 1,
+      "refinery_operational_cap": 0,
+      "household_energy_burden": 1,
+      "fiscal_pressure_level": 1,
+      "munitions_inventory": 0,
+      "conflict_intensity": 2,
+      "diplomatic_activity": 0,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 1,
+      "financial_risk_premium": 2
+    },
+    "cloud_service_avail": {
+      "oil_supply_level": 0,
+      "oil_price_level": 0,
+      "oil_price_volatility": 0,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 2,
+      "tanker_utilization_rate": 1,
+      "strategic_reserve_level": 0,
+      "refinery_operational_cap": 2,
+      "household_energy_burden": 0,
+      "fiscal_pressure_level": 0,
+      "munitions_inventory": 0,
+      "conflict_intensity": 1,
+      "diplomatic_activity": 0,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 1
+    },
+    "displacement_flow_rate": {
+      "oil_supply_level": 1,
+      "oil_price_level": 1,
+      "oil_price_volatility": 1,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 1,
+      "tanker_utilization_rate": 0,
+      "strategic_reserve_level": 0,
+      "refinery_operational_cap": 1,
+      "household_energy_burden": 2,
+      "fiscal_pressure_level": 1,
+      "munitions_inventory": 0,
+      "conflict_intensity": 1,
+      "diplomatic_activity": 1,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 1
+    },
+    "financial_risk_premium": {
+      "oil_supply_level": 1,
+      "oil_price_level": 2,
+      "oil_price_volatility": 2,
+      "chokepoint_transit_cap": 0,
+      "pipeline_operational_cap": 0,
+      "tanker_utilization_rate": 1,
+      "strategic_reserve_level": 1,
+      "refinery_operational_cap": 1,
+      "household_energy_burden": 1,
+      "fiscal_pressure_level": 2,
+      "munitions_inventory": 1,
+      "conflict_intensity": 1,
+      "diplomatic_activity": 1,
+      "cloud_service_avail": 0,
+      "displacement_flow_rate": 0,
+      "financial_risk_premium": 0
+    }
+  },
+  "AS": {
+    "oil_supply_level": 9,
+    "oil_price_level": 15,
+    "oil_price_volatility": 11,
+    "chokepoint_transit_cap": 18,
+    "pipeline_operational_cap": 16,
+    "tanker_utilization_rate": 10,
+    "strategic_reserve_level": 15,
+    "refinery_operational_cap": 13,
+    "household_energy_burden": 5,
+    "fiscal_pressure_level": 13,
+    "munitions_inventory": 8,
+    "conflict_intensity": 39,
+    "diplomatic_activity": 17,
+    "cloud_service_avail": 7,
+    "displacement_flow_rate": 11,
+    "financial_risk_premium": 14
+  },
+  "PS": {
+    "oil_supply_level": 23,
+    "oil_price_level": 27,
+    "oil_price_volatility": 20,
+    "chokepoint_transit_cap": 6,
+    "pipeline_operational_cap": 7,
+    "tanker_utilization_rate": 14,
+    "strategic_reserve_level": 9,
+    "refinery_operational_cap": 13,
+    "household_energy_burden": 15,
+    "fiscal_pressure_level": 19,
+    "munitions_inventory": 6,
+    "conflict_intensity": 15,
+    "diplomatic_activity": 13,
+    "cloud_service_avail": 3,
+    "displacement_flow_rate": 6,
+    "financial_risk_premium": 25
+  },
+  "med_AS": 13.0,
+  "med_PS": 13.5,
+  "roles": [
+    {
+      "variable": "conflict_intensity",
+      "name": "Military engagement intensity",
+      "AS": 39,
+      "PS": 15,
+      "Q=AS/PS": 2.6,
+      "P=AS*PS": 585,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "oil_price_level",
+      "name": "Oil price level",
+      "AS": 15,
+      "PS": 27,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 405,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "financial_risk_premium",
+      "name": "Financial market risk premium",
+      "AS": 14,
+      "PS": 25,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 350,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "fiscal_pressure_level",
+      "name": "Government fiscal pressure level",
+      "AS": 13,
+      "PS": 19,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 247,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diplomatic_activity",
+      "name": "Diplomatic engagement activity",
+      "AS": 17,
+      "PS": 13,
+      "Q=AS/PS": 1.31,
+      "P=AS*PS": 221,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "oil_price_volatility",
+      "name": "Oil price volatility",
+      "AS": 11,
+      "PS": 20,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 220,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "oil_supply_level",
+      "name": "Physical oil supply level",
+      "AS": 9,
+      "PS": 23,
+      "Q=AS/PS": 0.39,
+      "P=AS*PS": 207,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refinery_operational_cap",
+      "name": "Refinery operational capacity",
+      "AS": 13,
+      "PS": 13,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 169,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "tanker_utilization_rate",
+      "name": "Tanker fleet utilization rate",
+      "AS": 10,
+      "PS": 14,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 140,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "strategic_reserve_level",
+      "name": "Strategic reserve level",
+      "AS": 15,
+      "PS": 9,
+      "Q=AS/PS": 1.67,
+      "P=AS*PS": 135,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "pipeline_operational_cap",
+      "name": "Pipeline operational capacity",
+      "AS": 16,
+      "PS": 7,
+      "Q=AS/PS": 2.29,
+      "P=AS*PS": 112,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "chokepoint_transit_cap",
+      "name": "Shipping chokepoint transit capacity",
+      "AS": 18,
+      "PS": 6,
+      "Q=AS/PS": 3.0,
+      "P=AS*PS": 108,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "household_energy_burden",
+      "name": "Household energy cost burden",
+      "AS": 5,
+      "PS": 15,
+      "Q=AS/PS": 0.33,
+      "P=AS*PS": 75,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "displacement_flow_rate",
+      "name": "Forced displacement flow rate",
+      "AS": 11,
+      "PS": 6,
+      "Q=AS/PS": 1.83,
+      "P=AS*PS": 66,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "munitions_inventory",
+      "name": "Munitions inventory level",
+      "AS": 8,
+      "PS": 6,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 48,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "cloud_service_avail",
+      "name": "Cloud service availability",
+      "AS": 7,
+      "PS": 3,
+      "Q=AS/PS": 2.33,
+      "P=AS*PS": 21,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "oil_supply_level",
+        "name": "Physical oil supply level",
+        "kind": "stock",
+        "AS": 9,
+        "PS": 23
+      },
+      {
+        "id": "oil_price_level",
+        "name": "Oil price level",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 27
+      },
+      {
+        "id": "oil_price_volatility",
+        "name": "Oil price volatility",
+        "kind": "perception",
+        "AS": 11,
+        "PS": 20
+      },
+      {
+        "id": "chokepoint_transit_cap",
+        "name": "Shipping chokepoint transit capacity",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 6
+      },
+      {
+        "id": "pipeline_operational_cap",
+        "name": "Pipeline operational capacity",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 7
+      },
+      {
+        "id": "tanker_utilization_rate",
+        "name": "Tanker fleet utilization rate",
+        "kind": "flow",
+        "AS": 10,
+        "PS": 14
+      },
+      {
+        "id": "strategic_reserve_level",
+        "name": "Strategic reserve level",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 9
+      },
+      {
+        "id": "refinery_operational_cap",
+        "name": "Refinery operational capacity",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 13
+      },
+      {
+        "id": "household_energy_burden",
+        "name": "Household energy cost burden",
+        "kind": "driver",
+        "AS": 5,
+        "PS": 15
+      },
+      {
+        "id": "fiscal_pressure_level",
+        "name": "Government fiscal pressure level",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 19
+      },
+      {
+        "id": "munitions_inventory",
+        "name": "Munitions inventory level",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 6
+      },
+      {
+        "id": "conflict_intensity",
+        "name": "Military engagement intensity",
+        "kind": "flow",
+        "AS": 39,
+        "PS": 15
+      },
+      {
+        "id": "diplomatic_activity",
+        "name": "Diplomatic engagement activity",
+        "kind": "institution_field",
+        "AS": 17,
+        "PS": 13
+      },
+      {
+        "id": "cloud_service_avail",
+        "name": "Cloud service availability",
+        "kind": "environment",
+        "AS": 7,
+        "PS": 3
+      },
+      {
+        "id": "displacement_flow_rate",
+        "name": "Forced displacement flow rate",
+        "kind": "flow",
+        "AS": 11,
+        "PS": 6
+      },
+      {
+        "id": "financial_risk_premium",
+        "name": "Financial market risk premium",
+        "kind": "perception",
+        "AS": 14,
+        "PS": 25
+      }
+    ],
+    "edges": [
+      {
+        "source": "oil_supply_level",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "oil_supply_level",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_supply_level",
+        "target": "tanker_utilization_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_supply_level",
+        "target": "financial_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "oil_supply_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "household_energy_burden",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "fiscal_pressure_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "financial_risk_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "oil_price_volatility",
+        "target": "financial_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_cap",
+        "target": "oil_supply_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_cap",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_cap",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_cap",
+        "target": "tanker_utilization_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_cap",
+        "target": "diplomatic_activity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_cap",
+        "target": "financial_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_operational_cap",
+        "target": "oil_supply_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "pipeline_operational_cap",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_operational_cap",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_operational_cap",
+        "target": "financial_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_utilization_rate",
+        "target": "oil_supply_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_utilization_rate",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "oil_supply_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "fiscal_pressure_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "financial_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_operational_cap",
+        "target": "oil_supply_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_operational_cap",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_operational_cap",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_operational_cap",
+        "target": "household_energy_burden",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "household_energy_burden",
+        "target": "fiscal_pressure_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_pressure_level",
+        "target": "strategic_reserve_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_pressure_level",
+        "target": "household_energy_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_pressure_level",
+        "target": "munitions_inventory",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_pressure_level",
+        "target": "financial_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "munitions_inventory",
+        "target": "fiscal_pressure_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "munitions_inventory",
+        "target": "conflict_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "oil_supply_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "oil_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "chokepoint_transit_cap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "pipeline_operational_cap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "tanker_utilization_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "refinery_operational_cap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "household_energy_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "fiscal_pressure_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "munitions_inventory",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "diplomatic_activity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "cloud_service_avail",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "displacement_flow_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "conflict_intensity",
+        "target": "financial_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "chokepoint_transit_cap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "conflict_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_activity",
+        "target": "financial_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cloud_service_avail",
+        "target": "pipeline_operational_cap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cloud_service_avail",
+        "target": "refinery_operational_cap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "displacement_flow_rate",
+        "target": "household_energy_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_risk_premium",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_risk_premium",
+        "target": "oil_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_risk_premium",
+        "target": "fiscal_pressure_level",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "un_general_assembly_diplomacy",
+      "title": "World leaders convene at UNGA",
+      "description": "UN General Assembly meetings and side talks where leaders (including US and Iranian delegations) may push ceasefire, sanctions or de-escalation deals.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-21",
+        "end": "2026-09-30",
+        "label": "next week"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "diplomatic_activity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "conflict_intensity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "financial_risk_premium",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Why are world leaders at the UN next week'; 'US to allow Iranian leaders to attend UN General Assembly'."
+    },
+    {
+      "id": "saudi_pipeline_repairs_restore",
+      "title": "Saudi East‑West pipeline partly restored",
+      "description": "Saudi officials and US energy secretary indicate the damaged East‑West pipeline could be back online within days, restoring exports.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-18",
+        "end": "2026-09-24",
+        "label": "within days"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "pipeline_operational_cap",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_supply_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_utilization_rate",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'US energy chief says Saudi Arabia oil pipeline should be back online within days'; 'Saudi cancels some oil cargoes after pipeline hit'."
+    },
+    {
+      "id": "further_houthi_strikes_escalation",
+      "title": "Escalating Houthi-Saudi strikes",
+      "description": "Continued Houthi strikes on Saudi infrastructure and shipping, and reciprocal Saudi coalition strikes, intensify disruptions across the Gulf.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-18",
+        "end": "2026-10-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "conflict_intensity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "chokepoint_transit_cap",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_utilization_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "displacement_flow_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "munitions_inventory",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Saudis and Houthis exchange strikes'; 'Three pumping stations along Saudi East‑West Pipeline were hit'; 'Houthi blitz leaves Saudi Arabia exposed'."
+    },
+    {
+      "id": "aramco_export_boost_sep_oct",
+      "title": "Aramco boosts Gulf exports Sept–Oct",
+      "description": "Aramco plans temporary export increases in September–October via alternative loadings and Hormuz routing to offset pipeline disruption.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-01",
+        "end": "2026-10-31",
+        "label": "Sept–Oct"
+      },
+      "probability": 0.78,
+      "affected": [
+        {
+          "variable_id": "oil_supply_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_utilization_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "chokepoint_transit_cap",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Aramco to boost Gulf exports to 60 million barrels in September, October'; 'Saudi offers more crude via Oman loading after pipeline attacks'."
+    },
+    {
+      "id": "us_arms_sale_to_saudi",
+      "title": "U.S. clears fighter jet sale to Saudi Arabia",
+      "description": "U.S. advances/clears approvals for a $24.3bn fighter jet (and related munitions) sale to Saudi Arabia, altering regional military stocks.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-18",
+        "end": "2026-10-31",
+        "label": "weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "munitions_inventory",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "conflict_intensity",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_activity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'US clears way for $24.3 billion fighter jet sale to Saudi Arabia'; 'US to allow Iranian leaders to attend UN General Assembly' (diplomatic context)."
+    },
+    {
+      "id": "prolonged_aws_gulf_outages",
+      "title": "Ongoing AWS outages in Gulf data zones",
+      "description": "Amazon AWS reports inability to restore some Bahrain/UAE data after strikes, leaving cloud services degraded in the Gulf for months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-18",
+        "end": "2026-12-18",
+        "label": "3 months+"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "cloud_service_avail",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "financial_risk_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'AWS says it can't restore service to Bahrain, UAE facilities 6 months after Iran strikes'; 'AWS says it can't restore some data'."
+    },
+    {
+      "id": "iran_land_route_bypass",
+      "title": "Iran activates land trade routes",
+      "description": "Iran is activating/expanding overland trade routes to bypass maritime/blockade routes, partially restoring commerce and reducing sea-dependence.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-18",
+        "end": "2026-10-31",
+        "label": "near term"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "tanker_utilization_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_supply_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Iran activates land routes to bypass US blockade'; 'Iran Struggles to Shift Trade to Land'."
+    },
+    {
+      "id": "yemen_displacement_wave",
+      "title": "Yemen offensive drives displacement",
+      "description": "Houthi advances and Saudi-Houthi exchanges force new waves of internal displacement and refugee flows from Yemen.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-18",
+        "end": "2026-11-30",
+        "label": "weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "displacement_flow_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_activity",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_pressure_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Yemen conflict displaces 112,000 people'; 'Barefoot and terrified, Yemenis flee the Houthi advance'."
+    },
+    {
+      "id": "interceptor_and_munitions_depletion",
+      "title": "Interceptor and munitions depletion",
+      "description": "U.S. and allied forces are rapidly using interceptors and munitions, creating shortfalls that affect air defence and strike capacity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-18",
+        "end": "2026-12-31",
+        "label": "months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "munitions_inventory",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "conflict_intensity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "financial_risk_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'The U.S. Is Burning Through Its Supply of Interceptors'; 'Trump’s Iran war has caused munitions “shortfall”'."
+    },
+    {
+      "id": "supertanker_orders_wave",
+      "title": "Surge in supertanker orders",
+      "description": "Shipowners place large supertanker orders to hedge against Gulf disruptions, expanding future transport capacity over months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-17",
+        "end": "2027-06-30",
+        "label": "months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "tanker_utilization_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_price_volatility",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'US-Iran conflict helps drive wave of supertanker orders'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "further_houthi_strikes_escalation",
+      "title": "Escalating Houthi-Saudi strikes",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-09-18",
+      "end": "2026-10-31",
+      "probability": 0.65,
+      "impact_score": 284.0,
+      "expected_impact": 184.6,
+      "event_PS": 13.941,
+      "event_AS": 16.706,
+      "n_vars": 7,
+      "affected_ids": "conflict_intensity, chokepoint_transit_cap, tanker_utilization_rate, oil_price_volatility, oil_price_level, displacement_flow_rate, munitions_inventory",
+      "rationale": "Headlines: 'Saudis and Houthis exchange strikes'; 'Three pumping stations along Saudi East‑West Pipeline were hit'; 'Houthi blitz leaves Saudi Arabia exposed'."
+    },
+    {
+      "id": "un_general_assembly_diplomacy",
+      "title": "World leaders convene at UNGA",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next week",
+      "date": null,
+      "start": "2026-09-21",
+      "end": "2026-09-30",
+      "probability": 0.95,
+      "impact_score": 143.0,
+      "expected_impact": 135.85,
+      "event_PS": 15.667,
+      "event_AS": 23.833,
+      "n_vars": 3,
+      "affected_ids": "diplomatic_activity, conflict_intensity, financial_risk_premium",
+      "rationale": "Headlines: 'Why are world leaders at the UN next week'; 'US to allow Iranian leaders to attend UN General Assembly'."
+    },
+    {
+      "id": "saudi_pipeline_repairs_restore",
+      "title": "Saudi East‑West pipeline partly restored",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "within days",
+      "date": null,
+      "start": "2026-09-18",
+      "end": "2026-09-24",
+      "probability": 0.7,
+      "impact_score": 128.0,
+      "expected_impact": 89.6,
+      "event_PS": 17.5,
+      "event_AS": 12.8,
+      "n_vars": 5,
+      "affected_ids": "pipeline_operational_cap, oil_supply_level, oil_price_level, oil_price_volatility, tanker_utilization_rate",
+      "rationale": "Headlines: 'US energy chief says Saudi Arabia oil pipeline should be back online within days'; 'Saudi cancels some oil cargoes after pipeline hit'."
+    },
+    {
+      "id": "interceptor_and_munitions_depletion",
+      "title": "Interceptor and munitions depletion",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-09-18",
+      "end": "2026-12-31",
+      "probability": 0.8,
+      "impact_score": 116.0,
+      "expected_impact": 92.8,
+      "event_PS": 12.167,
+      "event_AS": 19.333,
+      "n_vars": 3,
+      "affected_ids": "munitions_inventory, conflict_intensity, financial_risk_premium",
+      "rationale": "Headlines: 'The U.S. Is Burning Through Its Supply of Interceptors'; 'Trump’s Iran war has caused munitions “shortfall”'."
+    },
+    {
+      "id": "aramco_export_boost_sep_oct",
+      "title": "Aramco boosts Gulf exports Sept–Oct",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Sept–Oct",
+      "date": null,
+      "start": "2026-09-01",
+      "end": "2026-10-31",
+      "probability": 0.78,
+      "impact_score": 95.0,
+      "expected_impact": 74.1,
+      "event_PS": 19.625,
+      "event_AS": 11.875,
+      "n_vars": 4,
+      "affected_ids": "oil_supply_level, oil_price_level, tanker_utilization_rate, chokepoint_transit_cap",
+      "rationale": "Headlines: 'Aramco to boost Gulf exports to 60 million barrels in September, October'; 'Saudi offers more crude via Oman loading after pipeline attacks'."
+    },
+    {
+      "id": "us_arms_sale_to_saudi",
+      "title": "U.S. clears fighter jet sale to Saudi Arabia",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-18",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 80.0,
+      "expected_impact": 64.0,
+      "event_PS": 9.2,
+      "event_AS": 16.0,
+      "n_vars": 3,
+      "affected_ids": "munitions_inventory, conflict_intensity, diplomatic_activity",
+      "rationale": "Headlines: 'US clears way for $24.3 billion fighter jet sale to Saudi Arabia'; 'US to allow Iranian leaders to attend UN General Assembly' (diplomatic context)."
+    },
+    {
+      "id": "yemen_displacement_wave",
+      "title": "Yemen offensive drives displacement",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-18",
+      "end": "2026-11-30",
+      "probability": 0.85,
+      "impact_score": 63.0,
+      "expected_impact": 53.55,
+      "event_PS": 10.0,
+      "event_AS": 12.6,
+      "n_vars": 3,
+      "affected_ids": "displacement_flow_rate, diplomatic_activity, fiscal_pressure_level",
+      "rationale": "Headlines: 'Yemen conflict displaces 112,000 people'; 'Barefoot and terrified, Yemenis flee the Houthi advance'."
+    },
+    {
+      "id": "prolonged_aws_gulf_outages",
+      "title": "Ongoing AWS outages in Gulf data zones",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3 months+",
+      "date": null,
+      "start": "2026-09-18",
+      "end": "2026-12-18",
+      "probability": 0.9,
+      "impact_score": 35.0,
+      "expected_impact": 31.5,
+      "event_PS": 8.5,
+      "event_AS": 8.75,
+      "n_vars": 2,
+      "affected_ids": "cloud_service_avail, financial_risk_premium",
+      "rationale": "Headlines: 'AWS says it can't restore service to Bahrain, UAE facilities 6 months after Iran strikes'; 'AWS says it can't restore some data'."
+    },
+    {
+      "id": "supertanker_orders_wave",
+      "title": "Surge in supertanker orders",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-09-17",
+      "end": "2027-06-30",
+      "probability": 0.6,
+      "impact_score": 31.0,
+      "expected_impact": 18.6,
+      "event_PS": 16.0,
+      "event_AS": 10.333,
+      "n_vars": 2,
+      "affected_ids": "tanker_utilization_rate, oil_price_volatility",
+      "rationale": "Headline: 'US-Iran conflict helps drive wave of supertanker orders'."
+    },
+    {
+      "id": "iran_land_route_bypass",
+      "title": "Iran activates land trade routes",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near term",
+      "date": null,
+      "start": "2026-09-18",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 30.0,
+      "expected_impact": 21.0,
+      "event_PS": 19.0,
+      "event_AS": 10.0,
+      "n_vars": 3,
+      "affected_ids": "tanker_utilization_rate, oil_price_volatility, oil_supply_level",
+      "rationale": "Headlines: 'Iran activates land routes to bypass US blockade'; 'Iran Struggles to Shift Trade to Land'."
+    }
+  ]
+}
