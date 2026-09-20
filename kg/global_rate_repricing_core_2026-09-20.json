@@ -1,0 +1,1720 @@
+{
+  "label": "global_rate_repricing",
+  "as_of": "2026-09-19",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-20T01:37:54",
+  "system_description": {
+    "narrative_title": "Global central-bank tightening and rising bond yields",
+    "narrative_summary": "Major central banks are synchronously tightening policy to combat persistent inflation, pushing government bond yields to multi-decade highs and forcing a broad market re-pricing. As an open system, policy decisions, inflation data, and central-bank communication transmit through yields, currency moves and capital flows into equity valuations, housing finance, corporate and private credit, and investor behaviour, with feedbacks from market volatility and political pressures back into policy. The dominant dynamics are interest-rate setting, inflation expectations, risk premia, and cross-border capital allocation.",
+    "scope": "Central-bank policy decisions and forward guidance; sovereign bond markets and yield curves; investor flows between bonds, equities and cash; currency moves; equity market breadth and options activity; mortgage and housing finance conditions; corporate and private credit pricing and risk; market sentiment and media/communication signals.",
+    "super_system": "Global macro-financial-economic system (inflation, growth, fiscal policy, geopolitics)",
+    "adjacent_subsystems": [
+      "Housing and mortgage finance",
+      "Corporate credit and private credit / pensions",
+      "Equity markets (tech/AI and broad market breadth)",
+      "Currency and cross-border capital flows"
+    ],
+    "evidence_headlines": [
+      "The 10-year Treasury is having its worst run in over 100 years. Why investors are buying bonds anyway.",
+      "Bank of Japan raises rates to highest since 1995",
+      "Stocks and bonds dip as central banks jack up rates to tame inflation",
+      "The Fed hasn’t been this terse since 2007. What a 130-word statement signals for market stability.",
+      "Ten-year Treasury yield hits highest level since 2007",
+      "US homebuilders under pressure from rising rates - ft.com"
+    ]
+  },
+  "variables": [
+    {
+      "id": "policy_interest_rate",
+      "name": "Policy interest rate",
+      "description": "The short-term nominal interest rate set as the operative target of monetary policy that anchors short-term funding rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_communication",
+      "name": "Monetary-policy communication tone",
+      "description": "The hawkishness or dovishness and clarity of forward guidance and public commentary from monetary authorities as perceived by markets.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and household expectations of future inflation over short and medium horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "nominal_yield_curve",
+      "name": "Nominal yield curve level",
+      "description": "The pattern of observed nominal interest rates across maturities for sovereign debt, summarising term structure pricing.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "real_yield_level",
+      "name": "Real yield level",
+      "description": "Inflation-adjusted yields across key maturities that capture the real return available to investors.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium_level",
+      "name": "Term premium level",
+      "description": "The additional yield investors demand for holding longer-duration debt beyond expected short rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread_level",
+      "name": "Credit spread level",
+      "description": "The average premium required for non-sovereign credit over comparable sovereign yields, reflecting default and liquidity risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "mortgage_borrowing_costs",
+      "name": "Mortgage borrowing costs",
+      "description": "The effective interest rates and lending conditions faced by home borrowers for typical mortgage products.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "housing_market_demand",
+      "name": "Housing market demand",
+      "description": "Aggregate demand for housing transactions and purchases, including buyer activity and willingness to pay.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_risk_premium",
+      "name": "Equity risk premium",
+      "description": "The excess return investors require to hold equities over risk-free assets, reflecting valuation and expected returns.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "asset_allocation_tilt",
+      "name": "Asset allocation tilt",
+      "description": "The distribution of investor portfolios across major asset classes (bonds, equities, cash) and shifts in that allocation.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flow rate",
+      "description": "The net rate of financial capital moving between jurisdictions, including portfolio, bank and direct flows.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_level",
+      "name": "Exchange rate level",
+      "description": "The relative price of a currency against relevant peers, capturing appreciation or depreciation pressure.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "The ease, depth and cost of executing large transactions across financial markets without large price impact.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility_level",
+      "name": "Market volatility level",
+      "description": "The magnitude of short- to medium-term price fluctuations and implied volatility across asset classes.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "systemic_leverage",
+      "name": "Systemic leverage",
+      "description": "Aggregate leverage in the financial system including borrowing by intermediaries and leveraged investors.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "policy_interest_rate",
+    "policy_communication",
+    "inflation_expectations",
+    "nominal_yield_curve",
+    "real_yield_level",
+    "term_premium_level",
+    "credit_spread_level",
+    "mortgage_borrowing_costs",
+    "housing_market_demand",
+    "equity_risk_premium",
+    "asset_allocation_tilt",
+    "cross_border_flows",
+    "exchange_rate_level",
+    "market_liquidity",
+    "market_volatility_level",
+    "systemic_leverage"
+  ],
+  "var_names": {
+    "policy_interest_rate": "Policy interest rate",
+    "policy_communication": "Monetary-policy communication tone",
+    "inflation_expectations": "Inflation expectations",
+    "nominal_yield_curve": "Nominal yield curve level",
+    "real_yield_level": "Real yield level",
+    "term_premium_level": "Term premium level",
+    "credit_spread_level": "Credit spread level",
+    "mortgage_borrowing_costs": "Mortgage borrowing costs",
+    "housing_market_demand": "Housing market demand",
+    "equity_risk_premium": "Equity risk premium",
+    "asset_allocation_tilt": "Asset allocation tilt",
+    "cross_border_flows": "Cross-border capital flow rate",
+    "exchange_rate_level": "Exchange rate level",
+    "market_liquidity": "Market liquidity",
+    "market_volatility_level": "Market volatility level",
+    "systemic_leverage": "Systemic leverage"
+  },
+  "impact_matrix": {
+    "policy_interest_rate": {
+      "policy_interest_rate": 0,
+      "policy_communication": 1,
+      "inflation_expectations": 2,
+      "nominal_yield_curve": 3,
+      "real_yield_level": 2,
+      "term_premium_level": 1,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_costs": 3,
+      "housing_market_demand": 2,
+      "equity_risk_premium": 2,
+      "asset_allocation_tilt": 2,
+      "cross_border_flows": 2,
+      "exchange_rate_level": 2,
+      "market_liquidity": 2,
+      "market_volatility_level": 1,
+      "systemic_leverage": 1
+    },
+    "policy_communication": {
+      "policy_interest_rate": 1,
+      "policy_communication": 0,
+      "inflation_expectations": 2,
+      "nominal_yield_curve": 2,
+      "real_yield_level": 1,
+      "term_premium_level": 1,
+      "credit_spread_level": 1,
+      "mortgage_borrowing_costs": 1,
+      "housing_market_demand": 1,
+      "equity_risk_premium": 1,
+      "asset_allocation_tilt": 1,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 1,
+      "market_liquidity": 1,
+      "market_volatility_level": 2,
+      "systemic_leverage": 0
+    },
+    "inflation_expectations": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 0,
+      "nominal_yield_curve": 3,
+      "real_yield_level": 2,
+      "term_premium_level": 0,
+      "credit_spread_level": 1,
+      "mortgage_borrowing_costs": 1,
+      "housing_market_demand": 1,
+      "equity_risk_premium": 1,
+      "asset_allocation_tilt": 1,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 1,
+      "market_liquidity": 0,
+      "market_volatility_level": 1,
+      "systemic_leverage": 0
+    },
+    "nominal_yield_curve": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 1,
+      "nominal_yield_curve": 0,
+      "real_yield_level": 1,
+      "term_premium_level": 0,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_costs": 3,
+      "housing_market_demand": 2,
+      "equity_risk_premium": 2,
+      "asset_allocation_tilt": 3,
+      "cross_border_flows": 2,
+      "exchange_rate_level": 2,
+      "market_liquidity": 1,
+      "market_volatility_level": 2,
+      "systemic_leverage": 1
+    },
+    "real_yield_level": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 0,
+      "nominal_yield_curve": 3,
+      "real_yield_level": 0,
+      "term_premium_level": 1,
+      "credit_spread_level": 1,
+      "mortgage_borrowing_costs": 2,
+      "housing_market_demand": 2,
+      "equity_risk_premium": 3,
+      "asset_allocation_tilt": 3,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 1,
+      "market_liquidity": 0,
+      "market_volatility_level": 1,
+      "systemic_leverage": 1
+    },
+    "term_premium_level": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 0,
+      "nominal_yield_curve": 3,
+      "real_yield_level": 0,
+      "term_premium_level": 0,
+      "credit_spread_level": 1,
+      "mortgage_borrowing_costs": 2,
+      "housing_market_demand": 1,
+      "equity_risk_premium": 2,
+      "asset_allocation_tilt": 2,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 1,
+      "market_liquidity": 1,
+      "market_volatility_level": 2,
+      "systemic_leverage": 1
+    },
+    "credit_spread_level": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 0,
+      "nominal_yield_curve": 1,
+      "real_yield_level": 0,
+      "term_premium_level": 0,
+      "credit_spread_level": 0,
+      "mortgage_borrowing_costs": 2,
+      "housing_market_demand": 2,
+      "equity_risk_premium": 2,
+      "asset_allocation_tilt": 2,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 0,
+      "market_liquidity": 2,
+      "market_volatility_level": 2,
+      "systemic_leverage": 2
+    },
+    "mortgage_borrowing_costs": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 0,
+      "nominal_yield_curve": 0,
+      "real_yield_level": 0,
+      "term_premium_level": 0,
+      "credit_spread_level": 0,
+      "mortgage_borrowing_costs": 0,
+      "housing_market_demand": 3,
+      "equity_risk_premium": 0,
+      "asset_allocation_tilt": 1,
+      "cross_border_flows": 0,
+      "exchange_rate_level": 0,
+      "market_liquidity": 0,
+      "market_volatility_level": 0,
+      "systemic_leverage": 1
+    },
+    "housing_market_demand": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 0,
+      "nominal_yield_curve": 0,
+      "real_yield_level": 0,
+      "term_premium_level": 0,
+      "credit_spread_level": 0,
+      "mortgage_borrowing_costs": 0,
+      "housing_market_demand": 0,
+      "equity_risk_premium": 0,
+      "asset_allocation_tilt": 1,
+      "cross_border_flows": 0,
+      "exchange_rate_level": 0,
+      "market_liquidity": 0,
+      "market_volatility_level": 0,
+      "systemic_leverage": 0
+    },
+    "equity_risk_premium": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 0,
+      "nominal_yield_curve": 1,
+      "real_yield_level": 2,
+      "term_premium_level": 1,
+      "credit_spread_level": 1,
+      "mortgage_borrowing_costs": 0,
+      "housing_market_demand": 0,
+      "equity_risk_premium": 0,
+      "asset_allocation_tilt": 3,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 0,
+      "market_liquidity": 1,
+      "market_volatility_level": 2,
+      "systemic_leverage": 1
+    },
+    "asset_allocation_tilt": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 0,
+      "nominal_yield_curve": 2,
+      "real_yield_level": 2,
+      "term_premium_level": 1,
+      "credit_spread_level": 1,
+      "mortgage_borrowing_costs": 0,
+      "housing_market_demand": 1,
+      "equity_risk_premium": 3,
+      "asset_allocation_tilt": 0,
+      "cross_border_flows": 3,
+      "exchange_rate_level": 2,
+      "market_liquidity": 2,
+      "market_volatility_level": 2,
+      "systemic_leverage": 1
+    },
+    "cross_border_flows": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 0,
+      "nominal_yield_curve": 1,
+      "real_yield_level": 0,
+      "term_premium_level": 0,
+      "credit_spread_level": 0,
+      "mortgage_borrowing_costs": 0,
+      "housing_market_demand": 0,
+      "equity_risk_premium": 0,
+      "asset_allocation_tilt": 2,
+      "cross_border_flows": 0,
+      "exchange_rate_level": 3,
+      "market_liquidity": 2,
+      "market_volatility_level": 1,
+      "systemic_leverage": 1
+    },
+    "exchange_rate_level": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 2,
+      "nominal_yield_curve": 0,
+      "real_yield_level": 0,
+      "term_premium_level": 0,
+      "credit_spread_level": 0,
+      "mortgage_borrowing_costs": 0,
+      "housing_market_demand": 0,
+      "equity_risk_premium": 1,
+      "asset_allocation_tilt": 1,
+      "cross_border_flows": 2,
+      "exchange_rate_level": 0,
+      "market_liquidity": 0,
+      "market_volatility_level": 1,
+      "systemic_leverage": 0
+    },
+    "market_liquidity": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 0,
+      "nominal_yield_curve": 1,
+      "real_yield_level": 0,
+      "term_premium_level": 1,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_costs": 0,
+      "housing_market_demand": 0,
+      "equity_risk_premium": 1,
+      "asset_allocation_tilt": 1,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 0,
+      "market_liquidity": 0,
+      "market_volatility_level": 3,
+      "systemic_leverage": 2
+    },
+    "market_volatility_level": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 1,
+      "nominal_yield_curve": 1,
+      "real_yield_level": 0,
+      "term_premium_level": 1,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_costs": 0,
+      "housing_market_demand": 0,
+      "equity_risk_premium": 2,
+      "asset_allocation_tilt": 2,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 1,
+      "market_liquidity": 3,
+      "market_volatility_level": 0,
+      "systemic_leverage": 1
+    },
+    "systemic_leverage": {
+      "policy_interest_rate": 0,
+      "policy_communication": 0,
+      "inflation_expectations": 0,
+      "nominal_yield_curve": 1,
+      "real_yield_level": 0,
+      "term_premium_level": 1,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_costs": 0,
+      "housing_market_demand": 0,
+      "equity_risk_premium": 1,
+      "asset_allocation_tilt": 1,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 0,
+      "market_liquidity": 2,
+      "market_volatility_level": 2,
+      "systemic_leverage": 0
+    }
+  },
+  "AS": {
+    "policy_interest_rate": 28,
+    "policy_communication": 17,
+    "inflation_expectations": 13,
+    "nominal_yield_curve": 22,
+    "real_yield_level": 19,
+    "term_premium_level": 17,
+    "credit_spread_level": 16,
+    "mortgage_borrowing_costs": 5,
+    "housing_market_demand": 1,
+    "equity_risk_premium": 13,
+    "asset_allocation_tilt": 20,
+    "cross_border_flows": 10,
+    "exchange_rate_level": 7,
+    "market_liquidity": 12,
+    "market_volatility_level": 15,
+    "systemic_leverage": 11
+  },
+  "PS": {
+    "policy_interest_rate": 1,
+    "policy_communication": 1,
+    "inflation_expectations": 8,
+    "nominal_yield_curve": 22,
+    "real_yield_level": 10,
+    "term_premium_level": 8,
+    "credit_spread_level": 16,
+    "mortgage_borrowing_costs": 14,
+    "housing_market_demand": 15,
+    "equity_risk_premium": 21,
+    "asset_allocation_tilt": 26,
+    "cross_border_flows": 18,
+    "exchange_rate_level": 14,
+    "market_liquidity": 17,
+    "market_volatility_level": 22,
+    "systemic_leverage": 13
+  },
+  "med_AS": 14.0,
+  "med_PS": 14.5,
+  "roles": [
+    {
+      "variable": "asset_allocation_tilt",
+      "name": "Asset allocation tilt",
+      "AS": 20,
+      "PS": 26,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 520,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "nominal_yield_curve",
+      "name": "Nominal yield curve level",
+      "AS": 22,
+      "PS": 22,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 484,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_volatility_level",
+      "name": "Market volatility level",
+      "AS": 15,
+      "PS": 22,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 330,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "equity_risk_premium",
+      "name": "Equity risk premium",
+      "AS": 13,
+      "PS": 21,
+      "Q=AS/PS": 0.62,
+      "P=AS*PS": 273,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "credit_spread_level",
+      "name": "Credit spread level",
+      "AS": 16,
+      "PS": 16,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 256,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 12,
+      "PS": 17,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 204,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "real_yield_level",
+      "name": "Real yield level",
+      "AS": 19,
+      "PS": 10,
+      "Q=AS/PS": 1.9,
+      "P=AS*PS": 190,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flow rate",
+      "AS": 10,
+      "PS": 18,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 180,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "systemic_leverage",
+      "name": "Systemic leverage",
+      "AS": 11,
+      "PS": 13,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 143,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "term_premium_level",
+      "name": "Term premium level",
+      "AS": 17,
+      "PS": 8,
+      "Q=AS/PS": 2.12,
+      "P=AS*PS": 136,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 13,
+      "PS": 8,
+      "Q=AS/PS": 1.62,
+      "P=AS*PS": 104,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "exchange_rate_level",
+      "name": "Exchange rate level",
+      "AS": 7,
+      "PS": 14,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 98,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "mortgage_borrowing_costs",
+      "name": "Mortgage borrowing costs",
+      "AS": 5,
+      "PS": 14,
+      "Q=AS/PS": 0.36,
+      "P=AS*PS": 70,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "policy_interest_rate",
+      "name": "Policy interest rate",
+      "AS": 28,
+      "PS": 1,
+      "Q=AS/PS": 28.0,
+      "P=AS*PS": 28,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "policy_communication",
+      "name": "Monetary-policy communication tone",
+      "AS": 17,
+      "PS": 1,
+      "Q=AS/PS": 17.0,
+      "P=AS*PS": 17,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "housing_market_demand",
+      "name": "Housing market demand",
+      "AS": 1,
+      "PS": 15,
+      "Q=AS/PS": 0.07,
+      "P=AS*PS": 15,
+      "role": "reactive (sensor)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "policy_interest_rate",
+        "name": "Policy interest rate",
+        "kind": "driver",
+        "AS": 28,
+        "PS": 1
+      },
+      {
+        "id": "policy_communication",
+        "name": "Monetary-policy communication tone",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 1
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 13,
+        "PS": 8
+      },
+      {
+        "id": "nominal_yield_curve",
+        "name": "Nominal yield curve level",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 22
+      },
+      {
+        "id": "real_yield_level",
+        "name": "Real yield level",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 10
+      },
+      {
+        "id": "term_premium_level",
+        "name": "Term premium level",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 8
+      },
+      {
+        "id": "credit_spread_level",
+        "name": "Credit spread level",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 16
+      },
+      {
+        "id": "mortgage_borrowing_costs",
+        "name": "Mortgage borrowing costs",
+        "kind": "environment",
+        "AS": 5,
+        "PS": 14
+      },
+      {
+        "id": "housing_market_demand",
+        "name": "Housing market demand",
+        "kind": "stock",
+        "AS": 1,
+        "PS": 15
+      },
+      {
+        "id": "equity_risk_premium",
+        "name": "Equity risk premium",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 21
+      },
+      {
+        "id": "asset_allocation_tilt",
+        "name": "Asset allocation tilt",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 26
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flow rate",
+        "kind": "flow",
+        "AS": 10,
+        "PS": 18
+      },
+      {
+        "id": "exchange_rate_level",
+        "name": "Exchange rate level",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 14
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 17
+      },
+      {
+        "id": "market_volatility_level",
+        "name": "Market volatility level",
+        "kind": "perception",
+        "AS": 15,
+        "PS": 22
+      },
+      {
+        "id": "systemic_leverage",
+        "name": "Systemic leverage",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 13
+      }
+    ],
+    "edges": [
+      {
+        "source": "policy_interest_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "nominal_yield_curve",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "mortgage_borrowing_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "housing_market_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "asset_allocation_tilt",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_communication",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_communication",
+        "target": "nominal_yield_curve",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_communication",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "nominal_yield_curve",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_yield_curve",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_curve",
+        "target": "mortgage_borrowing_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_curve",
+        "target": "housing_market_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_yield_curve",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_curve",
+        "target": "asset_allocation_tilt",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_yield_curve",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_curve",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_curve",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "nominal_yield_curve",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "mortgage_borrowing_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "housing_market_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "equity_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "asset_allocation_tilt",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "nominal_yield_curve",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "mortgage_borrowing_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "asset_allocation_tilt",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "mortgage_borrowing_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "housing_market_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "asset_allocation_tilt",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "systemic_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "mortgage_borrowing_costs",
+        "target": "housing_market_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "asset_allocation_tilt",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_allocation_tilt",
+        "target": "nominal_yield_curve",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_allocation_tilt",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_allocation_tilt",
+        "target": "equity_risk_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "asset_allocation_tilt",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "asset_allocation_tilt",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_allocation_tilt",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_allocation_tilt",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "asset_allocation_tilt",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "exchange_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "market_volatility_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "systemic_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "asset_allocation_tilt",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility_level",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "systemic_leverage",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_leverage",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_leverage",
+        "target": "market_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_fed_hawkish_tightening",
+      "title": "Fed continues hawkish tightening",
+      "description": "Ongoing Fed rate-hike cycle and follow-up policy moves as markets price further increases after the recent unanimous hike and Warsh's hawkish signals.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-19",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_communication",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_yield_curve",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "real_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "mortgage_borrowing_costs",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "housing_market_demand",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "exchange_rate_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "asset_allocation_tilt",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Fed delivers first rate hike since 2023; Warsh signals seriousness and markets expect more (2026-09-18, 2026-09-19)."
+    },
+    {
+      "id": "persistent_high_10y_treasury_yields",
+      "title": "10‑year Treasury stays elevated (>~5%)",
+      "description": "Sustained high long‑term US yields as markets reprice inflation, policy and real yields after recent spikes above multi‑year levels.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-19",
+        "end": "2026-11-30",
+        "label": "6-10 weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "nominal_yield_curve",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "real_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "mortgage_borrowing_costs",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "housing_market_demand",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "asset_allocation_tilt",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Ten-year hit highest since 2007; headlines expect 10‑year to get above and stay above 5% (2026-09-18)."
+    },
+    {
+      "id": "boj_followthrough_tightening",
+      "title": "Bank of Japan tightening follow‑through",
+      "description": "BOJ continues adjusting policy after raising rates to 31‑year highs, driving cross‑market reallocation and yen volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-19",
+        "end": "2026-11-30",
+        "label": "next 2-3 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_communication",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "nominal_yield_curve",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "BOJ raised rates to 31‑year high; markets flipped script and yen slumped after move (2026-09-18, 2026-09-19)."
+    },
+    {
+      "id": "bank_of_england_hike_risk",
+      "title": "BoE shifts toward hikes / possible rate rises",
+      "description": "BoE's tone turning hawkish and inflation set to top 4% raises prospect of tightening, affecting gilts and UK borrowing costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-19",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.55,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_communication",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_yield_curve",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "mortgage_borrowing_costs",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "housing_market_demand",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "BoE shifts tone toward rate hikes as inflation set to top 4% (2026-09-18 headlines)."
+    },
+    {
+      "id": "boe_gilt_unwind_rewrite",
+      "title": "BoE halts long‑dated gilt sales / QE unwind rewrite",
+      "description": "BoE stops long‑dated gilt sales and revises QE unwind plans, directly affecting term premia and long‑end liquidity.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-18",
+        "start": null,
+        "end": null,
+        "label": "immediate"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "nominal_yield_curve",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "BoE halts long‑dated gilt sales and rewrites plan to unwind QE (2026-09-18)."
+    },
+    {
+      "id": "china_us_treasury_holdings_decline",
+      "title": "Continued decline in China's US‑Treasury holdings",
+      "description": "Ongoing reduction in Chinese holdings of US Treasuries lowers foreign demand and pressures yields and cross‑border flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-19",
+        "end": "2027-03-31",
+        "label": "next 6 months"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "nominal_yield_curve",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_level",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "China's US Treasury holdings fall to lowest level since 2008, implying continued withdrawal (2026-09-18)."
+    },
+    {
+      "id": "mortgage_rates_rise_to_seven_pct",
+      "title": "Mortgage rates approach ~7%",
+      "description": "Consumer mortgage costs climb toward seven percent as long‑term and real yields rise, squeezing housing demand and builders.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-19",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.55,
+      "affected": [
+        {
+          "variable_id": "mortgage_borrowing_costs",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "housing_market_demand",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines warn of a 7% mortgage and homebuilders are under pressure from rising rates (2026-09-18, 2026-09-19)."
+    },
+    {
+      "id": "private_credit_pension_annuity_risk",
+      "title": "Private‑credit spillover into pensions/annuities",
+      "description": "Growing private‑credit exposure to annuities and pensions raises systemic credit‑risk and potential market stress if defaults or mark‑downs occur.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-19",
+        "end": "2027-03-31",
+        "label": "next 6 months"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "systemic_leverage",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines flag risks from private credit's involvement in annuities and pensions and a new credit debacle (2026-09-18, 2026-09-19)."
+    },
+    {
+      "id": "hawkish_policy_communication_spike",
+      "title": "Sustained hawkish central‑bank communication",
+      "description": "Consistently terse, hawkish central‑bank messaging (e.g., short Fed statements, Warsh comments) shifts market expectations and volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-19",
+        "end": "2026-11-30",
+        "label": "next 2 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "policy_communication",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_yield_curve",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Fed terse 130‑word statement and Warsh comments; markets read hawkish signals (2026-09-18, 2026-09-19)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_fed_hawkish_tightening",
+      "title": "Fed continues hawkish tightening",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-09-19",
+      "end": "2026-12-31",
+      "probability": 0.75,
+      "impact_score": 333.0,
+      "expected_impact": 249.75,
+      "event_PS": 13.391,
+      "event_AS": 14.478,
+      "n_vars": 10,
+      "affected_ids": "policy_interest_rate, policy_communication, nominal_yield_curve, real_yield_level, inflation_expectations, mortgage_borrowing_costs, housing_market_demand, exchange_rate_level, asset_allocation_tilt, equity_risk_premium",
+      "rationale": "Fed delivers first rate hike since 2023; Warsh signals seriousness and markets expect more (2026-09-18, 2026-09-19)."
+    },
+    {
+      "id": "persistent_high_10y_treasury_yields",
+      "title": "10‑year Treasury stays elevated (>~5%)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6-10 weeks",
+      "date": null,
+      "start": "2026-09-19",
+      "end": "2026-11-30",
+      "probability": 0.65,
+      "impact_score": 245.0,
+      "expected_impact": 159.25,
+      "event_PS": 16.389,
+      "event_AS": 13.611,
+      "n_vars": 7,
+      "affected_ids": "nominal_yield_curve, real_yield_level, term_premium_level, market_volatility_level, mortgage_borrowing_costs, housing_market_demand, asset_allocation_tilt",
+      "rationale": "Ten-year hit highest since 2007; headlines expect 10‑year to get above and stay above 5% (2026-09-18)."
+    },
+    {
+      "id": "bank_of_england_hike_risk",
+      "title": "BoE shifts toward hikes / possible rate rises",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-09-19",
+      "end": "2026-12-31",
+      "probability": 0.55,
+      "impact_score": 146.0,
+      "expected_impact": 80.3,
+      "event_PS": 10.6,
+      "event_AS": 14.6,
+      "n_vars": 5,
+      "affected_ids": "policy_interest_rate, policy_communication, nominal_yield_curve, mortgage_borrowing_costs, housing_market_demand",
+      "rationale": "BoE shifts tone toward rate hikes as inflation set to top 4% (2026-09-18 headlines)."
+    },
+    {
+      "id": "hawkish_policy_communication_spike",
+      "title": "Sustained hawkish central‑bank communication",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 months",
+      "date": null,
+      "start": "2026-09-19",
+      "end": "2026-11-30",
+      "probability": 0.8,
+      "impact_score": 137.0,
+      "expected_impact": 109.6,
+      "event_PS": 13.5,
+      "event_AS": 17.125,
+      "n_vars": 4,
+      "affected_ids": "policy_communication, market_volatility_level, nominal_yield_curve, market_liquidity",
+      "rationale": "Fed terse 130‑word statement and Warsh comments; markets read hawkish signals (2026-09-18, 2026-09-19)."
+    },
+    {
+      "id": "boj_followthrough_tightening",
+      "title": "Bank of Japan tightening follow‑through",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2-3 months",
+      "date": null,
+      "start": "2026-09-19",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 129.0,
+      "expected_impact": 77.4,
+      "event_PS": 11.125,
+      "event_AS": 16.125,
+      "n_vars": 5,
+      "affected_ids": "policy_interest_rate, policy_communication, cross_border_flows, exchange_rate_level, nominal_yield_curve",
+      "rationale": "BOJ raised rates to 31‑year high; markets flipped script and yen slumped after move (2026-09-18, 2026-09-19)."
+    },
+    {
+      "id": "boe_gilt_unwind_rewrite",
+      "title": "BoE halts long‑dated gilt sales / QE unwind rewrite",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "immediate",
+      "date": "2026-09-18",
+      "start": null,
+      "end": null,
+      "probability": 0.7,
+      "impact_score": 119.0,
+      "expected_impact": 83.3,
+      "event_PS": 14.571,
+      "event_AS": 17.0,
+      "n_vars": 3,
+      "affected_ids": "term_premium_level, nominal_yield_curve, market_liquidity",
+      "rationale": "BoE halts long‑dated gilt sales and rewrites plan to unwind QE (2026-09-18)."
+    },
+    {
+      "id": "private_credit_pension_annuity_risk",
+      "title": "Private‑credit spillover into pensions/annuities",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 months",
+      "date": null,
+      "start": "2026-09-19",
+      "end": "2027-03-31",
+      "probability": 0.5,
+      "impact_score": 100.0,
+      "expected_impact": 50.0,
+      "event_PS": 16.857,
+      "event_AS": 14.286,
+      "n_vars": 3,
+      "affected_ids": "credit_spread_level, systemic_leverage, market_volatility_level",
+      "rationale": "Headlines flag risks from private credit's involvement in annuities and pensions and a new credit debacle (2026-09-18, 2026-09-19)."
+    },
+    {
+      "id": "china_us_treasury_holdings_decline",
+      "title": "Continued decline in China's US‑Treasury holdings",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 months",
+      "date": null,
+      "start": "2026-09-19",
+      "end": "2027-03-31",
+      "probability": 0.65,
+      "impact_score": 81.0,
+      "expected_impact": 52.65,
+      "event_PS": 18.667,
+      "event_AS": 13.5,
+      "n_vars": 3,
+      "affected_ids": "cross_border_flows, nominal_yield_curve, exchange_rate_level",
+      "rationale": "China's US Treasury holdings fall to lowest level since 2008, implying continued withdrawal (2026-09-18)."
+    },
+    {
+      "id": "mortgage_rates_rise_to_seven_pct",
+      "title": "Mortgage rates approach ~7%",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-09-19",
+      "end": "2026-12-31",
+      "probability": 0.55,
+      "impact_score": 34.0,
+      "expected_impact": 18.7,
+      "event_PS": 14.714,
+      "event_AS": 4.857,
+      "n_vars": 3,
+      "affected_ids": "mortgage_borrowing_costs, housing_market_demand, credit_spread_level",
+      "rationale": "Headlines warn of a 7% mortgage and homebuilders are under pressure from rising rates (2026-09-18, 2026-09-19)."
+    }
+  ]
+}
