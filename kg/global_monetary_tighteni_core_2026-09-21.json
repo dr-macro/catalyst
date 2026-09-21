@@ -1,0 +1,1579 @@
+{
+  "label": "global_monetary_tighteni",
+  "as_of": "2026-09-21",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-21T01:34:33",
+  "system_description": {
+    "narrative_title": "Global interest-rate shock and market repricing",
+    "narrative_summary": "Major central banks are tightening policy or signaling higher-for-longer rates, triggering a broad repricing across bonds, equities, FX and credit. As an open system, policy decisions, market expectations and cross-border capital flows exchange information and resources with firms, households and investors through reinforcing and balancing feedbacks: higher policy rates lift yields, tighten credit and depress risk assets, which in turn alter inflation and growth expectations and feed back into policy. External actors and shocks (commodity supply, fiscal moves, China’s Treasury flows, FX moves) act as inputs that propagate through interconnected markets, creating contagion and adjustment dynamics.",
+    "scope": "Central-bank policy (rates, guidance, balance sheets), government bond markets and yields, equity markets and investor positioning, FX and international capital flows, credit and corporate financing conditions, housing/mortgages, major market participants (banks, asset managers, sovereign holders), and inflation/expectations dynamics.",
+    "super_system": "Global macroeconomic system (aggregate demand and supply, trade, commodities, fiscal policy and geopolitics).",
+    "adjacent_subsystems": [
+      "Real economy: households, labor markets and consumption",
+      "Banking and credit intermediation (lending standards, mortgage markets)",
+      "Corporate finance and private markets (private equity, M&A, leverage)",
+      "International capital flows and FX markets"
+    ],
+    "evidence_headlines": [
+      "Warsh Takes Hawkish Turn With Rate Rise and Hints of More to Come",
+      "Fed Delivers First Rate Hike in Years With Unanimous Vote",
+      "Yen sinks after Bank of Japan raises rates to highest level since 1995",
+      "US 10-Year Likely Gets Above and Stays Above 5% Ahead",
+      "China’s US Treasury holdings fall to lowest level since 2008",
+      "Rising rates throw a spanner in investment bankers’ spreadsheets"
+    ]
+  },
+  "variables": [
+    {
+      "id": "policy_rate_level",
+      "name": "Policy interest rate level",
+      "description": "The prevailing short-term policy interest rate set by monetary authorities, measured on a continuous scale.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_forward_guidance",
+      "name": "Policy forward guidance intensity",
+      "description": "The strength and clarity of signals about future policy path that influence market expectations and behavior over time.",
+      "kind": "perception",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "cb_balance_sheet_size",
+      "name": "Central bank balance-sheet size",
+      "description": "The total scale of central-bank assets and liabilities (e.g., asset holdings) that affects liquidity and reserves.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "gov_bond_yield_curve",
+      "name": "Government bond yield curve level",
+      "description": "The spectrum of sovereign bond yields across maturities representing the market price of risk-free time horizons.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The additional yield investors require for holding longer-maturity bonds versus rolling shorter maturities, measured continuously.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spreads",
+      "name": "Credit spreads",
+      "description": "The yield differential between non-government debt and comparable-maturity sovereign debt representing credit risk premia.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation_level",
+      "name": "Equity market valuation level",
+      "description": "Aggregate measures of equity valuation (e.g., market cap to earnings) capturing how risk assets are priced relative to fundamentals.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "The aggregate willingness of investors to hold risky assets, reflected in positioning, flows into risk products, and leverage.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flow rate",
+      "description": "The net rate of international private and portfolio capital moving between jurisdictions over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_level",
+      "name": "Exchange rate level",
+      "description": "The price of one currency relative to a broad basket of others, measured continuously and reflecting external competitiveness.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market and household consensus about future inflation rates over various horizons that guide pricing and wage-setting.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "realized_inflation_rate",
+      "name": "Realized inflation rate",
+      "description": "The observed rate of change in a broad price index (e.g., CPI) over a specified period.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "output_gap",
+      "name": "Output gap / growth momentum",
+      "description": "The difference between actual economic output and potential output, or the current pace of aggregate demand growth.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_supply_tightness",
+      "name": "Credit supply tightness",
+      "description": "The degree of restrictiveness in lending standards and availability of new credit to firms and households.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "household_debt_service",
+      "name": "Household debt service burden",
+      "description": "The share of household income required to service interest and principal payments on outstanding debt.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity conditions",
+      "description": "The ease and cost of trading financial assets, measured by bid-ask spreads, depth, and transaction costs across markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "policy_rate_level",
+    "policy_forward_guidance",
+    "cb_balance_sheet_size",
+    "gov_bond_yield_curve",
+    "term_premium",
+    "credit_spreads",
+    "equity_valuation_level",
+    "investor_risk_appetite",
+    "cross_border_flows",
+    "exchange_rate_level",
+    "inflation_expectations",
+    "realized_inflation_rate",
+    "output_gap",
+    "credit_supply_tightness",
+    "household_debt_service",
+    "market_liquidity"
+  ],
+  "var_names": {
+    "policy_rate_level": "Policy interest rate level",
+    "policy_forward_guidance": "Policy forward guidance intensity",
+    "cb_balance_sheet_size": "Central bank balance-sheet size",
+    "gov_bond_yield_curve": "Government bond yield curve level",
+    "term_premium": "Term premium",
+    "credit_spreads": "Credit spreads",
+    "equity_valuation_level": "Equity market valuation level",
+    "investor_risk_appetite": "Investor risk appetite",
+    "cross_border_flows": "Cross-border capital flow rate",
+    "exchange_rate_level": "Exchange rate level",
+    "inflation_expectations": "Inflation expectations",
+    "realized_inflation_rate": "Realized inflation rate",
+    "output_gap": "Output gap / growth momentum",
+    "credit_supply_tightness": "Credit supply tightness",
+    "household_debt_service": "Household debt service burden",
+    "market_liquidity": "Market liquidity conditions"
+  },
+  "impact_matrix": {
+    "policy_rate_level": {
+      "policy_rate_level": 0,
+      "policy_forward_guidance": 1,
+      "cb_balance_sheet_size": 0,
+      "gov_bond_yield_curve": 3,
+      "term_premium": 1,
+      "credit_spreads": 2,
+      "equity_valuation_level": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2,
+      "exchange_rate_level": 2,
+      "inflation_expectations": 2,
+      "realized_inflation_rate": 2,
+      "output_gap": 2,
+      "credit_supply_tightness": 2,
+      "household_debt_service": 3,
+      "market_liquidity": 2
+    },
+    "policy_forward_guidance": {
+      "policy_rate_level": 1,
+      "policy_forward_guidance": 0,
+      "cb_balance_sheet_size": 0,
+      "gov_bond_yield_curve": 3,
+      "term_premium": 2,
+      "credit_spreads": 2,
+      "equity_valuation_level": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 1,
+      "inflation_expectations": 3,
+      "realized_inflation_rate": 0,
+      "output_gap": 0,
+      "credit_supply_tightness": 1,
+      "household_debt_service": 0,
+      "market_liquidity": 1
+    },
+    "cb_balance_sheet_size": {
+      "policy_rate_level": 0,
+      "policy_forward_guidance": 0,
+      "cb_balance_sheet_size": 0,
+      "gov_bond_yield_curve": 2,
+      "term_premium": 2,
+      "credit_spreads": 2,
+      "equity_valuation_level": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 1,
+      "inflation_expectations": 1,
+      "realized_inflation_rate": 0,
+      "output_gap": 1,
+      "credit_supply_tightness": 2,
+      "household_debt_service": 0,
+      "market_liquidity": 3
+    },
+    "gov_bond_yield_curve": {
+      "policy_rate_level": 1,
+      "policy_forward_guidance": 1,
+      "cb_balance_sheet_size": 1,
+      "gov_bond_yield_curve": 0,
+      "term_premium": 2,
+      "credit_spreads": 2,
+      "equity_valuation_level": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2,
+      "exchange_rate_level": 2,
+      "inflation_expectations": 1,
+      "realized_inflation_rate": 0,
+      "output_gap": 0,
+      "credit_supply_tightness": 2,
+      "household_debt_service": 1,
+      "market_liquidity": 2
+    },
+    "term_premium": {
+      "policy_rate_level": 0,
+      "policy_forward_guidance": 1,
+      "cb_balance_sheet_size": 1,
+      "gov_bond_yield_curve": 3,
+      "term_premium": 0,
+      "credit_spreads": 1,
+      "equity_valuation_level": 1,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 0,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "output_gap": 0,
+      "credit_supply_tightness": 0,
+      "household_debt_service": 0,
+      "market_liquidity": 2
+    },
+    "credit_spreads": {
+      "policy_rate_level": 0,
+      "policy_forward_guidance": 0,
+      "cb_balance_sheet_size": 1,
+      "gov_bond_yield_curve": 1,
+      "term_premium": 0,
+      "credit_spreads": 0,
+      "equity_valuation_level": 2,
+      "investor_risk_appetite": 3,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 0,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "output_gap": 1,
+      "credit_supply_tightness": 3,
+      "household_debt_service": 1,
+      "market_liquidity": 2
+    },
+    "equity_valuation_level": {
+      "policy_rate_level": 0,
+      "policy_forward_guidance": 0,
+      "cb_balance_sheet_size": 1,
+      "gov_bond_yield_curve": 1,
+      "term_premium": 0,
+      "credit_spreads": 0,
+      "equity_valuation_level": 0,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 1,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "output_gap": 1,
+      "credit_supply_tightness": 0,
+      "household_debt_service": 0,
+      "market_liquidity": 2
+    },
+    "investor_risk_appetite": {
+      "policy_rate_level": 0,
+      "policy_forward_guidance": 1,
+      "cb_balance_sheet_size": 1,
+      "gov_bond_yield_curve": 1,
+      "term_premium": 1,
+      "credit_spreads": 3,
+      "equity_valuation_level": 3,
+      "investor_risk_appetite": 0,
+      "cross_border_flows": 2,
+      "exchange_rate_level": 1,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "output_gap": 1,
+      "credit_supply_tightness": 2,
+      "household_debt_service": 0,
+      "market_liquidity": 2
+    },
+    "cross_border_flows": {
+      "policy_rate_level": 0,
+      "policy_forward_guidance": 0,
+      "cb_balance_sheet_size": 0,
+      "gov_bond_yield_curve": 1,
+      "term_premium": 0,
+      "credit_spreads": 1,
+      "equity_valuation_level": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 0,
+      "exchange_rate_level": 3,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "output_gap": 0,
+      "credit_supply_tightness": 1,
+      "household_debt_service": 0,
+      "market_liquidity": 2
+    },
+    "exchange_rate_level": {
+      "policy_rate_level": 0,
+      "policy_forward_guidance": 0,
+      "cb_balance_sheet_size": 0,
+      "gov_bond_yield_curve": 1,
+      "term_premium": 0,
+      "credit_spreads": 0,
+      "equity_valuation_level": 2,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 0,
+      "inflation_expectations": 2,
+      "realized_inflation_rate": 2,
+      "output_gap": 1,
+      "credit_supply_tightness": 0,
+      "household_debt_service": 0,
+      "market_liquidity": 1
+    },
+    "inflation_expectations": {
+      "policy_rate_level": 2,
+      "policy_forward_guidance": 1,
+      "cb_balance_sheet_size": 0,
+      "gov_bond_yield_curve": 1,
+      "term_premium": 0,
+      "credit_spreads": 0,
+      "equity_valuation_level": 0,
+      "investor_risk_appetite": 0,
+      "cross_border_flows": 0,
+      "exchange_rate_level": 1,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 2,
+      "output_gap": 1,
+      "credit_supply_tightness": 0,
+      "household_debt_service": 0,
+      "market_liquidity": 0
+    },
+    "realized_inflation_rate": {
+      "policy_rate_level": 3,
+      "policy_forward_guidance": 0,
+      "cb_balance_sheet_size": 0,
+      "gov_bond_yield_curve": 1,
+      "term_premium": 0,
+      "credit_spreads": 0,
+      "equity_valuation_level": 0,
+      "investor_risk_appetite": 0,
+      "cross_border_flows": 0,
+      "exchange_rate_level": 1,
+      "inflation_expectations": 3,
+      "realized_inflation_rate": 0,
+      "output_gap": 2,
+      "credit_supply_tightness": 0,
+      "household_debt_service": 2,
+      "market_liquidity": 0
+    },
+    "output_gap": {
+      "policy_rate_level": 1,
+      "policy_forward_guidance": 0,
+      "cb_balance_sheet_size": 0,
+      "gov_bond_yield_curve": 1,
+      "term_premium": 0,
+      "credit_spreads": 1,
+      "equity_valuation_level": 1,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 0,
+      "exchange_rate_level": 0,
+      "inflation_expectations": 2,
+      "realized_inflation_rate": 2,
+      "output_gap": 0,
+      "credit_supply_tightness": 1,
+      "household_debt_service": 1,
+      "market_liquidity": 0
+    },
+    "credit_supply_tightness": {
+      "policy_rate_level": 0,
+      "policy_forward_guidance": 0,
+      "cb_balance_sheet_size": 0,
+      "gov_bond_yield_curve": 0,
+      "term_premium": 0,
+      "credit_spreads": 1,
+      "equity_valuation_level": 0,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 0,
+      "exchange_rate_level": 0,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "output_gap": 3,
+      "credit_supply_tightness": 0,
+      "household_debt_service": 1,
+      "market_liquidity": 1
+    },
+    "household_debt_service": {
+      "policy_rate_level": 0,
+      "policy_forward_guidance": 0,
+      "cb_balance_sheet_size": 0,
+      "gov_bond_yield_curve": 0,
+      "term_premium": 0,
+      "credit_spreads": 0,
+      "equity_valuation_level": 0,
+      "investor_risk_appetite": 0,
+      "cross_border_flows": 0,
+      "exchange_rate_level": 0,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "output_gap": 2,
+      "credit_supply_tightness": 0,
+      "household_debt_service": 0,
+      "market_liquidity": 0
+    },
+    "market_liquidity": {
+      "policy_rate_level": 0,
+      "policy_forward_guidance": 0,
+      "cb_balance_sheet_size": 1,
+      "gov_bond_yield_curve": 2,
+      "term_premium": 1,
+      "credit_spreads": 2,
+      "equity_valuation_level": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 1,
+      "exchange_rate_level": 0,
+      "inflation_expectations": 0,
+      "realized_inflation_rate": 0,
+      "output_gap": 0,
+      "credit_supply_tightness": 1,
+      "household_debt_service": 0,
+      "market_liquidity": 0
+    }
+  },
+  "AS": {
+    "policy_rate_level": 28,
+    "policy_forward_guidance": 19,
+    "cb_balance_sheet_size": 19,
+    "gov_bond_yield_curve": 21,
+    "term_premium": 11,
+    "credit_spreads": 15,
+    "equity_valuation_level": 9,
+    "investor_risk_appetite": 18,
+    "cross_border_flows": 11,
+    "exchange_rate_level": 11,
+    "inflation_expectations": 8,
+    "realized_inflation_rate": 12,
+    "output_gap": 11,
+    "credit_supply_tightness": 7,
+    "household_debt_service": 2,
+    "market_liquidity": 12
+  },
+  "PS": {
+    "policy_rate_level": 8,
+    "policy_forward_guidance": 5,
+    "cb_balance_sheet_size": 6,
+    "gov_bond_yield_curve": 21,
+    "term_premium": 9,
+    "credit_spreads": 17,
+    "equity_valuation_level": 20,
+    "investor_risk_appetite": 21,
+    "cross_border_flows": 13,
+    "exchange_rate_level": 13,
+    "inflation_expectations": 14,
+    "realized_inflation_rate": 8,
+    "output_gap": 15,
+    "credit_supply_tightness": 15,
+    "household_debt_service": 9,
+    "market_liquidity": 20
+  },
+  "med_AS": 11.5,
+  "med_PS": 13.5,
+  "roles": [
+    {
+      "variable": "gov_bond_yield_curve",
+      "name": "Government bond yield curve level",
+      "AS": 21,
+      "PS": 21,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 441,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 18,
+      "PS": 21,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 378,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "credit_spreads",
+      "name": "Credit spreads",
+      "AS": 15,
+      "PS": 17,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 255,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity conditions",
+      "AS": 12,
+      "PS": 20,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 240,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_level",
+      "name": "Policy interest rate level",
+      "AS": 28,
+      "PS": 8,
+      "Q=AS/PS": 3.5,
+      "P=AS*PS": 224,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "equity_valuation_level",
+      "name": "Equity market valuation level",
+      "AS": 9,
+      "PS": 20,
+      "Q=AS/PS": 0.45,
+      "P=AS*PS": 180,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "output_gap",
+      "name": "Output gap / growth momentum",
+      "AS": 11,
+      "PS": 15,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 165,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flow rate",
+      "AS": 11,
+      "PS": 13,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 143,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "exchange_rate_level",
+      "name": "Exchange rate level",
+      "AS": 11,
+      "PS": 13,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 143,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "cb_balance_sheet_size",
+      "name": "Central bank balance-sheet size",
+      "AS": 19,
+      "PS": 6,
+      "Q=AS/PS": 3.17,
+      "P=AS*PS": 114,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 8,
+      "PS": 14,
+      "Q=AS/PS": 0.57,
+      "P=AS*PS": 112,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "credit_supply_tightness",
+      "name": "Credit supply tightness",
+      "AS": 7,
+      "PS": 15,
+      "Q=AS/PS": 0.47,
+      "P=AS*PS": 105,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 11,
+      "PS": 9,
+      "Q=AS/PS": 1.22,
+      "P=AS*PS": 99,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "realized_inflation_rate",
+      "name": "Realized inflation rate",
+      "AS": 12,
+      "PS": 8,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 96,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "policy_forward_guidance",
+      "name": "Policy forward guidance intensity",
+      "AS": 19,
+      "PS": 5,
+      "Q=AS/PS": 3.8,
+      "P=AS*PS": 95,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "household_debt_service",
+      "name": "Household debt service burden",
+      "AS": 2,
+      "PS": 9,
+      "Q=AS/PS": 0.22,
+      "P=AS*PS": 18,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "policy_rate_level",
+        "name": "Policy interest rate level",
+        "kind": "driver",
+        "AS": 28,
+        "PS": 8
+      },
+      {
+        "id": "policy_forward_guidance",
+        "name": "Policy forward guidance intensity",
+        "kind": "perception",
+        "AS": 19,
+        "PS": 5
+      },
+      {
+        "id": "cb_balance_sheet_size",
+        "name": "Central bank balance-sheet size",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 6
+      },
+      {
+        "id": "gov_bond_yield_curve",
+        "name": "Government bond yield curve level",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 21
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 9
+      },
+      {
+        "id": "credit_spreads",
+        "name": "Credit spreads",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 17
+      },
+      {
+        "id": "equity_valuation_level",
+        "name": "Equity market valuation level",
+        "kind": "stock",
+        "AS": 9,
+        "PS": 20
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 18,
+        "PS": 21
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flow rate",
+        "kind": "flow",
+        "AS": 11,
+        "PS": 13
+      },
+      {
+        "id": "exchange_rate_level",
+        "name": "Exchange rate level",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 13
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 8,
+        "PS": 14
+      },
+      {
+        "id": "realized_inflation_rate",
+        "name": "Realized inflation rate",
+        "kind": "environment",
+        "AS": 12,
+        "PS": 8
+      },
+      {
+        "id": "output_gap",
+        "name": "Output gap / growth momentum",
+        "kind": "environment",
+        "AS": 11,
+        "PS": 15
+      },
+      {
+        "id": "credit_supply_tightness",
+        "name": "Credit supply tightness",
+        "kind": "driver",
+        "AS": 7,
+        "PS": 15
+      },
+      {
+        "id": "household_debt_service",
+        "name": "Household debt service burden",
+        "kind": "stock",
+        "AS": 2,
+        "PS": 9
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity conditions",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 20
+      }
+    ],
+    "edges": [
+      {
+        "source": "policy_rate_level",
+        "target": "gov_bond_yield_curve",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "realized_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "output_gap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "credit_supply_tightness",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "household_debt_service",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_forward_guidance",
+        "target": "gov_bond_yield_curve",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_forward_guidance",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_forward_guidance",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_forward_guidance",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_forward_guidance",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_forward_guidance",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cb_balance_sheet_size",
+        "target": "gov_bond_yield_curve",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_balance_sheet_size",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_balance_sheet_size",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_balance_sheet_size",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_balance_sheet_size",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_balance_sheet_size",
+        "target": "credit_supply_tightness",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_balance_sheet_size",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "gov_bond_yield_curve",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "gov_bond_yield_curve",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "gov_bond_yield_curve",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "gov_bond_yield_curve",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "gov_bond_yield_curve",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "gov_bond_yield_curve",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "gov_bond_yield_curve",
+        "target": "credit_supply_tightness",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "gov_bond_yield_curve",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "gov_bond_yield_curve",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "credit_supply_tightness",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_valuation_level",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "equity_valuation_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "credit_supply_tightness",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "exchange_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "realized_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "realized_inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "policy_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "output_gap",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "realized_inflation_rate",
+        "target": "household_debt_service",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "output_gap",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "output_gap",
+        "target": "realized_inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_supply_tightness",
+        "target": "output_gap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "household_debt_service",
+        "target": "output_gap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "gov_bond_yield_curve",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_additional_rate_hikes",
+      "title": "Additional Fed rate hikes",
+      "description": "Further Fed tightening and hawkish guidance in upcoming meetings that push short-term policy higher and lift market rates.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-22",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "policy_rate_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_forward_guidance",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gov_bond_yield_curve",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_valuation_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "credit_spreads",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: Warsh hawkish turn, Fed delivers first rate hike, investors expect more Fed raises."
+    },
+    {
+      "id": "boj_rate_move_and_fx_reaction",
+      "title": "BOJ rate rise and FX reaction",
+      "description": "BOJ's policy tightening and immediate market reaction that shifts currency flows and investor demand between Japan and other markets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-22",
+        "end": "2026-10-15",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "policy_rate_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "gov_bond_yield_curve",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: BOJ raises rates; yen sinks; BOJ move makes U.S. less alluring for Tokyo investors."
+    },
+    {
+      "id": "boe_gilt_overhaul_and_rate_path",
+      "title": "BoE gilt-sales overhaul and rate guidance",
+      "description": "Bank of England's restructuring of gilt sales and signalling of higher rates, altering its balance sheet and long-end dynamics.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-22",
+        "end": "2026-12-31",
+        "label": "next 3 months"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "cb_balance_sheet_size",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "policy_rate_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gov_bond_yield_curve",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: BoE says rates likely to rise as it overhauls gilt sales; long-end gets some relief from BoE."
+    },
+    {
+      "id": "us_long_yields_sustain_above_5pct",
+      "title": "US 10-year sustains >5%",
+      "description": "Sustained rise in US long-term Treasury yields above 5%, raising real yields and repricing risky assets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-22",
+        "end": "2026-11-30",
+        "label": "6-10 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "gov_bond_yield_curve",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_valuation_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "household_debt_service",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: US 10-Year likely gets above and stays above 5%; Treasury yields surge; two-year yield at multi-year high."
+    },
+    {
+      "id": "mortgage_rates_near_7pct_pressure",
+      "title": "Mortgage rates approach 7%",
+      "description": "Mortgage rates moving toward 7% that will strain borrowers, slow housing activity and tighten credit conditions for builders.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-22",
+        "end": "2026-12-31",
+        "label": "next 3 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "household_debt_service",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_supply_tightness",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "output_gap",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_valuation_level",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: Stagnant housing market facing a 7% mortgage; US homebuilders under pressure; higher rates meet indebted consumers."
+    },
+    {
+      "id": "china_treasury_reduction_and_policy_stance",
+      "title": "China trims US-Treasury holdings; stays on hold",
+      "description": "Ongoing reduction in China's US-Treasury holdings combined with maintained lending rates, limiting global liquidity and foreign demand for Treasuries.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-22",
+        "end": "2026-12-31",
+        "label": "ongoing near term"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "policy_forward_guidance",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "gov_bond_yield_curve",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: China’s US Treasury holdings fall to lowest since 2008; China keeps lending rates unchanged."
+    },
+    {
+      "id": "nasdaq_quarterly_rebalance",
+      "title": "Nasdaq quarterly index rebalance",
+      "description": "Quarterly index reweighting (notably SpaceX gain) that generates predictable portfolio flows into large-cap tech components.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-22",
+        "end": "2026-10-05",
+        "label": "index rebalance window"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "equity_valuation_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: SpaceX Nasdaq 100 weight to jump to 2.82% in quarterly rebalance."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "fed_additional_rate_hikes",
+      "title": "Additional Fed rate hikes",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-09-22",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 318.0,
+      "expected_impact": 222.6,
+      "event_PS": 15.111,
+      "event_AS": 17.667,
+      "n_vars": 7,
+      "affected_ids": "policy_rate_level, policy_forward_guidance, gov_bond_yield_curve, term_premium, investor_risk_appetite, equity_valuation_level, credit_spreads",
+      "rationale": "Headlines: Warsh hawkish turn, Fed delivers first rate hike, investors expect more Fed raises."
+    },
+    {
+      "id": "boe_gilt_overhaul_and_rate_path",
+      "title": "BoE gilt-sales overhaul and rate guidance",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-22",
+      "end": "2026-12-31",
+      "probability": 0.65,
+      "impact_score": 179.0,
+      "expected_impact": 116.35,
+      "event_PS": 12.889,
+      "event_AS": 19.889,
+      "n_vars": 4,
+      "affected_ids": "cb_balance_sheet_size, policy_rate_level, gov_bond_yield_curve, market_liquidity",
+      "rationale": "Headlines: BoE says rates likely to rise as it overhauls gilt sales; long-end gets some relief from BoE."
+    },
+    {
+      "id": "us_long_yields_sustain_above_5pct",
+      "title": "US 10-year sustains >5%",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6-10 weeks",
+      "date": null,
+      "start": "2026-09-22",
+      "end": "2026-11-30",
+      "probability": 0.75,
+      "impact_score": 163.0,
+      "expected_impact": 122.25,
+      "event_PS": 16.154,
+      "event_AS": 12.538,
+      "n_vars": 5,
+      "affected_ids": "gov_bond_yield_curve, term_premium, investor_risk_appetite, equity_valuation_level, household_debt_service",
+      "rationale": "Headlines: US 10-Year likely gets above and stays above 5%; Treasury yields surge; two-year yield at multi-year high."
+    },
+    {
+      "id": "boj_rate_move_and_fx_reaction",
+      "title": "BOJ rate rise and FX reaction",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-09-22",
+      "end": "2026-10-15",
+      "probability": 0.8,
+      "impact_score": 110.0,
+      "expected_impact": 88.0,
+      "event_PS": 12.667,
+      "event_AS": 18.333,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_level, exchange_rate_level, cross_border_flows, gov_bond_yield_curve",
+      "rationale": "Headlines: BOJ raises rates; yen sinks; BOJ move makes U.S. less alluring for Tokyo investors."
+    },
+    {
+      "id": "china_treasury_reduction_and_policy_stance",
+      "title": "China trims US-Treasury holdings; stays on hold",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "ongoing near term",
+      "date": null,
+      "start": "2026-09-22",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 94.0,
+      "expected_impact": 65.8,
+      "event_PS": 14.333,
+      "event_AS": 15.667,
+      "n_vars": 3,
+      "affected_ids": "cross_border_flows, policy_forward_guidance, gov_bond_yield_curve",
+      "rationale": "Headlines: China’s US Treasury holdings fall to lowest since 2008; China keeps lending rates unchanged."
+    },
+    {
+      "id": "mortgage_rates_near_7pct_pressure",
+      "title": "Mortgage rates approach 7%",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-22",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 60.0,
+      "expected_impact": 36.0,
+      "event_PS": 14.111,
+      "event_AS": 6.667,
+      "n_vars": 4,
+      "affected_ids": "household_debt_service, credit_supply_tightness, output_gap, equity_valuation_level",
+      "rationale": "Headlines: Stagnant housing market facing a 7% mortgage; US homebuilders under pressure; higher rates meet indebted consumers."
+    },
+    {
+      "id": "nasdaq_quarterly_rebalance",
+      "title": "Nasdaq quarterly index rebalance",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "index rebalance window",
+      "date": null,
+      "start": "2026-09-22",
+      "end": "2026-10-05",
+      "probability": 0.85,
+      "impact_score": 47.0,
+      "expected_impact": 39.95,
+      "event_PS": 18.5,
+      "event_AS": 11.75,
+      "n_vars": 3,
+      "affected_ids": "equity_valuation_level, cross_border_flows, investor_risk_appetite",
+      "rationale": "Headline: SpaceX Nasdaq 100 weight to jump to 2.82% in quarterly rebalance."
+    }
+  ]
+}
