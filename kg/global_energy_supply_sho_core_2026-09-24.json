@@ -1,0 +1,1471 @@
+{
+  "label": "global_energy_supply_sho",
+  "as_of": "2026-09-23",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-24T01:48:29",
+  "system_description": {
+    "narrative_title": "Global diesel supply shock, tanker crunch and policy backlash",
+    "narrative_summary": "The single dominant narrative is a global diesel supply shock: record diesel prices and shrinking inventories driven by physical shortages, tanker scarcity and Middle East disruptions, provoking emergency policy responses (export bans, reserve releases) and political pressure. Described as an open system, it comprises stocks (crude, refined diesel, storage tanks, SPR levels, tanker availability), flows (refining output, shipping through key chokepoints, trade exports/imports), actors (producers, refiners, traders, shippers, governments, markets) and control levers (export restrictions, reserve releases, subsidies, diplomacy) interacting with external drivers (geopolitics, weather, demand shifts). Key feedbacks include price-driven substitution and demand destruction (biofuels, ethanol), market volatility feeding into inflation and equities, and political responses that further alter trade flows and inventories.",
+    "scope": "Global refined-diesel and adjacent refined-fuels system: production, refining capacity, inventories/storage, tanker and shipping logistics, international trade flows, major corporate and state actors (producers, refiners, traders), strategic petroleum reserves, policy levers (export bans, subsidies, reserve releases) and demand sectors (road transport, shipping, industry, aviation jet fuel linkage).",
+    "super_system": "Global energy–economy–financial–geopolitical system (world oil and fuels markets embedded in macroeconomy, inflation dynamics and international geopolitics).",
+    "adjacent_subsystems": [
+      "Maritime shipping and tanker logistics",
+      "Refining and petrochemical production systems",
+      "Domestic fiscal/political systems (fuel subsidies, elections, trade policy)",
+      "Biofuel and alternative-fuels markets"
+    ],
+    "evidence_headlines": [
+      "Record diesel prices are exposing pain points in the stock market and economy",
+      "Global diesel shortage likely to last into 2027 as storage tanks drain - reuters.com",
+      "Trump Weighs Diesel Export Ban as Fuel Prices Soar",
+      "Tanker Shortage Sends Oil-Shipping Rates Soaring",
+      "Oil stocks in US strategic petroleum reserve fall to lowest level since 1982",
+      "Global diesel prices hit record highs, further rises possible"
+    ]
+  },
+  "variables": [
+    {
+      "id": "diesel_inventories",
+      "name": "Global diesel inventories",
+      "description": "Aggregate on‑hand stocks of refined diesel held in commercial and terminal storage worldwide.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_inventories",
+      "name": "Global crude oil inventories",
+      "description": "Aggregate on‑hand stocks of crude oil available for refining globally.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserves",
+      "name": "Strategic fuel reserve levels",
+      "description": "Total volumes held in government strategic fuel reserve facilities that can be released to markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refining_capacity",
+      "name": "Operable refining capacity",
+      "description": "Total available refining capacity able to produce diesel and adjacent refined fuels under current operating conditions.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refining_throughput",
+      "name": "Refining throughput",
+      "description": "Rate at which crude is processed into refined fuels (including diesel) across refineries.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_trade_flows",
+      "name": "International diesel trade volumes",
+      "description": "Net cross‑border volumes of diesel traded (exports and imports) per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_capacity",
+      "name": "Tanker shipping capacity",
+      "description": "Available ocean tanker tonnage and lift capacity dedicated to transporting crude and refined fuels.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_turnaround",
+      "name": "Tanker turnaround time",
+      "description": "Average cycle time for tankers (load–voyage–discharge–return) affecting effective transport throughput.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_congestion",
+      "name": "Maritime chokepoint congestion",
+      "description": "Degree of congestion, delays and capacity constraint at key maritime transit chokepoints affecting fuel shipping.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "export_restriction_level",
+      "name": "Export restriction intensity",
+      "description": "Aggregate severity and prevalence of export controls and limits on refined fuels imposed by governments.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "reserve_release_rate",
+      "name": "Reserve release rate",
+      "description": "Rate at which strategic or other public reserves are released into commercial fuel markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_price_level",
+      "name": "Diesel price level",
+      "description": "Market price of diesel measured as a global benchmark or aggregated index.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "price_volatility",
+      "name": "Fuel price volatility",
+      "description": "Magnitude and frequency of short‑term price fluctuations in diesel and related refined fuels.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_consumption_rate",
+      "name": "Diesel consumption rate",
+      "description": "Aggregate rate of diesel demand across road transport, shipping, industry and other end‑use sectors.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "substitution_to_alts",
+      "name": "Substitution to alternative fuels",
+      "description": "Rate and extent to which diesel demand is displaced by alternative fuels and technologies (e.g., biofuels, electrification).",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "biofuel_capacity",
+      "name": "Biofuel production capacity",
+      "description": "Global installed capacity to produce biofuels and other diesel alternatives available for scaling supply.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "diesel_inventories",
+    "crude_inventories",
+    "strategic_reserves",
+    "refining_capacity",
+    "refining_throughput",
+    "diesel_trade_flows",
+    "tanker_capacity",
+    "tanker_turnaround",
+    "chokepoint_congestion",
+    "export_restriction_level",
+    "reserve_release_rate",
+    "diesel_price_level",
+    "price_volatility",
+    "diesel_consumption_rate",
+    "substitution_to_alts",
+    "biofuel_capacity"
+  ],
+  "var_names": {
+    "diesel_inventories": "Global diesel inventories",
+    "crude_inventories": "Global crude oil inventories",
+    "strategic_reserves": "Strategic fuel reserve levels",
+    "refining_capacity": "Operable refining capacity",
+    "refining_throughput": "Refining throughput",
+    "diesel_trade_flows": "International diesel trade volumes",
+    "tanker_capacity": "Tanker shipping capacity",
+    "tanker_turnaround": "Tanker turnaround time",
+    "chokepoint_congestion": "Maritime chokepoint congestion",
+    "export_restriction_level": "Export restriction intensity",
+    "reserve_release_rate": "Reserve release rate",
+    "diesel_price_level": "Diesel price level",
+    "price_volatility": "Fuel price volatility",
+    "diesel_consumption_rate": "Diesel consumption rate",
+    "substitution_to_alts": "Substitution to alternative fuels",
+    "biofuel_capacity": "Biofuel production capacity"
+  },
+  "impact_matrix": {
+    "diesel_inventories": {
+      "diesel_inventories": 0,
+      "crude_inventories": 1,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 1,
+      "diesel_trade_flows": 2,
+      "tanker_capacity": 0,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 1,
+      "reserve_release_rate": 1,
+      "diesel_price_level": 3,
+      "price_volatility": 2,
+      "diesel_consumption_rate": 1,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 0
+    },
+    "crude_inventories": {
+      "diesel_inventories": 3,
+      "crude_inventories": 0,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 3,
+      "diesel_trade_flows": 2,
+      "tanker_capacity": 0,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 0,
+      "reserve_release_rate": 0,
+      "diesel_price_level": 2,
+      "price_volatility": 1,
+      "diesel_consumption_rate": 0,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 0
+    },
+    "strategic_reserves": {
+      "diesel_inventories": 1,
+      "crude_inventories": 0,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 0,
+      "diesel_trade_flows": 1,
+      "tanker_capacity": 0,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 1,
+      "reserve_release_rate": 3,
+      "diesel_price_level": 1,
+      "price_volatility": 1,
+      "diesel_consumption_rate": 0,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 0
+    },
+    "refining_capacity": {
+      "diesel_inventories": 2,
+      "crude_inventories": 1,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 3,
+      "diesel_trade_flows": 2,
+      "tanker_capacity": 0,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 0,
+      "reserve_release_rate": 0,
+      "diesel_price_level": 2,
+      "price_volatility": 1,
+      "diesel_consumption_rate": 0,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 0
+    },
+    "refining_throughput": {
+      "diesel_inventories": 3,
+      "crude_inventories": 3,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 0,
+      "diesel_trade_flows": 3,
+      "tanker_capacity": 1,
+      "tanker_turnaround": 2,
+      "chokepoint_congestion": 2,
+      "export_restriction_level": 0,
+      "reserve_release_rate": 0,
+      "diesel_price_level": 3,
+      "price_volatility": 2,
+      "diesel_consumption_rate": 1,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 0
+    },
+    "diesel_trade_flows": {
+      "diesel_inventories": 3,
+      "crude_inventories": 1,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 1,
+      "diesel_trade_flows": 0,
+      "tanker_capacity": 2,
+      "tanker_turnaround": 2,
+      "chokepoint_congestion": 2,
+      "export_restriction_level": 1,
+      "reserve_release_rate": 1,
+      "diesel_price_level": 2,
+      "price_volatility": 2,
+      "diesel_consumption_rate": 1,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 0
+    },
+    "tanker_capacity": {
+      "diesel_inventories": 1,
+      "crude_inventories": 1,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 2,
+      "diesel_trade_flows": 3,
+      "tanker_capacity": 0,
+      "tanker_turnaround": 2,
+      "chokepoint_congestion": 1,
+      "export_restriction_level": 0,
+      "reserve_release_rate": 0,
+      "diesel_price_level": 2,
+      "price_volatility": 1,
+      "diesel_consumption_rate": 0,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 0
+    },
+    "tanker_turnaround": {
+      "diesel_inventories": 2,
+      "crude_inventories": 2,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 1,
+      "diesel_trade_flows": 3,
+      "tanker_capacity": 1,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 1,
+      "export_restriction_level": 0,
+      "reserve_release_rate": 0,
+      "diesel_price_level": 2,
+      "price_volatility": 1,
+      "diesel_consumption_rate": 0,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 0
+    },
+    "chokepoint_congestion": {
+      "diesel_inventories": 2,
+      "crude_inventories": 2,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 1,
+      "diesel_trade_flows": 3,
+      "tanker_capacity": 2,
+      "tanker_turnaround": 3,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 1,
+      "reserve_release_rate": 1,
+      "diesel_price_level": 3,
+      "price_volatility": 2,
+      "diesel_consumption_rate": 0,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 0
+    },
+    "export_restriction_level": {
+      "diesel_inventories": 2,
+      "crude_inventories": 0,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 0,
+      "diesel_trade_flows": 3,
+      "tanker_capacity": 0,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 0,
+      "reserve_release_rate": 0,
+      "diesel_price_level": 2,
+      "price_volatility": 1,
+      "diesel_consumption_rate": 1,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 0
+    },
+    "reserve_release_rate": {
+      "diesel_inventories": 3,
+      "crude_inventories": 0,
+      "strategic_reserves": 3,
+      "refining_capacity": 0,
+      "refining_throughput": 0,
+      "diesel_trade_flows": 1,
+      "tanker_capacity": 0,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 0,
+      "reserve_release_rate": 0,
+      "diesel_price_level": 3,
+      "price_volatility": 2,
+      "diesel_consumption_rate": 0,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 0
+    },
+    "diesel_price_level": {
+      "diesel_inventories": 2,
+      "crude_inventories": 1,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 2,
+      "diesel_trade_flows": 2,
+      "tanker_capacity": 0,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 1,
+      "reserve_release_rate": 1,
+      "diesel_price_level": 0,
+      "price_volatility": 1,
+      "diesel_consumption_rate": 3,
+      "substitution_to_alts": 2,
+      "biofuel_capacity": 1
+    },
+    "price_volatility": {
+      "diesel_inventories": 1,
+      "crude_inventories": 0,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 1,
+      "diesel_trade_flows": 1,
+      "tanker_capacity": 0,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 1,
+      "reserve_release_rate": 1,
+      "diesel_price_level": 0,
+      "price_volatility": 0,
+      "diesel_consumption_rate": 1,
+      "substitution_to_alts": 1,
+      "biofuel_capacity": 0
+    },
+    "diesel_consumption_rate": {
+      "diesel_inventories": 3,
+      "crude_inventories": 1,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 2,
+      "diesel_trade_flows": 2,
+      "tanker_capacity": 1,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 0,
+      "reserve_release_rate": 0,
+      "diesel_price_level": 3,
+      "price_volatility": 1,
+      "diesel_consumption_rate": 0,
+      "substitution_to_alts": 1,
+      "biofuel_capacity": 1
+    },
+    "substitution_to_alts": {
+      "diesel_inventories": 1,
+      "crude_inventories": 1,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 1,
+      "diesel_trade_flows": 0,
+      "tanker_capacity": 0,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 0,
+      "reserve_release_rate": 0,
+      "diesel_price_level": 1,
+      "price_volatility": 0,
+      "diesel_consumption_rate": 3,
+      "substitution_to_alts": 0,
+      "biofuel_capacity": 1
+    },
+    "biofuel_capacity": {
+      "diesel_inventories": 1,
+      "crude_inventories": 0,
+      "strategic_reserves": 0,
+      "refining_capacity": 0,
+      "refining_throughput": 1,
+      "diesel_trade_flows": 0,
+      "tanker_capacity": 0,
+      "tanker_turnaround": 0,
+      "chokepoint_congestion": 0,
+      "export_restriction_level": 0,
+      "reserve_release_rate": 0,
+      "diesel_price_level": 1,
+      "price_volatility": 0,
+      "diesel_consumption_rate": 1,
+      "substitution_to_alts": 3,
+      "biofuel_capacity": 0
+    }
+  },
+  "AS": {
+    "diesel_inventories": 12,
+    "crude_inventories": 11,
+    "strategic_reserves": 8,
+    "refining_capacity": 11,
+    "refining_throughput": 20,
+    "diesel_trade_flows": 18,
+    "tanker_capacity": 13,
+    "tanker_turnaround": 13,
+    "chokepoint_congestion": 20,
+    "export_restriction_level": 9,
+    "reserve_release_rate": 12,
+    "diesel_price_level": 16,
+    "price_volatility": 7,
+    "diesel_consumption_rate": 15,
+    "substitution_to_alts": 8,
+    "biofuel_capacity": 7
+  },
+  "PS": {
+    "diesel_inventories": 30,
+    "crude_inventories": 14,
+    "strategic_reserves": 3,
+    "refining_capacity": 0,
+    "refining_throughput": 19,
+    "diesel_trade_flows": 28,
+    "tanker_capacity": 7,
+    "tanker_turnaround": 9,
+    "chokepoint_congestion": 6,
+    "export_restriction_level": 6,
+    "reserve_release_rate": 8,
+    "diesel_price_level": 30,
+    "price_volatility": 18,
+    "diesel_consumption_rate": 12,
+    "substitution_to_alts": 7,
+    "biofuel_capacity": 3
+  },
+  "med_AS": 12.0,
+  "med_PS": 8.5,
+  "roles": [
+    {
+      "variable": "diesel_trade_flows",
+      "name": "International diesel trade volumes",
+      "AS": 18,
+      "PS": 28,
+      "Q=AS/PS": 0.64,
+      "P=AS*PS": 504,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_price_level",
+      "name": "Diesel price level",
+      "AS": 16,
+      "PS": 30,
+      "Q=AS/PS": 0.53,
+      "P=AS*PS": 480,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refining_throughput",
+      "name": "Refining throughput",
+      "AS": 20,
+      "PS": 19,
+      "Q=AS/PS": 1.05,
+      "P=AS*PS": 380,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_inventories",
+      "name": "Global diesel inventories",
+      "AS": 12,
+      "PS": 30,
+      "Q=AS/PS": 0.4,
+      "P=AS*PS": 360,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_consumption_rate",
+      "name": "Diesel consumption rate",
+      "AS": 15,
+      "PS": 12,
+      "Q=AS/PS": 1.25,
+      "P=AS*PS": 180,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crude_inventories",
+      "name": "Global crude oil inventories",
+      "AS": 11,
+      "PS": 14,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 154,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "price_volatility",
+      "name": "Fuel price volatility",
+      "AS": 7,
+      "PS": 18,
+      "Q=AS/PS": 0.39,
+      "P=AS*PS": 126,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "chokepoint_congestion",
+      "name": "Maritime chokepoint congestion",
+      "AS": 20,
+      "PS": 6,
+      "Q=AS/PS": 3.33,
+      "P=AS*PS": 120,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "tanker_turnaround",
+      "name": "Tanker turnaround time",
+      "AS": 13,
+      "PS": 9,
+      "Q=AS/PS": 1.44,
+      "P=AS*PS": 117,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "reserve_release_rate",
+      "name": "Reserve release rate",
+      "AS": 12,
+      "PS": 8,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 96,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "tanker_capacity",
+      "name": "Tanker shipping capacity",
+      "AS": 13,
+      "PS": 7,
+      "Q=AS/PS": 1.86,
+      "P=AS*PS": 91,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "substitution_to_alts",
+      "name": "Substitution to alternative fuels",
+      "AS": 8,
+      "PS": 7,
+      "Q=AS/PS": 1.14,
+      "P=AS*PS": 56,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "export_restriction_level",
+      "name": "Export restriction intensity",
+      "AS": 9,
+      "PS": 6,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 54,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "strategic_reserves",
+      "name": "Strategic fuel reserve levels",
+      "AS": 8,
+      "PS": 3,
+      "Q=AS/PS": 2.67,
+      "P=AS*PS": 24,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "biofuel_capacity",
+      "name": "Biofuel production capacity",
+      "AS": 7,
+      "PS": 3,
+      "Q=AS/PS": 2.33,
+      "P=AS*PS": 21,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "refining_capacity",
+      "name": "Operable refining capacity",
+      "AS": 11,
+      "PS": 0,
+      "Q=AS/PS": 11000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "diesel_inventories",
+        "name": "Global diesel inventories",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 30
+      },
+      {
+        "id": "crude_inventories",
+        "name": "Global crude oil inventories",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 14
+      },
+      {
+        "id": "strategic_reserves",
+        "name": "Strategic fuel reserve levels",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 3
+      },
+      {
+        "id": "refining_capacity",
+        "name": "Operable refining capacity",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 0
+      },
+      {
+        "id": "refining_throughput",
+        "name": "Refining throughput",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 19
+      },
+      {
+        "id": "diesel_trade_flows",
+        "name": "International diesel trade volumes",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 28
+      },
+      {
+        "id": "tanker_capacity",
+        "name": "Tanker shipping capacity",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 7
+      },
+      {
+        "id": "tanker_turnaround",
+        "name": "Tanker turnaround time",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 9
+      },
+      {
+        "id": "chokepoint_congestion",
+        "name": "Maritime chokepoint congestion",
+        "kind": "environment",
+        "AS": 20,
+        "PS": 6
+      },
+      {
+        "id": "export_restriction_level",
+        "name": "Export restriction intensity",
+        "kind": "institution_field",
+        "AS": 9,
+        "PS": 6
+      },
+      {
+        "id": "reserve_release_rate",
+        "name": "Reserve release rate",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 8
+      },
+      {
+        "id": "diesel_price_level",
+        "name": "Diesel price level",
+        "kind": "perception",
+        "AS": 16,
+        "PS": 30
+      },
+      {
+        "id": "price_volatility",
+        "name": "Fuel price volatility",
+        "kind": "perception",
+        "AS": 7,
+        "PS": 18
+      },
+      {
+        "id": "diesel_consumption_rate",
+        "name": "Diesel consumption rate",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 12
+      },
+      {
+        "id": "substitution_to_alts",
+        "name": "Substitution to alternative fuels",
+        "kind": "driver",
+        "AS": 8,
+        "PS": 7
+      },
+      {
+        "id": "biofuel_capacity",
+        "name": "Biofuel production capacity",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 3
+      }
+    ],
+    "edges": [
+      {
+        "source": "diesel_inventories",
+        "target": "diesel_trade_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventories",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventories",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_inventories",
+        "target": "diesel_inventories",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_inventories",
+        "target": "refining_throughput",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_inventories",
+        "target": "diesel_trade_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_inventories",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserves",
+        "target": "reserve_release_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_capacity",
+        "target": "diesel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_capacity",
+        "target": "refining_throughput",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_capacity",
+        "target": "diesel_trade_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_capacity",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "diesel_inventories",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "crude_inventories",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "diesel_trade_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "tanker_turnaround",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "chokepoint_congestion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refining_throughput",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_trade_flows",
+        "target": "diesel_inventories",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_trade_flows",
+        "target": "tanker_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_trade_flows",
+        "target": "tanker_turnaround",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_trade_flows",
+        "target": "chokepoint_congestion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_trade_flows",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_trade_flows",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_capacity",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_capacity",
+        "target": "diesel_trade_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_capacity",
+        "target": "tanker_turnaround",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_capacity",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_turnaround",
+        "target": "diesel_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_turnaround",
+        "target": "crude_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_turnaround",
+        "target": "diesel_trade_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_turnaround",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_congestion",
+        "target": "diesel_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_congestion",
+        "target": "crude_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_congestion",
+        "target": "diesel_trade_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_congestion",
+        "target": "tanker_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_congestion",
+        "target": "tanker_turnaround",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_congestion",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_congestion",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "diesel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "diesel_trade_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "diesel_inventories",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "strategic_reserves",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "diesel_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "diesel_trade_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "diesel_consumption_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "substitution_to_alts",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_consumption_rate",
+        "target": "diesel_inventories",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_consumption_rate",
+        "target": "refining_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_consumption_rate",
+        "target": "diesel_trade_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_consumption_rate",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "substitution_to_alts",
+        "target": "diesel_consumption_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "biofuel_capacity",
+        "target": "substitution_to_alts",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_diesel_export_policy_decision",
+      "title": "U.S. decision on diesel export limits (ban/cap)",
+      "description": "A near‑term federal decision to impose a diesel export ban, 90‑day restriction, or voluntary cap that would materially change U.S. outbound diesel availability.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-23",
+        "end": "2026-10-31",
+        "label": "2-6 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "export_restriction_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_trade_flows",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_inventories",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Multiple headlines: Trump admin preparing 90‑day ban; Energy Secretary hints at voluntary cap; White House denial/debate (Reuters, Politico, WSJ)."
+    },
+    {
+      "id": "g7_eu_reserve_coordinated_release",
+      "title": "G7/EU coordinated reserve release push",
+      "description": "Calls by France and some EU countries for coordinated government reserve releases or emergency sales to relieve fuel markets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-23",
+        "end": "2026-11-30",
+        "label": "by end of Nov"
+      },
+      "probability": 0.45,
+      "affected": [
+        {
+          "variable_id": "reserve_release_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_inventories",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: France calls G7 to release more oil reserves; EU urged to act to lower energy prices (Reuters/FT)."
+    },
+    {
+      "id": "persistent_tanker_crunch_and_high_rates",
+      "title": "Ongoing tanker capacity crunch and record shipping rates",
+      "description": "Sustained shortage of tankers and record daily shipping costs keep transport capacity constrained and raise fuel delivery costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-23",
+        "end": "2026-12-31",
+        "label": "ongoing months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "tanker_capacity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_turnaround",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_trade_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: Tanker shortage sends rates soaring; oil tanker costs hit record $1.2mn/day; shortages threaten high prices (FT/Reuters)."
+    },
+    {
+      "id": "us_iran_diplomacy_deescalation",
+      "title": "Progress in U.S.–Iran talks / de‑escalation",
+      "description": "Near‑term diplomatic engagement between the U.S. and Iran that reduces perceived supply disruption risk and eases market tensions.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-23",
+        "end": "2026-10-15",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_inventories",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_inventories",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: U.S.-Iran talks reported (three hours); oil falls on diplomacy hopes; markets reacting to Iran diplomacy (Reuters/FT)."
+    },
+    {
+      "id": "regional_rerouting_from_russia_venezuela",
+      "title": "Export rerouting: Russia/Venezuela redirect diesel flows",
+      "description": "Producers increase regional shipments and discounting (e.g., Russia to Central Asia, Venezuelan deals), altering trade patterns and short‑haul supply.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-23",
+        "end": "2026-12-31",
+        "label": "months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "diesel_trade_flows",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_turnaround",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: Russia boosted diesel exports to Central Asia; traders push for discounts for Venezuelan oil as shipping costs soar (Reuters)."
+    },
+    {
+      "id": "european_targeted_fuel_relief_measures",
+      "title": "EU/France targeted fuel price relief and tax measures",
+      "description": "Near‑term national relief measures (price caps, subsidies, tax breaks) aimed at cushioning consumers and firms from surging diesel costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-23",
+        "end": "2026-11-30",
+        "label": "weeks-months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_consumption_rate",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: France scales up targeted fuel price relief; lawmakers propose gas‑tax breaks and commuter deductions (Reuters/FT)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "persistent_tanker_crunch_and_high_rates",
+      "title": "Ongoing tanker capacity crunch and record shipping rates",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "ongoing months",
+      "date": null,
+      "start": "2026-09-23",
+      "end": "2026-12-31",
+      "probability": 0.9,
+      "impact_score": 176.0,
+      "expected_impact": 158.4,
+      "event_PS": 17.692,
+      "event_AS": 13.538,
+      "n_vars": 5,
+      "affected_ids": "tanker_capacity, tanker_turnaround, diesel_trade_flows, diesel_price_level, price_volatility",
+      "rationale": "Headlines: Tanker shortage sends rates soaring; oil tanker costs hit record $1.2mn/day; shortages threaten high prices (FT/Reuters)."
+    },
+    {
+      "id": "us_diesel_export_policy_decision",
+      "title": "U.S. decision on diesel export limits (ban/cap)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-6 weeks",
+      "date": null,
+      "start": "2026-09-23",
+      "end": "2026-10-31",
+      "probability": 0.75,
+      "impact_score": 167.0,
+      "expected_impact": 125.25,
+      "event_PS": 22.154,
+      "event_AS": 12.846,
+      "n_vars": 5,
+      "affected_ids": "export_restriction_level, diesel_trade_flows, diesel_price_level, price_volatility, diesel_inventories",
+      "rationale": "Multiple headlines: Trump admin preparing 90‑day ban; Energy Secretary hints at voluntary cap; White House denial/debate (Reuters, Politico, WSJ)."
+    },
+    {
+      "id": "g7_eu_reserve_coordinated_release",
+      "title": "G7/EU coordinated reserve release push",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of Nov",
+      "date": null,
+      "start": "2026-09-23",
+      "end": "2026-11-30",
+      "probability": 0.45,
+      "impact_score": 99.0,
+      "expected_impact": 44.55,
+      "event_PS": 20.25,
+      "event_AS": 12.375,
+      "n_vars": 4,
+      "affected_ids": "reserve_release_rate, diesel_inventories, diesel_price_level, price_volatility",
+      "rationale": "Headlines: France calls G7 to release more oil reserves; EU urged to act to lower energy prices (Reuters/FT)."
+    },
+    {
+      "id": "regional_rerouting_from_russia_venezuela",
+      "title": "Export rerouting: Russia/Venezuela redirect diesel flows",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-09-23",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 72.0,
+      "expected_impact": 50.4,
+      "event_PS": 22.6,
+      "event_AS": 14.4,
+      "n_vars": 4,
+      "affected_ids": "diesel_trade_flows, diesel_price_level, tanker_turnaround, price_volatility",
+      "rationale": "Headlines: Russia boosted diesel exports to Central Asia; traders push for discounts for Venezuelan oil as shipping costs soar (Reuters)."
+    },
+    {
+      "id": "us_iran_diplomacy_deescalation",
+      "title": "Progress in U.S.–Iran talks / de‑escalation",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-09-23",
+      "end": "2026-10-15",
+      "probability": 0.5,
+      "impact_score": 69.0,
+      "expected_impact": 34.5,
+      "event_PS": 23.333,
+      "event_AS": 11.5,
+      "n_vars": 4,
+      "affected_ids": "diesel_price_level, price_volatility, crude_inventories, diesel_inventories",
+      "rationale": "Headlines: U.S.-Iran talks reported (three hours); oil falls on diplomacy hopes; markets reacting to Iran diplomacy (Reuters/FT)."
+    },
+    {
+      "id": "european_targeted_fuel_relief_measures",
+      "title": "EU/France targeted fuel price relief and tax measures",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks-months",
+      "date": null,
+      "start": "2026-09-23",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 54.0,
+      "expected_impact": 32.4,
+      "event_PS": 22.5,
+      "event_AS": 13.5,
+      "n_vars": 3,
+      "affected_ids": "diesel_price_level, diesel_consumption_rate, price_volatility",
+      "rationale": "Headlines: France scales up targeted fuel price relief; lawmakers propose gas‑tax breaks and commuter deductions (Reuters/FT)."
+    }
+  ]
+}
