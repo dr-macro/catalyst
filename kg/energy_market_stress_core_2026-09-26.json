@@ -1,0 +1,1650 @@
+{
+  "label": "energy_market_stress",
+  "as_of": "2026-09-26",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-26T02:09:40",
+  "system_description": {
+    "narrative_title": "US diesel-export policy vs. global fuel shortages",
+    "narrative_summary": "News in this window is dominated by US policy deliberations over diesel export restrictions (including a contemplated ban) and the market upheaval those signals are creating amid diesel shortages driven by the Iran war, shipping disruption and tight refining balances. Policy uncertainty and competing pressures — industry pushback, domestic political signalling, and urgent European energy needs — are feeding price volatility, strained logistics and diplomatic friction. The dynamics link US decision-making, refiners' behaviour, international fuel flows and European energy security in a single, open market–policy system.",
+    "scope": "Within the boundary: US executive branch deliberations and proposed diesel export limits; behaviour and capacities of US refiners; diesel and crude physical flows (inventories, exports/imports, storage levels); tanker/shipping constraints and costs; price formation in diesel and crude futures and physical markets; European and Asian diesel demand and emergency measures; industry and business lobbying; near-term diplomatic developments related to the Iran conflict that affect supply.",
+    "super_system": "Global energy security and geopolitics (crude oil and refined fuels markets embedded in international trade and diplomatic relations)",
+    "adjacent_subsystems": [
+      "International maritime shipping and maritime security (tankers, S2S transfers, insurance)",
+      "European domestic energy policy and politics (fuel subsidies, taxation, storage mandates, electoral risks)",
+      "US domestic politics and trade policy (executive decisions, industry lobbying, campaign linkages)",
+      "Global refining and petroleum product logistics (refinery runs, blending, bunker and road fuel distribution)"
+    ],
+    "evidence_headlines": [
+      "White House Considers Ban on Diesel Exports as Prices Keep Rising",
+      "Trump Weighs Diesel Export Ban as Fuel Prices Soar",
+      "Big business warns Trump against diesel export ban in joint letter",
+      "European diesel prices climb over prospect of US export ban",
+      "Energy Secretary Hints at Voluntary Cap on Diesel Exports, Rather Than Ban",
+      "Oil tanker costs hit record $1.2mn a day as Iran war disrupts shipping"
+    ]
+  },
+  "variables": [
+    {
+      "id": "policy_export_restrictio",
+      "name": "Export restriction intensity",
+      "description": "Degree and strictness of government-imposed limits or controls on diesel exports as a continuous policy stance.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refiner_run_rates",
+      "name": "Refiner run rates",
+      "description": "Speed and volume at which refining units process crude into products per unit time (utilization of refining throughput).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_production_rate",
+      "name": "Diesel production rate",
+      "description": "Rate of diesel fuel output from the refining system measured as volume produced per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_inventory_levels",
+      "name": "Diesel inventory levels",
+      "description": "Total on-hand stocks of diesel held across storage facilities, terminals and tanks at a given time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_inventory_levels",
+      "name": "Crude inventory levels",
+      "description": "Total on-hand stocks of crude oil available to the refining and shipping system at a given time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_export_volume",
+      "name": "Diesel export volume",
+      "description": "Physical flow of diesel leaving the domestic market for foreign markets measured per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_import_volume",
+      "name": "Diesel import volume",
+      "description": "Physical flow of diesel entering the domestic/region market from abroad measured per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_shipping_capacity",
+      "name": "Tanker shipping capacity",
+      "description": "Available aggregate transport capacity for seaborne crude and refined product movements (tank fleet availability).",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_shipping_costs",
+      "name": "Tanker shipping costs",
+      "description": "Market cost of chartering and operating tankers for crude and product shipments, expressed as freight rates or daily hire.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_price_level",
+      "name": "Diesel price level",
+      "description": "Market price of diesel in relevant benchmarks or spot markets at a point in time.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_price_volatility",
+      "name": "Diesel price volatility",
+      "description": "Short-term variability or dispersion of diesel prices indicating market instability and risk.",
+      "kind": "perception",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refining_margins",
+      "name": "Refining margins",
+      "description": "Difference between product (diesel) prices and crude input costs, reflecting refining profitability per unit.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "demand_europe_diesel",
+      "name": "European diesel demand",
+      "description": "Rate of diesel consumption in the European market measured as volume demanded per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "geopolitical_tensions",
+      "name": "Geopolitical tension level",
+      "description": "Intensity of regional or international conflict and diplomatic friction that affects supply routes and market confidence.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "industry_lobby_pressure",
+      "name": "Industry lobbying pressure",
+      "description": "Intensity and frequency of organized industry efforts to influence policy decisions regarding exports and market rules.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "domestic_political_press",
+      "name": "Domestic political pressure",
+      "description": "Level of internal political and public pressure on policymakers to act on fuel prices, supply or related regulations.",
+      "kind": "perception",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "policy_export_restrictio",
+    "refiner_run_rates",
+    "diesel_production_rate",
+    "diesel_inventory_levels",
+    "crude_inventory_levels",
+    "diesel_export_volume",
+    "diesel_import_volume",
+    "tanker_shipping_capacity",
+    "tanker_shipping_costs",
+    "diesel_price_level",
+    "diesel_price_volatility",
+    "refining_margins",
+    "demand_europe_diesel",
+    "geopolitical_tensions",
+    "industry_lobby_pressure",
+    "domestic_political_press"
+  ],
+  "var_names": {
+    "policy_export_restrictio": "Export restriction intensity",
+    "refiner_run_rates": "Refiner run rates",
+    "diesel_production_rate": "Diesel production rate",
+    "diesel_inventory_levels": "Diesel inventory levels",
+    "crude_inventory_levels": "Crude inventory levels",
+    "diesel_export_volume": "Diesel export volume",
+    "diesel_import_volume": "Diesel import volume",
+    "tanker_shipping_capacity": "Tanker shipping capacity",
+    "tanker_shipping_costs": "Tanker shipping costs",
+    "diesel_price_level": "Diesel price level",
+    "diesel_price_volatility": "Diesel price volatility",
+    "refining_margins": "Refining margins",
+    "demand_europe_diesel": "European diesel demand",
+    "geopolitical_tensions": "Geopolitical tension level",
+    "industry_lobby_pressure": "Industry lobbying pressure",
+    "domestic_political_press": "Domestic political pressure"
+  },
+  "impact_matrix": {
+    "policy_export_restrictio": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 1,
+      "diesel_production_rate": 1,
+      "diesel_inventory_levels": 2,
+      "crude_inventory_levels": 1,
+      "diesel_export_volume": 3,
+      "diesel_import_volume": 1,
+      "tanker_shipping_capacity": 2,
+      "tanker_shipping_costs": 2,
+      "diesel_price_level": 2,
+      "diesel_price_volatility": 1,
+      "refining_margins": 2,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 0,
+      "industry_lobby_pressure": 3,
+      "domestic_political_press": 2
+    },
+    "refiner_run_rates": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 0,
+      "diesel_production_rate": 3,
+      "diesel_inventory_levels": 3,
+      "crude_inventory_levels": 3,
+      "diesel_export_volume": 2,
+      "diesel_import_volume": 2,
+      "tanker_shipping_capacity": 1,
+      "tanker_shipping_costs": 1,
+      "diesel_price_level": 2,
+      "diesel_price_volatility": 2,
+      "refining_margins": 2,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 0,
+      "industry_lobby_pressure": 1,
+      "domestic_political_press": 1
+    },
+    "diesel_production_rate": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 2,
+      "diesel_production_rate": 0,
+      "diesel_inventory_levels": 3,
+      "crude_inventory_levels": 2,
+      "diesel_export_volume": 3,
+      "diesel_import_volume": 2,
+      "tanker_shipping_capacity": 1,
+      "tanker_shipping_costs": 1,
+      "diesel_price_level": 2,
+      "diesel_price_volatility": 2,
+      "refining_margins": 2,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 0,
+      "industry_lobby_pressure": 1,
+      "domestic_political_press": 1
+    },
+    "diesel_inventory_levels": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 1,
+      "diesel_production_rate": 2,
+      "diesel_inventory_levels": 0,
+      "crude_inventory_levels": 1,
+      "diesel_export_volume": 2,
+      "diesel_import_volume": 2,
+      "tanker_shipping_capacity": 1,
+      "tanker_shipping_costs": 1,
+      "diesel_price_level": 3,
+      "diesel_price_volatility": 2,
+      "refining_margins": 1,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 0,
+      "industry_lobby_pressure": 1,
+      "domestic_political_press": 1
+    },
+    "crude_inventory_levels": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 2,
+      "diesel_production_rate": 2,
+      "diesel_inventory_levels": 1,
+      "crude_inventory_levels": 0,
+      "diesel_export_volume": 1,
+      "diesel_import_volume": 1,
+      "tanker_shipping_capacity": 1,
+      "tanker_shipping_costs": 1,
+      "diesel_price_level": 1,
+      "diesel_price_volatility": 1,
+      "refining_margins": 2,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 1,
+      "industry_lobby_pressure": 0,
+      "domestic_political_press": 0
+    },
+    "diesel_export_volume": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 1,
+      "diesel_production_rate": 2,
+      "diesel_inventory_levels": 2,
+      "crude_inventory_levels": 0,
+      "diesel_export_volume": 0,
+      "diesel_import_volume": 1,
+      "tanker_shipping_capacity": 3,
+      "tanker_shipping_costs": 3,
+      "diesel_price_level": 2,
+      "diesel_price_volatility": 2,
+      "refining_margins": 2,
+      "demand_europe_diesel": 2,
+      "geopolitical_tensions": 2,
+      "industry_lobby_pressure": 1,
+      "domestic_political_press": 1
+    },
+    "diesel_import_volume": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 1,
+      "diesel_production_rate": 1,
+      "diesel_inventory_levels": 2,
+      "crude_inventory_levels": 1,
+      "diesel_export_volume": 0,
+      "diesel_import_volume": 0,
+      "tanker_shipping_capacity": 2,
+      "tanker_shipping_costs": 2,
+      "diesel_price_level": 2,
+      "diesel_price_volatility": 1,
+      "refining_margins": 1,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 2,
+      "industry_lobby_pressure": 0,
+      "domestic_political_press": 1
+    },
+    "tanker_shipping_capacity": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 0,
+      "diesel_production_rate": 0,
+      "diesel_inventory_levels": 1,
+      "crude_inventory_levels": 1,
+      "diesel_export_volume": 3,
+      "diesel_import_volume": 3,
+      "tanker_shipping_capacity": 0,
+      "tanker_shipping_costs": 3,
+      "diesel_price_level": 1,
+      "diesel_price_volatility": 1,
+      "refining_margins": 0,
+      "demand_europe_diesel": 1,
+      "geopolitical_tensions": 2,
+      "industry_lobby_pressure": 0,
+      "domestic_political_press": 0
+    },
+    "tanker_shipping_costs": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 0,
+      "diesel_production_rate": 0,
+      "diesel_inventory_levels": 0,
+      "crude_inventory_levels": 0,
+      "diesel_export_volume": 2,
+      "diesel_import_volume": 2,
+      "tanker_shipping_capacity": 0,
+      "tanker_shipping_costs": 0,
+      "diesel_price_level": 2,
+      "diesel_price_volatility": 1,
+      "refining_margins": 2,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 0,
+      "industry_lobby_pressure": 0,
+      "domestic_political_press": 0
+    },
+    "diesel_price_level": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 2,
+      "diesel_production_rate": 2,
+      "diesel_inventory_levels": 3,
+      "crude_inventory_levels": 1,
+      "diesel_export_volume": 2,
+      "diesel_import_volume": 2,
+      "tanker_shipping_capacity": 0,
+      "tanker_shipping_costs": 0,
+      "diesel_price_level": 0,
+      "diesel_price_volatility": 1,
+      "refining_margins": 3,
+      "demand_europe_diesel": 2,
+      "geopolitical_tensions": 3,
+      "industry_lobby_pressure": 1,
+      "domestic_political_press": 2
+    },
+    "diesel_price_volatility": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 1,
+      "diesel_production_rate": 1,
+      "diesel_inventory_levels": 1,
+      "crude_inventory_levels": 1,
+      "diesel_export_volume": 1,
+      "diesel_import_volume": 1,
+      "tanker_shipping_capacity": 0,
+      "tanker_shipping_costs": 0,
+      "diesel_price_level": 1,
+      "diesel_price_volatility": 0,
+      "refining_margins": 1,
+      "demand_europe_diesel": 1,
+      "geopolitical_tensions": 3,
+      "industry_lobby_pressure": 0,
+      "domestic_political_press": 1
+    },
+    "refining_margins": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 3,
+      "diesel_production_rate": 3,
+      "diesel_inventory_levels": 1,
+      "crude_inventory_levels": 1,
+      "diesel_export_volume": 2,
+      "diesel_import_volume": 1,
+      "tanker_shipping_capacity": 0,
+      "tanker_shipping_costs": 0,
+      "diesel_price_level": 2,
+      "diesel_price_volatility": 1,
+      "refining_margins": 0,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 0,
+      "industry_lobby_pressure": 2,
+      "domestic_political_press": 0
+    },
+    "demand_europe_diesel": {
+      "policy_export_restrictio": 0,
+      "refiner_run_rates": 0,
+      "diesel_production_rate": 0,
+      "diesel_inventory_levels": 0,
+      "crude_inventory_levels": 0,
+      "diesel_export_volume": 2,
+      "diesel_import_volume": 3,
+      "tanker_shipping_capacity": 1,
+      "tanker_shipping_costs": 0,
+      "diesel_price_level": 2,
+      "diesel_price_volatility": 1,
+      "refining_margins": 1,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 0,
+      "industry_lobby_pressure": 0,
+      "domestic_political_press": 0
+    },
+    "geopolitical_tensions": {
+      "policy_export_restrictio": 1,
+      "refiner_run_rates": 1,
+      "diesel_production_rate": 0,
+      "diesel_inventory_levels": 1,
+      "crude_inventory_levels": 1,
+      "diesel_export_volume": 2,
+      "diesel_import_volume": 2,
+      "tanker_shipping_capacity": 2,
+      "tanker_shipping_costs": 3,
+      "diesel_price_level": 3,
+      "diesel_price_volatility": 3,
+      "refining_margins": 0,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 0,
+      "industry_lobby_pressure": 1,
+      "domestic_political_press": 2
+    },
+    "industry_lobby_pressure": {
+      "policy_export_restrictio": 3,
+      "refiner_run_rates": 0,
+      "diesel_production_rate": 0,
+      "diesel_inventory_levels": 0,
+      "crude_inventory_levels": 0,
+      "diesel_export_volume": 1,
+      "diesel_import_volume": 0,
+      "tanker_shipping_capacity": 0,
+      "tanker_shipping_costs": 0,
+      "diesel_price_level": 1,
+      "diesel_price_volatility": 0,
+      "refining_margins": 1,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 0,
+      "industry_lobby_pressure": 0,
+      "domestic_political_press": 1
+    },
+    "domestic_political_press": {
+      "policy_export_restrictio": 3,
+      "refiner_run_rates": 0,
+      "diesel_production_rate": 0,
+      "diesel_inventory_levels": 1,
+      "crude_inventory_levels": 0,
+      "diesel_export_volume": 1,
+      "diesel_import_volume": 1,
+      "tanker_shipping_capacity": 0,
+      "tanker_shipping_costs": 0,
+      "diesel_price_level": 2,
+      "diesel_price_volatility": 1,
+      "refining_margins": 0,
+      "demand_europe_diesel": 0,
+      "geopolitical_tensions": 1,
+      "industry_lobby_pressure": 1,
+      "domestic_political_press": 0
+    }
+  },
+  "AS": {
+    "policy_export_restrictio": 23,
+    "refiner_run_rates": 23,
+    "diesel_production_rate": 22,
+    "diesel_inventory_levels": 18,
+    "crude_inventory_levels": 14,
+    "diesel_export_volume": 24,
+    "diesel_import_volume": 16,
+    "tanker_shipping_capacity": 16,
+    "tanker_shipping_costs": 9,
+    "diesel_price_level": 24,
+    "diesel_price_volatility": 13,
+    "refining_margins": 16,
+    "demand_europe_diesel": 10,
+    "geopolitical_tensions": 22,
+    "industry_lobby_pressure": 7,
+    "domestic_political_press": 11
+  },
+  "PS": {
+    "policy_export_restrictio": 7,
+    "refiner_run_rates": 15,
+    "diesel_production_rate": 17,
+    "diesel_inventory_levels": 21,
+    "crude_inventory_levels": 13,
+    "diesel_export_volume": 27,
+    "diesel_import_volume": 24,
+    "tanker_shipping_capacity": 14,
+    "tanker_shipping_costs": 17,
+    "diesel_price_level": 28,
+    "diesel_price_volatility": 20,
+    "refining_margins": 20,
+    "demand_europe_diesel": 6,
+    "geopolitical_tensions": 14,
+    "industry_lobby_pressure": 12,
+    "domestic_political_press": 13
+  },
+  "med_AS": 16.0,
+  "med_PS": 16.0,
+  "roles": [
+    {
+      "variable": "diesel_price_level",
+      "name": "Diesel price level",
+      "AS": 24,
+      "PS": 28,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 672,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_export_volume",
+      "name": "Diesel export volume",
+      "AS": 24,
+      "PS": 27,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 648,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_import_volume",
+      "name": "Diesel import volume",
+      "AS": 16,
+      "PS": 24,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 384,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_inventory_levels",
+      "name": "Diesel inventory levels",
+      "AS": 18,
+      "PS": 21,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 378,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_production_rate",
+      "name": "Diesel production rate",
+      "AS": 22,
+      "PS": 17,
+      "Q=AS/PS": 1.29,
+      "P=AS*PS": 374,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refiner_run_rates",
+      "name": "Refiner run rates",
+      "AS": 23,
+      "PS": 15,
+      "Q=AS/PS": 1.53,
+      "P=AS*PS": 345,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refining_margins",
+      "name": "Refining margins",
+      "AS": 16,
+      "PS": 20,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 320,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "geopolitical_tensions",
+      "name": "Geopolitical tension level",
+      "AS": 22,
+      "PS": 14,
+      "Q=AS/PS": 1.57,
+      "P=AS*PS": 308,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "diesel_price_volatility",
+      "name": "Diesel price volatility",
+      "AS": 13,
+      "PS": 20,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 260,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tanker_shipping_capacity",
+      "name": "Tanker shipping capacity",
+      "AS": 16,
+      "PS": 14,
+      "Q=AS/PS": 1.14,
+      "P=AS*PS": 224,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "crude_inventory_levels",
+      "name": "Crude inventory levels",
+      "AS": 14,
+      "PS": 13,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 182,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "policy_export_restrictio",
+      "name": "Export restriction intensity",
+      "AS": 23,
+      "PS": 7,
+      "Q=AS/PS": 3.29,
+      "P=AS*PS": 161,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "tanker_shipping_costs",
+      "name": "Tanker shipping costs",
+      "AS": 9,
+      "PS": 17,
+      "Q=AS/PS": 0.53,
+      "P=AS*PS": 153,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "domestic_political_press",
+      "name": "Domestic political pressure",
+      "AS": 11,
+      "PS": 13,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 143,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "industry_lobby_pressure",
+      "name": "Industry lobbying pressure",
+      "AS": 7,
+      "PS": 12,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 84,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "demand_europe_diesel",
+      "name": "European diesel demand",
+      "AS": 10,
+      "PS": 6,
+      "Q=AS/PS": 1.67,
+      "P=AS*PS": 60,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "policy_export_restrictio",
+        "name": "Export restriction intensity",
+        "kind": "driver",
+        "AS": 23,
+        "PS": 7
+      },
+      {
+        "id": "refiner_run_rates",
+        "name": "Refiner run rates",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 15
+      },
+      {
+        "id": "diesel_production_rate",
+        "name": "Diesel production rate",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 17
+      },
+      {
+        "id": "diesel_inventory_levels",
+        "name": "Diesel inventory levels",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 21
+      },
+      {
+        "id": "crude_inventory_levels",
+        "name": "Crude inventory levels",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 13
+      },
+      {
+        "id": "diesel_export_volume",
+        "name": "Diesel export volume",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 27
+      },
+      {
+        "id": "diesel_import_volume",
+        "name": "Diesel import volume",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 24
+      },
+      {
+        "id": "tanker_shipping_capacity",
+        "name": "Tanker shipping capacity",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 14
+      },
+      {
+        "id": "tanker_shipping_costs",
+        "name": "Tanker shipping costs",
+        "kind": "driver",
+        "AS": 9,
+        "PS": 17
+      },
+      {
+        "id": "diesel_price_level",
+        "name": "Diesel price level",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 28
+      },
+      {
+        "id": "diesel_price_volatility",
+        "name": "Diesel price volatility",
+        "kind": "perception",
+        "AS": 13,
+        "PS": 20
+      },
+      {
+        "id": "refining_margins",
+        "name": "Refining margins",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 20
+      },
+      {
+        "id": "demand_europe_diesel",
+        "name": "European diesel demand",
+        "kind": "flow",
+        "AS": 10,
+        "PS": 6
+      },
+      {
+        "id": "geopolitical_tensions",
+        "name": "Geopolitical tension level",
+        "kind": "environment",
+        "AS": 22,
+        "PS": 14
+      },
+      {
+        "id": "industry_lobby_pressure",
+        "name": "Industry lobbying pressure",
+        "kind": "institution_field",
+        "AS": 7,
+        "PS": 12
+      },
+      {
+        "id": "domestic_political_press",
+        "name": "Domestic political pressure",
+        "kind": "perception",
+        "AS": 11,
+        "PS": 13
+      }
+    ],
+    "edges": [
+      {
+        "source": "policy_export_restrictio",
+        "target": "diesel_inventory_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_export_restrictio",
+        "target": "diesel_export_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_export_restrictio",
+        "target": "tanker_shipping_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_export_restrictio",
+        "target": "tanker_shipping_costs",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_export_restrictio",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_export_restrictio",
+        "target": "refining_margins",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_export_restrictio",
+        "target": "industry_lobby_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_export_restrictio",
+        "target": "domestic_political_press",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refiner_run_rates",
+        "target": "diesel_production_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refiner_run_rates",
+        "target": "diesel_inventory_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refiner_run_rates",
+        "target": "crude_inventory_levels",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refiner_run_rates",
+        "target": "diesel_export_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refiner_run_rates",
+        "target": "diesel_import_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refiner_run_rates",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refiner_run_rates",
+        "target": "diesel_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refiner_run_rates",
+        "target": "refining_margins",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_production_rate",
+        "target": "refiner_run_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_production_rate",
+        "target": "diesel_inventory_levels",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_production_rate",
+        "target": "crude_inventory_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_production_rate",
+        "target": "diesel_export_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_production_rate",
+        "target": "diesel_import_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_production_rate",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_production_rate",
+        "target": "diesel_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_production_rate",
+        "target": "refining_margins",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_levels",
+        "target": "diesel_production_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_levels",
+        "target": "diesel_export_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_inventory_levels",
+        "target": "diesel_import_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_levels",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_levels",
+        "target": "diesel_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_inventory_levels",
+        "target": "refiner_run_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_inventory_levels",
+        "target": "diesel_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_inventory_levels",
+        "target": "refining_margins",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_export_volume",
+        "target": "diesel_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_export_volume",
+        "target": "diesel_inventory_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_export_volume",
+        "target": "tanker_shipping_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_export_volume",
+        "target": "tanker_shipping_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_export_volume",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_export_volume",
+        "target": "diesel_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_export_volume",
+        "target": "refining_margins",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_export_volume",
+        "target": "demand_europe_diesel",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_export_volume",
+        "target": "geopolitical_tensions",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "diesel_import_volume",
+        "target": "diesel_inventory_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_import_volume",
+        "target": "tanker_shipping_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_import_volume",
+        "target": "tanker_shipping_costs",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_import_volume",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_import_volume",
+        "target": "geopolitical_tensions",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "tanker_shipping_capacity",
+        "target": "diesel_export_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_shipping_capacity",
+        "target": "diesel_import_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_shipping_capacity",
+        "target": "tanker_shipping_costs",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_shipping_capacity",
+        "target": "geopolitical_tensions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_shipping_costs",
+        "target": "diesel_export_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_shipping_costs",
+        "target": "diesel_import_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_shipping_costs",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_shipping_costs",
+        "target": "refining_margins",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "refiner_run_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "diesel_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "diesel_inventory_levels",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "diesel_export_volume",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "diesel_import_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "refining_margins",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "demand_europe_diesel",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "geopolitical_tensions",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "domestic_political_press",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_price_volatility",
+        "target": "geopolitical_tensions",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margins",
+        "target": "refiner_run_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margins",
+        "target": "diesel_production_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margins",
+        "target": "diesel_export_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margins",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margins",
+        "target": "industry_lobby_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "demand_europe_diesel",
+        "target": "diesel_export_volume",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "demand_europe_diesel",
+        "target": "diesel_import_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "demand_europe_diesel",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tensions",
+        "target": "diesel_export_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tensions",
+        "target": "diesel_import_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tensions",
+        "target": "tanker_shipping_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tensions",
+        "target": "tanker_shipping_costs",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tensions",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tensions",
+        "target": "diesel_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tensions",
+        "target": "domestic_political_press",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "industry_lobby_pressure",
+        "target": "policy_export_restrictio",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "domestic_political_press",
+        "target": "policy_export_restrictio",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "domestic_political_press",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_admin_export_decision",
+      "title": "US decision on diesel export restrictions",
+      "description": "Potential White House announcement of a diesel-export ban, 90-day restriction or formal export limits that would change legal export policy.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-26",
+        "end": "2026-10-31",
+        "label": "within 1 month"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "policy_export_restrictio",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_export_volume",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_inventory_levels",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Politico report of a 90-day ban; Trump backs ban; White House denies but reports persist (headlines 2026-09-24/25)."
+    },
+    {
+      "id": "energy_sec_voluntary_cap",
+      "title": "Energy secretary pushes voluntary export cap with refiners",
+      "description": "Ongoing negotiation and outreach from the Energy Secretary to refiners to limit diesel exports or redirect supply voluntarily rather than via mandate.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-26",
+        "end": "2026-11-30",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "refiner_run_rates",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_export_volume",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_inventory_levels",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "industry_lobby_pressure",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Energy secretary seeks refiners' help and hints at voluntary cap (headlines 2026-09-24)."
+    },
+    {
+      "id": "industry_lobby_blitz",
+      "title": "Oil-and-gas industry lobbying campaign",
+      "description": "Sustained industry campaign and high-level business pressure to defeat bans or strict export limits, including joint letters and media blitz.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-24",
+        "end": "2026-11-30",
+        "label": "ongoing"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "industry_lobby_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_export_restrictio",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "domestic_political_press",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Multiple headlines: 'Behind the Oil-and-Gas Industry’s Blitz', 'Big business warns Trump' (2026-09-24)."
+    },
+    {
+      "id": "brussels_pressure_freeflow",
+      "title": "EU diplomatic push to keep diesel flows open",
+      "description": "European Commission and capitals press the US and suppliers to maintain free flow of diesel and avoid export curbs to protect European markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-25",
+        "end": "2026-10-31",
+        "label": "weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "policy_export_restrictio",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_import_volume",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Brussels pushes Trump to maintain ‘free flow’ of diesel; EU warns capitals (headlines 2026-09-25)."
+    },
+    {
+      "id": "tanker_costs_shipping_strain",
+      "title": "Sustained high tanker costs and constrained shipping",
+      "description": "Record tanker charter rates and constrained ship-to-ship transfers around the Gulf push shipping costs up and limit seaborne capacity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-24",
+        "end": "2026-12-31",
+        "label": "months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "tanker_shipping_costs",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_shipping_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_export_volume",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Oil tanker costs hit record $1.2mn a day'; Gulf transfers reach limit; Houthi attacks (2026-09-24/25)."
+    },
+    {
+      "id": "us_iran_diplomacy_deescalation",
+      "title": "US–Iran diplomacy eases regional tensions",
+      "description": "Ongoing diplomatic engagement that could de‑escalate the Iran war and reduce regional disruption to oil and tanker flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-24",
+        "end": "2026-11-30",
+        "label": "weeks–months"
+      },
+      "probability": 0.45,
+      "affected": [
+        {
+          "variable_id": "geopolitical_tensions",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_shipping_costs",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_inventory_levels",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple headlines cite US‑Iran talks and optimism around diplomacy (2026-09-24 to 09-26)."
+    },
+    {
+      "id": "serbia_release_reserve",
+      "title": "Serbia releases diesel reserves",
+      "description": "Planned release of national diesel reserves by Serbia to ease local shortages and marginally add supply into regional markets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-24",
+        "end": "2026-10-15",
+        "label": "imminent"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "diesel_inventory_levels",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_import_volume",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Serbia to release reserve diesel due to global shortage' (2026-09-24)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_admin_export_decision",
+      "title": "US decision on diesel export restrictions",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "within 1 month",
+      "date": null,
+      "start": "2026-09-26",
+      "end": "2026-10-31",
+      "probability": 0.5,
+      "impact_score": 251.0,
+      "expected_impact": 125.5,
+      "event_PS": 20.0,
+      "event_AS": 20.917,
+      "n_vars": 5,
+      "affected_ids": "policy_export_restrictio, diesel_export_volume, diesel_inventory_levels, diesel_price_level, diesel_price_volatility",
+      "rationale": "Politico report of a 90-day ban; Trump backs ban; White House denies but reports persist (headlines 2026-09-24/25)."
+    },
+    {
+      "id": "us_iran_diplomacy_deescalation",
+      "title": "US–Iran diplomacy eases regional tensions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-09-24",
+      "end": "2026-11-30",
+      "probability": 0.45,
+      "impact_score": 146.0,
+      "expected_impact": 65.7,
+      "event_PS": 18.125,
+      "event_AS": 18.25,
+      "n_vars": 4,
+      "affected_ids": "geopolitical_tensions, tanker_shipping_costs, diesel_price_level, crude_inventory_levels",
+      "rationale": "Multiple headlines cite US‑Iran talks and optimism around diplomacy (2026-09-24 to 09-26)."
+    },
+    {
+      "id": "energy_sec_voluntary_cap",
+      "title": "Energy secretary pushes voluntary export cap with refiners",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-09-26",
+      "end": "2026-11-30",
+      "probability": 0.7,
+      "impact_score": 144.0,
+      "expected_impact": 100.8,
+      "event_PS": 18.75,
+      "event_AS": 18.0,
+      "n_vars": 4,
+      "affected_ids": "refiner_run_rates, diesel_export_volume, diesel_inventory_levels, industry_lobby_pressure",
+      "rationale": "Energy secretary seeks refiners' help and hints at voluntary cap (headlines 2026-09-24)."
+    },
+    {
+      "id": "tanker_costs_shipping_strain",
+      "title": "Sustained high tanker costs and constrained shipping",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-09-24",
+      "end": "2026-12-31",
+      "probability": 0.85,
+      "impact_score": 131.0,
+      "expected_impact": 111.35,
+      "event_PS": 20.25,
+      "event_AS": 16.375,
+      "n_vars": 4,
+      "affected_ids": "tanker_shipping_costs, tanker_shipping_capacity, diesel_price_level, diesel_export_volume",
+      "rationale": "Headlines: 'Oil tanker costs hit record $1.2mn a day'; Gulf transfers reach limit; Houthi attacks (2026-09-24/25)."
+    },
+    {
+      "id": "industry_lobby_blitz",
+      "title": "Oil-and-gas industry lobbying campaign",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "ongoing",
+      "date": null,
+      "start": "2026-09-24",
+      "end": "2026-11-30",
+      "probability": 0.9,
+      "impact_score": 78.0,
+      "expected_impact": 70.2,
+      "event_PS": 10.5,
+      "event_AS": 13.0,
+      "n_vars": 3,
+      "affected_ids": "industry_lobby_pressure, policy_export_restrictio, domestic_political_press",
+      "rationale": "Multiple headlines: 'Behind the Oil-and-Gas Industry’s Blitz', 'Big business warns Trump' (2026-09-24)."
+    },
+    {
+      "id": "serbia_release_reserve",
+      "title": "Serbia releases diesel reserves",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "imminent",
+      "date": null,
+      "start": "2026-09-24",
+      "end": "2026-10-15",
+      "probability": 0.8,
+      "impact_score": 58.0,
+      "expected_impact": 46.4,
+      "event_PS": 24.333,
+      "event_AS": 19.333,
+      "n_vars": 3,
+      "affected_ids": "diesel_inventory_levels, diesel_price_level, diesel_import_volume",
+      "rationale": "Headline: 'Serbia to release reserve diesel due to global shortage' (2026-09-24)."
+    },
+    {
+      "id": "brussels_pressure_freeflow",
+      "title": "EU diplomatic push to keep diesel flows open",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-09-25",
+      "end": "2026-10-31",
+      "probability": 0.65,
+      "impact_score": 39.0,
+      "expected_impact": 25.35,
+      "event_PS": 15.5,
+      "event_AS": 19.5,
+      "n_vars": 2,
+      "affected_ids": "policy_export_restrictio, diesel_import_volume",
+      "rationale": "Brussels pushes Trump to maintain ‘free flow’ of diesel; EU warns capitals (headlines 2026-09-25)."
+    }
+  ]
+}
