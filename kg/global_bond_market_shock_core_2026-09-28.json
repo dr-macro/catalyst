@@ -1,0 +1,1662 @@
+{
+  "label": "global_bond_market_shock",
+  "as_of": "2026-09-27",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-28T02:08:54",
+  "system_description": {
+    "narrative_title": "Global bond rout and rising yields unsettle markets and credit",
+    "narrative_summary": "A rapid, broad-based rise in government bond yields — led by US Treasuries — is reshaping expectations for central bank policy, lifting borrowing costs across mortgages, corporate debt and short-term issuance, and transmitting stress into equities, FX and specific real-world projects. Treasuries, Fed hawkishness and stronger growth data act as the primary inputs; markets, bank and corporate balance sheets, housing affordability and political reactions are the principal internal processes and outputs. The system is open: external shocks (oil, global capital flows, geopolitical risk), policy responses (Fed oversight, Treasury issuance) and feedback loops (higher yields -> tighter credit -> economic/political pressure -> policy recalibration) continuously alter the dynamics.",
+    "scope": "Within the boundary: sovereign bond markets (especially US Treasuries), interest-rate expectations, central-bank policy signals (Fed), mortgage rate formation and housing-market impact, corporate credit markets and refinancing risk (including large data-centre financings), equity valuations, FX and commodity price interactions that feed into yield moves.",
+    "super_system": "Global financial-monetary system / world economy (capital flows, global liquidity and macro policy coordination).",
+    "adjacent_subsystems": [
+      "Real-economy housing and consumer credit",
+      "Corporate investment and project finance (data centres, infrastructure)",
+      "Monetary policy and regulatory framework (Fed decisions, bank oversight)",
+      "Energy and commodity markets (oil, gold) that influence inflation and yields"
+    ],
+    "evidence_headlines": [
+      "Bond Yields Are Surging: What It Means for Stocks, Gold, and the US Dollar",
+      "Bond rout pushes US mortgage rates past 7%",
+      "US Treasury yields soar - ft.com",
+      "Warsh's regime change at the Fed pushes ahead – and meets resistance",
+      "Oracle’s $18bn data centre debt under strain amid local pushback - ft.com"
+    ]
+  },
+  "variables": [
+    {
+      "id": "sovereign_bond_yields",
+      "name": "Sovereign bond yields",
+      "description": "The prevailing market yields on long- and short-term government debt instruments, measured as continuous yield levels across maturities.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "Market-implied expected path for short-term policy interest rates over relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_authority_tone",
+      "name": "Monetary authority communication tone",
+      "description": "The intensity and hawkishness/dovishness of official communication about future monetary policy and oversight.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The component of long-term yields reflecting compensation for interest-rate risk and uncertainty over the term structure.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "real_activity_growth",
+      "name": "Real economic activity growth",
+      "description": "The rate of change in real output and activity (eg. GDP growth, employment growth) that influences demand and financing conditions.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and public expectations for future inflation over short- and long-term horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_credit_spreads",
+      "name": "Corporate credit spreads",
+      "description": "The yield premium on corporate debt over comparable risk-free yields, reflecting perceived default and liquidity risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "mortgage_rate_level",
+      "name": "Mortgage rate level",
+      "description": "The average pricing of mortgage borrowing rates for typical loan products, driven by term yields and credit premia.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "housing_affordability",
+      "name": "Housing affordability",
+      "description": "The ratio of household income to housing costs including mortgage payments, reflecting buying power and demand sensitivity.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bank_liquidity",
+      "name": "Bank balance-sheet liquidity",
+      "description": "The available liquid assets and short-term funding buffers held by banks that determine lending capacity and stress tolerance.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "debt_rollover_pressure",
+      "name": "Debt rollover pressure",
+      "description": "The flow of upcoming debt maturities and refinancing needs that create periodic funding demand on borrowers and markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation_multipl",
+      "name": "Equity valuation multiples",
+      "description": "Market valuation metrics (eg. price-to-earnings, EV/EBITDA) that summarize equity price levels relative to fundamentals.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "Net flows of capital between jurisdictions (portfolio, debt and equity flows) that alter domestic financing conditions.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "currency_strength",
+      "name": "Benchmark currency strength",
+      "description": "The exchange-value level of a dominant reserve/benchmark currency versus other currencies, affecting external financing and asset prices.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_price_level",
+      "name": "Energy price level",
+      "description": "The prevailing price level for key energy commodities (eg. crude oil) that transmits to inflation and trade balances.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "political_response_press",
+      "name": "Political response pressure",
+      "description": "The intensity of political and fiscal pressure to alter policy, regulation or issuance in reaction to market and economic stress.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "sovereign_bond_yields",
+    "policy_rate_expectations",
+    "monetary_authority_tone",
+    "term_premium",
+    "real_activity_growth",
+    "inflation_expectations",
+    "corporate_credit_spreads",
+    "mortgage_rate_level",
+    "housing_affordability",
+    "bank_liquidity",
+    "debt_rollover_pressure",
+    "equity_valuation_multipl",
+    "cross_border_flows",
+    "currency_strength",
+    "energy_price_level",
+    "political_response_press"
+  ],
+  "var_names": {
+    "sovereign_bond_yields": "Sovereign bond yields",
+    "policy_rate_expectations": "Policy rate expectations",
+    "monetary_authority_tone": "Monetary authority communication tone",
+    "term_premium": "Term premium",
+    "real_activity_growth": "Real economic activity growth",
+    "inflation_expectations": "Inflation expectations",
+    "corporate_credit_spreads": "Corporate credit spreads",
+    "mortgage_rate_level": "Mortgage rate level",
+    "housing_affordability": "Housing affordability",
+    "bank_liquidity": "Bank balance-sheet liquidity",
+    "debt_rollover_pressure": "Debt rollover pressure",
+    "equity_valuation_multipl": "Equity valuation multiples",
+    "cross_border_flows": "Cross-border capital flows",
+    "currency_strength": "Benchmark currency strength",
+    "energy_price_level": "Energy price level",
+    "political_response_press": "Political response pressure"
+  },
+  "impact_matrix": {
+    "sovereign_bond_yields": {
+      "sovereign_bond_yields": 0,
+      "policy_rate_expectations": 2,
+      "monetary_authority_tone": 1,
+      "term_premium": 1,
+      "real_activity_growth": 0,
+      "inflation_expectations": 1,
+      "corporate_credit_spreads": 2,
+      "mortgage_rate_level": 3,
+      "housing_affordability": 0,
+      "bank_liquidity": 2,
+      "debt_rollover_pressure": 2,
+      "equity_valuation_multipl": 2,
+      "cross_border_flows": 2,
+      "currency_strength": 1,
+      "energy_price_level": 0,
+      "political_response_press": 1
+    },
+    "policy_rate_expectations": {
+      "sovereign_bond_yields": 3,
+      "policy_rate_expectations": 0,
+      "monetary_authority_tone": 1,
+      "term_premium": 1,
+      "real_activity_growth": 1,
+      "inflation_expectations": 2,
+      "corporate_credit_spreads": 2,
+      "mortgage_rate_level": 2,
+      "housing_affordability": 0,
+      "bank_liquidity": 1,
+      "debt_rollover_pressure": 1,
+      "equity_valuation_multipl": 2,
+      "cross_border_flows": 2,
+      "currency_strength": 2,
+      "energy_price_level": 0,
+      "political_response_press": 1
+    },
+    "monetary_authority_tone": {
+      "sovereign_bond_yields": 3,
+      "policy_rate_expectations": 3,
+      "monetary_authority_tone": 0,
+      "term_premium": 1,
+      "real_activity_growth": 0,
+      "inflation_expectations": 2,
+      "corporate_credit_spreads": 1,
+      "mortgage_rate_level": 2,
+      "housing_affordability": 0,
+      "bank_liquidity": 1,
+      "debt_rollover_pressure": 0,
+      "equity_valuation_multipl": 2,
+      "cross_border_flows": 2,
+      "currency_strength": 2,
+      "energy_price_level": 0,
+      "political_response_press": 2
+    },
+    "term_premium": {
+      "sovereign_bond_yields": 3,
+      "policy_rate_expectations": 1,
+      "monetary_authority_tone": 0,
+      "term_premium": 0,
+      "real_activity_growth": 0,
+      "inflation_expectations": 1,
+      "corporate_credit_spreads": 1,
+      "mortgage_rate_level": 2,
+      "housing_affordability": 0,
+      "bank_liquidity": 1,
+      "debt_rollover_pressure": 1,
+      "equity_valuation_multipl": 1,
+      "cross_border_flows": 1,
+      "currency_strength": 0,
+      "energy_price_level": 0,
+      "political_response_press": 0
+    },
+    "real_activity_growth": {
+      "sovereign_bond_yields": 2,
+      "policy_rate_expectations": 2,
+      "monetary_authority_tone": 1,
+      "term_premium": 1,
+      "real_activity_growth": 0,
+      "inflation_expectations": 2,
+      "corporate_credit_spreads": 2,
+      "mortgage_rate_level": 1,
+      "housing_affordability": 2,
+      "bank_liquidity": 1,
+      "debt_rollover_pressure": 1,
+      "equity_valuation_multipl": 2,
+      "cross_border_flows": 2,
+      "currency_strength": 2,
+      "energy_price_level": 1,
+      "political_response_press": 2
+    },
+    "inflation_expectations": {
+      "sovereign_bond_yields": 3,
+      "policy_rate_expectations": 3,
+      "monetary_authority_tone": 1,
+      "term_premium": 1,
+      "real_activity_growth": 0,
+      "inflation_expectations": 0,
+      "corporate_credit_spreads": 1,
+      "mortgage_rate_level": 2,
+      "housing_affordability": 0,
+      "bank_liquidity": 1,
+      "debt_rollover_pressure": 2,
+      "equity_valuation_multipl": 2,
+      "cross_border_flows": 1,
+      "currency_strength": 2,
+      "energy_price_level": 1,
+      "political_response_press": 1
+    },
+    "corporate_credit_spreads": {
+      "sovereign_bond_yields": 1,
+      "policy_rate_expectations": 0,
+      "monetary_authority_tone": 1,
+      "term_premium": 0,
+      "real_activity_growth": 1,
+      "inflation_expectations": 0,
+      "corporate_credit_spreads": 0,
+      "mortgage_rate_level": 1,
+      "housing_affordability": 0,
+      "bank_liquidity": 2,
+      "debt_rollover_pressure": 2,
+      "equity_valuation_multipl": 2,
+      "cross_border_flows": 1,
+      "currency_strength": 0,
+      "energy_price_level": 0,
+      "political_response_press": 1
+    },
+    "mortgage_rate_level": {
+      "sovereign_bond_yields": 0,
+      "policy_rate_expectations": 0,
+      "monetary_authority_tone": 0,
+      "term_premium": 0,
+      "real_activity_growth": 1,
+      "inflation_expectations": 0,
+      "corporate_credit_spreads": 0,
+      "mortgage_rate_level": 0,
+      "housing_affordability": 3,
+      "bank_liquidity": 1,
+      "debt_rollover_pressure": 0,
+      "equity_valuation_multipl": 1,
+      "cross_border_flows": 0,
+      "currency_strength": 0,
+      "energy_price_level": 0,
+      "political_response_press": 1
+    },
+    "housing_affordability": {
+      "sovereign_bond_yields": 0,
+      "policy_rate_expectations": 0,
+      "monetary_authority_tone": 1,
+      "term_premium": 0,
+      "real_activity_growth": 1,
+      "inflation_expectations": 0,
+      "corporate_credit_spreads": 0,
+      "mortgage_rate_level": 0,
+      "housing_affordability": 0,
+      "bank_liquidity": 1,
+      "debt_rollover_pressure": 0,
+      "equity_valuation_multipl": 1,
+      "cross_border_flows": 0,
+      "currency_strength": 0,
+      "energy_price_level": 0,
+      "political_response_press": 2
+    },
+    "bank_liquidity": {
+      "sovereign_bond_yields": 1,
+      "policy_rate_expectations": 1,
+      "monetary_authority_tone": 2,
+      "term_premium": 1,
+      "real_activity_growth": 1,
+      "inflation_expectations": 0,
+      "corporate_credit_spreads": 2,
+      "mortgage_rate_level": 1,
+      "housing_affordability": 0,
+      "bank_liquidity": 0,
+      "debt_rollover_pressure": 2,
+      "equity_valuation_multipl": 2,
+      "cross_border_flows": 1,
+      "currency_strength": 1,
+      "energy_price_level": 0,
+      "political_response_press": 2
+    },
+    "debt_rollover_pressure": {
+      "sovereign_bond_yields": 2,
+      "policy_rate_expectations": 1,
+      "monetary_authority_tone": 1,
+      "term_premium": 1,
+      "real_activity_growth": 1,
+      "inflation_expectations": 0,
+      "corporate_credit_spreads": 2,
+      "mortgage_rate_level": 1,
+      "housing_affordability": 0,
+      "bank_liquidity": 2,
+      "debt_rollover_pressure": 0,
+      "equity_valuation_multipl": 1,
+      "cross_border_flows": 1,
+      "currency_strength": 1,
+      "energy_price_level": 0,
+      "political_response_press": 2
+    },
+    "equity_valuation_multipl": {
+      "sovereign_bond_yields": 1,
+      "policy_rate_expectations": 1,
+      "monetary_authority_tone": 1,
+      "term_premium": 0,
+      "real_activity_growth": 1,
+      "inflation_expectations": 0,
+      "corporate_credit_spreads": 1,
+      "mortgage_rate_level": 0,
+      "housing_affordability": 0,
+      "bank_liquidity": 1,
+      "debt_rollover_pressure": 0,
+      "equity_valuation_multipl": 0,
+      "cross_border_flows": 2,
+      "currency_strength": 1,
+      "energy_price_level": 0,
+      "political_response_press": 1
+    },
+    "cross_border_flows": {
+      "sovereign_bond_yields": 2,
+      "policy_rate_expectations": 1,
+      "monetary_authority_tone": 1,
+      "term_premium": 1,
+      "real_activity_growth": 1,
+      "inflation_expectations": 0,
+      "corporate_credit_spreads": 1,
+      "mortgage_rate_level": 1,
+      "housing_affordability": 0,
+      "bank_liquidity": 2,
+      "debt_rollover_pressure": 1,
+      "equity_valuation_multipl": 2,
+      "cross_border_flows": 0,
+      "currency_strength": 3,
+      "energy_price_level": 0,
+      "political_response_press": 1
+    },
+    "currency_strength": {
+      "sovereign_bond_yields": 1,
+      "policy_rate_expectations": 1,
+      "monetary_authority_tone": 1,
+      "term_premium": 0,
+      "real_activity_growth": 1,
+      "inflation_expectations": 1,
+      "corporate_credit_spreads": 1,
+      "mortgage_rate_level": 0,
+      "housing_affordability": 0,
+      "bank_liquidity": 1,
+      "debt_rollover_pressure": 1,
+      "equity_valuation_multipl": 1,
+      "cross_border_flows": 2,
+      "currency_strength": 0,
+      "energy_price_level": 0,
+      "political_response_press": 1
+    },
+    "energy_price_level": {
+      "sovereign_bond_yields": 1,
+      "policy_rate_expectations": 1,
+      "monetary_authority_tone": 1,
+      "term_premium": 0,
+      "real_activity_growth": 1,
+      "inflation_expectations": 2,
+      "corporate_credit_spreads": 1,
+      "mortgage_rate_level": 0,
+      "housing_affordability": 0,
+      "bank_liquidity": 0,
+      "debt_rollover_pressure": 0,
+      "equity_valuation_multipl": 1,
+      "cross_border_flows": 1,
+      "currency_strength": 1,
+      "energy_price_level": 0,
+      "political_response_press": 1
+    },
+    "political_response_press": {
+      "sovereign_bond_yields": 1,
+      "policy_rate_expectations": 1,
+      "monetary_authority_tone": 1,
+      "term_premium": 1,
+      "real_activity_growth": 1,
+      "inflation_expectations": 1,
+      "corporate_credit_spreads": 1,
+      "mortgage_rate_level": 0,
+      "housing_affordability": 1,
+      "bank_liquidity": 1,
+      "debt_rollover_pressure": 1,
+      "equity_valuation_multipl": 1,
+      "cross_border_flows": 1,
+      "currency_strength": 1,
+      "energy_price_level": 0,
+      "political_response_press": 0
+    }
+  },
+  "AS": {
+    "sovereign_bond_yields": 20,
+    "policy_rate_expectations": 21,
+    "monetary_authority_tone": 21,
+    "term_premium": 12,
+    "real_activity_growth": 24,
+    "inflation_expectations": 21,
+    "corporate_credit_spreads": 12,
+    "mortgage_rate_level": 7,
+    "housing_affordability": 6,
+    "bank_liquidity": 17,
+    "debt_rollover_pressure": 16,
+    "equity_valuation_multipl": 10,
+    "cross_border_flows": 17,
+    "currency_strength": 12,
+    "energy_price_level": 11,
+    "political_response_press": 13
+  },
+  "PS": {
+    "sovereign_bond_yields": 24,
+    "policy_rate_expectations": 18,
+    "monetary_authority_tone": 14,
+    "term_premium": 9,
+    "real_activity_growth": 11,
+    "inflation_expectations": 12,
+    "corporate_credit_spreads": 18,
+    "mortgage_rate_level": 16,
+    "housing_affordability": 6,
+    "bank_liquidity": 18,
+    "debt_rollover_pressure": 14,
+    "equity_valuation_multipl": 23,
+    "cross_border_flows": 19,
+    "currency_strength": 17,
+    "energy_price_level": 2,
+    "political_response_press": 19
+  },
+  "med_AS": 14.5,
+  "med_PS": 16.5,
+  "roles": [
+    {
+      "variable": "sovereign_bond_yields",
+      "name": "Sovereign bond yields",
+      "AS": 20,
+      "PS": 24,
+      "Q=AS/PS": 0.83,
+      "P=AS*PS": 480,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 21,
+      "PS": 18,
+      "Q=AS/PS": 1.17,
+      "P=AS*PS": 378,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 17,
+      "PS": 19,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 323,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bank_liquidity",
+      "name": "Bank balance-sheet liquidity",
+      "AS": 17,
+      "PS": 18,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 306,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "monetary_authority_tone",
+      "name": "Monetary authority communication tone",
+      "AS": 21,
+      "PS": 14,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 294,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "real_activity_growth",
+      "name": "Real economic activity growth",
+      "AS": 24,
+      "PS": 11,
+      "Q=AS/PS": 2.18,
+      "P=AS*PS": 264,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 21,
+      "PS": 12,
+      "Q=AS/PS": 1.75,
+      "P=AS*PS": 252,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "political_response_press",
+      "name": "Political response pressure",
+      "AS": 13,
+      "PS": 19,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 247,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "equity_valuation_multipl",
+      "name": "Equity valuation multiples",
+      "AS": 10,
+      "PS": 23,
+      "Q=AS/PS": 0.43,
+      "P=AS*PS": 230,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "debt_rollover_pressure",
+      "name": "Debt rollover pressure",
+      "AS": 16,
+      "PS": 14,
+      "Q=AS/PS": 1.14,
+      "P=AS*PS": 224,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "corporate_credit_spreads",
+      "name": "Corporate credit spreads",
+      "AS": 12,
+      "PS": 18,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 216,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "currency_strength",
+      "name": "Benchmark currency strength",
+      "AS": 12,
+      "PS": 17,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 204,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "mortgage_rate_level",
+      "name": "Mortgage rate level",
+      "AS": 7,
+      "PS": 16,
+      "Q=AS/PS": 0.44,
+      "P=AS*PS": 112,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 12,
+      "PS": 9,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 108,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "housing_affordability",
+      "name": "Housing affordability",
+      "AS": 6,
+      "PS": 6,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 36,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "energy_price_level",
+      "name": "Energy price level",
+      "AS": 11,
+      "PS": 2,
+      "Q=AS/PS": 5.5,
+      "P=AS*PS": 22,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "sovereign_bond_yields",
+        "name": "Sovereign bond yields",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 24
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 18
+      },
+      {
+        "id": "monetary_authority_tone",
+        "name": "Monetary authority communication tone",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 14
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 9
+      },
+      {
+        "id": "real_activity_growth",
+        "name": "Real economic activity growth",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 11
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 12
+      },
+      {
+        "id": "corporate_credit_spreads",
+        "name": "Corporate credit spreads",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 18
+      },
+      {
+        "id": "mortgage_rate_level",
+        "name": "Mortgage rate level",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 16
+      },
+      {
+        "id": "housing_affordability",
+        "name": "Housing affordability",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 6
+      },
+      {
+        "id": "bank_liquidity",
+        "name": "Bank balance-sheet liquidity",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 18
+      },
+      {
+        "id": "debt_rollover_pressure",
+        "name": "Debt rollover pressure",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 14
+      },
+      {
+        "id": "equity_valuation_multipl",
+        "name": "Equity valuation multiples",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 23
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 19
+      },
+      {
+        "id": "currency_strength",
+        "name": "Benchmark currency strength",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 17
+      },
+      {
+        "id": "energy_price_level",
+        "name": "Energy price level",
+        "kind": "environment",
+        "AS": 11,
+        "PS": 2
+      },
+      {
+        "id": "political_response_press",
+        "name": "Political response pressure",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 19
+      }
+    ],
+    "edges": [
+      {
+        "source": "sovereign_bond_yields",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "mortgage_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "bank_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "debt_rollover_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "equity_valuation_multipl",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "sovereign_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "mortgage_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "equity_valuation_multipl",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_authority_tone",
+        "target": "sovereign_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_authority_tone",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_authority_tone",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_authority_tone",
+        "target": "mortgage_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_authority_tone",
+        "target": "equity_valuation_multipl",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_authority_tone",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_authority_tone",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_authority_tone",
+        "target": "political_response_press",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "sovereign_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "mortgage_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_activity_growth",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_activity_growth",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_activity_growth",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_activity_growth",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_activity_growth",
+        "target": "housing_affordability",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_activity_growth",
+        "target": "equity_valuation_multipl",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_activity_growth",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_activity_growth",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_activity_growth",
+        "target": "political_response_press",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "sovereign_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "mortgage_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "debt_rollover_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_valuation_multipl",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "bank_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "debt_rollover_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "equity_valuation_multipl",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "mortgage_rate_level",
+        "target": "housing_affordability",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "housing_affordability",
+        "target": "political_response_press",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bank_liquidity",
+        "target": "monetary_authority_tone",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_liquidity",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bank_liquidity",
+        "target": "debt_rollover_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bank_liquidity",
+        "target": "equity_valuation_multipl",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_liquidity",
+        "target": "political_response_press",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_rollover_pressure",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_rollover_pressure",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_rollover_pressure",
+        "target": "bank_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_rollover_pressure",
+        "target": "political_response_press",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation_multipl",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "bank_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "equity_valuation_multipl",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "currency_strength",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "currency_strength",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_jobs_report_early_oct",
+      "title": "Upcoming US jobs report",
+      "description": "The next US employment print could materially move Treasury yields and market rate expectations if it surprises on payrolls or wages.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-27",
+        "end": "2026-10-10",
+        "label": "next 2 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "sovereign_bond_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "monetary_authority_tone",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Why the upcoming jobs report could send 10-year and 30-year Treasury yields surging.\""
+    },
+    {
+      "id": "us_inflation_release",
+      "title": "Near-term US inflation prints",
+      "description": "Upcoming CPI/PCE releases and monthly inflation data could alter inflation expectations and the expected Fed path, shifting long-term yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-27",
+        "end": "2026-10-10",
+        "label": "next 2 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Week Ahead for FX, Bonds: U.S. Jobs Data in Focus as Another Fed Rate Hike Looks Possible\" (inflation data flagged)."
+    },
+    {
+      "id": "fed_rate_hike_likelihood",
+      "title": "Elevated Fed tightening bias",
+      "description": "Ongoing hawkish communications and regime change at the Fed increase the likelihood of further rate hikes or a prolonged tight stance.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-27",
+        "end": "2026-11-30",
+        "label": "next 2 months"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "monetary_authority_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"Warsh's regime change at the Fed pushes ahead\"; \"Another Fed Rate Hike Looks Possible.\""
+    },
+    {
+      "id": "us_short_term_issuance_wave",
+      "title": "Large US short-term debt issuance",
+      "description": "Planned heavy issuance of short-term Treasury securities (~$1tn) will raise rollover demand and pressure short-end funding markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-27",
+        "end": "2026-11-30",
+        "label": "next 2 months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "debt_rollover_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bank_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"Wall Street expects US to issue about $1tn of short-term debt as borrowing costs climb.\""
+    },
+    {
+      "id": "corporate_maturities_test",
+      "title": "Corporate debt maturities pressure",
+      "description": "Large upcoming corporate maturities will test borrowers' refinancing ability, widening credit premia if funding costs remain elevated.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-27",
+        "end": "2027-03-27",
+        "label": "next 6 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "corporate_credit_spreads",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "debt_rollover_pressure",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bank_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"Corporate debt maturities set to test US borrowers as rates rise.\""
+    },
+    {
+      "id": "mortgage_rates_rise",
+      "title": "Mortgage-rate surge and affordability hit",
+      "description": "Rapid rises in long-term yields have already pushed mortgage rates above 7%, with further increases likely to worsen affordability and housing demand.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-27",
+        "end": "2026-12-31",
+        "label": "next 3 months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "mortgage_rate_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "housing_affordability",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "real_activity_growth",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"Bond rout pushes US mortgage rates past 7%\"; \"8% mortgage rates are ‘not an impossibility’.\""
+    },
+    {
+      "id": "oil_price_volatility",
+      "title": "Near-term oil-price moves",
+      "description": "Oil price retreat or renewed spikes will alter inflation impulses and can ease or reignite bond-market stress.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-27",
+        "end": "2026-10-31",
+        "label": "next month"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_bond_yields",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"Global bond sell-off eases as oil prices retreat from recent highs.\""
+    },
+    {
+      "id": "capital_shift_to_us_stocks",
+      "title": "Foreign capital shift into US equities",
+      "description": "Record flows into US stocks as appetite for debt fades will reduce demand for bonds and exert upward pressure on yields.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-27",
+        "end": "2026-12-31",
+        "label": "next 3 months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_valuation_multipl",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Foreign capital flows into US stocks hit record as appetite for debt fades.\""
+    },
+    {
+      "id": "texas_midterms_data_center",
+      "title": "Texas midterms: data‑center wedge issue",
+      "description": "Data‑center local opposition is becoming a midterm political issue in Texas, likely increasing political pressure around permitting and investment.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-11-04",
+        "start": null,
+        "end": null,
+        "label": "Election day"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "political_response_press",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "housing_affordability",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"Data centre boom emerges as wedge issue in Texas midterms\"; Oracle data‑centre pushback coverage."
+    },
+    {
+      "id": "fed_oversight_threshold_change",
+      "title": "Fed bank‑oversight threshold changes",
+      "description": "Proposals to change bank oversight thresholds could shift regulatory burden and liquidity dynamics for banks if implemented.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-27",
+        "end": "2026-12-31",
+        "label": "next 3 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "monetary_authority_tone",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bank_liquidity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "political_response_press",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: \"US Fed plans to raise bank oversight thresholds, sources say.\""
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_jobs_report_early_oct",
+      "title": "Upcoming US jobs report",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 weeks",
+      "date": null,
+      "start": "2026-09-27",
+      "end": "2026-10-10",
+      "probability": 0.9,
+      "impact_score": 186.0,
+      "expected_impact": 167.4,
+      "event_PS": 18.444,
+      "event_AS": 20.667,
+      "n_vars": 4,
+      "affected_ids": "sovereign_bond_yields, policy_rate_expectations, monetary_authority_tone, inflation_expectations",
+      "rationale": "Headline: \"Why the upcoming jobs report could send 10-year and 30-year Treasury yields surging.\""
+    },
+    {
+      "id": "fed_rate_hike_likelihood",
+      "title": "Elevated Fed tightening bias",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 months",
+      "date": null,
+      "start": "2026-09-27",
+      "end": "2026-11-30",
+      "probability": 0.65,
+      "impact_score": 178.0,
+      "expected_impact": 115.7,
+      "event_PS": 17.0,
+      "event_AS": 19.778,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, monetary_authority_tone, sovereign_bond_yields, term_premium",
+      "rationale": "Headlines: \"Warsh's regime change at the Fed pushes ahead\"; \"Another Fed Rate Hike Looks Possible.\""
+    },
+    {
+      "id": "us_inflation_release",
+      "title": "Near-term US inflation prints",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 weeks",
+      "date": null,
+      "start": "2026-09-27",
+      "end": "2026-10-10",
+      "probability": 0.8,
+      "impact_score": 157.0,
+      "expected_impact": 125.6,
+      "event_PS": 16.125,
+      "event_AS": 19.625,
+      "n_vars": 4,
+      "affected_ids": "inflation_expectations, policy_rate_expectations, sovereign_bond_yields, term_premium",
+      "rationale": "Headline: \"Week Ahead for FX, Bonds: U.S. Jobs Data in Focus as Another Fed Rate Hike Looks Possible\" (inflation data flagged)."
+    },
+    {
+      "id": "us_short_term_issuance_wave",
+      "title": "Large US short-term debt issuance",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 months",
+      "date": null,
+      "start": "2026-09-27",
+      "end": "2026-11-30",
+      "probability": 0.85,
+      "impact_score": 156.0,
+      "expected_impact": 132.6,
+      "event_PS": 18.222,
+      "event_AS": 17.333,
+      "n_vars": 4,
+      "affected_ids": "debt_rollover_pressure, bank_liquidity, sovereign_bond_yields, cross_border_flows",
+      "rationale": "Headline: \"Wall Street expects US to issue about $1tn of short-term debt as borrowing costs climb.\""
+    },
+    {
+      "id": "capital_shift_to_us_stocks",
+      "title": "Foreign capital shift into US equities",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-27",
+      "end": "2026-12-31",
+      "probability": 0.75,
+      "impact_score": 111.0,
+      "expected_impact": 83.25,
+      "event_PS": 21.571,
+      "event_AS": 15.857,
+      "n_vars": 3,
+      "affected_ids": "cross_border_flows, sovereign_bond_yields, equity_valuation_multipl",
+      "rationale": "Headline: \"Foreign capital flows into US stocks hit record as appetite for debt fades.\""
+    },
+    {
+      "id": "fed_oversight_threshold_change",
+      "title": "Fed bank‑oversight threshold changes",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-27",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 89.0,
+      "expected_impact": 62.3,
+      "event_PS": 16.6,
+      "event_AS": 17.8,
+      "n_vars": 3,
+      "affected_ids": "monetary_authority_tone, bank_liquidity, political_response_press",
+      "rationale": "Headline: \"US Fed plans to raise bank oversight thresholds, sources say.\""
+    },
+    {
+      "id": "corporate_maturities_test",
+      "title": "Corporate debt maturities pressure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 months",
+      "date": null,
+      "start": "2026-09-27",
+      "end": "2027-03-27",
+      "probability": 0.8,
+      "impact_score": 85.0,
+      "expected_impact": 68.0,
+      "event_PS": 16.667,
+      "event_AS": 14.167,
+      "n_vars": 3,
+      "affected_ids": "corporate_credit_spreads, debt_rollover_pressure, bank_liquidity",
+      "rationale": "Headline: \"Corporate debt maturities set to test US borrowers as rates rise.\""
+    },
+    {
+      "id": "mortgage_rates_rise",
+      "title": "Mortgage-rate surge and affordability hit",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-09-27",
+      "end": "2026-12-31",
+      "probability": 0.9,
+      "impact_score": 63.0,
+      "expected_impact": 56.7,
+      "event_PS": 11.0,
+      "event_AS": 9.0,
+      "n_vars": 3,
+      "affected_ids": "mortgage_rate_level, housing_affordability, real_activity_growth",
+      "rationale": "Headlines: \"Bond rout pushes US mortgage rates past 7%\"; \"8% mortgage rates are ‘not an impossibility’.\""
+    },
+    {
+      "id": "oil_price_volatility",
+      "title": "Near-term oil-price moves",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next month",
+      "date": null,
+      "start": "2026-09-27",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 54.0,
+      "expected_impact": 37.8,
+      "event_PS": 9.25,
+      "event_AS": 13.5,
+      "n_vars": 3,
+      "affected_ids": "energy_price_level, sovereign_bond_yields, term_premium",
+      "rationale": "Headline: \"Global bond sell-off eases as oil prices retreat from recent highs.\""
+    },
+    {
+      "id": "texas_midterms_data_center",
+      "title": "Texas midterms: data‑center wedge issue",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "Election day",
+      "date": "2026-11-04",
+      "start": null,
+      "end": null,
+      "probability": 0.9,
+      "impact_score": 32.0,
+      "expected_impact": 28.8,
+      "event_PS": 14.667,
+      "event_AS": 10.667,
+      "n_vars": 2,
+      "affected_ids": "political_response_press, housing_affordability",
+      "rationale": "Headlines: \"Data centre boom emerges as wedge issue in Texas midterms\"; Oracle data‑centre pushback coverage."
+    }
+  ]
+}
