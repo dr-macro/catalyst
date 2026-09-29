@@ -1,0 +1,1943 @@
+{
+  "label": "global_bond_stress",
+  "as_of": "2026-09-29",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-29T03:08:54",
+  "system_description": {
+    "narrative_title": "Global bond-market repricing driven by Fed, growth, and oil shocks",
+    "narrative_summary": "A broad sell-off in government bonds — led by U.S. Treasuries — is lifting long-term yields and forcing a cross-asset repricing as strong growth data, tightening Fed expectations, rising oil prices and geopolitical risks interact. Treasuries, macro data (jobs/inflation), central bank signaling, commodity shocks and market liquidity form an open system with reinforcing feedbacks: higher yields pressure risk assets and real-economy expectations, which in turn reshape policy expectations and safe‑asset demand. The episode transmits quickly across equities, commodities, FX and credit, while being continuously driven by new data (jobs, oil moves) and policy commentary.",
+    "scope": "Government bond markets (U.S. Treasuries and major sovereigns), long-term yields and yield curves, interest-rate expectations, central-bank policy signaling, macro data flows (jobs, inflation), market liquidity and risk-premia, and immediate spillovers to equities, commodities (notably oil), FX and credit markets.",
+    "super_system": "Global financial system / global macroeconomic system",
+    "adjacent_subsystems": [
+      "Equity markets and risk asset pricing",
+      "Oil and broader commodity markets",
+      "Central-bank policy framework and communication",
+      "Fiscal policy and sovereign debt issuance"
+    ],
+    "evidence_headlines": [
+      "US bond sell-off pushes long-term yields to highest since 2004",
+      "US Treasury yields soar most since ‘liberation day’ tariffs shook markets",
+      "Will US jobs data add to pressure on Fed policymakers? - ft.com",
+      "U.S. Stocks Slide as Treasury Selloff Deepens",
+      "Oil price rise puts more pressure on government bonds",
+      "Bond Markets Are Screaming, and Every Asset Class Should Be Listening"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_yields",
+      "name": "Long-term sovereign yields",
+      "description": "The prevailing levels of yields on long-duration government bonds across major maturities.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield-curve slope",
+      "description": "The difference between long-term and short-term sovereign yields, capturing term structure shape and steepness.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy-rate expectations",
+      "description": "Market-implied expected path of short-term policy rates over the forecast horizon.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_signaling",
+      "name": "Central-bank signaling intensity",
+      "description": "The frequency, clarity and strength of central-bank communications and forward guidance that influence market interpretation of policy stance.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "macro_data_surprise_flow",
+      "name": "Macro data surprise flow",
+      "description": "The stream and magnitude of incoming macroeconomic releases relative to consensus expectations (positive or negative surprises).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_trend",
+      "name": "Inflation trend",
+      "description": "The underlying trajectory and persistence of consumer price inflation over time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "growth_momentum",
+      "name": "Economic growth momentum",
+      "description": "The recent rate of change and acceleration of real economic activity or output growth.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_level",
+      "name": "Oil price level",
+      "description": "The prevailing market price of crude oil as a representative commodity-price indicator.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity conditions",
+      "description": "The ease and cost of executing sizable trades in financial markets without inducing large price moves.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "risk_premia_assets",
+      "name": "Risk premia in risky assets",
+      "description": "The additional expected return investors demand for holding risky assets instead of safe assets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_asset_demand_flow",
+      "name": "Safe-asset demand flow",
+      "description": "Net flows and shifts in investor demand into recognized safe-haven assets over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "cross_asset_spillover",
+      "name": "Cross-asset spillover intensity",
+      "description": "The strength and speed with which shocks in one asset class transmit to prices and volatility in other asset classes.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "implied_volatility",
+      "name": "Implied volatility",
+      "description": "Market-implied expected near-term price volatility derived from option prices across asset classes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread_level",
+      "name": "Credit spread levels",
+      "description": "Average yield premium of corporate or non-sovereign debt over comparable sovereign yields reflecting credit risk compensation.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fx_pressure",
+      "name": "Foreign-exchange pressure",
+      "description": "Directional stress, volatility and capital-flow-driven pressure experienced in currency markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "geopolitical_risk_level",
+      "name": "Geopolitical risk tension",
+      "description": "The intensity and perceived probability of geopolitical developments that could materially disrupt markets and trades.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_yields",
+    "yield_curve_slope",
+    "policy_rate_expectations",
+    "central_bank_signaling",
+    "macro_data_surprise_flow",
+    "inflation_trend",
+    "growth_momentum",
+    "oil_price_level",
+    "market_liquidity",
+    "risk_premia_assets",
+    "safe_asset_demand_flow",
+    "cross_asset_spillover",
+    "implied_volatility",
+    "credit_spread_level",
+    "fx_pressure",
+    "geopolitical_risk_level"
+  ],
+  "var_names": {
+    "long_term_yields": "Long-term sovereign yields",
+    "yield_curve_slope": "Yield-curve slope",
+    "policy_rate_expectations": "Policy-rate expectations",
+    "central_bank_signaling": "Central-bank signaling intensity",
+    "macro_data_surprise_flow": "Macro data surprise flow",
+    "inflation_trend": "Inflation trend",
+    "growth_momentum": "Economic growth momentum",
+    "oil_price_level": "Oil price level",
+    "market_liquidity": "Market liquidity conditions",
+    "risk_premia_assets": "Risk premia in risky assets",
+    "safe_asset_demand_flow": "Safe-asset demand flow",
+    "cross_asset_spillover": "Cross-asset spillover intensity",
+    "implied_volatility": "Implied volatility",
+    "credit_spread_level": "Credit spread levels",
+    "fx_pressure": "Foreign-exchange pressure",
+    "geopolitical_risk_level": "Geopolitical risk tension"
+  },
+  "impact_matrix": {
+    "long_term_yields": {
+      "long_term_yields": 0,
+      "yield_curve_slope": 3,
+      "policy_rate_expectations": 2,
+      "central_bank_signaling": 1,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 1,
+      "growth_momentum": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 2,
+      "risk_premia_assets": 2,
+      "safe_asset_demand_flow": 2,
+      "cross_asset_spillover": 2,
+      "implied_volatility": 2,
+      "credit_spread_level": 2,
+      "fx_pressure": 1,
+      "geopolitical_risk_level": 0
+    },
+    "yield_curve_slope": {
+      "long_term_yields": 2,
+      "yield_curve_slope": 0,
+      "policy_rate_expectations": 3,
+      "central_bank_signaling": 1,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 0,
+      "growth_momentum": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "risk_premia_assets": 2,
+      "safe_asset_demand_flow": 2,
+      "cross_asset_spillover": 2,
+      "implied_volatility": 2,
+      "credit_spread_level": 2,
+      "fx_pressure": 1,
+      "geopolitical_risk_level": 0
+    },
+    "policy_rate_expectations": {
+      "long_term_yields": 3,
+      "yield_curve_slope": 3,
+      "policy_rate_expectations": 0,
+      "central_bank_signaling": 1,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 1,
+      "growth_momentum": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "risk_premia_assets": 2,
+      "safe_asset_demand_flow": 2,
+      "cross_asset_spillover": 2,
+      "implied_volatility": 2,
+      "credit_spread_level": 2,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 0
+    },
+    "central_bank_signaling": {
+      "long_term_yields": 3,
+      "yield_curve_slope": 3,
+      "policy_rate_expectations": 3,
+      "central_bank_signaling": 0,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 3,
+      "growth_momentum": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "risk_premia_assets": 2,
+      "safe_asset_demand_flow": 2,
+      "cross_asset_spillover": 2,
+      "implied_volatility": 2,
+      "credit_spread_level": 2,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 0
+    },
+    "macro_data_surprise_flow": {
+      "long_term_yields": 3,
+      "yield_curve_slope": 3,
+      "policy_rate_expectations": 3,
+      "central_bank_signaling": 1,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 1,
+      "growth_momentum": 2,
+      "oil_price_level": 1,
+      "market_liquidity": 1,
+      "risk_premia_assets": 2,
+      "safe_asset_demand_flow": 2,
+      "cross_asset_spillover": 2,
+      "implied_volatility": 3,
+      "credit_spread_level": 2,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 0
+    },
+    "inflation_trend": {
+      "long_term_yields": 3,
+      "yield_curve_slope": 2,
+      "policy_rate_expectations": 3,
+      "central_bank_signaling": 3,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 0,
+      "growth_momentum": 1,
+      "oil_price_level": 1,
+      "market_liquidity": 1,
+      "risk_premia_assets": 3,
+      "safe_asset_demand_flow": 2,
+      "cross_asset_spillover": 2,
+      "implied_volatility": 2,
+      "credit_spread_level": 2,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 0
+    },
+    "growth_momentum": {
+      "long_term_yields": 3,
+      "yield_curve_slope": 3,
+      "policy_rate_expectations": 3,
+      "central_bank_signaling": 2,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 1,
+      "growth_momentum": 0,
+      "oil_price_level": 2,
+      "market_liquidity": 1,
+      "risk_premia_assets": 2,
+      "safe_asset_demand_flow": 2,
+      "cross_asset_spillover": 2,
+      "implied_volatility": 2,
+      "credit_spread_level": 2,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 0
+    },
+    "oil_price_level": {
+      "long_term_yields": 2,
+      "yield_curve_slope": 2,
+      "policy_rate_expectations": 2,
+      "central_bank_signaling": 1,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 3,
+      "growth_momentum": 2,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "risk_premia_assets": 2,
+      "safe_asset_demand_flow": 2,
+      "cross_asset_spillover": 3,
+      "implied_volatility": 2,
+      "credit_spread_level": 2,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 1
+    },
+    "market_liquidity": {
+      "long_term_yields": 3,
+      "yield_curve_slope": 2,
+      "policy_rate_expectations": 1,
+      "central_bank_signaling": 2,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 0,
+      "growth_momentum": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 0,
+      "risk_premia_assets": 3,
+      "safe_asset_demand_flow": 3,
+      "cross_asset_spillover": 3,
+      "implied_volatility": 3,
+      "credit_spread_level": 3,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 0
+    },
+    "risk_premia_assets": {
+      "long_term_yields": 2,
+      "yield_curve_slope": 2,
+      "policy_rate_expectations": 1,
+      "central_bank_signaling": 1,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 0,
+      "growth_momentum": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 2,
+      "risk_premia_assets": 0,
+      "safe_asset_demand_flow": 3,
+      "cross_asset_spillover": 3,
+      "implied_volatility": 3,
+      "credit_spread_level": 3,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 0
+    },
+    "safe_asset_demand_flow": {
+      "long_term_yields": 3,
+      "yield_curve_slope": 2,
+      "policy_rate_expectations": 1,
+      "central_bank_signaling": 1,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 0,
+      "growth_momentum": 0,
+      "oil_price_level": 0,
+      "market_liquidity": 2,
+      "risk_premia_assets": 3,
+      "safe_asset_demand_flow": 0,
+      "cross_asset_spillover": 3,
+      "implied_volatility": 2,
+      "credit_spread_level": 2,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 0
+    },
+    "cross_asset_spillover": {
+      "long_term_yields": 3,
+      "yield_curve_slope": 3,
+      "policy_rate_expectations": 2,
+      "central_bank_signaling": 1,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 0,
+      "growth_momentum": 1,
+      "oil_price_level": 2,
+      "market_liquidity": 3,
+      "risk_premia_assets": 3,
+      "safe_asset_demand_flow": 3,
+      "cross_asset_spillover": 0,
+      "implied_volatility": 3,
+      "credit_spread_level": 3,
+      "fx_pressure": 3,
+      "geopolitical_risk_level": 0
+    },
+    "implied_volatility": {
+      "long_term_yields": 2,
+      "yield_curve_slope": 2,
+      "policy_rate_expectations": 1,
+      "central_bank_signaling": 1,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 0,
+      "growth_momentum": 1,
+      "oil_price_level": 1,
+      "market_liquidity": 3,
+      "risk_premia_assets": 3,
+      "safe_asset_demand_flow": 3,
+      "cross_asset_spillover": 3,
+      "implied_volatility": 0,
+      "credit_spread_level": 3,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 0
+    },
+    "credit_spread_level": {
+      "long_term_yields": 2,
+      "yield_curve_slope": 2,
+      "policy_rate_expectations": 1,
+      "central_bank_signaling": 1,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 0,
+      "growth_momentum": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 2,
+      "risk_premia_assets": 3,
+      "safe_asset_demand_flow": 2,
+      "cross_asset_spillover": 2,
+      "implied_volatility": 2,
+      "credit_spread_level": 0,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 0
+    },
+    "fx_pressure": {
+      "long_term_yields": 2,
+      "yield_curve_slope": 2,
+      "policy_rate_expectations": 2,
+      "central_bank_signaling": 2,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 1,
+      "growth_momentum": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 2,
+      "risk_premia_assets": 2,
+      "safe_asset_demand_flow": 2,
+      "cross_asset_spillover": 2,
+      "implied_volatility": 2,
+      "credit_spread_level": 2,
+      "fx_pressure": 0,
+      "geopolitical_risk_level": 0
+    },
+    "geopolitical_risk_level": {
+      "long_term_yields": 2,
+      "yield_curve_slope": 1,
+      "policy_rate_expectations": 1,
+      "central_bank_signaling": 1,
+      "macro_data_surprise_flow": 0,
+      "inflation_trend": 0,
+      "growth_momentum": 1,
+      "oil_price_level": 2,
+      "market_liquidity": 2,
+      "risk_premia_assets": 3,
+      "safe_asset_demand_flow": 3,
+      "cross_asset_spillover": 2,
+      "implied_volatility": 3,
+      "credit_spread_level": 2,
+      "fx_pressure": 2,
+      "geopolitical_risk_level": 0
+    }
+  },
+  "AS": {
+    "long_term_yields": 21,
+    "yield_curve_slope": 19,
+    "policy_rate_expectations": 22,
+    "central_bank_signaling": 26,
+    "macro_data_surprise_flow": 28,
+    "inflation_trend": 27,
+    "growth_momentum": 27,
+    "oil_price_level": 27,
+    "market_liquidity": 26,
+    "risk_premia_assets": 23,
+    "safe_asset_demand_flow": 21,
+    "cross_asset_spillover": 30,
+    "implied_volatility": 25,
+    "credit_spread_level": 20,
+    "fx_pressure": 22,
+    "geopolitical_risk_level": 25
+  },
+  "PS": {
+    "long_term_yields": 38,
+    "yield_curve_slope": 35,
+    "policy_rate_expectations": 29,
+    "central_bank_signaling": 20,
+    "macro_data_surprise_flow": 0,
+    "inflation_trend": 11,
+    "growth_momentum": 16,
+    "oil_price_level": 9,
+    "market_liquidity": 25,
+    "risk_premia_assets": 37,
+    "safe_asset_demand_flow": 35,
+    "cross_asset_spillover": 35,
+    "implied_volatility": 35,
+    "credit_spread_level": 34,
+    "fx_pressure": 29,
+    "geopolitical_risk_level": 1
+  },
+  "med_AS": 25.0,
+  "med_PS": 29.0,
+  "roles": [
+    {
+      "variable": "cross_asset_spillover",
+      "name": "Cross-asset spillover intensity",
+      "AS": 30,
+      "PS": 35,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 1050,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "implied_volatility",
+      "name": "Implied volatility",
+      "AS": 25,
+      "PS": 35,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 875,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "risk_premia_assets",
+      "name": "Risk premia in risky assets",
+      "AS": 23,
+      "PS": 37,
+      "Q=AS/PS": 0.62,
+      "P=AS*PS": 851,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "long_term_yields",
+      "name": "Long-term sovereign yields",
+      "AS": 21,
+      "PS": 38,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 798,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "safe_asset_demand_flow",
+      "name": "Safe-asset demand flow",
+      "AS": 21,
+      "PS": 35,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 735,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "credit_spread_level",
+      "name": "Credit spread levels",
+      "AS": 20,
+      "PS": 34,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 680,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield-curve slope",
+      "AS": 19,
+      "PS": 35,
+      "Q=AS/PS": 0.54,
+      "P=AS*PS": 665,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity conditions",
+      "AS": 26,
+      "PS": 25,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 650,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "fx_pressure",
+      "name": "Foreign-exchange pressure",
+      "AS": 22,
+      "PS": 29,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 638,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy-rate expectations",
+      "AS": 22,
+      "PS": 29,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 638,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "central_bank_signaling",
+      "name": "Central-bank signaling intensity",
+      "AS": 26,
+      "PS": 20,
+      "Q=AS/PS": 1.3,
+      "P=AS*PS": 520,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "growth_momentum",
+      "name": "Economic growth momentum",
+      "AS": 27,
+      "PS": 16,
+      "Q=AS/PS": 1.69,
+      "P=AS*PS": 432,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_trend",
+      "name": "Inflation trend",
+      "AS": 27,
+      "PS": 11,
+      "Q=AS/PS": 2.45,
+      "P=AS*PS": 297,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "oil_price_level",
+      "name": "Oil price level",
+      "AS": 27,
+      "PS": 9,
+      "Q=AS/PS": 3.0,
+      "P=AS*PS": 243,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "geopolitical_risk_level",
+      "name": "Geopolitical risk tension",
+      "AS": 25,
+      "PS": 1,
+      "Q=AS/PS": 25.0,
+      "P=AS*PS": 25,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "macro_data_surprise_flow",
+      "name": "Macro data surprise flow",
+      "AS": 28,
+      "PS": 0,
+      "Q=AS/PS": 28000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_yields",
+        "name": "Long-term sovereign yields",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 38
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield-curve slope",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 35
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy-rate expectations",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 29
+      },
+      {
+        "id": "central_bank_signaling",
+        "name": "Central-bank signaling intensity",
+        "kind": "driver",
+        "AS": 26,
+        "PS": 20
+      },
+      {
+        "id": "macro_data_surprise_flow",
+        "name": "Macro data surprise flow",
+        "kind": "flow",
+        "AS": 28,
+        "PS": 0
+      },
+      {
+        "id": "inflation_trend",
+        "name": "Inflation trend",
+        "kind": "stock",
+        "AS": 27,
+        "PS": 11
+      },
+      {
+        "id": "growth_momentum",
+        "name": "Economic growth momentum",
+        "kind": "stock",
+        "AS": 27,
+        "PS": 16
+      },
+      {
+        "id": "oil_price_level",
+        "name": "Oil price level",
+        "kind": "environment",
+        "AS": 27,
+        "PS": 9
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity conditions",
+        "kind": "stock",
+        "AS": 26,
+        "PS": 25
+      },
+      {
+        "id": "risk_premia_assets",
+        "name": "Risk premia in risky assets",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 37
+      },
+      {
+        "id": "safe_asset_demand_flow",
+        "name": "Safe-asset demand flow",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 35
+      },
+      {
+        "id": "cross_asset_spillover",
+        "name": "Cross-asset spillover intensity",
+        "kind": "driver",
+        "AS": 30,
+        "PS": 35
+      },
+      {
+        "id": "implied_volatility",
+        "name": "Implied volatility",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 35
+      },
+      {
+        "id": "credit_spread_level",
+        "name": "Credit spread levels",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 34
+      },
+      {
+        "id": "fx_pressure",
+        "name": "Foreign-exchange pressure",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 29
+      },
+      {
+        "id": "geopolitical_risk_level",
+        "name": "Geopolitical risk tension",
+        "kind": "environment",
+        "AS": 25,
+        "PS": 1
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_yields",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "risk_premia_assets",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "safe_asset_demand_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "cross_asset_spillover",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "implied_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "risk_premia_assets",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "safe_asset_demand_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "cross_asset_spillover",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "implied_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "risk_premia_assets",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "safe_asset_demand_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cross_asset_spillover",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "implied_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_signaling",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_signaling",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_signaling",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_signaling",
+        "target": "inflation_trend",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_signaling",
+        "target": "risk_premia_assets",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_signaling",
+        "target": "safe_asset_demand_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_signaling",
+        "target": "cross_asset_spillover",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_signaling",
+        "target": "implied_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_signaling",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_signaling",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "macro_data_surprise_flow",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "macro_data_surprise_flow",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "macro_data_surprise_flow",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "macro_data_surprise_flow",
+        "target": "growth_momentum",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "macro_data_surprise_flow",
+        "target": "risk_premia_assets",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "macro_data_surprise_flow",
+        "target": "safe_asset_demand_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "macro_data_surprise_flow",
+        "target": "cross_asset_spillover",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "macro_data_surprise_flow",
+        "target": "implied_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "macro_data_surprise_flow",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "macro_data_surprise_flow",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_trend",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_trend",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_trend",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_trend",
+        "target": "central_bank_signaling",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_trend",
+        "target": "risk_premia_assets",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_trend",
+        "target": "safe_asset_demand_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_trend",
+        "target": "cross_asset_spillover",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_trend",
+        "target": "implied_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_trend",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_trend",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "central_bank_signaling",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "risk_premia_assets",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "safe_asset_demand_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "cross_asset_spillover",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "implied_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "inflation_trend",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "growth_momentum",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "risk_premia_assets",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "safe_asset_demand_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "cross_asset_spillover",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "implied_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "central_bank_signaling",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "risk_premia_assets",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "safe_asset_demand_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "cross_asset_spillover",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "implied_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premia_assets",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premia_assets",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premia_assets",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premia_assets",
+        "target": "safe_asset_demand_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia_assets",
+        "target": "cross_asset_spillover",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia_assets",
+        "target": "implied_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia_assets",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia_assets",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand_flow",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand_flow",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand_flow",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand_flow",
+        "target": "risk_premia_assets",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand_flow",
+        "target": "cross_asset_spillover",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand_flow",
+        "target": "implied_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand_flow",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand_flow",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillover",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "cross_asset_spillover",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "cross_asset_spillover",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_asset_spillover",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_asset_spillover",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_spillover",
+        "target": "risk_premia_assets",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillover",
+        "target": "safe_asset_demand_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillover",
+        "target": "implied_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillover",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillover",
+        "target": "fx_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "implied_volatility",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "implied_volatility",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "implied_volatility",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "implied_volatility",
+        "target": "risk_premia_assets",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "implied_volatility",
+        "target": "safe_asset_demand_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "implied_volatility",
+        "target": "cross_asset_spillover",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "implied_volatility",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "implied_volatility",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "risk_premia_assets",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "safe_asset_demand_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "cross_asset_spillover",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "implied_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_pressure",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_pressure",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_pressure",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_pressure",
+        "target": "central_bank_signaling",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_pressure",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fx_pressure",
+        "target": "risk_premia_assets",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_pressure",
+        "target": "safe_asset_demand_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_pressure",
+        "target": "cross_asset_spillover",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_pressure",
+        "target": "implied_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fx_pressure",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_risk_level",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_risk_level",
+        "target": "oil_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_risk_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_risk_level",
+        "target": "risk_premia_assets",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_risk_level",
+        "target": "safe_asset_demand_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_risk_level",
+        "target": "cross_asset_spillover",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_risk_level",
+        "target": "implied_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_risk_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_risk_level",
+        "target": "fx_pressure",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_monthly_jobs_report_nfp",
+      "title": "US monthly jobs (NFP) report",
+      "description": "Upcoming US jobs release that headlines flag as able to turbocharge Treasury-yield moves and Fed-rate expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-05",
+        "label": "first week of October"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "implied_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_asset_demand_flow",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Will US jobs data add to pressure on Fed policymakers?', 'Why the upcoming jobs report could send 10-year...yields surging'."
+    },
+    {
+      "id": "fed_policy_and_speeches_mid_oct",
+      "title": "Fed policy meeting and heightened Fed signaling",
+      "description": "Next Fed decision and associated speeches/forward guidance that will recalibrate policy-rate expectations and market interpretation.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-12",
+        "end": "2026-10-16",
+        "label": "mid-October"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "central_bank_signaling",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "implied_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "risk_premia_assets",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Fed’s Cook Expects Continuing Inflation Pressure...', plus intense coverage of Fed influence on yields."
+    },
+    {
+      "id": "oil_price_rally_geopolitical_tension",
+      "title": "Oil-price rally from fading Iran‑US deal hopes",
+      "description": "Ongoing oil-price ascent driven by fading Iran‑US deal hopes and geopolitical tensions, pressuring bond markets and inflation expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-29",
+        "end": "2026-10-31",
+        "label": "4–8 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_trend",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_asset_spillover",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Bond sell-off deepens and oil rises as Iran-US deal hopes fade', 'Oil price rise puts more pressure on government bonds'."
+    },
+    {
+      "id": "deepening_bond_selloff_and_vol_spike",
+      "title": "Deepening government-bond sell-off and vol spike",
+      "description": "Continuation of the recent sharp sovereign-bond sell-off that drives higher long yields, surging implied vol and strains on market liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-27",
+        "end": "2026-10-31",
+        "label": "now–1 month"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "implied_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_asset_spillover",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'US bond sell-off pushes long-term yields...', 'The 10-Year Treasury Yield Breakouts as Implied Volatility Surges'."
+    },
+    {
+      "id": "japan_repatriation_and_govt_bond_flows",
+      "title": "Japanese repatriation flows and JGB dynamics",
+      "description": "Ongoing Japanese investor flows and stalled repatriation that can moderate or amplify global bond repricing via cross-border flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-27",
+        "end": "2026-10-15",
+        "label": "2–3 weeks"
+      },
+      "probability": 0.55,
+      "affected": [
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "cross_asset_spillover",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'Japan's bond 'falling knife' stalls repatriation rush' — affects cross-border bond flows and liquidity."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "deepening_bond_selloff_and_vol_spike",
+      "title": "Deepening government-bond sell-off and vol spike",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "now–1 month",
+      "date": null,
+      "start": "2026-09-27",
+      "end": "2026-10-31",
+      "probability": 0.85,
+      "impact_score": 320.0,
+      "expected_impact": 272.0,
+      "event_PS": 34.0,
+      "event_AS": 24.615,
+      "n_vars": 5,
+      "affected_ids": "long_term_yields, implied_volatility, market_liquidity, credit_spread_level, cross_asset_spillover",
+      "rationale": "Headlines: 'US bond sell-off pushes long-term yields...', 'The 10-Year Treasury Yield Breakouts as Implied Volatility Surges'."
+    },
+    {
+      "id": "fed_policy_and_speeches_mid_oct",
+      "title": "Fed policy meeting and heightened Fed signaling",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-October",
+      "date": null,
+      "start": "2026-10-12",
+      "end": "2026-10-16",
+      "probability": 0.8,
+      "impact_score": 282.0,
+      "expected_impact": 225.6,
+      "event_PS": 30.583,
+      "event_AS": 23.5,
+      "n_vars": 5,
+      "affected_ids": "policy_rate_expectations, central_bank_signaling, long_term_yields, implied_volatility, risk_premia_assets",
+      "rationale": "Headlines: 'Fed’s Cook Expects Continuing Inflation Pressure...', plus intense coverage of Fed influence on yields."
+    },
+    {
+      "id": "us_monthly_jobs_report_nfp",
+      "title": "US monthly jobs (NFP) report",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "first week of October",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-05",
+      "probability": 0.9,
+      "impact_score": 238.0,
+      "expected_impact": 214.2,
+      "event_PS": 33.909,
+      "event_AS": 21.636,
+      "n_vars": 5,
+      "affected_ids": "long_term_yields, policy_rate_expectations, yield_curve_slope, implied_volatility, safe_asset_demand_flow",
+      "rationale": "Headlines: 'Will US jobs data add to pressure on Fed policymakers?', 'Why the upcoming jobs report could send 10-year...yields surging'."
+    },
+    {
+      "id": "oil_price_rally_geopolitical_tension",
+      "title": "Oil-price rally from fading Iran‑US deal hopes",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "4–8 weeks",
+      "date": null,
+      "start": "2026-09-29",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 237.0,
+      "expected_impact": 165.9,
+      "event_PS": 21.667,
+      "event_AS": 26.333,
+      "n_vars": 4,
+      "affected_ids": "oil_price_level, long_term_yields, inflation_trend, cross_asset_spillover",
+      "rationale": "Headlines: 'Bond sell-off deepens and oil rises as Iran-US deal hopes fade', 'Oil price rise puts more pressure on government bonds'."
+    },
+    {
+      "id": "japan_repatriation_and_govt_bond_flows",
+      "title": "Japanese repatriation flows and JGB dynamics",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2–3 weeks",
+      "date": null,
+      "start": "2026-09-27",
+      "end": "2026-10-15",
+      "probability": 0.55,
+      "impact_score": 77.0,
+      "expected_impact": 42.35,
+      "event_PS": 32.667,
+      "event_AS": 25.667,
+      "n_vars": 3,
+      "affected_ids": "long_term_yields, market_liquidity, cross_asset_spillover",
+      "rationale": "Headline: 'Japan's bond 'falling knife' stalls repatriation rush' — affects cross-border bond flows and liquidity."
+    }
+  ]
+}
