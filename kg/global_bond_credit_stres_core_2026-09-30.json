@@ -1,0 +1,1833 @@
+{
+  "label": "global_bond_credit_stres",
+  "as_of": "2026-09-29",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-09-30T02:34:23",
+  "system_description": {
+    "narrative_title": "Global bond market rout and surging long-term yields",
+    "narrative_summary": "A coordinated surge in long-term government bond yields — driven by persistent inflation pressures, central-bank tightening expectations, and rising oil prices — is rippling through financial markets. The sell-off is exposing fragilities in related credit markets (private credit/private equity), pressuring equities and emerging markets, and redirecting flows into commodities like gold, while policy decisions and macro data (jobs, CPI) act as ongoing catalysts.",
+    "scope": "The open system includes global fixed-income markets (sovereign and corporate bonds), central-bank policy signals and interest-rate expectations, inflation drivers (notably oil), investor flows and risk appetite, and near-term interactions with equities, private credit/private equity, and commodities (especially gold) over a weeks-to-months horizon.",
+    "super_system": "The global financial and macroeconomic system (growth, inflation, cross-border capital flows, and monetary/fiscal policy frameworks).",
+    "adjacent_subsystems": [
+      "Energy / oil markets",
+      "Private credit and private equity markets",
+      "Commodities & precious metals (gold and mining)"
+    ],
+    "evidence_headlines": [
+      "US bond sell-off pushes long-term yields to highest since 2004",
+      "Bond ructions point to new danger zone in markets",
+      "Bonds Are Flashing Stress, but Stocks Are Still Trading the Growth Story",
+      "Oil price rise puts more pressure on government bonds",
+      "Private credit turmoil eases as investor withdrawals slow"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_yields",
+      "name": "Long-term nominal yields",
+      "description": "The prevailing market interest rates on long-dated government and similarly rated fixed-income instruments, measured as a continuous nominal yield level.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_rate",
+      "name": "Headline inflation rate",
+      "description": "The ongoing percentage change in a broad consumer price aggregate over a rolling period, capturing current inflationary pressure in the economy.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market and public anticipations of future inflation expressed as a continuous expectation level derived from surveys and market-implied metrics.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "The continuously varying market-implied expectation of future central policy interest rates over different horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_level",
+      "name": "Oil price level",
+      "description": "The spot or benchmark price level of crude oil, measured continuously as an index or currency-denominated price.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium on long rates",
+      "description": "The extra yield investors demand for holding long-dated bonds versus rolling short-term instruments, measured as a continuous premium component of yields.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The difference between longer- and shorter-maturity yields, measured continuously to capture curve steepness or inversion dynamics.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fixed_income_liquidity",
+      "name": "Fixed-income market liquidity",
+      "description": "The prevailing ease and tightness of trading in fixed-income markets, measured by bid-ask spreads, market depth and transaction costs on a continuous scale.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "The net movement of investment capital across jurisdictions into and out of financial assets, measured as a continuous flow rate.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "The aggregate propensity of investors to accept risk in portfolios, measured continuously through allocation tilts and risk premia indicators.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "private_credit_spread",
+      "name": "Private credit spread",
+      "description": "The yield premium demanded on privately originated credit instruments relative to a comparable risk-free benchmark, measured continuously.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation_pressur",
+      "name": "Equity valuation pressure",
+      "description": "The continuous tendencies for equity prices to compress or expand relative to fundamentals, proxied by price-to-earnings, earnings yields and market-implied returns.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "emerging_market_stress",
+      "name": "Emerging market financial stress",
+      "description": "The continuous degree of currency, bond and equity market strain in emerging economies, measured by exchange rate moves, yields and volatility.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_flows",
+      "name": "Safe-haven asset flows",
+      "description": "The rate at which capital is reallocated into traditionally defensive assets (e.g., precious metals, high-quality debt), measured as a continuous inflow/outflow metric.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "nonbank_leverage",
+      "name": "Leverage in non-bank credit",
+      "description": "The aggregate leverage ratio within non-bank credit intermediation (including private credit and shadow banking), measured as a continuous stock-like ratio.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "labor_market_tightness",
+      "name": "Labor market tightness",
+      "description": "The continuous balance between labor demand and supply, measured by vacancy-to-unemployment ratios and related wage-pressure indicators.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_yields",
+    "inflation_rate",
+    "inflation_expectations",
+    "policy_rate_expectations",
+    "oil_price_level",
+    "term_premium",
+    "yield_curve_slope",
+    "fixed_income_liquidity",
+    "cross_border_flows",
+    "risk_appetite",
+    "private_credit_spread",
+    "equity_valuation_pressur",
+    "emerging_market_stress",
+    "safe_haven_flows",
+    "nonbank_leverage",
+    "labor_market_tightness"
+  ],
+  "var_names": {
+    "long_term_yields": "Long-term nominal yields",
+    "inflation_rate": "Headline inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "policy_rate_expectations": "Policy rate expectations",
+    "oil_price_level": "Oil price level",
+    "term_premium": "Term premium on long rates",
+    "yield_curve_slope": "Yield curve slope",
+    "fixed_income_liquidity": "Fixed-income market liquidity",
+    "cross_border_flows": "Cross-border capital flows",
+    "risk_appetite": "Investor risk appetite",
+    "private_credit_spread": "Private credit spread",
+    "equity_valuation_pressur": "Equity valuation pressure",
+    "emerging_market_stress": "Emerging market financial stress",
+    "safe_haven_flows": "Safe-haven asset flows",
+    "nonbank_leverage": "Leverage in non-bank credit",
+    "labor_market_tightness": "Labor market tightness"
+  },
+  "impact_matrix": {
+    "long_term_yields": {
+      "long_term_yields": 0,
+      "inflation_rate": 1,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 2,
+      "oil_price_level": 0,
+      "term_premium": 1,
+      "yield_curve_slope": 3,
+      "fixed_income_liquidity": 2,
+      "cross_border_flows": 2,
+      "risk_appetite": 1,
+      "private_credit_spread": 2,
+      "equity_valuation_pressur": 3,
+      "emerging_market_stress": 2,
+      "safe_haven_flows": 1,
+      "nonbank_leverage": 1,
+      "labor_market_tightness": 0
+    },
+    "inflation_rate": {
+      "long_term_yields": 3,
+      "inflation_rate": 0,
+      "inflation_expectations": 3,
+      "policy_rate_expectations": 3,
+      "oil_price_level": 1,
+      "term_premium": 1,
+      "yield_curve_slope": 2,
+      "fixed_income_liquidity": 1,
+      "cross_border_flows": 2,
+      "risk_appetite": 2,
+      "private_credit_spread": 2,
+      "equity_valuation_pressur": 2,
+      "emerging_market_stress": 2,
+      "safe_haven_flows": 2,
+      "nonbank_leverage": 1,
+      "labor_market_tightness": 2
+    },
+    "inflation_expectations": {
+      "long_term_yields": 3,
+      "inflation_rate": 1,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 3,
+      "oil_price_level": 0,
+      "term_premium": 2,
+      "yield_curve_slope": 2,
+      "fixed_income_liquidity": 1,
+      "cross_border_flows": 2,
+      "risk_appetite": 1,
+      "private_credit_spread": 1,
+      "equity_valuation_pressur": 2,
+      "emerging_market_stress": 1,
+      "safe_haven_flows": 2,
+      "nonbank_leverage": 1,
+      "labor_market_tightness": 0
+    },
+    "policy_rate_expectations": {
+      "long_term_yields": 3,
+      "inflation_rate": 1,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 0,
+      "oil_price_level": 0,
+      "term_premium": 1,
+      "yield_curve_slope": 3,
+      "fixed_income_liquidity": 1,
+      "cross_border_flows": 3,
+      "risk_appetite": 2,
+      "private_credit_spread": 2,
+      "equity_valuation_pressur": 3,
+      "emerging_market_stress": 3,
+      "safe_haven_flows": 2,
+      "nonbank_leverage": 2,
+      "labor_market_tightness": 1
+    },
+    "oil_price_level": {
+      "long_term_yields": 2,
+      "inflation_rate": 3,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 2,
+      "oil_price_level": 0,
+      "term_premium": 1,
+      "yield_curve_slope": 2,
+      "fixed_income_liquidity": 1,
+      "cross_border_flows": 1,
+      "risk_appetite": 1,
+      "private_credit_spread": 1,
+      "equity_valuation_pressur": 2,
+      "emerging_market_stress": 2,
+      "safe_haven_flows": 1,
+      "nonbank_leverage": 0,
+      "labor_market_tightness": 1
+    },
+    "term_premium": {
+      "long_term_yields": 3,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "oil_price_level": 0,
+      "term_premium": 0,
+      "yield_curve_slope": 2,
+      "fixed_income_liquidity": 2,
+      "cross_border_flows": 2,
+      "risk_appetite": 1,
+      "private_credit_spread": 2,
+      "equity_valuation_pressur": 1,
+      "emerging_market_stress": 1,
+      "safe_haven_flows": 1,
+      "nonbank_leverage": 1,
+      "labor_market_tightness": 0
+    },
+    "yield_curve_slope": {
+      "long_term_yields": 1,
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 2,
+      "oil_price_level": 0,
+      "term_premium": 1,
+      "yield_curve_slope": 0,
+      "fixed_income_liquidity": 1,
+      "cross_border_flows": 2,
+      "risk_appetite": 1,
+      "private_credit_spread": 1,
+      "equity_valuation_pressur": 1,
+      "emerging_market_stress": 1,
+      "safe_haven_flows": 1,
+      "nonbank_leverage": 1,
+      "labor_market_tightness": 0
+    },
+    "fixed_income_liquidity": {
+      "long_term_yields": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "oil_price_level": 0,
+      "term_premium": 2,
+      "yield_curve_slope": 1,
+      "fixed_income_liquidity": 0,
+      "cross_border_flows": 2,
+      "risk_appetite": 2,
+      "private_credit_spread": 2,
+      "equity_valuation_pressur": 1,
+      "emerging_market_stress": 2,
+      "safe_haven_flows": 1,
+      "nonbank_leverage": 2,
+      "labor_market_tightness": 0
+    },
+    "cross_border_flows": {
+      "long_term_yields": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "oil_price_level": 0,
+      "term_premium": 1,
+      "yield_curve_slope": 1,
+      "fixed_income_liquidity": 2,
+      "cross_border_flows": 0,
+      "risk_appetite": 2,
+      "private_credit_spread": 1,
+      "equity_valuation_pressur": 2,
+      "emerging_market_stress": 3,
+      "safe_haven_flows": 2,
+      "nonbank_leverage": 1,
+      "labor_market_tightness": 0
+    },
+    "risk_appetite": {
+      "long_term_yields": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "oil_price_level": 1,
+      "term_premium": 2,
+      "yield_curve_slope": 1,
+      "fixed_income_liquidity": 2,
+      "cross_border_flows": 2,
+      "risk_appetite": 0,
+      "private_credit_spread": 3,
+      "equity_valuation_pressur": 3,
+      "emerging_market_stress": 3,
+      "safe_haven_flows": 3,
+      "nonbank_leverage": 2,
+      "labor_market_tightness": 0
+    },
+    "private_credit_spread": {
+      "long_term_yields": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "oil_price_level": 0,
+      "term_premium": 1,
+      "yield_curve_slope": 1,
+      "fixed_income_liquidity": 1,
+      "cross_border_flows": 1,
+      "risk_appetite": 2,
+      "private_credit_spread": 0,
+      "equity_valuation_pressur": 1,
+      "emerging_market_stress": 1,
+      "safe_haven_flows": 1,
+      "nonbank_leverage": 2,
+      "labor_market_tightness": 0
+    },
+    "equity_valuation_pressur": {
+      "long_term_yields": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "oil_price_level": 0,
+      "term_premium": 1,
+      "yield_curve_slope": 1,
+      "fixed_income_liquidity": 1,
+      "cross_border_flows": 2,
+      "risk_appetite": 3,
+      "private_credit_spread": 1,
+      "equity_valuation_pressur": 0,
+      "emerging_market_stress": 2,
+      "safe_haven_flows": 2,
+      "nonbank_leverage": 1,
+      "labor_market_tightness": 0
+    },
+    "emerging_market_stress": {
+      "long_term_yields": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "oil_price_level": 0,
+      "term_premium": 1,
+      "yield_curve_slope": 1,
+      "fixed_income_liquidity": 2,
+      "cross_border_flows": 3,
+      "risk_appetite": 3,
+      "private_credit_spread": 2,
+      "equity_valuation_pressur": 2,
+      "emerging_market_stress": 0,
+      "safe_haven_flows": 2,
+      "nonbank_leverage": 1,
+      "labor_market_tightness": 0
+    },
+    "safe_haven_flows": {
+      "long_term_yields": 3,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "oil_price_level": 0,
+      "term_premium": 2,
+      "yield_curve_slope": 2,
+      "fixed_income_liquidity": 1,
+      "cross_border_flows": 3,
+      "risk_appetite": 3,
+      "private_credit_spread": 2,
+      "equity_valuation_pressur": 2,
+      "emerging_market_stress": 3,
+      "safe_haven_flows": 0,
+      "nonbank_leverage": 1,
+      "labor_market_tightness": 0
+    },
+    "nonbank_leverage": {
+      "long_term_yields": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "oil_price_level": 0,
+      "term_premium": 2,
+      "yield_curve_slope": 1,
+      "fixed_income_liquidity": 3,
+      "cross_border_flows": 1,
+      "risk_appetite": 2,
+      "private_credit_spread": 2,
+      "equity_valuation_pressur": 1,
+      "emerging_market_stress": 1,
+      "safe_haven_flows": 2,
+      "nonbank_leverage": 0,
+      "labor_market_tightness": 0
+    },
+    "labor_market_tightness": {
+      "long_term_yields": 2,
+      "inflation_rate": 2,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 2,
+      "oil_price_level": 0,
+      "term_premium": 1,
+      "yield_curve_slope": 1,
+      "fixed_income_liquidity": 0,
+      "cross_border_flows": 0,
+      "risk_appetite": 0,
+      "private_credit_spread": 0,
+      "equity_valuation_pressur": 1,
+      "emerging_market_stress": 0,
+      "safe_haven_flows": 0,
+      "nonbank_leverage": 0,
+      "labor_market_tightness": 0
+    }
+  },
+  "AS": {
+    "long_term_yields": 23,
+    "inflation_rate": 29,
+    "inflation_expectations": 22,
+    "policy_rate_expectations": 29,
+    "oil_price_level": 22,
+    "term_premium": 17,
+    "yield_curve_slope": 15,
+    "fixed_income_liquidity": 18,
+    "cross_border_flows": 18,
+    "risk_appetite": 26,
+    "private_credit_spread": 13,
+    "equity_valuation_pressur": 16,
+    "emerging_market_stress": 19,
+    "safe_haven_flows": 23,
+    "nonbank_leverage": 18,
+    "labor_market_tightness": 11
+  },
+  "PS": {
+    "long_term_yields": 31,
+    "inflation_rate": 9,
+    "inflation_expectations": 13,
+    "policy_rate_expectations": 23,
+    "oil_price_level": 2,
+    "term_premium": 20,
+    "yield_curve_slope": 24,
+    "fixed_income_liquidity": 21,
+    "cross_border_flows": 28,
+    "risk_appetite": 26,
+    "private_credit_spread": 24,
+    "equity_valuation_pressur": 27,
+    "emerging_market_stress": 27,
+    "safe_haven_flows": 23,
+    "nonbank_leverage": 17,
+    "labor_market_tightness": 4
+  },
+  "med_AS": 18.5,
+  "med_PS": 23.0,
+  "roles": [
+    {
+      "variable": "long_term_yields",
+      "name": "Long-term nominal yields",
+      "AS": 23,
+      "PS": 31,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 713,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 26,
+      "PS": 26,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 676,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 29,
+      "PS": 23,
+      "Q=AS/PS": 1.26,
+      "P=AS*PS": 667,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "safe_haven_flows",
+      "name": "Safe-haven asset flows",
+      "AS": 23,
+      "PS": 23,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 529,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "emerging_market_stress",
+      "name": "Emerging market financial stress",
+      "AS": 19,
+      "PS": 27,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 513,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 18,
+      "PS": 28,
+      "Q=AS/PS": 0.64,
+      "P=AS*PS": 504,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "equity_valuation_pressur",
+      "name": "Equity valuation pressure",
+      "AS": 16,
+      "PS": 27,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 432,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fixed_income_liquidity",
+      "name": "Fixed-income market liquidity",
+      "AS": 18,
+      "PS": 21,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 378,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 15,
+      "PS": 24,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 360,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium on long rates",
+      "AS": 17,
+      "PS": 20,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 340,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "private_credit_spread",
+      "name": "Private credit spread",
+      "AS": 13,
+      "PS": 24,
+      "Q=AS/PS": 0.54,
+      "P=AS*PS": 312,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "nonbank_leverage",
+      "name": "Leverage in non-bank credit",
+      "AS": 18,
+      "PS": 17,
+      "Q=AS/PS": 1.06,
+      "P=AS*PS": 306,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 22,
+      "PS": 13,
+      "Q=AS/PS": 1.69,
+      "P=AS*PS": 286,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_rate",
+      "name": "Headline inflation rate",
+      "AS": 29,
+      "PS": 9,
+      "Q=AS/PS": 3.22,
+      "P=AS*PS": 261,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "oil_price_level",
+      "name": "Oil price level",
+      "AS": 22,
+      "PS": 2,
+      "Q=AS/PS": 11.0,
+      "P=AS*PS": 44,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "labor_market_tightness",
+      "name": "Labor market tightness",
+      "AS": 11,
+      "PS": 4,
+      "Q=AS/PS": 2.75,
+      "P=AS*PS": 44,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_yields",
+        "name": "Long-term nominal yields",
+        "kind": "driver",
+        "AS": 23,
+        "PS": 31
+      },
+      {
+        "id": "inflation_rate",
+        "name": "Headline inflation rate",
+        "kind": "driver",
+        "AS": 29,
+        "PS": 9
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 13
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 29,
+        "PS": 23
+      },
+      {
+        "id": "oil_price_level",
+        "name": "Oil price level",
+        "kind": "environment",
+        "AS": 22,
+        "PS": 2
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium on long rates",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 20
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 24
+      },
+      {
+        "id": "fixed_income_liquidity",
+        "name": "Fixed-income market liquidity",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 21
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 28
+      },
+      {
+        "id": "risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 26,
+        "PS": 26
+      },
+      {
+        "id": "private_credit_spread",
+        "name": "Private credit spread",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 24
+      },
+      {
+        "id": "equity_valuation_pressur",
+        "name": "Equity valuation pressure",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 27
+      },
+      {
+        "id": "emerging_market_stress",
+        "name": "Emerging market financial stress",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 27
+      },
+      {
+        "id": "safe_haven_flows",
+        "name": "Safe-haven asset flows",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 23
+      },
+      {
+        "id": "nonbank_leverage",
+        "name": "Leverage in non-bank credit",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 17
+      },
+      {
+        "id": "labor_market_tightness",
+        "name": "Labor market tightness",
+        "kind": "driver",
+        "AS": 11,
+        "PS": 4
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_yields",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "fixed_income_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "private_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "equity_valuation_pressur",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yields",
+        "target": "emerging_market_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "private_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "emerging_market_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "safe_haven_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "labor_market_tightness",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "safe_haven_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "private_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "equity_valuation_pressur",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "emerging_market_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "safe_haven_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "nonbank_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "emerging_market_stress",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "term_premium",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "fixed_income_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "private_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fixed_income_liquidity",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fixed_income_liquidity",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fixed_income_liquidity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fixed_income_liquidity",
+        "target": "risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fixed_income_liquidity",
+        "target": "private_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fixed_income_liquidity",
+        "target": "emerging_market_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fixed_income_liquidity",
+        "target": "nonbank_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "fixed_income_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "emerging_market_stress",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "safe_haven_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "fixed_income_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "private_credit_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "equity_valuation_pressur",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "emerging_market_stress",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "safe_haven_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "nonbank_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "private_credit_spread",
+        "target": "risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "private_credit_spread",
+        "target": "nonbank_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_valuation_pressur",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_valuation_pressur",
+        "target": "risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "equity_valuation_pressur",
+        "target": "emerging_market_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation_pressur",
+        "target": "safe_haven_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "emerging_market_stress",
+        "target": "fixed_income_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "emerging_market_stress",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "emerging_market_stress",
+        "target": "risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "emerging_market_stress",
+        "target": "private_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "emerging_market_stress",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "emerging_market_stress",
+        "target": "safe_haven_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_flows",
+        "target": "long_term_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_flows",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_flows",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_flows",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_flows",
+        "target": "risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_flows",
+        "target": "private_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_flows",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_flows",
+        "target": "emerging_market_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nonbank_leverage",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "nonbank_leverage",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "nonbank_leverage",
+        "target": "fixed_income_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nonbank_leverage",
+        "target": "risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonbank_leverage",
+        "target": "private_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonbank_leverage",
+        "target": "safe_haven_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "long_term_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_pce_release_2026_09_30",
+      "title": "Fed's main PCE inflation release",
+      "description": "Release of the Fed's preferred inflation gauge (PCE) that markets expect to move inflation and rate expectations. Immediate reaction could push long yields and policy pricing.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-09-30",
+        "start": null,
+        "end": null,
+        "label": "2026-09-30"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 3,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'The Fed's main inflation measure will be released Wednesday. Here's what to expect' (2026-09-29)."
+    },
+    {
+      "id": "us_jobs_report_early_oct_2026",
+      "title": "US jobs report (upcoming)",
+      "description": "Monthly US employment report that can sharply reprice growth and Fed-hike expectations, likely influencing 10y/30y Treasury yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-02",
+        "end": "2026-10-04",
+        "label": "next week"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Why the upcoming jobs report could send 10-year and 30-year Treasury yields surging' and 'jobs data looms' (2026-09-27/29)."
+    },
+    {
+      "id": "october_fed_hike_pricing",
+      "title": "Market re-pricing for an October Fed hike",
+      "description": "Ongoing market repricing that increases odds of a Fed rate rise in October, shifting short-rate expectations and yield curves during October.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "October"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Dollar Rises to 2-Month High on Growing Prospect of October U.S. Rate-Rise' (2026-09-29)."
+    },
+    {
+      "id": "oil_price_spike_pressure",
+      "title": "Near-term oil price rise",
+      "description": "Continued upward oil pressure from geopolitical and demand factors that feeds into inflation and government bond yields.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-29",
+        "end": "2026-10-20",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "emerging_market_stress",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Oil price rise puts more pressure on government bonds', 'Bond sell-off deepens and oil rises...' and 'oil price and US Treasury yields in tightest relationship since 1990' (2026-09-27/29/28)."
+    },
+    {
+      "id": "private_credit_withdrawals_slow",
+      "title": "Easing private credit withdrawals",
+      "description": "Slowing investor redemptions from private credit funds that could ease spreads and non-bank liquidity stress if sustained.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-29",
+        "end": "2026-10-29",
+        "label": "by end of October"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "private_credit_spread",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "nonbank_leverage",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "risk_appetite",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fixed_income_liquidity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Private credit turmoil eases as investor withdrawals slow' and related private credit coverage (2026-09-27/28)."
+    },
+    {
+      "id": "repo_borrowing_surge_continues",
+      "title": "Surge in repo borrowing / short-term funding demand",
+      "description": "Elevated repo borrowing indicates rising short-term funding demand that can tighten liquidity and pressure yields if persistent.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-29",
+        "end": "2026-10-13",
+        "label": "2 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "fixed_income_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Who is driving the massive surge in repo borrowing?' (2026-09-29)."
+    },
+    {
+      "id": "iran_us_talks_stall",
+      "title": "Stalled US‑Iran talks / geopolitical flare-up",
+      "description": "Deterioration in US‑Iran negotiations that lifts oil prices and safe-haven flows, affecting yields and EM stress.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-28",
+        "end": "2026-10-15",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_haven_flows",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "emerging_market_stress",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Bond sell-off deepens and oil rises as Iran-US deal hopes fade' and 'U.S. Treasury Yields Rise as U.S.-Iran Talks Stall' (2026-09-28/29)."
+    },
+    {
+      "id": "rba_rate_path_persistence",
+      "title": "RBA's further tightening path",
+      "description": "Australian central bank signaling that more hikes remain possible, which can lift global rate expectations and influence yields.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-09-29",
+        "end": "2026-11-30",
+        "label": "next 2 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yields",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Australia’s central bank raises cash rate to 15-year high' and 'more hikes not off the table' (2026-09-29)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "fed_pce_release_2026_09_30",
+      "title": "Fed's main PCE inflation release",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-09-30",
+      "date": "2026-09-30",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 287.0,
+      "expected_impact": 272.65,
+      "event_PS": 19.545,
+      "event_AS": 26.091,
+      "n_vars": 4,
+      "affected_ids": "inflation_rate, inflation_expectations, policy_rate_expectations, long_term_yields",
+      "rationale": "Headline: 'The Fed's main inflation measure will be released Wednesday. Here's what to expect' (2026-09-29)."
+    },
+    {
+      "id": "us_jobs_report_early_oct_2026",
+      "title": "US jobs report (upcoming)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next week",
+      "date": null,
+      "start": "2026-10-02",
+      "end": "2026-10-04",
+      "probability": 0.9,
+      "impact_score": 230.0,
+      "expected_impact": 207.0,
+      "event_PS": 23.6,
+      "event_AS": 23.0,
+      "n_vars": 4,
+      "affected_ids": "long_term_yields, policy_rate_expectations, inflation_expectations, yield_curve_slope",
+      "rationale": "Headlines: 'Why the upcoming jobs report could send 10-year and 30-year Treasury yields surging' and 'jobs data looms' (2026-09-27/29)."
+    },
+    {
+      "id": "oil_price_spike_pressure",
+      "title": "Near-term oil price rise",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-09-29",
+      "end": "2026-10-20",
+      "probability": 0.6,
+      "impact_score": 225.0,
+      "expected_impact": 135.0,
+      "event_PS": 16.0,
+      "event_AS": 22.5,
+      "n_vars": 5,
+      "affected_ids": "oil_price_level, inflation_rate, long_term_yields, term_premium, emerging_market_stress",
+      "rationale": "Headlines: 'Oil price rise puts more pressure on government bonds', 'Bond sell-off deepens and oil rises...' and 'oil price and US Treasury yields in tightest relationship since 1990' (2026-09-27/29/28)."
+    },
+    {
+      "id": "october_fed_hike_pricing",
+      "title": "Market re-pricing for an October Fed hike",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "October",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 189.0,
+      "expected_impact": 132.3,
+      "event_PS": 25.625,
+      "event_AS": 23.625,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, long_term_yields, yield_curve_slope, risk_appetite",
+      "rationale": "Headline: 'Dollar Rises to 2-Month High on Growing Prospect of October U.S. Rate-Rise' (2026-09-29)."
+    },
+    {
+      "id": "repo_borrowing_surge_continues",
+      "title": "Surge in repo borrowing / short-term funding demand",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-09-29",
+      "end": "2026-10-13",
+      "probability": 0.6,
+      "impact_score": 134.0,
+      "expected_impact": 80.4,
+      "event_PS": 26.0,
+      "event_AS": 22.333,
+      "n_vars": 3,
+      "affected_ids": "fixed_income_liquidity, long_term_yields, risk_appetite",
+      "rationale": "Headline: 'Who is driving the massive surge in repo borrowing?' (2026-09-29)."
+    },
+    {
+      "id": "iran_us_talks_stall",
+      "title": "Stalled US‑Iran talks / geopolitical flare-up",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-09-28",
+      "end": "2026-10-15",
+      "probability": 0.5,
+      "impact_score": 132.0,
+      "expected_impact": 66.0,
+      "event_PS": 18.0,
+      "event_AS": 22.0,
+      "n_vars": 4,
+      "affected_ids": "oil_price_level, safe_haven_flows, long_term_yields, emerging_market_stress",
+      "rationale": "Headlines: 'Bond sell-off deepens and oil rises as Iran-US deal hopes fade' and 'U.S. Treasury Yields Rise as U.S.-Iran Talks Stall' (2026-09-28/29)."
+    },
+    {
+      "id": "private_credit_withdrawals_slow",
+      "title": "Easing private credit withdrawals",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of October",
+      "date": null,
+      "start": "2026-09-29",
+      "end": "2026-10-29",
+      "probability": 0.7,
+      "impact_score": 88.0,
+      "expected_impact": 61.6,
+      "event_PS": 22.4,
+      "event_AS": 17.6,
+      "n_vars": 4,
+      "affected_ids": "private_credit_spread, nonbank_leverage, risk_appetite, fixed_income_liquidity",
+      "rationale": "Headline: 'Private credit turmoil eases as investor withdrawals slow' and related private credit coverage (2026-09-27/28)."
+    },
+    {
+      "id": "rba_rate_path_persistence",
+      "title": "RBA's further tightening path",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 months",
+      "date": null,
+      "start": "2026-09-29",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 74.0,
+      "expected_impact": 44.4,
+      "event_PS": 22.333,
+      "event_AS": 24.667,
+      "n_vars": 3,
+      "affected_ids": "policy_rate_expectations, long_term_yields, inflation_expectations",
+      "rationale": "Headlines: 'Australia’s central bank raises cash rate to 15-year high' and 'more hikes not off the table' (2026-09-29)."
+    }
+  ]
+}
