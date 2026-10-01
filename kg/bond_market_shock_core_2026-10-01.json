@@ -1,0 +1,1982 @@
+{
+  "label": "bond_market_shock",
+  "as_of": "2026-10-01",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-01T02:37:28",
+  "system_description": {
+    "narrative_title": "Global Bond Repricing: Surging Yields and Rate‑Hike Bets",
+    "narrative_summary": "News across this window centers on a rapid repricing of fixed‑income markets as long‑term government and corporate yields climb to multi‑decade highs amid stronger growth data and persistent inflation pressures. Markets are adjusting expectations for central bank policy, creating spillovers into equities, gold, commodities and investor allocations, and raising questions about liquidity, pension/retirement funding and systemic stress in bond markets. The dynamic is driven by interacting variables — inflation readings, growth momentum, central bank communications, and portfolio flows — rather than a single isolated event.",
+    "scope": "Government and corporate bond markets and yields (nominal and real), central bank policy expectations and interest rates, inflation and growth data releases, rate‑sensitive assets (equities, gold, oil), market liquidity/volatility, investor flows and portfolio allocation decisions.",
+    "super_system": "Global macro‑financial system (global economy, cross‑border capital flows, monetary and fiscal policy interaction)",
+    "adjacent_subsystems": [
+      "Banking and credit markets (bank balance sheets, funding costs)",
+      "Pension funds and retirement savings (liability valuations, portfolio allocations)",
+      "Commodities and safe‑haven assets (oil, gold)",
+      "Sovereign fiscal markets and government debt issuance"
+    ],
+    "evidence_headlines": [
+      "Bonds Are Flashing Stress, but Stocks Are Still Trading the Growth Story",
+      "Battered bond market braces for a new era of interest rates",
+      "Could There Be a Run on the Bond Market?",
+      "Yield on 10-Year Treasury Surges to 24-Year High",
+      "Gold Falls to Seven-Week Low as Rate-Hike Bets Rise",
+      "Bond markets resume sell-off after strong US data"
+    ]
+  },
+  "variables": [
+    {
+      "id": "nominal_long_yield",
+      "name": "Long-term nominal yield",
+      "description": "The prevailing market interest rate on long-dated fixed-income instruments measured in nominal terms.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "real_long_yield",
+      "name": "Long-term real yield",
+      "description": "The inflation-adjusted interest rate on long-dated fixed-income instruments reflecting real return expectations.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_rate",
+      "name": "Inflation rate",
+      "description": "The recent pace of change in the general price level over a policy-relevant horizon.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market and economic actor consensus about future inflation over medium-term horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "growth_momentum",
+      "name": "Growth momentum",
+      "description": "The recent trajectory and acceleration of aggregate economic activity as reflected in output and demand indicators.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "The market-implied and investor-perceived likelihood and timing of changes to short-term policy interest rates.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_policy_rate",
+      "name": "Short-term policy rate",
+      "description": "The prevailing official short-term policy interest rate set within the monetary policy framework.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The additional yield investors require to hold longer-maturity debt versus a sequence of short-term rates, reflecting duration and risk preferences.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "The ease, depth, and cost of transacting in fixed-income markets without materially moving prices.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_volatility",
+      "name": "Bond market volatility",
+      "description": "The magnitude and frequency of price and yield fluctuations in fixed-income markets as implied or realized.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "portfolio_share_bonds",
+      "name": "Portfolio allocation to bonds",
+      "description": "The proportion of investable assets allocated to fixed-income instruments across representative investor portfolios.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_asset_correlation",
+      "name": "Cross-asset correlation",
+      "description": "The statistical co-movement intensity between bond yields and other asset prices such as equities, commodities, and currencies.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_liquidity_flows",
+      "name": "Investor liquidity flows",
+      "description": "The net rate of capital moving into or out of fixed-income funds and vehicles over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread",
+      "name": "Credit spread",
+      "description": "The yield premium demanded for holding non-government credit-bearing instruments relative to risk-free benchmarks.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The difference between long-term and short-term yields indicating the curvature and sign of the term structure.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "funding_market_stress",
+      "name": "Funding market stress",
+      "description": "The level of strain and scarcity in wholesale short-term funding and secured financing markets affecting liquidity access.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "nominal_long_yield",
+    "real_long_yield",
+    "inflation_rate",
+    "inflation_expectations",
+    "growth_momentum",
+    "policy_rate_expectations",
+    "short_term_policy_rate",
+    "term_premium",
+    "market_liquidity",
+    "bond_volatility",
+    "portfolio_share_bonds",
+    "cross_asset_correlation",
+    "investor_liquidity_flows",
+    "credit_spread",
+    "yield_curve_slope",
+    "funding_market_stress"
+  ],
+  "var_names": {
+    "nominal_long_yield": "Long-term nominal yield",
+    "real_long_yield": "Long-term real yield",
+    "inflation_rate": "Inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "growth_momentum": "Growth momentum",
+    "policy_rate_expectations": "Policy rate expectations",
+    "short_term_policy_rate": "Short-term policy rate",
+    "term_premium": "Term premium",
+    "market_liquidity": "Market liquidity",
+    "bond_volatility": "Bond market volatility",
+    "portfolio_share_bonds": "Portfolio allocation to bonds",
+    "cross_asset_correlation": "Cross-asset correlation",
+    "investor_liquidity_flows": "Investor liquidity flows",
+    "credit_spread": "Credit spread",
+    "yield_curve_slope": "Yield curve slope",
+    "funding_market_stress": "Funding market stress"
+  },
+  "impact_matrix": {
+    "nominal_long_yield": {
+      "nominal_long_yield": 0,
+      "real_long_yield": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "growth_momentum": 0,
+      "policy_rate_expectations": 3,
+      "short_term_policy_rate": 0,
+      "term_premium": 2,
+      "market_liquidity": 2,
+      "bond_volatility": 2,
+      "portfolio_share_bonds": 1,
+      "cross_asset_correlation": 1,
+      "investor_liquidity_flows": 2,
+      "credit_spread": 1,
+      "yield_curve_slope": 3,
+      "funding_market_stress": 1
+    },
+    "real_long_yield": {
+      "nominal_long_yield": 3,
+      "real_long_yield": 0,
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "growth_momentum": 1,
+      "policy_rate_expectations": 1,
+      "short_term_policy_rate": 0,
+      "term_premium": 2,
+      "market_liquidity": 1,
+      "bond_volatility": 2,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 1,
+      "investor_liquidity_flows": 2,
+      "credit_spread": 1,
+      "yield_curve_slope": 2,
+      "funding_market_stress": 1
+    },
+    "inflation_rate": {
+      "nominal_long_yield": 3,
+      "real_long_yield": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 3,
+      "growth_momentum": 2,
+      "policy_rate_expectations": 3,
+      "short_term_policy_rate": 3,
+      "term_premium": 2,
+      "market_liquidity": 1,
+      "bond_volatility": 3,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 1,
+      "investor_liquidity_flows": 2,
+      "credit_spread": 1,
+      "yield_curve_slope": 2,
+      "funding_market_stress": 1
+    },
+    "inflation_expectations": {
+      "nominal_long_yield": 3,
+      "real_long_yield": 2,
+      "inflation_rate": 1,
+      "inflation_expectations": 0,
+      "growth_momentum": 1,
+      "policy_rate_expectations": 3,
+      "short_term_policy_rate": 2,
+      "term_premium": 2,
+      "market_liquidity": 1,
+      "bond_volatility": 3,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 1,
+      "investor_liquidity_flows": 3,
+      "credit_spread": 1,
+      "yield_curve_slope": 3,
+      "funding_market_stress": 1
+    },
+    "growth_momentum": {
+      "nominal_long_yield": 3,
+      "real_long_yield": 3,
+      "inflation_rate": 2,
+      "inflation_expectations": 2,
+      "growth_momentum": 0,
+      "policy_rate_expectations": 3,
+      "short_term_policy_rate": 2,
+      "term_premium": 2,
+      "market_liquidity": 1,
+      "bond_volatility": 2,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 2,
+      "investor_liquidity_flows": 3,
+      "credit_spread": 2,
+      "yield_curve_slope": 2,
+      "funding_market_stress": 1
+    },
+    "policy_rate_expectations": {
+      "nominal_long_yield": 3,
+      "real_long_yield": 2,
+      "inflation_rate": 1,
+      "inflation_expectations": 3,
+      "growth_momentum": 2,
+      "policy_rate_expectations": 0,
+      "short_term_policy_rate": 0,
+      "term_premium": 3,
+      "market_liquidity": 2,
+      "bond_volatility": 3,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 1,
+      "investor_liquidity_flows": 3,
+      "credit_spread": 2,
+      "yield_curve_slope": 3,
+      "funding_market_stress": 2
+    },
+    "short_term_policy_rate": {
+      "nominal_long_yield": 3,
+      "real_long_yield": 2,
+      "inflation_rate": 2,
+      "inflation_expectations": 3,
+      "growth_momentum": 2,
+      "policy_rate_expectations": 2,
+      "short_term_policy_rate": 0,
+      "term_premium": 1,
+      "market_liquidity": 3,
+      "bond_volatility": 3,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 1,
+      "investor_liquidity_flows": 3,
+      "credit_spread": 2,
+      "yield_curve_slope": 3,
+      "funding_market_stress": 2
+    },
+    "term_premium": {
+      "nominal_long_yield": 3,
+      "real_long_yield": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "growth_momentum": 0,
+      "policy_rate_expectations": 1,
+      "short_term_policy_rate": 0,
+      "term_premium": 0,
+      "market_liquidity": 2,
+      "bond_volatility": 1,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 1,
+      "investor_liquidity_flows": 2,
+      "credit_spread": 1,
+      "yield_curve_slope": 3,
+      "funding_market_stress": 1
+    },
+    "market_liquidity": {
+      "nominal_long_yield": 2,
+      "real_long_yield": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "growth_momentum": 2,
+      "policy_rate_expectations": 1,
+      "short_term_policy_rate": 1,
+      "term_premium": 3,
+      "market_liquidity": 0,
+      "bond_volatility": 3,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 1,
+      "investor_liquidity_flows": 3,
+      "credit_spread": 2,
+      "yield_curve_slope": 1,
+      "funding_market_stress": 3
+    },
+    "bond_volatility": {
+      "nominal_long_yield": 2,
+      "real_long_yield": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "growth_momentum": 0,
+      "policy_rate_expectations": 1,
+      "short_term_policy_rate": 1,
+      "term_premium": 3,
+      "market_liquidity": 3,
+      "bond_volatility": 0,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 1,
+      "investor_liquidity_flows": 3,
+      "credit_spread": 2,
+      "yield_curve_slope": 1,
+      "funding_market_stress": 2
+    },
+    "portfolio_share_bonds": {
+      "nominal_long_yield": 2,
+      "real_long_yield": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "growth_momentum": 0,
+      "policy_rate_expectations": 1,
+      "short_term_policy_rate": 0,
+      "term_premium": 2,
+      "market_liquidity": 2,
+      "bond_volatility": 2,
+      "portfolio_share_bonds": 0,
+      "cross_asset_correlation": 2,
+      "investor_liquidity_flows": 3,
+      "credit_spread": 1,
+      "yield_curve_slope": 2,
+      "funding_market_stress": 1
+    },
+    "cross_asset_correlation": {
+      "nominal_long_yield": 0,
+      "real_long_yield": 0,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "growth_momentum": 0,
+      "policy_rate_expectations": 0,
+      "short_term_policy_rate": 0,
+      "term_premium": 0,
+      "market_liquidity": 0,
+      "bond_volatility": 0,
+      "portfolio_share_bonds": 1,
+      "cross_asset_correlation": 0,
+      "investor_liquidity_flows": 1,
+      "credit_spread": 0,
+      "yield_curve_slope": 0,
+      "funding_market_stress": 0
+    },
+    "investor_liquidity_flows": {
+      "nominal_long_yield": 3,
+      "real_long_yield": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "growth_momentum": 0,
+      "policy_rate_expectations": 2,
+      "short_term_policy_rate": 0,
+      "term_premium": 3,
+      "market_liquidity": 3,
+      "bond_volatility": 3,
+      "portfolio_share_bonds": 3,
+      "cross_asset_correlation": 2,
+      "investor_liquidity_flows": 0,
+      "credit_spread": 2,
+      "yield_curve_slope": 2,
+      "funding_market_stress": 2
+    },
+    "credit_spread": {
+      "nominal_long_yield": 1,
+      "real_long_yield": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "growth_momentum": 2,
+      "policy_rate_expectations": 1,
+      "short_term_policy_rate": 0,
+      "term_premium": 1,
+      "market_liquidity": 2,
+      "bond_volatility": 3,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 1,
+      "investor_liquidity_flows": 2,
+      "credit_spread": 0,
+      "yield_curve_slope": 1,
+      "funding_market_stress": 3
+    },
+    "yield_curve_slope": {
+      "nominal_long_yield": 1,
+      "real_long_yield": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 2,
+      "growth_momentum": 2,
+      "policy_rate_expectations": 1,
+      "short_term_policy_rate": 0,
+      "term_premium": 2,
+      "market_liquidity": 0,
+      "bond_volatility": 1,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 1,
+      "investor_liquidity_flows": 2,
+      "credit_spread": 0,
+      "yield_curve_slope": 0,
+      "funding_market_stress": 1
+    },
+    "funding_market_stress": {
+      "nominal_long_yield": 3,
+      "real_long_yield": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "growth_momentum": 2,
+      "policy_rate_expectations": 2,
+      "short_term_policy_rate": 2,
+      "term_premium": 3,
+      "market_liquidity": 3,
+      "bond_volatility": 3,
+      "portfolio_share_bonds": 2,
+      "cross_asset_correlation": 2,
+      "investor_liquidity_flows": 3,
+      "credit_spread": 3,
+      "yield_curve_slope": 2,
+      "funding_market_stress": 0
+    }
+  },
+  "AS": {
+    "nominal_long_yield": 21,
+    "real_long_yield": 21,
+    "inflation_rate": 30,
+    "inflation_expectations": 29,
+    "growth_momentum": 32,
+    "policy_rate_expectations": 32,
+    "short_term_policy_rate": 34,
+    "term_premium": 20,
+    "market_liquidity": 26,
+    "bond_volatility": 24,
+    "portfolio_share_bonds": 21,
+    "cross_asset_correlation": 2,
+    "investor_liquidity_flows": 28,
+    "credit_spread": 20,
+    "yield_curve_slope": 16,
+    "funding_market_stress": 32
+  },
+  "PS": {
+    "nominal_long_yield": 35,
+    "real_long_yield": 24,
+    "inflation_rate": 7,
+    "inflation_expectations": 21,
+    "growth_momentum": 16,
+    "policy_rate_expectations": 25,
+    "short_term_policy_rate": 11,
+    "term_premium": 31,
+    "market_liquidity": 26,
+    "bond_volatility": 34,
+    "portfolio_share_bonds": 29,
+    "cross_asset_correlation": 19,
+    "investor_liquidity_flows": 37,
+    "credit_spread": 21,
+    "yield_curve_slope": 30,
+    "funding_market_stress": 22
+  },
+  "med_AS": 25.0,
+  "med_PS": 24.5,
+  "roles": [
+    {
+      "variable": "investor_liquidity_flows",
+      "name": "Investor liquidity flows",
+      "AS": 28,
+      "PS": 37,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 1036,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_volatility",
+      "name": "Bond market volatility",
+      "AS": 24,
+      "PS": 34,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 816,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 32,
+      "PS": 25,
+      "Q=AS/PS": 1.28,
+      "P=AS*PS": 800,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "nominal_long_yield",
+      "name": "Long-term nominal yield",
+      "AS": 21,
+      "PS": 35,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 735,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "funding_market_stress",
+      "name": "Funding market stress",
+      "AS": 32,
+      "PS": 22,
+      "Q=AS/PS": 1.45,
+      "P=AS*PS": 704,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 26,
+      "PS": 26,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 676,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 20,
+      "PS": 31,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 620,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 29,
+      "PS": 21,
+      "Q=AS/PS": 1.38,
+      "P=AS*PS": 609,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "portfolio_share_bonds",
+      "name": "Portfolio allocation to bonds",
+      "AS": 21,
+      "PS": 29,
+      "Q=AS/PS": 0.72,
+      "P=AS*PS": 609,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "growth_momentum",
+      "name": "Growth momentum",
+      "AS": 32,
+      "PS": 16,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 512,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "real_long_yield",
+      "name": "Long-term real yield",
+      "AS": 21,
+      "PS": 24,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 504,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 16,
+      "PS": 30,
+      "Q=AS/PS": 0.53,
+      "P=AS*PS": 480,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "credit_spread",
+      "name": "Credit spread",
+      "AS": 20,
+      "PS": 21,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 420,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "short_term_policy_rate",
+      "name": "Short-term policy rate",
+      "AS": 34,
+      "PS": 11,
+      "Q=AS/PS": 3.09,
+      "P=AS*PS": 374,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_rate",
+      "name": "Inflation rate",
+      "AS": 30,
+      "PS": 7,
+      "Q=AS/PS": 4.29,
+      "P=AS*PS": 210,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "cross_asset_correlation",
+      "name": "Cross-asset correlation",
+      "AS": 2,
+      "PS": 19,
+      "Q=AS/PS": 0.11,
+      "P=AS*PS": 38,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "nominal_long_yield",
+        "name": "Long-term nominal yield",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 35
+      },
+      {
+        "id": "real_long_yield",
+        "name": "Long-term real yield",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 24
+      },
+      {
+        "id": "inflation_rate",
+        "name": "Inflation rate",
+        "kind": "driver",
+        "AS": 30,
+        "PS": 7
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 29,
+        "PS": 21
+      },
+      {
+        "id": "growth_momentum",
+        "name": "Growth momentum",
+        "kind": "driver",
+        "AS": 32,
+        "PS": 16
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 32,
+        "PS": 25
+      },
+      {
+        "id": "short_term_policy_rate",
+        "name": "Short-term policy rate",
+        "kind": "institution_field",
+        "AS": 34,
+        "PS": 11
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 31
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "stock",
+        "AS": 26,
+        "PS": 26
+      },
+      {
+        "id": "bond_volatility",
+        "name": "Bond market volatility",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 34
+      },
+      {
+        "id": "portfolio_share_bonds",
+        "name": "Portfolio allocation to bonds",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 29
+      },
+      {
+        "id": "cross_asset_correlation",
+        "name": "Cross-asset correlation",
+        "kind": "environment",
+        "AS": 2,
+        "PS": 19
+      },
+      {
+        "id": "investor_liquidity_flows",
+        "name": "Investor liquidity flows",
+        "kind": "flow",
+        "AS": 28,
+        "PS": 37
+      },
+      {
+        "id": "credit_spread",
+        "name": "Credit spread",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 21
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 30
+      },
+      {
+        "id": "funding_market_stress",
+        "name": "Funding market stress",
+        "kind": "environment",
+        "AS": 32,
+        "PS": 22
+      }
+    ],
+    "edges": [
+      {
+        "source": "nominal_long_yield",
+        "target": "real_long_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "bond_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "investor_liquidity_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_long_yield",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_long_yield",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_long_yield",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "real_long_yield",
+        "target": "bond_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_long_yield",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_long_yield",
+        "target": "investor_liquidity_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_long_yield",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "growth_momentum",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "short_term_policy_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "bond_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "investor_liquidity_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "real_long_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_term_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "bond_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_liquidity_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "real_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "short_term_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "bond_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "cross_asset_correlation",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "investor_liquidity_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "growth_momentum",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "real_long_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "growth_momentum",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "bond_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "investor_liquidity_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "funding_market_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "real_long_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "growth_momentum",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "bond_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "investor_liquidity_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "funding_market_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "real_long_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "investor_liquidity_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "nominal_long_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "growth_momentum",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "bond_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_liquidity_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "funding_market_stress",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_volatility",
+        "target": "nominal_long_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_volatility",
+        "target": "real_long_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_volatility",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_volatility",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_volatility",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_volatility",
+        "target": "investor_liquidity_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_volatility",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_volatility",
+        "target": "funding_market_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_share_bonds",
+        "target": "nominal_long_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_share_bonds",
+        "target": "real_long_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_share_bonds",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_share_bonds",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_share_bonds",
+        "target": "bond_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_share_bonds",
+        "target": "cross_asset_correlation",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "portfolio_share_bonds",
+        "target": "investor_liquidity_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_share_bonds",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "investor_liquidity_flows",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_liquidity_flows",
+        "target": "real_long_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_liquidity_flows",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_liquidity_flows",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_liquidity_flows",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_liquidity_flows",
+        "target": "bond_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_liquidity_flows",
+        "target": "portfolio_share_bonds",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_liquidity_flows",
+        "target": "cross_asset_correlation",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "investor_liquidity_flows",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_liquidity_flows",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_liquidity_flows",
+        "target": "funding_market_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "growth_momentum",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "bond_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "investor_liquidity_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "funding_market_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "growth_momentum",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "investor_liquidity_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "nominal_long_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "growth_momentum",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "short_term_policy_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "bond_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "portfolio_share_bonds",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "cross_asset_correlation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "investor_liquidity_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "credit_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "funding_market_stress",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_october_rate_hike",
+      "title": "Market-priced October Fed hike",
+      "description": "Market expectation of a Fed rate increase in October that would reprice short rates and ripple through yields and volatility.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "October"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_policy_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_long_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Markets price an October hike (\"Dollar Rises...Growing Prospect of October U.S. Rate-Rise\"; \"Gold falls...rate-hike bets\")."
+    },
+    {
+      "id": "us_jobs_report_early_oct",
+      "title": "Early‑October U.S. jobs report",
+      "description": "Upcoming U.S. employment (payrolls) data that can change growth, inflation expectations and policy odds, and move long yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-10",
+        "label": "first 10 days of October"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "growth_momentum",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_long_yield",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Markets await payrolls (\"10-year Treasury yield is higher as traders look past inflation data, await jobs report\")."
+    },
+    {
+      "id": "us_pce_release_nearterm",
+      "title": "Near‑term U.S. PCE inflation release",
+      "description": "Release of the Fed's preferred inflation gauge (PCE) that can alter inflation readings and policy expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-07",
+        "label": "early October release window"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "nominal_long_yield",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "The Fed's main inflation measure is due (\"The Fed's main inflation measure will be released Wednesday\"); it moves expectations and yields."
+    },
+    {
+      "id": "eurozone_inflation_pressure_ecb",
+      "title": "Persistent euro‑area inflation / ECB tightening pressure",
+      "description": "Multiyear highs in euro‑area inflation raising pressure on the ECB to tighten further, influencing euro yields and global rate expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-11-30",
+        "label": "Oct–Nov"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_long_yield",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Eurozone inflation hits multiyear highs and policymakers warn (\"Inflation in Eurozone’s Biggest Economies Reaches Multiyear Highs\"; \"ECB ‘cannot wait’...\")."
+    },
+    {
+      "id": "oil_price_rally",
+      "title": "Continued oil price surge",
+      "description": "An ongoing rise in oil pushes near-term inflation and reinforces rate‑hike bets, tightening the bond‑oil yield relationship.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "month ahead"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_long_yield",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Oil rises are driving rate bets and tighter oil‑Treasury ties (\"Oil price and US Treasury yields in tightest relationship since 1990\"; \"Oil rises\")."
+    },
+    {
+      "id": "bond_selloff_continues_oct",
+      "title": "Continuation of bond-market selloff into October",
+      "description": "Momentum from September's rout extends into October, keeping yields high and volatility elevated while draining bond flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "October"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "nominal_long_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_liquidity_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "portfolio_share_bonds",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines warn of darker October after brutal September and resumed sell‑offs (\"A brutal September for bonds...\"; \"Bond markets resume sell-off\")."
+    },
+    {
+      "id": "junk_bond_spread_widening",
+      "title": "Worsening junk‑bond stress",
+      "description": "High-yield (junk) bond selloff deepens, widening credit spreads and reducing risk appetite for fixed income.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "October"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "credit_spread",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_liquidity_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "portfolio_share_bonds",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Junk bonds face severe monthly losses, signaling wider credit stress (\"Junk bonds are heading for worst month since 2022\"; \"punishing global selloff\")."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "fed_october_rate_hike",
+      "title": "Market-priced October Fed hike",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "October",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.65,
+      "impact_score": 275.0,
+      "expected_impact": 178.75,
+      "event_PS": 27.0,
+      "event_AS": 27.5,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, short_term_policy_rate, nominal_long_yield, bond_volatility",
+      "rationale": "Markets price an October hike (\"Dollar Rises...Growing Prospect of October U.S. Rate-Rise\"; \"Gold falls...rate-hike bets\")."
+    },
+    {
+      "id": "bond_selloff_continues_oct",
+      "title": "Continuation of bond-market selloff into October",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "October",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.85,
+      "impact_score": 273.0,
+      "expected_impact": 232.05,
+      "event_PS": 33.417,
+      "event_AS": 22.75,
+      "n_vars": 5,
+      "affected_ids": "nominal_long_yield, bond_volatility, investor_liquidity_flows, portfolio_share_bonds, term_premium",
+      "rationale": "Headlines warn of darker October after brutal September and resumed sell‑offs (\"A brutal September for bonds...\"; \"Bond markets resume sell-off\")."
+    },
+    {
+      "id": "eurozone_inflation_pressure_ecb",
+      "title": "Persistent euro‑area inflation / ECB tightening pressure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Oct–Nov",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-11-30",
+      "probability": 0.8,
+      "impact_score": 253.0,
+      "expected_impact": 202.4,
+      "event_PS": 21.889,
+      "event_AS": 28.111,
+      "n_vars": 4,
+      "affected_ids": "inflation_rate, inflation_expectations, policy_rate_expectations, nominal_long_yield",
+      "rationale": "Eurozone inflation hits multiyear highs and policymakers warn (\"Inflation in Eurozone’s Biggest Economies Reaches Multiyear Highs\"; \"ECB ‘cannot wait’...\")."
+    },
+    {
+      "id": "us_jobs_report_early_oct",
+      "title": "Early‑October U.S. jobs report",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "first 10 days of October",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-10",
+      "probability": 0.8,
+      "impact_score": 228.0,
+      "expected_impact": 182.4,
+      "event_PS": 24.25,
+      "event_AS": 28.5,
+      "n_vars": 4,
+      "affected_ids": "growth_momentum, inflation_expectations, policy_rate_expectations, nominal_long_yield",
+      "rationale": "Markets await payrolls (\"10-year Treasury yield is higher as traders look past inflation data, await jobs report\")."
+    },
+    {
+      "id": "us_pce_release_nearterm",
+      "title": "Near‑term U.S. PCE inflation release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "early October release window",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-07",
+      "probability": 0.9,
+      "impact_score": 224.0,
+      "expected_impact": 201.6,
+      "event_PS": 22.0,
+      "event_AS": 28.0,
+      "n_vars": 4,
+      "affected_ids": "inflation_rate, inflation_expectations, policy_rate_expectations, nominal_long_yield",
+      "rationale": "The Fed's main inflation measure is due (\"The Fed's main inflation measure will be released Wednesday\"); it moves expectations and yields."
+    },
+    {
+      "id": "junk_bond_spread_widening",
+      "title": "Worsening junk‑bond stress",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "October",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 185.0,
+      "expected_impact": 129.5,
+      "event_PS": 29.25,
+      "event_AS": 23.125,
+      "n_vars": 4,
+      "affected_ids": "credit_spread, investor_liquidity_flows, bond_volatility, portfolio_share_bonds",
+      "rationale": "Junk bonds face severe monthly losses, signaling wider credit stress (\"Junk bonds are heading for worst month since 2022\"; \"punishing global selloff\")."
+    },
+    {
+      "id": "oil_price_rally",
+      "title": "Continued oil price surge",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "month ahead",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 159.0,
+      "expected_impact": 111.3,
+      "event_PS": 20.333,
+      "event_AS": 26.5,
+      "n_vars": 4,
+      "affected_ids": "inflation_rate, inflation_expectations, nominal_long_yield, term_premium",
+      "rationale": "Oil rises are driving rate bets and tighter oil‑Treasury ties (\"Oil price and US Treasury yields in tightest relationship since 1990\"; \"Oil rises\")."
+    }
+  ]
+}
