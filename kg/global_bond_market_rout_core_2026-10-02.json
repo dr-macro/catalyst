@@ -1,0 +1,1846 @@
+{
+  "label": "global_bond_market_rout",
+  "as_of": "2026-10-01",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-02T02:37:31",
+  "system_description": {
+    "narrative_title": "Global bond rout and rising yields reprice risk across markets",
+    "narrative_summary": "A synchronized repricing of long-term interest rates — driven by stronger growth signals, persistent inflation risks, rising oil prices and shifting central-bank guidance — is triggering a global bond sell-off that is propagating into currencies, equities, commodities and sovereign credit. The system is open: policy decisions, macro data, energy shocks and fiscal financing needs interact through market expectations and liquidity, producing feedbacks (higher yields → asset repricing → fiscal/credit stress → more issuance/flight) that can amplify volatility and contagion across borders and asset classes.",
+    "scope": "Global fixed-income markets and their immediate linkages: government and corporate bond yields and spreads, central-bank policy and communications, inflation and growth data, oil and commodity price shocks, investor risk appetite and flows, and near-term impacts on equities, gold and FX.",
+    "super_system": "Global macro-financial system (monetary policy, fiscal financing, international trade and geopolitics).",
+    "adjacent_subsystems": [
+      "Energy markets (oil and commodity prices)",
+      "Central banking and monetary policy frameworks",
+      "Sovereign fiscal policy and government debt markets",
+      "Equities and credit markets (corporate and junk bonds)"
+    ],
+    "evidence_headlines": [
+      "Bonds Are Flashing Stress, but Stocks Are Still Trading the Growth Story",
+      "10-year Treasury yield hits highest since 2002",
+      "Bond sell-off deepens and oil rises as Iran-US deal hopes fade",
+      "France Is Ground Zero in the Global Bond Rout",
+      "Australia’s Central Bank Raises Rates Again as Inflation Fears Materialize",
+      "Global bond sell-off deepens as Asian yields jump"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_nominal_yields",
+      "name": "Long-term nominal yields",
+      "description": "The market-level interest rate on long-maturity nominal debt instruments, reflecting compensation for time and nominal risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "real_yields",
+      "name": "Real yields",
+      "description": "The inflation-adjusted return on long-maturity debt, measuring real compensation to investors net of expected inflation.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_rate",
+      "name": "Inflation rate",
+      "description": "The ongoing rate of change in the general price level across the economy measured over a specified period.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market and agent-level expected future path of inflation over relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The compensation investors require for holding longer-maturity nominal bonds versus rolling short-term instruments, beyond expected short rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "growth_expectations",
+      "name": "Growth expectations",
+      "description": "The anticipated future trajectory of real economic activity as priced by markets and signaled by macro forecasts.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_policy_rate",
+      "name": "Central bank policy rate",
+      "description": "The prevailing short-term policy interest rate set to implement monetary policy stance.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cb_forward_guidance",
+      "name": "Central bank forward guidance",
+      "description": "The ongoing communication process through which monetary authorities shape expectations about future policy and rates.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_financing_need",
+      "name": "Fiscal financing need",
+      "description": "The level of public sector borrowing required to cover deficits and scheduled obligations over a fiscal horizon.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_credit_spreads",
+      "name": "Sovereign credit spreads",
+      "description": "The yield premium demanded for sovereign debt versus risk-free benchmarks, representing sovereign credit risk and liquidity premia.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_credit_spreads",
+      "name": "Corporate credit spreads",
+      "description": "The yield premium on corporate bonds over comparable government debt, reflecting corporate default and liquidity risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_level",
+      "name": "Oil price level",
+      "description": "The prevailing market price of crude oil, capturing energy cost shocks that feed into inflation and trade balances.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "The ease and cost with which financial assets can be transacted without large price impact across markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "The aggregate willingness of investors to hold risky assets versus safe assets, influencing demand and flows.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "The net movement of portfolio and capital between jurisdictions over time, transmitting shocks across markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_implied_volatilit",
+      "name": "Market implied volatility",
+      "description": "The level of volatility priced into options and derivatives, representing market-implied uncertainty about future asset returns.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_nominal_yields",
+    "real_yields",
+    "inflation_rate",
+    "inflation_expectations",
+    "term_premium",
+    "growth_expectations",
+    "central_bank_policy_rate",
+    "cb_forward_guidance",
+    "fiscal_financing_need",
+    "sovereign_credit_spreads",
+    "corporate_credit_spreads",
+    "oil_price_level",
+    "market_liquidity",
+    "investor_risk_appetite",
+    "cross_border_flows",
+    "market_implied_volatilit"
+  ],
+  "var_names": {
+    "long_term_nominal_yields": "Long-term nominal yields",
+    "real_yields": "Real yields",
+    "inflation_rate": "Inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "term_premium": "Term premium",
+    "growth_expectations": "Growth expectations",
+    "central_bank_policy_rate": "Central bank policy rate",
+    "cb_forward_guidance": "Central bank forward guidance",
+    "fiscal_financing_need": "Fiscal financing need",
+    "sovereign_credit_spreads": "Sovereign credit spreads",
+    "corporate_credit_spreads": "Corporate credit spreads",
+    "oil_price_level": "Oil price level",
+    "market_liquidity": "Market liquidity",
+    "investor_risk_appetite": "Investor risk appetite",
+    "cross_border_flows": "Cross-border capital flows",
+    "market_implied_volatilit": "Market implied volatility"
+  },
+  "impact_matrix": {
+    "long_term_nominal_yields": {
+      "long_term_nominal_yields": 0,
+      "real_yields": 3,
+      "inflation_rate": 1,
+      "inflation_expectations": 2,
+      "term_premium": 0,
+      "growth_expectations": 1,
+      "central_bank_policy_rate": 1,
+      "cb_forward_guidance": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_credit_spreads": 1,
+      "corporate_credit_spreads": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 2,
+      "market_implied_volatilit": 2
+    },
+    "real_yields": {
+      "long_term_nominal_yields": 3,
+      "real_yields": 0,
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "term_premium": 0,
+      "growth_expectations": 2,
+      "central_bank_policy_rate": 1,
+      "cb_forward_guidance": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_credit_spreads": 1,
+      "corporate_credit_spreads": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 2,
+      "market_implied_volatilit": 1
+    },
+    "inflation_rate": {
+      "long_term_nominal_yields": 3,
+      "real_yields": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 3,
+      "term_premium": 1,
+      "growth_expectations": 1,
+      "central_bank_policy_rate": 3,
+      "cb_forward_guidance": 2,
+      "fiscal_financing_need": 1,
+      "sovereign_credit_spreads": 1,
+      "corporate_credit_spreads": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 1,
+      "market_implied_volatilit": 2
+    },
+    "inflation_expectations": {
+      "long_term_nominal_yields": 3,
+      "real_yields": 2,
+      "inflation_rate": 2,
+      "inflation_expectations": 0,
+      "term_premium": 1,
+      "growth_expectations": 1,
+      "central_bank_policy_rate": 2,
+      "cb_forward_guidance": 2,
+      "fiscal_financing_need": 0,
+      "sovereign_credit_spreads": 1,
+      "corporate_credit_spreads": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 1,
+      "market_implied_volatilit": 2
+    },
+    "term_premium": {
+      "long_term_nominal_yields": 3,
+      "real_yields": 0,
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "term_premium": 0,
+      "growth_expectations": 1,
+      "central_bank_policy_rate": 1,
+      "cb_forward_guidance": 1,
+      "fiscal_financing_need": 2,
+      "sovereign_credit_spreads": 1,
+      "corporate_credit_spreads": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 2,
+      "market_implied_volatilit": 1
+    },
+    "growth_expectations": {
+      "long_term_nominal_yields": 2,
+      "real_yields": 2,
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "term_premium": 1,
+      "growth_expectations": 0,
+      "central_bank_policy_rate": 2,
+      "cb_forward_guidance": 1,
+      "fiscal_financing_need": 1,
+      "sovereign_credit_spreads": 1,
+      "corporate_credit_spreads": 2,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2,
+      "market_implied_volatilit": 1
+    },
+    "central_bank_policy_rate": {
+      "long_term_nominal_yields": 2,
+      "real_yields": 2,
+      "inflation_rate": 2,
+      "inflation_expectations": 2,
+      "term_premium": 1,
+      "growth_expectations": 2,
+      "central_bank_policy_rate": 0,
+      "cb_forward_guidance": 2,
+      "fiscal_financing_need": 1,
+      "sovereign_credit_spreads": 1,
+      "corporate_credit_spreads": 2,
+      "oil_price_level": 0,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2,
+      "market_implied_volatilit": 2
+    },
+    "cb_forward_guidance": {
+      "long_term_nominal_yields": 2,
+      "real_yields": 1,
+      "inflation_rate": 1,
+      "inflation_expectations": 3,
+      "term_premium": 1,
+      "growth_expectations": 2,
+      "central_bank_policy_rate": 2,
+      "cb_forward_guidance": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_credit_spreads": 1,
+      "corporate_credit_spreads": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 1,
+      "market_implied_volatilit": 2
+    },
+    "fiscal_financing_need": {
+      "long_term_nominal_yields": 3,
+      "real_yields": 2,
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "term_premium": 3,
+      "growth_expectations": 1,
+      "central_bank_policy_rate": 1,
+      "cb_forward_guidance": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_credit_spreads": 3,
+      "corporate_credit_spreads": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 2,
+      "market_implied_volatilit": 1
+    },
+    "sovereign_credit_spreads": {
+      "long_term_nominal_yields": 2,
+      "real_yields": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "term_premium": 1,
+      "growth_expectations": 1,
+      "central_bank_policy_rate": 0,
+      "cb_forward_guidance": 0,
+      "fiscal_financing_need": 2,
+      "sovereign_credit_spreads": 0,
+      "corporate_credit_spreads": 2,
+      "oil_price_level": 0,
+      "market_liquidity": 1,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2,
+      "market_implied_volatilit": 2
+    },
+    "corporate_credit_spreads": {
+      "long_term_nominal_yields": 1,
+      "real_yields": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "term_premium": 0,
+      "growth_expectations": 2,
+      "central_bank_policy_rate": 0,
+      "cb_forward_guidance": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 0,
+      "oil_price_level": 0,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 1,
+      "market_implied_volatilit": 2
+    },
+    "oil_price_level": {
+      "long_term_nominal_yields": 1,
+      "real_yields": 0,
+      "inflation_rate": 2,
+      "inflation_expectations": 1,
+      "term_premium": 0,
+      "growth_expectations": 1,
+      "central_bank_policy_rate": 1,
+      "cb_forward_guidance": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_credit_spreads": 0,
+      "corporate_credit_spreads": 1,
+      "oil_price_level": 0,
+      "market_liquidity": 0,
+      "investor_risk_appetite": 1,
+      "cross_border_flows": 0,
+      "market_implied_volatilit": 1
+    },
+    "market_liquidity": {
+      "long_term_nominal_yields": 2,
+      "real_yields": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "term_premium": 2,
+      "growth_expectations": 0,
+      "central_bank_policy_rate": 1,
+      "cb_forward_guidance": 0,
+      "fiscal_financing_need": 1,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 3,
+      "oil_price_level": 0,
+      "market_liquidity": 0,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 2,
+      "market_implied_volatilit": 3
+    },
+    "investor_risk_appetite": {
+      "long_term_nominal_yields": 1,
+      "real_yields": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "term_premium": 1,
+      "growth_expectations": 2,
+      "central_bank_policy_rate": 0,
+      "cb_forward_guidance": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 3,
+      "oil_price_level": 0,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 0,
+      "cross_border_flows": 2,
+      "market_implied_volatilit": 3
+    },
+    "cross_border_flows": {
+      "long_term_nominal_yields": 2,
+      "real_yields": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "term_premium": 1,
+      "growth_expectations": 1,
+      "central_bank_policy_rate": 1,
+      "cb_forward_guidance": 0,
+      "fiscal_financing_need": 1,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 2,
+      "oil_price_level": 0,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 2,
+      "cross_border_flows": 0,
+      "market_implied_volatilit": 2
+    },
+    "market_implied_volatilit": {
+      "long_term_nominal_yields": 1,
+      "real_yields": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "term_premium": 1,
+      "growth_expectations": 0,
+      "central_bank_policy_rate": 0,
+      "cb_forward_guidance": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_credit_spreads": 2,
+      "corporate_credit_spreads": 2,
+      "oil_price_level": 0,
+      "market_liquidity": 2,
+      "investor_risk_appetite": 3,
+      "cross_border_flows": 2,
+      "market_implied_volatilit": 0
+    }
+  },
+  "AS": {
+    "long_term_nominal_yields": 16,
+    "real_yields": 15,
+    "inflation_rate": 23,
+    "inflation_expectations": 21,
+    "term_premium": 18,
+    "growth_expectations": 20,
+    "central_bank_policy_rate": 25,
+    "cb_forward_guidance": 20,
+    "fiscal_financing_need": 21,
+    "sovereign_credit_spreads": 16,
+    "corporate_credit_spreads": 13,
+    "oil_price_level": 9,
+    "market_liquidity": 19,
+    "investor_risk_appetite": 17,
+    "cross_border_flows": 17,
+    "market_implied_volatilit": 14
+  },
+  "PS": {
+    "long_term_nominal_yields": 31,
+    "real_yields": 20,
+    "inflation_rate": 12,
+    "inflation_expectations": 15,
+    "term_premium": 14,
+    "growth_expectations": 18,
+    "central_bank_policy_rate": 16,
+    "cb_forward_guidance": 8,
+    "fiscal_financing_need": 9,
+    "sovereign_credit_spreads": 21,
+    "corporate_credit_spreads": 24,
+    "oil_price_level": 0,
+    "market_liquidity": 20,
+    "investor_risk_appetite": 25,
+    "cross_border_flows": 24,
+    "market_implied_volatilit": 27
+  },
+  "med_AS": 17.5,
+  "med_PS": 19.0,
+  "roles": [
+    {
+      "variable": "long_term_nominal_yields",
+      "name": "Long-term nominal yields",
+      "AS": 16,
+      "PS": 31,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 496,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 17,
+      "PS": 25,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 425,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 17,
+      "PS": 24,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 408,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "central_bank_policy_rate",
+      "name": "Central bank policy rate",
+      "AS": 25,
+      "PS": 16,
+      "Q=AS/PS": 1.56,
+      "P=AS*PS": 400,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 19,
+      "PS": 20,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 380,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_implied_volatilit",
+      "name": "Market implied volatility",
+      "AS": 14,
+      "PS": 27,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 378,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "growth_expectations",
+      "name": "Growth expectations",
+      "AS": 20,
+      "PS": 18,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 360,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sovereign_credit_spreads",
+      "name": "Sovereign credit spreads",
+      "AS": 16,
+      "PS": 21,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 336,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 21,
+      "PS": 15,
+      "Q=AS/PS": 1.4,
+      "P=AS*PS": 315,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "corporate_credit_spreads",
+      "name": "Corporate credit spreads",
+      "AS": 13,
+      "PS": 24,
+      "Q=AS/PS": 0.54,
+      "P=AS*PS": 312,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "real_yields",
+      "name": "Real yields",
+      "AS": 15,
+      "PS": 20,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 300,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_rate",
+      "name": "Inflation rate",
+      "AS": 23,
+      "PS": 12,
+      "Q=AS/PS": 1.92,
+      "P=AS*PS": 276,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 18,
+      "PS": 14,
+      "Q=AS/PS": 1.29,
+      "P=AS*PS": 252,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "fiscal_financing_need",
+      "name": "Fiscal financing need",
+      "AS": 21,
+      "PS": 9,
+      "Q=AS/PS": 2.33,
+      "P=AS*PS": 189,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "cb_forward_guidance",
+      "name": "Central bank forward guidance",
+      "AS": 20,
+      "PS": 8,
+      "Q=AS/PS": 2.5,
+      "P=AS*PS": 160,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "oil_price_level",
+      "name": "Oil price level",
+      "AS": 9,
+      "PS": 0,
+      "Q=AS/PS": 9000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_nominal_yields",
+        "name": "Long-term nominal yields",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 31
+      },
+      {
+        "id": "real_yields",
+        "name": "Real yields",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 20
+      },
+      {
+        "id": "inflation_rate",
+        "name": "Inflation rate",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 12
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 15
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 14
+      },
+      {
+        "id": "growth_expectations",
+        "name": "Growth expectations",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 18
+      },
+      {
+        "id": "central_bank_policy_rate",
+        "name": "Central bank policy rate",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 16
+      },
+      {
+        "id": "cb_forward_guidance",
+        "name": "Central bank forward guidance",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 8
+      },
+      {
+        "id": "fiscal_financing_need",
+        "name": "Fiscal financing need",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 9
+      },
+      {
+        "id": "sovereign_credit_spreads",
+        "name": "Sovereign credit spreads",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 21
+      },
+      {
+        "id": "corporate_credit_spreads",
+        "name": "Corporate credit spreads",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 24
+      },
+      {
+        "id": "oil_price_level",
+        "name": "Oil price level",
+        "kind": "environment",
+        "AS": 9,
+        "PS": 0
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 20
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 17,
+        "PS": 25
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 24
+      },
+      {
+        "id": "market_implied_volatilit",
+        "name": "Market implied volatility",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 27
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_nominal_yields",
+        "target": "real_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_nominal_yields",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "long_term_nominal_yields",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_nominal_yields",
+        "target": "market_implied_volatilit",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "real_yields",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_yields",
+        "target": "growth_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_yields",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "real_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "central_bank_policy_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "cb_forward_guidance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "market_implied_volatilit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "real_yields",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "central_bank_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cb_forward_guidance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_implied_volatilit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "fiscal_financing_need",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "growth_expectations",
+        "target": "long_term_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_expectations",
+        "target": "real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_expectations",
+        "target": "central_bank_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_expectations",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "growth_expectations",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "growth_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "long_term_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "growth_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "cb_forward_guidance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "market_implied_volatilit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_forward_guidance",
+        "target": "long_term_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_forward_guidance",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cb_forward_guidance",
+        "target": "growth_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_forward_guidance",
+        "target": "central_bank_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_forward_guidance",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_forward_guidance",
+        "target": "market_implied_volatilit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "long_term_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "sovereign_credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "long_term_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "fiscal_financing_need",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "market_implied_volatilit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "growth_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spreads",
+        "target": "market_implied_volatilit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "long_term_nominal_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "corporate_credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "market_implied_volatilit",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "growth_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "corporate_credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_implied_volatilit",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "long_term_nominal_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_implied_volatilit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_implied_volatilit",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_volatilit",
+        "target": "corporate_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_volatilit",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_implied_volatilit",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_implied_volatilit",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_jobs_report_first_week_oct",
+      "title": "US jobs report (early October)",
+      "description": "Monthly US employment data due in the first week of October that will strongly influence growth, inflation expectations and Treasury yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-02",
+        "end": "2026-10-08",
+        "label": "first week of Oct"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "growth_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'jobs data looms', '10-year yield higher as traders... await jobs report' — payrolls will reprice growth/inflation and yields."
+    },
+    {
+      "id": "fed_hold_october_guidance",
+      "title": "Fed keeps rates on hold in October (guidance)",
+      "description": "Fed officials signalling a pause in October will shape forward guidance and keep short-term policy rates elevated in markets near-term.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "October 2026"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "central_bank_policy_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cb_forward_guidance",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Top Fed official signals central bank will keep rates on hold in October', 'Fed officials wash away market bets on October rate increase'."
+    },
+    {
+      "id": "fed_december_rate_hike_risk",
+      "title": "Risk of Fed rate hike in December",
+      "description": "Market and bank forecasts increasingly price a potential December Fed rate increase, which would lift policy rates and long-term yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2026-12-31",
+        "label": "December 2026"
+      },
+      "probability": 0.55,
+      "affected": [
+        {
+          "variable_id": "central_bank_policy_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Goldman Sachs pushes Fed rate hike forecast to December' — markets pricing a December hike that would lift yields and premiums."
+    },
+    {
+      "id": "ecb_pressure_and_potential_hike",
+      "title": "ECB reaction / potential October hikes",
+      "description": "Elevated eurozone inflation and ECB officials' warnings increase odds of ECB tightening, affecting European yields and inflation expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "October 2026"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "central_bank_policy_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_credit_spreads",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Inflation in Eurozone’s biggest economies reaches multiyear highs', 'ECB ‘cannot wait’... top policymaker warns'."
+    },
+    {
+      "id": "oil_price_resurgence",
+      "title": "Sustained oil-price rise",
+      "description": "Further increases in oil prices driven by geopolitical and demand factors will feed into inflation and higher bond yields globally.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-11-30",
+        "label": "next 2 months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Oil price and US Treasury yields in tightest relationship', 'oil jumps', 'Bond sell-off deepens and oil rises as Iran-US deal hopes fade'."
+    },
+    {
+      "id": "france_2027_budget_reckoning",
+      "title": "France 2027 budget tightening process",
+      "description": "Government moves to rein in pensions and state wages for the 2027 budget could change fiscal needs and market perceptions of French sovereign risk.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2027-03-31",
+        "label": "Q4 2026–Q1 2027"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "fiscal_financing_need",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_credit_spreads",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'France demands belt-tightening in 2027 budget', 'France seeks to rein in pensions and state salaries in 2027'."
+    },
+    {
+      "id": "japan_bond_market_shift",
+      "title": "Japan bond market / BOJ policy pivot risk",
+      "description": "Debate inside BOJ and recent intervention pause make Japanese yields a potential trigger for global repricing if yields shift further.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-11-30",
+        "label": "next 2 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Japan’s Bond Market Could Be the Next Catalyst', 'BOJ debated more rate hikes... summary shows', 'Japan pauses forex intervention'."
+    },
+    {
+      "id": "corporate_credit_stress_and_issuance",
+      "title": "Corporate credit stress and heavy issuance",
+      "description": "Widening junk-bond weakness and large corporate refinancing sales will pressure spreads and liquidity across credit markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-12-31",
+        "label": "Q4 2026"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "corporate_credit_spreads",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Junk bonds are heading for worst month since 2022', 'Paramount’s mega debt sale reveals how higher bond yields are squeezing corporate America'."
+    },
+    {
+      "id": "treasury_supply_and_us_fiscal_paths",
+      "title": "US Treasury supply / fiscal financing pressure",
+      "description": "Rising deficits and heavy Treasury issuance needs will keep upward pressure on long-term yields and term premium through Q4.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-12-31",
+        "label": "Q4 2026"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "fiscal_financing_need",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_nominal_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Rising Deficits and War Unravel Trump's Strategy to Lower Interest Rates', 'U.S. bond yields post biggest jump... rout rattles investors'."
+    },
+    {
+      "id": "volatility_spike_as_yields_break_highs",
+      "title": "Implied volatility surge from yield breakout",
+      "description": "As long-term yields hit multi-decade highs, options-implied volatility is likely to spike, affecting liquidity and risk appetite.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "October 2026"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "market_implied_volatilit",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: '10-Year Treasury Yield Breakouts as Implied Volatility Surges', 'Bond markets are screaming... every asset class should be listening'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "fed_hold_october_guidance",
+      "title": "Fed keeps rates on hold in October (guidance)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "October 2026",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.85,
+      "impact_score": 188.0,
+      "expected_impact": 159.8,
+      "event_PS": 16.556,
+      "event_AS": 20.889,
+      "n_vars": 4,
+      "affected_ids": "central_bank_policy_rate, cb_forward_guidance, long_term_nominal_yields, inflation_expectations",
+      "rationale": "Headlines: 'Top Fed official signals central bank will keep rates on hold in October', 'Fed officials wash away market bets on October rate increase'."
+    },
+    {
+      "id": "fed_december_rate_hike_risk",
+      "title": "Risk of Fed rate hike in December",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "December 2026",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2026-12-31",
+      "probability": 0.55,
+      "impact_score": 183.0,
+      "expected_impact": 100.65,
+      "event_PS": 20.556,
+      "event_AS": 20.333,
+      "n_vars": 4,
+      "affected_ids": "central_bank_policy_rate, long_term_nominal_yields, inflation_expectations, term_premium",
+      "rationale": "Headline: 'Goldman Sachs pushes Fed rate hike forecast to December' — markets pricing a December hike that would lift yields and premiums."
+    },
+    {
+      "id": "ecb_pressure_and_potential_hike",
+      "title": "ECB reaction / potential October hikes",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "October 2026",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.65,
+      "impact_score": 165.0,
+      "expected_impact": 107.25,
+      "event_PS": 20.125,
+      "event_AS": 20.625,
+      "n_vars": 4,
+      "affected_ids": "central_bank_policy_rate, long_term_nominal_yields, inflation_expectations, sovereign_credit_spreads",
+      "rationale": "Headlines: 'Inflation in Eurozone’s biggest economies reaches multiyear highs', 'ECB ‘cannot wait’... top policymaker warns'."
+    },
+    {
+      "id": "oil_price_resurgence",
+      "title": "Sustained oil-price rise",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 months",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-11-30",
+      "probability": 0.75,
+      "impact_score": 164.0,
+      "expected_impact": 123.0,
+      "event_PS": 14.1,
+      "event_AS": 16.4,
+      "n_vars": 5,
+      "affected_ids": "oil_price_level, inflation_rate, inflation_expectations, long_term_nominal_yields, investor_risk_appetite",
+      "rationale": "Headlines: 'Oil price and US Treasury yields in tightest relationship', 'oil jumps', 'Bond sell-off deepens and oil rises as Iran-US deal hopes fade'."
+    },
+    {
+      "id": "us_jobs_report_first_week_oct",
+      "title": "US jobs report (early October)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "first week of Oct",
+      "date": null,
+      "start": "2026-10-02",
+      "end": "2026-10-08",
+      "probability": 0.85,
+      "impact_score": 147.0,
+      "expected_impact": 124.95,
+      "event_PS": 23.0,
+      "event_AS": 18.375,
+      "n_vars": 4,
+      "affected_ids": "long_term_nominal_yields, growth_expectations, inflation_expectations, investor_risk_appetite",
+      "rationale": "Headlines: 'jobs data looms', '10-year yield higher as traders... await jobs report' — payrolls will reprice growth/inflation and yields."
+    },
+    {
+      "id": "treasury_supply_and_us_fiscal_paths",
+      "title": "US Treasury supply / fiscal financing pressure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Q4 2026",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 147.0,
+      "expected_impact": 102.9,
+      "event_PS": 18.5,
+      "event_AS": 18.375,
+      "n_vars": 3,
+      "affected_ids": "fiscal_financing_need, long_term_nominal_yields, term_premium",
+      "rationale": "Headlines: 'Rising Deficits and War Unravel Trump's Strategy to Lower Interest Rates', 'U.S. bond yields post biggest jump... rout rattles investors'."
+    },
+    {
+      "id": "volatility_spike_as_yields_break_highs",
+      "title": "Implied volatility surge from yield breakout",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "October 2026",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 114.0,
+      "expected_impact": 91.2,
+      "event_PS": 24.429,
+      "event_AS": 16.286,
+      "n_vars": 3,
+      "affected_ids": "market_implied_volatilit, market_liquidity, investor_risk_appetite",
+      "rationale": "Headlines: '10-Year Treasury Yield Breakouts as Implied Volatility Surges', 'Bond markets are screaming... every asset class should be listening'."
+    },
+    {
+      "id": "corporate_credit_stress_and_issuance",
+      "title": "Corporate credit stress and heavy issuance",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Q4 2026",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 111.0,
+      "expected_impact": 77.7,
+      "event_PS": 23.143,
+      "event_AS": 15.857,
+      "n_vars": 3,
+      "affected_ids": "corporate_credit_spreads, market_liquidity, investor_risk_appetite",
+      "rationale": "Headlines: 'Junk bonds are heading for worst month since 2022', 'Paramount’s mega debt sale reveals how higher bond yields are squeezing corporate America'."
+    },
+    {
+      "id": "france_2027_budget_reckoning",
+      "title": "France 2027 budget tightening process",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Q4 2026–Q1 2027",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2027-03-31",
+      "probability": 0.7,
+      "impact_score": 106.0,
+      "expected_impact": 74.2,
+      "event_PS": 20.333,
+      "event_AS": 17.667,
+      "n_vars": 3,
+      "affected_ids": "fiscal_financing_need, sovereign_credit_spreads, long_term_nominal_yields",
+      "rationale": "Headlines: 'France demands belt-tightening in 2027 budget', 'France seeks to rein in pensions and state salaries in 2027'."
+    },
+    {
+      "id": "japan_bond_market_shift",
+      "title": "Japan bond market / BOJ policy pivot risk",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 months",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 85.0,
+      "expected_impact": 51.0,
+      "event_PS": 26.0,
+      "event_AS": 17.0,
+      "n_vars": 3,
+      "affected_ids": "long_term_nominal_yields, cross_border_flows, market_liquidity",
+      "rationale": "Headlines: 'Japan’s Bond Market Could Be the Next Catalyst', 'BOJ debated more rate hikes... summary shows', 'Japan pauses forex intervention'."
+    }
+  ]
+}
