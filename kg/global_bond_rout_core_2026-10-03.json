@@ -1,0 +1,1837 @@
+{
+  "label": "global_bond_rout",
+  "as_of": "2026-10-03",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-03T02:06:52",
+  "system_description": {
+    "narrative_title": "Global bond rout: soaring yields and policy fallout",
+    "narrative_summary": "Across the window the single dominant narrative is a global bond-market sell-off: benchmark sovereign yields have surged to multiyear highs, reverberating through mortgages, corporate borrowing costs, FX and safe-haven assets. As an open system this narrative links incoming macro datapoints (inflation, jobs), central-bank signaling, fiscal stress (notably in some European sovereigns), and cross-border capital flows; changes in any node feed back into expectations and prices elsewhere, creating reinforcing and balancing loops (e.g., higher yields -> tighter financial conditions -> growth/inflation impacts -> policy reaction).",
+    "scope": "Sovereign and corporate bond markets and benchmark yields (US Treasuries, gilts, French debt, Asian sovereigns), central-bank policy expectations, interest-rate sensitive markets (mortgages, housing, corporate credit), investor flows (safe-haven shifts, quant/hedge activity), related asset reactions (equities, gold, FX), and short-term macro drivers (inflation reports, payrolls, fiscal announcements).",
+    "super_system": "Global macro-financial system / global economy and financial stability",
+    "adjacent_subsystems": [
+      "Monetary policy and central banks (Fed, ECB, BOJ, BoE)",
+      "Housing and consumer credit markets (mortgages, household balance sheets)",
+      "Equities and corporate credit (debt issuance, credit spreads)",
+      "Fiscal policy and sovereign debt management (government borrowing, budget credibility)"
+    ],
+    "evidence_headlines": [
+      "Global bonds gripped by fresh selling, US 10-year yield hits 24-year high",
+      "10 year US Treasury yield hits highest since 2002",
+      "France Is Ground Zero in the Global Bond Rout",
+      "How 7% Mortgages Are Wrecking the Home-Buyer Playbook",
+      "Here’s Why the Fed Is on Hold—Maybe for a While",
+      "Global bond sell-off deepens as Asian yields jump"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_nominal_yields",
+      "name": "Long-term nominal yields",
+      "description": "The prevailing interest rate on long-dated government and benchmark debt instruments measured as a continuous level across the yield curve's long end.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expect",
+      "name": "Short-term policy rate expectations",
+      "description": "The market consensus or perceived path for short-term policy interest rates over the coming months.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_rate",
+      "name": "Headline inflation rate",
+      "description": "The observed rate of change in consumer prices across the economy over a defined recent period.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expect",
+      "name": "Inflation expectations",
+      "description": "The anticipated future inflation rate as reflected in surveys, market measures and investor pricing.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "real_gdp_growth",
+      "name": "Real economic growth rate",
+      "description": "The economy's inflation-adjusted output growth measured as a continuous rate of change.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "financial_conditions",
+      "name": "Financial conditions tightness",
+      "description": "An aggregate measure of how restrictive financing and market conditions are, incorporating rates, spreads, liquidity and valuations.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "mortgage_rates",
+      "name": "Mortgage interest rates",
+      "description": "The prevailing interest rates charged on residential mortgage lending across maturities and products.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_spreads",
+      "name": "Corporate credit spreads",
+      "description": "The premium borrowers in the corporate sector pay over benchmark government yields, measured continuously across credit quality and tenor.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_stress",
+      "name": "Sovereign fiscal stress",
+      "description": "The perceived and measured pressure on public finances, reflected in deficit/debt dynamics and market-implied solvency concerns.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "Net private and public capital movements across jurisdictions over time, including portfolio and interbank flows.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "bond_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The ease and cost with which fixed-income instruments can be transacted without materially moving prices.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_aversion",
+      "name": "Investor risk aversion",
+      "description": "The prevailing willingness of market participants to hold risky assets versus safe assets, reflected in demand and pricing behavior.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_demand",
+      "name": "Safe-haven asset demand",
+      "description": "The level of investor demand for assets perceived as low-risk stores of value during market stress.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "leveraged_fixed_income",
+      "name": "Leveraged fixed-income exposure",
+      "description": "The aggregate size of levered and margin-funded positions in fixed-income markets held by traders, funds and other investors.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_rate_sensitivity",
+      "name": "Equity market sensitivity to rates",
+      "description": "The degree to which equity valuations and price volatility respond to changes in interest rates and yield levels.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "housing_activity",
+      "name": "Housing market activity",
+      "description": "Transaction volumes, listing behaviour and price momentum in the residential real estate market as a continuous activity level.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_nominal_yields",
+    "policy_rate_expect",
+    "inflation_rate",
+    "inflation_expect",
+    "real_gdp_growth",
+    "financial_conditions",
+    "mortgage_rates",
+    "corporate_spreads",
+    "fiscal_stress",
+    "cross_border_flows",
+    "bond_liquidity",
+    "investor_risk_aversion",
+    "safe_haven_demand",
+    "leveraged_fixed_income",
+    "equity_rate_sensitivity",
+    "housing_activity"
+  ],
+  "var_names": {
+    "long_nominal_yields": "Long-term nominal yields",
+    "policy_rate_expect": "Short-term policy rate expectations",
+    "inflation_rate": "Headline inflation rate",
+    "inflation_expect": "Inflation expectations",
+    "real_gdp_growth": "Real economic growth rate",
+    "financial_conditions": "Financial conditions tightness",
+    "mortgage_rates": "Mortgage interest rates",
+    "corporate_spreads": "Corporate credit spreads",
+    "fiscal_stress": "Sovereign fiscal stress",
+    "cross_border_flows": "Cross-border capital flows",
+    "bond_liquidity": "Bond market liquidity",
+    "investor_risk_aversion": "Investor risk aversion",
+    "safe_haven_demand": "Safe-haven asset demand",
+    "leveraged_fixed_income": "Leveraged fixed-income exposure",
+    "equity_rate_sensitivity": "Equity market sensitivity to rates",
+    "housing_activity": "Housing market activity"
+  },
+  "impact_matrix": {
+    "long_nominal_yields": {
+      "long_nominal_yields": 0,
+      "policy_rate_expect": 3,
+      "inflation_rate": 0,
+      "inflation_expect": 2,
+      "real_gdp_growth": 2,
+      "financial_conditions": 3,
+      "mortgage_rates": 3,
+      "corporate_spreads": 1,
+      "fiscal_stress": 2,
+      "cross_border_flows": 2,
+      "bond_liquidity": 1,
+      "investor_risk_aversion": 1,
+      "safe_haven_demand": 1,
+      "leveraged_fixed_income": 2,
+      "equity_rate_sensitivity": 2,
+      "housing_activity": 2
+    },
+    "policy_rate_expect": {
+      "long_nominal_yields": 3,
+      "policy_rate_expect": 0,
+      "inflation_rate": 0,
+      "inflation_expect": 3,
+      "real_gdp_growth": 2,
+      "financial_conditions": 3,
+      "mortgage_rates": 3,
+      "corporate_spreads": 2,
+      "fiscal_stress": 1,
+      "cross_border_flows": 2,
+      "bond_liquidity": 1,
+      "investor_risk_aversion": 1,
+      "safe_haven_demand": 1,
+      "leveraged_fixed_income": 2,
+      "equity_rate_sensitivity": 1,
+      "housing_activity": 3
+    },
+    "inflation_rate": {
+      "long_nominal_yields": 3,
+      "policy_rate_expect": 3,
+      "inflation_rate": 0,
+      "inflation_expect": 3,
+      "real_gdp_growth": 1,
+      "financial_conditions": 1,
+      "mortgage_rates": 1,
+      "corporate_spreads": 1,
+      "fiscal_stress": 1,
+      "cross_border_flows": 1,
+      "bond_liquidity": 0,
+      "investor_risk_aversion": 2,
+      "safe_haven_demand": 2,
+      "leveraged_fixed_income": 1,
+      "equity_rate_sensitivity": 1,
+      "housing_activity": 1
+    },
+    "inflation_expect": {
+      "long_nominal_yields": 3,
+      "policy_rate_expect": 3,
+      "inflation_rate": 0,
+      "inflation_expect": 0,
+      "real_gdp_growth": 1,
+      "financial_conditions": 2,
+      "mortgage_rates": 2,
+      "corporate_spreads": 1,
+      "fiscal_stress": 1,
+      "cross_border_flows": 2,
+      "bond_liquidity": 0,
+      "investor_risk_aversion": 1,
+      "safe_haven_demand": 1,
+      "leveraged_fixed_income": 1,
+      "equity_rate_sensitivity": 1,
+      "housing_activity": 1
+    },
+    "real_gdp_growth": {
+      "long_nominal_yields": 2,
+      "policy_rate_expect": 3,
+      "inflation_rate": 2,
+      "inflation_expect": 2,
+      "real_gdp_growth": 0,
+      "financial_conditions": 2,
+      "mortgage_rates": 1,
+      "corporate_spreads": 2,
+      "fiscal_stress": 2,
+      "cross_border_flows": 2,
+      "bond_liquidity": 1,
+      "investor_risk_aversion": 2,
+      "safe_haven_demand": 2,
+      "leveraged_fixed_income": 1,
+      "equity_rate_sensitivity": 1,
+      "housing_activity": 3
+    },
+    "financial_conditions": {
+      "long_nominal_yields": 3,
+      "policy_rate_expect": 2,
+      "inflation_rate": 1,
+      "inflation_expect": 1,
+      "real_gdp_growth": 3,
+      "financial_conditions": 0,
+      "mortgage_rates": 3,
+      "corporate_spreads": 3,
+      "fiscal_stress": 2,
+      "cross_border_flows": 2,
+      "bond_liquidity": 3,
+      "investor_risk_aversion": 2,
+      "safe_haven_demand": 2,
+      "leveraged_fixed_income": 3,
+      "equity_rate_sensitivity": 2,
+      "housing_activity": 3
+    },
+    "mortgage_rates": {
+      "long_nominal_yields": 1,
+      "policy_rate_expect": 1,
+      "inflation_rate": 0,
+      "inflation_expect": 0,
+      "real_gdp_growth": 2,
+      "financial_conditions": 2,
+      "mortgage_rates": 0,
+      "corporate_spreads": 0,
+      "fiscal_stress": 1,
+      "cross_border_flows": 1,
+      "bond_liquidity": 0,
+      "investor_risk_aversion": 0,
+      "safe_haven_demand": 0,
+      "leveraged_fixed_income": 1,
+      "equity_rate_sensitivity": 1,
+      "housing_activity": 3
+    },
+    "corporate_spreads": {
+      "long_nominal_yields": 1,
+      "policy_rate_expect": 1,
+      "inflation_rate": 0,
+      "inflation_expect": 0,
+      "real_gdp_growth": 1,
+      "financial_conditions": 3,
+      "mortgage_rates": 1,
+      "corporate_spreads": 0,
+      "fiscal_stress": 1,
+      "cross_border_flows": 2,
+      "bond_liquidity": 2,
+      "investor_risk_aversion": 2,
+      "safe_haven_demand": 2,
+      "leveraged_fixed_income": 2,
+      "equity_rate_sensitivity": 1,
+      "housing_activity": 0
+    },
+    "fiscal_stress": {
+      "long_nominal_yields": 3,
+      "policy_rate_expect": 1,
+      "inflation_rate": 1,
+      "inflation_expect": 2,
+      "real_gdp_growth": 2,
+      "financial_conditions": 3,
+      "mortgage_rates": 1,
+      "corporate_spreads": 2,
+      "fiscal_stress": 0,
+      "cross_border_flows": 2,
+      "bond_liquidity": 2,
+      "investor_risk_aversion": 2,
+      "safe_haven_demand": 2,
+      "leveraged_fixed_income": 1,
+      "equity_rate_sensitivity": 1,
+      "housing_activity": 1
+    },
+    "cross_border_flows": {
+      "long_nominal_yields": 2,
+      "policy_rate_expect": 1,
+      "inflation_rate": 0,
+      "inflation_expect": 0,
+      "real_gdp_growth": 1,
+      "financial_conditions": 2,
+      "mortgage_rates": 1,
+      "corporate_spreads": 2,
+      "fiscal_stress": 1,
+      "cross_border_flows": 0,
+      "bond_liquidity": 2,
+      "investor_risk_aversion": 1,
+      "safe_haven_demand": 2,
+      "leveraged_fixed_income": 2,
+      "equity_rate_sensitivity": 1,
+      "housing_activity": 1
+    },
+    "bond_liquidity": {
+      "long_nominal_yields": 2,
+      "policy_rate_expect": 1,
+      "inflation_rate": 0,
+      "inflation_expect": 0,
+      "real_gdp_growth": 1,
+      "financial_conditions": 3,
+      "mortgage_rates": 1,
+      "corporate_spreads": 2,
+      "fiscal_stress": 2,
+      "cross_border_flows": 2,
+      "bond_liquidity": 0,
+      "investor_risk_aversion": 2,
+      "safe_haven_demand": 1,
+      "leveraged_fixed_income": 3,
+      "equity_rate_sensitivity": 1,
+      "housing_activity": 0
+    },
+    "investor_risk_aversion": {
+      "long_nominal_yields": 2,
+      "policy_rate_expect": 1,
+      "inflation_rate": 0,
+      "inflation_expect": 1,
+      "real_gdp_growth": 2,
+      "financial_conditions": 3,
+      "mortgage_rates": 1,
+      "corporate_spreads": 3,
+      "fiscal_stress": 1,
+      "cross_border_flows": 3,
+      "bond_liquidity": 2,
+      "investor_risk_aversion": 0,
+      "safe_haven_demand": 3,
+      "leveraged_fixed_income": 3,
+      "equity_rate_sensitivity": 2,
+      "housing_activity": 2
+    },
+    "safe_haven_demand": {
+      "long_nominal_yields": 2,
+      "policy_rate_expect": 1,
+      "inflation_rate": 0,
+      "inflation_expect": 0,
+      "real_gdp_growth": 1,
+      "financial_conditions": 2,
+      "mortgage_rates": 0,
+      "corporate_spreads": 2,
+      "fiscal_stress": 1,
+      "cross_border_flows": 3,
+      "bond_liquidity": 1,
+      "investor_risk_aversion": 3,
+      "safe_haven_demand": 0,
+      "leveraged_fixed_income": 2,
+      "equity_rate_sensitivity": 1,
+      "housing_activity": 0
+    },
+    "leveraged_fixed_income": {
+      "long_nominal_yields": 2,
+      "policy_rate_expect": 1,
+      "inflation_rate": 0,
+      "inflation_expect": 0,
+      "real_gdp_growth": 1,
+      "financial_conditions": 3,
+      "mortgage_rates": 1,
+      "corporate_spreads": 3,
+      "fiscal_stress": 1,
+      "cross_border_flows": 2,
+      "bond_liquidity": 3,
+      "investor_risk_aversion": 2,
+      "safe_haven_demand": 2,
+      "leveraged_fixed_income": 0,
+      "equity_rate_sensitivity": 1,
+      "housing_activity": 0
+    },
+    "equity_rate_sensitivity": {
+      "long_nominal_yields": 1,
+      "policy_rate_expect": 1,
+      "inflation_rate": 0,
+      "inflation_expect": 0,
+      "real_gdp_growth": 1,
+      "financial_conditions": 1,
+      "mortgage_rates": 0,
+      "corporate_spreads": 1,
+      "fiscal_stress": 0,
+      "cross_border_flows": 1,
+      "bond_liquidity": 0,
+      "investor_risk_aversion": 1,
+      "safe_haven_demand": 1,
+      "leveraged_fixed_income": 0,
+      "equity_rate_sensitivity": 0,
+      "housing_activity": 1
+    },
+    "housing_activity": {
+      "long_nominal_yields": 1,
+      "policy_rate_expect": 1,
+      "inflation_rate": 1,
+      "inflation_expect": 1,
+      "real_gdp_growth": 2,
+      "financial_conditions": 2,
+      "mortgage_rates": 1,
+      "corporate_spreads": 0,
+      "fiscal_stress": 1,
+      "cross_border_flows": 1,
+      "bond_liquidity": 0,
+      "investor_risk_aversion": 1,
+      "safe_haven_demand": 0,
+      "leveraged_fixed_income": 1,
+      "equity_rate_sensitivity": 0,
+      "housing_activity": 0
+    }
+  },
+  "AS": {
+    "long_nominal_yields": 27,
+    "policy_rate_expect": 28,
+    "inflation_rate": 22,
+    "inflation_expect": 20,
+    "real_gdp_growth": 28,
+    "financial_conditions": 35,
+    "mortgage_rates": 13,
+    "corporate_spreads": 19,
+    "fiscal_stress": 26,
+    "cross_border_flows": 19,
+    "bond_liquidity": 21,
+    "investor_risk_aversion": 29,
+    "safe_haven_demand": 19,
+    "leveraged_fixed_income": 22,
+    "equity_rate_sensitivity": 9,
+    "housing_activity": 13
+  },
+  "PS": {
+    "long_nominal_yields": 31,
+    "policy_rate_expect": 24,
+    "inflation_rate": 5,
+    "inflation_expect": 15,
+    "real_gdp_growth": 23,
+    "financial_conditions": 35,
+    "mortgage_rates": 20,
+    "corporate_spreads": 25,
+    "fiscal_stress": 18,
+    "cross_border_flows": 28,
+    "bond_liquidity": 18,
+    "investor_risk_aversion": 23,
+    "safe_haven_demand": 22,
+    "leveraged_fixed_income": 25,
+    "equity_rate_sensitivity": 17,
+    "housing_activity": 21
+  },
+  "med_AS": 21.5,
+  "med_PS": 22.5,
+  "roles": [
+    {
+      "variable": "financial_conditions",
+      "name": "Financial conditions tightness",
+      "AS": 35,
+      "PS": 35,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 1225,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "long_nominal_yields",
+      "name": "Long-term nominal yields",
+      "AS": 27,
+      "PS": 31,
+      "Q=AS/PS": 0.87,
+      "P=AS*PS": 837,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_expect",
+      "name": "Short-term policy rate expectations",
+      "AS": 28,
+      "PS": 24,
+      "Q=AS/PS": 1.17,
+      "P=AS*PS": 672,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_risk_aversion",
+      "name": "Investor risk aversion",
+      "AS": 29,
+      "PS": 23,
+      "Q=AS/PS": 1.26,
+      "P=AS*PS": 667,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "real_gdp_growth",
+      "name": "Real economic growth rate",
+      "AS": 28,
+      "PS": 23,
+      "Q=AS/PS": 1.22,
+      "P=AS*PS": 644,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "leveraged_fixed_income",
+      "name": "Leveraged fixed-income exposure",
+      "AS": 22,
+      "PS": 25,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 550,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 19,
+      "PS": 28,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 532,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "corporate_spreads",
+      "name": "Corporate credit spreads",
+      "AS": 19,
+      "PS": 25,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 475,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fiscal_stress",
+      "name": "Sovereign fiscal stress",
+      "AS": 26,
+      "PS": 18,
+      "Q=AS/PS": 1.44,
+      "P=AS*PS": 468,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "safe_haven_demand",
+      "name": "Safe-haven asset demand",
+      "AS": 19,
+      "PS": 22,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 418,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "bond_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 21,
+      "PS": 18,
+      "Q=AS/PS": 1.17,
+      "P=AS*PS": 378,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_expect",
+      "name": "Inflation expectations",
+      "AS": 20,
+      "PS": 15,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 300,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "housing_activity",
+      "name": "Housing market activity",
+      "AS": 13,
+      "PS": 21,
+      "Q=AS/PS": 0.62,
+      "P=AS*PS": 273,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "mortgage_rates",
+      "name": "Mortgage interest rates",
+      "AS": 13,
+      "PS": 20,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 260,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "equity_rate_sensitivity",
+      "name": "Equity market sensitivity to rates",
+      "AS": 9,
+      "PS": 17,
+      "Q=AS/PS": 0.53,
+      "P=AS*PS": 153,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_rate",
+      "name": "Headline inflation rate",
+      "AS": 22,
+      "PS": 5,
+      "Q=AS/PS": 4.4,
+      "P=AS*PS": 110,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_nominal_yields",
+        "name": "Long-term nominal yields",
+        "kind": "stock",
+        "AS": 27,
+        "PS": 31
+      },
+      {
+        "id": "policy_rate_expect",
+        "name": "Short-term policy rate expectations",
+        "kind": "perception",
+        "AS": 28,
+        "PS": 24
+      },
+      {
+        "id": "inflation_rate",
+        "name": "Headline inflation rate",
+        "kind": "driver",
+        "AS": 22,
+        "PS": 5
+      },
+      {
+        "id": "inflation_expect",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 15
+      },
+      {
+        "id": "real_gdp_growth",
+        "name": "Real economic growth rate",
+        "kind": "stock",
+        "AS": 28,
+        "PS": 23
+      },
+      {
+        "id": "financial_conditions",
+        "name": "Financial conditions tightness",
+        "kind": "stock",
+        "AS": 35,
+        "PS": 35
+      },
+      {
+        "id": "mortgage_rates",
+        "name": "Mortgage interest rates",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 20
+      },
+      {
+        "id": "corporate_spreads",
+        "name": "Corporate credit spreads",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 25
+      },
+      {
+        "id": "fiscal_stress",
+        "name": "Sovereign fiscal stress",
+        "kind": "environment",
+        "AS": 26,
+        "PS": 18
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 28
+      },
+      {
+        "id": "bond_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 18
+      },
+      {
+        "id": "investor_risk_aversion",
+        "name": "Investor risk aversion",
+        "kind": "perception",
+        "AS": 29,
+        "PS": 23
+      },
+      {
+        "id": "safe_haven_demand",
+        "name": "Safe-haven asset demand",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 22
+      },
+      {
+        "id": "leveraged_fixed_income",
+        "name": "Leveraged fixed-income exposure",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 25
+      },
+      {
+        "id": "equity_rate_sensitivity",
+        "name": "Equity market sensitivity to rates",
+        "kind": "stock",
+        "AS": 9,
+        "PS": 17
+      },
+      {
+        "id": "housing_activity",
+        "name": "Housing market activity",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 21
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_nominal_yields",
+        "target": "policy_rate_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_nominal_yields",
+        "target": "inflation_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_nominal_yields",
+        "target": "real_gdp_growth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_nominal_yields",
+        "target": "financial_conditions",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "long_nominal_yields",
+        "target": "mortgage_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_nominal_yields",
+        "target": "fiscal_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_nominal_yields",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_nominal_yields",
+        "target": "leveraged_fixed_income",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_nominal_yields",
+        "target": "equity_rate_sensitivity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_nominal_yields",
+        "target": "housing_activity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expect",
+        "target": "long_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expect",
+        "target": "inflation_expect",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expect",
+        "target": "real_gdp_growth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expect",
+        "target": "financial_conditions",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expect",
+        "target": "mortgage_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expect",
+        "target": "corporate_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expect",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expect",
+        "target": "leveraged_fixed_income",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expect",
+        "target": "housing_activity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "long_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "policy_rate_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "inflation_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "investor_risk_aversion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "long_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "policy_rate_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "financial_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "mortgage_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "real_gdp_growth",
+        "target": "long_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_gdp_growth",
+        "target": "policy_rate_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_gdp_growth",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_gdp_growth",
+        "target": "inflation_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_gdp_growth",
+        "target": "financial_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_gdp_growth",
+        "target": "corporate_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_gdp_growth",
+        "target": "fiscal_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_gdp_growth",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_gdp_growth",
+        "target": "investor_risk_aversion",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_gdp_growth",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_gdp_growth",
+        "target": "housing_activity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "long_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "policy_rate_expect",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "real_gdp_growth",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "mortgage_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "corporate_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "fiscal_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "bond_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "investor_risk_aversion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "leveraged_fixed_income",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "equity_rate_sensitivity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "financial_conditions",
+        "target": "housing_activity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "mortgage_rates",
+        "target": "real_gdp_growth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "mortgage_rates",
+        "target": "financial_conditions",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "mortgage_rates",
+        "target": "housing_activity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_spreads",
+        "target": "financial_conditions",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_spreads",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_spreads",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_spreads",
+        "target": "investor_risk_aversion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_spreads",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_spreads",
+        "target": "leveraged_fixed_income",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_stress",
+        "target": "long_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress",
+        "target": "inflation_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress",
+        "target": "real_gdp_growth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_stress",
+        "target": "financial_conditions",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress",
+        "target": "corporate_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_stress",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_stress",
+        "target": "investor_risk_aversion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "long_nominal_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "financial_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "corporate_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "leveraged_fixed_income",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "long_nominal_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "financial_conditions",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "corporate_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "fiscal_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "investor_risk_aversion",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "leveraged_fixed_income",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "long_nominal_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "real_gdp_growth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "financial_conditions",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "corporate_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "safe_haven_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "leveraged_fixed_income",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "equity_rate_sensitivity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "housing_activity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "long_nominal_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "financial_conditions",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "corporate_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "investor_risk_aversion",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "leveraged_fixed_income",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "leveraged_fixed_income",
+        "target": "long_nominal_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "leveraged_fixed_income",
+        "target": "financial_conditions",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "leveraged_fixed_income",
+        "target": "corporate_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "leveraged_fixed_income",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leveraged_fixed_income",
+        "target": "bond_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "leveraged_fixed_income",
+        "target": "investor_risk_aversion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leveraged_fixed_income",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "housing_activity",
+        "target": "real_gdp_growth",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "housing_activity",
+        "target": "financial_conditions",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fomc_december_meeting",
+      "title": "FOMC December meeting (potential hike)",
+      "description": "The scheduled December FOMC meeting and attendant guidance that could crystallize a rate-hike decision and materially shift market expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2026-12-31",
+        "label": "December"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expect",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_nominal_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "financial_conditions",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "mortgage_rates",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expect",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: \"Fed may skip October but pull rate hike trigger in December\"; Fed officials signal hold or wait."
+    },
+    {
+      "id": "mid_october_inflation_prints",
+      "title": "Mid‑October inflation releases (US, major economies)",
+      "description": "Upcoming monthly inflation releases (CPI/PCE and comparable prints) that will reset investors' inflation and rate expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-10-20",
+        "label": "mid-Oct"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_expect",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_rate_expect",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_nominal_yields",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "financial_conditions",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: \"This Datapoint Could Explain Soaring Bond Yields\"; inflation data repeatedly cited versus yields."
+    },
+    {
+      "id": "us_treasury_auctions_and_supply",
+      "title": "Large US Treasury auction schedule / supply",
+      "description": "Ongoing calendar of Treasury debt supply and large auctions that can pressure yields and liquidity if demand softens.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-03",
+        "end": "2026-10-31",
+        "label": "this month"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "long_nominal_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "financial_conditions",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"U.S. Treasury Selloff Resumes\"; coverage on supply and corporate mega‑deals squeezing markets (Paramount debt sale)."
+    },
+    {
+      "id": "french_fiscal_developments",
+      "title": "French fiscal developments and auctions",
+      "description": "Near‑term fiscal announcements, debt auctions or policy disputes in France that amplify sovereign spread moves and market stress.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-03",
+        "end": "2026-11-15",
+        "label": "weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "fiscal_stress",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_nominal_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"France Is Ground Zero in the Global Bond Rout\"; \"French Yield Spreads Jump on Fiscal Worries.\""
+    },
+    {
+      "id": "boj_policy_guidance",
+      "title": "BOJ policy guidance / potential tightening",
+      "description": "Bank of Japan communications or policy shifts that could transmit to global yields and trigger cross‑border rebalancing.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-03",
+        "end": "2026-12-31",
+        "label": "Oct–Dec"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "long_nominal_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "financial_conditions",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: \"BOJ debated more rate hikes\"; \"Japan’s Bond Market Could Be the Next Catalyst for Global Yields.\""
+    },
+    {
+      "id": "vol_control_rebalancing_risk",
+      "title": "Volatility‑control funds rebalancing",
+      "description": "Volatility‑control strategies near record equity exposure could trigger rapid rebalancing into/out of bonds if market volatility spikes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-03",
+        "end": "2026-10-31",
+        "label": "2–4 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "leveraged_fixed_income",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_liquidity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_aversion",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_rate_sensitivity",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Volatility control funds near record equity exposure, raising selloff risk.\""
+    },
+    {
+      "id": "uk_autumn_fiscal_event",
+      "title": "UK autumn fiscal statement / gilt reaction",
+      "description": "UK fiscal announcements (autumn statement/budget updates) that could reignite gilt stress and bank funding concerns.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2026-11-30",
+        "label": "November"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "fiscal_stress",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_nominal_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"UK banks tumble as gilt yields hit highest since 1998, budget jitters mount.\""
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "mid_october_inflation_prints",
+      "title": "Mid‑October inflation releases (US, major economies)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-Oct",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-10-20",
+      "probability": 0.9,
+      "impact_score": 361.0,
+      "expected_impact": 324.9,
+      "event_PS": 21.071,
+      "event_AS": 25.786,
+      "n_vars": 5,
+      "affected_ids": "inflation_rate, inflation_expect, policy_rate_expect, long_nominal_yields, financial_conditions",
+      "rationale": "Headlines: \"This Datapoint Could Explain Soaring Bond Yields\"; inflation data repeatedly cited versus yields."
+    },
+    {
+      "id": "fomc_december_meeting",
+      "title": "FOMC December meeting (potential hike)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "December",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2026-12-31",
+      "probability": 0.95,
+      "impact_score": 281.0,
+      "expected_impact": 266.95,
+      "event_PS": 26.364,
+      "event_AS": 25.545,
+      "n_vars": 5,
+      "affected_ids": "policy_rate_expect, long_nominal_yields, financial_conditions, mortgage_rates, inflation_expect",
+      "rationale": "Headlines: \"Fed may skip October but pull rate hike trigger in December\"; Fed officials signal hold or wait."
+    },
+    {
+      "id": "french_fiscal_developments",
+      "title": "French fiscal developments and auctions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-03",
+      "end": "2026-11-15",
+      "probability": 0.75,
+      "impact_score": 256.0,
+      "expected_impact": 192.0,
+      "event_PS": 24.091,
+      "event_AS": 23.273,
+      "n_vars": 5,
+      "affected_ids": "fiscal_stress, long_nominal_yields, cross_border_flows, safe_haven_demand, bond_liquidity",
+      "rationale": "Headlines: \"France Is Ground Zero in the Global Bond Rout\"; \"French Yield Spreads Jump on Fiscal Worries.\""
+    },
+    {
+      "id": "us_treasury_auctions_and_supply",
+      "title": "Large US Treasury auction schedule / supply",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "this month",
+      "date": null,
+      "start": "2026-10-03",
+      "end": "2026-10-31",
+      "probability": 0.9,
+      "impact_score": 231.0,
+      "expected_impact": 207.9,
+      "event_PS": 28.333,
+      "event_AS": 25.667,
+      "n_vars": 4,
+      "affected_ids": "long_nominal_yields, bond_liquidity, financial_conditions, cross_border_flows",
+      "rationale": "Headlines: \"U.S. Treasury Selloff Resumes\"; coverage on supply and corporate mega‑deals squeezing markets (Paramount debt sale)."
+    },
+    {
+      "id": "vol_control_rebalancing_risk",
+      "title": "Volatility‑control funds rebalancing",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2–4 weeks",
+      "date": null,
+      "start": "2026-10-03",
+      "end": "2026-10-31",
+      "probability": 0.6,
+      "impact_score": 205.0,
+      "expected_impact": 123.0,
+      "event_PS": 20.9,
+      "event_AS": 20.5,
+      "n_vars": 4,
+      "affected_ids": "leveraged_fixed_income, bond_liquidity, investor_risk_aversion, equity_rate_sensitivity",
+      "rationale": "Headline: \"Volatility control funds near record equity exposure, raising selloff risk.\""
+    },
+    {
+      "id": "uk_autumn_fiscal_event",
+      "title": "UK autumn fiscal statement / gilt reaction",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "November",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2026-11-30",
+      "probability": 0.65,
+      "impact_score": 146.0,
+      "expected_impact": 94.9,
+      "event_PS": 24.0,
+      "event_AS": 24.333,
+      "n_vars": 4,
+      "affected_ids": "fiscal_stress, long_nominal_yields, cross_border_flows, bond_liquidity",
+      "rationale": "Headline: \"UK banks tumble as gilt yields hit highest since 1998, budget jitters mount.\""
+    },
+    {
+      "id": "boj_policy_guidance",
+      "title": "BOJ policy guidance / potential tightening",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Oct–Dec",
+      "date": null,
+      "start": "2026-10-03",
+      "end": "2026-12-31",
+      "probability": 0.5,
+      "impact_score": 108.0,
+      "expected_impact": 54.0,
+      "event_PS": 31.25,
+      "event_AS": 27.0,
+      "n_vars": 3,
+      "affected_ids": "long_nominal_yields, cross_border_flows, financial_conditions",
+      "rationale": "Headlines: \"BOJ debated more rate hikes\"; \"Japan’s Bond Market Could Be the Next Catalyst for Global Yields.\""
+    }
+  ]
+}
