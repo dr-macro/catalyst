@@ -1,0 +1,1773 @@
+{
+  "label": "sovereign_bond_market_st",
+  "as_of": "2026-10-04",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-04T03:07:29",
+  "system_description": {
+    "narrative_title": "Global bond rout and surging yields",
+    "narrative_summary": "A sustained sell-off in government bonds has driven yields to multi‑decade highs, reshaping investor positioning and raising borrowing costs across markets. This open system features feedback loops between sovereign debt supply, interest-rate expectations, central-bank action, and investor risk behavior that propagate shocks into housing, banks, currencies, and alternative assets. Fiscal stress and central‑bank communication interact with market liquidity and leveraged strategies, producing volatility and sporadic reversals as participants rebalance.",
+    "scope": "Developed-market government bond markets (US Treasuries, UK gilts, French OATs, Japan), yield and price dynamics, interest-rate expectations, central-bank signals, investor positioning (hedge funds, retail, institutional), credit and mortgage markets, currency and safe-haven flows.",
+    "super_system": "Global macro-financial system (global economy, cross-border capital flows, monetary and fiscal regimes)",
+    "adjacent_subsystems": [
+      "Housing and mortgage markets",
+      "Banking and financial intermediation",
+      "Sovereign fiscal policy and debt management",
+      "Equity and alternative-asset markets"
+    ],
+    "evidence_headlines": [
+      "Global bond rout deepens, pushes US Treasury yields to 24-year peak",
+      "US 30-year Treasury yield hits highest since 2002",
+      "UK banks tumble as gilt yields hit highest since 1998, budget jitters mount - reuters.com",
+      "US mortgage rates jump the most in four years in blow to housing market",
+      "High Government Debt Is Adding Fuel to the Global Bond-Market Selloff - wsj.com",
+      "Dollar Hits Near 18-Month High on Prospect of Higher U.S. Rates"
+    ]
+  },
+  "variables": [
+    {
+      "id": "nominal_yield_level",
+      "name": "Nominal government bond yield level",
+      "description": "Average market yield on long‑term government bonds across the developed‑market bond complex.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "Additional yield investors require to hold longer‑maturity bonds versus short‑term instruments.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "rate_expectations",
+      "name": "Interest‑rate expectations",
+      "description": "Market‑implied expected path of short‑ and medium‑term policy rates and forward rates.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_signal",
+      "name": "Monetary policy signaling",
+      "description": "Strength and directional bias of forward guidance and policy signalling as interpreted by markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "debt_supply_rate",
+      "name": "Government debt supply rate",
+      "description": "Pace at which new government fixed‑income securities are issued into the market over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_stress_level",
+      "name": "Fiscal stress level",
+      "description": "Market‑assessed pressure from public fiscal positions, including deficit and debt burden dynamics.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity_depth",
+      "name": "Market liquidity depth",
+      "description": "Ease with which large bond positions can be transacted without causing large price dislocations.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_leverage_ratio",
+      "name": "Investor leverage ratio",
+      "description": "Average degree of borrowed exposure used by market participants in fixed‑income and related strategies.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "leverage_unwind_rate",
+      "name": "Leverage unwind rate",
+      "description": "Speed at which leveraged positions are reduced or liquidated across the system.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "risk_aversion_level",
+      "name": "Investor risk aversion level",
+      "description": "Aggregate appetite for risk versus safe assets among market participants.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_demand",
+      "name": "Safe‑haven asset demand",
+      "description": "Net flow or demand pressure into perceived safe‑haven assets and currencies during stress periods.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread_level",
+      "name": "Credit spread level",
+      "description": "Average premium demanded on non‑government credit relative to risk‑free yields across maturities.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "mortgage_borrowing_cost",
+      "name": "Mortgage borrowing cost",
+      "description": "Typical interest rate level and financing cost for household mortgage borrowing.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "housing_affordability",
+      "name": "Housing affordability",
+      "description": "Ratio of housing purchase and carrying costs to median household income and financing availability.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "portfolio_rebalancing_ra",
+      "name": "Portfolio rebalancing rate",
+      "description": "Speed and magnitude at which investors shift allocations across bonds, equities, cash, and alternatives.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "volatility_level",
+      "name": "Market volatility level",
+      "description": "Realized and implied volatility in bond and related financial markets reflecting price dispersion over time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "nominal_yield_level",
+    "term_premium",
+    "rate_expectations",
+    "monetary_policy_signal",
+    "debt_supply_rate",
+    "fiscal_stress_level",
+    "market_liquidity_depth",
+    "investor_leverage_ratio",
+    "leverage_unwind_rate",
+    "risk_aversion_level",
+    "safe_haven_demand",
+    "credit_spread_level",
+    "mortgage_borrowing_cost",
+    "housing_affordability",
+    "portfolio_rebalancing_ra",
+    "volatility_level"
+  ],
+  "var_names": {
+    "nominal_yield_level": "Nominal government bond yield level",
+    "term_premium": "Term premium",
+    "rate_expectations": "Interest‑rate expectations",
+    "monetary_policy_signal": "Monetary policy signaling",
+    "debt_supply_rate": "Government debt supply rate",
+    "fiscal_stress_level": "Fiscal stress level",
+    "market_liquidity_depth": "Market liquidity depth",
+    "investor_leverage_ratio": "Investor leverage ratio",
+    "leverage_unwind_rate": "Leverage unwind rate",
+    "risk_aversion_level": "Investor risk aversion level",
+    "safe_haven_demand": "Safe‑haven asset demand",
+    "credit_spread_level": "Credit spread level",
+    "mortgage_borrowing_cost": "Mortgage borrowing cost",
+    "housing_affordability": "Housing affordability",
+    "portfolio_rebalancing_ra": "Portfolio rebalancing rate",
+    "volatility_level": "Market volatility level"
+  },
+  "impact_matrix": {
+    "nominal_yield_level": {
+      "nominal_yield_level": 0,
+      "term_premium": 1,
+      "rate_expectations": 1,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 2,
+      "market_liquidity_depth": 2,
+      "investor_leverage_ratio": 1,
+      "leverage_unwind_rate": 2,
+      "risk_aversion_level": 1,
+      "safe_haven_demand": 1,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_cost": 3,
+      "housing_affordability": 2,
+      "portfolio_rebalancing_ra": 2,
+      "volatility_level": 2
+    },
+    "term_premium": {
+      "nominal_yield_level": 3,
+      "term_premium": 0,
+      "rate_expectations": 1,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 1,
+      "market_liquidity_depth": 1,
+      "investor_leverage_ratio": 1,
+      "leverage_unwind_rate": 1,
+      "risk_aversion_level": 1,
+      "safe_haven_demand": 1,
+      "credit_spread_level": 1,
+      "mortgage_borrowing_cost": 1,
+      "housing_affordability": 1,
+      "portfolio_rebalancing_ra": 1,
+      "volatility_level": 1
+    },
+    "rate_expectations": {
+      "nominal_yield_level": 3,
+      "term_premium": 2,
+      "rate_expectations": 0,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 1,
+      "market_liquidity_depth": 1,
+      "investor_leverage_ratio": 2,
+      "leverage_unwind_rate": 2,
+      "risk_aversion_level": 1,
+      "safe_haven_demand": 1,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_cost": 3,
+      "housing_affordability": 2,
+      "portfolio_rebalancing_ra": 3,
+      "volatility_level": 2
+    },
+    "monetary_policy_signal": {
+      "nominal_yield_level": 3,
+      "term_premium": 2,
+      "rate_expectations": 3,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 1,
+      "market_liquidity_depth": 1,
+      "investor_leverage_ratio": 2,
+      "leverage_unwind_rate": 2,
+      "risk_aversion_level": 1,
+      "safe_haven_demand": 1,
+      "credit_spread_level": 1,
+      "mortgage_borrowing_cost": 2,
+      "housing_affordability": 1,
+      "portfolio_rebalancing_ra": 2,
+      "volatility_level": 2
+    },
+    "debt_supply_rate": {
+      "nominal_yield_level": 2,
+      "term_premium": 2,
+      "rate_expectations": 0,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 2,
+      "market_liquidity_depth": 2,
+      "investor_leverage_ratio": 1,
+      "leverage_unwind_rate": 1,
+      "risk_aversion_level": 0,
+      "safe_haven_demand": 0,
+      "credit_spread_level": 1,
+      "mortgage_borrowing_cost": 0,
+      "housing_affordability": 0,
+      "portfolio_rebalancing_ra": 2,
+      "volatility_level": 1
+    },
+    "fiscal_stress_level": {
+      "nominal_yield_level": 2,
+      "term_premium": 1,
+      "rate_expectations": 1,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 2,
+      "fiscal_stress_level": 0,
+      "market_liquidity_depth": 1,
+      "investor_leverage_ratio": 1,
+      "leverage_unwind_rate": 1,
+      "risk_aversion_level": 2,
+      "safe_haven_demand": 2,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_cost": 1,
+      "housing_affordability": 1,
+      "portfolio_rebalancing_ra": 2,
+      "volatility_level": 2
+    },
+    "market_liquidity_depth": {
+      "nominal_yield_level": 2,
+      "term_premium": 1,
+      "rate_expectations": 0,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 1,
+      "fiscal_stress_level": 1,
+      "market_liquidity_depth": 0,
+      "investor_leverage_ratio": 1,
+      "leverage_unwind_rate": 2,
+      "risk_aversion_level": 1,
+      "safe_haven_demand": 1,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_cost": 1,
+      "housing_affordability": 0,
+      "portfolio_rebalancing_ra": 2,
+      "volatility_level": 3
+    },
+    "investor_leverage_ratio": {
+      "nominal_yield_level": 2,
+      "term_premium": 1,
+      "rate_expectations": 0,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 0,
+      "market_liquidity_depth": 2,
+      "investor_leverage_ratio": 0,
+      "leverage_unwind_rate": 3,
+      "risk_aversion_level": 1,
+      "safe_haven_demand": 1,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_cost": 0,
+      "housing_affordability": 0,
+      "portfolio_rebalancing_ra": 2,
+      "volatility_level": 2
+    },
+    "leverage_unwind_rate": {
+      "nominal_yield_level": 3,
+      "term_premium": 2,
+      "rate_expectations": 1,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 1,
+      "market_liquidity_depth": 3,
+      "investor_leverage_ratio": 2,
+      "leverage_unwind_rate": 0,
+      "risk_aversion_level": 2,
+      "safe_haven_demand": 2,
+      "credit_spread_level": 3,
+      "mortgage_borrowing_cost": 1,
+      "housing_affordability": 0,
+      "portfolio_rebalancing_ra": 3,
+      "volatility_level": 3
+    },
+    "risk_aversion_level": {
+      "nominal_yield_level": 2,
+      "term_premium": 1,
+      "rate_expectations": 0,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 1,
+      "market_liquidity_depth": 1,
+      "investor_leverage_ratio": 2,
+      "leverage_unwind_rate": 2,
+      "risk_aversion_level": 0,
+      "safe_haven_demand": 3,
+      "credit_spread_level": 3,
+      "mortgage_borrowing_cost": 1,
+      "housing_affordability": 0,
+      "portfolio_rebalancing_ra": 3,
+      "volatility_level": 2
+    },
+    "safe_haven_demand": {
+      "nominal_yield_level": 2,
+      "term_premium": 1,
+      "rate_expectations": 0,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 0,
+      "market_liquidity_depth": 1,
+      "investor_leverage_ratio": 1,
+      "leverage_unwind_rate": 1,
+      "risk_aversion_level": 1,
+      "safe_haven_demand": 0,
+      "credit_spread_level": 1,
+      "mortgage_borrowing_cost": 1,
+      "housing_affordability": 0,
+      "portfolio_rebalancing_ra": 2,
+      "volatility_level": 1
+    },
+    "credit_spread_level": {
+      "nominal_yield_level": 2,
+      "term_premium": 1,
+      "rate_expectations": 1,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 1,
+      "market_liquidity_depth": 2,
+      "investor_leverage_ratio": 1,
+      "leverage_unwind_rate": 2,
+      "risk_aversion_level": 2,
+      "safe_haven_demand": 1,
+      "credit_spread_level": 0,
+      "mortgage_borrowing_cost": 2,
+      "housing_affordability": 1,
+      "portfolio_rebalancing_ra": 2,
+      "volatility_level": 2
+    },
+    "mortgage_borrowing_cost": {
+      "nominal_yield_level": 0,
+      "term_premium": 0,
+      "rate_expectations": 0,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 0,
+      "market_liquidity_depth": 0,
+      "investor_leverage_ratio": 0,
+      "leverage_unwind_rate": 0,
+      "risk_aversion_level": 0,
+      "safe_haven_demand": 0,
+      "credit_spread_level": 0,
+      "mortgage_borrowing_cost": 0,
+      "housing_affordability": 3,
+      "portfolio_rebalancing_ra": 1,
+      "volatility_level": 1
+    },
+    "housing_affordability": {
+      "nominal_yield_level": 0,
+      "term_premium": 0,
+      "rate_expectations": 0,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 0,
+      "market_liquidity_depth": 0,
+      "investor_leverage_ratio": 0,
+      "leverage_unwind_rate": 0,
+      "risk_aversion_level": 0,
+      "safe_haven_demand": 0,
+      "credit_spread_level": 0,
+      "mortgage_borrowing_cost": 0,
+      "housing_affordability": 0,
+      "portfolio_rebalancing_ra": 1,
+      "volatility_level": 0
+    },
+    "portfolio_rebalancing_ra": {
+      "nominal_yield_level": 3,
+      "term_premium": 1,
+      "rate_expectations": 1,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 1,
+      "market_liquidity_depth": 2,
+      "investor_leverage_ratio": 2,
+      "leverage_unwind_rate": 2,
+      "risk_aversion_level": 1,
+      "safe_haven_demand": 2,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_cost": 1,
+      "housing_affordability": 0,
+      "portfolio_rebalancing_ra": 0,
+      "volatility_level": 3
+    },
+    "volatility_level": {
+      "nominal_yield_level": 2,
+      "term_premium": 1,
+      "rate_expectations": 1,
+      "monetary_policy_signal": 0,
+      "debt_supply_rate": 0,
+      "fiscal_stress_level": 1,
+      "market_liquidity_depth": 2,
+      "investor_leverage_ratio": 2,
+      "leverage_unwind_rate": 2,
+      "risk_aversion_level": 2,
+      "safe_haven_demand": 2,
+      "credit_spread_level": 2,
+      "mortgage_borrowing_cost": 1,
+      "housing_affordability": 0,
+      "portfolio_rebalancing_ra": 3,
+      "volatility_level": 0
+    }
+  },
+  "AS": {
+    "nominal_yield_level": 22,
+    "term_premium": 15,
+    "rate_expectations": 25,
+    "monetary_policy_signal": 24,
+    "debt_supply_rate": 14,
+    "fiscal_stress_level": 21,
+    "market_liquidity_depth": 18,
+    "investor_leverage_ratio": 16,
+    "leverage_unwind_rate": 26,
+    "risk_aversion_level": 21,
+    "safe_haven_demand": 12,
+    "credit_spread_level": 20,
+    "mortgage_borrowing_cost": 5,
+    "housing_affordability": 1,
+    "portfolio_rebalancing_ra": 21,
+    "volatility_level": 21
+  },
+  "PS": {
+    "nominal_yield_level": 31,
+    "term_premium": 17,
+    "rate_expectations": 10,
+    "monetary_policy_signal": 0,
+    "debt_supply_rate": 3,
+    "fiscal_stress_level": 13,
+    "market_liquidity_depth": 21,
+    "investor_leverage_ratio": 19,
+    "leverage_unwind_rate": 23,
+    "risk_aversion_level": 16,
+    "safe_haven_demand": 18,
+    "credit_spread_level": 24,
+    "mortgage_borrowing_cost": 18,
+    "housing_affordability": 11,
+    "portfolio_rebalancing_ra": 31,
+    "volatility_level": 27
+  },
+  "med_AS": 20.5,
+  "med_PS": 18.0,
+  "roles": [
+    {
+      "variable": "nominal_yield_level",
+      "name": "Nominal government bond yield level",
+      "AS": 22,
+      "PS": 31,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 682,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "portfolio_rebalancing_ra",
+      "name": "Portfolio rebalancing rate",
+      "AS": 21,
+      "PS": 31,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 651,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "leverage_unwind_rate",
+      "name": "Leverage unwind rate",
+      "AS": 26,
+      "PS": 23,
+      "Q=AS/PS": 1.13,
+      "P=AS*PS": 598,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "volatility_level",
+      "name": "Market volatility level",
+      "AS": 21,
+      "PS": 27,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 567,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "credit_spread_level",
+      "name": "Credit spread level",
+      "AS": 20,
+      "PS": 24,
+      "Q=AS/PS": 0.83,
+      "P=AS*PS": 480,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity_depth",
+      "name": "Market liquidity depth",
+      "AS": 18,
+      "PS": 21,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 378,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "risk_aversion_level",
+      "name": "Investor risk aversion level",
+      "AS": 21,
+      "PS": 16,
+      "Q=AS/PS": 1.31,
+      "P=AS*PS": 336,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "investor_leverage_ratio",
+      "name": "Investor leverage ratio",
+      "AS": 16,
+      "PS": 19,
+      "Q=AS/PS": 0.84,
+      "P=AS*PS": 304,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fiscal_stress_level",
+      "name": "Fiscal stress level",
+      "AS": 21,
+      "PS": 13,
+      "Q=AS/PS": 1.62,
+      "P=AS*PS": 273,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 15,
+      "PS": 17,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 255,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "rate_expectations",
+      "name": "Interest‑rate expectations",
+      "AS": 25,
+      "PS": 10,
+      "Q=AS/PS": 2.5,
+      "P=AS*PS": 250,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "safe_haven_demand",
+      "name": "Safe‑haven asset demand",
+      "AS": 12,
+      "PS": 18,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 216,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "mortgage_borrowing_cost",
+      "name": "Mortgage borrowing cost",
+      "AS": 5,
+      "PS": 18,
+      "Q=AS/PS": 0.28,
+      "P=AS*PS": 90,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "debt_supply_rate",
+      "name": "Government debt supply rate",
+      "AS": 14,
+      "PS": 3,
+      "Q=AS/PS": 4.67,
+      "P=AS*PS": 42,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "housing_affordability",
+      "name": "Housing affordability",
+      "AS": 1,
+      "PS": 11,
+      "Q=AS/PS": 0.09,
+      "P=AS*PS": 11,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "monetary_policy_signal",
+      "name": "Monetary policy signaling",
+      "AS": 24,
+      "PS": 0,
+      "Q=AS/PS": 24000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "nominal_yield_level",
+        "name": "Nominal government bond yield level",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 31
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 17
+      },
+      {
+        "id": "rate_expectations",
+        "name": "Interest‑rate expectations",
+        "kind": "perception",
+        "AS": 25,
+        "PS": 10
+      },
+      {
+        "id": "monetary_policy_signal",
+        "name": "Monetary policy signaling",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 0
+      },
+      {
+        "id": "debt_supply_rate",
+        "name": "Government debt supply rate",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 3
+      },
+      {
+        "id": "fiscal_stress_level",
+        "name": "Fiscal stress level",
+        "kind": "environment",
+        "AS": 21,
+        "PS": 13
+      },
+      {
+        "id": "market_liquidity_depth",
+        "name": "Market liquidity depth",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 21
+      },
+      {
+        "id": "investor_leverage_ratio",
+        "name": "Investor leverage ratio",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 19
+      },
+      {
+        "id": "leverage_unwind_rate",
+        "name": "Leverage unwind rate",
+        "kind": "flow",
+        "AS": 26,
+        "PS": 23
+      },
+      {
+        "id": "risk_aversion_level",
+        "name": "Investor risk aversion level",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 16
+      },
+      {
+        "id": "safe_haven_demand",
+        "name": "Safe‑haven asset demand",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 18
+      },
+      {
+        "id": "credit_spread_level",
+        "name": "Credit spread level",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 24
+      },
+      {
+        "id": "mortgage_borrowing_cost",
+        "name": "Mortgage borrowing cost",
+        "kind": "stock",
+        "AS": 5,
+        "PS": 18
+      },
+      {
+        "id": "housing_affordability",
+        "name": "Housing affordability",
+        "kind": "stock",
+        "AS": 1,
+        "PS": 11
+      },
+      {
+        "id": "portfolio_rebalancing_ra",
+        "name": "Portfolio rebalancing rate",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 31
+      },
+      {
+        "id": "volatility_level",
+        "name": "Market volatility level",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 27
+      }
+    ],
+    "edges": [
+      {
+        "source": "nominal_yield_level",
+        "target": "fiscal_stress_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "leverage_unwind_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "mortgage_borrowing_cost",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "housing_affordability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "nominal_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "nominal_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "investor_leverage_ratio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "leverage_unwind_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "mortgage_borrowing_cost",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "housing_affordability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_signal",
+        "target": "nominal_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_signal",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_signal",
+        "target": "rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_signal",
+        "target": "investor_leverage_ratio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_signal",
+        "target": "leverage_unwind_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_signal",
+        "target": "mortgage_borrowing_cost",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_signal",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_signal",
+        "target": "volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_supply_rate",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_supply_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_supply_rate",
+        "target": "fiscal_stress_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_supply_rate",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_supply_rate",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress_level",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress_level",
+        "target": "debt_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress_level",
+        "target": "risk_aversion_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress_level",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress_level",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_stress_level",
+        "target": "volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "leverage_unwind_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "volatility_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage_ratio",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage_ratio",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage_ratio",
+        "target": "leverage_unwind_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage_ratio",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage_ratio",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage_ratio",
+        "target": "volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_unwind_rate",
+        "target": "nominal_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_unwind_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_unwind_rate",
+        "target": "market_liquidity_depth",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "leverage_unwind_rate",
+        "target": "investor_leverage_ratio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "leverage_unwind_rate",
+        "target": "risk_aversion_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_unwind_rate",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_unwind_rate",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_unwind_rate",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "leverage_unwind_rate",
+        "target": "volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_aversion_level",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_aversion_level",
+        "target": "investor_leverage_ratio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_aversion_level",
+        "target": "leverage_unwind_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_aversion_level",
+        "target": "safe_haven_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_aversion_level",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_aversion_level",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_aversion_level",
+        "target": "volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "leverage_unwind_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "risk_aversion_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "mortgage_borrowing_cost",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "mortgage_borrowing_cost",
+        "target": "housing_affordability",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "nominal_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "investor_leverage_ratio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "leverage_unwind_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "volatility_level",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "volatility_level",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "volatility_level",
+        "target": "investor_leverage_ratio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "volatility_level",
+        "target": "leverage_unwind_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "volatility_level",
+        "target": "risk_aversion_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "volatility_level",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "volatility_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "volatility_level",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_minutes_release",
+      "title": "FOMC minutes release",
+      "description": "Publication of recent Fed minutes that could clarify near‑term policy stance and reshape market pricing around hikes or pauses.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-07",
+        "end": "2026-10-14",
+        "label": "1-2 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "monetary_policy_signal",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "volatility_level",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'Week Ahead for FX, Bonds: Fed Minutes in Focus...' and Fed pause signals; minutes will move market pricing."
+    },
+    {
+      "id": "december_fed_rate_action",
+      "title": "December FOMC meeting / possible rate move",
+      "description": "Markets price a potential Fed rate action in December, which could materially lift rate expectations and long yields if enacted.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-09",
+        "end": "2026-12-17",
+        "label": "mid‑December"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "monetary_policy_signal",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "mortgage_borrowing_cost",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Fed may skip October but pull rate hike trigger in December' — December decision could push yields higher."
+    },
+    {
+      "id": "treasury_selloff_resumption",
+      "title": "Resumption/continuation of U.S. Treasury sell‑off",
+      "description": "Ongoing renewed selling pressure in U.S. Treasuries that can push yields higher, widen term premium, and increase volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2026-10-18",
+        "label": "next 1-2 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity_depth",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "leverage_unwind_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "volatility_level",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'U.S. Treasury Selloff Resumes After Brief Respite', 'Global bond rout deepens'."
+    },
+    {
+      "id": "france_sovereign_spread_widening",
+      "title": "French sovereign spread widening / eurozone fiscal jitters",
+      "description": "Continued investor concern over French (and other EMU) fiscal positions driving spread widening and safe‑haven flows within Europe.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2026-10-31",
+        "label": "through October"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_stress_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'France Is Ground Zero in the Global Bond Rout', 'French Yield Spreads Jump on Fiscal Worries'."
+    },
+    {
+      "id": "strong_dollar_pressure",
+      "title": "Sustained US dollar strength",
+      "description": "Continued dollar appreciation on prospects of higher U.S. rates that shifts global flows and affects safe‑haven dynamics and commodity prices.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2026-10-31",
+        "label": "weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "volatility_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Dollar Hits Near 18-Month High on Prospect of Higher U.S. Rates' and impacts cited across coverage."
+    },
+    {
+      "id": "elevated_mortgage_rates_process",
+      "title": "Elevated mortgage rates and affordability squeeze",
+      "description": "Persistent high mortgage rates that raise borrowing costs and materially worsen housing affordability, feeding into consumption and market rebalancing.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2026-12-31",
+        "label": "months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "mortgage_borrowing_cost",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "housing_affordability",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "portfolio_rebalancing_ra",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "risk_aversion_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'US mortgage rates jump... largest weekly gain', 'High mortgage rates are trapping homeowners'."
+    },
+    {
+      "id": "hawkish_fed_rhetoric",
+      "title": "Hawkish Fed official rhetoric",
+      "description": "Comments from influential Fed officials calling for larger hikes could re‑anchor market expectations and lift yields even absent immediate policy moves.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2026-10-21",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.55,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_signal",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Fed's Logan calls for \"50 bps or more\"' and other officials debating timing of hikes."
+    },
+    {
+      "id": "rising_gilt_yields_uk",
+      "title": "Rising gilt yields and UK budget jitters",
+      "description": "Continued upward pressure on UK gilt yields amid budget concerns that can provoke bank stress and wider market volatility in Europe.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2026-10-31",
+        "label": "through October"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_stress_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity_depth",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "volatility_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'UK banks tumble as gilt yields hit highest since 1998, budget jitters mount' and related coverage."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "december_fed_rate_action",
+      "title": "December FOMC meeting / possible rate move",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid‑December",
+      "date": null,
+      "start": "2026-12-09",
+      "end": "2026-12-17",
+      "probability": 0.6,
+      "impact_score": 265.0,
+      "expected_impact": 159.0,
+      "event_PS": 16.385,
+      "event_AS": 20.385,
+      "n_vars": 5,
+      "affected_ids": "rate_expectations, monetary_policy_signal, nominal_yield_level, volatility_level, mortgage_borrowing_cost",
+      "rationale": "Headline: 'Fed may skip October but pull rate hike trigger in December' — December decision could push yields higher."
+    },
+    {
+      "id": "treasury_selloff_resumption",
+      "title": "Resumption/continuation of U.S. Treasury sell‑off",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1-2 weeks",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2026-10-18",
+      "probability": 0.75,
+      "impact_score": 247.0,
+      "expected_impact": 185.25,
+      "event_PS": 24.667,
+      "event_AS": 20.583,
+      "n_vars": 5,
+      "affected_ids": "nominal_yield_level, term_premium, market_liquidity_depth, leverage_unwind_rate, volatility_level",
+      "rationale": "Headlines: 'U.S. Treasury Selloff Resumes After Brief Respite', 'Global bond rout deepens'."
+    },
+    {
+      "id": "fed_minutes_release",
+      "title": "FOMC minutes release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-2 weeks",
+      "date": null,
+      "start": "2026-10-07",
+      "end": "2026-10-14",
+      "probability": 0.8,
+      "impact_score": 233.0,
+      "expected_impact": 186.4,
+      "event_PS": 14.6,
+      "event_AS": 23.3,
+      "n_vars": 4,
+      "affected_ids": "rate_expectations, monetary_policy_signal, nominal_yield_level, volatility_level",
+      "rationale": "Headline: 'Week Ahead for FX, Bonds: Fed Minutes in Focus...' and Fed pause signals; minutes will move market pricing."
+    },
+    {
+      "id": "hawkish_fed_rhetoric",
+      "title": "Hawkish Fed official rhetoric",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2026-10-21",
+      "probability": 0.55,
+      "impact_score": 233.0,
+      "expected_impact": 128.15,
+      "event_PS": 14.6,
+      "event_AS": 23.3,
+      "n_vars": 4,
+      "affected_ids": "monetary_policy_signal, rate_expectations, nominal_yield_level, volatility_level",
+      "rationale": "Headlines: 'Fed's Logan calls for \"50 bps or more\"' and other officials debating timing of hikes."
+    },
+    {
+      "id": "france_sovereign_spread_widening",
+      "title": "French sovereign spread widening / eurozone fiscal jitters",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through October",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2026-10-31",
+      "probability": 0.65,
+      "impact_score": 189.0,
+      "expected_impact": 122.85,
+      "event_PS": 20.1,
+      "event_AS": 18.9,
+      "n_vars": 4,
+      "affected_ids": "credit_spread_level, fiscal_stress_level, safe_haven_demand, volatility_level",
+      "rationale": "Headlines: 'France Is Ground Zero in the Global Bond Rout', 'French Yield Spreads Jump on Fiscal Worries'."
+    },
+    {
+      "id": "rising_gilt_yields_uk",
+      "title": "Rising gilt yields and UK budget jitters",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through October",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2026-10-31",
+      "probability": 0.6,
+      "impact_score": 146.0,
+      "expected_impact": 87.6,
+      "event_PS": 23.286,
+      "event_AS": 20.857,
+      "n_vars": 4,
+      "affected_ids": "nominal_yield_level, fiscal_stress_level, market_liquidity_depth, volatility_level",
+      "rationale": "Headline: 'UK banks tumble as gilt yields hit highest since 1998, budget jitters mount' and related coverage."
+    },
+    {
+      "id": "strong_dollar_pressure",
+      "title": "Sustained US dollar strength",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 67.0,
+      "expected_impact": 46.9,
+      "event_PS": 23.5,
+      "event_AS": 16.75,
+      "n_vars": 3,
+      "affected_ids": "safe_haven_demand, nominal_yield_level, volatility_level",
+      "rationale": "Headline: 'Dollar Hits Near 18-Month High on Prospect of Higher U.S. Rates' and impacts cited across coverage."
+    },
+    {
+      "id": "elevated_mortgage_rates_process",
+      "title": "Elevated mortgage rates and affordability squeeze",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2026-12-31",
+      "probability": 0.9,
+      "impact_score": 60.0,
+      "expected_impact": 54.0,
+      "event_PS": 16.75,
+      "event_AS": 7.5,
+      "n_vars": 4,
+      "affected_ids": "mortgage_borrowing_cost, housing_affordability, portfolio_rebalancing_ra, risk_aversion_level",
+      "rationale": "Headlines: 'US mortgage rates jump... largest weekly gain', 'High mortgage rates are trapping homeowners'."
+    }
+  ]
+}

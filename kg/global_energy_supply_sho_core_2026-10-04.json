@@ -1,0 +1,1543 @@
+{
+  "label": "global_energy_supply_sho",
+  "as_of": "2026-10-04",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-04T03:02:23",
+  "system_description": {
+    "narrative_title": "Diesel supply shock spurs reserve releases and inflationary stress",
+    "narrative_summary": "A sharp surge in diesel prices driven by constrained supplies (war-related disruptions, export bans) has pushed eurozone inflation to multi-year highs and prompted intense diplomatic and policy action — notably U.S. pressure on Europe and a G7 agreement to release fuel stocks. The open system links diesel production/exports, strategic reserves, market prices, consumer inflation, and policy responses (stock releases, trade threats, central-bank rate moves), producing reinforcing and balancing feedbacks across markets, politics and monetary policy.",
+    "scope": "The system boundary covers the global and European diesel supply chain (production, exports, transit), emergency/strategic diesel and crude stockpiles, diesel and crude spot/futures markets, short-term price transmission to consumer goods and services (Eurozone CPI), and the policy levers and actors directly intervening (G7, EU, U.S., Russia, IEA, central banks).",
+    "super_system": "Global energy–economy–geopolitics system (world oil & refined fuels markets, international trade, sanctions regime, and macroeconomic policy frameworks).",
+    "adjacent_subsystems": [
+      "Monetary policy and central banking (ECB, BoJ, Fed rate decisions and inflation targeting)",
+      "Geopolitical conflicts and sanctions (Russia–Ukraine, Middle East hostilities affecting supply)",
+      "Global trade and industrial capacity (G20 trade disputes, export controls and industrial overcapacity arguments)",
+      "Electoral and political cycles (U.S. midterms, EU domestic politics influencing policy responses)"
+    ],
+    "evidence_headlines": [
+      "G7 agrees to release 100mn barrels of diesel and crude under pressure from Trump",
+      "Europe’s leaders rush to release diesel from stockpiles as fuel-shock hangs over U.S. midterms",
+      "Eurozone inflation jumps to highest level in three years",
+      "Putin says Russia won't supply diesel to global markets until sanctions are lifted",
+      "EXCLUSIVE: US tells France and Germany to release diesel stocks or face US export ban, sources say"
+    ]
+  },
+  "variables": [
+    {
+      "id": "diesel_production_rate",
+      "name": "Diesel production rate",
+      "description": "Volume of diesel fuel refined and produced per unit time across the system.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_export_rate",
+      "name": "Diesel export rate",
+      "description": "Net volume of diesel shipped out of regional markets for export per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_transport_capacit",
+      "name": "Diesel transport capacity",
+      "description": "Available physical capacity for moving diesel through pipelines, shipping and road/rail logistics at a given time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_inventory_level",
+      "name": "Diesel inventory level",
+      "description": "Aggregate quantity of diesel held in commercial and strategic stocks at a point in time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_oil_price_level",
+      "name": "Crude oil price level",
+      "description": "Market price of crude oil providing the underlying feedstock cost for refined diesel.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_spot_price_level",
+      "name": "Diesel spot price level",
+      "description": "Immediate market price of diesel fuel in spot and nearby futures markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "consumer_inflation_rate",
+      "name": "Consumer inflation rate",
+      "description": "Rate of change of the general consumer price level driven in part by energy and transport costs.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_supply_expectatio",
+      "name": "Market supply expectations",
+      "description": "Aggregate market belief about future diesel supply tightness or abundance reflected in forward curves and sentiment.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "trade_restriction_intens",
+      "name": "Trade restriction intensity",
+      "description": "Degree and strictness of export controls, bans and trade barriers affecting diesel and related fuels.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "reserve_release_rate",
+      "name": "Reserve release rate",
+      "description": "Rate at which diesel and crude are released from strategic and emergency stockpiles into the market.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refining_utilization_rat",
+      "name": "Refining utilization rate",
+      "description": "Proportion of refining capacity currently in operation producing diesel and other fuels.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "logistics_cost_level",
+      "name": "Logistics cost level",
+      "description": "Price level of freight, storage and distribution services required to move diesel from producers to consumers.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_interest_rate_lev",
+      "name": "Policy interest rate level",
+      "description": "Short-term policy interest rate set by monetary authorities that influences inflation and demand.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_level",
+      "name": "Exchange rate level",
+      "description": "Relative value of the currency unit used in trade and invoicing that affects import/export prices for fuel.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_demand_rate",
+      "name": "Diesel demand rate",
+      "description": "Aggregate consumption of diesel across transport, industry and agriculture per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "price_pass_through_rate",
+      "name": "Price pass-through rate",
+      "description": "Speed and degree to which changes in diesel and energy prices transmit into consumer goods and service prices.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "diesel_production_rate",
+    "diesel_export_rate",
+    "diesel_transport_capacit",
+    "diesel_inventory_level",
+    "crude_oil_price_level",
+    "diesel_spot_price_level",
+    "consumer_inflation_rate",
+    "market_supply_expectatio",
+    "trade_restriction_intens",
+    "reserve_release_rate",
+    "refining_utilization_rat",
+    "logistics_cost_level",
+    "policy_interest_rate_lev",
+    "exchange_rate_level",
+    "diesel_demand_rate",
+    "price_pass_through_rate"
+  ],
+  "var_names": {
+    "diesel_production_rate": "Diesel production rate",
+    "diesel_export_rate": "Diesel export rate",
+    "diesel_transport_capacit": "Diesel transport capacity",
+    "diesel_inventory_level": "Diesel inventory level",
+    "crude_oil_price_level": "Crude oil price level",
+    "diesel_spot_price_level": "Diesel spot price level",
+    "consumer_inflation_rate": "Consumer inflation rate",
+    "market_supply_expectatio": "Market supply expectations",
+    "trade_restriction_intens": "Trade restriction intensity",
+    "reserve_release_rate": "Reserve release rate",
+    "refining_utilization_rat": "Refining utilization rate",
+    "logistics_cost_level": "Logistics cost level",
+    "policy_interest_rate_lev": "Policy interest rate level",
+    "exchange_rate_level": "Exchange rate level",
+    "diesel_demand_rate": "Diesel demand rate",
+    "price_pass_through_rate": "Price pass-through rate"
+  },
+  "impact_matrix": {
+    "diesel_production_rate": {
+      "diesel_production_rate": 0,
+      "diesel_export_rate": 2,
+      "diesel_transport_capacit": 0,
+      "diesel_inventory_level": 3,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 3,
+      "consumer_inflation_rate": 1,
+      "market_supply_expectatio": 2,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 0,
+      "refining_utilization_rat": 0,
+      "logistics_cost_level": 0,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 0,
+      "price_pass_through_rate": 0
+    },
+    "diesel_export_rate": {
+      "diesel_production_rate": 1,
+      "diesel_export_rate": 0,
+      "diesel_transport_capacit": 2,
+      "diesel_inventory_level": 3,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 3,
+      "consumer_inflation_rate": 1,
+      "market_supply_expectatio": 3,
+      "trade_restriction_intens": 1,
+      "reserve_release_rate": 1,
+      "refining_utilization_rat": 1,
+      "logistics_cost_level": 2,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 1,
+      "diesel_demand_rate": 0,
+      "price_pass_through_rate": 0
+    },
+    "diesel_transport_capacit": {
+      "diesel_production_rate": 1,
+      "diesel_export_rate": 2,
+      "diesel_transport_capacit": 0,
+      "diesel_inventory_level": 2,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 2,
+      "consumer_inflation_rate": 1,
+      "market_supply_expectatio": 2,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 1,
+      "refining_utilization_rat": 1,
+      "logistics_cost_level": 3,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 1,
+      "price_pass_through_rate": 0
+    },
+    "diesel_inventory_level": {
+      "diesel_production_rate": 1,
+      "diesel_export_rate": 2,
+      "diesel_transport_capacit": 0,
+      "diesel_inventory_level": 0,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 3,
+      "consumer_inflation_rate": 1,
+      "market_supply_expectatio": 3,
+      "trade_restriction_intens": 2,
+      "reserve_release_rate": 3,
+      "refining_utilization_rat": 1,
+      "logistics_cost_level": 0,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 0,
+      "price_pass_through_rate": 0
+    },
+    "crude_oil_price_level": {
+      "diesel_production_rate": 1,
+      "diesel_export_rate": 1,
+      "diesel_transport_capacit": 0,
+      "diesel_inventory_level": 1,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 3,
+      "consumer_inflation_rate": 2,
+      "market_supply_expectatio": 1,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 1,
+      "refining_utilization_rat": 1,
+      "logistics_cost_level": 1,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 0,
+      "price_pass_through_rate": 0
+    },
+    "diesel_spot_price_level": {
+      "diesel_production_rate": 1,
+      "diesel_export_rate": 1,
+      "diesel_transport_capacit": 0,
+      "diesel_inventory_level": 2,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 0,
+      "consumer_inflation_rate": 3,
+      "market_supply_expectatio": 2,
+      "trade_restriction_intens": 1,
+      "reserve_release_rate": 2,
+      "refining_utilization_rat": 1,
+      "logistics_cost_level": 2,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 2,
+      "price_pass_through_rate": 0
+    },
+    "consumer_inflation_rate": {
+      "diesel_production_rate": 0,
+      "diesel_export_rate": 0,
+      "diesel_transport_capacit": 0,
+      "diesel_inventory_level": 0,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 0,
+      "consumer_inflation_rate": 0,
+      "market_supply_expectatio": 0,
+      "trade_restriction_intens": 1,
+      "reserve_release_rate": 0,
+      "refining_utilization_rat": 0,
+      "logistics_cost_level": 0,
+      "policy_interest_rate_lev": 3,
+      "exchange_rate_level": 1,
+      "diesel_demand_rate": 1,
+      "price_pass_through_rate": 0
+    },
+    "market_supply_expectatio": {
+      "diesel_production_rate": 1,
+      "diesel_export_rate": 1,
+      "diesel_transport_capacit": 0,
+      "diesel_inventory_level": 1,
+      "crude_oil_price_level": 1,
+      "diesel_spot_price_level": 3,
+      "consumer_inflation_rate": 1,
+      "market_supply_expectatio": 0,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 1,
+      "refining_utilization_rat": 1,
+      "logistics_cost_level": 0,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 0,
+      "price_pass_through_rate": 0
+    },
+    "trade_restriction_intens": {
+      "diesel_production_rate": 0,
+      "diesel_export_rate": 3,
+      "diesel_transport_capacit": 1,
+      "diesel_inventory_level": 2,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 2,
+      "consumer_inflation_rate": 1,
+      "market_supply_expectatio": 2,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 0,
+      "refining_utilization_rat": 1,
+      "logistics_cost_level": 0,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 0,
+      "price_pass_through_rate": 0
+    },
+    "reserve_release_rate": {
+      "diesel_production_rate": 0,
+      "diesel_export_rate": 1,
+      "diesel_transport_capacit": 1,
+      "diesel_inventory_level": 3,
+      "crude_oil_price_level": 1,
+      "diesel_spot_price_level": 3,
+      "consumer_inflation_rate": 1,
+      "market_supply_expectatio": 2,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 0,
+      "refining_utilization_rat": 0,
+      "logistics_cost_level": 1,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 0,
+      "price_pass_through_rate": 0
+    },
+    "refining_utilization_rat": {
+      "diesel_production_rate": 3,
+      "diesel_export_rate": 2,
+      "diesel_transport_capacit": 1,
+      "diesel_inventory_level": 2,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 2,
+      "consumer_inflation_rate": 0,
+      "market_supply_expectatio": 1,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 0,
+      "refining_utilization_rat": 0,
+      "logistics_cost_level": 1,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 0,
+      "price_pass_through_rate": 0
+    },
+    "logistics_cost_level": {
+      "diesel_production_rate": 0,
+      "diesel_export_rate": 1,
+      "diesel_transport_capacit": 0,
+      "diesel_inventory_level": 1,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 2,
+      "consumer_inflation_rate": 2,
+      "market_supply_expectatio": 0,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 0,
+      "refining_utilization_rat": 0,
+      "logistics_cost_level": 0,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 1,
+      "price_pass_through_rate": 1
+    },
+    "policy_interest_rate_lev": {
+      "diesel_production_rate": 0,
+      "diesel_export_rate": 0,
+      "diesel_transport_capacit": 0,
+      "diesel_inventory_level": 0,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 0,
+      "consumer_inflation_rate": 1,
+      "market_supply_expectatio": 0,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 0,
+      "refining_utilization_rat": 0,
+      "logistics_cost_level": 0,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 2,
+      "diesel_demand_rate": 2,
+      "price_pass_through_rate": 0
+    },
+    "exchange_rate_level": {
+      "diesel_production_rate": 0,
+      "diesel_export_rate": 1,
+      "diesel_transport_capacit": 0,
+      "diesel_inventory_level": 1,
+      "crude_oil_price_level": 1,
+      "diesel_spot_price_level": 2,
+      "consumer_inflation_rate": 2,
+      "market_supply_expectatio": 0,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 0,
+      "refining_utilization_rat": 0,
+      "logistics_cost_level": 1,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 1,
+      "price_pass_through_rate": 0
+    },
+    "diesel_demand_rate": {
+      "diesel_production_rate": 2,
+      "diesel_export_rate": 1,
+      "diesel_transport_capacit": 1,
+      "diesel_inventory_level": 2,
+      "crude_oil_price_level": 1,
+      "diesel_spot_price_level": 3,
+      "consumer_inflation_rate": 2,
+      "market_supply_expectatio": 1,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 1,
+      "refining_utilization_rat": 1,
+      "logistics_cost_level": 1,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 0,
+      "price_pass_through_rate": 0
+    },
+    "price_pass_through_rate": {
+      "diesel_production_rate": 0,
+      "diesel_export_rate": 0,
+      "diesel_transport_capacit": 0,
+      "diesel_inventory_level": 0,
+      "crude_oil_price_level": 0,
+      "diesel_spot_price_level": 0,
+      "consumer_inflation_rate": 3,
+      "market_supply_expectatio": 0,
+      "trade_restriction_intens": 0,
+      "reserve_release_rate": 0,
+      "refining_utilization_rat": 0,
+      "logistics_cost_level": 0,
+      "policy_interest_rate_lev": 0,
+      "exchange_rate_level": 0,
+      "diesel_demand_rate": 0,
+      "price_pass_through_rate": 0
+    }
+  },
+  "AS": {
+    "diesel_production_rate": 11,
+    "diesel_export_rate": 19,
+    "diesel_transport_capacit": 16,
+    "diesel_inventory_level": 16,
+    "crude_oil_price_level": 12,
+    "diesel_spot_price_level": 17,
+    "consumer_inflation_rate": 6,
+    "market_supply_expectatio": 10,
+    "trade_restriction_intens": 12,
+    "reserve_release_rate": 13,
+    "refining_utilization_rat": 12,
+    "logistics_cost_level": 8,
+    "policy_interest_rate_lev": 5,
+    "exchange_rate_level": 9,
+    "diesel_demand_rate": 16,
+    "price_pass_through_rate": 3
+  },
+  "PS": {
+    "diesel_production_rate": 11,
+    "diesel_export_rate": 18,
+    "diesel_transport_capacit": 6,
+    "diesel_inventory_level": 23,
+    "crude_oil_price_level": 4,
+    "diesel_spot_price_level": 31,
+    "consumer_inflation_rate": 22,
+    "market_supply_expectatio": 19,
+    "trade_restriction_intens": 5,
+    "reserve_release_rate": 10,
+    "refining_utilization_rat": 8,
+    "logistics_cost_level": 12,
+    "policy_interest_rate_lev": 3,
+    "exchange_rate_level": 4,
+    "diesel_demand_rate": 8,
+    "price_pass_through_rate": 1
+  },
+  "med_AS": 12.0,
+  "med_PS": 9.0,
+  "roles": [
+    {
+      "variable": "diesel_spot_price_level",
+      "name": "Diesel spot price level",
+      "AS": 17,
+      "PS": 31,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 527,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_inventory_level",
+      "name": "Diesel inventory level",
+      "AS": 16,
+      "PS": 23,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 368,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_export_rate",
+      "name": "Diesel export rate",
+      "AS": 19,
+      "PS": 18,
+      "Q=AS/PS": 1.06,
+      "P=AS*PS": 342,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_supply_expectatio",
+      "name": "Market supply expectations",
+      "AS": 10,
+      "PS": 19,
+      "Q=AS/PS": 0.53,
+      "P=AS*PS": 190,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "consumer_inflation_rate",
+      "name": "Consumer inflation rate",
+      "AS": 6,
+      "PS": 22,
+      "Q=AS/PS": 0.27,
+      "P=AS*PS": 132,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "reserve_release_rate",
+      "name": "Reserve release rate",
+      "AS": 13,
+      "PS": 10,
+      "Q=AS/PS": 1.3,
+      "P=AS*PS": 130,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_demand_rate",
+      "name": "Diesel demand rate",
+      "AS": 16,
+      "PS": 8,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 128,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "diesel_production_rate",
+      "name": "Diesel production rate",
+      "AS": 11,
+      "PS": 11,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 121,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "logistics_cost_level",
+      "name": "Logistics cost level",
+      "AS": 8,
+      "PS": 12,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 96,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "diesel_transport_capacit",
+      "name": "Diesel transport capacity",
+      "AS": 16,
+      "PS": 6,
+      "Q=AS/PS": 2.67,
+      "P=AS*PS": 96,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refining_utilization_rat",
+      "name": "Refining utilization rate",
+      "AS": 12,
+      "PS": 8,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 96,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "trade_restriction_intens",
+      "name": "Trade restriction intensity",
+      "AS": 12,
+      "PS": 5,
+      "Q=AS/PS": 2.4,
+      "P=AS*PS": 60,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "crude_oil_price_level",
+      "name": "Crude oil price level",
+      "AS": 12,
+      "PS": 4,
+      "Q=AS/PS": 3.0,
+      "P=AS*PS": 48,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "exchange_rate_level",
+      "name": "Exchange rate level",
+      "AS": 9,
+      "PS": 4,
+      "Q=AS/PS": 2.25,
+      "P=AS*PS": 36,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "policy_interest_rate_lev",
+      "name": "Policy interest rate level",
+      "AS": 5,
+      "PS": 3,
+      "Q=AS/PS": 1.67,
+      "P=AS*PS": 15,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "price_pass_through_rate",
+      "name": "Price pass-through rate",
+      "AS": 3,
+      "PS": 1,
+      "Q=AS/PS": 3.0,
+      "P=AS*PS": 3,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "diesel_production_rate",
+        "name": "Diesel production rate",
+        "kind": "flow",
+        "AS": 11,
+        "PS": 11
+      },
+      {
+        "id": "diesel_export_rate",
+        "name": "Diesel export rate",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 18
+      },
+      {
+        "id": "diesel_transport_capacit",
+        "name": "Diesel transport capacity",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 6
+      },
+      {
+        "id": "diesel_inventory_level",
+        "name": "Diesel inventory level",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 23
+      },
+      {
+        "id": "crude_oil_price_level",
+        "name": "Crude oil price level",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 4
+      },
+      {
+        "id": "diesel_spot_price_level",
+        "name": "Diesel spot price level",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 31
+      },
+      {
+        "id": "consumer_inflation_rate",
+        "name": "Consumer inflation rate",
+        "kind": "driver",
+        "AS": 6,
+        "PS": 22
+      },
+      {
+        "id": "market_supply_expectatio",
+        "name": "Market supply expectations",
+        "kind": "perception",
+        "AS": 10,
+        "PS": 19
+      },
+      {
+        "id": "trade_restriction_intens",
+        "name": "Trade restriction intensity",
+        "kind": "institution_field",
+        "AS": 12,
+        "PS": 5
+      },
+      {
+        "id": "reserve_release_rate",
+        "name": "Reserve release rate",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 10
+      },
+      {
+        "id": "refining_utilization_rat",
+        "name": "Refining utilization rate",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 8
+      },
+      {
+        "id": "logistics_cost_level",
+        "name": "Logistics cost level",
+        "kind": "driver",
+        "AS": 8,
+        "PS": 12
+      },
+      {
+        "id": "policy_interest_rate_lev",
+        "name": "Policy interest rate level",
+        "kind": "driver",
+        "AS": 5,
+        "PS": 3
+      },
+      {
+        "id": "exchange_rate_level",
+        "name": "Exchange rate level",
+        "kind": "driver",
+        "AS": 9,
+        "PS": 4
+      },
+      {
+        "id": "diesel_demand_rate",
+        "name": "Diesel demand rate",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 8
+      },
+      {
+        "id": "price_pass_through_rate",
+        "name": "Price pass-through rate",
+        "kind": "flow",
+        "AS": 3,
+        "PS": 1
+      }
+    ],
+    "edges": [
+      {
+        "source": "diesel_production_rate",
+        "target": "diesel_export_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_production_rate",
+        "target": "diesel_inventory_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_production_rate",
+        "target": "diesel_spot_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_production_rate",
+        "target": "market_supply_expectatio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_export_rate",
+        "target": "diesel_transport_capacit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_export_rate",
+        "target": "diesel_inventory_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_export_rate",
+        "target": "diesel_spot_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_export_rate",
+        "target": "market_supply_expectatio",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_export_rate",
+        "target": "logistics_cost_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_transport_capacit",
+        "target": "diesel_export_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_transport_capacit",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_transport_capacit",
+        "target": "diesel_spot_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_transport_capacit",
+        "target": "market_supply_expectatio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_transport_capacit",
+        "target": "logistics_cost_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "diesel_export_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "diesel_spot_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "market_supply_expectatio",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "trade_restriction_intens",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "reserve_release_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_oil_price_level",
+        "target": "diesel_spot_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_oil_price_level",
+        "target": "consumer_inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_spot_price_level",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "diesel_spot_price_level",
+        "target": "consumer_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_spot_price_level",
+        "target": "market_supply_expectatio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_spot_price_level",
+        "target": "reserve_release_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_spot_price_level",
+        "target": "logistics_cost_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_spot_price_level",
+        "target": "diesel_demand_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "consumer_inflation_rate",
+        "target": "policy_interest_rate_lev",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_supply_expectatio",
+        "target": "diesel_spot_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restriction_intens",
+        "target": "diesel_export_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restriction_intens",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restriction_intens",
+        "target": "diesel_spot_price_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "trade_restriction_intens",
+        "target": "market_supply_expectatio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "diesel_inventory_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "diesel_spot_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_release_rate",
+        "target": "market_supply_expectatio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_utilization_rat",
+        "target": "diesel_production_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_utilization_rat",
+        "target": "diesel_export_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_utilization_rat",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_utilization_rat",
+        "target": "diesel_spot_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "logistics_cost_level",
+        "target": "diesel_spot_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "logistics_cost_level",
+        "target": "consumer_inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate_lev",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate_lev",
+        "target": "diesel_demand_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "diesel_spot_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "consumer_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "diesel_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "diesel_spot_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "consumer_inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "price_pass_through_rate",
+        "target": "consumer_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "g7_iea_100mb_release",
+      "title": "G7/IEA coordinated 100mn-barrel release",
+      "description": "G7 agreed to release 100 million barrels of diesel and crude through the IEA, a large, coordinated stock release expected to hit markets in the near term.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-05",
+        "end": "2026-11-15",
+        "label": "weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "reserve_release_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_inventory_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_spot_price_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_oil_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_supply_expectatio",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_transport_capacit",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "G7 to release 100mn barrels through IEA; multiple headlines (2026-10-02/03) report coordinated release."
+    },
+    {
+      "id": "logistics_strain_reserve_move",
+      "title": "Logistics strain moving European reserve stocks",
+      "description": "Concentrated emergency diesel stocks (mainly Germany/France) will require large cross-border movements, straining transport capacity and raising logistics costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-05",
+        "end": "2026-12-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "diesel_transport_capacit",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "logistics_cost_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_spot_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_inventory_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines note EU emergency stocks mainly in Germany/France and rapid releases, implying movement/strain (2026-10-02)."
+    },
+    {
+      "id": "russia_partial_export_lift",
+      "title": "Possible partial lift of Russian diesel export ban",
+      "description": "Russian energy minister signalled a conditional partial lift of the diesel export ban if overproduction occurs, which could restore exports to global markets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-15",
+        "end": "2026-12-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "diesel_export_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_spot_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_supply_expectatio",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_oil_price_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Novak said Russia may consider partial lifting if overproduction (2026-10-02 headline)."
+    },
+    {
+      "id": "russia_maintains_export_ban",
+      "title": "Russia maintains diesel export restrictions",
+      "description": "Putin's statement that Russia won't supply diesel until sanctions are lifted implies continued export curbs, prolonging global supply tightness.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2027-03-31",
+        "label": "months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "diesel_export_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_spot_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_supply_expectatio",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Putin said Russia won't supply diesel until sanctions lifted (2026-10-02), implying continued restrictions."
+    },
+    {
+      "id": "ecb_rate_hike_pressure",
+      "title": "ECB rate-hike pressure from surging inflation",
+      "description": "Eurozone inflation jump increases pressure on the ECB to raise policy rates, which will affect demand, pass-through and inflation dynamics.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate_lev",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "consumer_inflation_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_demand_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "price_pass_through_rate",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Eurozone inflation hits three-year high, keeping pressure on ECB to hike rates (2026-10-02/03)."
+    },
+    {
+      "id": "us_2026_midterm_elections",
+      "title": "US 2026 midterm elections",
+      "description": "November 4 midterms heighten political pressure on fuel policy, potentially influencing reserve releases, export threats and short-term market moves.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-11-04",
+        "start": null,
+        "end": null,
+        "label": "election day"
+      },
+      "probability": 1.0,
+      "affected": [
+        {
+          "variable_id": "reserve_release_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "trade_restriction_intens",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_spot_price_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_supply_expectatio",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines link fuel-shock and stock releases to U.S. midterms (2026-10-02/03)."
+    },
+    {
+      "id": "dangote_kenya_refinery_legal",
+      "title": "Legal challenge to Dangote's planned Kenya refinery",
+      "description": "Consumer-rights group's challenge could delay or reduce the Kenya refinery's commissioning, slowing expected regional diesel production gains.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2027-03-31",
+        "label": "months"
+      },
+      "probability": 0.3,
+      "affected": [
+        {
+          "variable_id": "refining_utilization_rat",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_production_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_export_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_supply_expectatio",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Dangote's planned Kenya refinery faces legal challenge (2026-10-02), risking delayed capacity additions."
+    },
+    {
+      "id": "prolonged_high_diesel_prices",
+      "title": "Prolonged elevated diesel prices (≈1 year)",
+      "description": "Industry warnings that diesel prices may not normalize for a year imply sustained price pressure, feeding inflation and altering demand and expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2027-10-04",
+        "label": "~12 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "diesel_spot_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "consumer_inflation_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_supply_expectatio",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_demand_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "price_pass_through_rate",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "US oil industry warns diesel prices won't return to normal for a year; headlines link prices to inflation (2026-10-02)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "g7_iea_100mb_release",
+      "title": "G7/IEA coordinated 100mn-barrel release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-05",
+      "end": "2026-11-15",
+      "probability": 0.9,
+      "impact_score": 224.0,
+      "expected_impact": 201.6,
+      "event_PS": 16.812,
+      "event_AS": 14.0,
+      "n_vars": 6,
+      "affected_ids": "reserve_release_rate, diesel_inventory_level, diesel_spot_price_level, crude_oil_price_level, market_supply_expectatio, diesel_transport_capacit",
+      "rationale": "G7 to release 100mn barrels through IEA; multiple headlines (2026-10-02/03) report coordinated release."
+    },
+    {
+      "id": "russia_partial_export_lift",
+      "title": "Possible partial lift of Russian diesel export ban",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-15",
+      "end": "2026-12-31",
+      "probability": 0.4,
+      "impact_score": 123.0,
+      "expected_impact": 49.2,
+      "event_PS": 19.75,
+      "event_AS": 15.375,
+      "n_vars": 4,
+      "affected_ids": "diesel_export_rate, diesel_spot_price_level, market_supply_expectatio, crude_oil_price_level",
+      "rationale": "Novak said Russia may consider partial lifting if overproduction (2026-10-02 headline)."
+    },
+    {
+      "id": "logistics_strain_reserve_move",
+      "title": "Logistics strain moving European reserve stocks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-05",
+      "end": "2026-12-31",
+      "probability": 0.8,
+      "impact_score": 122.0,
+      "expected_impact": 97.6,
+      "event_PS": 15.444,
+      "event_AS": 13.556,
+      "n_vars": 4,
+      "affected_ids": "diesel_transport_capacit, logistics_cost_level, diesel_spot_price_level, diesel_inventory_level",
+      "rationale": "Headlines note EU emergency stocks mainly in Germany/France and rapid releases, implying movement/strain (2026-10-02)."
+    },
+    {
+      "id": "russia_maintains_export_ban",
+      "title": "Russia maintains diesel export restrictions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2027-03-31",
+      "probability": 0.7,
+      "impact_score": 121.0,
+      "expected_impact": 84.7,
+      "event_PS": 21.625,
+      "event_AS": 15.125,
+      "n_vars": 3,
+      "affected_ids": "diesel_export_rate, diesel_spot_price_level, market_supply_expectatio",
+      "rationale": "Putin said Russia won't supply diesel until sanctions lifted (2026-10-02), implying continued restrictions."
+    },
+    {
+      "id": "prolonged_high_diesel_prices",
+      "title": "Prolonged elevated diesel prices (≈1 year)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "~12 months",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2027-10-04",
+      "probability": 0.7,
+      "impact_score": 105.0,
+      "expected_impact": 73.5,
+      "event_PS": 18.5,
+      "event_AS": 10.5,
+      "n_vars": 5,
+      "affected_ids": "diesel_spot_price_level, consumer_inflation_rate, market_supply_expectatio, diesel_demand_rate, price_pass_through_rate",
+      "rationale": "US oil industry warns diesel prices won't return to normal for a year; headlines link prices to inflation (2026-10-02)."
+    },
+    {
+      "id": "us_2026_midterm_elections",
+      "title": "US 2026 midterm elections",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "election day",
+      "date": "2026-11-04",
+      "start": null,
+      "end": null,
+      "probability": 1.0,
+      "impact_score": 104.0,
+      "expected_impact": 104.0,
+      "event_PS": 16.25,
+      "event_AS": 13.0,
+      "n_vars": 4,
+      "affected_ids": "reserve_release_rate, trade_restriction_intens, diesel_spot_price_level, market_supply_expectatio",
+      "rationale": "Headlines link fuel-shock and stock releases to U.S. midterms (2026-10-02/03)."
+    },
+    {
+      "id": "dangote_kenya_refinery_legal",
+      "title": "Legal challenge to Dangote's planned Kenya refinery",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2027-03-31",
+      "probability": 0.3,
+      "impact_score": 75.0,
+      "expected_impact": 22.5,
+      "event_PS": 12.5,
+      "event_AS": 12.5,
+      "n_vars": 4,
+      "affected_ids": "refining_utilization_rat, diesel_production_rate, diesel_export_rate, market_supply_expectatio",
+      "rationale": "Dangote's planned Kenya refinery faces legal challenge (2026-10-02), risking delayed capacity additions."
+    },
+    {
+      "id": "ecb_rate_hike_pressure",
+      "title": "ECB rate-hike pressure from surging inflation",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-12-31",
+      "probability": 0.65,
+      "impact_score": 46.0,
+      "expected_impact": 29.9,
+      "event_PS": 8.857,
+      "event_AS": 6.571,
+      "n_vars": 4,
+      "affected_ids": "policy_interest_rate_lev, consumer_inflation_rate, diesel_demand_rate, price_pass_through_rate",
+      "rationale": "Eurozone inflation hits three-year high, keeping pressure on ECB to hike rates (2026-10-02/03)."
+    }
+  ]
+}
