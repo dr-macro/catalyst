@@ -1,0 +1,1725 @@
+{
+  "label": "global_bond_rout",
+  "as_of": "2026-10-04",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-05T02:31:11",
+  "system_description": {
+    "narrative_title": "Global bond sell-off and rising yields destabilizing markets",
+    "narrative_summary": "A synchronized sell-off in global government bonds has driven yields to multi-decade highs, forcing a re-pricing of interest-rate expectations and producing sharp knock-on effects across mortgages, banks, sovereign debt spreads and asset allocation. The system is open: central bank policy signals, fiscal deficits, investor flows (including quants and safe‑haven demand), and real‑economy responses (housing affordability, refinancing stress) continuously interact, creating feedback loops and episodic volatility. Policymaker pauses or further hikes, shifts in risk appetite, and sovereign fiscal developments act as ongoing inputs that can amplify or dampen the sell‑off.",
+    "scope": "Developed‑market sovereign and aggregate bond markets, benchmark yields and term structure, central bank policy expectations, transmission to mortgage and credit markets, investor flows/hedges, and immediate market volatility effects on banks and equities.",
+    "super_system": "Global macro-financial system (inflation dynamics, global capital flows and economic activity)",
+    "adjacent_subsystems": [
+      "Housing market and mortgage finance",
+      "Banking and credit markets (including gilt and sovereign banking exposure)",
+      "Equity and institutional investor allocation",
+      "Fiscal policy and sovereign debt sustainability"
+    ],
+    "evidence_headlines": [
+      "US 30-year Treasury yield hits highest since 2002",
+      "Global bond rout deepens, pushes US Treasury yields to 24-year peak",
+      "US mortgage rates jump the most in four years in blow to housing market",
+      "High Government Debt Is Adding Fuel to the Global Bond-Market Selloff - wsj.com",
+      "Top Fed official signals central bank will keep rates on hold in October"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_benchmark_yield",
+      "name": "Long-term benchmark yield",
+      "description": "The prevailing yield on long-dated sovereign benchmark bonds that anchors long-term borrowing costs.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The difference between long-term and short-term sovereign yields measuring term-structure steepness.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium_level",
+      "name": "Term premium level",
+      "description": "The component of long-term yields attributable to compensation for holding duration risk over the short rate path.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_policy_rate",
+      "name": "Short-term policy rate",
+      "description": "The effective short-term policy interest rate that sets the floor for interbank and short-term funding costs.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "rate_expectations",
+      "name": "Interest-rate expectations",
+      "description": "The market's collective expectation of the future path of policy rates over relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_deficit_pressure",
+      "name": "Fiscal deficit pressure",
+      "description": "The ongoing gap between public expenditures and revenues that pressures sovereign financing needs.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_debt_spread",
+      "name": "Sovereign debt spread",
+      "description": "The yield premium demanded on a sovereign's bonds relative to a risk-free benchmark reflecting sovereign-specific risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The ease and cost of transacting in the sovereign bond market, measured by bid-ask depth, impact and immediacy.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_net_bond_flows",
+      "name": "Investor net bond flows",
+      "description": "The net purchases or sales of bonds by investors over a given period, aggregating retail, institutional and cross-border flows.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_demand",
+      "name": "Safe-haven demand",
+      "description": "The incremental demand for perceived low-risk assets that varies with risk aversion and market dislocation.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "quant_duration_exposure",
+      "name": "Quant leveraged duration exposure",
+      "description": "The aggregated leveraged duration positions and hedges held by quantitative funds that amplify market moves when unwound.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_volatility",
+      "name": "Bond market volatility",
+      "description": "The realized and implied short-term variability of bond prices and yields reflecting uncertainty and trading intensity.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "mortgage_rate_level",
+      "name": "Mortgage rate level",
+      "description": "The average interest rate charged on new mortgage originations that determines household borrowing costs for housing.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinancing_stress",
+      "name": "Mortgage refinancing stress",
+      "description": "The fraction of outstanding mortgages facing elevated cost or inability to refinance due to current rate and underwriting conditions.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "housing_affordability",
+      "name": "Housing affordability",
+      "description": "The ratio of typical housing costs (mortgage payments and prices) to household incomes that governs demand for housing.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bank_funding_stress",
+      "name": "Bank funding stress",
+      "description": "The pressure on banks' liquidity and funding costs, including wholesale and deposit funding strains, that constrains credit intermediation.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_benchmark_yield",
+    "yield_curve_slope",
+    "term_premium_level",
+    "short_policy_rate",
+    "rate_expectations",
+    "fiscal_deficit_pressure",
+    "sovereign_debt_spread",
+    "bond_market_liquidity",
+    "investor_net_bond_flows",
+    "safe_haven_demand",
+    "quant_duration_exposure",
+    "bond_market_volatility",
+    "mortgage_rate_level",
+    "refinancing_stress",
+    "housing_affordability",
+    "bank_funding_stress"
+  ],
+  "var_names": {
+    "long_benchmark_yield": "Long-term benchmark yield",
+    "yield_curve_slope": "Yield curve slope",
+    "term_premium_level": "Term premium level",
+    "short_policy_rate": "Short-term policy rate",
+    "rate_expectations": "Interest-rate expectations",
+    "fiscal_deficit_pressure": "Fiscal deficit pressure",
+    "sovereign_debt_spread": "Sovereign debt spread",
+    "bond_market_liquidity": "Bond market liquidity",
+    "investor_net_bond_flows": "Investor net bond flows",
+    "safe_haven_demand": "Safe-haven demand",
+    "quant_duration_exposure": "Quant leveraged duration exposure",
+    "bond_market_volatility": "Bond market volatility",
+    "mortgage_rate_level": "Mortgage rate level",
+    "refinancing_stress": "Mortgage refinancing stress",
+    "housing_affordability": "Housing affordability",
+    "bank_funding_stress": "Bank funding stress"
+  },
+  "impact_matrix": {
+    "long_benchmark_yield": {
+      "long_benchmark_yield": 0,
+      "yield_curve_slope": 2,
+      "term_premium_level": 0,
+      "short_policy_rate": 0,
+      "rate_expectations": 2,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 1,
+      "bond_market_liquidity": 1,
+      "investor_net_bond_flows": 3,
+      "safe_haven_demand": 1,
+      "quant_duration_exposure": 0,
+      "bond_market_volatility": 2,
+      "mortgage_rate_level": 3,
+      "refinancing_stress": 2,
+      "housing_affordability": 1,
+      "bank_funding_stress": 1
+    },
+    "yield_curve_slope": {
+      "long_benchmark_yield": 2,
+      "yield_curve_slope": 0,
+      "term_premium_level": 1,
+      "short_policy_rate": 0,
+      "rate_expectations": 2,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 1,
+      "bond_market_liquidity": 1,
+      "investor_net_bond_flows": 2,
+      "safe_haven_demand": 0,
+      "quant_duration_exposure": 1,
+      "bond_market_volatility": 1,
+      "mortgage_rate_level": 2,
+      "refinancing_stress": 1,
+      "housing_affordability": 1,
+      "bank_funding_stress": 1
+    },
+    "term_premium_level": {
+      "long_benchmark_yield": 3,
+      "yield_curve_slope": 2,
+      "term_premium_level": 0,
+      "short_policy_rate": 0,
+      "rate_expectations": 1,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 1,
+      "bond_market_liquidity": 1,
+      "investor_net_bond_flows": 2,
+      "safe_haven_demand": 1,
+      "quant_duration_exposure": 1,
+      "bond_market_volatility": 2,
+      "mortgage_rate_level": 2,
+      "refinancing_stress": 1,
+      "housing_affordability": 1,
+      "bank_funding_stress": 1
+    },
+    "short_policy_rate": {
+      "long_benchmark_yield": 3,
+      "yield_curve_slope": 3,
+      "term_premium_level": 1,
+      "short_policy_rate": 0,
+      "rate_expectations": 3,
+      "fiscal_deficit_pressure": 1,
+      "sovereign_debt_spread": 1,
+      "bond_market_liquidity": 1,
+      "investor_net_bond_flows": 2,
+      "safe_haven_demand": 1,
+      "quant_duration_exposure": 1,
+      "bond_market_volatility": 2,
+      "mortgage_rate_level": 2,
+      "refinancing_stress": 1,
+      "housing_affordability": 1,
+      "bank_funding_stress": 2
+    },
+    "rate_expectations": {
+      "long_benchmark_yield": 3,
+      "yield_curve_slope": 3,
+      "term_premium_level": 1,
+      "short_policy_rate": 1,
+      "rate_expectations": 0,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 1,
+      "bond_market_liquidity": 1,
+      "investor_net_bond_flows": 2,
+      "safe_haven_demand": 1,
+      "quant_duration_exposure": 1,
+      "bond_market_volatility": 2,
+      "mortgage_rate_level": 2,
+      "refinancing_stress": 1,
+      "housing_affordability": 1,
+      "bank_funding_stress": 1
+    },
+    "fiscal_deficit_pressure": {
+      "long_benchmark_yield": 2,
+      "yield_curve_slope": 1,
+      "term_premium_level": 1,
+      "short_policy_rate": 0,
+      "rate_expectations": 1,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 2,
+      "bond_market_liquidity": 1,
+      "investor_net_bond_flows": 1,
+      "safe_haven_demand": 0,
+      "quant_duration_exposure": 0,
+      "bond_market_volatility": 1,
+      "mortgage_rate_level": 1,
+      "refinancing_stress": 1,
+      "housing_affordability": 0,
+      "bank_funding_stress": 1
+    },
+    "sovereign_debt_spread": {
+      "long_benchmark_yield": 0,
+      "yield_curve_slope": 1,
+      "term_premium_level": 1,
+      "short_policy_rate": 0,
+      "rate_expectations": 0,
+      "fiscal_deficit_pressure": 1,
+      "sovereign_debt_spread": 0,
+      "bond_market_liquidity": 2,
+      "investor_net_bond_flows": 2,
+      "safe_haven_demand": 1,
+      "quant_duration_exposure": 0,
+      "bond_market_volatility": 2,
+      "mortgage_rate_level": 1,
+      "refinancing_stress": 1,
+      "housing_affordability": 1,
+      "bank_funding_stress": 2
+    },
+    "bond_market_liquidity": {
+      "long_benchmark_yield": 2,
+      "yield_curve_slope": 1,
+      "term_premium_level": 2,
+      "short_policy_rate": 0,
+      "rate_expectations": 1,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 2,
+      "bond_market_liquidity": 0,
+      "investor_net_bond_flows": 2,
+      "safe_haven_demand": 1,
+      "quant_duration_exposure": 1,
+      "bond_market_volatility": 3,
+      "mortgage_rate_level": 1,
+      "refinancing_stress": 1,
+      "housing_affordability": 0,
+      "bank_funding_stress": 2
+    },
+    "investor_net_bond_flows": {
+      "long_benchmark_yield": 3,
+      "yield_curve_slope": 2,
+      "term_premium_level": 1,
+      "short_policy_rate": 0,
+      "rate_expectations": 1,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 1,
+      "bond_market_liquidity": 2,
+      "investor_net_bond_flows": 0,
+      "safe_haven_demand": 1,
+      "quant_duration_exposure": 1,
+      "bond_market_volatility": 2,
+      "mortgage_rate_level": 1,
+      "refinancing_stress": 1,
+      "housing_affordability": 0,
+      "bank_funding_stress": 1
+    },
+    "safe_haven_demand": {
+      "long_benchmark_yield": 3,
+      "yield_curve_slope": 1,
+      "term_premium_level": 1,
+      "short_policy_rate": 0,
+      "rate_expectations": 1,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 2,
+      "bond_market_liquidity": 2,
+      "investor_net_bond_flows": 3,
+      "safe_haven_demand": 0,
+      "quant_duration_exposure": 1,
+      "bond_market_volatility": 2,
+      "mortgage_rate_level": 1,
+      "refinancing_stress": 0,
+      "housing_affordability": 0,
+      "bank_funding_stress": 1
+    },
+    "quant_duration_exposure": {
+      "long_benchmark_yield": 3,
+      "yield_curve_slope": 2,
+      "term_premium_level": 1,
+      "short_policy_rate": 0,
+      "rate_expectations": 1,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 1,
+      "bond_market_liquidity": 3,
+      "investor_net_bond_flows": 2,
+      "safe_haven_demand": 1,
+      "quant_duration_exposure": 0,
+      "bond_market_volatility": 3,
+      "mortgage_rate_level": 2,
+      "refinancing_stress": 1,
+      "housing_affordability": 1,
+      "bank_funding_stress": 2
+    },
+    "bond_market_volatility": {
+      "long_benchmark_yield": 2,
+      "yield_curve_slope": 1,
+      "term_premium_level": 2,
+      "short_policy_rate": 0,
+      "rate_expectations": 1,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 2,
+      "bond_market_liquidity": 3,
+      "investor_net_bond_flows": 2,
+      "safe_haven_demand": 3,
+      "quant_duration_exposure": 2,
+      "bond_market_volatility": 0,
+      "mortgage_rate_level": 1,
+      "refinancing_stress": 1,
+      "housing_affordability": 0,
+      "bank_funding_stress": 2
+    },
+    "mortgage_rate_level": {
+      "long_benchmark_yield": 0,
+      "yield_curve_slope": 0,
+      "term_premium_level": 0,
+      "short_policy_rate": 0,
+      "rate_expectations": 0,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 0,
+      "bond_market_liquidity": 0,
+      "investor_net_bond_flows": 0,
+      "safe_haven_demand": 0,
+      "quant_duration_exposure": 0,
+      "bond_market_volatility": 0,
+      "mortgage_rate_level": 0,
+      "refinancing_stress": 3,
+      "housing_affordability": 3,
+      "bank_funding_stress": 1
+    },
+    "refinancing_stress": {
+      "long_benchmark_yield": 0,
+      "yield_curve_slope": 0,
+      "term_premium_level": 0,
+      "short_policy_rate": 0,
+      "rate_expectations": 0,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 0,
+      "bond_market_liquidity": 0,
+      "investor_net_bond_flows": 0,
+      "safe_haven_demand": 0,
+      "quant_duration_exposure": 0,
+      "bond_market_volatility": 0,
+      "mortgage_rate_level": 0,
+      "refinancing_stress": 0,
+      "housing_affordability": 2,
+      "bank_funding_stress": 2
+    },
+    "housing_affordability": {
+      "long_benchmark_yield": 0,
+      "yield_curve_slope": 0,
+      "term_premium_level": 0,
+      "short_policy_rate": 0,
+      "rate_expectations": 0,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 0,
+      "bond_market_liquidity": 0,
+      "investor_net_bond_flows": 0,
+      "safe_haven_demand": 0,
+      "quant_duration_exposure": 0,
+      "bond_market_volatility": 0,
+      "mortgage_rate_level": 0,
+      "refinancing_stress": 1,
+      "housing_affordability": 0,
+      "bank_funding_stress": 1
+    },
+    "bank_funding_stress": {
+      "long_benchmark_yield": 2,
+      "yield_curve_slope": 1,
+      "term_premium_level": 1,
+      "short_policy_rate": 0,
+      "rate_expectations": 1,
+      "fiscal_deficit_pressure": 0,
+      "sovereign_debt_spread": 2,
+      "bond_market_liquidity": 3,
+      "investor_net_bond_flows": 1,
+      "safe_haven_demand": 2,
+      "quant_duration_exposure": 1,
+      "bond_market_volatility": 2,
+      "mortgage_rate_level": 1,
+      "refinancing_stress": 2,
+      "housing_affordability": 1,
+      "bank_funding_stress": 0
+    }
+  },
+  "AS": {
+    "long_benchmark_yield": 19,
+    "yield_curve_slope": 16,
+    "term_premium_level": 19,
+    "short_policy_rate": 25,
+    "rate_expectations": 21,
+    "fiscal_deficit_pressure": 13,
+    "sovereign_debt_spread": 15,
+    "bond_market_liquidity": 19,
+    "investor_net_bond_flows": 17,
+    "safe_haven_demand": 18,
+    "quant_duration_exposure": 23,
+    "bond_market_volatility": 22,
+    "mortgage_rate_level": 7,
+    "refinancing_stress": 4,
+    "housing_affordability": 2,
+    "bank_funding_stress": 20
+  },
+  "PS": {
+    "long_benchmark_yield": 28,
+    "yield_curve_slope": 20,
+    "term_premium_level": 13,
+    "short_policy_rate": 1,
+    "rate_expectations": 15,
+    "fiscal_deficit_pressure": 2,
+    "sovereign_debt_spread": 17,
+    "bond_market_liquidity": 21,
+    "investor_net_bond_flows": 24,
+    "safe_haven_demand": 13,
+    "quant_duration_exposure": 10,
+    "bond_market_volatility": 24,
+    "mortgage_rate_level": 20,
+    "refinancing_stress": 18,
+    "housing_affordability": 13,
+    "bank_funding_stress": 21
+  },
+  "med_AS": 18.5,
+  "med_PS": 17.5,
+  "roles": [
+    {
+      "variable": "long_benchmark_yield",
+      "name": "Long-term benchmark yield",
+      "AS": 19,
+      "PS": 28,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 532,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_market_volatility",
+      "name": "Bond market volatility",
+      "AS": 22,
+      "PS": 24,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 528,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bank_funding_stress",
+      "name": "Bank funding stress",
+      "AS": 20,
+      "PS": 21,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 420,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_net_bond_flows",
+      "name": "Investor net bond flows",
+      "AS": 17,
+      "PS": 24,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 408,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 19,
+      "PS": 21,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 399,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 16,
+      "PS": 20,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 320,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "rate_expectations",
+      "name": "Interest-rate expectations",
+      "AS": 21,
+      "PS": 15,
+      "Q=AS/PS": 1.4,
+      "P=AS*PS": 315,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sovereign_debt_spread",
+      "name": "Sovereign debt spread",
+      "AS": 15,
+      "PS": 17,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 255,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "term_premium_level",
+      "name": "Term premium level",
+      "AS": 19,
+      "PS": 13,
+      "Q=AS/PS": 1.46,
+      "P=AS*PS": 247,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "safe_haven_demand",
+      "name": "Safe-haven demand",
+      "AS": 18,
+      "PS": 13,
+      "Q=AS/PS": 1.38,
+      "P=AS*PS": 234,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "quant_duration_exposure",
+      "name": "Quant leveraged duration exposure",
+      "AS": 23,
+      "PS": 10,
+      "Q=AS/PS": 2.3,
+      "P=AS*PS": 230,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "mortgage_rate_level",
+      "name": "Mortgage rate level",
+      "AS": 7,
+      "PS": 20,
+      "Q=AS/PS": 0.35,
+      "P=AS*PS": 140,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refinancing_stress",
+      "name": "Mortgage refinancing stress",
+      "AS": 4,
+      "PS": 18,
+      "Q=AS/PS": 0.22,
+      "P=AS*PS": 72,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fiscal_deficit_pressure",
+      "name": "Fiscal deficit pressure",
+      "AS": 13,
+      "PS": 2,
+      "Q=AS/PS": 6.5,
+      "P=AS*PS": 26,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "housing_affordability",
+      "name": "Housing affordability",
+      "AS": 2,
+      "PS": 13,
+      "Q=AS/PS": 0.15,
+      "P=AS*PS": 26,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "short_policy_rate",
+      "name": "Short-term policy rate",
+      "AS": 25,
+      "PS": 1,
+      "Q=AS/PS": 25.0,
+      "P=AS*PS": 25,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_benchmark_yield",
+        "name": "Long-term benchmark yield",
+        "kind": "driver",
+        "AS": 19,
+        "PS": 28
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 20
+      },
+      {
+        "id": "term_premium_level",
+        "name": "Term premium level",
+        "kind": "driver",
+        "AS": 19,
+        "PS": 13
+      },
+      {
+        "id": "short_policy_rate",
+        "name": "Short-term policy rate",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 1
+      },
+      {
+        "id": "rate_expectations",
+        "name": "Interest-rate expectations",
+        "kind": "perception",
+        "AS": 21,
+        "PS": 15
+      },
+      {
+        "id": "fiscal_deficit_pressure",
+        "name": "Fiscal deficit pressure",
+        "kind": "environment",
+        "AS": 13,
+        "PS": 2
+      },
+      {
+        "id": "sovereign_debt_spread",
+        "name": "Sovereign debt spread",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 17
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 21
+      },
+      {
+        "id": "investor_net_bond_flows",
+        "name": "Investor net bond flows",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 24
+      },
+      {
+        "id": "safe_haven_demand",
+        "name": "Safe-haven demand",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 13
+      },
+      {
+        "id": "quant_duration_exposure",
+        "name": "Quant leveraged duration exposure",
+        "kind": "institution_field",
+        "AS": 23,
+        "PS": 10
+      },
+      {
+        "id": "bond_market_volatility",
+        "name": "Bond market volatility",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 24
+      },
+      {
+        "id": "mortgage_rate_level",
+        "name": "Mortgage rate level",
+        "kind": "driver",
+        "AS": 7,
+        "PS": 20
+      },
+      {
+        "id": "refinancing_stress",
+        "name": "Mortgage refinancing stress",
+        "kind": "stock",
+        "AS": 4,
+        "PS": 18
+      },
+      {
+        "id": "housing_affordability",
+        "name": "Housing affordability",
+        "kind": "environment",
+        "AS": 2,
+        "PS": 13
+      },
+      {
+        "id": "bank_funding_stress",
+        "name": "Bank funding stress",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 21
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_benchmark_yield",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_benchmark_yield",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_benchmark_yield",
+        "target": "investor_net_bond_flows",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "long_benchmark_yield",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_benchmark_yield",
+        "target": "mortgage_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_benchmark_yield",
+        "target": "refinancing_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "long_benchmark_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "investor_net_bond_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "mortgage_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "long_benchmark_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "investor_net_bond_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "mortgage_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_policy_rate",
+        "target": "long_benchmark_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_policy_rate",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_policy_rate",
+        "target": "rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_policy_rate",
+        "target": "investor_net_bond_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_policy_rate",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_policy_rate",
+        "target": "mortgage_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_policy_rate",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "long_benchmark_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "investor_net_bond_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "mortgage_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_pressure",
+        "target": "long_benchmark_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_pressure",
+        "target": "sovereign_debt_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_debt_spread",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_debt_spread",
+        "target": "investor_net_bond_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_debt_spread",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_debt_spread",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "long_benchmark_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "sovereign_debt_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "investor_net_bond_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "bond_market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_net_bond_flows",
+        "target": "long_benchmark_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_net_bond_flows",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_net_bond_flows",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_net_bond_flows",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "long_benchmark_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "sovereign_debt_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "investor_net_bond_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "quant_duration_exposure",
+        "target": "long_benchmark_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "quant_duration_exposure",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "quant_duration_exposure",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "quant_duration_exposure",
+        "target": "investor_net_bond_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "quant_duration_exposure",
+        "target": "bond_market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "quant_duration_exposure",
+        "target": "mortgage_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "quant_duration_exposure",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "long_benchmark_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "sovereign_debt_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "investor_net_bond_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "safe_haven_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "quant_duration_exposure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "mortgage_rate_level",
+        "target": "refinancing_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "mortgage_rate_level",
+        "target": "housing_affordability",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinancing_stress",
+        "target": "housing_affordability",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinancing_stress",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "long_benchmark_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "sovereign_debt_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "refinancing_stress",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_minutes_this_week",
+      "title": "FOMC minutes release (this week)",
+      "description": "Release of recent Fed minutes that market commentary says could give important clues on near-term policy, shifting rate expectations and yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-05",
+        "end": "2026-10-09",
+        "label": "this week"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "short_policy_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "long_benchmark_yield",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Fed minutes coming this week could give markets important clues about future rate hikes\""
+    },
+    {
+      "id": "december_fed_hike_risk",
+      "title": "Risk of December Fed rate hike",
+      "description": "Market narratives foresee the Fed skipping October but potentially hiking in December — a decision that would raise short-rate expectations and global yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2026-12-31",
+        "label": "by December"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "short_policy_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_benchmark_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"Fed may skip October but pull rate hike trigger in December\"; officials debating pause vs hikes."
+    },
+    {
+      "id": "treasury_selloff_resumption",
+      "title": "Resumed U.S. Treasury sell-off",
+      "description": "Renewed bouts of selling in U.S. Treasuries after brief respite likely to push long yields higher, raise volatility and reduce liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2026-11-30",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "long_benchmark_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_net_bond_flows",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "mortgage_rate_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"U.S. Treasury Selloff Resumes After Brief Respite\"; multiple pieces on yields hitting multiyear highs."
+    },
+    {
+      "id": "french_spread_widening",
+      "title": "French fiscal stress widens spreads",
+      "description": "Ongoing French fiscal worries are widening sovereign spreads, raising term premia and prompting contagion risk in European bond markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-02",
+        "end": "2026-11-30",
+        "label": "near term"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "sovereign_debt_spread",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bank_funding_stress",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"French Yield Spreads Jump on Fiscal Worries\"; \"France Is Ground Zero in the Global Bond Rout\""
+    },
+    {
+      "id": "japan_bond_market_catalyst",
+      "title": "Japan bond-market policy risk",
+      "description": "Risk that moves in Japan's bond market or BoJ policy adjustments (eg, yield-control tweaks) act as a fresh global-yield catalyst.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2027-01-31",
+        "label": "next 3 months"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "long_benchmark_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_net_bond_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Japan’s Bond Market Could Be the Next Catalyst for Global Yields\""
+    },
+    {
+      "id": "quant_duration_amplification",
+      "title": "Quant funds amplify duration moves",
+      "description": "Large leveraged quant duration exposures and related P&L-driven flows may amplify bond moves and volatility if positions are adjusted.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2026-11-30",
+        "label": "weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "quant_duration_exposure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_net_bond_flows",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"Quant hedge funds reap big gains from global bond sell-off\" — implies material quant-driven flows."
+    },
+    {
+      "id": "mortgage_rate_spike_refi_stress",
+      "title": "Mortgage-rate surge, refinancing stress",
+      "description": "Sustained jump in mortgage rates increases refinancing stress and worsens housing affordability, feeding through to household balance sheets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-02",
+        "end": "2027-03-31",
+        "label": "months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "mortgage_rate_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refinancing_stress",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "housing_affordability",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bank_funding_stress",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"US mortgage rates jump the most in four years\"; \"Mortgage Rates Surge\"; \"High mortgage rates are trapping homeowners\""
+    },
+    {
+      "id": "safe_haven_flow_to_german_bunds",
+      "title": "Shift into German safe-haven debt",
+      "description": "Investors seeking refuge are reallocating into German bunds and other core safe assets, changing flows and relative spreads.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-02",
+        "end": "2026-11-30",
+        "label": "weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_net_bond_flows",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_debt_spread",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Investors seek refuge from bond rout in haven German debt\"; flows into core assets noted."
+    },
+    {
+      "id": "fhfa_mortgage_rule_review",
+      "title": "FHFA weighing two‑bureau mortgage rule",
+      "description": "Regulatory review of mortgage-reporting rules by the FHFA could influence mortgage credit supply and lenders' practices.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-02",
+        "end": "2027-01-31",
+        "label": "months"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "mortgage_rate_level",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "refinancing_stress",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "housing_affordability",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: \"U.S. credit-reporting stocks fall as FHFA weighs two-bureau mortgage rule\""
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "december_fed_hike_risk",
+      "title": "Risk of December Fed rate hike",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by December",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 252.0,
+      "expected_impact": 151.2,
+      "event_PS": 16.0,
+      "event_AS": 21.0,
+      "n_vars": 5,
+      "affected_ids": "short_policy_rate, rate_expectations, long_benchmark_yield, yield_curve_slope, bond_market_volatility",
+      "rationale": "Headlines: \"Fed may skip October but pull rate hike trigger in December\"; officials debating pause vs hikes."
+    },
+    {
+      "id": "treasury_selloff_resumption",
+      "title": "Resumed U.S. Treasury sell-off",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2026-11-30",
+      "probability": 0.7,
+      "impact_score": 226.0,
+      "expected_impact": 158.2,
+      "event_PS": 23.846,
+      "event_AS": 17.385,
+      "n_vars": 5,
+      "affected_ids": "long_benchmark_yield, investor_net_bond_flows, bond_market_volatility, bond_market_liquidity, mortgage_rate_level",
+      "rationale": "Headlines: \"U.S. Treasury Selloff Resumes After Brief Respite\"; multiple pieces on yields hitting multiyear highs."
+    },
+    {
+      "id": "quant_duration_amplification",
+      "title": "Quant funds amplify duration moves",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 207.0,
+      "expected_impact": 124.2,
+      "event_PS": 19.2,
+      "event_AS": 20.7,
+      "n_vars": 4,
+      "affected_ids": "quant_duration_exposure, bond_market_volatility, bond_market_liquidity, investor_net_bond_flows",
+      "rationale": "Headline: \"Quant hedge funds reap big gains from global bond sell-off\" — implies material quant-driven flows."
+    },
+    {
+      "id": "fed_minutes_this_week",
+      "title": "FOMC minutes release (this week)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-10-05",
+      "end": "2026-10-09",
+      "probability": 0.85,
+      "impact_score": 195.0,
+      "expected_impact": 165.75,
+      "event_PS": 16.778,
+      "event_AS": 21.667,
+      "n_vars": 4,
+      "affected_ids": "rate_expectations, short_policy_rate, long_benchmark_yield, bond_market_volatility",
+      "rationale": "Headline: \"Fed minutes coming this week could give markets important clues about future rate hikes\""
+    },
+    {
+      "id": "french_spread_widening",
+      "title": "French fiscal stress widens spreads",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near term",
+      "date": null,
+      "start": "2026-10-02",
+      "end": "2026-11-30",
+      "probability": 0.65,
+      "impact_score": 147.0,
+      "expected_impact": 95.55,
+      "event_PS": 18.25,
+      "event_AS": 18.375,
+      "n_vars": 4,
+      "affected_ids": "sovereign_debt_spread, term_premium_level, bond_market_volatility, bank_funding_stress",
+      "rationale": "Headlines: \"French Yield Spreads Jump on Fiscal Worries\"; \"France Is Ground Zero in the Global Bond Rout\""
+    },
+    {
+      "id": "safe_haven_flow_to_german_bunds",
+      "title": "Shift into German safe-haven debt",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-02",
+      "end": "2026-11-30",
+      "probability": 0.7,
+      "impact_score": 137.0,
+      "expected_impact": 95.9,
+      "event_PS": 17.75,
+      "event_AS": 17.125,
+      "n_vars": 4,
+      "affected_ids": "safe_haven_demand, investor_net_bond_flows, sovereign_debt_spread, bond_market_liquidity",
+      "rationale": "Headline: \"Investors seek refuge from bond rout in haven German debt\"; flows into core assets noted."
+    },
+    {
+      "id": "japan_bond_market_catalyst",
+      "title": "Japan bond-market policy risk",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2027-01-31",
+      "probability": 0.5,
+      "impact_score": 135.0,
+      "expected_impact": 67.5,
+      "event_PS": 23.571,
+      "event_AS": 19.286,
+      "n_vars": 4,
+      "affected_ids": "long_benchmark_yield, investor_net_bond_flows, bond_market_volatility, term_premium_level",
+      "rationale": "Headline: \"Japan’s Bond Market Could Be the Next Catalyst for Global Yields\""
+    },
+    {
+      "id": "mortgage_rate_spike_refi_stress",
+      "title": "Mortgage-rate surge, refinancing stress",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-10-02",
+      "end": "2027-03-31",
+      "probability": 0.85,
+      "impact_score": 59.0,
+      "expected_impact": 50.15,
+      "event_PS": 17.4,
+      "event_AS": 5.9,
+      "n_vars": 4,
+      "affected_ids": "mortgage_rate_level, refinancing_stress, housing_affordability, bank_funding_stress",
+      "rationale": "Headlines: \"US mortgage rates jump the most in four years\"; \"Mortgage Rates Surge\"; \"High mortgage rates are trapping homeowners\""
+    },
+    {
+      "id": "fhfa_mortgage_rule_review",
+      "title": "FHFA weighing two‑bureau mortgage rule",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-10-02",
+      "end": "2027-01-31",
+      "probability": 0.4,
+      "impact_score": 13.0,
+      "expected_impact": 5.2,
+      "event_PS": 17.0,
+      "event_AS": 4.333,
+      "n_vars": 3,
+      "affected_ids": "mortgage_rate_level, refinancing_stress, housing_affordability",
+      "rationale": "Headline: \"U.S. credit-reporting stocks fall as FHFA weighs two-bureau mortgage rule\""
+    }
+  ]
+}

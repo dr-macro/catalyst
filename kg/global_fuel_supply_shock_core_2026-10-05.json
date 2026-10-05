@@ -1,0 +1,1451 @@
+{
+  "label": "global_fuel_supply_shock",
+  "as_of": "2026-10-04",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-05T02:24:51",
+  "system_description": {
+    "narrative_title": "Global diesel crunch, stockpile releases, and energy-driven inflation",
+    "narrative_summary": "A supply shock in refined fuels — driven by wartime disruptions, export suspensions (China) and Russian export restrictions — has sent diesel prices sharply higher, prompting coordinated political responses (G7/EU/US pressure) to release strategic stocks. The open system comprises cross-border flows of crude and refined product, policy levers (export controls, stock releases, trade threats), market price signals, and feedback into inflation, bond markets and voter sentiment, producing rapid contagion into food and industrial costs.",
+    "scope": "Physical diesel and crude supply chains (production, refining, exports), national strategic reserves and coordinated releases, international trade controls and diplomatic pressure, fuel price formation and distribution to transport/industry/agriculture, plus near-term macro impacts (consumer inflation, bond yields, electoral politics).",
+    "super_system": "Global energy-economy-geopolitics complex (commodity markets, international trade, macrofinancial system, and geopolitical conflict dynamics)",
+    "adjacent_subsystems": [
+      "Global food and agricultural commodity markets",
+      "International trade policy and industrial capacity disputes (G20/G7)",
+      "Monetary policy and financial markets (inflation, interest rates, bond yields)",
+      "Domestic politics and electoral cycles (midterms, government policy responses)"
+    ],
+    "evidence_headlines": [
+      "G7 agrees to release 100mn barrels of diesel and crude under pressure from Trump",
+      "China fuel export suspension to choke supplies in Asia - reuters.com",
+      "Europe’s leaders rush to release diesel from stockpiles as fuel-shock hangs over U.S. midterms",
+      "Eurozone inflation hits its highest level in three years at 3.8% as energy costs soar",
+      "Putin says Russia won't supply diesel to global markets until sanctions are lifted",
+      "EXCLUSIVE: US tells France and Germany to release diesel stocks or face US export ban, sources say"
+    ]
+  },
+  "variables": [
+    {
+      "id": "crude_supply_rate",
+      "name": "Crude supply rate",
+      "description": "Volume of crude oil entering the refining/trading system per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refined_output_rate",
+      "name": "Refined fuels production rate",
+      "description": "Rate at which refineries produce finished transport fuels (diesel, gasoline) per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization",
+      "name": "Refinery utilization",
+      "description": "Share of installed refining capacity currently in operational use.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_capacity",
+      "name": "Refining operational capacity",
+      "description": "Total effective installed throughput capacity available in the refining system.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refined_inventory_level",
+      "name": "Refined-fuel inventory level",
+      "description": "Aggregate on-hand stocks of refined transport fuels across storage, terminals and distribution networks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserve_level",
+      "name": "Strategic reserve level",
+      "description": "Volume of fuels held in designated emergency/reserve stockpiles available for release.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "export_control_level",
+      "name": "Export control level",
+      "description": "Aggregate severity and restrictiveness of formal and informal limits on cross-border crude and fuel shipments.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "coord_release_strength",
+      "name": "Coordinated release policy strength",
+      "description": "Degree of political coordination and commitment among actors to release reserves into the market.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "stock_release_rate",
+      "name": "Strategic stock release rate",
+      "description": "Flow rate at which reserves and official stocks are injected into commercial markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "transport_fuel_demand_ra",
+      "name": "Transport and industry fuel demand",
+      "description": "Consumption rate of diesel and other transport fuels by freight, passenger transport, industry and agriculture per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fuel_price_level",
+      "name": "Fuel price level",
+      "description": "Market price per unit of diesel/transport fuel as observed at wholesale or pump levels.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "price_pass_through_rate",
+      "name": "Energy price pass-through rate",
+      "description": "Speed and magnitude at which changes in fuel prices transmit into consumer and producer goods prices.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "consumer_inflation_rate",
+      "name": "Consumer price inflation rate",
+      "description": "Rate of change of the general consumer price index over time.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_yield_level",
+      "name": "Sovereign bond yield level",
+      "description": "Representative government bond yield level reflecting macrofinancial conditions and risk premia.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_supply_expectatio",
+      "name": "Market expectation of supply",
+      "description": "Consensus market expectation about future availability of crude and refined fuels (tightness vs. surplus).",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "geo_conflict_intensity",
+      "name": "Geopolitical conflict intensity",
+      "description": "Intensity and prevalence of geopolitical disruptions that affect energy production, transit and trade.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "crude_supply_rate",
+    "refined_output_rate",
+    "refinery_utilization",
+    "refinery_capacity",
+    "refined_inventory_level",
+    "strategic_reserve_level",
+    "export_control_level",
+    "coord_release_strength",
+    "stock_release_rate",
+    "transport_fuel_demand_ra",
+    "fuel_price_level",
+    "price_pass_through_rate",
+    "consumer_inflation_rate",
+    "bond_yield_level",
+    "market_supply_expectatio",
+    "geo_conflict_intensity"
+  ],
+  "var_names": {
+    "crude_supply_rate": "Crude supply rate",
+    "refined_output_rate": "Refined fuels production rate",
+    "refinery_utilization": "Refinery utilization",
+    "refinery_capacity": "Refining operational capacity",
+    "refined_inventory_level": "Refined-fuel inventory level",
+    "strategic_reserve_level": "Strategic reserve level",
+    "export_control_level": "Export control level",
+    "coord_release_strength": "Coordinated release policy strength",
+    "stock_release_rate": "Strategic stock release rate",
+    "transport_fuel_demand_ra": "Transport and industry fuel demand",
+    "fuel_price_level": "Fuel price level",
+    "price_pass_through_rate": "Energy price pass-through rate",
+    "consumer_inflation_rate": "Consumer price inflation rate",
+    "bond_yield_level": "Sovereign bond yield level",
+    "market_supply_expectatio": "Market expectation of supply",
+    "geo_conflict_intensity": "Geopolitical conflict intensity"
+  },
+  "impact_matrix": {
+    "crude_supply_rate": {
+      "crude_supply_rate": 0,
+      "refined_output_rate": 3,
+      "refinery_utilization": 3,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 2,
+      "strategic_reserve_level": 0,
+      "export_control_level": 1,
+      "coord_release_strength": 0,
+      "stock_release_rate": 1,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 3,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 0,
+      "market_supply_expectatio": 3,
+      "geo_conflict_intensity": 0
+    },
+    "refined_output_rate": {
+      "crude_supply_rate": 0,
+      "refined_output_rate": 0,
+      "refinery_utilization": 3,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 3,
+      "strategic_reserve_level": 0,
+      "export_control_level": 0,
+      "coord_release_strength": 0,
+      "stock_release_rate": 1,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 3,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 0,
+      "market_supply_expectatio": 3,
+      "geo_conflict_intensity": 0
+    },
+    "refinery_utilization": {
+      "crude_supply_rate": 0,
+      "refined_output_rate": 3,
+      "refinery_utilization": 0,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 2,
+      "strategic_reserve_level": 0,
+      "export_control_level": 0,
+      "coord_release_strength": 0,
+      "stock_release_rate": 1,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 2,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 0,
+      "market_supply_expectatio": 2,
+      "geo_conflict_intensity": 0
+    },
+    "refinery_capacity": {
+      "crude_supply_rate": 0,
+      "refined_output_rate": 2,
+      "refinery_utilization": 2,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 1,
+      "strategic_reserve_level": 0,
+      "export_control_level": 0,
+      "coord_release_strength": 0,
+      "stock_release_rate": 0,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 2,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 0,
+      "market_supply_expectatio": 2,
+      "geo_conflict_intensity": 0
+    },
+    "refined_inventory_level": {
+      "crude_supply_rate": 0,
+      "refined_output_rate": 1,
+      "refinery_utilization": 1,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 0,
+      "strategic_reserve_level": 1,
+      "export_control_level": 1,
+      "coord_release_strength": 1,
+      "stock_release_rate": 1,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 3,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 0,
+      "market_supply_expectatio": 3,
+      "geo_conflict_intensity": 0
+    },
+    "strategic_reserve_level": {
+      "crude_supply_rate": 0,
+      "refined_output_rate": 0,
+      "refinery_utilization": 0,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 2,
+      "strategic_reserve_level": 0,
+      "export_control_level": 0,
+      "coord_release_strength": 1,
+      "stock_release_rate": 2,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 2,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 0,
+      "market_supply_expectatio": 2,
+      "geo_conflict_intensity": 0
+    },
+    "export_control_level": {
+      "crude_supply_rate": 3,
+      "refined_output_rate": 1,
+      "refinery_utilization": 1,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 2,
+      "strategic_reserve_level": 0,
+      "export_control_level": 0,
+      "coord_release_strength": 1,
+      "stock_release_rate": 1,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 3,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 1,
+      "market_supply_expectatio": 3,
+      "geo_conflict_intensity": 1
+    },
+    "coord_release_strength": {
+      "crude_supply_rate": 1,
+      "refined_output_rate": 0,
+      "refinery_utilization": 0,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 2,
+      "strategic_reserve_level": 1,
+      "export_control_level": 0,
+      "coord_release_strength": 0,
+      "stock_release_rate": 3,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 2,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 1,
+      "market_supply_expectatio": 2,
+      "geo_conflict_intensity": 0
+    },
+    "stock_release_rate": {
+      "crude_supply_rate": 0,
+      "refined_output_rate": 1,
+      "refinery_utilization": 1,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 3,
+      "strategic_reserve_level": 2,
+      "export_control_level": 0,
+      "coord_release_strength": 1,
+      "stock_release_rate": 0,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 3,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 1,
+      "market_supply_expectatio": 3,
+      "geo_conflict_intensity": 0
+    },
+    "transport_fuel_demand_ra": {
+      "crude_supply_rate": 2,
+      "refined_output_rate": 3,
+      "refinery_utilization": 3,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 2,
+      "strategic_reserve_level": 0,
+      "export_control_level": 0,
+      "coord_release_strength": 0,
+      "stock_release_rate": 0,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 3,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 1,
+      "market_supply_expectatio": 2,
+      "geo_conflict_intensity": 0
+    },
+    "fuel_price_level": {
+      "crude_supply_rate": 1,
+      "refined_output_rate": 1,
+      "refinery_utilization": 1,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 1,
+      "strategic_reserve_level": 1,
+      "export_control_level": 1,
+      "coord_release_strength": 1,
+      "stock_release_rate": 1,
+      "transport_fuel_demand_ra": 2,
+      "fuel_price_level": 0,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 2,
+      "bond_yield_level": 2,
+      "market_supply_expectatio": 1,
+      "geo_conflict_intensity": 0
+    },
+    "price_pass_through_rate": {
+      "crude_supply_rate": 0,
+      "refined_output_rate": 0,
+      "refinery_utilization": 0,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 0,
+      "strategic_reserve_level": 0,
+      "export_control_level": 0,
+      "coord_release_strength": 0,
+      "stock_release_rate": 0,
+      "transport_fuel_demand_ra": 1,
+      "fuel_price_level": 0,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 3,
+      "bond_yield_level": 1,
+      "market_supply_expectatio": 0,
+      "geo_conflict_intensity": 0
+    },
+    "consumer_inflation_rate": {
+      "crude_supply_rate": 0,
+      "refined_output_rate": 0,
+      "refinery_utilization": 0,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 0,
+      "strategic_reserve_level": 0,
+      "export_control_level": 0,
+      "coord_release_strength": 0,
+      "stock_release_rate": 0,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 0,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 3,
+      "market_supply_expectatio": 0,
+      "geo_conflict_intensity": 0
+    },
+    "bond_yield_level": {
+      "crude_supply_rate": 0,
+      "refined_output_rate": 0,
+      "refinery_utilization": 0,
+      "refinery_capacity": 1,
+      "refined_inventory_level": 0,
+      "strategic_reserve_level": 0,
+      "export_control_level": 0,
+      "coord_release_strength": 0,
+      "stock_release_rate": 0,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 1,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 0,
+      "market_supply_expectatio": 0,
+      "geo_conflict_intensity": 0
+    },
+    "market_supply_expectatio": {
+      "crude_supply_rate": 0,
+      "refined_output_rate": 0,
+      "refinery_utilization": 1,
+      "refinery_capacity": 0,
+      "refined_inventory_level": 2,
+      "strategic_reserve_level": 1,
+      "export_control_level": 1,
+      "coord_release_strength": 1,
+      "stock_release_rate": 2,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 3,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 2,
+      "market_supply_expectatio": 0,
+      "geo_conflict_intensity": 0
+    },
+    "geo_conflict_intensity": {
+      "crude_supply_rate": 3,
+      "refined_output_rate": 2,
+      "refinery_utilization": 2,
+      "refinery_capacity": 1,
+      "refined_inventory_level": 2,
+      "strategic_reserve_level": 0,
+      "export_control_level": 2,
+      "coord_release_strength": 1,
+      "stock_release_rate": 1,
+      "transport_fuel_demand_ra": 0,
+      "fuel_price_level": 3,
+      "price_pass_through_rate": 0,
+      "consumer_inflation_rate": 0,
+      "bond_yield_level": 2,
+      "market_supply_expectatio": 3,
+      "geo_conflict_intensity": 0
+    }
+  },
+  "AS": {
+    "crude_supply_rate": 16,
+    "refined_output_rate": 13,
+    "refinery_utilization": 10,
+    "refinery_capacity": 9,
+    "refined_inventory_level": 12,
+    "strategic_reserve_level": 9,
+    "export_control_level": 17,
+    "coord_release_strength": 12,
+    "stock_release_rate": 15,
+    "transport_fuel_demand_ra": 16,
+    "fuel_price_level": 15,
+    "price_pass_through_rate": 5,
+    "consumer_inflation_rate": 3,
+    "bond_yield_level": 2,
+    "market_supply_expectatio": 13,
+    "geo_conflict_intensity": 22
+  },
+  "PS": {
+    "crude_supply_rate": 10,
+    "refined_output_rate": 17,
+    "refinery_utilization": 18,
+    "refinery_capacity": 2,
+    "refined_inventory_level": 24,
+    "strategic_reserve_level": 6,
+    "export_control_level": 6,
+    "coord_release_strength": 7,
+    "stock_release_rate": 14,
+    "transport_fuel_demand_ra": 3,
+    "fuel_price_level": 33,
+    "price_pass_through_rate": 0,
+    "consumer_inflation_rate": 5,
+    "bond_yield_level": 14,
+    "market_supply_expectatio": 29,
+    "geo_conflict_intensity": 1
+  },
+  "med_AS": 12.5,
+  "med_PS": 8.5,
+  "roles": [
+    {
+      "variable": "fuel_price_level",
+      "name": "Fuel price level",
+      "AS": 15,
+      "PS": 33,
+      "Q=AS/PS": 0.45,
+      "P=AS*PS": 495,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_supply_expectatio",
+      "name": "Market expectation of supply",
+      "AS": 13,
+      "PS": 29,
+      "Q=AS/PS": 0.45,
+      "P=AS*PS": 377,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refined_inventory_level",
+      "name": "Refined-fuel inventory level",
+      "AS": 12,
+      "PS": 24,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 288,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refined_output_rate",
+      "name": "Refined fuels production rate",
+      "AS": 13,
+      "PS": 17,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 221,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "stock_release_rate",
+      "name": "Strategic stock release rate",
+      "AS": 15,
+      "PS": 14,
+      "Q=AS/PS": 1.07,
+      "P=AS*PS": 210,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refinery_utilization",
+      "name": "Refinery utilization",
+      "AS": 10,
+      "PS": 18,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 180,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "crude_supply_rate",
+      "name": "Crude supply rate",
+      "AS": 16,
+      "PS": 10,
+      "Q=AS/PS": 1.6,
+      "P=AS*PS": 160,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "export_control_level",
+      "name": "Export control level",
+      "AS": 17,
+      "PS": 6,
+      "Q=AS/PS": 2.83,
+      "P=AS*PS": 102,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "coord_release_strength",
+      "name": "Coordinated release policy strength",
+      "AS": 12,
+      "PS": 7,
+      "Q=AS/PS": 1.71,
+      "P=AS*PS": 84,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "strategic_reserve_level",
+      "name": "Strategic reserve level",
+      "AS": 9,
+      "PS": 6,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 54,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "transport_fuel_demand_ra",
+      "name": "Transport and industry fuel demand",
+      "AS": 16,
+      "PS": 3,
+      "Q=AS/PS": 5.33,
+      "P=AS*PS": 48,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "bond_yield_level",
+      "name": "Sovereign bond yield level",
+      "AS": 2,
+      "PS": 14,
+      "Q=AS/PS": 0.14,
+      "P=AS*PS": 28,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "geo_conflict_intensity",
+      "name": "Geopolitical conflict intensity",
+      "AS": 22,
+      "PS": 1,
+      "Q=AS/PS": 22.0,
+      "P=AS*PS": 22,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refinery_capacity",
+      "name": "Refining operational capacity",
+      "AS": 9,
+      "PS": 2,
+      "Q=AS/PS": 4.5,
+      "P=AS*PS": 18,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "consumer_inflation_rate",
+      "name": "Consumer price inflation rate",
+      "AS": 3,
+      "PS": 5,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 15,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "price_pass_through_rate",
+      "name": "Energy price pass-through rate",
+      "AS": 5,
+      "PS": 0,
+      "Q=AS/PS": 5000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "crude_supply_rate",
+        "name": "Crude supply rate",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 10
+      },
+      {
+        "id": "refined_output_rate",
+        "name": "Refined fuels production rate",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 17
+      },
+      {
+        "id": "refinery_utilization",
+        "name": "Refinery utilization",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 18
+      },
+      {
+        "id": "refinery_capacity",
+        "name": "Refining operational capacity",
+        "kind": "stock",
+        "AS": 9,
+        "PS": 2
+      },
+      {
+        "id": "refined_inventory_level",
+        "name": "Refined-fuel inventory level",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 24
+      },
+      {
+        "id": "strategic_reserve_level",
+        "name": "Strategic reserve level",
+        "kind": "stock",
+        "AS": 9,
+        "PS": 6
+      },
+      {
+        "id": "export_control_level",
+        "name": "Export control level",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 6
+      },
+      {
+        "id": "coord_release_strength",
+        "name": "Coordinated release policy strength",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 7
+      },
+      {
+        "id": "stock_release_rate",
+        "name": "Strategic stock release rate",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 14
+      },
+      {
+        "id": "transport_fuel_demand_ra",
+        "name": "Transport and industry fuel demand",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 3
+      },
+      {
+        "id": "fuel_price_level",
+        "name": "Fuel price level",
+        "kind": "environment",
+        "AS": 15,
+        "PS": 33
+      },
+      {
+        "id": "price_pass_through_rate",
+        "name": "Energy price pass-through rate",
+        "kind": "flow",
+        "AS": 5,
+        "PS": 0
+      },
+      {
+        "id": "consumer_inflation_rate",
+        "name": "Consumer price inflation rate",
+        "kind": "environment",
+        "AS": 3,
+        "PS": 5
+      },
+      {
+        "id": "bond_yield_level",
+        "name": "Sovereign bond yield level",
+        "kind": "environment",
+        "AS": 2,
+        "PS": 14
+      },
+      {
+        "id": "market_supply_expectatio",
+        "name": "Market expectation of supply",
+        "kind": "perception",
+        "AS": 13,
+        "PS": 29
+      },
+      {
+        "id": "geo_conflict_intensity",
+        "name": "Geopolitical conflict intensity",
+        "kind": "environment",
+        "AS": 22,
+        "PS": 1
+      }
+    ],
+    "edges": [
+      {
+        "source": "crude_supply_rate",
+        "target": "refined_output_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_supply_rate",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_supply_rate",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_supply_rate",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_supply_rate",
+        "target": "market_supply_expectatio",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_output_rate",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_output_rate",
+        "target": "refined_inventory_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_output_rate",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refined_output_rate",
+        "target": "market_supply_expectatio",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "refined_output_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "fuel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "market_supply_expectatio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_capacity",
+        "target": "refined_output_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_capacity",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_capacity",
+        "target": "fuel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_capacity",
+        "target": "market_supply_expectatio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_inventory_level",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refined_inventory_level",
+        "target": "market_supply_expectatio",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "stock_release_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "fuel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "market_supply_expectatio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_control_level",
+        "target": "crude_supply_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "export_control_level",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_control_level",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "export_control_level",
+        "target": "market_supply_expectatio",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "coord_release_strength",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "coord_release_strength",
+        "target": "stock_release_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "coord_release_strength",
+        "target": "fuel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "coord_release_strength",
+        "target": "market_supply_expectatio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "stock_release_rate",
+        "target": "refined_inventory_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "stock_release_rate",
+        "target": "strategic_reserve_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "stock_release_rate",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "stock_release_rate",
+        "target": "market_supply_expectatio",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "transport_fuel_demand_ra",
+        "target": "crude_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "transport_fuel_demand_ra",
+        "target": "refined_output_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "transport_fuel_demand_ra",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "transport_fuel_demand_ra",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "transport_fuel_demand_ra",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "transport_fuel_demand_ra",
+        "target": "market_supply_expectatio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_price_level",
+        "target": "transport_fuel_demand_ra",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_price_level",
+        "target": "consumer_inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_price_level",
+        "target": "bond_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "price_pass_through_rate",
+        "target": "consumer_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_inflation_rate",
+        "target": "bond_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_supply_expectatio",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_supply_expectatio",
+        "target": "stock_release_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_supply_expectatio",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_supply_expectatio",
+        "target": "bond_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "crude_supply_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "refined_output_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "refined_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "export_control_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "fuel_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "bond_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "market_supply_expectatio",
+        "strength": 3,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "g7_iea_100mn_barrel_release",
+      "title": "G7/IEA 100mn‑barrel release implementation",
+      "description": "Implementation and market injection of the G7/IEA agreed ~100 million barrels of diesel and crude into markets, distributed across members.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-02",
+        "end": "2026-11-30",
+        "label": "next 4-8 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "strategic_reserve_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "stock_release_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "coord_release_strength",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_inventory_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_supply_expectatio",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fuel_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "consumer_inflation_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_yield_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "G7 agreed to release 100mn barrels via IEA; multiple headlines report coordinated G7/IEA stock release (2026-10-02 / 2026-10-03)."
+    },
+    {
+      "id": "eu_national_diesel_stock_releases",
+      "title": "EU countries release national diesel stocks",
+      "description": "Individual European states (notably Germany and France) open national emergency diesel stocks into domestic and regional markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-02",
+        "end": "2026-10-31",
+        "label": "by end of October"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "strategic_reserve_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "stock_release_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "coord_release_strength",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_inventory_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fuel_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_supply_expectatio",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_yield_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Europe’s leaders rush to release diesel from stockpiles' and reports EU stocks mainly in Germany/France (2026-10-02)."
+    },
+    {
+      "id": "china_octo_fuel_export_suspension",
+      "title": "China suspends October fuel exports",
+      "description": "Major Chinese refiners suspend planned October fuel exports to bolster domestic stocks, reducing export flows from China for the month.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "label": "October 2026"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "export_control_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_inventory_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_supply_expectatio",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fuel_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_output_rate",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Multiple Reuters headlines: 'Chinese refiners suspend October fuel exports to bolster stocks' (2026-10-02 / 2026-10-04)."
+    },
+    {
+      "id": "russia_partial_diesel_ban_lift_consideration",
+      "title": "Russia considers partial diesel export ban lift",
+      "description": "Russian officials signal a potential partial easing of the diesel export ban if domestic overproduction occurs, which could allow resumed exports.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2027-01-31",
+        "label": "next 3-16 weeks"
+      },
+      "probability": 0.35,
+      "affected": [
+        {
+          "variable_id": "export_control_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_supply_expectatio",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_inventory_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fuel_price_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Novak said Russia would consider partial lifting of diesel ban if overproduction (headline 2026-10-02)."
+    },
+    {
+      "id": "us_political_pressure_for_stock_releases",
+      "title": "US political pressure to force releases",
+      "description": "US diplomatic pressure and threats (including trade/export leverage) on allies to release diesel stocks, affecting political coordination and release pacing.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-02",
+        "end": "2026-11-30",
+        "label": "weeks ahead"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "coord_release_strength",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "stock_release_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "strategic_reserve_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_supply_expectatio",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Reports: 'US tells France and Germany to release diesel stocks or face US export ban' and related US pressure/backdown (2026-10-02 / 2026-10-03 / 2026-10-04)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "g7_iea_100mn_barrel_release",
+      "title": "G7/IEA 100mn‑barrel release implementation",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4-8 weeks",
+      "date": null,
+      "start": "2026-10-02",
+      "end": "2026-11-30",
+      "probability": 0.85,
+      "impact_score": 193.0,
+      "expected_impact": 164.05,
+      "event_PS": 16.0,
+      "event_AS": 11.353,
+      "n_vars": 8,
+      "affected_ids": "strategic_reserve_level, stock_release_rate, coord_release_strength, refined_inventory_level, market_supply_expectatio, fuel_price_level, consumer_inflation_rate, bond_yield_level",
+      "rationale": "G7 agreed to release 100mn barrels via IEA; multiple headlines report coordinated G7/IEA stock release (2026-10-02 / 2026-10-03)."
+    },
+    {
+      "id": "eu_national_diesel_stock_releases",
+      "title": "EU countries release national diesel stocks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of October",
+      "date": null,
+      "start": "2026-10-02",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 165.0,
+      "expected_impact": 132.0,
+      "event_PS": 16.5,
+      "event_AS": 11.786,
+      "n_vars": 7,
+      "affected_ids": "strategic_reserve_level, stock_release_rate, coord_release_strength, refined_inventory_level, fuel_price_level, market_supply_expectatio, bond_yield_level",
+      "rationale": "Headlines: 'Europe’s leaders rush to release diesel from stockpiles' and reports EU stocks mainly in Germany/France (2026-10-02)."
+    },
+    {
+      "id": "china_octo_fuel_export_suspension",
+      "title": "China suspends October fuel exports",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "October 2026",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "probability": 0.95,
+      "impact_score": 157.0,
+      "expected_impact": 149.15,
+      "event_PS": 21.455,
+      "event_AS": 14.273,
+      "n_vars": 5,
+      "affected_ids": "export_control_level, refined_inventory_level, market_supply_expectatio, fuel_price_level, refined_output_rate",
+      "rationale": "Multiple Reuters headlines: 'Chinese refiners suspend October fuel exports to bolster stocks' (2026-10-02 / 2026-10-04)."
+    },
+    {
+      "id": "russia_partial_diesel_ban_lift_consideration",
+      "title": "Russia considers partial diesel export ban lift",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3-16 weeks",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2027-01-31",
+      "probability": 0.35,
+      "impact_score": 87.0,
+      "expected_impact": 30.45,
+      "event_PS": 21.167,
+      "event_AS": 14.5,
+      "n_vars": 4,
+      "affected_ids": "export_control_level, market_supply_expectatio, refined_inventory_level, fuel_price_level",
+      "rationale": "Novak said Russia would consider partial lifting of diesel ban if overproduction (headline 2026-10-02)."
+    },
+    {
+      "id": "us_political_pressure_for_stock_releases",
+      "title": "US political pressure to force releases",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks ahead",
+      "date": null,
+      "start": "2026-10-02",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 85.0,
+      "expected_impact": 51.0,
+      "event_PS": 11.857,
+      "event_AS": 12.143,
+      "n_vars": 4,
+      "affected_ids": "coord_release_strength, stock_release_rate, strategic_reserve_level, market_supply_expectatio",
+      "rationale": "Reports: 'US tells France and Germany to release diesel stocks or face US export ban' and related US pressure/backdown (2026-10-02 / 2026-10-03 / 2026-10-04)."
+    }
+  ]
+}
