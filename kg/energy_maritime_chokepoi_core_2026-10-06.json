@@ -1,0 +1,1749 @@
+{
+  "label": "energy_maritime_chokepoi",
+  "as_of": "2026-10-06",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-06T03:30:21",
+  "system_description": {
+    "narrative_title": "Middle East conflict fuels a global fuel & shipping logistics crisis",
+    "narrative_summary": "A spike in tanker attacks, threats to Strait of Hormuz access and steady OPEC+ output have strained crude and diesel logistics, prompting G7 releases of emergency stocks and emergency policy moves. Shipping routes are being rerouted (including Arctic passages), inventories remain thin and industry leaders warn rebuilding stockpiles will take years, producing sustained higher fuel costs that ripple into trucking, consumer prices and industrial supply chains. The story ties geopolitics, energy markets and transport logistics into a feedback-driven disruption affecting prices, trade flows and policy responses worldwide.",
+    "scope": "Flows of crude and refined fuels (production, exports, tanker movements, inventories), shipping routes and maritime security (Strait of Hormuz, rerouting), OPEC+/producer output decisions, strategic stock releases (G7/IEA), refinery/logistics capacity and fuel distribution (diesel supply to trucking), price formation and consumer/industrial impacts",
+    "super_system": "Global energy–geopolitics–economy system",
+    "adjacent_subsystems": [
+      "Global shipping & maritime security",
+      "Refining, storage and fuel logistics",
+      "Road transport and trucking sector",
+      "Commodity and financial markets"
+    ],
+    "evidence_headlines": [
+      "More tankers struck in the Middle East as Iran reiterates conditions for reopening the Strait of Hormuz",
+      "G-7 Agrees to Release 100 Million Barrels of Diesel and Crude",
+      "Arctic sea routes boom as Gulf war and global warming divert shipping - ft.com",
+      "Saudi Aramco chief says replenishing global oil stockpiles could take two years",
+      "Truckers Struggle to Adapt as Fuel Prices Surge - wsj.com",
+      "Oil market turmoil could last for years, executives say"
+    ]
+  },
+  "variables": [
+    {
+      "id": "crude_production_rate",
+      "name": "Crude production rate",
+      "description": "The volumetric rate at which crude oil is extracted and brought to market per unit time across producing regions.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "producer_output_quota",
+      "name": "Producer output quota",
+      "description": "The aggregate level of officially signaled or coordinated production targets set by major producing groups or coalitions.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_export_flow",
+      "name": "Crude export flow",
+      "description": "The volume-per-time of crude oil shipments leaving producing regions and entering international trade lanes.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refined_fuel_output",
+      "name": "Refined fuel output",
+      "description": "The rate at which refineries convert crude into refined products (diesel, gasoline, jet fuel) available for distribution.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "description": "The proportion of refinery processing capacity currently in operation relative to total installed capacity.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_transit_capacity",
+      "name": "Tanker transit capacity",
+      "description": "The effective throughput capacity of oil tanker movements through maritime routes and chokepoints per unit time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_accessibility",
+      "name": "Chokepoint accessibility",
+      "description": "The degree to which critical maritime passages (e.g., narrow straits) are passable for commercial shipping relative to normal conditions.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_security_risk",
+      "name": "Maritime security risk",
+      "description": "The frequency and severity of hostile incidents, attacks, or threats affecting commercial shipping on key sea lanes.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_route_deviation",
+      "name": "Shipping route deviation",
+      "description": "The average increase in voyage distance or transit time caused by rerouting away from preferred sea lanes.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_availability",
+      "name": "Tanker availability",
+      "description": "The stock of commercially available tanker tonnage (idle or deployable) ready to transport crude or refined products.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "global_oil_inventories",
+      "name": "Global oil inventories",
+      "description": "The aggregate volumes of crude and refined product stocks held in commercial storage across markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserve_levels",
+      "name": "Strategic reserve levels",
+      "description": "The volumes of publicly held emergency petroleum reserves set aside to be released in response to supply shocks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_distribution_rate",
+      "name": "Diesel distribution rate",
+      "description": "The flow rate at which diesel is moved from refineries and storage into regional wholesale and retail networks (trucking, local depots).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_price_level",
+      "name": "Diesel price level",
+      "description": "The prevailing wholesale or retail price of diesel fuel that reflects market clearing conditions.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_freight_rates",
+      "name": "Shipping freight rates",
+      "description": "The cost level for chartering and insuring tanker voyages, including freight, insurance, and risk surcharges.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_risk_premium",
+      "name": "Market risk premium",
+      "description": "The additional price component market participants assign to fuels and freight to compensate for perceived supply disruption risk.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "crude_production_rate",
+    "producer_output_quota",
+    "crude_export_flow",
+    "refined_fuel_output",
+    "refinery_utilization_rat",
+    "tanker_transit_capacity",
+    "chokepoint_accessibility",
+    "maritime_security_risk",
+    "shipping_route_deviation",
+    "tanker_availability",
+    "global_oil_inventories",
+    "strategic_reserve_levels",
+    "diesel_distribution_rate",
+    "diesel_price_level",
+    "shipping_freight_rates",
+    "market_risk_premium"
+  ],
+  "var_names": {
+    "crude_production_rate": "Crude production rate",
+    "producer_output_quota": "Producer output quota",
+    "crude_export_flow": "Crude export flow",
+    "refined_fuel_output": "Refined fuel output",
+    "refinery_utilization_rat": "Refinery utilization rate",
+    "tanker_transit_capacity": "Tanker transit capacity",
+    "chokepoint_accessibility": "Chokepoint accessibility",
+    "maritime_security_risk": "Maritime security risk",
+    "shipping_route_deviation": "Shipping route deviation",
+    "tanker_availability": "Tanker availability",
+    "global_oil_inventories": "Global oil inventories",
+    "strategic_reserve_levels": "Strategic reserve levels",
+    "diesel_distribution_rate": "Diesel distribution rate",
+    "diesel_price_level": "Diesel price level",
+    "shipping_freight_rates": "Shipping freight rates",
+    "market_risk_premium": "Market risk premium"
+  },
+  "impact_matrix": {
+    "crude_production_rate": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 3,
+      "refined_fuel_output": 2,
+      "refinery_utilization_rat": 2,
+      "tanker_transit_capacity": 0,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 0,
+      "global_oil_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 0,
+      "diesel_price_level": 2,
+      "shipping_freight_rates": 0,
+      "market_risk_premium": 0
+    },
+    "producer_output_quota": {
+      "crude_production_rate": 3,
+      "producer_output_quota": 0,
+      "crude_export_flow": 3,
+      "refined_fuel_output": 2,
+      "refinery_utilization_rat": 2,
+      "tanker_transit_capacity": 0,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 0,
+      "global_oil_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 0,
+      "diesel_price_level": 2,
+      "shipping_freight_rates": 0,
+      "market_risk_premium": 1
+    },
+    "crude_export_flow": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 0,
+      "refined_fuel_output": 2,
+      "refinery_utilization_rat": 2,
+      "tanker_transit_capacity": 2,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 1,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 3,
+      "global_oil_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 1,
+      "diesel_price_level": 2,
+      "shipping_freight_rates": 3,
+      "market_risk_premium": 1
+    },
+    "refined_fuel_output": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 0,
+      "refined_fuel_output": 0,
+      "refinery_utilization_rat": 3,
+      "tanker_transit_capacity": 0,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 1,
+      "global_oil_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 3,
+      "diesel_price_level": 2,
+      "shipping_freight_rates": 1,
+      "market_risk_premium": 1
+    },
+    "refinery_utilization_rat": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 1,
+      "refined_fuel_output": 3,
+      "refinery_utilization_rat": 0,
+      "tanker_transit_capacity": 0,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 1,
+      "global_oil_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 2,
+      "diesel_price_level": 2,
+      "shipping_freight_rates": 1,
+      "market_risk_premium": 1
+    },
+    "tanker_transit_capacity": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 3,
+      "refined_fuel_output": 0,
+      "refinery_utilization_rat": 0,
+      "tanker_transit_capacity": 0,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 2,
+      "tanker_availability": 1,
+      "global_oil_inventories": 1,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 1,
+      "diesel_price_level": 2,
+      "shipping_freight_rates": 3,
+      "market_risk_premium": 2
+    },
+    "chokepoint_accessibility": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 3,
+      "refined_fuel_output": 0,
+      "refinery_utilization_rat": 1,
+      "tanker_transit_capacity": 3,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 3,
+      "tanker_availability": 2,
+      "global_oil_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 2,
+      "diesel_price_level": 3,
+      "shipping_freight_rates": 3,
+      "market_risk_premium": 3
+    },
+    "maritime_security_risk": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 3,
+      "refined_fuel_output": 0,
+      "refinery_utilization_rat": 1,
+      "tanker_transit_capacity": 3,
+      "chokepoint_accessibility": 3,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 3,
+      "tanker_availability": 2,
+      "global_oil_inventories": 1,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 2,
+      "diesel_price_level": 3,
+      "shipping_freight_rates": 3,
+      "market_risk_premium": 3
+    },
+    "shipping_route_deviation": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 2,
+      "refined_fuel_output": 0,
+      "refinery_utilization_rat": 0,
+      "tanker_transit_capacity": 2,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 2,
+      "global_oil_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 2,
+      "diesel_price_level": 2,
+      "shipping_freight_rates": 3,
+      "market_risk_premium": 2
+    },
+    "tanker_availability": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 3,
+      "refined_fuel_output": 0,
+      "refinery_utilization_rat": 1,
+      "tanker_transit_capacity": 3,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 0,
+      "global_oil_inventories": 1,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 2,
+      "diesel_price_level": 2,
+      "shipping_freight_rates": 3,
+      "market_risk_premium": 2
+    },
+    "global_oil_inventories": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 1,
+      "refined_fuel_output": 0,
+      "refinery_utilization_rat": 1,
+      "tanker_transit_capacity": 0,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 1,
+      "global_oil_inventories": 0,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 2,
+      "diesel_price_level": 3,
+      "shipping_freight_rates": 1,
+      "market_risk_premium": 2
+    },
+    "strategic_reserve_levels": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 2,
+      "refined_fuel_output": 1,
+      "refinery_utilization_rat": 1,
+      "tanker_transit_capacity": 1,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 1,
+      "global_oil_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 2,
+      "diesel_price_level": 3,
+      "shipping_freight_rates": 1,
+      "market_risk_premium": 2
+    },
+    "diesel_distribution_rate": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 0,
+      "refined_fuel_output": 0,
+      "refinery_utilization_rat": 0,
+      "tanker_transit_capacity": 0,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 1,
+      "global_oil_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 0,
+      "diesel_price_level": 2,
+      "shipping_freight_rates": 1,
+      "market_risk_premium": 1
+    },
+    "diesel_price_level": {
+      "crude_production_rate": 1,
+      "producer_output_quota": 0,
+      "crude_export_flow": 1,
+      "refined_fuel_output": 1,
+      "refinery_utilization_rat": 1,
+      "tanker_transit_capacity": 0,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 1,
+      "global_oil_inventories": 1,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 1,
+      "diesel_price_level": 0,
+      "shipping_freight_rates": 1,
+      "market_risk_premium": 1
+    },
+    "shipping_freight_rates": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 2,
+      "refined_fuel_output": 0,
+      "refinery_utilization_rat": 0,
+      "tanker_transit_capacity": 0,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 1,
+      "global_oil_inventories": 1,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 1,
+      "diesel_price_level": 2,
+      "shipping_freight_rates": 0,
+      "market_risk_premium": 1
+    },
+    "market_risk_premium": {
+      "crude_production_rate": 0,
+      "producer_output_quota": 0,
+      "crude_export_flow": 1,
+      "refined_fuel_output": 1,
+      "refinery_utilization_rat": 1,
+      "tanker_transit_capacity": 0,
+      "chokepoint_accessibility": 0,
+      "maritime_security_risk": 0,
+      "shipping_route_deviation": 0,
+      "tanker_availability": 1,
+      "global_oil_inventories": 1,
+      "strategic_reserve_levels": 0,
+      "diesel_distribution_rate": 1,
+      "diesel_price_level": 3,
+      "shipping_freight_rates": 1,
+      "market_risk_premium": 0
+    }
+  },
+  "AS": {
+    "crude_production_rate": 11,
+    "producer_output_quota": 15,
+    "crude_export_flow": 19,
+    "refined_fuel_output": 13,
+    "refinery_utilization_rat": 13,
+    "tanker_transit_capacity": 15,
+    "chokepoint_accessibility": 25,
+    "maritime_security_risk": 27,
+    "shipping_route_deviation": 17,
+    "tanker_availability": 17,
+    "global_oil_inventories": 11,
+    "strategic_reserve_levels": 16,
+    "diesel_distribution_rate": 7,
+    "diesel_price_level": 9,
+    "shipping_freight_rates": 8,
+    "market_risk_premium": 10
+  },
+  "PS": {
+    "crude_production_rate": 4,
+    "producer_output_quota": 0,
+    "crude_export_flow": 28,
+    "refined_fuel_output": 12,
+    "refinery_utilization_rat": 16,
+    "tanker_transit_capacity": 14,
+    "chokepoint_accessibility": 3,
+    "maritime_security_risk": 1,
+    "shipping_route_deviation": 8,
+    "tanker_availability": 18,
+    "global_oil_inventories": 24,
+    "strategic_reserve_levels": 0,
+    "diesel_distribution_rate": 22,
+    "diesel_price_level": 35,
+    "shipping_freight_rates": 25,
+    "market_risk_premium": 23
+  },
+  "med_AS": 14.0,
+  "med_PS": 15.0,
+  "roles": [
+    {
+      "variable": "crude_export_flow",
+      "name": "Crude export flow",
+      "AS": 19,
+      "PS": 28,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 532,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_price_level",
+      "name": "Diesel price level",
+      "AS": 9,
+      "PS": 35,
+      "Q=AS/PS": 0.26,
+      "P=AS*PS": 315,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tanker_availability",
+      "name": "Tanker availability",
+      "AS": 17,
+      "PS": 18,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 306,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "global_oil_inventories",
+      "name": "Global oil inventories",
+      "AS": 11,
+      "PS": 24,
+      "Q=AS/PS": 0.46,
+      "P=AS*PS": 264,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_risk_premium",
+      "name": "Market risk premium",
+      "AS": 10,
+      "PS": 23,
+      "Q=AS/PS": 0.43,
+      "P=AS*PS": 230,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tanker_transit_capacity",
+      "name": "Tanker transit capacity",
+      "AS": 15,
+      "PS": 14,
+      "Q=AS/PS": 1.07,
+      "P=AS*PS": 210,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "AS": 13,
+      "PS": 16,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 208,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "shipping_freight_rates",
+      "name": "Shipping freight rates",
+      "AS": 8,
+      "PS": 25,
+      "Q=AS/PS": 0.32,
+      "P=AS*PS": 200,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refined_fuel_output",
+      "name": "Refined fuel output",
+      "AS": 13,
+      "PS": 12,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 156,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "diesel_distribution_rate",
+      "name": "Diesel distribution rate",
+      "AS": 7,
+      "PS": 22,
+      "Q=AS/PS": 0.32,
+      "P=AS*PS": 154,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "shipping_route_deviation",
+      "name": "Shipping route deviation",
+      "AS": 17,
+      "PS": 8,
+      "Q=AS/PS": 2.12,
+      "P=AS*PS": 136,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "chokepoint_accessibility",
+      "name": "Chokepoint accessibility",
+      "AS": 25,
+      "PS": 3,
+      "Q=AS/PS": 8.33,
+      "P=AS*PS": 75,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "crude_production_rate",
+      "name": "Crude production rate",
+      "AS": 11,
+      "PS": 4,
+      "Q=AS/PS": 2.75,
+      "P=AS*PS": 44,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "maritime_security_risk",
+      "name": "Maritime security risk",
+      "AS": 27,
+      "PS": 1,
+      "Q=AS/PS": 27.0,
+      "P=AS*PS": 27,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "producer_output_quota",
+      "name": "Producer output quota",
+      "AS": 15,
+      "PS": 0,
+      "Q=AS/PS": 15000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "strategic_reserve_levels",
+      "name": "Strategic reserve levels",
+      "AS": 16,
+      "PS": 0,
+      "Q=AS/PS": 16000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "crude_production_rate",
+        "name": "Crude production rate",
+        "kind": "driver",
+        "AS": 11,
+        "PS": 4
+      },
+      {
+        "id": "producer_output_quota",
+        "name": "Producer output quota",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 0
+      },
+      {
+        "id": "crude_export_flow",
+        "name": "Crude export flow",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 28
+      },
+      {
+        "id": "refined_fuel_output",
+        "name": "Refined fuel output",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 12
+      },
+      {
+        "id": "refinery_utilization_rat",
+        "name": "Refinery utilization rate",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 16
+      },
+      {
+        "id": "tanker_transit_capacity",
+        "name": "Tanker transit capacity",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 14
+      },
+      {
+        "id": "chokepoint_accessibility",
+        "name": "Chokepoint accessibility",
+        "kind": "environment",
+        "AS": 25,
+        "PS": 3
+      },
+      {
+        "id": "maritime_security_risk",
+        "name": "Maritime security risk",
+        "kind": "environment",
+        "AS": 27,
+        "PS": 1
+      },
+      {
+        "id": "shipping_route_deviation",
+        "name": "Shipping route deviation",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 8
+      },
+      {
+        "id": "tanker_availability",
+        "name": "Tanker availability",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 18
+      },
+      {
+        "id": "global_oil_inventories",
+        "name": "Global oil inventories",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 24
+      },
+      {
+        "id": "strategic_reserve_levels",
+        "name": "Strategic reserve levels",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 0
+      },
+      {
+        "id": "diesel_distribution_rate",
+        "name": "Diesel distribution rate",
+        "kind": "flow",
+        "AS": 7,
+        "PS": 22
+      },
+      {
+        "id": "diesel_price_level",
+        "name": "Diesel price level",
+        "kind": "driver",
+        "AS": 9,
+        "PS": 35
+      },
+      {
+        "id": "shipping_freight_rates",
+        "name": "Shipping freight rates",
+        "kind": "driver",
+        "AS": 8,
+        "PS": 25
+      },
+      {
+        "id": "market_risk_premium",
+        "name": "Market risk premium",
+        "kind": "perception",
+        "AS": 10,
+        "PS": 23
+      }
+    ],
+    "edges": [
+      {
+        "source": "crude_production_rate",
+        "target": "crude_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "refined_fuel_output",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "producer_output_quota",
+        "target": "crude_production_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "producer_output_quota",
+        "target": "crude_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "producer_output_quota",
+        "target": "refined_fuel_output",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "producer_output_quota",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "producer_output_quota",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "producer_output_quota",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_export_flow",
+        "target": "refined_fuel_output",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_export_flow",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_export_flow",
+        "target": "tanker_transit_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_export_flow",
+        "target": "tanker_availability",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_export_flow",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_export_flow",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_export_flow",
+        "target": "shipping_freight_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_output",
+        "target": "refinery_utilization_rat",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_output",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_output",
+        "target": "diesel_distribution_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_output",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "refined_fuel_output",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "diesel_distribution_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_capacity",
+        "target": "crude_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_transit_capacity",
+        "target": "shipping_route_deviation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_capacity",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_capacity",
+        "target": "shipping_freight_rates",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_transit_capacity",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_accessibility",
+        "target": "crude_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_accessibility",
+        "target": "tanker_transit_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_accessibility",
+        "target": "shipping_route_deviation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_accessibility",
+        "target": "tanker_availability",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_accessibility",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_accessibility",
+        "target": "diesel_distribution_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_accessibility",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_accessibility",
+        "target": "shipping_freight_rates",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_accessibility",
+        "target": "market_risk_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "crude_export_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "tanker_transit_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "chokepoint_accessibility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "shipping_route_deviation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "tanker_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "diesel_distribution_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "shipping_freight_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "market_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_deviation",
+        "target": "crude_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_deviation",
+        "target": "tanker_transit_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_deviation",
+        "target": "tanker_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_deviation",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_deviation",
+        "target": "diesel_distribution_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_deviation",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_deviation",
+        "target": "shipping_freight_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_deviation",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "crude_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "tanker_transit_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "diesel_distribution_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "shipping_freight_rates",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_availability",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_inventories",
+        "target": "diesel_distribution_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_oil_inventories",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_oil_inventories",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_levels",
+        "target": "crude_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_levels",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_reserve_levels",
+        "target": "diesel_distribution_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "strategic_reserve_levels",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_levels",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_distribution_rate",
+        "target": "global_oil_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_distribution_rate",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_freight_rates",
+        "target": "crude_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_freight_rates",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_premium",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "opec_plus_nov_quota_hold",
+      "title": "OPEC+ to hold November quotas steady",
+      "description": "OPEC+ is set to keep November output targets unchanged, limiting official production increases despite supply pressure from the Middle East conflict.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2026-11-30",
+        "label": "November 2026"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "producer_output_quota",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_production_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'OPEC+ set to hold November oil quotas steady', 'OPEC+ agrees in principle to keep November oil output targets steady'."
+    },
+    {
+      "id": "g7_release_100m_barrels",
+      "title": "G7 agreed release of 100 million barrels",
+      "description": "G7 nations plan a coordinated release of about 100 million barrels of diesel and crude via the IEA to relieve tight fuel markets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-06",
+        "end": "2026-11-06",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "strategic_reserve_levels",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_inventories",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_distribution_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'G-7 Agrees to Release 100 Million Barrels', 'G7 to release 100 million barrels of diesel and other reserves through IEA'."
+    },
+    {
+      "id": "iran_hormuz_reopening_conditions",
+      "title": "Iran reiterates conditions for Hormuz reopening",
+      "description": "Iran's refusal to reopen the Strait of Hormuz unless conditions met keeps the chokepoint at elevated closure risk and sustained restriction potential.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-06",
+        "end": "2027-01-06",
+        "label": "3 months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "chokepoint_accessibility",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "maritime_security_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_transit_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_route_deviation",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_export_flow",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Iran says Strait of Hormuz will not reopen until conditions are met', 'More tankers struck in the Middle East'."
+    },
+    {
+      "id": "tanker_attack_spike",
+      "title": "Spike in tanker attacks off Gulf/Oman",
+      "description": "A wave of strikes on tankers (including off Oman) is likely to persist, disrupting voyages and raising insurance and rerouting costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-04",
+        "end": "2026-11-30",
+        "label": "weeks–months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "maritime_security_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_availability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_transit_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_freight_rates",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_export_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_inventories",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'More tankers struck in the Middle East', 'Crude oil tanker struck by unknown projectile off Oman'."
+    },
+    {
+      "id": "saudi_price_cut_nov",
+      "title": "Saudi cuts November prices to Asia",
+      "description": "Saudi Arabia's unexpected November crude price cuts to Asia will encourage flows to Asian buyers and pressure regional refined fuel prices.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2026-11-30",
+        "label": "November 2026"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "crude_export_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_oil_inventories",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Saudi Arabia unexpectedly cuts November oil prices to Asia to 6-year lows'."
+    },
+    {
+      "id": "aramco_inventory_rebuild",
+      "title": "Multi‑year rebuild of global oil stocks",
+      "description": "Aramco warns replenishing global oil stockpiles could take up to two years, implying a prolonged inventory rebuilding process and drawn-out market effects.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-06",
+        "end": "2028-10-06",
+        "label": "up to 2 years"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "global_oil_inventories",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "strategic_reserve_levels",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Aramco CEO Says Oil Inventories Could Take Two Years to Rebuild', 'Saudi Aramco chief says replenishing global oil stockpiles could take two years'."
+    },
+    {
+      "id": "us_tax_exempt_diesel_order",
+      "title": "U.S. to expand tax‑exempt diesel access",
+      "description": "A presidential order expanding access to tax‑exempt diesel would ease costs for eligible users and alter domestic diesel distribution patterns.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-06",
+        "end": "2026-11-06",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "diesel_distribution_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Trump to issue order expanding access to tax-exempt diesel fuel, sources say'."
+    },
+    {
+      "id": "arctic_route_shift",
+      "title": "Rising use of Arctic sea routes",
+      "description": "Diversion of tankers to Arctic routes is growing, reducing dependence on Middle Eastern chokepoints while changing voyage distances and costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-06",
+        "end": "2027-04-06",
+        "label": "6 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "shipping_route_deviation",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "chokepoint_accessibility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_transit_capacity",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_freight_rates",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Arctic sea routes boom as Gulf war and global warming divert shipping' (FT)."
+    },
+    {
+      "id": "middle_east_export_recovery_fragile",
+      "title": "Fragile recovery of Middle East exports",
+      "description": "Middle Eastern crude exports have partially recovered to pre‑war levels in parts of September, but the recovery remains fragile due to attacks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-06",
+        "end": "2026-12-31",
+        "label": "3 months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "crude_export_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_security_risk",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_freight_rates",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_transit_capacity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Middle East oil exports top pre-war levels for part of September but tanker attacks increase', 'Middle Eastern oil exports rise to highest level since Iran war began'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "iran_hormuz_reopening_conditions",
+      "title": "Iran reiterates conditions for Hormuz reopening",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3 months",
+      "date": null,
+      "start": "2026-10-06",
+      "end": "2027-01-06",
+      "probability": 0.75,
+      "impact_score": 258.0,
+      "expected_impact": 193.5,
+      "event_PS": 9.333,
+      "event_AS": 21.5,
+      "n_vars": 5,
+      "affected_ids": "chokepoint_accessibility, maritime_security_risk, tanker_transit_capacity, shipping_route_deviation, crude_export_flow",
+      "rationale": "Headlines: 'Iran says Strait of Hormuz will not reopen until conditions are met', 'More tankers struck in the Middle East'."
+    },
+    {
+      "id": "tanker_attack_spike",
+      "title": "Spike in tanker attacks off Gulf/Oman",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-04",
+      "end": "2026-11-30",
+      "probability": 0.8,
+      "impact_score": 229.0,
+      "expected_impact": 183.2,
+      "event_PS": 17.571,
+      "event_AS": 16.357,
+      "n_vars": 6,
+      "affected_ids": "maritime_security_risk, tanker_availability, tanker_transit_capacity, shipping_freight_rates, crude_export_flow, global_oil_inventories",
+      "rationale": "Headlines: 'More tankers struck in the Middle East', 'Crude oil tanker struck by unknown projectile off Oman'."
+    },
+    {
+      "id": "arctic_route_shift",
+      "title": "Rising use of Arctic sea routes",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6 months",
+      "date": null,
+      "start": "2026-10-06",
+      "end": "2027-04-06",
+      "probability": 0.8,
+      "impact_score": 124.0,
+      "expected_impact": 99.2,
+      "event_PS": 9.857,
+      "event_AS": 17.714,
+      "n_vars": 4,
+      "affected_ids": "shipping_route_deviation, chokepoint_accessibility, tanker_transit_capacity, shipping_freight_rates",
+      "rationale": "Headlines: 'Arctic sea routes boom as Gulf war and global warming divert shipping' (FT)."
+    },
+    {
+      "id": "middle_east_export_recovery_fragile",
+      "title": "Fragile recovery of Middle East exports",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3 months",
+      "date": null,
+      "start": "2026-10-06",
+      "end": "2026-12-31",
+      "probability": 0.85,
+      "impact_score": 123.0,
+      "expected_impact": 104.55,
+      "event_PS": 17.429,
+      "event_AS": 17.571,
+      "n_vars": 4,
+      "affected_ids": "crude_export_flow, maritime_security_risk, shipping_freight_rates, tanker_transit_capacity",
+      "rationale": "Headlines: 'Middle East oil exports top pre-war levels for part of September but tanker attacks increase', 'Middle Eastern oil exports rise to highest level since Iran war began'."
+    },
+    {
+      "id": "g7_release_100m_barrels",
+      "title": "G7 agreed release of 100 million barrels",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-10-06",
+      "end": "2026-11-06",
+      "probability": 0.95,
+      "impact_score": 122.0,
+      "expected_impact": 115.9,
+      "event_PS": 18.909,
+      "event_AS": 11.091,
+      "n_vars": 5,
+      "affected_ids": "strategic_reserve_levels, global_oil_inventories, diesel_distribution_rate, diesel_price_level, market_risk_premium",
+      "rationale": "Headlines: 'G-7 Agrees to Release 100 Million Barrels', 'G7 to release 100 million barrels of diesel and other reserves through IEA'."
+    },
+    {
+      "id": "aramco_inventory_rebuild",
+      "title": "Multi‑year rebuild of global oil stocks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "up to 2 years",
+      "date": null,
+      "start": "2026-10-06",
+      "end": "2028-10-06",
+      "probability": 0.7,
+      "impact_score": 103.0,
+      "expected_impact": 72.1,
+      "event_PS": 20.889,
+      "event_AS": 11.444,
+      "n_vars": 4,
+      "affected_ids": "global_oil_inventories, strategic_reserve_levels, diesel_price_level, market_risk_premium",
+      "rationale": "Headlines: 'Aramco CEO Says Oil Inventories Could Take Two Years to Rebuild', 'Saudi Aramco chief says replenishing global oil stockpiles could take two years'."
+    },
+    {
+      "id": "opec_plus_nov_quota_hold",
+      "title": "OPEC+ to hold November quotas steady",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "November 2026",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2026-11-30",
+      "probability": 0.85,
+      "impact_score": 87.0,
+      "expected_impact": 73.95,
+      "event_PS": 7.714,
+      "event_AS": 12.429,
+      "n_vars": 3,
+      "affected_ids": "producer_output_quota, crude_production_rate, market_risk_premium",
+      "rationale": "Headlines: 'OPEC+ set to hold November oil quotas steady', 'OPEC+ agrees in principle to keep November oil output targets steady'."
+    },
+    {
+      "id": "saudi_price_cut_nov",
+      "title": "Saudi cuts November prices to Asia",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "November 2026",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2026-11-30",
+      "probability": 0.9,
+      "impact_score": 68.0,
+      "expected_impact": 61.2,
+      "event_PS": 27.6,
+      "event_AS": 13.6,
+      "n_vars": 4,
+      "affected_ids": "crude_export_flow, diesel_price_level, market_risk_premium, global_oil_inventories",
+      "rationale": "Headline: 'Saudi Arabia unexpectedly cuts November oil prices to Asia to 6-year lows'."
+    },
+    {
+      "id": "us_tax_exempt_diesel_order",
+      "title": "U.S. to expand tax‑exempt diesel access",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-10-06",
+      "end": "2026-11-06",
+      "probability": 0.7,
+      "impact_score": 33.0,
+      "expected_impact": 23.1,
+      "event_PS": 25.5,
+      "event_AS": 8.25,
+      "n_vars": 3,
+      "affected_ids": "diesel_distribution_rate, diesel_price_level, market_risk_premium",
+      "rationale": "Headline: 'Trump to issue order expanding access to tax-exempt diesel fuel, sources say'."
+    }
+  ]
+}
