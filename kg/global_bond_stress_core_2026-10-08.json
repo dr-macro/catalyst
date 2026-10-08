@@ -1,0 +1,1946 @@
+{
+  "label": "global_bond_stress",
+  "as_of": "2026-10-08",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-08T03:06:58",
+  "system_description": {
+    "narrative_title": "Global bond-market rout and rising yields, with France as focal contagion",
+    "narrative_summary": "Across this news window the single dominant narrative is a global bond-market rout — sharply rising sovereign and corporate yields that are re-pricing risk, pressuring equities, prompting central bank scrutiny and reshaping investor flows. Treasuries, gilts and euro-area bonds are feeding back into sovereign credit stress (notably France), FX moves and commodity demand, while policy signals (Fed minutes, central-bank commentary) and on-the-ground events (French protests, fiscal plans) act as external inputs and catalysts in an open system of capital flows, expectations and fiscal/financial stability feedback loops.",
+    "scope": "Global fixed-income markets (sovereign and corporate yields), major central-bank policy signals (Fed, ECB, BoJ, Bank of France), key sovereign fiscal positions (especially France), market participants (investors, bond vigilantes, quant funds), and immediate cross-market spillovers (equities, FX, gold, auctions).",
+    "super_system": "The global financial system and macroeconomic environment (monetary policy regime, international capital flows, global growth/inflation dynamics).",
+    "adjacent_subsystems": [
+      "Monetary policy and central-bank communications",
+      "Sovereign fiscal policy and political stability (e.g., France's budget and protests)",
+      "Equity and corporate debt markets (issuance, LBOs, corporate credit risk)",
+      "Foreign exchange and commodity markets (dollar strength, gold, oil)"
+    ],
+    "evidence_headlines": [
+      "Investors see big opportunity in ferocious 2026 bond-market rout",
+      "Global bond sell-off resumes as 30-year Treasury yield hits highest since 2002",
+      "France Is Discovering the Cost of Higher Yields",
+      "France is caught between angry students and unforgiving bond markets",
+      "Fed officials see another hike coming, but no sign as to when, minutes show",
+      "Bond Vigilantes Find New Reasons to Worry"
+    ]
+  },
+  "variables": [
+    {
+      "id": "long_term_yield",
+      "name": "Long-term sovereign yield level",
+      "description": "The prevailing market yield on long-maturity government debt instruments, measured as a continuous average for benchmark long-dated issues.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_spread",
+      "name": "Sovereign credit spread level",
+      "description": "The market-implied premium investors demand over benchmark yields for a given sovereign, measured as a continuous spread reflecting perceived sovereign credit risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_spread",
+      "name": "Corporate credit spread level",
+      "description": "The average premium that corporate bond yields trade above sovereign or benchmark yields, capturing continuously varying corporate credit risk and risk appetite.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The continuous ease and depth with which fixed-income instruments can be transacted without large price impact, measured by bid-ask spreads, market depth and immediacy.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_volatility",
+      "name": "Bond yield volatility",
+      "description": "The short- to medium-term variability of bond yields as a continuous measure of price movement risk in fixed-income markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The component of long-term yields attributable to compensation for holding duration risk over shorter-term yields, varying continuously with investor risk tolerance and uncertainty.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expect",
+      "name": "Inflation expectations",
+      "description": "Market and investor consensus about future inflation rates over specified horizons, measured as a continuously varying expectation metric.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_path_expect",
+      "name": "Monetary policy path expectations",
+      "description": "Market-implied expectations of the future trajectory of policy tightening or easing, represented continuously by forward rate probabilities and pricing.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_financing_need",
+      "name": "Sovereign fiscal financing need",
+      "description": "The ongoing magnitude of a sovereign's expected debt issuance and refinancing requirement relative to market capacity, expressed as a continuous stress variable.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "debt_duration_exposure",
+      "name": "Sovereign debt durational exposure",
+      "description": "The aggregated sensitivity of a sovereign's debt stock to changes in yields, measured continuously by average maturity and interest rate repricing profile.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_asset_flows",
+      "name": "Cross‑asset capital flow rate",
+      "description": "The net continuous flow of capital between major asset classes (bonds, equities, FX, commodities) driven by relative returns and risk re-pricing.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation_pressur",
+      "name": "Equity market valuation pressure",
+      "description": "The continuous degree to which equity prices are under upward or downward pressure from changes in discount rates, earnings expectations and asset substitution.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "currency_pressure",
+      "name": "Currency adjustment pressure",
+      "description": "The continuous stress on exchange rates arising from interest rate differentials, capital flows and market re-pricing, measured as directional pressure and realized moves.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_asset_demand",
+      "name": "Safe‑asset demand",
+      "description": "The continuous level of investor preference for low-risk, high-liquidity assets (e.g., high-quality government debt and gold) as a function of risk aversion and uncertainty.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_leverage_pressure",
+      "name": "Market leverage and margin pressure",
+      "description": "The continuous build-up and unwind pressure from leveraged positions and margin requirements in fixed-income and related markets, affecting liquidity and forced selling risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "auction_absorption",
+      "name": "Auction absorption capacity",
+      "description": "The continuous ability of capital markets to absorb sovereign and corporate debt issuance at prevailing yields without materially disrupting price discovery.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "long_term_yield",
+    "sovereign_spread",
+    "corporate_spread",
+    "bond_liquidity",
+    "yield_volatility",
+    "term_premium",
+    "inflation_expect",
+    "policy_path_expect",
+    "fiscal_financing_need",
+    "debt_duration_exposure",
+    "cross_asset_flows",
+    "equity_valuation_pressur",
+    "currency_pressure",
+    "safe_asset_demand",
+    "market_leverage_pressure",
+    "auction_absorption"
+  ],
+  "var_names": {
+    "long_term_yield": "Long-term sovereign yield level",
+    "sovereign_spread": "Sovereign credit spread level",
+    "corporate_spread": "Corporate credit spread level",
+    "bond_liquidity": "Bond market liquidity",
+    "yield_volatility": "Bond yield volatility",
+    "term_premium": "Term premium",
+    "inflation_expect": "Inflation expectations",
+    "policy_path_expect": "Monetary policy path expectations",
+    "fiscal_financing_need": "Sovereign fiscal financing need",
+    "debt_duration_exposure": "Sovereign debt durational exposure",
+    "cross_asset_flows": "Cross‑asset capital flow rate",
+    "equity_valuation_pressur": "Equity market valuation pressure",
+    "currency_pressure": "Currency adjustment pressure",
+    "safe_asset_demand": "Safe‑asset demand",
+    "market_leverage_pressure": "Market leverage and margin pressure",
+    "auction_absorption": "Auction absorption capacity"
+  },
+  "impact_matrix": {
+    "long_term_yield": {
+      "long_term_yield": 0,
+      "sovereign_spread": 1,
+      "corporate_spread": 1,
+      "bond_liquidity": 2,
+      "yield_volatility": 1,
+      "term_premium": 0,
+      "inflation_expect": 1,
+      "policy_path_expect": 1,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 2,
+      "equity_valuation_pressur": 3,
+      "currency_pressure": 2,
+      "safe_asset_demand": 2,
+      "market_leverage_pressure": 2,
+      "auction_absorption": 2
+    },
+    "sovereign_spread": {
+      "long_term_yield": 2,
+      "sovereign_spread": 0,
+      "corporate_spread": 3,
+      "bond_liquidity": 2,
+      "yield_volatility": 2,
+      "term_premium": 1,
+      "inflation_expect": 0,
+      "policy_path_expect": 2,
+      "fiscal_financing_need": 1,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 2,
+      "equity_valuation_pressur": 2,
+      "currency_pressure": 2,
+      "safe_asset_demand": 2,
+      "market_leverage_pressure": 2,
+      "auction_absorption": 3
+    },
+    "corporate_spread": {
+      "long_term_yield": 1,
+      "sovereign_spread": 1,
+      "corporate_spread": 0,
+      "bond_liquidity": 2,
+      "yield_volatility": 2,
+      "term_premium": 1,
+      "inflation_expect": 0,
+      "policy_path_expect": 1,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 2,
+      "equity_valuation_pressur": 2,
+      "currency_pressure": 1,
+      "safe_asset_demand": 2,
+      "market_leverage_pressure": 2,
+      "auction_absorption": 2
+    },
+    "bond_liquidity": {
+      "long_term_yield": 2,
+      "sovereign_spread": 2,
+      "corporate_spread": 3,
+      "bond_liquidity": 0,
+      "yield_volatility": 3,
+      "term_premium": 1,
+      "inflation_expect": 0,
+      "policy_path_expect": 1,
+      "fiscal_financing_need": 1,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 2,
+      "equity_valuation_pressur": 2,
+      "currency_pressure": 1,
+      "safe_asset_demand": 2,
+      "market_leverage_pressure": 3,
+      "auction_absorption": 3
+    },
+    "yield_volatility": {
+      "long_term_yield": 2,
+      "sovereign_spread": 2,
+      "corporate_spread": 2,
+      "bond_liquidity": 2,
+      "yield_volatility": 0,
+      "term_premium": 2,
+      "inflation_expect": 0,
+      "policy_path_expect": 1,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 2,
+      "equity_valuation_pressur": 2,
+      "currency_pressure": 2,
+      "safe_asset_demand": 3,
+      "market_leverage_pressure": 3,
+      "auction_absorption": 2
+    },
+    "term_premium": {
+      "long_term_yield": 3,
+      "sovereign_spread": 1,
+      "corporate_spread": 1,
+      "bond_liquidity": 1,
+      "yield_volatility": 1,
+      "term_premium": 0,
+      "inflation_expect": 0,
+      "policy_path_expect": 1,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 1,
+      "equity_valuation_pressur": 2,
+      "currency_pressure": 1,
+      "safe_asset_demand": 1,
+      "market_leverage_pressure": 1,
+      "auction_absorption": 1
+    },
+    "inflation_expect": {
+      "long_term_yield": 3,
+      "sovereign_spread": 1,
+      "corporate_spread": 2,
+      "bond_liquidity": 1,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "inflation_expect": 0,
+      "policy_path_expect": 3,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 2,
+      "equity_valuation_pressur": 2,
+      "currency_pressure": 2,
+      "safe_asset_demand": 1,
+      "market_leverage_pressure": 1,
+      "auction_absorption": 2
+    },
+    "policy_path_expect": {
+      "long_term_yield": 3,
+      "sovereign_spread": 2,
+      "corporate_spread": 2,
+      "bond_liquidity": 3,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "inflation_expect": 2,
+      "policy_path_expect": 0,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 2,
+      "equity_valuation_pressur": 2,
+      "currency_pressure": 3,
+      "safe_asset_demand": 2,
+      "market_leverage_pressure": 2,
+      "auction_absorption": 2
+    },
+    "fiscal_financing_need": {
+      "long_term_yield": 2,
+      "sovereign_spread": 2,
+      "corporate_spread": 1,
+      "bond_liquidity": 2,
+      "yield_volatility": 1,
+      "term_premium": 1,
+      "inflation_expect": 0,
+      "policy_path_expect": 1,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 1,
+      "equity_valuation_pressur": 1,
+      "currency_pressure": 1,
+      "safe_asset_demand": 1,
+      "market_leverage_pressure": 1,
+      "auction_absorption": 3
+    },
+    "debt_duration_exposure": {
+      "long_term_yield": 1,
+      "sovereign_spread": 1,
+      "corporate_spread": 0,
+      "bond_liquidity": 1,
+      "yield_volatility": 0,
+      "term_premium": 1,
+      "inflation_expect": 0,
+      "policy_path_expect": 0,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 0,
+      "equity_valuation_pressur": 0,
+      "currency_pressure": 0,
+      "safe_asset_demand": 1,
+      "market_leverage_pressure": 1,
+      "auction_absorption": 1
+    },
+    "cross_asset_flows": {
+      "long_term_yield": 2,
+      "sovereign_spread": 2,
+      "corporate_spread": 2,
+      "bond_liquidity": 2,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "inflation_expect": 0,
+      "policy_path_expect": 1,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 0,
+      "equity_valuation_pressur": 2,
+      "currency_pressure": 2,
+      "safe_asset_demand": 3,
+      "market_leverage_pressure": 2,
+      "auction_absorption": 2
+    },
+    "equity_valuation_pressur": {
+      "long_term_yield": 1,
+      "sovereign_spread": 1,
+      "corporate_spread": 2,
+      "bond_liquidity": 1,
+      "yield_volatility": 1,
+      "term_premium": 1,
+      "inflation_expect": 0,
+      "policy_path_expect": 1,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 2,
+      "equity_valuation_pressur": 0,
+      "currency_pressure": 1,
+      "safe_asset_demand": 2,
+      "market_leverage_pressure": 2,
+      "auction_absorption": 1
+    },
+    "currency_pressure": {
+      "long_term_yield": 2,
+      "sovereign_spread": 2,
+      "corporate_spread": 1,
+      "bond_liquidity": 1,
+      "yield_volatility": 1,
+      "term_premium": 1,
+      "inflation_expect": 2,
+      "policy_path_expect": 2,
+      "fiscal_financing_need": 1,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 2,
+      "equity_valuation_pressur": 1,
+      "currency_pressure": 0,
+      "safe_asset_demand": 2,
+      "market_leverage_pressure": 2,
+      "auction_absorption": 1
+    },
+    "safe_asset_demand": {
+      "long_term_yield": 3,
+      "sovereign_spread": 2,
+      "corporate_spread": 2,
+      "bond_liquidity": 2,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "inflation_expect": 0,
+      "policy_path_expect": 1,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 3,
+      "equity_valuation_pressur": 2,
+      "currency_pressure": 2,
+      "safe_asset_demand": 0,
+      "market_leverage_pressure": 1,
+      "auction_absorption": 2
+    },
+    "market_leverage_pressure": {
+      "long_term_yield": 3,
+      "sovereign_spread": 2,
+      "corporate_spread": 3,
+      "bond_liquidity": 3,
+      "yield_volatility": 3,
+      "term_premium": 2,
+      "inflation_expect": 0,
+      "policy_path_expect": 1,
+      "fiscal_financing_need": 0,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 3,
+      "equity_valuation_pressur": 3,
+      "currency_pressure": 2,
+      "safe_asset_demand": 2,
+      "market_leverage_pressure": 0,
+      "auction_absorption": 2
+    },
+    "auction_absorption": {
+      "long_term_yield": 3,
+      "sovereign_spread": 3,
+      "corporate_spread": 2,
+      "bond_liquidity": 2,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "inflation_expect": 0,
+      "policy_path_expect": 1,
+      "fiscal_financing_need": 2,
+      "debt_duration_exposure": 0,
+      "cross_asset_flows": 1,
+      "equity_valuation_pressur": 1,
+      "currency_pressure": 1,
+      "safe_asset_demand": 1,
+      "market_leverage_pressure": 1,
+      "auction_absorption": 0
+    }
+  },
+  "AS": {
+    "long_term_yield": 20,
+    "sovereign_spread": 26,
+    "corporate_spread": 19,
+    "bond_liquidity": 26,
+    "yield_volatility": 25,
+    "term_premium": 15,
+    "inflation_expect": 24,
+    "policy_path_expect": 29,
+    "fiscal_financing_need": 18,
+    "debt_duration_exposure": 7,
+    "cross_asset_flows": 24,
+    "equity_valuation_pressur": 16,
+    "currency_pressure": 21,
+    "safe_asset_demand": 24,
+    "market_leverage_pressure": 29,
+    "auction_absorption": 22
+  },
+  "PS": {
+    "long_term_yield": 33,
+    "sovereign_spread": 25,
+    "corporate_spread": 27,
+    "bond_liquidity": 27,
+    "yield_volatility": 25,
+    "term_premium": 21,
+    "inflation_expect": 5,
+    "policy_path_expect": 18,
+    "fiscal_financing_need": 5,
+    "debt_duration_exposure": 0,
+    "cross_asset_flows": 27,
+    "equity_valuation_pressur": 27,
+    "currency_pressure": 23,
+    "safe_asset_demand": 27,
+    "market_leverage_pressure": 26,
+    "auction_absorption": 29
+  },
+  "med_AS": 23.0,
+  "med_PS": 25.5,
+  "roles": [
+    {
+      "variable": "market_leverage_pressure",
+      "name": "Market leverage and margin pressure",
+      "AS": 29,
+      "PS": 26,
+      "Q=AS/PS": 1.12,
+      "P=AS*PS": 754,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 26,
+      "PS": 27,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 702,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "long_term_yield",
+      "name": "Long-term sovereign yield level",
+      "AS": 20,
+      "PS": 33,
+      "Q=AS/PS": 0.61,
+      "P=AS*PS": 660,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "sovereign_spread",
+      "name": "Sovereign credit spread level",
+      "AS": 26,
+      "PS": 25,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 650,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "cross_asset_flows",
+      "name": "Cross‑asset capital flow rate",
+      "AS": 24,
+      "PS": 27,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 648,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "safe_asset_demand",
+      "name": "Safe‑asset demand",
+      "AS": 24,
+      "PS": 27,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 648,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "auction_absorption",
+      "name": "Auction absorption capacity",
+      "AS": 22,
+      "PS": 29,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 638,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "yield_volatility",
+      "name": "Bond yield volatility",
+      "AS": 25,
+      "PS": 25,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 625,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "policy_path_expect",
+      "name": "Monetary policy path expectations",
+      "AS": 29,
+      "PS": 18,
+      "Q=AS/PS": 1.61,
+      "P=AS*PS": 522,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "corporate_spread",
+      "name": "Corporate credit spread level",
+      "AS": 19,
+      "PS": 27,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 513,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "currency_pressure",
+      "name": "Currency adjustment pressure",
+      "AS": 21,
+      "PS": 23,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 483,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "equity_valuation_pressur",
+      "name": "Equity market valuation pressure",
+      "AS": 16,
+      "PS": 27,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 432,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 15,
+      "PS": 21,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 315,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_expect",
+      "name": "Inflation expectations",
+      "AS": 24,
+      "PS": 5,
+      "Q=AS/PS": 4.8,
+      "P=AS*PS": 120,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "fiscal_financing_need",
+      "name": "Sovereign fiscal financing need",
+      "AS": 18,
+      "PS": 5,
+      "Q=AS/PS": 3.6,
+      "P=AS*PS": 90,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "debt_duration_exposure",
+      "name": "Sovereign debt durational exposure",
+      "AS": 7,
+      "PS": 0,
+      "Q=AS/PS": 7000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "long_term_yield",
+        "name": "Long-term sovereign yield level",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 33
+      },
+      {
+        "id": "sovereign_spread",
+        "name": "Sovereign credit spread level",
+        "kind": "stock",
+        "AS": 26,
+        "PS": 25
+      },
+      {
+        "id": "corporate_spread",
+        "name": "Corporate credit spread level",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 27
+      },
+      {
+        "id": "bond_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "stock",
+        "AS": 26,
+        "PS": 27
+      },
+      {
+        "id": "yield_volatility",
+        "name": "Bond yield volatility",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 25
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 21
+      },
+      {
+        "id": "inflation_expect",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 5
+      },
+      {
+        "id": "policy_path_expect",
+        "name": "Monetary policy path expectations",
+        "kind": "perception",
+        "AS": 29,
+        "PS": 18
+      },
+      {
+        "id": "fiscal_financing_need",
+        "name": "Sovereign fiscal financing need",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 5
+      },
+      {
+        "id": "debt_duration_exposure",
+        "name": "Sovereign debt durational exposure",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 0
+      },
+      {
+        "id": "cross_asset_flows",
+        "name": "Cross‑asset capital flow rate",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 27
+      },
+      {
+        "id": "equity_valuation_pressur",
+        "name": "Equity market valuation pressure",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 27
+      },
+      {
+        "id": "currency_pressure",
+        "name": "Currency adjustment pressure",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 23
+      },
+      {
+        "id": "safe_asset_demand",
+        "name": "Safe‑asset demand",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 27
+      },
+      {
+        "id": "market_leverage_pressure",
+        "name": "Market leverage and margin pressure",
+        "kind": "stock",
+        "AS": 29,
+        "PS": 26
+      },
+      {
+        "id": "auction_absorption",
+        "name": "Auction absorption capacity",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 29
+      }
+    ],
+    "edges": [
+      {
+        "source": "long_term_yield",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "cross_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "equity_valuation_pressur",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "currency_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "market_leverage_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_yield",
+        "target": "auction_absorption",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "corporate_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "policy_path_expect",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "cross_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "currency_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "market_leverage_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "auction_absorption",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_spread",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_spread",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_spread",
+        "target": "cross_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_spread",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_spread",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_spread",
+        "target": "market_leverage_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_spread",
+        "target": "auction_absorption",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "corporate_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "cross_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "market_leverage_pressure",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_liquidity",
+        "target": "auction_absorption",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "corporate_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "cross_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "currency_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "safe_asset_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "market_leverage_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "auction_absorption",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "corporate_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "policy_path_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "cross_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "currency_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expect",
+        "target": "auction_absorption",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "corporate_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "bond_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "inflation_expect",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "cross_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "currency_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "market_leverage_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_path_expect",
+        "target": "auction_absorption",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "auction_absorption",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_flows",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_asset_flows",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_asset_flows",
+        "target": "corporate_spread",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_asset_flows",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_flows",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_flows",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "cross_asset_flows",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_flows",
+        "target": "currency_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_flows",
+        "target": "safe_asset_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_flows",
+        "target": "market_leverage_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_flows",
+        "target": "auction_absorption",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_valuation_pressur",
+        "target": "corporate_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation_pressur",
+        "target": "cross_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation_pressur",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation_pressur",
+        "target": "market_leverage_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "long_term_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "inflation_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "policy_path_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "cross_asset_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure",
+        "target": "market_leverage_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "corporate_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "cross_asset_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "equity_valuation_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "currency_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_asset_demand",
+        "target": "auction_absorption",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_leverage_pressure",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_leverage_pressure",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_leverage_pressure",
+        "target": "corporate_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_leverage_pressure",
+        "target": "bond_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_leverage_pressure",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_leverage_pressure",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_leverage_pressure",
+        "target": "cross_asset_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_leverage_pressure",
+        "target": "equity_valuation_pressur",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_leverage_pressure",
+        "target": "currency_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_leverage_pressure",
+        "target": "safe_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_leverage_pressure",
+        "target": "auction_absorption",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_absorption",
+        "target": "long_term_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "auction_absorption",
+        "target": "sovereign_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "auction_absorption",
+        "target": "corporate_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_absorption",
+        "target": "bond_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_absorption",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_absorption",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_absorption",
+        "target": "fiscal_financing_need",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "french_bypass_budget_bill",
+      "title": "France willing to bypass parliament to pass cuts",
+      "description": "French government readiness to bypass parliament to push through large spending cuts could materially alter market perceptions of France's fiscal trajectory and immediate financing needs.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-08",
+        "end": "2026-11-30",
+        "label": "days–weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "sovereign_spread",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fiscal_financing_need",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "currency_pressure",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "\"French Government Is Willing to Bypass Parliament to Pass Billions in Cuts\"; could lower perceived fiscal risk, narrowing spreads."
+    },
+    {
+      "id": "france_shorter_term_issuance",
+      "title": "France considers more short-term debt issuance",
+      "description": "Policy shift toward issuing a larger share of shorter-term paper to soothe the long-end after the rout, changing duration profile and auction cadence.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-08",
+        "end": "2026-12-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "debt_duration_exposure",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "auction_absorption",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "\"France Considers Issuing More Shorter-Term Debt After Bond-Market Turmoil\" — short issuance reduces duration but stresses auctions."
+    },
+    {
+      "id": "ecb_qt_pause_consideration",
+      "title": "Debate/decision on pausing ECB quantitative tightening",
+      "description": "Market and policy debate could lead the ECB to pause QT or adjust its balance-sheet path, shifting policy expectations and liquidity conditions across euro bonds.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-08",
+        "end": "2026-12-15",
+        "label": "by quarter end"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "policy_path_expect",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_liquidity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_spread",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "\"Bond turbulence means it’s time for the ECB to put QT on hold\" and debate cited by Bank of France headlines."
+    },
+    {
+      "id": "fed_hike_likely_by_yearend",
+      "title": "Additional Fed rate hike expected later this year",
+      "description": "Fed minutes imply another rate increase this year is possible; a further hike would reshape global policy expectations and push yields higher.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-08",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.55,
+      "affected": [
+        {
+          "variable_id": "policy_path_expect",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_asset_demand",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_valuation_pressur",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "\"Fed Minutes Signal Further Rate Increase This Year\" and officials saw another hike coming, affecting global yields and demand."
+    },
+    {
+      "id": "major_sovereign_auctions",
+      "title": "Upcoming large sovereign bond auctions (US, Europe)",
+      "description": "A sequence of large benchmark auctions in the US and Europe will test market absorption; weak demand could widen yields and strain liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-08",
+        "end": "2026-11-30",
+        "label": "1–8 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "auction_absorption",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "long_term_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "\"Auction Action Calms Treasurys\" and strong/weak auctions directly influence absorption and yields."
+    },
+    {
+      "id": "french_protests_escalation",
+      "title": "Escalation of student and broader protests in France",
+      "description": "Ongoing and intensifying protests raise political risk, could complicate fiscal consolidation and unsettle bond markets and the euro.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-08",
+        "end": "2026-11-15",
+        "label": "weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "sovereign_spread",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_pressure",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_asset_demand",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"Student riots engulf France\" and \"School protests sweeping France\" raise political/fiscal risk, pressuring spreads and euro."
+    },
+    {
+      "id": "japanese_reallocation_from_french_bonds",
+      "title": "Japanese funds reduce exposure to French sovereigns",
+      "description": "Portfolio reallocation by Japanese bond desks away from French paper could create cross-border outflows, reducing auction demand and widening spreads.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-08",
+        "end": "2026-11-30",
+        "label": "weeks–month"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "cross_asset_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "auction_absorption",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_spread",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"Tokyo Bond Desks Say Sayonara as Japan Reconsiders Its French Love Affair\" — potential Japanese outflows from French bonds."
+    },
+    {
+      "id": "leveraged_unwind_and_margin_pressure",
+      "title": "Leveraged unwind / margin stress in bond market",
+      "description": "Rising yields could trigger margin calls and forced selling by leveraged players, reducing liquidity and amplifying yield moves and volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-08",
+        "end": "2026-11-08",
+        "label": "~1 month"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "market_leverage_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_liquidity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "auction_absorption",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "\"Investors see big opportunity in ferocious 2026 bond-market rout\"; Fed minutes note preparing for market stress."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "leveraged_unwind_and_margin_pressure",
+      "title": "Leveraged unwind / margin stress in bond market",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "~1 month",
+      "date": null,
+      "start": "2026-10-08",
+      "end": "2026-11-08",
+      "probability": 0.5,
+      "impact_score": 284.0,
+      "expected_impact": 142.0,
+      "event_PS": 26.545,
+      "event_AS": 25.818,
+      "n_vars": 4,
+      "affected_ids": "market_leverage_pressure, bond_liquidity, yield_volatility, auction_absorption",
+      "rationale": "\"Investors see big opportunity in ferocious 2026 bond-market rout\"; Fed minutes note preparing for market stress."
+    },
+    {
+      "id": "fed_hike_likely_by_yearend",
+      "title": "Additional Fed rate hike expected later this year",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-10-08",
+      "end": "2026-12-31",
+      "probability": 0.55,
+      "impact_score": 257.0,
+      "expected_impact": 141.35,
+      "event_PS": 25.25,
+      "event_AS": 21.417,
+      "n_vars": 5,
+      "affected_ids": "policy_path_expect, long_term_yield, term_premium, safe_asset_demand, equity_valuation_pressur",
+      "rationale": "\"Fed Minutes Signal Further Rate Increase This Year\" and officials saw another hike coming, affecting global yields and demand."
+    },
+    {
+      "id": "ecb_qt_pause_consideration",
+      "title": "Debate/decision on pausing ECB quantitative tightening",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by quarter end",
+      "date": null,
+      "start": "2026-10-08",
+      "end": "2026-12-15",
+      "probability": 0.5,
+      "impact_score": 221.0,
+      "expected_impact": 110.5,
+      "event_PS": 22.222,
+      "event_AS": 24.556,
+      "n_vars": 4,
+      "affected_ids": "policy_path_expect, bond_liquidity, term_premium, sovereign_spread",
+      "rationale": "\"Bond turbulence means it’s time for the ECB to put QT on hold\" and debate cited by Bank of France headlines."
+    },
+    {
+      "id": "french_protests_escalation",
+      "title": "Escalation of student and broader protests in France",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-08",
+      "end": "2026-11-15",
+      "probability": 0.6,
+      "impact_score": 168.0,
+      "expected_impact": 100.8,
+      "event_PS": 25.0,
+      "event_AS": 24.0,
+      "n_vars": 3,
+      "affected_ids": "sovereign_spread, currency_pressure, safe_asset_demand",
+      "rationale": "\"Student riots engulf France\" and \"School protests sweeping France\" raise political/fiscal risk, pressuring spreads and euro."
+    },
+    {
+      "id": "major_sovereign_auctions",
+      "title": "Upcoming large sovereign bond auctions (US, Europe)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1–8 weeks",
+      "date": null,
+      "start": "2026-10-08",
+      "end": "2026-11-30",
+      "probability": 0.9,
+      "impact_score": 158.0,
+      "expected_impact": 142.2,
+      "event_PS": 29.571,
+      "event_AS": 22.571,
+      "n_vars": 3,
+      "affected_ids": "auction_absorption, long_term_yield, bond_liquidity",
+      "rationale": "\"Auction Action Calms Treasurys\" and strong/weak auctions directly influence absorption and yields."
+    },
+    {
+      "id": "french_bypass_budget_bill",
+      "title": "France willing to bypass parliament to pass cuts",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–weeks",
+      "date": null,
+      "start": "2026-10-08",
+      "end": "2026-11-30",
+      "probability": 0.7,
+      "impact_score": 135.0,
+      "expected_impact": 94.5,
+      "event_PS": 18.0,
+      "event_AS": 22.5,
+      "n_vars": 3,
+      "affected_ids": "sovereign_spread, fiscal_financing_need, currency_pressure",
+      "rationale": "\"French Government Is Willing to Bypass Parliament to Pass Billions in Cuts\"; could lower perceived fiscal risk, narrowing spreads."
+    },
+    {
+      "id": "japanese_reallocation_from_french_bonds",
+      "title": "Japanese funds reduce exposure to French sovereigns",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–month",
+      "date": null,
+      "start": "2026-10-08",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 118.0,
+      "expected_impact": 70.8,
+      "event_PS": 27.4,
+      "event_AS": 23.6,
+      "n_vars": 3,
+      "affected_ids": "cross_asset_flows, auction_absorption, sovereign_spread",
+      "rationale": "\"Tokyo Bond Desks Say Sayonara as Japan Reconsiders Its French Love Affair\" — potential Japanese outflows from French bonds."
+    },
+    {
+      "id": "france_shorter_term_issuance",
+      "title": "France considers more short-term debt issuance",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-08",
+      "end": "2026-12-31",
+      "probability": 0.8,
+      "impact_score": 105.0,
+      "expected_impact": 84.0,
+      "event_PS": 17.714,
+      "event_AS": 15.0,
+      "n_vars": 3,
+      "affected_ids": "debt_duration_exposure, auction_absorption, long_term_yield",
+      "rationale": "\"France Considers Issuing More Shorter-Term Debt After Bond-Market Turmoil\" — short issuance reduces duration but stresses auctions."
+    }
+  ]
+}
