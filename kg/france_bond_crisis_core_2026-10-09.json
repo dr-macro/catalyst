@@ -1,0 +1,1793 @@
+{
+  "label": "france_bond_crisis",
+  "as_of": "2026-10-09",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-09T03:18:19",
+  "system_description": {
+    "narrative_title": "Global bond yield surge and sovereign stress",
+    "narrative_summary": "A rapid, broad-based rise in government bond yields is disrupting capital markets, repricing risk across sovereigns, banks and equities. The move has amplified fiscal stress in vulnerable countries—most visibly France—forced changes in debt issuance strategy, and prompted intense market attention to auctions and central-bank communication. Spillovers to bank shares, corporate credit and investor retirement portfolios are driving policy and market responses that will determine whether the episode stabilizes or evolves into a broader financial-fragility loop.",
+    "scope": "Sovereign and corporate bond markets (yields, spreads, auctions), central-bank policy and communications, sovereign fiscal positions and debt issuance strategies (notably France), banking-sector credit risk, equity-market valuation effects, and investor flows/asset-allocation decisions.",
+    "super_system": "Global financial and macroeconomic system (capital markets, central banks, sovereign fiscal policy, global institutional and retail investors)",
+    "adjacent_subsystems": [
+      "Domestic fiscal politics and public finances (e.g., France's budget and political reactions)",
+      "Banking-sector stability and interbank credit markets",
+      "Equities and institutional investor risk allocation",
+      "Currency and international capital-flow dynamics"
+    ],
+    "evidence_headlines": [
+      "US bonds selloff resumes as 10-year, 30-yields hit new 24-year high",
+      "Global bond sell-off resumes as 30-year Treasury yield hits highest since 2002",
+      "France’s Economy Is Trapped in a Negative Feedback Loop",
+      "European bank shares fall as bond yields surge, spreads widen",
+      "10-year Treasury yield falls from 24-year high after solid bond auction eases demand fears",
+      "Exclusive | France Considers Issuing More Shorter-Term Debt After Bond-Market Turmoil"
+    ]
+  },
+  "variables": [
+    {
+      "id": "govt_bond_yield",
+      "name": "Government bond yield level",
+      "description": "The prevailing nominal yield on sovereign fixed-income instruments aggregated across the market.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_spread_level",
+      "name": "Sovereign credit spread level",
+      "description": "The average market premium demanded over benchmark yields to hold sovereign debt reflecting perceived sovereign credit risk.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium_level",
+      "name": "Term premium level",
+      "description": "The component of long-term government yields that compensates investors for interest-rate and reinvestment risk over the term.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The ease and depth with which government and corporate bonds can be transacted without large price impact.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_yield_volatility",
+      "name": "Bond yield volatility",
+      "description": "The short- to medium-term fluctuation intensity of yields in the sovereign and corporate bond markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "debt_maturity_profile",
+      "name": "Sovereign debt maturity profile",
+      "description": "The distribution of outstanding sovereign liabilities across remaining time-to-maturity buckets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "debt_to_gdp_ratio",
+      "name": "Sovereign debt-to-GDP ratio",
+      "description": "The stock of public sector debt measured relative to the size of the domestic economy.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_deficit_flow",
+      "name": "Sovereign fiscal deficit flow",
+      "description": "The ongoing net borrowing requirement of the public sector measured per period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_level",
+      "name": "Policy interest rate level",
+      "description": "The prevailing short-term policy interest rate set by monetary authorities as the anchor for market rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cb_comm_credibility",
+      "name": "Central-bank communication credibility",
+      "description": "The market perception of how reliably central-bank statements and forward guidance influence future policy and outcomes.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "auction_primary_demand",
+      "name": "Primary market auction demand",
+      "description": "The level of investor demand for newly issued sovereign bonds at primary auctions relative to supply.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "bank_funding_stress",
+      "name": "Banking-sector funding stress",
+      "description": "The pressure on financial intermediaries to obtain short- and long-term funding, reflected in funding spreads and roll-over costs.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_spread_level",
+      "name": "Corporate credit spread level",
+      "description": "The average premium corporate borrowers pay over risk-free yields, reflecting corporate default and liquidity risk.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation_level",
+      "name": "Equity market valuation level",
+      "description": "The aggregate valuation metric for equity markets (e.g., price-to-earnings or market-to-GDP) that determines price sensitivity to yield moves.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_fi_allocation",
+      "name": "Investor fixed‑income allocation",
+      "description": "The share of investable assets allocated to fixed‑income instruments across institutional and retail investor portfolios.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_capflow",
+      "name": "Cross-border capital flow",
+      "description": "The net movement of capital into or out of domestic bond and equity markets from foreign investors per period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "govt_bond_yield",
+    "sovereign_spread_level",
+    "term_premium_level",
+    "bond_market_liquidity",
+    "bond_yield_volatility",
+    "debt_maturity_profile",
+    "debt_to_gdp_ratio",
+    "fiscal_deficit_flow",
+    "policy_rate_level",
+    "cb_comm_credibility",
+    "auction_primary_demand",
+    "bank_funding_stress",
+    "corporate_spread_level",
+    "equity_valuation_level",
+    "investor_fi_allocation",
+    "cross_border_capflow"
+  ],
+  "var_names": {
+    "govt_bond_yield": "Government bond yield level",
+    "sovereign_spread_level": "Sovereign credit spread level",
+    "term_premium_level": "Term premium level",
+    "bond_market_liquidity": "Bond market liquidity",
+    "bond_yield_volatility": "Bond yield volatility",
+    "debt_maturity_profile": "Sovereign debt maturity profile",
+    "debt_to_gdp_ratio": "Sovereign debt-to-GDP ratio",
+    "fiscal_deficit_flow": "Sovereign fiscal deficit flow",
+    "policy_rate_level": "Policy interest rate level",
+    "cb_comm_credibility": "Central-bank communication credibility",
+    "auction_primary_demand": "Primary market auction demand",
+    "bank_funding_stress": "Banking-sector funding stress",
+    "corporate_spread_level": "Corporate credit spread level",
+    "equity_valuation_level": "Equity market valuation level",
+    "investor_fi_allocation": "Investor fixed‑income allocation",
+    "cross_border_capflow": "Cross-border capital flow"
+  },
+  "impact_matrix": {
+    "govt_bond_yield": {
+      "govt_bond_yield": 0,
+      "sovereign_spread_level": 2,
+      "term_premium_level": 1,
+      "bond_market_liquidity": 2,
+      "bond_yield_volatility": 2,
+      "debt_maturity_profile": 0,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 2,
+      "policy_rate_level": 1,
+      "cb_comm_credibility": 1,
+      "auction_primary_demand": 2,
+      "bank_funding_stress": 2,
+      "corporate_spread_level": 1,
+      "equity_valuation_level": 2,
+      "investor_fi_allocation": 2,
+      "cross_border_capflow": 2
+    },
+    "sovereign_spread_level": {
+      "govt_bond_yield": 2,
+      "sovereign_spread_level": 0,
+      "term_premium_level": 2,
+      "bond_market_liquidity": 3,
+      "bond_yield_volatility": 3,
+      "debt_maturity_profile": 0,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 2,
+      "policy_rate_level": 1,
+      "cb_comm_credibility": 1,
+      "auction_primary_demand": 3,
+      "bank_funding_stress": 3,
+      "corporate_spread_level": 3,
+      "equity_valuation_level": 2,
+      "investor_fi_allocation": 1,
+      "cross_border_capflow": 3
+    },
+    "term_premium_level": {
+      "govt_bond_yield": 3,
+      "sovereign_spread_level": 1,
+      "term_premium_level": 0,
+      "bond_market_liquidity": 1,
+      "bond_yield_volatility": 2,
+      "debt_maturity_profile": 0,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 0,
+      "policy_rate_level": 1,
+      "cb_comm_credibility": 1,
+      "auction_primary_demand": 1,
+      "bank_funding_stress": 1,
+      "corporate_spread_level": 1,
+      "equity_valuation_level": 2,
+      "investor_fi_allocation": 2,
+      "cross_border_capflow": 2
+    },
+    "bond_market_liquidity": {
+      "govt_bond_yield": 2,
+      "sovereign_spread_level": 2,
+      "term_premium_level": 3,
+      "bond_market_liquidity": 0,
+      "bond_yield_volatility": 3,
+      "debt_maturity_profile": 0,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 0,
+      "policy_rate_level": 1,
+      "cb_comm_credibility": 1,
+      "auction_primary_demand": 3,
+      "bank_funding_stress": 3,
+      "corporate_spread_level": 2,
+      "equity_valuation_level": 1,
+      "investor_fi_allocation": 2,
+      "cross_border_capflow": 2
+    },
+    "bond_yield_volatility": {
+      "govt_bond_yield": 1,
+      "sovereign_spread_level": 2,
+      "term_premium_level": 2,
+      "bond_market_liquidity": 3,
+      "bond_yield_volatility": 0,
+      "debt_maturity_profile": 0,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 2,
+      "policy_rate_level": 1,
+      "cb_comm_credibility": 1,
+      "auction_primary_demand": 3,
+      "bank_funding_stress": 3,
+      "corporate_spread_level": 2,
+      "equity_valuation_level": 2,
+      "investor_fi_allocation": 1,
+      "cross_border_capflow": 2
+    },
+    "debt_maturity_profile": {
+      "govt_bond_yield": 1,
+      "sovereign_spread_level": 1,
+      "term_premium_level": 2,
+      "bond_market_liquidity": 2,
+      "bond_yield_volatility": 1,
+      "debt_maturity_profile": 0,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 1,
+      "policy_rate_level": 0,
+      "cb_comm_credibility": 0,
+      "auction_primary_demand": 2,
+      "bank_funding_stress": 2,
+      "corporate_spread_level": 1,
+      "equity_valuation_level": 0,
+      "investor_fi_allocation": 1,
+      "cross_border_capflow": 1
+    },
+    "debt_to_gdp_ratio": {
+      "govt_bond_yield": 2,
+      "sovereign_spread_level": 3,
+      "term_premium_level": 2,
+      "bond_market_liquidity": 1,
+      "bond_yield_volatility": 2,
+      "debt_maturity_profile": 0,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 0,
+      "policy_rate_level": 1,
+      "cb_comm_credibility": 1,
+      "auction_primary_demand": 2,
+      "bank_funding_stress": 2,
+      "corporate_spread_level": 1,
+      "equity_valuation_level": 1,
+      "investor_fi_allocation": 1,
+      "cross_border_capflow": 2
+    },
+    "fiscal_deficit_flow": {
+      "govt_bond_yield": 2,
+      "sovereign_spread_level": 2,
+      "term_premium_level": 2,
+      "bond_market_liquidity": 1,
+      "bond_yield_volatility": 2,
+      "debt_maturity_profile": 1,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 0,
+      "policy_rate_level": 1,
+      "cb_comm_credibility": 1,
+      "auction_primary_demand": 2,
+      "bank_funding_stress": 1,
+      "corporate_spread_level": 1,
+      "equity_valuation_level": 1,
+      "investor_fi_allocation": 1,
+      "cross_border_capflow": 2
+    },
+    "policy_rate_level": {
+      "govt_bond_yield": 3,
+      "sovereign_spread_level": 1,
+      "term_premium_level": 2,
+      "bond_market_liquidity": 1,
+      "bond_yield_volatility": 2,
+      "debt_maturity_profile": 0,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 1,
+      "policy_rate_level": 0,
+      "cb_comm_credibility": 1,
+      "auction_primary_demand": 2,
+      "bank_funding_stress": 2,
+      "corporate_spread_level": 1,
+      "equity_valuation_level": 3,
+      "investor_fi_allocation": 2,
+      "cross_border_capflow": 2
+    },
+    "cb_comm_credibility": {
+      "govt_bond_yield": 3,
+      "sovereign_spread_level": 2,
+      "term_premium_level": 2,
+      "bond_market_liquidity": 2,
+      "bond_yield_volatility": 2,
+      "debt_maturity_profile": 1,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 0,
+      "policy_rate_level": 1,
+      "cb_comm_credibility": 0,
+      "auction_primary_demand": 3,
+      "bank_funding_stress": 2,
+      "corporate_spread_level": 2,
+      "equity_valuation_level": 2,
+      "investor_fi_allocation": 2,
+      "cross_border_capflow": 3
+    },
+    "auction_primary_demand": {
+      "govt_bond_yield": 3,
+      "sovereign_spread_level": 2,
+      "term_premium_level": 2,
+      "bond_market_liquidity": 2,
+      "bond_yield_volatility": 2,
+      "debt_maturity_profile": 1,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 0,
+      "policy_rate_level": 1,
+      "cb_comm_credibility": 2,
+      "auction_primary_demand": 0,
+      "bank_funding_stress": 2,
+      "corporate_spread_level": 1,
+      "equity_valuation_level": 1,
+      "investor_fi_allocation": 1,
+      "cross_border_capflow": 2
+    },
+    "bank_funding_stress": {
+      "govt_bond_yield": 2,
+      "sovereign_spread_level": 2,
+      "term_premium_level": 2,
+      "bond_market_liquidity": 3,
+      "bond_yield_volatility": 3,
+      "debt_maturity_profile": 1,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 1,
+      "policy_rate_level": 1,
+      "cb_comm_credibility": 1,
+      "auction_primary_demand": 2,
+      "bank_funding_stress": 0,
+      "corporate_spread_level": 2,
+      "equity_valuation_level": 2,
+      "investor_fi_allocation": 1,
+      "cross_border_capflow": 2
+    },
+    "corporate_spread_level": {
+      "govt_bond_yield": 1,
+      "sovereign_spread_level": 1,
+      "term_premium_level": 1,
+      "bond_market_liquidity": 1,
+      "bond_yield_volatility": 1,
+      "debt_maturity_profile": 1,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 0,
+      "policy_rate_level": 0,
+      "cb_comm_credibility": 0,
+      "auction_primary_demand": 0,
+      "bank_funding_stress": 1,
+      "corporate_spread_level": 0,
+      "equity_valuation_level": 1,
+      "investor_fi_allocation": 1,
+      "cross_border_capflow": 1
+    },
+    "equity_valuation_level": {
+      "govt_bond_yield": 1,
+      "sovereign_spread_level": 1,
+      "term_premium_level": 1,
+      "bond_market_liquidity": 1,
+      "bond_yield_volatility": 1,
+      "debt_maturity_profile": 0,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 0,
+      "policy_rate_level": 0,
+      "cb_comm_credibility": 0,
+      "auction_primary_demand": 0,
+      "bank_funding_stress": 2,
+      "corporate_spread_level": 2,
+      "equity_valuation_level": 0,
+      "investor_fi_allocation": 2,
+      "cross_border_capflow": 1
+    },
+    "investor_fi_allocation": {
+      "govt_bond_yield": 2,
+      "sovereign_spread_level": 2,
+      "term_premium_level": 2,
+      "bond_market_liquidity": 2,
+      "bond_yield_volatility": 1,
+      "debt_maturity_profile": 1,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 0,
+      "policy_rate_level": 0,
+      "cb_comm_credibility": 0,
+      "auction_primary_demand": 3,
+      "bank_funding_stress": 1,
+      "corporate_spread_level": 2,
+      "equity_valuation_level": 1,
+      "investor_fi_allocation": 0,
+      "cross_border_capflow": 3
+    },
+    "cross_border_capflow": {
+      "govt_bond_yield": 3,
+      "sovereign_spread_level": 3,
+      "term_premium_level": 2,
+      "bond_market_liquidity": 3,
+      "bond_yield_volatility": 2,
+      "debt_maturity_profile": 0,
+      "debt_to_gdp_ratio": 0,
+      "fiscal_deficit_flow": 0,
+      "policy_rate_level": 0,
+      "cb_comm_credibility": 0,
+      "auction_primary_demand": 3,
+      "bank_funding_stress": 2,
+      "corporate_spread_level": 2,
+      "equity_valuation_level": 2,
+      "investor_fi_allocation": 2,
+      "cross_border_capflow": 0
+    }
+  },
+  "AS": {
+    "govt_bond_yield": 22,
+    "sovereign_spread_level": 29,
+    "term_premium_level": 18,
+    "bond_market_liquidity": 25,
+    "bond_yield_volatility": 25,
+    "debt_maturity_profile": 15,
+    "debt_to_gdp_ratio": 21,
+    "fiscal_deficit_flow": 20,
+    "policy_rate_level": 23,
+    "cb_comm_credibility": 27,
+    "auction_primary_demand": 22,
+    "bank_funding_stress": 25,
+    "corporate_spread_level": 10,
+    "equity_valuation_level": 12,
+    "investor_fi_allocation": 20,
+    "cross_border_capflow": 24
+  },
+  "PS": {
+    "govt_bond_yield": 31,
+    "sovereign_spread_level": 27,
+    "term_premium_level": 28,
+    "bond_market_liquidity": 28,
+    "bond_yield_volatility": 29,
+    "debt_maturity_profile": 6,
+    "debt_to_gdp_ratio": 0,
+    "fiscal_deficit_flow": 9,
+    "policy_rate_level": 10,
+    "cb_comm_credibility": 11,
+    "auction_primary_demand": 31,
+    "bank_funding_stress": 29,
+    "corporate_spread_level": 24,
+    "equity_valuation_level": 23,
+    "investor_fi_allocation": 22,
+    "cross_border_capflow": 30
+  },
+  "med_AS": 22.0,
+  "med_PS": 25.5,
+  "roles": [
+    {
+      "variable": "sovereign_spread_level",
+      "name": "Sovereign credit spread level",
+      "AS": 29,
+      "PS": 27,
+      "Q=AS/PS": 1.07,
+      "P=AS*PS": 783,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_yield_volatility",
+      "name": "Bond yield volatility",
+      "AS": 25,
+      "PS": 29,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 725,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bank_funding_stress",
+      "name": "Banking-sector funding stress",
+      "AS": 25,
+      "PS": 29,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 725,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_capflow",
+      "name": "Cross-border capital flow",
+      "AS": 24,
+      "PS": 30,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 720,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 25,
+      "PS": 28,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 700,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "auction_primary_demand",
+      "name": "Primary market auction demand",
+      "AS": 22,
+      "PS": 31,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 682,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "govt_bond_yield",
+      "name": "Government bond yield level",
+      "AS": 22,
+      "PS": 31,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 682,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "term_premium_level",
+      "name": "Term premium level",
+      "AS": 18,
+      "PS": 28,
+      "Q=AS/PS": 0.64,
+      "P=AS*PS": 504,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "investor_fi_allocation",
+      "name": "Investor fixed‑income allocation",
+      "AS": 20,
+      "PS": 22,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 440,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "cb_comm_credibility",
+      "name": "Central-bank communication credibility",
+      "AS": 27,
+      "PS": 11,
+      "Q=AS/PS": 2.45,
+      "P=AS*PS": 297,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "equity_valuation_level",
+      "name": "Equity market valuation level",
+      "AS": 12,
+      "PS": 23,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 276,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "corporate_spread_level",
+      "name": "Corporate credit spread level",
+      "AS": 10,
+      "PS": 24,
+      "Q=AS/PS": 0.42,
+      "P=AS*PS": 240,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "policy_rate_level",
+      "name": "Policy interest rate level",
+      "AS": 23,
+      "PS": 10,
+      "Q=AS/PS": 2.3,
+      "P=AS*PS": 230,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "fiscal_deficit_flow",
+      "name": "Sovereign fiscal deficit flow",
+      "AS": 20,
+      "PS": 9,
+      "Q=AS/PS": 2.22,
+      "P=AS*PS": 180,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "debt_maturity_profile",
+      "name": "Sovereign debt maturity profile",
+      "AS": 15,
+      "PS": 6,
+      "Q=AS/PS": 2.5,
+      "P=AS*PS": 90,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "debt_to_gdp_ratio",
+      "name": "Sovereign debt-to-GDP ratio",
+      "AS": 21,
+      "PS": 0,
+      "Q=AS/PS": 21000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "govt_bond_yield",
+        "name": "Government bond yield level",
+        "kind": "driver",
+        "AS": 22,
+        "PS": 31
+      },
+      {
+        "id": "sovereign_spread_level",
+        "name": "Sovereign credit spread level",
+        "kind": "driver",
+        "AS": 29,
+        "PS": 27
+      },
+      {
+        "id": "term_premium_level",
+        "name": "Term premium level",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 28
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "environment",
+        "AS": 25,
+        "PS": 28
+      },
+      {
+        "id": "bond_yield_volatility",
+        "name": "Bond yield volatility",
+        "kind": "flow",
+        "AS": 25,
+        "PS": 29
+      },
+      {
+        "id": "debt_maturity_profile",
+        "name": "Sovereign debt maturity profile",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 6
+      },
+      {
+        "id": "debt_to_gdp_ratio",
+        "name": "Sovereign debt-to-GDP ratio",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 0
+      },
+      {
+        "id": "fiscal_deficit_flow",
+        "name": "Sovereign fiscal deficit flow",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 9
+      },
+      {
+        "id": "policy_rate_level",
+        "name": "Policy interest rate level",
+        "kind": "driver",
+        "AS": 23,
+        "PS": 10
+      },
+      {
+        "id": "cb_comm_credibility",
+        "name": "Central-bank communication credibility",
+        "kind": "perception",
+        "AS": 27,
+        "PS": 11
+      },
+      {
+        "id": "auction_primary_demand",
+        "name": "Primary market auction demand",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 31
+      },
+      {
+        "id": "bank_funding_stress",
+        "name": "Banking-sector funding stress",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 29
+      },
+      {
+        "id": "corporate_spread_level",
+        "name": "Corporate credit spread level",
+        "kind": "driver",
+        "AS": 10,
+        "PS": 24
+      },
+      {
+        "id": "equity_valuation_level",
+        "name": "Equity market valuation level",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 23
+      },
+      {
+        "id": "investor_fi_allocation",
+        "name": "Investor fixed‑income allocation",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 22
+      },
+      {
+        "id": "cross_border_capflow",
+        "name": "Cross-border capital flow",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 30
+      }
+    ],
+    "edges": [
+      {
+        "source": "govt_bond_yield",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "govt_bond_yield",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "govt_bond_yield",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "govt_bond_yield",
+        "target": "fiscal_deficit_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "govt_bond_yield",
+        "target": "auction_primary_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "govt_bond_yield",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "govt_bond_yield",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "govt_bond_yield",
+        "target": "investor_fi_allocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "govt_bond_yield",
+        "target": "cross_border_capflow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "govt_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "bond_yield_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "fiscal_deficit_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "auction_primary_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "bank_funding_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "corporate_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "cross_border_capflow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "govt_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "investor_fi_allocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_level",
+        "target": "cross_border_capflow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "govt_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "term_premium_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "bond_yield_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "auction_primary_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "bank_funding_stress",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "investor_fi_allocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "cross_border_capflow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "fiscal_deficit_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "auction_primary_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "bank_funding_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "cross_border_capflow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_maturity_profile",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_maturity_profile",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_maturity_profile",
+        "target": "auction_primary_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_maturity_profile",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_to_gdp_ratio",
+        "target": "govt_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_to_gdp_ratio",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_to_gdp_ratio",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_to_gdp_ratio",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_to_gdp_ratio",
+        "target": "auction_primary_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_to_gdp_ratio",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_to_gdp_ratio",
+        "target": "cross_border_capflow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "govt_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "auction_primary_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_deficit_flow",
+        "target": "cross_border_capflow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "govt_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "auction_primary_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "equity_valuation_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "investor_fi_allocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_level",
+        "target": "cross_border_capflow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_comm_credibility",
+        "target": "govt_bond_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cb_comm_credibility",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_comm_credibility",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_comm_credibility",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_comm_credibility",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_comm_credibility",
+        "target": "auction_primary_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cb_comm_credibility",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_comm_credibility",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cb_comm_credibility",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_comm_credibility",
+        "target": "investor_fi_allocation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cb_comm_credibility",
+        "target": "cross_border_capflow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "auction_primary_demand",
+        "target": "govt_bond_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "auction_primary_demand",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_primary_demand",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_primary_demand",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_primary_demand",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_primary_demand",
+        "target": "cb_comm_credibility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_primary_demand",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_primary_demand",
+        "target": "cross_border_capflow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "govt_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "bond_yield_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "auction_primary_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "cross_border_capflow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_valuation_level",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_valuation_level",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_valuation_level",
+        "target": "investor_fi_allocation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_fi_allocation",
+        "target": "govt_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_fi_allocation",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_fi_allocation",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_fi_allocation",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_fi_allocation",
+        "target": "auction_primary_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_fi_allocation",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_fi_allocation",
+        "target": "cross_border_capflow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capflow",
+        "target": "govt_bond_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capflow",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capflow",
+        "target": "term_premium_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capflow",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capflow",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capflow",
+        "target": "auction_primary_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capflow",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capflow",
+        "target": "corporate_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capflow",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capflow",
+        "target": "investor_fi_allocation",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_treasury_auctions_vote",
+      "title": "Upcoming US Treasury auctions (investor vote)",
+      "description": "A sequence of near-term US Treasury auctions will act as a test of investor confidence and likely move yields and liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-10-23",
+        "label": "2 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "auction_primary_demand",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "govt_bond_yield",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_yield_volatility",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "“The Treasury market is facing a crucial vote of investor confidence”; “Auction Action Calms Treasurys”."
+    },
+    {
+      "id": "eurozone_press_france_budget",
+      "title": "Eurozone ministers push France to pass 2027 budget",
+      "description": "Eurozone ministers pressing France to pass the 2027 budget aims to calm markets and could compress French spreads if enacted.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-10-31",
+        "label": "by end of month"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "sovereign_spread_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fiscal_deficit_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "debt_to_gdp_ratio",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cb_comm_credibility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Euro zone ministers to tell France to pass 2027 budget to calm markets.”"
+    },
+    {
+      "id": "france_bypass_parliament_cuts",
+      "title": "French government may bypass parliament to push cuts",
+      "description": "Paris's willingness to bypass parliament to pass large spending cuts could materially change near-term fiscal flows and market risk pricing.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-11-15",
+        "label": "weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "fiscal_deficit_flow",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_spread_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "debt_to_gdp_ratio",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "“Exclusive | French Government Is Willing to Bypass Parliament to Pass Billions in Cuts.”"
+    },
+    {
+      "id": "france_issue_shorter_debt",
+      "title": "France considers issuing more shorter‑term debt",
+      "description": "Shift toward shorter-term issuance after market turmoil would alter maturity structure and primary demand dynamics, affecting short-term funding needs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-11-15",
+        "label": "weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "debt_maturity_profile",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "auction_primary_demand",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_spread_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "“Exclusive | France Considers Issuing More Shorter-Term Debt After Bond-Market Turmoil.”"
+    },
+    {
+      "id": "ecb_schnabel_replacement",
+      "title": "Steps to replace ECB's Schnabel (governance change)",
+      "description": "Finance ministers initiating replacement steps for ECB policy member Schnabel could change central-bank communications and market confidence.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-12-31",
+        "label": "Q4 2026"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "cb_comm_credibility",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_spread_level",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“Euro zone finance ministers start steps to replace ECB's Schnabel.”"
+    },
+    {
+      "id": "global_bond_selloff_continues",
+      "title": "Continuation of global bond sell‑off",
+      "description": "Ongoing global bond sell-off momentum could further raise yields, widen spreads and amplify volatility and bank funding pressures in the near term.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-10-31",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "govt_bond_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_yield_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "corporate_spread_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_valuation_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bank_funding_stress",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“US bonds selloff resumes…10-year, 30-yields hit new 24-year high”; “European bank shares fall as bond yields surge.”"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "global_bond_selloff_continues",
+      "title": "Continuation of global bond sell‑off",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 235.0,
+      "expected_impact": 164.5,
+      "event_PS": 27.667,
+      "event_AS": 19.583,
+      "n_vars": 5,
+      "affected_ids": "govt_bond_yield, bond_yield_volatility, corporate_spread_level, equity_valuation_level, bank_funding_stress",
+      "rationale": "“US bonds selloff resumes…10-year, 30-yields hit new 24-year high”; “European bank shares fall as bond yields surge.”"
+    },
+    {
+      "id": "us_treasury_auctions_vote",
+      "title": "Upcoming US Treasury auctions (investor vote)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-10-23",
+      "probability": 0.9,
+      "impact_score": 232.0,
+      "expected_impact": 208.8,
+      "event_PS": 30.0,
+      "event_AS": 23.2,
+      "n_vars": 4,
+      "affected_ids": "auction_primary_demand, govt_bond_yield, bond_market_liquidity, bond_yield_volatility",
+      "rationale": "“The Treasury market is facing a crucial vote of investor confidence”; “Auction Action Calms Treasurys”."
+    },
+    {
+      "id": "eurozone_press_france_budget",
+      "title": "Eurozone ministers push France to pass 2027 budget",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of month",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 175.0,
+      "expected_impact": 140.0,
+      "event_PS": 15.714,
+      "event_AS": 25.0,
+      "n_vars": 4,
+      "affected_ids": "sovereign_spread_level, fiscal_deficit_flow, debt_to_gdp_ratio, cb_comm_credibility",
+      "rationale": "“Euro zone ministers to tell France to pass 2027 budget to calm markets.”"
+    },
+    {
+      "id": "france_bypass_parliament_cuts",
+      "title": "French government may bypass parliament to push cuts",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-11-15",
+      "probability": 0.6,
+      "impact_score": 160.0,
+      "expected_impact": 96.0,
+      "event_PS": 11.571,
+      "event_AS": 22.857,
+      "n_vars": 3,
+      "affected_ids": "fiscal_deficit_flow, sovereign_spread_level, debt_to_gdp_ratio",
+      "rationale": "“Exclusive | French Government Is Willing to Bypass Parliament to Pass Billions in Cuts.”"
+    },
+    {
+      "id": "ecb_schnabel_replacement",
+      "title": "Steps to replace ECB's Schnabel (governance change)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Q4 2026",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 139.0,
+      "expected_impact": 97.3,
+      "event_PS": 17.4,
+      "event_AS": 27.8,
+      "n_vars": 2,
+      "affected_ids": "cb_comm_credibility, sovereign_spread_level",
+      "rationale": "“Euro zone finance ministers start steps to replace ECB's Schnabel.”"
+    },
+    {
+      "id": "france_issue_shorter_debt",
+      "title": "France considers issuing more shorter‑term debt",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-11-15",
+      "probability": 0.65,
+      "impact_score": 118.0,
+      "expected_impact": 76.7,
+      "event_PS": 17.833,
+      "event_AS": 19.667,
+      "n_vars": 3,
+      "affected_ids": "debt_maturity_profile, auction_primary_demand, sovereign_spread_level",
+      "rationale": "“Exclusive | France Considers Issuing More Shorter-Term Debt After Bond-Market Turmoil.”"
+    }
+  ]
+}

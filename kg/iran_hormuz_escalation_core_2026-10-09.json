@@ -1,0 +1,1617 @@
+{
+  "label": "iran_hormuz_escalation",
+  "as_of": "2026-10-09",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-09T03:10:20",
+  "system_description": {
+    "narrative_title": "Maritime attacks and Middle East conflict strain global oil supply",
+    "narrative_summary": "An escalation of Houthi- and Iran-linked attacks on tankers, airports and Gulf export infrastructure is constricting flows through the Strait of Hormuz and adjacent routes, driving oil and refining-price volatility, record margins, and accelerated draws on strategic stockpiles. As an open system this story links physical flows (tankers, pipelines, terminals), stocks (reserves, storage, refinery runs), market signals (prices, futures, freight/insurance), and actors (state militaries, non-state attackers, traders, navies); shocks (attacks, storms) and policy responses (sanctions, release of reserves, mutual defence pacts) create reinforcing feedbacks that amplify price volatility and reroute trade. The result is emergent systemic strain: tanker shortages and higher transit costs depress throughput, which raises prices and incentives to reroute or hoard, further thinning global buffers and raising escalation risks.",
+    "scope": "Maritime oil export system centered on the Strait of Hormuz and Gulf export terminals: crude and refined product flows, tanker fleet and charter/insurance markets, regional producers and refiners, national strategic petroleum reserves, commodity traders and financial markets, and military/security actors and short-term weather hazards affecting Gulf production/transits.",
+    "super_system": "Global energy-security and commodity market system (interconnected oil & gas markets, global trade logistics, and geopolitics).",
+    "adjacent_subsystems": [
+      "Global shipping & marine insurance industry",
+      "International financial markets and commodity trading infrastructure",
+      "Regional security and defence architectures (Gulf states, Iran, US allies)",
+      "Downstream consumer markets and critical supply chains (transport, heating, food)"
+    ],
+    "evidence_headlines": [
+      "Oil rises as concerns over Houthi attacks on Saudi Arabia eclipse supply recovery",
+      "Attacks on tankers in Hormuz hit highest of any week since start of Iran war, sources say",
+      "Saudi Aramco chief warns world’s oil stockpiles are ‘scarily thin’",
+      "Vitol chief warns of tanker shortage and risk of $200-a-barrel oil",
+      "Ships’ captains paid $100,000 a month to transit Strait of Hormuz",
+      "US EIA hikes oil price forecasts again as Iran war drains global stockpile"
+    ]
+  },
+  "variables": [
+    {
+      "id": "oil_export_throughput",
+      "name": "Oil export throughput (rate)",
+      "description": "Rate of crude and refined oil volumes transiting Gulf maritime export routes per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_fleet_available",
+      "name": "Tanker fleet availability",
+      "description": "Effective aggregate cargo-carrying capacity of tankers available and willing to transit Gulf export routes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_freight_rates",
+      "name": "Insurance and freight rates",
+      "description": "Market prices charged for marine insurance and freight for oil shipments originating from the Gulf region.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserve_level",
+      "name": "Strategic oil reserve level",
+      "description": "Aggregate volume held in strategic petroleum reserves that can be released to stabilize markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commercial_storage_level",
+      "name": "Commercial storage level",
+      "description": "Volumes of crude and refined products held in commercial tank storage, terminals, and floating storage.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "description": "Share of refining capacity currently operating and processing crude into refined products.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refining_margin_level",
+      "name": "Refining margin level",
+      "description": "Price spread between refined product prices and crude input prices reflecting refining profitability and incentives to process crude.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "spot_price_level",
+      "name": "Spot oil price level",
+      "description": "Current benchmark spot price for crude oil reflecting immediate market supply-demand balance.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "price_volatility",
+      "name": "Price volatility",
+      "description": "Magnitude and frequency of short-term fluctuations in oil spot and futures prices.",
+      "kind": "perception",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_attack_rate",
+      "name": "Maritime attack rate",
+      "description": "Frequency and intensity of hostile incidents targeting tankers, terminals, pipelines, and other maritime infrastructure.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "port_terminal_damage",
+      "name": "Port and terminal damage state",
+      "description": "Aggregate extent of physical damage to export terminals, berths, pipelines and related onshore maritime infrastructure.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "transit_delay_time",
+      "name": "Average transit delay",
+      "description": "Average additional transit time experienced by vessels using Gulf routes due to security incidents, inspections or adverse weather.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "rerouting_cost_rate",
+      "name": "Rerouting cost rate",
+      "description": "Additional per-shipment cost and distance penalty incurred when cargoes are redirected away from primary Gulf routes.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "naval_escort_presence",
+      "name": "Naval and security escort presence",
+      "description": "Aggregate level of military and private security patrols and escort assets assigned to protect maritime transits.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_hoarding_rate",
+      "name": "Tanker hoarding rate",
+      "description": "Rate at which barrels are withheld from the market into floating storage or delayed sales for strategic or speculative reasons.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "global_spare_capacity",
+      "name": "Global spare production capacity",
+      "description": "Additional upstream production capacity that can be brought online within a short-to-medium timeframe to offset lost exports.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "oil_export_throughput",
+    "tanker_fleet_available",
+    "insurance_freight_rates",
+    "strategic_reserve_level",
+    "commercial_storage_level",
+    "refinery_utilization_rat",
+    "refining_margin_level",
+    "spot_price_level",
+    "price_volatility",
+    "maritime_attack_rate",
+    "port_terminal_damage",
+    "transit_delay_time",
+    "rerouting_cost_rate",
+    "naval_escort_presence",
+    "tanker_hoarding_rate",
+    "global_spare_capacity"
+  ],
+  "var_names": {
+    "oil_export_throughput": "Oil export throughput (rate)",
+    "tanker_fleet_available": "Tanker fleet availability",
+    "insurance_freight_rates": "Insurance and freight rates",
+    "strategic_reserve_level": "Strategic oil reserve level",
+    "commercial_storage_level": "Commercial storage level",
+    "refinery_utilization_rat": "Refinery utilization rate",
+    "refining_margin_level": "Refining margin level",
+    "spot_price_level": "Spot oil price level",
+    "price_volatility": "Price volatility",
+    "maritime_attack_rate": "Maritime attack rate",
+    "port_terminal_damage": "Port and terminal damage state",
+    "transit_delay_time": "Average transit delay",
+    "rerouting_cost_rate": "Rerouting cost rate",
+    "naval_escort_presence": "Naval and security escort presence",
+    "tanker_hoarding_rate": "Tanker hoarding rate",
+    "global_spare_capacity": "Global spare production capacity"
+  },
+  "impact_matrix": {
+    "oil_export_throughput": {
+      "oil_export_throughput": 0,
+      "tanker_fleet_available": 2,
+      "insurance_freight_rates": 1,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 2,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 1,
+      "spot_price_level": 3,
+      "price_volatility": 2,
+      "maritime_attack_rate": 1,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 1,
+      "rerouting_cost_rate": 0,
+      "naval_escort_presence": 1,
+      "tanker_hoarding_rate": 0,
+      "global_spare_capacity": 0
+    },
+    "tanker_fleet_available": {
+      "oil_export_throughput": 3,
+      "tanker_fleet_available": 0,
+      "insurance_freight_rates": 2,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 2,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 1,
+      "spot_price_level": 2,
+      "price_volatility": 2,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 2,
+      "rerouting_cost_rate": 1,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 2,
+      "global_spare_capacity": 0
+    },
+    "insurance_freight_rates": {
+      "oil_export_throughput": 2,
+      "tanker_fleet_available": 1,
+      "insurance_freight_rates": 0,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 1,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 1,
+      "spot_price_level": 2,
+      "price_volatility": 2,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 0,
+      "rerouting_cost_rate": 1,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 1,
+      "global_spare_capacity": 0
+    },
+    "strategic_reserve_level": {
+      "oil_export_throughput": 0,
+      "tanker_fleet_available": 0,
+      "insurance_freight_rates": 0,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 1,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 1,
+      "spot_price_level": 3,
+      "price_volatility": 2,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 0,
+      "rerouting_cost_rate": 0,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 0,
+      "global_spare_capacity": 0
+    },
+    "commercial_storage_level": {
+      "oil_export_throughput": 2,
+      "tanker_fleet_available": 1,
+      "insurance_freight_rates": 1,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 0,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 1,
+      "spot_price_level": 2,
+      "price_volatility": 2,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 0,
+      "rerouting_cost_rate": 0,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 2,
+      "global_spare_capacity": 0
+    },
+    "refinery_utilization_rat": {
+      "oil_export_throughput": 2,
+      "tanker_fleet_available": 1,
+      "insurance_freight_rates": 1,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 1,
+      "refinery_utilization_rat": 0,
+      "refining_margin_level": 3,
+      "spot_price_level": 1,
+      "price_volatility": 1,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 0,
+      "rerouting_cost_rate": 0,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 0,
+      "global_spare_capacity": 0
+    },
+    "refining_margin_level": {
+      "oil_export_throughput": 1,
+      "tanker_fleet_available": 0,
+      "insurance_freight_rates": 0,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 1,
+      "refinery_utilization_rat": 3,
+      "refining_margin_level": 0,
+      "spot_price_level": 2,
+      "price_volatility": 1,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 0,
+      "rerouting_cost_rate": 0,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 1,
+      "global_spare_capacity": 0
+    },
+    "spot_price_level": {
+      "oil_export_throughput": 1,
+      "tanker_fleet_available": 0,
+      "insurance_freight_rates": 1,
+      "strategic_reserve_level": 1,
+      "commercial_storage_level": 2,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 2,
+      "spot_price_level": 0,
+      "price_volatility": 2,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 0,
+      "rerouting_cost_rate": 0,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 2,
+      "global_spare_capacity": 1
+    },
+    "price_volatility": {
+      "oil_export_throughput": 1,
+      "tanker_fleet_available": 0,
+      "insurance_freight_rates": 1,
+      "strategic_reserve_level": 1,
+      "commercial_storage_level": 1,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 1,
+      "spot_price_level": 1,
+      "price_volatility": 0,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 0,
+      "rerouting_cost_rate": 0,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 1,
+      "global_spare_capacity": 0
+    },
+    "maritime_attack_rate": {
+      "oil_export_throughput": 3,
+      "tanker_fleet_available": 2,
+      "insurance_freight_rates": 3,
+      "strategic_reserve_level": 1,
+      "commercial_storage_level": 2,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 2,
+      "spot_price_level": 3,
+      "price_volatility": 3,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 2,
+      "transit_delay_time": 3,
+      "rerouting_cost_rate": 3,
+      "naval_escort_presence": 2,
+      "tanker_hoarding_rate": 2,
+      "global_spare_capacity": 1
+    },
+    "port_terminal_damage": {
+      "oil_export_throughput": 3,
+      "tanker_fleet_available": 1,
+      "insurance_freight_rates": 2,
+      "strategic_reserve_level": 1,
+      "commercial_storage_level": 2,
+      "refinery_utilization_rat": 2,
+      "refining_margin_level": 2,
+      "spot_price_level": 3,
+      "price_volatility": 2,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 3,
+      "rerouting_cost_rate": 2,
+      "naval_escort_presence": 1,
+      "tanker_hoarding_rate": 1,
+      "global_spare_capacity": 0
+    },
+    "transit_delay_time": {
+      "oil_export_throughput": 2,
+      "tanker_fleet_available": 1,
+      "insurance_freight_rates": 1,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 1,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 1,
+      "spot_price_level": 2,
+      "price_volatility": 2,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 0,
+      "rerouting_cost_rate": 1,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 1,
+      "global_spare_capacity": 0
+    },
+    "rerouting_cost_rate": {
+      "oil_export_throughput": 2,
+      "tanker_fleet_available": 1,
+      "insurance_freight_rates": 2,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 1,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 1,
+      "spot_price_level": 2,
+      "price_volatility": 1,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 2,
+      "rerouting_cost_rate": 0,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 1,
+      "global_spare_capacity": 0
+    },
+    "naval_escort_presence": {
+      "oil_export_throughput": 2,
+      "tanker_fleet_available": 1,
+      "insurance_freight_rates": 2,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 1,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 1,
+      "spot_price_level": 2,
+      "price_volatility": 2,
+      "maritime_attack_rate": 1,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 1,
+      "rerouting_cost_rate": 1,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 0,
+      "global_spare_capacity": 0
+    },
+    "tanker_hoarding_rate": {
+      "oil_export_throughput": 3,
+      "tanker_fleet_available": 2,
+      "insurance_freight_rates": 1,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 3,
+      "refinery_utilization_rat": 1,
+      "refining_margin_level": 1,
+      "spot_price_level": 3,
+      "price_volatility": 2,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 0,
+      "rerouting_cost_rate": 0,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 0,
+      "global_spare_capacity": 0
+    },
+    "global_spare_capacity": {
+      "oil_export_throughput": 2,
+      "tanker_fleet_available": 0,
+      "insurance_freight_rates": 1,
+      "strategic_reserve_level": 0,
+      "commercial_storage_level": 1,
+      "refinery_utilization_rat": 2,
+      "refining_margin_level": 1,
+      "spot_price_level": 3,
+      "price_volatility": 2,
+      "maritime_attack_rate": 0,
+      "port_terminal_damage": 0,
+      "transit_delay_time": 0,
+      "rerouting_cost_rate": 0,
+      "naval_escort_presence": 0,
+      "tanker_hoarding_rate": 0,
+      "global_spare_capacity": 0
+    }
+  },
+  "AS": {
+    "oil_export_throughput": 15,
+    "tanker_fleet_available": 18,
+    "insurance_freight_rates": 12,
+    "strategic_reserve_level": 8,
+    "commercial_storage_level": 12,
+    "refinery_utilization_rat": 10,
+    "refining_margin_level": 9,
+    "spot_price_level": 13,
+    "price_volatility": 8,
+    "maritime_attack_rate": 33,
+    "port_terminal_damage": 25,
+    "transit_delay_time": 13,
+    "rerouting_cost_rate": 14,
+    "naval_escort_presence": 15,
+    "tanker_hoarding_rate": 16,
+    "global_spare_capacity": 12
+  },
+  "PS": {
+    "oil_export_throughput": 29,
+    "tanker_fleet_available": 13,
+    "insurance_freight_rates": 19,
+    "strategic_reserve_level": 4,
+    "commercial_storage_level": 22,
+    "refinery_utilization_rat": 19,
+    "refining_margin_level": 20,
+    "spot_price_level": 34,
+    "price_volatility": 28,
+    "maritime_attack_rate": 2,
+    "port_terminal_damage": 2,
+    "transit_delay_time": 12,
+    "rerouting_cost_rate": 9,
+    "naval_escort_presence": 4,
+    "tanker_hoarding_rate": 14,
+    "global_spare_capacity": 2
+  },
+  "med_AS": 13.0,
+  "med_PS": 13.5,
+  "roles": [
+    {
+      "variable": "spot_price_level",
+      "name": "Spot oil price level",
+      "AS": 13,
+      "PS": 34,
+      "Q=AS/PS": 0.38,
+      "P=AS*PS": 442,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "oil_export_throughput",
+      "name": "Oil export throughput (rate)",
+      "AS": 15,
+      "PS": 29,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 435,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "commercial_storage_level",
+      "name": "Commercial storage level",
+      "AS": 12,
+      "PS": 22,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 264,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tanker_fleet_available",
+      "name": "Tanker fleet availability",
+      "AS": 18,
+      "PS": 13,
+      "Q=AS/PS": 1.38,
+      "P=AS*PS": 234,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "insurance_freight_rates",
+      "name": "Insurance and freight rates",
+      "AS": 12,
+      "PS": 19,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 228,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "price_volatility",
+      "name": "Price volatility",
+      "AS": 8,
+      "PS": 28,
+      "Q=AS/PS": 0.29,
+      "P=AS*PS": 224,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tanker_hoarding_rate",
+      "name": "Tanker hoarding rate",
+      "AS": 16,
+      "PS": 14,
+      "Q=AS/PS": 1.14,
+      "P=AS*PS": 224,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "AS": 10,
+      "PS": 19,
+      "Q=AS/PS": 0.53,
+      "P=AS*PS": 190,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refining_margin_level",
+      "name": "Refining margin level",
+      "AS": 9,
+      "PS": 20,
+      "Q=AS/PS": 0.45,
+      "P=AS*PS": 180,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "transit_delay_time",
+      "name": "Average transit delay",
+      "AS": 13,
+      "PS": 12,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 156,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "rerouting_cost_rate",
+      "name": "Rerouting cost rate",
+      "AS": 14,
+      "PS": 9,
+      "Q=AS/PS": 1.56,
+      "P=AS*PS": 126,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "maritime_attack_rate",
+      "name": "Maritime attack rate",
+      "AS": 33,
+      "PS": 2,
+      "Q=AS/PS": 16.5,
+      "P=AS*PS": 66,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "naval_escort_presence",
+      "name": "Naval and security escort presence",
+      "AS": 15,
+      "PS": 4,
+      "Q=AS/PS": 3.75,
+      "P=AS*PS": 60,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "port_terminal_damage",
+      "name": "Port and terminal damage state",
+      "AS": 25,
+      "PS": 2,
+      "Q=AS/PS": 12.5,
+      "P=AS*PS": 50,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "strategic_reserve_level",
+      "name": "Strategic oil reserve level",
+      "AS": 8,
+      "PS": 4,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 32,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "global_spare_capacity",
+      "name": "Global spare production capacity",
+      "AS": 12,
+      "PS": 2,
+      "Q=AS/PS": 6.0,
+      "P=AS*PS": 24,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "oil_export_throughput",
+        "name": "Oil export throughput (rate)",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 29
+      },
+      {
+        "id": "tanker_fleet_available",
+        "name": "Tanker fleet availability",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 13
+      },
+      {
+        "id": "insurance_freight_rates",
+        "name": "Insurance and freight rates",
+        "kind": "perception",
+        "AS": 12,
+        "PS": 19
+      },
+      {
+        "id": "strategic_reserve_level",
+        "name": "Strategic oil reserve level",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 4
+      },
+      {
+        "id": "commercial_storage_level",
+        "name": "Commercial storage level",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 22
+      },
+      {
+        "id": "refinery_utilization_rat",
+        "name": "Refinery utilization rate",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 19
+      },
+      {
+        "id": "refining_margin_level",
+        "name": "Refining margin level",
+        "kind": "perception",
+        "AS": 9,
+        "PS": 20
+      },
+      {
+        "id": "spot_price_level",
+        "name": "Spot oil price level",
+        "kind": "perception",
+        "AS": 13,
+        "PS": 34
+      },
+      {
+        "id": "price_volatility",
+        "name": "Price volatility",
+        "kind": "perception",
+        "AS": 8,
+        "PS": 28
+      },
+      {
+        "id": "maritime_attack_rate",
+        "name": "Maritime attack rate",
+        "kind": "driver",
+        "AS": 33,
+        "PS": 2
+      },
+      {
+        "id": "port_terminal_damage",
+        "name": "Port and terminal damage state",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 2
+      },
+      {
+        "id": "transit_delay_time",
+        "name": "Average transit delay",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 12
+      },
+      {
+        "id": "rerouting_cost_rate",
+        "name": "Rerouting cost rate",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 9
+      },
+      {
+        "id": "naval_escort_presence",
+        "name": "Naval and security escort presence",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 4
+      },
+      {
+        "id": "tanker_hoarding_rate",
+        "name": "Tanker hoarding rate",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 14
+      },
+      {
+        "id": "global_spare_capacity",
+        "name": "Global spare production capacity",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 2
+      }
+    ],
+    "edges": [
+      {
+        "source": "oil_export_throughput",
+        "target": "tanker_fleet_available",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_export_throughput",
+        "target": "commercial_storage_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_export_throughput",
+        "target": "spot_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "oil_export_throughput",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_fleet_available",
+        "target": "oil_export_throughput",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_fleet_available",
+        "target": "insurance_freight_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_fleet_available",
+        "target": "commercial_storage_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_fleet_available",
+        "target": "spot_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_fleet_available",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_fleet_available",
+        "target": "transit_delay_time",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_fleet_available",
+        "target": "tanker_hoarding_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_freight_rates",
+        "target": "oil_export_throughput",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_freight_rates",
+        "target": "spot_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_freight_rates",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "spot_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_storage_level",
+        "target": "oil_export_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commercial_storage_level",
+        "target": "spot_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_storage_level",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commercial_storage_level",
+        "target": "tanker_hoarding_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "oil_export_throughput",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "refining_margin_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refining_margin_level",
+        "target": "refinery_utilization_rat",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margin_level",
+        "target": "spot_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "spot_price_level",
+        "target": "commercial_storage_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spot_price_level",
+        "target": "refining_margin_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spot_price_level",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "spot_price_level",
+        "target": "tanker_hoarding_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "oil_export_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "tanker_fleet_available",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "insurance_freight_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "commercial_storage_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "refining_margin_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "spot_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "port_terminal_damage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "transit_delay_time",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "rerouting_cost_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "naval_escort_presence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_attack_rate",
+        "target": "tanker_hoarding_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "port_terminal_damage",
+        "target": "oil_export_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "port_terminal_damage",
+        "target": "insurance_freight_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "port_terminal_damage",
+        "target": "commercial_storage_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "port_terminal_damage",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "port_terminal_damage",
+        "target": "refining_margin_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "port_terminal_damage",
+        "target": "spot_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "port_terminal_damage",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "port_terminal_damage",
+        "target": "transit_delay_time",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "port_terminal_damage",
+        "target": "rerouting_cost_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "transit_delay_time",
+        "target": "oil_export_throughput",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "transit_delay_time",
+        "target": "spot_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "transit_delay_time",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouting_cost_rate",
+        "target": "oil_export_throughput",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rerouting_cost_rate",
+        "target": "insurance_freight_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouting_cost_rate",
+        "target": "spot_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rerouting_cost_rate",
+        "target": "transit_delay_time",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "naval_escort_presence",
+        "target": "oil_export_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "naval_escort_presence",
+        "target": "insurance_freight_rates",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "naval_escort_presence",
+        "target": "spot_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "naval_escort_presence",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_hoarding_rate",
+        "target": "oil_export_throughput",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_hoarding_rate",
+        "target": "tanker_fleet_available",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_hoarding_rate",
+        "target": "commercial_storage_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_hoarding_rate",
+        "target": "spot_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_hoarding_rate",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_spare_capacity",
+        "target": "oil_export_throughput",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_spare_capacity",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_spare_capacity",
+        "target": "spot_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_spare_capacity",
+        "target": "price_volatility",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "continued_houthi_attacks",
+      "title": "Continued Houthi attacks on shipping",
+      "description": "Ongoing missile/drone strikes by Houthi forces on tankers, airports and ports in the region persist, driving shipping disruption and insurance costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-10-30",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "maritime_attack_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_export_throughput",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "transit_delay_time",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_freight_rates",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_fleet_available",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "spot_price_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple headlines: 'Attacks on tankers...hit highest of any week', 'Oil prices jump on tanker attacks', 'Houthis launch missiles...'"
+    },
+    {
+      "id": "iran_block_illegal_routes",
+      "title": "Iran to block 'illegal' Hormuz routes",
+      "description": "Iran’s statement to soon block 'illegal routes' in the Strait of Hormuz risks formalising closures and forcing rerouting of tankers.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-10-23",
+        "label": "within 2 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "transit_delay_time",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_export_throughput",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "rerouting_cost_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_fleet_available",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "maritime_attack_rate",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'Iranian official says \"illegal routes\" in Strait of Hormuz to soon be blocked', 'Rebounding oil exports...vulnerable to stepped-up attacks'"
+    },
+    {
+      "id": "post_midterm_escalation_risk",
+      "title": "Risk of policy/military escalation after U.S. midterms",
+      "description": "U.S. statements promising restraint until midterms imply elevated risk of strikes or policy shifts after the Nov 2026 election, altering regional security dynamics.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-05",
+        "end": "2026-11-30",
+        "label": "post-midterms (Nov)"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "maritime_attack_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "naval_escort_presence",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_freight_rates",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "spot_price_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'Trump Says U.S. Won’t Resume Strikes on Iran Before Midterms' implies elevated post-midterm action risk"
+    },
+    {
+      "id": "hurricane_isaias_gulf_shutins",
+      "title": "Hurricane Isaias threatens US Gulf output",
+      "description": "Tropical storm/hurricane Isaias threatens Gulf of Mexico production, prompting shut-ins and refinery disruptions that will tighten supply.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-10-14",
+        "label": "this week"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "refinery_utilization_rat",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "oil_export_throughput",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "spot_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_spare_capacity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "'Isaias intensifies', 'Oil Majors Cut Production in Gulf of Mexico as Hurricane Isaias Strengthens'"
+    },
+    {
+      "id": "coordinated_reserve_release",
+      "title": "Planned coordinated SPR releases",
+      "description": "G7/IEA-level discussions and member statements (eg Poland) point to a likely coordinated crude/diesel release to calm markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-10-30",
+        "label": "weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "strategic_reserve_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "spot_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "price_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "commercial_storage_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "'Poland ready to release oil stocks pending group agreement', 'G-7 plans crude, diesel release' headlines"
+    },
+    {
+      "id": "increased_naval_escort_presence",
+      "title": "Ramped-up naval/private escorts in Gulf",
+      "description": "States and private firms expand military and armed-escort deployments to protect transits, altering risk calculus for shippers.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-11-09",
+        "label": "1 month"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "naval_escort_presence",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_fleet_available",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_freight_rates",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "maritime_attack_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "transit_delay_time",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "'Turkey sending technical, defensive support'; 'Ships’ captains paid $100,000 a month'; calls for escorts"
+    },
+    {
+      "id": "tanker_fleet_tightening_sanctions",
+      "title": "Tanker availability tightened by sanctions and avoidance",
+      "description": "Sanctions on 'shadow fleet' and carriers steering clear of Hormuz reduce effective tanker capacity and raise shipping costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-11-09",
+        "label": "weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "tanker_fleet_available",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_freight_rates",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rerouting_cost_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_hoarding_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "spot_price_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'Treasury sanctions 17 tankers linked to Iran's \"shadow fleet\"', 'carriers steer clear of Hormuz', 'Vitol warns of tanker shortage'"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "iran_block_illegal_routes",
+      "title": "Iran to block 'illegal' Hormuz routes",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "within 2 weeks",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-10-23",
+      "probability": 0.6,
+      "impact_score": 228.0,
+      "expected_impact": 136.8,
+      "event_PS": 13.846,
+      "event_AS": 17.538,
+      "n_vars": 5,
+      "affected_ids": "transit_delay_time, oil_export_throughput, rerouting_cost_rate, tanker_fleet_available, maritime_attack_rate",
+      "rationale": "'Iranian official says \"illegal routes\" in Strait of Hormuz to soon be blocked', 'Rebounding oil exports...vulnerable to stepped-up attacks'"
+    },
+    {
+      "id": "continued_houthi_attacks",
+      "title": "Continued Houthi attacks on shipping",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-10-30",
+      "probability": 0.85,
+      "impact_score": 223.0,
+      "expected_impact": 189.55,
+      "event_PS": 17.25,
+      "event_AS": 18.583,
+      "n_vars": 6,
+      "affected_ids": "maritime_attack_rate, oil_export_throughput, transit_delay_time, insurance_freight_rates, tanker_fleet_available, spot_price_level",
+      "rationale": "Multiple headlines: 'Attacks on tankers...hit highest of any week', 'Oil prices jump on tanker attacks', 'Houthis launch missiles...'"
+    },
+    {
+      "id": "tanker_fleet_tightening_sanctions",
+      "title": "Tanker availability tightened by sanctions and avoidance",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-11-09",
+      "probability": 0.75,
+      "impact_score": 176.0,
+      "expected_impact": 132.0,
+      "event_PS": 17.5,
+      "event_AS": 14.667,
+      "n_vars": 5,
+      "affected_ids": "tanker_fleet_available, insurance_freight_rates, rerouting_cost_rate, tanker_hoarding_rate, spot_price_level",
+      "rationale": "'Treasury sanctions 17 tankers linked to Iran's \"shadow fleet\"', 'carriers steer clear of Hormuz', 'Vitol warns of tanker shortage'"
+    },
+    {
+      "id": "post_midterm_escalation_risk",
+      "title": "Risk of policy/military escalation after U.S. midterms",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "post-midterms (Nov)",
+      "date": null,
+      "start": "2026-11-05",
+      "end": "2026-11-30",
+      "probability": 0.5,
+      "impact_score": 146.0,
+      "expected_impact": 73.0,
+      "event_PS": 14.75,
+      "event_AS": 18.25,
+      "n_vars": 4,
+      "affected_ids": "maritime_attack_rate, naval_escort_presence, insurance_freight_rates, spot_price_level",
+      "rationale": "'Trump Says U.S. Won’t Resume Strikes on Iran Before Midterms' implies elevated post-midterm action risk"
+    },
+    {
+      "id": "increased_naval_escort_presence",
+      "title": "Ramped-up naval/private escorts in Gulf",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1 month",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-11-09",
+      "probability": 0.65,
+      "impact_score": 139.0,
+      "expected_impact": 90.35,
+      "event_PS": 8.875,
+      "event_AS": 17.375,
+      "n_vars": 5,
+      "affected_ids": "naval_escort_presence, tanker_fleet_available, insurance_freight_rates, maritime_attack_rate, transit_delay_time",
+      "rationale": "'Turkey sending technical, defensive support'; 'Ships’ captains paid $100,000 a month'; calls for escorts"
+    },
+    {
+      "id": "hurricane_isaias_gulf_shutins",
+      "title": "Hurricane Isaias threatens US Gulf output",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-10-14",
+      "probability": 0.7,
+      "impact_score": 89.0,
+      "expected_impact": 62.3,
+      "event_PS": 24.125,
+      "event_AS": 11.125,
+      "n_vars": 5,
+      "affected_ids": "refinery_utilization_rat, oil_export_throughput, spot_price_level, price_volatility, global_spare_capacity",
+      "rationale": "'Isaias intensifies', 'Oil Majors Cut Production in Gulf of Mexico as Hurricane Isaias Strengthens'"
+    },
+    {
+      "id": "coordinated_reserve_release",
+      "title": "Planned coordinated SPR releases",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-10-30",
+      "probability": 0.6,
+      "impact_score": 78.0,
+      "expected_impact": 46.8,
+      "event_PS": 19.75,
+      "event_AS": 9.75,
+      "n_vars": 4,
+      "affected_ids": "strategic_reserve_level, spot_price_level, price_volatility, commercial_storage_level",
+      "rationale": "'Poland ready to release oil stocks pending group agreement', 'G-7 plans crude, diesel release' headlines"
+    }
+  ]
+}
