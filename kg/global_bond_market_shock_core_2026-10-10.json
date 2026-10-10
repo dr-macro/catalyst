@@ -1,0 +1,2089 @@
+{
+  "label": "global_bond_market_shock",
+  "as_of": "2026-10-10",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-10T02:42:53",
+  "system_description": {
+    "narrative_title": "Rising yields and a global bond-market stress test",
+    "narrative_summary": "A broad, persistent rise in government bond yields — led by US Treasuries and spreading through eurozone debt — is forcing a cross‑asset re‑pricing that is denting equity winners, stressing credit spreads and exposing sovereign fiscal vulnerabilities (most prominently in France). Central‑bank signalling, auction outcomes and fiscal politics are interacting in reinforcing feedback loops: higher yields raise debt servicing and risk premia, which beget more selling and higher yields unless credible intervention or fiscal adjustment occurs. Currency moves and capital flight to the dollar amplify pressure on emerging markets and create contagion channels between sovereigns, banks, corporate credit and equity sectors.",
+    "scope": "Sovereign bond markets (US Treasuries, eurozone OATs), real and nominal yields, central-bank policy communications and actions (Fed, ECB, Bank of France), sovereign fiscal positions and budget politics (notably France), bond-auction mechanics and demand, investor flows and positioning (hedge funds, institutional buyers, options traders), equity-sector rotation (growth/AI, banks, REITs), currency moves (USD/EUR) and emerging-market capital flows.",
+    "super_system": "Global financial system / global macroeconomic system",
+    "adjacent_subsystems": [
+      "Sovereign fiscal policy and domestic politics (budget choices, austerity vs stimulus)",
+      "Central-bank credibility and monetary policy transmission",
+      "Corporate credit and equity market valuations (spreads, sectoral rotations)",
+      "Foreign-exchange and emerging-market capital flows"
+    ],
+    "evidence_headlines": [
+      "Rising yields are quietly crashing the stock market’s earlier winners of 2026",
+      "U.S. Treasury Yields, Eurozone Bond Yields Rise Relentlessly",
+      "French bonds are suffering through their worst decade since 1803 — and investors are bracing for more pain",
+      "Euro at Risk of Further Losses on French Debt Concerns",
+      "The Treasury market is facing a crucial vote of investor confidence",
+      "US 10-year Treasury yield risks hitting 6% for first time since 2000, Pimco says"
+    ]
+  },
+  "variables": [
+    {
+      "id": "nominal_yield_level",
+      "name": "Nominal yield level",
+      "description": "The prevailing market interest rate on sovereign debt instruments measured in nominal terms across maturities.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "real_yield_level",
+      "name": "Real yield level",
+      "description": "The inflation-adjusted return investors require on sovereign debt across the yield curve.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_volatility",
+      "name": "Yield volatility",
+      "description": "The short- to medium-term variability in sovereign bond yields as measured by realized or implied volatility.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread_level",
+      "name": "Credit spread level",
+      "description": "The average premium demanded by investors over risk-free yields for non-sovereign credit instruments, across sectors and maturities.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "debt_service_burden",
+      "name": "Debt service burden",
+      "description": "The ratio of periodic debt interest and principal servicing obligations to available public revenues or GDP.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_balance",
+      "name": "Fiscal balance",
+      "description": "The net flow of government resources over a fiscal period (deficit or surplus) measured as a proportion of GDP or revenues.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_credibility",
+      "name": "Fiscal credibility",
+      "description": "Market and stakeholder confidence in a sovereign's willingness and ability to maintain sustainable fiscal policies over time.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_stance",
+      "name": "Central-bank policy stance",
+      "description": "The prevailing orientation of monetary policy instruments (tightening, neutral, easing) as perceived by markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_comm_clarity",
+      "name": "Central-bank communication clarity",
+      "description": "The degree to which monetary authorities' public signals reduce ambiguity about future policy and market expectations.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "auction_demand_depth",
+      "name": "Auction demand depth",
+      "description": "The scale and competitiveness of investor bids at sovereign debt issuances relative to the amount offered.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity_depth",
+      "name": "Market liquidity depth",
+      "description": "The ease and cost of executing large transactions in debt and related markets without significant price impact.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_leverage",
+      "name": "Investor leverage positioning",
+      "description": "The aggregate degree of borrowed exposure and margin-sensitive positions held by market participants in fixed income and related assets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "capital_flow_net",
+      "name": "Net capital flows",
+      "description": "The net cross-border financial inflows or outflows into a jurisdiction's assets over a given period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "currency_strength_gap",
+      "name": "Currency strength gap",
+      "description": "The relative valuation differential between a reference currency and other major currencies, expressed as a continuous index.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation_gap",
+      "name": "Equity valuation dispersion",
+      "description": "The cross-sector difference in equity price-to-earnings or other valuation multiples reflecting rotation between winners and losers.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "contagion_intensity",
+      "name": "Contagion intensity",
+      "description": "The propensity and strength of transmission of stress across sovereigns, banks, corporate credit and equity markets.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "nominal_yield_level",
+    "real_yield_level",
+    "yield_volatility",
+    "credit_spread_level",
+    "debt_service_burden",
+    "fiscal_balance",
+    "fiscal_credibility",
+    "central_bank_stance",
+    "central_comm_clarity",
+    "auction_demand_depth",
+    "market_liquidity_depth",
+    "investor_leverage",
+    "capital_flow_net",
+    "currency_strength_gap",
+    "equity_valuation_gap",
+    "contagion_intensity"
+  ],
+  "var_names": {
+    "nominal_yield_level": "Nominal yield level",
+    "real_yield_level": "Real yield level",
+    "yield_volatility": "Yield volatility",
+    "credit_spread_level": "Credit spread level",
+    "debt_service_burden": "Debt service burden",
+    "fiscal_balance": "Fiscal balance",
+    "fiscal_credibility": "Fiscal credibility",
+    "central_bank_stance": "Central-bank policy stance",
+    "central_comm_clarity": "Central-bank communication clarity",
+    "auction_demand_depth": "Auction demand depth",
+    "market_liquidity_depth": "Market liquidity depth",
+    "investor_leverage": "Investor leverage positioning",
+    "capital_flow_net": "Net capital flows",
+    "currency_strength_gap": "Currency strength gap",
+    "equity_valuation_gap": "Equity valuation dispersion",
+    "contagion_intensity": "Contagion intensity"
+  },
+  "impact_matrix": {
+    "nominal_yield_level": {
+      "nominal_yield_level": 0,
+      "real_yield_level": 2,
+      "yield_volatility": 1,
+      "credit_spread_level": 1,
+      "debt_service_burden": 3,
+      "fiscal_balance": 2,
+      "fiscal_credibility": 1,
+      "central_bank_stance": 2,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 1,
+      "market_liquidity_depth": 1,
+      "investor_leverage": 1,
+      "capital_flow_net": 2,
+      "currency_strength_gap": 2,
+      "equity_valuation_gap": 2,
+      "contagion_intensity": 1
+    },
+    "real_yield_level": {
+      "nominal_yield_level": 1,
+      "real_yield_level": 0,
+      "yield_volatility": 1,
+      "credit_spread_level": 1,
+      "debt_service_burden": 3,
+      "fiscal_balance": 2,
+      "fiscal_credibility": 2,
+      "central_bank_stance": 2,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 1,
+      "market_liquidity_depth": 1,
+      "investor_leverage": 1,
+      "capital_flow_net": 2,
+      "currency_strength_gap": 2,
+      "equity_valuation_gap": 2,
+      "contagion_intensity": 1
+    },
+    "yield_volatility": {
+      "nominal_yield_level": 1,
+      "real_yield_level": 1,
+      "yield_volatility": 0,
+      "credit_spread_level": 2,
+      "debt_service_burden": 1,
+      "fiscal_balance": 0,
+      "fiscal_credibility": 2,
+      "central_bank_stance": 2,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 2,
+      "market_liquidity_depth": 2,
+      "investor_leverage": 3,
+      "capital_flow_net": 2,
+      "currency_strength_gap": 2,
+      "equity_valuation_gap": 1,
+      "contagion_intensity": 3
+    },
+    "credit_spread_level": {
+      "nominal_yield_level": 1,
+      "real_yield_level": 1,
+      "yield_volatility": 2,
+      "credit_spread_level": 0,
+      "debt_service_burden": 2,
+      "fiscal_balance": 2,
+      "fiscal_credibility": 3,
+      "central_bank_stance": 1,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 2,
+      "market_liquidity_depth": 2,
+      "investor_leverage": 2,
+      "capital_flow_net": 2,
+      "currency_strength_gap": 2,
+      "equity_valuation_gap": 2,
+      "contagion_intensity": 2
+    },
+    "debt_service_burden": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_volatility": 2,
+      "credit_spread_level": 3,
+      "debt_service_burden": 0,
+      "fiscal_balance": 3,
+      "fiscal_credibility": 3,
+      "central_bank_stance": 2,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 2,
+      "market_liquidity_depth": 1,
+      "investor_leverage": 1,
+      "capital_flow_net": 2,
+      "currency_strength_gap": 2,
+      "equity_valuation_gap": 1,
+      "contagion_intensity": 3
+    },
+    "fiscal_balance": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_volatility": 2,
+      "credit_spread_level": 2,
+      "debt_service_burden": 1,
+      "fiscal_balance": 0,
+      "fiscal_credibility": 3,
+      "central_bank_stance": 2,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 2,
+      "market_liquidity_depth": 1,
+      "investor_leverage": 1,
+      "capital_flow_net": 2,
+      "currency_strength_gap": 2,
+      "equity_valuation_gap": 1,
+      "contagion_intensity": 2
+    },
+    "fiscal_credibility": {
+      "nominal_yield_level": 3,
+      "real_yield_level": 3,
+      "yield_volatility": 2,
+      "credit_spread_level": 3,
+      "debt_service_burden": 2,
+      "fiscal_balance": 1,
+      "fiscal_credibility": 0,
+      "central_bank_stance": 1,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 3,
+      "market_liquidity_depth": 2,
+      "investor_leverage": 1,
+      "capital_flow_net": 3,
+      "currency_strength_gap": 3,
+      "equity_valuation_gap": 2,
+      "contagion_intensity": 3
+    },
+    "central_bank_stance": {
+      "nominal_yield_level": 3,
+      "real_yield_level": 2,
+      "yield_volatility": 2,
+      "credit_spread_level": 2,
+      "debt_service_burden": 2,
+      "fiscal_balance": 1,
+      "fiscal_credibility": 1,
+      "central_bank_stance": 0,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 2,
+      "market_liquidity_depth": 3,
+      "investor_leverage": 2,
+      "capital_flow_net": 2,
+      "currency_strength_gap": 2,
+      "equity_valuation_gap": 2,
+      "contagion_intensity": 2
+    },
+    "central_comm_clarity": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_volatility": 3,
+      "credit_spread_level": 1,
+      "debt_service_burden": 0,
+      "fiscal_balance": 0,
+      "fiscal_credibility": 1,
+      "central_bank_stance": 0,
+      "central_comm_clarity": 0,
+      "auction_demand_depth": 1,
+      "market_liquidity_depth": 1,
+      "investor_leverage": 1,
+      "capital_flow_net": 1,
+      "currency_strength_gap": 1,
+      "equity_valuation_gap": 1,
+      "contagion_intensity": 2
+    },
+    "auction_demand_depth": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_volatility": 1,
+      "credit_spread_level": 2,
+      "debt_service_burden": 2,
+      "fiscal_balance": 1,
+      "fiscal_credibility": 2,
+      "central_bank_stance": 0,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 0,
+      "market_liquidity_depth": 2,
+      "investor_leverage": 1,
+      "capital_flow_net": 2,
+      "currency_strength_gap": 1,
+      "equity_valuation_gap": 0,
+      "contagion_intensity": 2
+    },
+    "market_liquidity_depth": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_volatility": 3,
+      "credit_spread_level": 2,
+      "debt_service_burden": 1,
+      "fiscal_balance": 0,
+      "fiscal_credibility": 1,
+      "central_bank_stance": 2,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 3,
+      "market_liquidity_depth": 0,
+      "investor_leverage": 2,
+      "capital_flow_net": 2,
+      "currency_strength_gap": 1,
+      "equity_valuation_gap": 1,
+      "contagion_intensity": 3
+    },
+    "investor_leverage": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_volatility": 2,
+      "credit_spread_level": 2,
+      "debt_service_burden": 0,
+      "fiscal_balance": 0,
+      "fiscal_credibility": 0,
+      "central_bank_stance": 1,
+      "central_comm_clarity": 0,
+      "auction_demand_depth": 2,
+      "market_liquidity_depth": 2,
+      "investor_leverage": 0,
+      "capital_flow_net": 2,
+      "currency_strength_gap": 1,
+      "equity_valuation_gap": 2,
+      "contagion_intensity": 3
+    },
+    "capital_flow_net": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_volatility": 2,
+      "credit_spread_level": 2,
+      "debt_service_burden": 0,
+      "fiscal_balance": 1,
+      "fiscal_credibility": 2,
+      "central_bank_stance": 2,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 3,
+      "market_liquidity_depth": 2,
+      "investor_leverage": 2,
+      "capital_flow_net": 0,
+      "currency_strength_gap": 3,
+      "equity_valuation_gap": 2,
+      "contagion_intensity": 2
+    },
+    "currency_strength_gap": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_volatility": 2,
+      "credit_spread_level": 2,
+      "debt_service_burden": 2,
+      "fiscal_balance": 1,
+      "fiscal_credibility": 2,
+      "central_bank_stance": 2,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 2,
+      "market_liquidity_depth": 1,
+      "investor_leverage": 2,
+      "capital_flow_net": 1,
+      "currency_strength_gap": 0,
+      "equity_valuation_gap": 1,
+      "contagion_intensity": 2
+    },
+    "equity_valuation_gap": {
+      "nominal_yield_level": 1,
+      "real_yield_level": 1,
+      "yield_volatility": 1,
+      "credit_spread_level": 2,
+      "debt_service_burden": 0,
+      "fiscal_balance": 0,
+      "fiscal_credibility": 0,
+      "central_bank_stance": 1,
+      "central_comm_clarity": 0,
+      "auction_demand_depth": 1,
+      "market_liquidity_depth": 1,
+      "investor_leverage": 2,
+      "capital_flow_net": 1,
+      "currency_strength_gap": 1,
+      "equity_valuation_gap": 0,
+      "contagion_intensity": 2
+    },
+    "contagion_intensity": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_volatility": 3,
+      "credit_spread_level": 3,
+      "debt_service_burden": 2,
+      "fiscal_balance": 1,
+      "fiscal_credibility": 2,
+      "central_bank_stance": 2,
+      "central_comm_clarity": 1,
+      "auction_demand_depth": 3,
+      "market_liquidity_depth": 3,
+      "investor_leverage": 3,
+      "capital_flow_net": 3,
+      "currency_strength_gap": 2,
+      "equity_valuation_gap": 2,
+      "contagion_intensity": 0
+    }
+  },
+  "AS": {
+    "nominal_yield_level": 23,
+    "real_yield_level": 23,
+    "yield_volatility": 25,
+    "credit_spread_level": 27,
+    "debt_service_burden": 30,
+    "fiscal_balance": 26,
+    "fiscal_credibility": 33,
+    "central_bank_stance": 29,
+    "central_comm_clarity": 17,
+    "auction_demand_depth": 21,
+    "market_liquidity_depth": 26,
+    "investor_leverage": 21,
+    "capital_flow_net": 28,
+    "currency_strength_gap": 25,
+    "equity_valuation_gap": 14,
+    "contagion_intensity": 34
+  },
+  "PS": {
+    "nominal_yield_level": 28,
+    "real_yield_level": 28,
+    "yield_volatility": 29,
+    "credit_spread_level": 30,
+    "debt_service_burden": 21,
+    "fiscal_balance": 15,
+    "fiscal_credibility": 25,
+    "central_bank_stance": 22,
+    "central_comm_clarity": 13,
+    "auction_demand_depth": 30,
+    "market_liquidity_depth": 25,
+    "investor_leverage": 25,
+    "capital_flow_net": 29,
+    "currency_strength_gap": 27,
+    "equity_valuation_gap": 22,
+    "contagion_intensity": 33
+  },
+  "med_AS": 25.5,
+  "med_PS": 26.0,
+  "roles": [
+    {
+      "variable": "contagion_intensity",
+      "name": "Contagion intensity",
+      "AS": 34,
+      "PS": 33,
+      "Q=AS/PS": 1.03,
+      "P=AS*PS": 1122,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "fiscal_credibility",
+      "name": "Fiscal credibility",
+      "AS": 33,
+      "PS": 25,
+      "Q=AS/PS": 1.32,
+      "P=AS*PS": 825,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "capital_flow_net",
+      "name": "Net capital flows",
+      "AS": 28,
+      "PS": 29,
+      "Q=AS/PS": 0.97,
+      "P=AS*PS": 812,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "credit_spread_level",
+      "name": "Credit spread level",
+      "AS": 27,
+      "PS": 30,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 810,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "yield_volatility",
+      "name": "Yield volatility",
+      "AS": 25,
+      "PS": 29,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 725,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "currency_strength_gap",
+      "name": "Currency strength gap",
+      "AS": 25,
+      "PS": 27,
+      "Q=AS/PS": 0.93,
+      "P=AS*PS": 675,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity_depth",
+      "name": "Market liquidity depth",
+      "AS": 26,
+      "PS": 25,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 650,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "real_yield_level",
+      "name": "Real yield level",
+      "AS": 23,
+      "PS": 28,
+      "Q=AS/PS": 0.82,
+      "P=AS*PS": 644,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "nominal_yield_level",
+      "name": "Nominal yield level",
+      "AS": 23,
+      "PS": 28,
+      "Q=AS/PS": 0.82,
+      "P=AS*PS": 644,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "central_bank_stance",
+      "name": "Central-bank policy stance",
+      "AS": 29,
+      "PS": 22,
+      "Q=AS/PS": 1.32,
+      "P=AS*PS": 638,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "auction_demand_depth",
+      "name": "Auction demand depth",
+      "AS": 21,
+      "PS": 30,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 630,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "debt_service_burden",
+      "name": "Debt service burden",
+      "AS": 30,
+      "PS": 21,
+      "Q=AS/PS": 1.43,
+      "P=AS*PS": 630,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "investor_leverage",
+      "name": "Investor leverage positioning",
+      "AS": 21,
+      "PS": 25,
+      "Q=AS/PS": 0.84,
+      "P=AS*PS": 525,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fiscal_balance",
+      "name": "Fiscal balance",
+      "AS": 26,
+      "PS": 15,
+      "Q=AS/PS": 1.73,
+      "P=AS*PS": 390,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "equity_valuation_gap",
+      "name": "Equity valuation dispersion",
+      "AS": 14,
+      "PS": 22,
+      "Q=AS/PS": 0.64,
+      "P=AS*PS": 308,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "central_comm_clarity",
+      "name": "Central-bank communication clarity",
+      "AS": 17,
+      "PS": 13,
+      "Q=AS/PS": 1.31,
+      "P=AS*PS": 221,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "nominal_yield_level",
+        "name": "Nominal yield level",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 28
+      },
+      {
+        "id": "real_yield_level",
+        "name": "Real yield level",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 28
+      },
+      {
+        "id": "yield_volatility",
+        "name": "Yield volatility",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 29
+      },
+      {
+        "id": "credit_spread_level",
+        "name": "Credit spread level",
+        "kind": "stock",
+        "AS": 27,
+        "PS": 30
+      },
+      {
+        "id": "debt_service_burden",
+        "name": "Debt service burden",
+        "kind": "stock",
+        "AS": 30,
+        "PS": 21
+      },
+      {
+        "id": "fiscal_balance",
+        "name": "Fiscal balance",
+        "kind": "flow",
+        "AS": 26,
+        "PS": 15
+      },
+      {
+        "id": "fiscal_credibility",
+        "name": "Fiscal credibility",
+        "kind": "perception",
+        "AS": 33,
+        "PS": 25
+      },
+      {
+        "id": "central_bank_stance",
+        "name": "Central-bank policy stance",
+        "kind": "driver",
+        "AS": 29,
+        "PS": 22
+      },
+      {
+        "id": "central_comm_clarity",
+        "name": "Central-bank communication clarity",
+        "kind": "perception",
+        "AS": 17,
+        "PS": 13
+      },
+      {
+        "id": "auction_demand_depth",
+        "name": "Auction demand depth",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 30
+      },
+      {
+        "id": "market_liquidity_depth",
+        "name": "Market liquidity depth",
+        "kind": "stock",
+        "AS": 26,
+        "PS": 25
+      },
+      {
+        "id": "investor_leverage",
+        "name": "Investor leverage positioning",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 25
+      },
+      {
+        "id": "capital_flow_net",
+        "name": "Net capital flows",
+        "kind": "flow",
+        "AS": 28,
+        "PS": 29
+      },
+      {
+        "id": "currency_strength_gap",
+        "name": "Currency strength gap",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 27
+      },
+      {
+        "id": "equity_valuation_gap",
+        "name": "Equity valuation dispersion",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 22
+      },
+      {
+        "id": "contagion_intensity",
+        "name": "Contagion intensity",
+        "kind": "environment",
+        "AS": 34,
+        "PS": 33
+      }
+    ],
+    "edges": [
+      {
+        "source": "nominal_yield_level",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "debt_service_burden",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "fiscal_balance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "central_bank_stance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "currency_strength_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "equity_valuation_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "debt_service_burden",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "fiscal_balance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "fiscal_credibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "central_bank_stance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "currency_strength_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "equity_valuation_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "fiscal_credibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "central_bank_stance",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "auction_demand_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "currency_strength_gap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "contagion_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "debt_service_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "fiscal_balance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "fiscal_credibility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "auction_demand_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "currency_strength_gap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "equity_valuation_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "contagion_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_service_burden",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_service_burden",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_service_burden",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_service_burden",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_service_burden",
+        "target": "fiscal_balance",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "debt_service_burden",
+        "target": "fiscal_credibility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "debt_service_burden",
+        "target": "central_bank_stance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_service_burden",
+        "target": "auction_demand_depth",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_service_burden",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_service_burden",
+        "target": "currency_strength_gap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_service_burden",
+        "target": "contagion_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance",
+        "target": "fiscal_credibility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance",
+        "target": "central_bank_stance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance",
+        "target": "auction_demand_depth",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance",
+        "target": "currency_strength_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance",
+        "target": "contagion_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility",
+        "target": "nominal_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility",
+        "target": "real_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility",
+        "target": "debt_service_burden",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility",
+        "target": "auction_demand_depth",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_credibility",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_credibility",
+        "target": "capital_flow_net",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_credibility",
+        "target": "currency_strength_gap",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_credibility",
+        "target": "equity_valuation_gap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_credibility",
+        "target": "contagion_intensity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "nominal_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "debt_service_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "auction_demand_depth",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "market_liquidity_depth",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "currency_strength_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "equity_valuation_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "contagion_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_comm_clarity",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_comm_clarity",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_comm_clarity",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_comm_clarity",
+        "target": "contagion_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand_depth",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand_depth",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand_depth",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand_depth",
+        "target": "debt_service_burden",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand_depth",
+        "target": "fiscal_credibility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_demand_depth",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_demand_depth",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_demand_depth",
+        "target": "contagion_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "central_bank_stance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "auction_demand_depth",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_depth",
+        "target": "contagion_intensity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "auction_demand_depth",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "capital_flow_net",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "equity_valuation_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "contagion_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "fiscal_credibility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "central_bank_stance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "auction_demand_depth",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "market_liquidity_depth",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "currency_strength_gap",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "equity_valuation_gap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_flow_net",
+        "target": "contagion_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength_gap",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength_gap",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength_gap",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength_gap",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength_gap",
+        "target": "debt_service_burden",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength_gap",
+        "target": "fiscal_credibility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_strength_gap",
+        "target": "central_bank_stance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength_gap",
+        "target": "auction_demand_depth",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_strength_gap",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_strength_gap",
+        "target": "contagion_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_valuation_gap",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation_gap",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation_gap",
+        "target": "contagion_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "debt_service_burden",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "fiscal_credibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "central_bank_stance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "auction_demand_depth",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "market_liquidity_depth",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "capital_flow_net",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "currency_strength_gap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "contagion_intensity",
+        "target": "equity_valuation_gap",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_rate_hikes_by_year_end",
+      "title": "Further Fed rate hikes by year-end",
+      "description": "Markets price additional Fed tightening before year-end following divided Fed minutes and officials flagging another hike later this year.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-12-31",
+        "label": "by year-end"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "central_bank_stance",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "real_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Fed minutes/officials signal further hikes this year; Waller says more hikes needed."
+    },
+    {
+      "id": "upcoming_treasury_auctions_test_demand",
+      "title": "Large Treasury auctions test investor demand",
+      "description": "A string of benchmark Treasury auctions will act as a fresh vote of investor confidence and could move yields and liquidity.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-10-24",
+        "label": "2 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "auction_demand_depth",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity_depth",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Treasury market facing a crucial vote of investor confidence', auctions calming/easing demand fears."
+    },
+    {
+      "id": "france_2027_budget_passage",
+      "title": "France 2027 budget showdown / passage",
+      "description": "French government moves to pass a contested 2027 budget (possibly bypassing parliament) that could materially affect yields and risk perceptions.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-11-30",
+        "label": "6-8 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "fiscal_balance",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_credibility",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "contagion_intensity",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Eurozone ministers urge France to pass 2027 budget; govt willing to bypass parliament to pass cuts."
+    },
+    {
+      "id": "dollar_strength_continues",
+      "title": "Continued dollar strength",
+      "description": "Dollar momentum may persist as euro lags and global yields rise, driving currency and capital-flow moves.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2027-01-10",
+        "label": "1-3 months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "currency_strength_gap",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "capital_flow_net",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Dollar holds near 18-month high', 'Europe's woes give dollar bulls reason to press on'."
+    },
+    {
+      "id": "emerging_market_outflows",
+      "title": "Emerging-market capital outflows",
+      "description": "Hawkish Fed and rising global yields sustain EM outflows, pressuring local bonds and currencies and shifting global flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2027-01-10",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "capital_flow_net",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_strength_gap",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "contagion_intensity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Hawkish Fed triggers emerging market outflows in September'."
+    },
+    {
+      "id": "ten_year_to_6pct_rise",
+      "title": "10-year Treasury yields pushing toward 6%",
+      "description": "Market commentary and strategists flag a credible path for the US 10-year to reach ~6% within months if tightening continues.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2027-07-10",
+        "label": "6-9 months"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "real_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "debt_service_burden",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Rising Real Yields Point to a 6% 10', Pimco warns 10-year risks hitting 6%."
+    },
+    {
+      "id": "credit_spread_widening",
+      "title": "Widening corporate credit spreads",
+      "description": "Rising yields and volatility put pressure on high-yield and bank credit, risking spread widening and stress in leveraged positions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-12-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "contagion_intensity",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Rates Outlook: Volatility Is No Friend of Spreads', 'Junk bonds are flashing yellow.'"
+    },
+    {
+      "id": "us_midterm_elections",
+      "title": "US midterm elections",
+      "description": "November 2026 midterms can shift fiscal/policy outlook and investor positioning, moving yields and flows around the vote.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-11-04",
+        "start": null,
+        "end": null,
+        "label": "Election Day"
+      },
+      "probability": 0.99,
+      "affected": [
+        {
+          "variable_id": "fiscal_credibility",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "capital_flow_net",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Treasury yields steady as Trump strikes diplomatic tone on Iran ahead of midterms' — political risk influences markets."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "france_2027_budget_passage",
+      "title": "France 2027 budget showdown / passage",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "6-8 weeks",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-11-30",
+      "probability": 0.7,
+      "impact_score": 309.0,
+      "expected_impact": 216.3,
+      "event_PS": 26.364,
+      "event_AS": 28.091,
+      "n_vars": 5,
+      "affected_ids": "fiscal_balance, fiscal_credibility, nominal_yield_level, credit_spread_level, contagion_intensity",
+      "rationale": "Eurozone ministers urge France to pass 2027 budget; govt willing to bypass parliament to pass cuts."
+    },
+    {
+      "id": "fed_rate_hikes_by_year_end",
+      "title": "Further Fed rate hikes by year-end",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by year-end",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 252.0,
+      "expected_impact": 151.2,
+      "event_PS": 26.4,
+      "event_AS": 25.2,
+      "n_vars": 4,
+      "affected_ids": "central_bank_stance, nominal_yield_level, real_yield_level, yield_volatility",
+      "rationale": "Fed minutes/officials signal further hikes this year; Waller says more hikes needed."
+    },
+    {
+      "id": "upcoming_treasury_auctions_test_demand",
+      "title": "Large Treasury auctions test investor demand",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-10-24",
+      "probability": 0.9,
+      "impact_score": 234.0,
+      "expected_impact": 210.6,
+      "event_PS": 28.2,
+      "event_AS": 23.4,
+      "n_vars": 4,
+      "affected_ids": "auction_demand_depth, nominal_yield_level, market_liquidity_depth, yield_volatility",
+      "rationale": "Headlines: 'Treasury market facing a crucial vote of investor confidence', auctions calming/easing demand fears."
+    },
+    {
+      "id": "emerging_market_outflows",
+      "title": "Emerging-market capital outflows",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2027-01-10",
+      "probability": 0.7,
+      "impact_score": 218.0,
+      "expected_impact": 152.6,
+      "event_PS": 29.0,
+      "event_AS": 27.25,
+      "n_vars": 4,
+      "affected_ids": "capital_flow_net, yield_volatility, currency_strength_gap, contagion_intensity",
+      "rationale": "Headline: 'Hawkish Fed triggers emerging market outflows in September'."
+    },
+    {
+      "id": "credit_spread_widening",
+      "title": "Widening corporate credit spreads",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 199.0,
+      "expected_impact": 119.4,
+      "event_PS": 30.571,
+      "event_AS": 28.429,
+      "n_vars": 3,
+      "affected_ids": "credit_spread_level, yield_volatility, contagion_intensity",
+      "rationale": "Headlines: 'Rates Outlook: Volatility Is No Friend of Spreads', 'Junk bonds are flashing yellow.'"
+    },
+    {
+      "id": "ten_year_to_6pct_rise",
+      "title": "10-year Treasury yields pushing toward 6%",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6-9 months",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2027-07-10",
+      "probability": 0.4,
+      "impact_score": 175.0,
+      "expected_impact": 70.0,
+      "event_PS": 26.0,
+      "event_AS": 25.0,
+      "n_vars": 3,
+      "affected_ids": "nominal_yield_level, real_yield_level, debt_service_burden",
+      "rationale": "Headlines: 'Rising Real Yields Point to a 6% 10', Pimco warns 10-year risks hitting 6%."
+    },
+    {
+      "id": "us_midterm_elections",
+      "title": "US midterm elections",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "Election Day",
+      "date": "2026-11-04",
+      "start": null,
+      "end": null,
+      "probability": 0.99,
+      "impact_score": 172.0,
+      "expected_impact": 170.28,
+      "event_PS": 27.667,
+      "event_AS": 28.667,
+      "n_vars": 3,
+      "affected_ids": "fiscal_credibility, capital_flow_net, yield_volatility",
+      "rationale": "Headline: 'Treasury yields steady as Trump strikes diplomatic tone on Iran ahead of midterms' — political risk influences markets."
+    },
+    {
+      "id": "dollar_strength_continues",
+      "title": "Continued dollar strength",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-3 months",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2027-01-10",
+      "probability": 0.75,
+      "impact_score": 154.0,
+      "expected_impact": 115.5,
+      "event_PS": 27.833,
+      "event_AS": 25.667,
+      "n_vars": 3,
+      "affected_ids": "currency_strength_gap, capital_flow_net, nominal_yield_level",
+      "rationale": "Headlines: 'Dollar holds near 18-month high', 'Europe's woes give dollar bulls reason to press on'."
+    }
+  ]
+}
