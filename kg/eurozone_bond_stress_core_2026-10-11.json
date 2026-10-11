@@ -1,0 +1,2174 @@
+{
+  "label": "eurozone_bond_stress",
+  "as_of": "2026-10-10",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-11T02:14:25",
+  "system_description": {
+    "narrative_title": "Global bond rout: rising sovereign yields and political-financial stress",
+    "narrative_summary": "A synchronized rise in sovereign bond yields — led by US Treasuries and reflected in European sovereigns, notably France — is driving market volatility, testing central‑bank responses and pressuring banks, credit markets and risk assets. The move is feeding political strain in countries with weak fiscal positions (France), altering investor positioning (auctions, bottom‑fishing, junk‑bond warnings) and raising the risk of further yield spikes (analysts warn of a 6% US 10‑year).",
+    "scope": "Sovereign bond markets (US Treasuries, Eurozone OATs, French bonds), real yields and yield curves; central banks' policy stance (Fed, ECB, BoJ), government fiscal positions and debt issuance/auctions; investor behavior (institutional demand, options/auction dynamics), credit markets (investment-grade and junk bonds), banking sector vulnerability, and spillovers to equities and crypto.",
+    "super_system": "Global macro-financial system / global economy",
+    "adjacent_subsystems": [
+      "National fiscal politics and social stability (France, EU fiscal debates)",
+      "Central banking and monetary policy frameworks (Fed, ECB, BoJ)",
+      "Credit markets and banking sector health (corporate credit, bank balance sheets)",
+      "Risk-asset markets (equities, commodities, crypto) and investor sentiment"
+    ],
+    "evidence_headlines": [
+      "Treasury yields are 'really, really high' but can come down soon, Bessent's new advisor says",
+      "US 10-year Treasury yield risks hitting 6% for first time since 2000, Pimco's Ivascyn tells FT",
+      "France: between the bond market and the barricades",
+      "French central bank chief says ECB intervention not needed to ease bond rout",
+      "European bank stocks slide 8% as bond yields spark investor caution",
+      "Bitcoin edges lower to $82k, heads for weekly losses amid yield pressure"
+    ]
+  },
+  "variables": [
+    {
+      "id": "sovereign_nominal_yields",
+      "name": "Sovereign nominal yields",
+      "description": "The prevailing nominal interest rates on sovereign debt across the sovereign bond market.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_real_yields",
+      "name": "Sovereign real yields",
+      "description": "Inflation-adjusted yields on sovereign debt that reflect the real return available to investors.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The difference between long-term and short-term sovereign yields indicating term premium and expectations.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_credit_spreads",
+      "name": "Sovereign credit spreads",
+      "description": "The premium demanded by investors for holding a given sovereign's debt relative to a baseline benchmark across maturities.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "government_debt_stock",
+      "name": "Government debt stock",
+      "description": "The outstanding stock of government debt measured relative to the economy size and other scaling metrics.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_balance_flow",
+      "name": "Fiscal balance (flow)",
+      "description": "The net government borrowing or surplus per period, measured as the fiscal deficit or surplus relative to economic output.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "debt_issuance_rate",
+      "name": "Government debt issuance rate",
+      "description": "The volume and pacing of new government debt offered to markets per unit of time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "auction_demand",
+      "name": "Auction demand",
+      "description": "The aggregate level of investor orders and bidding pressure at sovereign debt issuances and auctions.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The ease, depth, and cost of trading sovereign and credit bonds, including bid-ask spreads and market depth.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Market volatility",
+      "description": "The degree of price variability and realized or implied volatility across fixed income and related asset markets.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "The prevailing willingness of market participants to hold risk assets versus seeking safe-haven instruments.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "ig_credit_spreads",
+      "name": "Investment-grade credit spreads",
+      "description": "The yield premium on investment-grade corporate debt over comparable sovereign or benchmark yields.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "hy_credit_spreads",
+      "name": "High-yield credit spreads",
+      "description": "The yield premium on lower‑rated corporate and speculative‑grade debt over comparable sovereign or benchmark yields.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "banking_sector_stress",
+      "name": "Banking sector stress",
+      "description": "The degree of funding, solvency and market‑value pressure across banks arising from asset‑liability mismatches and market moves.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "Market-implied expectations of future short-term policy interest rates and the path of monetary policy.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "Net international flows of capital into and out of sovereign and credit markets measured per period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "sovereign_nominal_yields",
+    "sovereign_real_yields",
+    "yield_curve_slope",
+    "sovereign_credit_spreads",
+    "government_debt_stock",
+    "fiscal_balance_flow",
+    "debt_issuance_rate",
+    "auction_demand",
+    "bond_market_liquidity",
+    "market_volatility",
+    "investor_risk_appetite",
+    "ig_credit_spreads",
+    "hy_credit_spreads",
+    "banking_sector_stress",
+    "policy_rate_expectations",
+    "cross_border_flows"
+  ],
+  "var_names": {
+    "sovereign_nominal_yields": "Sovereign nominal yields",
+    "sovereign_real_yields": "Sovereign real yields",
+    "yield_curve_slope": "Yield curve slope",
+    "sovereign_credit_spreads": "Sovereign credit spreads",
+    "government_debt_stock": "Government debt stock",
+    "fiscal_balance_flow": "Fiscal balance (flow)",
+    "debt_issuance_rate": "Government debt issuance rate",
+    "auction_demand": "Auction demand",
+    "bond_market_liquidity": "Bond market liquidity",
+    "market_volatility": "Market volatility",
+    "investor_risk_appetite": "Investor risk appetite",
+    "ig_credit_spreads": "Investment-grade credit spreads",
+    "hy_credit_spreads": "High-yield credit spreads",
+    "banking_sector_stress": "Banking sector stress",
+    "policy_rate_expectations": "Policy rate expectations",
+    "cross_border_flows": "Cross-border capital flows"
+  },
+  "impact_matrix": {
+    "sovereign_nominal_yields": {
+      "sovereign_nominal_yields": 0,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 1,
+      "government_debt_stock": 1,
+      "fiscal_balance_flow": 2,
+      "debt_issuance_rate": 2,
+      "auction_demand": 2,
+      "bond_market_liquidity": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "ig_credit_spreads": 2,
+      "hy_credit_spreads": 2,
+      "banking_sector_stress": 2,
+      "policy_rate_expectations": 2,
+      "cross_border_flows": 2
+    },
+    "sovereign_real_yields": {
+      "sovereign_nominal_yields": 2,
+      "sovereign_real_yields": 0,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 2,
+      "government_debt_stock": 2,
+      "fiscal_balance_flow": 2,
+      "debt_issuance_rate": 2,
+      "auction_demand": 2,
+      "bond_market_liquidity": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "ig_credit_spreads": 2,
+      "hy_credit_spreads": 2,
+      "banking_sector_stress": 2,
+      "policy_rate_expectations": 2,
+      "cross_border_flows": 2
+    },
+    "yield_curve_slope": {
+      "sovereign_nominal_yields": 1,
+      "sovereign_real_yields": 1,
+      "yield_curve_slope": 0,
+      "sovereign_credit_spreads": 2,
+      "government_debt_stock": 1,
+      "fiscal_balance_flow": 1,
+      "debt_issuance_rate": 2,
+      "auction_demand": 2,
+      "bond_market_liquidity": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 1,
+      "ig_credit_spreads": 1,
+      "hy_credit_spreads": 1,
+      "banking_sector_stress": 2,
+      "policy_rate_expectations": 2,
+      "cross_border_flows": 1
+    },
+    "sovereign_credit_spreads": {
+      "sovereign_nominal_yields": 3,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 0,
+      "government_debt_stock": 1,
+      "fiscal_balance_flow": 3,
+      "debt_issuance_rate": 2,
+      "auction_demand": 3,
+      "bond_market_liquidity": 3,
+      "market_volatility": 3,
+      "investor_risk_appetite": 3,
+      "ig_credit_spreads": 2,
+      "hy_credit_spreads": 2,
+      "banking_sector_stress": 3,
+      "policy_rate_expectations": 1,
+      "cross_border_flows": 3
+    },
+    "government_debt_stock": {
+      "sovereign_nominal_yields": 2,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 1,
+      "sovereign_credit_spreads": 2,
+      "government_debt_stock": 0,
+      "fiscal_balance_flow": 1,
+      "debt_issuance_rate": 2,
+      "auction_demand": 1,
+      "bond_market_liquidity": 1,
+      "market_volatility": 1,
+      "investor_risk_appetite": 1,
+      "ig_credit_spreads": 1,
+      "hy_credit_spreads": 1,
+      "banking_sector_stress": 1,
+      "policy_rate_expectations": 1,
+      "cross_border_flows": 1
+    },
+    "fiscal_balance_flow": {
+      "sovereign_nominal_yields": 2,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 1,
+      "sovereign_credit_spreads": 2,
+      "government_debt_stock": 3,
+      "fiscal_balance_flow": 0,
+      "debt_issuance_rate": 3,
+      "auction_demand": 2,
+      "bond_market_liquidity": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "ig_credit_spreads": 1,
+      "hy_credit_spreads": 1,
+      "banking_sector_stress": 1,
+      "policy_rate_expectations": 1,
+      "cross_border_flows": 2
+    },
+    "debt_issuance_rate": {
+      "sovereign_nominal_yields": 2,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 3,
+      "sovereign_credit_spreads": 2,
+      "government_debt_stock": 3,
+      "fiscal_balance_flow": 1,
+      "debt_issuance_rate": 0,
+      "auction_demand": 3,
+      "bond_market_liquidity": 2,
+      "market_volatility": 2,
+      "investor_risk_appetite": 1,
+      "ig_credit_spreads": 1,
+      "hy_credit_spreads": 1,
+      "banking_sector_stress": 1,
+      "policy_rate_expectations": 1,
+      "cross_border_flows": 2
+    },
+    "auction_demand": {
+      "sovereign_nominal_yields": 3,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 3,
+      "government_debt_stock": 1,
+      "fiscal_balance_flow": 1,
+      "debt_issuance_rate": 2,
+      "auction_demand": 0,
+      "bond_market_liquidity": 2,
+      "market_volatility": 3,
+      "investor_risk_appetite": 3,
+      "ig_credit_spreads": 2,
+      "hy_credit_spreads": 2,
+      "banking_sector_stress": 2,
+      "policy_rate_expectations": 1,
+      "cross_border_flows": 3
+    },
+    "bond_market_liquidity": {
+      "sovereign_nominal_yields": 2,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 2,
+      "government_debt_stock": 1,
+      "fiscal_balance_flow": 0,
+      "debt_issuance_rate": 2,
+      "auction_demand": 2,
+      "bond_market_liquidity": 0,
+      "market_volatility": 3,
+      "investor_risk_appetite": 2,
+      "ig_credit_spreads": 2,
+      "hy_credit_spreads": 2,
+      "banking_sector_stress": 2,
+      "policy_rate_expectations": 1,
+      "cross_border_flows": 2
+    },
+    "market_volatility": {
+      "sovereign_nominal_yields": 2,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 3,
+      "government_debt_stock": 0,
+      "fiscal_balance_flow": 0,
+      "debt_issuance_rate": 2,
+      "auction_demand": 3,
+      "bond_market_liquidity": 3,
+      "market_volatility": 0,
+      "investor_risk_appetite": 3,
+      "ig_credit_spreads": 3,
+      "hy_credit_spreads": 3,
+      "banking_sector_stress": 3,
+      "policy_rate_expectations": 2,
+      "cross_border_flows": 3
+    },
+    "investor_risk_appetite": {
+      "sovereign_nominal_yields": 3,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 3,
+      "government_debt_stock": 0,
+      "fiscal_balance_flow": 0,
+      "debt_issuance_rate": 1,
+      "auction_demand": 3,
+      "bond_market_liquidity": 2,
+      "market_volatility": 2,
+      "investor_risk_appetite": 0,
+      "ig_credit_spreads": 3,
+      "hy_credit_spreads": 3,
+      "banking_sector_stress": 2,
+      "policy_rate_expectations": 1,
+      "cross_border_flows": 3
+    },
+    "ig_credit_spreads": {
+      "sovereign_nominal_yields": 1,
+      "sovereign_real_yields": 1,
+      "yield_curve_slope": 1,
+      "sovereign_credit_spreads": 2,
+      "government_debt_stock": 0,
+      "fiscal_balance_flow": 0,
+      "debt_issuance_rate": 0,
+      "auction_demand": 1,
+      "bond_market_liquidity": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 1,
+      "ig_credit_spreads": 0,
+      "hy_credit_spreads": 1,
+      "banking_sector_stress": 1,
+      "policy_rate_expectations": 0,
+      "cross_border_flows": 1
+    },
+    "hy_credit_spreads": {
+      "sovereign_nominal_yields": 2,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 1,
+      "sovereign_credit_spreads": 2,
+      "government_debt_stock": 0,
+      "fiscal_balance_flow": 0,
+      "debt_issuance_rate": 0,
+      "auction_demand": 2,
+      "bond_market_liquidity": 2,
+      "market_volatility": 3,
+      "investor_risk_appetite": 2,
+      "ig_credit_spreads": 2,
+      "hy_credit_spreads": 0,
+      "banking_sector_stress": 2,
+      "policy_rate_expectations": 0,
+      "cross_border_flows": 2
+    },
+    "banking_sector_stress": {
+      "sovereign_nominal_yields": 2,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 3,
+      "government_debt_stock": 2,
+      "fiscal_balance_flow": 2,
+      "debt_issuance_rate": 2,
+      "auction_demand": 3,
+      "bond_market_liquidity": 3,
+      "market_volatility": 3,
+      "investor_risk_appetite": 3,
+      "ig_credit_spreads": 3,
+      "hy_credit_spreads": 3,
+      "banking_sector_stress": 0,
+      "policy_rate_expectations": 2,
+      "cross_border_flows": 3
+    },
+    "policy_rate_expectations": {
+      "sovereign_nominal_yields": 3,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 3,
+      "sovereign_credit_spreads": 2,
+      "government_debt_stock": 0,
+      "fiscal_balance_flow": 0,
+      "debt_issuance_rate": 1,
+      "auction_demand": 2,
+      "bond_market_liquidity": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "ig_credit_spreads": 2,
+      "hy_credit_spreads": 2,
+      "banking_sector_stress": 2,
+      "policy_rate_expectations": 0,
+      "cross_border_flows": 3
+    },
+    "cross_border_flows": {
+      "sovereign_nominal_yields": 3,
+      "sovereign_real_yields": 2,
+      "yield_curve_slope": 2,
+      "sovereign_credit_spreads": 2,
+      "government_debt_stock": 0,
+      "fiscal_balance_flow": 0,
+      "debt_issuance_rate": 2,
+      "auction_demand": 3,
+      "bond_market_liquidity": 2,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "ig_credit_spreads": 2,
+      "hy_credit_spreads": 2,
+      "banking_sector_stress": 2,
+      "policy_rate_expectations": 2,
+      "cross_border_flows": 0
+    }
+  },
+  "AS": {
+    "sovereign_nominal_yields": 27,
+    "sovereign_real_yields": 29,
+    "yield_curve_slope": 21,
+    "sovereign_credit_spreads": 36,
+    "government_debt_stock": 19,
+    "fiscal_balance_flow": 26,
+    "debt_issuance_rate": 27,
+    "auction_demand": 32,
+    "bond_market_liquidity": 27,
+    "market_volatility": 34,
+    "investor_risk_appetite": 30,
+    "ig_credit_spreads": 13,
+    "hy_credit_spreads": 22,
+    "banking_sector_stress": 38,
+    "policy_rate_expectations": 27,
+    "cross_border_flows": 28
+  },
+  "PS": {
+    "sovereign_nominal_yields": 33,
+    "sovereign_real_yields": 28,
+    "yield_curve_slope": 28,
+    "sovereign_credit_spreads": 33,
+    "government_debt_stock": 15,
+    "fiscal_balance_flow": 13,
+    "debt_issuance_rate": 25,
+    "auction_demand": 34,
+    "bond_market_liquidity": 26,
+    "market_volatility": 34,
+    "investor_risk_appetite": 30,
+    "ig_credit_spreads": 29,
+    "hy_credit_spreads": 28,
+    "banking_sector_stress": 28,
+    "policy_rate_expectations": 19,
+    "cross_border_flows": 33
+  },
+  "med_AS": 27.0,
+  "med_PS": 28.0,
+  "roles": [
+    {
+      "variable": "sovereign_credit_spreads",
+      "name": "Sovereign credit spreads",
+      "AS": 36,
+      "PS": 33,
+      "Q=AS/PS": 1.09,
+      "P=AS*PS": 1188,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Market volatility",
+      "AS": 34,
+      "PS": 34,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 1156,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "auction_demand",
+      "name": "Auction demand",
+      "AS": 32,
+      "PS": 34,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 1088,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "banking_sector_stress",
+      "name": "Banking sector stress",
+      "AS": 38,
+      "PS": 28,
+      "Q=AS/PS": 1.36,
+      "P=AS*PS": 1064,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 28,
+      "PS": 33,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 924,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 30,
+      "PS": 30,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 900,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_nominal_yields",
+      "name": "Sovereign nominal yields",
+      "AS": 27,
+      "PS": 33,
+      "Q=AS/PS": 0.82,
+      "P=AS*PS": 891,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_real_yields",
+      "name": "Sovereign real yields",
+      "AS": 29,
+      "PS": 28,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 812,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 27,
+      "PS": 26,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 702,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "debt_issuance_rate",
+      "name": "Government debt issuance rate",
+      "AS": 27,
+      "PS": 25,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 675,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "hy_credit_spreads",
+      "name": "High-yield credit spreads",
+      "AS": 22,
+      "PS": 28,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 616,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 21,
+      "PS": 28,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 588,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 27,
+      "PS": 19,
+      "Q=AS/PS": 1.42,
+      "P=AS*PS": 513,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "ig_credit_spreads",
+      "name": "Investment-grade credit spreads",
+      "AS": 13,
+      "PS": 29,
+      "Q=AS/PS": 0.45,
+      "P=AS*PS": 377,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fiscal_balance_flow",
+      "name": "Fiscal balance (flow)",
+      "AS": 26,
+      "PS": 13,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 338,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "government_debt_stock",
+      "name": "Government debt stock",
+      "AS": 19,
+      "PS": 15,
+      "Q=AS/PS": 1.27,
+      "P=AS*PS": 285,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "sovereign_nominal_yields",
+        "name": "Sovereign nominal yields",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 33
+      },
+      {
+        "id": "sovereign_real_yields",
+        "name": "Sovereign real yields",
+        "kind": "driver",
+        "AS": 29,
+        "PS": 28
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 28
+      },
+      {
+        "id": "sovereign_credit_spreads",
+        "name": "Sovereign credit spreads",
+        "kind": "driver",
+        "AS": 36,
+        "PS": 33
+      },
+      {
+        "id": "government_debt_stock",
+        "name": "Government debt stock",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 15
+      },
+      {
+        "id": "fiscal_balance_flow",
+        "name": "Fiscal balance (flow)",
+        "kind": "flow",
+        "AS": 26,
+        "PS": 13
+      },
+      {
+        "id": "debt_issuance_rate",
+        "name": "Government debt issuance rate",
+        "kind": "flow",
+        "AS": 27,
+        "PS": 25
+      },
+      {
+        "id": "auction_demand",
+        "name": "Auction demand",
+        "kind": "flow",
+        "AS": 32,
+        "PS": 34
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "environment",
+        "AS": 27,
+        "PS": 26
+      },
+      {
+        "id": "market_volatility",
+        "name": "Market volatility",
+        "kind": "environment",
+        "AS": 34,
+        "PS": 34
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 30,
+        "PS": 30
+      },
+      {
+        "id": "ig_credit_spreads",
+        "name": "Investment-grade credit spreads",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 29
+      },
+      {
+        "id": "hy_credit_spreads",
+        "name": "High-yield credit spreads",
+        "kind": "driver",
+        "AS": 22,
+        "PS": 28
+      },
+      {
+        "id": "banking_sector_stress",
+        "name": "Banking sector stress",
+        "kind": "institution_field",
+        "AS": 38,
+        "PS": 28
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 27,
+        "PS": 19
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 28,
+        "PS": 33
+      }
+    ],
+    "edges": [
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "fiscal_balance_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "debt_issuance_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "auction_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "ig_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "hy_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "banking_sector_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_nominal_yields",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "sovereign_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "government_debt_stock",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "fiscal_balance_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "debt_issuance_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "auction_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "ig_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "hy_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "banking_sector_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_real_yields",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "debt_issuance_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "auction_demand",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "banking_sector_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "sovereign_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "fiscal_balance_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "debt_issuance_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "auction_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "ig_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "hy_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "banking_sector_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_credit_spreads",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "government_debt_stock",
+        "target": "sovereign_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_debt_stock",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_debt_stock",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_debt_stock",
+        "target": "debt_issuance_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance_flow",
+        "target": "sovereign_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance_flow",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance_flow",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance_flow",
+        "target": "government_debt_stock",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance_flow",
+        "target": "debt_issuance_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance_flow",
+        "target": "auction_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance_flow",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance_flow",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance_flow",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "sovereign_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "government_debt_stock",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "auction_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_issuance_rate",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_demand",
+        "target": "sovereign_nominal_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand",
+        "target": "sovereign_credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand",
+        "target": "debt_issuance_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_demand",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "auction_demand",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "auction_demand",
+        "target": "ig_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand",
+        "target": "hy_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand",
+        "target": "banking_sector_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "auction_demand",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "sovereign_nominal_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "debt_issuance_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "auction_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "ig_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "hy_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "banking_sector_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "sovereign_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "sovereign_credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "debt_issuance_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "auction_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "ig_credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "hy_credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "banking_sector_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "market_volatility",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "sovereign_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "sovereign_credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "auction_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "ig_credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "hy_credit_spreads",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "banking_sector_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "ig_credit_spreads",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ig_credit_spreads",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hy_credit_spreads",
+        "target": "sovereign_nominal_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hy_credit_spreads",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hy_credit_spreads",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hy_credit_spreads",
+        "target": "auction_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hy_credit_spreads",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hy_credit_spreads",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "hy_credit_spreads",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hy_credit_spreads",
+        "target": "ig_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hy_credit_spreads",
+        "target": "banking_sector_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hy_credit_spreads",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "sovereign_nominal_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "sovereign_credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "government_debt_stock",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "fiscal_balance_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "debt_issuance_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "auction_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "ig_credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "hy_credit_spreads",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "banking_sector_stress",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "sovereign_nominal_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "auction_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "ig_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "hy_credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "banking_sector_stress",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "sovereign_nominal_yields",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "sovereign_real_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "sovereign_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "debt_issuance_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "auction_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "ig_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "hy_credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "banking_sector_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_midterm_elections_2026",
+      "title": "U.S. midterm elections (Nov 2026)",
+      "description": "Nationwide U.S. elections that can shift fiscal policy outlook, geopolitical risk signaling and market positioning, influencing yields and flows.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-11-04",
+        "start": null,
+        "end": null,
+        "label": "election day"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "sovereign_nominal_yields",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'Treasury yields steady as Trump strikes diplomatic tone on Iran ahead of midterms' (midterms are an imminent political catalyst)."
+    },
+    {
+      "id": "upcoming_10yr_treasury_auction",
+      "title": "Next major 10‑year Treasury auction",
+      "description": "A scheduled large Treasury note auction that will test demand, influence yields and option positioning amid elevated volatility.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-10-24",
+        "label": "2 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "auction_demand",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_nominal_yields",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Options traders start calling bottom on bond rout after \"bullet bid\" 10-year auction' and multiple auction-focused stories."
+    },
+    {
+      "id": "french_pension_unrest",
+      "title": "Ongoing French political unrest over pensions/austerity",
+      "description": "Sustained protests and political strain around French fiscal policy that can elevate French sovereign spreads and regional risk premia.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-12-31",
+        "label": "1-3 months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "sovereign_credit_spreads",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_nominal_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "auction_demand",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "banking_sector_stress",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'France: between the bond market and the barricades', 'Is France too blasé about borrowing costs', 'France Is Discovering the Cost of Higher Yields'."
+    },
+    {
+      "id": "ecb_policy_meeting_window",
+      "title": "ECB Governing Council meeting / intervention calculus",
+      "description": "Upcoming ECB decision window where the bank may signal or act on bond-market intervention, altering rates expectations and term premia.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-20",
+        "end": "2026-10-31",
+        "label": "by end of month"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_nominal_yields",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_credit_spreads",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'French central bank chief says ECB intervention not needed to ease bond rout' — markets watching ECB response possibility."
+    },
+    {
+      "id": "us_inflation_data_release",
+      "title": "Next U.S. inflation prints (CPI/PCE)",
+      "description": "Upcoming monthly inflation releases that will adjust real-yield pricing and policy-rate expectations driving sovereign yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-10-20",
+        "label": "2 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "sovereign_real_yields",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_nominal_yields",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Rising Real Yields Point to a 6% 10' and commentary on yields — inflation prints will move real-yield pricing."
+    },
+    {
+      "id": "eurozone_bank_stock_followthrough",
+      "title": "European bank-stock selloff and funding stress",
+      "description": "Continued weakness in European bank equities could signal funding strains and force balance-sheet adjustments, affecting spreads and liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-11-10",
+        "label": "1 month"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "banking_sector_stress",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "ig_credit_spreads",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "hy_credit_spreads",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'European bank stocks slide 8% as bond yields spark investor caution' indicates potential follow-through into funding/liquidity."
+    },
+    {
+      "id": "japanese_withdrawal_france_bonds",
+      "title": "Japanese investor pullback from French bonds",
+      "description": "A material reduction in Japanese demand for French/Eurozone sovereigns, shifting cross-border flows and pressuring spreads and auction demand.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-11-30",
+        "label": "1-2 months"
+      },
+      "probability": 0.55,
+      "affected": [
+        {
+          "variable_id": "auction_demand",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_credit_spreads",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Tokyo Bond Desks Say Sayonara as Japan Reconsiders Its French Love Affair' — signals reduced Japanese participation."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "french_pension_unrest",
+      "title": "Ongoing French political unrest over pensions/austerity",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-3 months",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-12-31",
+      "probability": 0.85,
+      "impact_score": 389.0,
+      "expected_impact": 330.65,
+      "event_PS": 31.833,
+      "event_AS": 32.417,
+      "n_vars": 5,
+      "affected_ids": "sovereign_credit_spreads, sovereign_nominal_yields, auction_demand, banking_sector_stress, investor_risk_appetite",
+      "rationale": "Headlines: 'France: between the bond market and the barricades', 'Is France too blasé about borrowing costs', 'France Is Discovering the Cost of Higher Yields'."
+    },
+    {
+      "id": "eurozone_bank_stock_followthrough",
+      "title": "European bank-stock selloff and funding stress",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1 month",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-11-10",
+      "probability": 0.6,
+      "impact_score": 294.0,
+      "expected_impact": 176.4,
+      "event_PS": 28.727,
+      "event_AS": 26.727,
+      "n_vars": 5,
+      "affected_ids": "banking_sector_stress, bond_market_liquidity, cross_border_flows, ig_credit_spreads, hy_credit_spreads",
+      "rationale": "Headline: 'European bank stocks slide 8% as bond yields spark investor caution' indicates potential follow-through into funding/liquidity."
+    },
+    {
+      "id": "us_inflation_data_release",
+      "title": "Next U.S. inflation prints (CPI/PCE)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-10-20",
+      "probability": 0.9,
+      "impact_score": 290.0,
+      "expected_impact": 261.0,
+      "event_PS": 27.5,
+      "event_AS": 29.0,
+      "n_vars": 4,
+      "affected_ids": "sovereign_real_yields, policy_rate_expectations, sovereign_nominal_yields, market_volatility",
+      "rationale": "Headlines: 'Rising Real Yields Point to a 6% 10' and commentary on yields — inflation prints will move real-yield pricing."
+    },
+    {
+      "id": "upcoming_10yr_treasury_auction",
+      "title": "Next major 10‑year Treasury auction",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-10-24",
+      "probability": 0.9,
+      "impact_score": 272.0,
+      "expected_impact": 244.8,
+      "event_PS": 32.0,
+      "event_AS": 30.222,
+      "n_vars": 4,
+      "affected_ids": "auction_demand, sovereign_nominal_yields, bond_market_liquidity, market_volatility",
+      "rationale": "Headlines: 'Options traders start calling bottom on bond rout after \"bullet bid\" 10-year auction' and multiple auction-focused stories."
+    },
+    {
+      "id": "us_midterm_elections_2026",
+      "title": "U.S. midterm elections (Nov 2026)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "election day",
+      "date": "2026-11-04",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 224.0,
+      "expected_impact": 212.8,
+      "event_PS": 28.75,
+      "event_AS": 28.0,
+      "n_vars": 4,
+      "affected_ids": "sovereign_nominal_yields, policy_rate_expectations, cross_border_flows, investor_risk_appetite",
+      "rationale": "Headline: 'Treasury yields steady as Trump strikes diplomatic tone on Iran ahead of midterms' (midterms are an imminent political catalyst)."
+    },
+    {
+      "id": "ecb_policy_meeting_window",
+      "title": "ECB Governing Council meeting / intervention calculus",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of month",
+      "date": null,
+      "start": "2026-10-20",
+      "end": "2026-10-31",
+      "probability": 0.7,
+      "impact_score": 198.0,
+      "expected_impact": 138.6,
+      "event_PS": 26.0,
+      "event_AS": 28.286,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, sovereign_nominal_yields, sovereign_credit_spreads, bond_market_liquidity",
+      "rationale": "Headline: 'French central bank chief says ECB intervention not needed to ease bond rout' — markets watching ECB response possibility."
+    },
+    {
+      "id": "japanese_withdrawal_france_bonds",
+      "title": "Japanese investor pullback from French bonds",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1-2 months",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-11-30",
+      "probability": 0.55,
+      "impact_score": 192.0,
+      "expected_impact": 105.6,
+      "event_PS": 33.333,
+      "event_AS": 32.0,
+      "n_vars": 3,
+      "affected_ids": "auction_demand, cross_border_flows, sovereign_credit_spreads",
+      "rationale": "Headline: 'Tokyo Bond Desks Say Sayonara as Japan Reconsiders Its French Love Affair' — signals reduced Japanese participation."
+    }
+  ]
+}

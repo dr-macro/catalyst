@@ -1,0 +1,1711 @@
+{
+  "label": "iran_houthi_maritime",
+  "as_of": "2026-10-11",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-11T02:09:57",
+  "system_description": {
+    "narrative_title": "Energy shock: Mideast attacks and hurricanes roil global oil markets",
+    "narrative_summary": "A confluence of escalating Middle East violence — Houthi/Iran-linked tanker attacks and missile strikes on Saudi aviation — and Atlantic/Pacific hurricanes disrupting Gulf of Mexico production is driving acute energy supply risk and price volatility. Governments respond with sanctions, airspace closures and military posturing while markets, shippers and insurers reprice risk, reroute flows, and curtail operations, producing feedbacks that amplify economic and political stress across the system. The window shows short-term market relief tied to political statements alternating with renewed price spikes from fresh attacks or storm impacts, highlighting a fragile, tightly coupled global energy supply chain.",
+    "scope": "Upstream oil and gas production (Middle East, Gulf of Mexico, Venezuela), tanker and shipping routes (Strait of Hormuz, global tanker fleet), refining and fuels logistics, airlines/airports affected by strikes, market actors (traders, insurers, investors), state actors and sanctions/policy instruments — plus operational disruptions (shutdowns, rerouting, flight suspensions) and price formation in oil and gas markets.",
+    "super_system": "Global energy–economy and international security complex (interconnected markets, geopolitics, and climate/weather systems).",
+    "adjacent_subsystems": [
+      "Global shipping and maritime insurance",
+      "Financial markets and commodity trading",
+      "Regional Middle East geopolitics and proxy conflicts",
+      "Climate and extreme weather systems (hurricanes, El Niño impacts)"
+    ],
+    "evidence_headlines": [
+      "Treasury sanctions 17 tankers linked to Iran's 'shadow fleet' in economic pressure campaign",
+      "Oil prices jump on tanker attacks and slowing flows through Strait of Hormuz",
+      "Missile strike on Riyadh airport kills 12 and injures hundreds",
+      "Hurricane Isaias disrupts U.S. oil production in Gulf of Mexico, threatens refineries",
+      "Oil prices jump as Iran steps up tanker attacks, hurricane threatens U.S. Gulf production",
+      "Trump says U.S. will not attack Iran before midterm elections in November"
+    ]
+  },
+  "variables": [
+    {
+      "id": "global_crude_rate",
+      "name": "Global crude production rate",
+      "description": "The aggregate volume of crude oil produced per unit time across upstream operations in the system.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "global_refining_rate",
+      "name": "Global refining throughput",
+      "description": "The total volume of crude and intermediate fuels processed by refineries per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "seaborne_tanker_transit",
+      "name": "Seaborne tanker transit volume",
+      "description": "The rate and volume of liquid hydrocarbon cargoes transiting maritime routes and chokepoints.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_risk_premium",
+      "name": "Shipping risk premium",
+      "description": "The additional market price charged or demanded to compensate for perceived risk in maritime transport of fuels.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_insurance_premi",
+      "name": "Maritime insurance premia level",
+      "description": "The average cost level of insurance coverage for maritime energy shipments and vessels.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_fuel_reserves",
+      "name": "Strategic fuel inventory stocks",
+      "description": "The aggregate volume of stored crude and refined fuels held in inventory across strategic and commercial reserves.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refining_capacity_util",
+      "name": "Refining capacity utilization",
+      "description": "The proportion of installed refinery processing capacity that is actively in operation.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "logistic_rerouting_rate",
+      "name": "Logistics rerouting rate",
+      "description": "The speed and frequency at which fuel supply chains change transport routes and modes in response to disruptions.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "airspace_closure_extent",
+      "name": "Airspace operational closure extent",
+      "description": "The spatial and temporal extent of flight restrictions and airspace closures affecting aviation fuel demand and flows.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "storm_intensity_freq",
+      "name": "Storm intensity and frequency",
+      "description": "The prevailing rate and severity of weather systems (storms, hurricanes) that impact production, transport and infrastructure.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "upstream_shutin_rate",
+      "name": "Upstream production shut-in rate",
+      "description": "The rate at which upstream oil and gas production is taken offline or curtailed due to operational or safety reasons.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "alternative_route_capaci",
+      "name": "Alternative route capacity",
+      "description": "The available throughput capacity of non-primary transport routes and modalities that can substitute for disrupted links.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_price_volatility",
+      "name": "Market price volatility",
+      "description": "The short-term variability and expected fluctuation amplitude in energy commodity prices.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite for energy",
+      "description": "The prevailing willingness of investors to allocate capital to energy-sector assets given perceived systemic risks.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "route_concentration_inde",
+      "name": "Route concentration index",
+      "description": "The degree to which energy trade flows are concentrated on a small number of routes or chokepoints.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sanctions_policy_intensi",
+      "name": "Sanctions and policy response intensity",
+      "description": "The level and aggressiveness of trade, financial and regulatory measures applied in response to geopolitical tensions affecting energy flows.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "global_crude_rate",
+    "global_refining_rate",
+    "seaborne_tanker_transit",
+    "shipping_risk_premium",
+    "maritime_insurance_premi",
+    "strategic_fuel_reserves",
+    "refining_capacity_util",
+    "logistic_rerouting_rate",
+    "airspace_closure_extent",
+    "storm_intensity_freq",
+    "upstream_shutin_rate",
+    "alternative_route_capaci",
+    "market_price_volatility",
+    "investor_risk_appetite",
+    "route_concentration_inde",
+    "sanctions_policy_intensi"
+  ],
+  "var_names": {
+    "global_crude_rate": "Global crude production rate",
+    "global_refining_rate": "Global refining throughput",
+    "seaborne_tanker_transit": "Seaborne tanker transit volume",
+    "shipping_risk_premium": "Shipping risk premium",
+    "maritime_insurance_premi": "Maritime insurance premia level",
+    "strategic_fuel_reserves": "Strategic fuel inventory stocks",
+    "refining_capacity_util": "Refining capacity utilization",
+    "logistic_rerouting_rate": "Logistics rerouting rate",
+    "airspace_closure_extent": "Airspace operational closure extent",
+    "storm_intensity_freq": "Storm intensity and frequency",
+    "upstream_shutin_rate": "Upstream production shut-in rate",
+    "alternative_route_capaci": "Alternative route capacity",
+    "market_price_volatility": "Market price volatility",
+    "investor_risk_appetite": "Investor risk appetite for energy",
+    "route_concentration_inde": "Route concentration index",
+    "sanctions_policy_intensi": "Sanctions and policy response intensity"
+  },
+  "impact_matrix": {
+    "global_crude_rate": {
+      "global_crude_rate": 0,
+      "global_refining_rate": 3,
+      "seaborne_tanker_transit": 3,
+      "shipping_risk_premium": 1,
+      "maritime_insurance_premi": 1,
+      "strategic_fuel_reserves": 2,
+      "refining_capacity_util": 2,
+      "logistic_rerouting_rate": 1,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 0,
+      "alternative_route_capaci": 1,
+      "market_price_volatility": 2,
+      "investor_risk_appetite": 1,
+      "route_concentration_inde": 0,
+      "sanctions_policy_intensi": 0
+    },
+    "global_refining_rate": {
+      "global_crude_rate": 2,
+      "global_refining_rate": 0,
+      "seaborne_tanker_transit": 2,
+      "shipping_risk_premium": 1,
+      "maritime_insurance_premi": 1,
+      "strategic_fuel_reserves": 2,
+      "refining_capacity_util": 3,
+      "logistic_rerouting_rate": 1,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 1,
+      "alternative_route_capaci": 1,
+      "market_price_volatility": 2,
+      "investor_risk_appetite": 1,
+      "route_concentration_inde": 0,
+      "sanctions_policy_intensi": 0
+    },
+    "seaborne_tanker_transit": {
+      "global_crude_rate": 2,
+      "global_refining_rate": 1,
+      "seaborne_tanker_transit": 0,
+      "shipping_risk_premium": 3,
+      "maritime_insurance_premi": 3,
+      "strategic_fuel_reserves": 1,
+      "refining_capacity_util": 1,
+      "logistic_rerouting_rate": 2,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 1,
+      "alternative_route_capaci": 2,
+      "market_price_volatility": 2,
+      "investor_risk_appetite": 2,
+      "route_concentration_inde": 3,
+      "sanctions_policy_intensi": 1
+    },
+    "shipping_risk_premium": {
+      "global_crude_rate": 0,
+      "global_refining_rate": 1,
+      "seaborne_tanker_transit": 2,
+      "shipping_risk_premium": 0,
+      "maritime_insurance_premi": 2,
+      "strategic_fuel_reserves": 1,
+      "refining_capacity_util": 1,
+      "logistic_rerouting_rate": 2,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 1,
+      "alternative_route_capaci": 1,
+      "market_price_volatility": 2,
+      "investor_risk_appetite": 2,
+      "route_concentration_inde": 1,
+      "sanctions_policy_intensi": 1
+    },
+    "maritime_insurance_premi": {
+      "global_crude_rate": 0,
+      "global_refining_rate": 1,
+      "seaborne_tanker_transit": 2,
+      "shipping_risk_premium": 2,
+      "maritime_insurance_premi": 0,
+      "strategic_fuel_reserves": 1,
+      "refining_capacity_util": 1,
+      "logistic_rerouting_rate": 2,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 1,
+      "alternative_route_capaci": 1,
+      "market_price_volatility": 1,
+      "investor_risk_appetite": 2,
+      "route_concentration_inde": 1,
+      "sanctions_policy_intensi": 1
+    },
+    "strategic_fuel_reserves": {
+      "global_crude_rate": 1,
+      "global_refining_rate": 1,
+      "seaborne_tanker_transit": 1,
+      "shipping_risk_premium": 1,
+      "maritime_insurance_premi": 0,
+      "strategic_fuel_reserves": 0,
+      "refining_capacity_util": 1,
+      "logistic_rerouting_rate": 1,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 1,
+      "alternative_route_capaci": 0,
+      "market_price_volatility": 2,
+      "investor_risk_appetite": 1,
+      "route_concentration_inde": 0,
+      "sanctions_policy_intensi": 1
+    },
+    "refining_capacity_util": {
+      "global_crude_rate": 1,
+      "global_refining_rate": 3,
+      "seaborne_tanker_transit": 1,
+      "shipping_risk_premium": 0,
+      "maritime_insurance_premi": 0,
+      "strategic_fuel_reserves": 1,
+      "refining_capacity_util": 0,
+      "logistic_rerouting_rate": 1,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 2,
+      "alternative_route_capaci": 1,
+      "market_price_volatility": 2,
+      "investor_risk_appetite": 1,
+      "route_concentration_inde": 0,
+      "sanctions_policy_intensi": 0
+    },
+    "logistic_rerouting_rate": {
+      "global_crude_rate": 1,
+      "global_refining_rate": 1,
+      "seaborne_tanker_transit": 2,
+      "shipping_risk_premium": 2,
+      "maritime_insurance_premi": 1,
+      "strategic_fuel_reserves": 1,
+      "refining_capacity_util": 1,
+      "logistic_rerouting_rate": 0,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 2,
+      "alternative_route_capaci": 2,
+      "market_price_volatility": 2,
+      "investor_risk_appetite": 1,
+      "route_concentration_inde": 1,
+      "sanctions_policy_intensi": 1
+    },
+    "airspace_closure_extent": {
+      "global_crude_rate": 0,
+      "global_refining_rate": 1,
+      "seaborne_tanker_transit": 0,
+      "shipping_risk_premium": 0,
+      "maritime_insurance_premi": 0,
+      "strategic_fuel_reserves": 1,
+      "refining_capacity_util": 1,
+      "logistic_rerouting_rate": 0,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 0,
+      "alternative_route_capaci": 0,
+      "market_price_volatility": 1,
+      "investor_risk_appetite": 0,
+      "route_concentration_inde": 0,
+      "sanctions_policy_intensi": 0
+    },
+    "storm_intensity_freq": {
+      "global_crude_rate": 3,
+      "global_refining_rate": 2,
+      "seaborne_tanker_transit": 3,
+      "shipping_risk_premium": 3,
+      "maritime_insurance_premi": 3,
+      "strategic_fuel_reserves": 2,
+      "refining_capacity_util": 2,
+      "logistic_rerouting_rate": 2,
+      "airspace_closure_extent": 3,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 3,
+      "alternative_route_capaci": 2,
+      "market_price_volatility": 3,
+      "investor_risk_appetite": 2,
+      "route_concentration_inde": 1,
+      "sanctions_policy_intensi": 0
+    },
+    "upstream_shutin_rate": {
+      "global_crude_rate": 3,
+      "global_refining_rate": 2,
+      "seaborne_tanker_transit": 2,
+      "shipping_risk_premium": 1,
+      "maritime_insurance_premi": 1,
+      "strategic_fuel_reserves": 2,
+      "refining_capacity_util": 2,
+      "logistic_rerouting_rate": 1,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 0,
+      "alternative_route_capaci": 0,
+      "market_price_volatility": 3,
+      "investor_risk_appetite": 2,
+      "route_concentration_inde": 1,
+      "sanctions_policy_intensi": 2
+    },
+    "alternative_route_capaci": {
+      "global_crude_rate": 1,
+      "global_refining_rate": 1,
+      "seaborne_tanker_transit": 2,
+      "shipping_risk_premium": 2,
+      "maritime_insurance_premi": 1,
+      "strategic_fuel_reserves": 1,
+      "refining_capacity_util": 1,
+      "logistic_rerouting_rate": 2,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 2,
+      "alternative_route_capaci": 0,
+      "market_price_volatility": 1,
+      "investor_risk_appetite": 1,
+      "route_concentration_inde": 3,
+      "sanctions_policy_intensi": 1
+    },
+    "market_price_volatility": {
+      "global_crude_rate": 1,
+      "global_refining_rate": 1,
+      "seaborne_tanker_transit": 1,
+      "shipping_risk_premium": 2,
+      "maritime_insurance_premi": 1,
+      "strategic_fuel_reserves": 2,
+      "refining_capacity_util": 1,
+      "logistic_rerouting_rate": 1,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 1,
+      "alternative_route_capaci": 0,
+      "market_price_volatility": 0,
+      "investor_risk_appetite": 3,
+      "route_concentration_inde": 0,
+      "sanctions_policy_intensi": 1
+    },
+    "investor_risk_appetite": {
+      "global_crude_rate": 0,
+      "global_refining_rate": 0,
+      "seaborne_tanker_transit": 0,
+      "shipping_risk_premium": 1,
+      "maritime_insurance_premi": 0,
+      "strategic_fuel_reserves": 0,
+      "refining_capacity_util": 0,
+      "logistic_rerouting_rate": 0,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 0,
+      "alternative_route_capaci": 0,
+      "market_price_volatility": 2,
+      "investor_risk_appetite": 0,
+      "route_concentration_inde": 0,
+      "sanctions_policy_intensi": 1
+    },
+    "route_concentration_inde": {
+      "global_crude_rate": 1,
+      "global_refining_rate": 1,
+      "seaborne_tanker_transit": 3,
+      "shipping_risk_premium": 3,
+      "maritime_insurance_premi": 2,
+      "strategic_fuel_reserves": 1,
+      "refining_capacity_util": 1,
+      "logistic_rerouting_rate": 2,
+      "airspace_closure_extent": 0,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 1,
+      "alternative_route_capaci": 2,
+      "market_price_volatility": 2,
+      "investor_risk_appetite": 2,
+      "route_concentration_inde": 0,
+      "sanctions_policy_intensi": 2
+    },
+    "sanctions_policy_intensi": {
+      "global_crude_rate": 3,
+      "global_refining_rate": 2,
+      "seaborne_tanker_transit": 3,
+      "shipping_risk_premium": 3,
+      "maritime_insurance_premi": 3,
+      "strategic_fuel_reserves": 2,
+      "refining_capacity_util": 2,
+      "logistic_rerouting_rate": 3,
+      "airspace_closure_extent": 2,
+      "storm_intensity_freq": 0,
+      "upstream_shutin_rate": 3,
+      "alternative_route_capaci": 2,
+      "market_price_volatility": 3,
+      "investor_risk_appetite": 3,
+      "route_concentration_inde": 2,
+      "sanctions_policy_intensi": 0
+    }
+  },
+  "AS": {
+    "global_crude_rate": 17,
+    "global_refining_rate": 17,
+    "seaborne_tanker_transit": 24,
+    "shipping_risk_premium": 17,
+    "maritime_insurance_premi": 16,
+    "strategic_fuel_reserves": 11,
+    "refining_capacity_util": 13,
+    "logistic_rerouting_rate": 18,
+    "airspace_closure_extent": 4,
+    "storm_intensity_freq": 34,
+    "upstream_shutin_rate": 22,
+    "alternative_route_capaci": 19,
+    "market_price_volatility": 15,
+    "investor_risk_appetite": 4,
+    "route_concentration_inde": 23,
+    "sanctions_policy_intensi": 36
+  },
+  "PS": {
+    "global_crude_rate": 19,
+    "global_refining_rate": 21,
+    "seaborne_tanker_transit": 27,
+    "shipping_risk_premium": 25,
+    "maritime_insurance_premi": 19,
+    "strategic_fuel_reserves": 20,
+    "refining_capacity_util": 20,
+    "logistic_rerouting_rate": 21,
+    "airspace_closure_extent": 5,
+    "storm_intensity_freq": 0,
+    "upstream_shutin_rate": 19,
+    "alternative_route_capaci": 15,
+    "market_price_volatility": 30,
+    "investor_risk_appetite": 24,
+    "route_concentration_inde": 13,
+    "sanctions_policy_intensi": 12
+  },
+  "med_AS": 17.0,
+  "med_PS": 19.5,
+  "roles": [
+    {
+      "variable": "seaborne_tanker_transit",
+      "name": "Seaborne tanker transit volume",
+      "AS": 24,
+      "PS": 27,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 648,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_price_volatility",
+      "name": "Market price volatility",
+      "AS": 15,
+      "PS": 30,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 450,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "sanctions_policy_intensi",
+      "name": "Sanctions and policy response intensity",
+      "AS": 36,
+      "PS": 12,
+      "Q=AS/PS": 3.0,
+      "P=AS*PS": 432,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "shipping_risk_premium",
+      "name": "Shipping risk premium",
+      "AS": 17,
+      "PS": 25,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 425,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "upstream_shutin_rate",
+      "name": "Upstream production shut-in rate",
+      "AS": 22,
+      "PS": 19,
+      "Q=AS/PS": 1.16,
+      "P=AS*PS": 418,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "logistic_rerouting_rate",
+      "name": "Logistics rerouting rate",
+      "AS": 18,
+      "PS": 21,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 378,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "global_refining_rate",
+      "name": "Global refining throughput",
+      "AS": 17,
+      "PS": 21,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 357,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "global_crude_rate",
+      "name": "Global crude production rate",
+      "AS": 17,
+      "PS": 19,
+      "Q=AS/PS": 0.89,
+      "P=AS*PS": 323,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "maritime_insurance_premi",
+      "name": "Maritime insurance premia level",
+      "AS": 16,
+      "PS": 19,
+      "Q=AS/PS": 0.84,
+      "P=AS*PS": 304,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "route_concentration_inde",
+      "name": "Route concentration index",
+      "AS": 23,
+      "PS": 13,
+      "Q=AS/PS": 1.77,
+      "P=AS*PS": 299,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "alternative_route_capaci",
+      "name": "Alternative route capacity",
+      "AS": 19,
+      "PS": 15,
+      "Q=AS/PS": 1.27,
+      "P=AS*PS": 285,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refining_capacity_util",
+      "name": "Refining capacity utilization",
+      "AS": 13,
+      "PS": 20,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 260,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "strategic_fuel_reserves",
+      "name": "Strategic fuel inventory stocks",
+      "AS": 11,
+      "PS": 20,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 220,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite for energy",
+      "AS": 4,
+      "PS": 24,
+      "Q=AS/PS": 0.17,
+      "P=AS*PS": 96,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "airspace_closure_extent",
+      "name": "Airspace operational closure extent",
+      "AS": 4,
+      "PS": 5,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 20,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "storm_intensity_freq",
+      "name": "Storm intensity and frequency",
+      "AS": 34,
+      "PS": 0,
+      "Q=AS/PS": 34000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "global_crude_rate",
+        "name": "Global crude production rate",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 19
+      },
+      {
+        "id": "global_refining_rate",
+        "name": "Global refining throughput",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 21
+      },
+      {
+        "id": "seaborne_tanker_transit",
+        "name": "Seaborne tanker transit volume",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 27
+      },
+      {
+        "id": "shipping_risk_premium",
+        "name": "Shipping risk premium",
+        "kind": "perception",
+        "AS": 17,
+        "PS": 25
+      },
+      {
+        "id": "maritime_insurance_premi",
+        "name": "Maritime insurance premia level",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 19
+      },
+      {
+        "id": "strategic_fuel_reserves",
+        "name": "Strategic fuel inventory stocks",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 20
+      },
+      {
+        "id": "refining_capacity_util",
+        "name": "Refining capacity utilization",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 20
+      },
+      {
+        "id": "logistic_rerouting_rate",
+        "name": "Logistics rerouting rate",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 21
+      },
+      {
+        "id": "airspace_closure_extent",
+        "name": "Airspace operational closure extent",
+        "kind": "environment",
+        "AS": 4,
+        "PS": 5
+      },
+      {
+        "id": "storm_intensity_freq",
+        "name": "Storm intensity and frequency",
+        "kind": "environment",
+        "AS": 34,
+        "PS": 0
+      },
+      {
+        "id": "upstream_shutin_rate",
+        "name": "Upstream production shut-in rate",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 19
+      },
+      {
+        "id": "alternative_route_capaci",
+        "name": "Alternative route capacity",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 15
+      },
+      {
+        "id": "market_price_volatility",
+        "name": "Market price volatility",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 30
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite for energy",
+        "kind": "perception",
+        "AS": 4,
+        "PS": 24
+      },
+      {
+        "id": "route_concentration_inde",
+        "name": "Route concentration index",
+        "kind": "driver",
+        "AS": 23,
+        "PS": 13
+      },
+      {
+        "id": "sanctions_policy_intensi",
+        "name": "Sanctions and policy response intensity",
+        "kind": "institution_field",
+        "AS": 36,
+        "PS": 12
+      }
+    ],
+    "edges": [
+      {
+        "source": "global_crude_rate",
+        "target": "global_refining_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_crude_rate",
+        "target": "seaborne_tanker_transit",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_crude_rate",
+        "target": "strategic_fuel_reserves",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_crude_rate",
+        "target": "refining_capacity_util",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_crude_rate",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_refining_rate",
+        "target": "global_crude_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_refining_rate",
+        "target": "seaborne_tanker_transit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_refining_rate",
+        "target": "strategic_fuel_reserves",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_refining_rate",
+        "target": "refining_capacity_util",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_refining_rate",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_tanker_transit",
+        "target": "global_crude_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_tanker_transit",
+        "target": "shipping_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_tanker_transit",
+        "target": "maritime_insurance_premi",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_tanker_transit",
+        "target": "logistic_rerouting_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_tanker_transit",
+        "target": "alternative_route_capaci",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "seaborne_tanker_transit",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_tanker_transit",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_tanker_transit",
+        "target": "route_concentration_inde",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_risk_premium",
+        "target": "seaborne_tanker_transit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_risk_premium",
+        "target": "maritime_insurance_premi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_risk_premium",
+        "target": "logistic_rerouting_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_risk_premium",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_risk_premium",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_insurance_premi",
+        "target": "seaborne_tanker_transit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_insurance_premi",
+        "target": "shipping_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_insurance_premi",
+        "target": "logistic_rerouting_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_insurance_premi",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_fuel_reserves",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_capacity_util",
+        "target": "global_refining_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_capacity_util",
+        "target": "upstream_shutin_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_capacity_util",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "logistic_rerouting_rate",
+        "target": "seaborne_tanker_transit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "logistic_rerouting_rate",
+        "target": "shipping_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "logistic_rerouting_rate",
+        "target": "upstream_shutin_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "logistic_rerouting_rate",
+        "target": "alternative_route_capaci",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "logistic_rerouting_rate",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "global_crude_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "global_refining_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "seaborne_tanker_transit",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "shipping_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "maritime_insurance_premi",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "strategic_fuel_reserves",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "refining_capacity_util",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "logistic_rerouting_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "airspace_closure_extent",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "upstream_shutin_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "alternative_route_capaci",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "market_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "storm_intensity_freq",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_shutin_rate",
+        "target": "global_crude_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_shutin_rate",
+        "target": "global_refining_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_shutin_rate",
+        "target": "seaborne_tanker_transit",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_shutin_rate",
+        "target": "strategic_fuel_reserves",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_shutin_rate",
+        "target": "refining_capacity_util",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_shutin_rate",
+        "target": "market_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_shutin_rate",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_shutin_rate",
+        "target": "sanctions_policy_intensi",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "alternative_route_capaci",
+        "target": "seaborne_tanker_transit",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "alternative_route_capaci",
+        "target": "shipping_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "alternative_route_capaci",
+        "target": "logistic_rerouting_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "alternative_route_capaci",
+        "target": "upstream_shutin_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "alternative_route_capaci",
+        "target": "route_concentration_inde",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_volatility",
+        "target": "shipping_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_volatility",
+        "target": "strategic_fuel_reserves",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_volatility",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "route_concentration_inde",
+        "target": "seaborne_tanker_transit",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "route_concentration_inde",
+        "target": "shipping_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "route_concentration_inde",
+        "target": "maritime_insurance_premi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "route_concentration_inde",
+        "target": "logistic_rerouting_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "route_concentration_inde",
+        "target": "alternative_route_capaci",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "route_concentration_inde",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "route_concentration_inde",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "route_concentration_inde",
+        "target": "sanctions_policy_intensi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "global_crude_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "global_refining_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "seaborne_tanker_transit",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "shipping_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "maritime_insurance_premi",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "strategic_fuel_reserves",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "refining_capacity_util",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "logistic_rerouting_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "airspace_closure_extent",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "upstream_shutin_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "alternative_route_capaci",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "market_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_policy_intensi",
+        "target": "route_concentration_inde",
+        "strength": 2,
+        "sign": "?"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "houthi_attack_campaign_persists",
+      "title": "Continued Houthi attacks on shipping and airports",
+      "description": "Ongoing Houthi strikes on tankers and Saudi airports are likely to continue, sustaining transport disruption and elevated security costs across regional routes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-11",
+        "end": "2027-02-28",
+        "label": "next 3–5 months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "seaborne_tanker_transit",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_risk_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_insurance_premi",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "airspace_closure_extent",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "upstream_shutin_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "route_concentration_inde",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Iran attacks tankers beyond Strait of Hormuz'; 'Houthi strikes on Riyadh airport' (2026-10-09 / 2026-10-11)."
+    },
+    {
+      "id": "us_midterm_election_pause",
+      "title": "U.S. midterm election and pre-election restraint",
+      "description": "U.S. stated restraint on strikes before midterms and the election itself will likely suppress near-term escalation risk and lower short-term market stress.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-11-04",
+        "start": null,
+        "end": null,
+        "label": "Election Day"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "market_price_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sanctions_policy_intensi",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Trump says US will not attack Iran before midterm elections' (2026-10-09)."
+    },
+    {
+      "id": "elnino_intensifies_through_feb27",
+      "title": "El Niño intensifies through February 2027",
+      "description": "UN outlook points to an intensified El Niño persisting into Feb 2027, raising the likelihood of more extreme storms that disrupt production and transport.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2027-02-28",
+        "label": "through Feb 2027"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "storm_intensity_freq",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "upstream_shutin_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_refining_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "seaborne_tanker_transit",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_price_volatility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'UN weather body says El Niño set to intensify and last until February 2027' (2026-10-09)."
+    },
+    {
+      "id": "shadow_fleet_sanctions_expand",
+      "title": "Expanded sanctions on 'shadow fleet' tankers",
+      "description": "Ongoing Treasury actions against tankers tied to Iran's shadow fleet are likely to continue, raising compliance, insurance and transit costs for seaborne oil.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2027-01-31",
+        "label": "weeks to months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "maritime_insurance_premi",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "seaborne_tanker_transit",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sanctions_policy_intensi",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "route_concentration_inde",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'Treasury sanctions 17 tankers linked to Iran's \"shadow fleet\"' (2026-10-09)."
+    },
+    {
+      "id": "gulf_storms_and_shutins_continue",
+      "title": "Further Gulf storms and production shut-ins",
+      "description": "Residual hurricane activity in the U.S. Gulf and nearby basins could trigger additional platform and refinery shut-ins, reducing near-term output.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-11",
+        "end": "2026-11-30",
+        "label": "to end-Nov"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "upstream_shutin_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_crude_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refining_capacity_util",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "seaborne_tanker_transit",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_risk_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Hurricane Isaias disrupts U.S. oil production' and 'BP curbs production ... due to Hurricane Isaias' (2026-10-09/10-10)."
+    },
+    {
+      "id": "airspace_suspensions_spread",
+      "title": "Widening airline suspensions and airspace warnings",
+      "description": "Carriers suspending flights to Riyadh and widened airspace warnings are likely to continue, extending aviation route closures and security-related costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-11-30",
+        "label": "weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "airspace_closure_extent",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_price_volatility",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Lufthansa, Indian airlines suspend flights to Riyadh'; 'EU aviation body widens Saudi airspace warning' (2026-10-09)."
+    },
+    {
+      "id": "venezuela_contracts_by_yearend",
+      "title": "Venezuela aims to sign 105 oil contracts",
+      "description": "PDVSA's plan to sign many oil contracts by year-end could incrementally boost production capacity or future exports if implemented.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "global_crude_rate",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "strategic_fuel_reserves",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Venezuela looking to sign 105 oil contracts by end of year - head of PDVSA' (2026-10-09)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "houthi_attack_campaign_persists",
+      "title": "Continued Houthi attacks on shipping and airports",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3–5 months",
+      "date": null,
+      "start": "2026-10-11",
+      "end": "2027-02-28",
+      "probability": 0.85,
+      "impact_score": 273.0,
+      "expected_impact": 232.05,
+      "event_PS": 18.25,
+      "event_AS": 17.062,
+      "n_vars": 6,
+      "affected_ids": "seaborne_tanker_transit, shipping_risk_premium, maritime_insurance_premi, airspace_closure_extent, upstream_shutin_rate, route_concentration_inde",
+      "rationale": "Headlines: 'Iran attacks tankers beyond Strait of Hormuz'; 'Houthi strikes on Riyadh airport' (2026-10-09 / 2026-10-11)."
+    },
+    {
+      "id": "shadow_fleet_sanctions_expand",
+      "title": "Expanded sanctions on 'shadow fleet' tankers",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks to months",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2027-01-31",
+      "probability": 0.7,
+      "impact_score": 245.0,
+      "expected_impact": 171.5,
+      "event_PS": 19.1,
+      "event_AS": 24.5,
+      "n_vars": 5,
+      "affected_ids": "maritime_insurance_premi, shipping_risk_premium, seaborne_tanker_transit, sanctions_policy_intensi, route_concentration_inde",
+      "rationale": "Headline: 'Treasury sanctions 17 tankers linked to Iran's \"shadow fleet\"' (2026-10-09)."
+    },
+    {
+      "id": "elnino_intensifies_through_feb27",
+      "title": "El Niño intensifies through February 2027",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through Feb 2027",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2027-02-28",
+      "probability": 0.9,
+      "impact_score": 202.0,
+      "expected_impact": 181.8,
+      "event_PS": 14.5,
+      "event_AS": 25.25,
+      "n_vars": 5,
+      "affected_ids": "storm_intensity_freq, upstream_shutin_rate, global_refining_rate, seaborne_tanker_transit, market_price_volatility",
+      "rationale": "Headline: 'UN weather body says El Niño set to intensify and last until February 2027' (2026-10-09)."
+    },
+    {
+      "id": "gulf_storms_and_shutins_continue",
+      "title": "Further Gulf storms and production shut-ins",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "to end-Nov",
+      "date": null,
+      "start": "2026-10-11",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 154.0,
+      "expected_impact": 92.4,
+      "event_PS": 20.875,
+      "event_AS": 19.25,
+      "n_vars": 5,
+      "affected_ids": "upstream_shutin_rate, global_crude_rate, refining_capacity_util, seaborne_tanker_transit, shipping_risk_premium",
+      "rationale": "Headlines: 'Hurricane Isaias disrupts U.S. oil production' and 'BP curbs production ... due to Hurricane Isaias' (2026-10-09/10-10)."
+    },
+    {
+      "id": "us_midterm_election_pause",
+      "title": "U.S. midterm election and pre-election restraint",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "Election Day",
+      "date": "2026-11-04",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 106.0,
+      "expected_impact": 100.7,
+      "event_PS": 21.6,
+      "event_AS": 21.2,
+      "n_vars": 3,
+      "affected_ids": "market_price_volatility, sanctions_policy_intensi, investor_risk_appetite",
+      "rationale": "Headline: 'Trump says US will not attack Iran before midterm elections' (2026-10-09)."
+    },
+    {
+      "id": "venezuela_contracts_by_yearend",
+      "title": "Venezuela aims to sign 105 oil contracts",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 32.0,
+      "expected_impact": 19.2,
+      "event_PS": 21.0,
+      "event_AS": 10.667,
+      "n_vars": 3,
+      "affected_ids": "global_crude_rate, strategic_fuel_reserves, investor_risk_appetite",
+      "rationale": "Headline: 'Venezuela looking to sign 105 oil contracts by end of year - head of PDVSA' (2026-10-09)."
+    },
+    {
+      "id": "airspace_suspensions_spread",
+      "title": "Widening airline suspensions and airspace warnings",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-11-30",
+      "probability": 0.8,
+      "impact_score": 31.0,
+      "expected_impact": 24.8,
+      "event_PS": 13.8,
+      "event_AS": 6.2,
+      "n_vars": 3,
+      "affected_ids": "airspace_closure_extent, market_price_volatility, investor_risk_appetite",
+      "rationale": "Headlines: 'Lufthansa, Indian airlines suspend flights to Riyadh'; 'EU aviation body widens Saudi airspace warning' (2026-10-09)."
+    }
+  ]
+}
