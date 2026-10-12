@@ -1,0 +1,1669 @@
+{
+  "label": "energy_market_fragment",
+  "as_of": "2026-10-11",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-12T02:42:26",
+  "system_description": {
+    "narrative_title": "Energy markets roiled by Iran tensions and hurricane disruptions",
+    "narrative_summary": "The dominant narrative links escalating Iran-related maritime attacks, sanctions and military incidents with concurrent hurricane disruptions in the Gulf, producing pronounced volatility across oil, gas, shipping and financial markets. Described as an open system, this energy–security–transportation complex continuously absorbs exogenous shocks (attacks, sanctions, storms, political statements), exchanges information, capital and physical flows with adjacent systems (financial markets, shipping networks, weather/climate), and generates feedbacks — price swings, route changes, production shut-ins and policy responses — that in turn alter actor behaviour and future risks.",
+    "scope": "Crude oil and refined fuel production, Gulf of Mexico and Middle East export infrastructure, tankers and key chokepoints (Strait of Hormuz), shipping routes and maritime security, oil majors/traders/refiners, sanctions and military actions, weather-driven production disruptions, commodity price formation and futures trading, political statements and election-timing decisions affecting military policy.",
+    "super_system": "Global geopolitical-economic-energy system (international security, global trade, and financial markets)",
+    "adjacent_subsystems": [
+      "International shipping and maritime security",
+      "Global financial markets and commodity trading",
+      "Energy transition and critical minerals supply chains",
+      "Climate and extreme weather systems"
+    ],
+    "evidence_headlines": [
+      "Treasury sanctions 17 tankers linked to Iran's 'shadow fleet' in economic pressure campaign",
+      "Iran attacks tankers beyond Strait of Hormuz",
+      "Oil prices jump on tanker attacks and slowing flows through Strait of Hormuz",
+      "Trump says U.S. will not attack Iran before midterm elections in November",
+      "Hurricane Isaias disrupts U.S. oil production in Gulf of Mexico, threatens refineries",
+      "Oil prices settle higher as more production shut ahead of hurricane"
+    ]
+  },
+  "variables": [
+    {
+      "id": "crude_oil_production_rat",
+      "name": "Crude oil production rate",
+      "description": "The volumetric rate at which crude oil is being produced and brought to market per unit time across the system.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refined_fuel_production_",
+      "name": "Refined fuel production rate",
+      "description": "The rate at which refineries convert crude into finished transport fuels and other refined products per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "offshore_operational_cap",
+      "name": "Offshore operational capacity",
+      "description": "The available operational capacity of offshore extraction and processing facilities expressed as usable fraction or volume.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_operational_avail",
+      "name": "Tanker operational availability",
+      "description": "The proportion of merchant tanker fleet capacity that is available and deployable for commercial oil and fuel transport.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_security_incide",
+      "name": "Maritime security incident rate",
+      "description": "The frequency of hostile or disruptive incidents affecting maritime commerce (attacks, interdictions, boardings) per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_transit_rate",
+      "name": "Chokepoint transit rate",
+      "description": "The number of commercial transits through critical maritime chokepoints per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_route_diversion",
+      "name": "Shipping route diversion extent",
+      "description": "The average additional distance or time per voyage caused by route deviations from normal passages.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_premium_level_",
+      "name": "Maritime insurance premium level",
+      "description": "The average cost of insurance and war-risk premia for maritime transport expressed as a price or percentage.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "export_infrastructure_di",
+      "name": "Export infrastructure disruption level",
+      "description": "The aggregate degree to which export terminals, pipelines and loading facilities are impaired or offline.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "description": "The share of refinery processing capacity that is actively operating and processing feedstock at a given time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fuel_inventory_days_of_s",
+      "name": "Fuel inventory days of supply",
+      "description": "The amount of refined fuel stocks expressed in days of forward demand coverage at current consumption rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_price_level_oi",
+      "name": "Oil commodity price level",
+      "description": "The prevailing market price level for crude oil benchmarks measured in currency per unit of volume.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_price_volatili",
+      "name": "Commodity price volatility",
+      "description": "The magnitude of short-to-medium term fluctuations in commodity prices, measured by realized or implied volatility.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "futures_market_liquidity",
+      "name": "Futures market liquidity",
+      "description": "The depth and ease of transacting in commodity futures and derivatives, proxied by bid-ask spreads and available open interest.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "political_policy_uncerta",
+      "name": "Political and policy uncertainty level",
+      "description": "The perceived uncertainty about government actions (sanctions, military measures, trade restrictions) affecting the energy-transport system.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "weather_disruption_sever",
+      "name": "Weather disruption severity",
+      "description": "The intensity and extent of weather events (storms, hurricanes) that disrupt production, shipping and onshore infrastructure.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "crude_oil_production_rat",
+    "refined_fuel_production_",
+    "offshore_operational_cap",
+    "tanker_operational_avail",
+    "maritime_security_incide",
+    "chokepoint_transit_rate",
+    "shipping_route_diversion",
+    "insurance_premium_level_",
+    "export_infrastructure_di",
+    "refinery_utilization_rat",
+    "fuel_inventory_days_of_s",
+    "commodity_price_level_oi",
+    "commodity_price_volatili",
+    "futures_market_liquidity",
+    "political_policy_uncerta",
+    "weather_disruption_sever"
+  ],
+  "var_names": {
+    "crude_oil_production_rat": "Crude oil production rate",
+    "refined_fuel_production_": "Refined fuel production rate",
+    "offshore_operational_cap": "Offshore operational capacity",
+    "tanker_operational_avail": "Tanker operational availability",
+    "maritime_security_incide": "Maritime security incident rate",
+    "chokepoint_transit_rate": "Chokepoint transit rate",
+    "shipping_route_diversion": "Shipping route diversion extent",
+    "insurance_premium_level_": "Maritime insurance premium level",
+    "export_infrastructure_di": "Export infrastructure disruption level",
+    "refinery_utilization_rat": "Refinery utilization rate",
+    "fuel_inventory_days_of_s": "Fuel inventory days of supply",
+    "commodity_price_level_oi": "Oil commodity price level",
+    "commodity_price_volatili": "Commodity price volatility",
+    "futures_market_liquidity": "Futures market liquidity",
+    "political_policy_uncerta": "Political and policy uncertainty level",
+    "weather_disruption_sever": "Weather disruption severity"
+  },
+  "impact_matrix": {
+    "crude_oil_production_rat": {
+      "crude_oil_production_rat": 0,
+      "refined_fuel_production_": 2,
+      "offshore_operational_cap": 0,
+      "tanker_operational_avail": 0,
+      "maritime_security_incide": 0,
+      "chokepoint_transit_rate": 1,
+      "shipping_route_diversion": 0,
+      "insurance_premium_level_": 0,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 2,
+      "fuel_inventory_days_of_s": 3,
+      "commodity_price_level_oi": 1,
+      "commodity_price_volatili": 0,
+      "futures_market_liquidity": 0,
+      "political_policy_uncerta": 0,
+      "weather_disruption_sever": 0
+    },
+    "refined_fuel_production_": {
+      "crude_oil_production_rat": 0,
+      "refined_fuel_production_": 0,
+      "offshore_operational_cap": 0,
+      "tanker_operational_avail": 0,
+      "maritime_security_incide": 0,
+      "chokepoint_transit_rate": 0,
+      "shipping_route_diversion": 0,
+      "insurance_premium_level_": 0,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 3,
+      "fuel_inventory_days_of_s": 3,
+      "commodity_price_level_oi": 1,
+      "commodity_price_volatili": 0,
+      "futures_market_liquidity": 0,
+      "political_policy_uncerta": 0,
+      "weather_disruption_sever": 0
+    },
+    "offshore_operational_cap": {
+      "crude_oil_production_rat": 3,
+      "refined_fuel_production_": 1,
+      "offshore_operational_cap": 0,
+      "tanker_operational_avail": 0,
+      "maritime_security_incide": 1,
+      "chokepoint_transit_rate": 0,
+      "shipping_route_diversion": 0,
+      "insurance_premium_level_": 0,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 1,
+      "fuel_inventory_days_of_s": 2,
+      "commodity_price_level_oi": 1,
+      "commodity_price_volatili": 0,
+      "futures_market_liquidity": 0,
+      "political_policy_uncerta": 0,
+      "weather_disruption_sever": 0
+    },
+    "tanker_operational_avail": {
+      "crude_oil_production_rat": 2,
+      "refined_fuel_production_": 1,
+      "offshore_operational_cap": 1,
+      "tanker_operational_avail": 0,
+      "maritime_security_incide": 0,
+      "chokepoint_transit_rate": 2,
+      "shipping_route_diversion": 1,
+      "insurance_premium_level_": 1,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 1,
+      "fuel_inventory_days_of_s": 2,
+      "commodity_price_level_oi": 2,
+      "commodity_price_volatili": 2,
+      "futures_market_liquidity": 0,
+      "political_policy_uncerta": 0,
+      "weather_disruption_sever": 0
+    },
+    "maritime_security_incide": {
+      "crude_oil_production_rat": 2,
+      "refined_fuel_production_": 1,
+      "offshore_operational_cap": 2,
+      "tanker_operational_avail": 3,
+      "maritime_security_incide": 0,
+      "chokepoint_transit_rate": 3,
+      "shipping_route_diversion": 3,
+      "insurance_premium_level_": 3,
+      "export_infrastructure_di": 2,
+      "refinery_utilization_rat": 1,
+      "fuel_inventory_days_of_s": 2,
+      "commodity_price_level_oi": 2,
+      "commodity_price_volatili": 3,
+      "futures_market_liquidity": 1,
+      "political_policy_uncerta": 2,
+      "weather_disruption_sever": 0
+    },
+    "chokepoint_transit_rate": {
+      "crude_oil_production_rat": 2,
+      "refined_fuel_production_": 1,
+      "offshore_operational_cap": 1,
+      "tanker_operational_avail": 2,
+      "maritime_security_incide": 1,
+      "chokepoint_transit_rate": 0,
+      "shipping_route_diversion": 3,
+      "insurance_premium_level_": 1,
+      "export_infrastructure_di": 1,
+      "refinery_utilization_rat": 1,
+      "fuel_inventory_days_of_s": 2,
+      "commodity_price_level_oi": 2,
+      "commodity_price_volatili": 2,
+      "futures_market_liquidity": 0,
+      "political_policy_uncerta": 1,
+      "weather_disruption_sever": 0
+    },
+    "shipping_route_diversion": {
+      "crude_oil_production_rat": 1,
+      "refined_fuel_production_": 0,
+      "offshore_operational_cap": 0,
+      "tanker_operational_avail": 3,
+      "maritime_security_incide": 1,
+      "chokepoint_transit_rate": 2,
+      "shipping_route_diversion": 0,
+      "insurance_premium_level_": 1,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 0,
+      "fuel_inventory_days_of_s": 2,
+      "commodity_price_level_oi": 1,
+      "commodity_price_volatili": 1,
+      "futures_market_liquidity": 0,
+      "political_policy_uncerta": 0,
+      "weather_disruption_sever": 1
+    },
+    "insurance_premium_level_": {
+      "crude_oil_production_rat": 0,
+      "refined_fuel_production_": 0,
+      "offshore_operational_cap": 1,
+      "tanker_operational_avail": 2,
+      "maritime_security_incide": 0,
+      "chokepoint_transit_rate": 1,
+      "shipping_route_diversion": 1,
+      "insurance_premium_level_": 0,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 1,
+      "fuel_inventory_days_of_s": 0,
+      "commodity_price_level_oi": 1,
+      "commodity_price_volatili": 0,
+      "futures_market_liquidity": 0,
+      "political_policy_uncerta": 1,
+      "weather_disruption_sever": 0
+    },
+    "export_infrastructure_di": {
+      "crude_oil_production_rat": 3,
+      "refined_fuel_production_": 2,
+      "offshore_operational_cap": 1,
+      "tanker_operational_avail": 1,
+      "maritime_security_incide": 1,
+      "chokepoint_transit_rate": 2,
+      "shipping_route_diversion": 1,
+      "insurance_premium_level_": 2,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 2,
+      "fuel_inventory_days_of_s": 3,
+      "commodity_price_level_oi": 3,
+      "commodity_price_volatili": 2,
+      "futures_market_liquidity": 0,
+      "political_policy_uncerta": 2,
+      "weather_disruption_sever": 0
+    },
+    "refinery_utilization_rat": {
+      "crude_oil_production_rat": 1,
+      "refined_fuel_production_": 3,
+      "offshore_operational_cap": 0,
+      "tanker_operational_avail": 1,
+      "maritime_security_incide": 0,
+      "chokepoint_transit_rate": 1,
+      "shipping_route_diversion": 0,
+      "insurance_premium_level_": 0,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 0,
+      "fuel_inventory_days_of_s": 3,
+      "commodity_price_level_oi": 2,
+      "commodity_price_volatili": 1,
+      "futures_market_liquidity": 0,
+      "political_policy_uncerta": 0,
+      "weather_disruption_sever": 0
+    },
+    "fuel_inventory_days_of_s": {
+      "crude_oil_production_rat": 1,
+      "refined_fuel_production_": 0,
+      "offshore_operational_cap": 0,
+      "tanker_operational_avail": 0,
+      "maritime_security_incide": 0,
+      "chokepoint_transit_rate": 0,
+      "shipping_route_diversion": 0,
+      "insurance_premium_level_": 0,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 1,
+      "fuel_inventory_days_of_s": 0,
+      "commodity_price_level_oi": 3,
+      "commodity_price_volatili": 2,
+      "futures_market_liquidity": 1,
+      "political_policy_uncerta": 0,
+      "weather_disruption_sever": 0
+    },
+    "commodity_price_level_oi": {
+      "crude_oil_production_rat": 1,
+      "refined_fuel_production_": 1,
+      "offshore_operational_cap": 0,
+      "tanker_operational_avail": 0,
+      "maritime_security_incide": 0,
+      "chokepoint_transit_rate": 0,
+      "shipping_route_diversion": 0,
+      "insurance_premium_level_": 0,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 1,
+      "fuel_inventory_days_of_s": 0,
+      "commodity_price_level_oi": 0,
+      "commodity_price_volatili": 1,
+      "futures_market_liquidity": 1,
+      "political_policy_uncerta": 1,
+      "weather_disruption_sever": 0
+    },
+    "commodity_price_volatili": {
+      "crude_oil_production_rat": 0,
+      "refined_fuel_production_": 0,
+      "offshore_operational_cap": 0,
+      "tanker_operational_avail": 0,
+      "maritime_security_incide": 0,
+      "chokepoint_transit_rate": 0,
+      "shipping_route_diversion": 0,
+      "insurance_premium_level_": 0,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 0,
+      "fuel_inventory_days_of_s": 0,
+      "commodity_price_level_oi": 1,
+      "commodity_price_volatili": 0,
+      "futures_market_liquidity": 3,
+      "political_policy_uncerta": 1,
+      "weather_disruption_sever": 0
+    },
+    "futures_market_liquidity": {
+      "crude_oil_production_rat": 0,
+      "refined_fuel_production_": 0,
+      "offshore_operational_cap": 0,
+      "tanker_operational_avail": 0,
+      "maritime_security_incide": 0,
+      "chokepoint_transit_rate": 0,
+      "shipping_route_diversion": 0,
+      "insurance_premium_level_": 0,
+      "export_infrastructure_di": 0,
+      "refinery_utilization_rat": 0,
+      "fuel_inventory_days_of_s": 0,
+      "commodity_price_level_oi": 1,
+      "commodity_price_volatili": 2,
+      "futures_market_liquidity": 0,
+      "political_policy_uncerta": 1,
+      "weather_disruption_sever": 0
+    },
+    "political_policy_uncerta": {
+      "crude_oil_production_rat": 2,
+      "refined_fuel_production_": 1,
+      "offshore_operational_cap": 1,
+      "tanker_operational_avail": 2,
+      "maritime_security_incide": 2,
+      "chokepoint_transit_rate": 1,
+      "shipping_route_diversion": 1,
+      "insurance_premium_level_": 3,
+      "export_infrastructure_di": 1,
+      "refinery_utilization_rat": 1,
+      "fuel_inventory_days_of_s": 1,
+      "commodity_price_level_oi": 2,
+      "commodity_price_volatili": 3,
+      "futures_market_liquidity": 2,
+      "political_policy_uncerta": 0,
+      "weather_disruption_sever": 0
+    },
+    "weather_disruption_sever": {
+      "crude_oil_production_rat": 2,
+      "refined_fuel_production_": 2,
+      "offshore_operational_cap": 3,
+      "tanker_operational_avail": 2,
+      "maritime_security_incide": 0,
+      "chokepoint_transit_rate": 2,
+      "shipping_route_diversion": 2,
+      "insurance_premium_level_": 1,
+      "export_infrastructure_di": 2,
+      "refinery_utilization_rat": 2,
+      "fuel_inventory_days_of_s": 2,
+      "commodity_price_level_oi": 1,
+      "commodity_price_volatili": 2,
+      "futures_market_liquidity": 0,
+      "political_policy_uncerta": 0,
+      "weather_disruption_sever": 0
+    }
+  },
+  "AS": {
+    "crude_oil_production_rat": 9,
+    "refined_fuel_production_": 7,
+    "offshore_operational_cap": 9,
+    "tanker_operational_avail": 15,
+    "maritime_security_incide": 30,
+    "chokepoint_transit_rate": 20,
+    "shipping_route_diversion": 13,
+    "insurance_premium_level_": 8,
+    "export_infrastructure_di": 25,
+    "refinery_utilization_rat": 12,
+    "fuel_inventory_days_of_s": 8,
+    "commodity_price_level_oi": 6,
+    "commodity_price_volatili": 5,
+    "futures_market_liquidity": 4,
+    "political_policy_uncerta": 23,
+    "weather_disruption_sever": 23
+  },
+  "PS": {
+    "crude_oil_production_rat": 20,
+    "refined_fuel_production_": 15,
+    "offshore_operational_cap": 10,
+    "tanker_operational_avail": 16,
+    "maritime_security_incide": 6,
+    "chokepoint_transit_rate": 15,
+    "shipping_route_diversion": 12,
+    "insurance_premium_level_": 12,
+    "export_infrastructure_di": 6,
+    "refinery_utilization_rat": 17,
+    "fuel_inventory_days_of_s": 25,
+    "commodity_price_level_oi": 24,
+    "commodity_price_volatili": 21,
+    "futures_market_liquidity": 8,
+    "political_policy_uncerta": 9,
+    "weather_disruption_sever": 1
+  },
+  "med_AS": 10.5,
+  "med_PS": 13.5,
+  "roles": [
+    {
+      "variable": "chokepoint_transit_rate",
+      "name": "Chokepoint transit rate",
+      "AS": 20,
+      "PS": 15,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 300,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "tanker_operational_avail",
+      "name": "Tanker operational availability",
+      "AS": 15,
+      "PS": 16,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 240,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "political_policy_uncerta",
+      "name": "Political and policy uncertainty level",
+      "AS": 23,
+      "PS": 9,
+      "Q=AS/PS": 2.56,
+      "P=AS*PS": 207,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refinery_utilization_rat",
+      "name": "Refinery utilization rate",
+      "AS": 12,
+      "PS": 17,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 204,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "fuel_inventory_days_of_s",
+      "name": "Fuel inventory days of supply",
+      "AS": 8,
+      "PS": 25,
+      "Q=AS/PS": 0.32,
+      "P=AS*PS": 200,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "maritime_security_incide",
+      "name": "Maritime security incident rate",
+      "AS": 30,
+      "PS": 6,
+      "Q=AS/PS": 5.0,
+      "P=AS*PS": 180,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "crude_oil_production_rat",
+      "name": "Crude oil production rate",
+      "AS": 9,
+      "PS": 20,
+      "Q=AS/PS": 0.45,
+      "P=AS*PS": 180,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "shipping_route_diversion",
+      "name": "Shipping route diversion extent",
+      "AS": 13,
+      "PS": 12,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 156,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "export_infrastructure_di",
+      "name": "Export infrastructure disruption level",
+      "AS": 25,
+      "PS": 6,
+      "Q=AS/PS": 4.17,
+      "P=AS*PS": 150,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "commodity_price_level_oi",
+      "name": "Oil commodity price level",
+      "AS": 6,
+      "PS": 24,
+      "Q=AS/PS": 0.25,
+      "P=AS*PS": 144,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refined_fuel_production_",
+      "name": "Refined fuel production rate",
+      "AS": 7,
+      "PS": 15,
+      "Q=AS/PS": 0.47,
+      "P=AS*PS": 105,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "commodity_price_volatili",
+      "name": "Commodity price volatility",
+      "AS": 5,
+      "PS": 21,
+      "Q=AS/PS": 0.24,
+      "P=AS*PS": 105,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "insurance_premium_level_",
+      "name": "Maritime insurance premium level",
+      "AS": 8,
+      "PS": 12,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 96,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "offshore_operational_cap",
+      "name": "Offshore operational capacity",
+      "AS": 9,
+      "PS": 10,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 90,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "futures_market_liquidity",
+      "name": "Futures market liquidity",
+      "AS": 4,
+      "PS": 8,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 32,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "weather_disruption_sever",
+      "name": "Weather disruption severity",
+      "AS": 23,
+      "PS": 1,
+      "Q=AS/PS": 23.0,
+      "P=AS*PS": 23,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "crude_oil_production_rat",
+        "name": "Crude oil production rate",
+        "kind": "flow",
+        "AS": 9,
+        "PS": 20
+      },
+      {
+        "id": "refined_fuel_production_",
+        "name": "Refined fuel production rate",
+        "kind": "flow",
+        "AS": 7,
+        "PS": 15
+      },
+      {
+        "id": "offshore_operational_cap",
+        "name": "Offshore operational capacity",
+        "kind": "stock",
+        "AS": 9,
+        "PS": 10
+      },
+      {
+        "id": "tanker_operational_avail",
+        "name": "Tanker operational availability",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 16
+      },
+      {
+        "id": "maritime_security_incide",
+        "name": "Maritime security incident rate",
+        "kind": "flow",
+        "AS": 30,
+        "PS": 6
+      },
+      {
+        "id": "chokepoint_transit_rate",
+        "name": "Chokepoint transit rate",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 15
+      },
+      {
+        "id": "shipping_route_diversion",
+        "name": "Shipping route diversion extent",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 12
+      },
+      {
+        "id": "insurance_premium_level_",
+        "name": "Maritime insurance premium level",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 12
+      },
+      {
+        "id": "export_infrastructure_di",
+        "name": "Export infrastructure disruption level",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 6
+      },
+      {
+        "id": "refinery_utilization_rat",
+        "name": "Refinery utilization rate",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 17
+      },
+      {
+        "id": "fuel_inventory_days_of_s",
+        "name": "Fuel inventory days of supply",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 25
+      },
+      {
+        "id": "commodity_price_level_oi",
+        "name": "Oil commodity price level",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 24
+      },
+      {
+        "id": "commodity_price_volatili",
+        "name": "Commodity price volatility",
+        "kind": "stock",
+        "AS": 5,
+        "PS": 21
+      },
+      {
+        "id": "futures_market_liquidity",
+        "name": "Futures market liquidity",
+        "kind": "stock",
+        "AS": 4,
+        "PS": 8
+      },
+      {
+        "id": "political_policy_uncerta",
+        "name": "Political and policy uncertainty level",
+        "kind": "perception",
+        "AS": 23,
+        "PS": 9
+      },
+      {
+        "id": "weather_disruption_sever",
+        "name": "Weather disruption severity",
+        "kind": "environment",
+        "AS": 23,
+        "PS": 1
+      }
+    ],
+    "edges": [
+      {
+        "source": "crude_oil_production_rat",
+        "target": "refined_fuel_production_",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_oil_production_rat",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_oil_production_rat",
+        "target": "fuel_inventory_days_of_s",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_production_",
+        "target": "refinery_utilization_rat",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "refined_fuel_production_",
+        "target": "fuel_inventory_days_of_s",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "offshore_operational_cap",
+        "target": "crude_oil_production_rat",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "offshore_operational_cap",
+        "target": "fuel_inventory_days_of_s",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_operational_avail",
+        "target": "crude_oil_production_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_operational_avail",
+        "target": "chokepoint_transit_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_operational_avail",
+        "target": "fuel_inventory_days_of_s",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_operational_avail",
+        "target": "commodity_price_level_oi",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_operational_avail",
+        "target": "commodity_price_volatili",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "crude_oil_production_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "offshore_operational_cap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "tanker_operational_avail",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "chokepoint_transit_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "shipping_route_diversion",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "insurance_premium_level_",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "export_infrastructure_di",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "fuel_inventory_days_of_s",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "commodity_price_level_oi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "commodity_price_volatili",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_incide",
+        "target": "political_policy_uncerta",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_rate",
+        "target": "crude_oil_production_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_rate",
+        "target": "tanker_operational_avail",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_rate",
+        "target": "shipping_route_diversion",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_rate",
+        "target": "fuel_inventory_days_of_s",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_rate",
+        "target": "commodity_price_level_oi",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_rate",
+        "target": "commodity_price_volatili",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_diversion",
+        "target": "tanker_operational_avail",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_diversion",
+        "target": "chokepoint_transit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_diversion",
+        "target": "fuel_inventory_days_of_s",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premium_level_",
+        "target": "tanker_operational_avail",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_infrastructure_di",
+        "target": "crude_oil_production_rat",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "export_infrastructure_di",
+        "target": "refined_fuel_production_",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_infrastructure_di",
+        "target": "chokepoint_transit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_infrastructure_di",
+        "target": "insurance_premium_level_",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_infrastructure_di",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_infrastructure_di",
+        "target": "fuel_inventory_days_of_s",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "export_infrastructure_di",
+        "target": "commodity_price_level_oi",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "export_infrastructure_di",
+        "target": "commodity_price_volatili",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_infrastructure_di",
+        "target": "political_policy_uncerta",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "refined_fuel_production_",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "fuel_inventory_days_of_s",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization_rat",
+        "target": "commodity_price_level_oi",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_inventory_days_of_s",
+        "target": "commodity_price_level_oi",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_inventory_days_of_s",
+        "target": "commodity_price_volatili",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commodity_price_volatili",
+        "target": "futures_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "futures_market_liquidity",
+        "target": "commodity_price_volatili",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_policy_uncerta",
+        "target": "crude_oil_production_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_policy_uncerta",
+        "target": "tanker_operational_avail",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_policy_uncerta",
+        "target": "maritime_security_incide",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_policy_uncerta",
+        "target": "insurance_premium_level_",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "political_policy_uncerta",
+        "target": "commodity_price_level_oi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_policy_uncerta",
+        "target": "commodity_price_volatili",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "political_policy_uncerta",
+        "target": "futures_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "weather_disruption_sever",
+        "target": "crude_oil_production_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "weather_disruption_sever",
+        "target": "refined_fuel_production_",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "weather_disruption_sever",
+        "target": "offshore_operational_cap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "weather_disruption_sever",
+        "target": "tanker_operational_avail",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "weather_disruption_sever",
+        "target": "chokepoint_transit_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "weather_disruption_sever",
+        "target": "shipping_route_diversion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "weather_disruption_sever",
+        "target": "export_infrastructure_di",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "weather_disruption_sever",
+        "target": "refinery_utilization_rat",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "weather_disruption_sever",
+        "target": "fuel_inventory_days_of_s",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "weather_disruption_sever",
+        "target": "commodity_price_volatili",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_midterm_election_2026",
+      "title": "U.S. midterm elections (Nov 3, 2026)",
+      "description": "Scheduled U.S. midterm election day that could change policy posture toward Iran and energy-market risk premia.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-11-03",
+        "start": null,
+        "end": null,
+        "label": "election day"
+      },
+      "probability": 1.0,
+      "affected": [
+        {
+          "variable_id": "political_policy_uncerta",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "commodity_price_volatili",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "commodity_price_level_oi",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Trump says no attack before midterms; election can alter U.S. Iran policy and market risk premia (headlines 10/09-10/11)."
+    },
+    {
+      "id": "iran_tanker_attack_campaign",
+      "title": "Sustained Iranian tanker attacks and Hormuz blockade threats",
+      "description": "Ongoing Iranian attacks on tankers and vows to block alternate Hormuz routes that maintain shipping risk and rerouting.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-11",
+        "end": "2026-11-30",
+        "label": "weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "maritime_security_incide",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "chokepoint_transit_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_route_diversion",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premium_level_",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_price_volatili",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_price_level_oi",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines report 'Iran attacks tankers', 'Attack risks rise' and falling Hormuz transits, driving continued maritime disruption (10/09-10/11)."
+    },
+    {
+      "id": "us_sanctions_shadow_fleet",
+      "title": "U.S. Treasury sanctions on Iran 'shadow fleet' enforcement",
+      "description": "Sanctions and enforcement actions targeting 17 tankers will constrain flagged vessels and shift commercial shipping behavior.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-12-31",
+        "label": "weeks-months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "tanker_operational_avail",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium_level_",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "futures_market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "maritime_security_incide",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Treasury sanctions 17 tankers and fresh sanctions reported; enforcement will reduce available tonnage and raise risk premia (10/09)."
+    },
+    {
+      "id": "isaias_aftermath_shutdowns",
+      "title": "Post-Isaias Gulf production and refinery shutdowns",
+      "description": "Ongoing shutdowns and staggered restarts of Gulf of Mexico platforms and refineries following Hurricane Isaias landfall.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-10",
+        "end": "2026-10-25",
+        "label": "2 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "crude_oil_production_rat",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "offshore_operational_cap",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refinery_utilization_rat",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fuel_inventory_days_of_s",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "commodity_price_level_oi",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: Isaias made landfall, killed people, and disrupted US oil/gas production; companies curbed Gulf output (10/10-10/11)."
+    },
+    {
+      "id": "hurricane_simon_threat_mexico",
+      "title": "Hurricane Simon strengthens toward Mexico (Category 4)",
+      "description": "Rapid intensification of Hurricane Simon threatens Mexican Pacific coast, risking production outages and coastal infrastructure impacts.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-11",
+        "end": "2026-10-18",
+        "label": "week"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "weather_disruption_sever",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "offshore_operational_cap",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_oil_production_rat",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines note Hurricane Simon rapidly strengthened to Category 4 and threatens Mexican coast, implying near-term production/shipping risk (10/09-10/11)."
+    },
+    {
+      "id": "el_nino_intensification",
+      "title": "El Niño set to intensify through Feb 2027",
+      "description": "UN warns El Niño will intensify and persist to February 2027, raising probability of extreme weather disrupting energy supply chains.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2027-02-28",
+        "label": "Oct–Feb"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "weather_disruption_sever",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_price_volatili",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "UN weather body says El Niño will intensify and last until Feb 2027, increasing weather-driven disruptions (10/09)."
+    },
+    {
+      "id": "venezuela_contracts_by_yearend",
+      "title": "Venezuela aims to sign 105 oil contracts by end of year",
+      "description": "PDVSA plans contract signings by year-end that could incrementally raise Venezuelan output and influence market supply expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "crude_oil_production_rat",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_price_level_oi",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: Venezuela looking to sign 105 oil contracts by end of year — could lift supply expectations (10/09)."
+    },
+    {
+      "id": "sustained_hormuz_diversions",
+      "title": "Sustained diversion of commercial traffic away from Strait of Hormuz",
+      "description": "Carriers continue to avoid Hormuz, lowering transit counts and lengthening voyages as attacks and risk premiums persist.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-09",
+        "end": "2026-11-30",
+        "label": "weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "chokepoint_transit_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_route_diversion",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_operational_avail",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium_level_",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_price_level_oi",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines report lowest Hormuz transits, captains paid steep fees, and carriers steering clear, implying sustained diversion impacts (10/09)."
+    },
+    {
+      "id": "military_actions_gulf_of_oman",
+      "title": "Increased military interdictions and strikes in Gulf of Oman",
+      "description": "Recent U.S. strikes and interdictions of commercial vessels in Gulf of Oman risk further military-maritme escalations affecting shipping safety.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-11",
+        "end": "2026-11-30",
+        "label": "weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "maritime_security_incide",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "chokepoint_transit_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premium_level_",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_operational_avail",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: US hits commercial tanker and disabled vessel attempting to run Iran blockade, raising risk of further military actions (10/11)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "iran_tanker_attack_campaign",
+      "title": "Sustained Iranian tanker attacks and Hormuz blockade threats",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-11",
+      "end": "2026-11-30",
+      "probability": 0.8,
+      "impact_score": 232.0,
+      "expected_impact": 185.6,
+      "event_PS": 14.625,
+      "event_AS": 14.5,
+      "n_vars": 6,
+      "affected_ids": "maritime_security_incide, chokepoint_transit_rate, shipping_route_diversion, insurance_premium_level_, commodity_price_volatili, commodity_price_level_oi",
+      "rationale": "Headlines report 'Iran attacks tankers', 'Attack risks rise' and falling Hormuz transits, driving continued maritime disruption (10/09-10/11)."
+    },
+    {
+      "id": "military_actions_gulf_of_oman",
+      "title": "Increased military interdictions and strikes in Gulf of Oman",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-11",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 176.0,
+      "expected_impact": 105.6,
+      "event_PS": 11.556,
+      "event_AS": 19.556,
+      "n_vars": 4,
+      "affected_ids": "maritime_security_incide, chokepoint_transit_rate, insurance_premium_level_, tanker_operational_avail",
+      "rationale": "Headlines: US hits commercial tanker and disabled vessel attempting to run Iran blockade, raising risk of further military actions (10/11)."
+    },
+    {
+      "id": "sustained_hormuz_diversions",
+      "title": "Sustained diversion of commercial traffic away from Strait of Hormuz",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-11-30",
+      "probability": 0.85,
+      "impact_score": 157.0,
+      "expected_impact": 133.45,
+      "event_PS": 15.417,
+      "event_AS": 13.083,
+      "n_vars": 5,
+      "affected_ids": "chokepoint_transit_rate, shipping_route_diversion, tanker_operational_avail, insurance_premium_level_, commodity_price_level_oi",
+      "rationale": "Headlines report lowest Hormuz transits, captains paid steep fees, and carriers steering clear, implying sustained diversion impacts (10/09)."
+    },
+    {
+      "id": "hurricane_simon_threat_mexico",
+      "title": "Hurricane Simon strengthens toward Mexico (Category 4)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "week",
+      "date": null,
+      "start": "2026-10-11",
+      "end": "2026-10-18",
+      "probability": 0.6,
+      "impact_score": 96.0,
+      "expected_impact": 57.6,
+      "event_PS": 7.167,
+      "event_AS": 16.0,
+      "n_vars": 3,
+      "affected_ids": "weather_disruption_sever, offshore_operational_cap, crude_oil_production_rat",
+      "rationale": "Headlines note Hurricane Simon rapidly strengthened to Category 4 and threatens Mexican coast, implying near-term production/shipping risk (10/09-10/11)."
+    },
+    {
+      "id": "isaias_aftermath_shutdowns",
+      "title": "Post-Isaias Gulf production and refinery shutdowns",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-10-10",
+      "end": "2026-10-25",
+      "probability": 0.9,
+      "impact_score": 88.0,
+      "expected_impact": 79.2,
+      "event_PS": 19.2,
+      "event_AS": 8.8,
+      "n_vars": 5,
+      "affected_ids": "crude_oil_production_rat, offshore_operational_cap, refinery_utilization_rat, fuel_inventory_days_of_s, commodity_price_level_oi",
+      "rationale": "Headlines: Isaias made landfall, killed people, and disrupted US oil/gas production; companies curbed Gulf output (10/10-10/11)."
+    },
+    {
+      "id": "el_nino_intensification",
+      "title": "El Niño set to intensify through Feb 2027",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Oct–Feb",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2027-02-28",
+      "probability": 0.95,
+      "impact_score": 79.0,
+      "expected_impact": 75.05,
+      "event_PS": 9.0,
+      "event_AS": 15.8,
+      "n_vars": 2,
+      "affected_ids": "weather_disruption_sever, commodity_price_volatili",
+      "rationale": "UN weather body says El Niño will intensify and last until Feb 2027, increasing weather-driven disruptions (10/09)."
+    },
+    {
+      "id": "us_sanctions_shadow_fleet",
+      "title": "U.S. Treasury sanctions on Iran 'shadow fleet' enforcement",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks-months",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-12-31",
+      "probability": 0.85,
+      "impact_score": 72.0,
+      "expected_impact": 61.2,
+      "event_PS": 11.6,
+      "event_AS": 14.4,
+      "n_vars": 4,
+      "affected_ids": "tanker_operational_avail, insurance_premium_level_, futures_market_liquidity, maritime_security_incide",
+      "rationale": "Treasury sanctions 17 tankers and fresh sanctions reported; enforcement will reduce available tonnage and raise risk premia (10/09)."
+    },
+    {
+      "id": "us_midterm_election_2026",
+      "title": "U.S. midterm elections (Nov 3, 2026)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "election day",
+      "date": "2026-11-03",
+      "start": null,
+      "end": null,
+      "probability": 1.0,
+      "impact_score": 62.0,
+      "expected_impact": 62.0,
+      "event_PS": 16.8,
+      "event_AS": 12.4,
+      "n_vars": 3,
+      "affected_ids": "political_policy_uncerta, commodity_price_volatili, commodity_price_level_oi",
+      "rationale": "Trump says no attack before midterms; election can alter U.S. Iran policy and market risk premia (headlines 10/09-10/11)."
+    },
+    {
+      "id": "venezuela_contracts_by_yearend",
+      "title": "Venezuela aims to sign 105 oil contracts by end of year",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-10-09",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 24.0,
+      "expected_impact": 16.8,
+      "event_PS": 21.333,
+      "event_AS": 8.0,
+      "n_vars": 2,
+      "affected_ids": "crude_oil_production_rat, commodity_price_level_oi",
+      "rationale": "Headline: Venezuela looking to sign 105 oil contracts by end of year — could lift supply expectations (10/09)."
+    }
+  ]
+}

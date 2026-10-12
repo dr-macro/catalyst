@@ -1,0 +1,2046 @@
+{
+  "label": "financial_markets_stress",
+  "as_of": "2026-10-11",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-12T02:46:11",
+  "system_description": {
+    "narrative_title": "Rising bond yields and bond-market stress threatening broader markets",
+    "narrative_summary": "A surge in sovereign and corporate bond yields — and the market's fear of further increases (US 10-year talk of 6%, European sovereign stress notably in France) — is driving volatility across asset classes, testing central-bank credibility and prompting debates over policy interventions. The system is open: capital, risk premia and information flow between sovereign debt, corporate credit, banks, asset managers and equity markets, producing feedback loops (auctions ↔ yields ↔ balance-sheet pressures ↔ investor risk‑taking) and political spillovers (fiscal strain, protests).",
+    "scope": "The system boundary includes global fixed‑income markets (US Treasuries, euro‑area sovereigns, corporate and high‑yield bonds), central banks and fiscal authorities, large investors (asset managers, hedge funds, pension funds), market plumbing (auctions, ETFs, derivatives) and their direct transmission to equity markets and financial intermediaries.",
+    "super_system": "Global financial system and macroeconomy",
+    "adjacent_subsystems": [
+      "Equity markets and tech/AI earnings dynamics",
+      "Banking and non‑bank financial institutions (banks, insurers, hedge funds)",
+      "Public finance and politics (sovereign budgets, protests, EU fiscal coordination)",
+      "Market infrastructure and innovations (ETFs, tokenization, derivatives, auctions)"
+    ],
+    "evidence_headlines": [
+      "US 10-year Treasury yield risks hitting 6% for first time since 2000, Pimco's Ivascyn tells FT",
+      "France Is Discovering the Cost of Higher Yields",
+      "Repeated US Treasury interventions risk an erosion of credibility",
+      "Bond Vigilantes Find New Reasons to Worry",
+      "Junk bonds are 'flashing yellow.' Watch these warning signs",
+      "Here’s how Treasury yields could rise to 6% — even without market upheaval"
+    ]
+  },
+  "variables": [
+    {
+      "id": "sovereign_yield_level",
+      "name": "Sovereign yield level",
+      "description": "The prevailing long-term sovereign bond yield that sets the baseline cost of risk‑free borrowing across the market.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_credit_spread",
+      "name": "Corporate credit spread",
+      "description": "The premium demanded by investors for holding corporate debt versus sovereign debt of comparable duration.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_yield_volatility",
+      "name": "Bond yield volatility",
+      "description": "The observed or implied variability of bond yields over a given time horizon, reflecting uncertainty and risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity_level",
+      "name": "Fixed-income market liquidity",
+      "description": "The ease with which large fixed-income positions can be transacted without inducing significant price moves.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "intermediary_funding_cos",
+      "name": "Intermediary funding costs",
+      "description": "The prevailing short‑term funding rates and spreads faced by market intermediaries to finance positions and inventories.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_leverage",
+      "name": "Investor leverage",
+      "description": "The average ratio of borrowed to equity capital used by leveraged investors and funds in market exposures.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "collateral_valuation",
+      "name": "Collateral valuation",
+      "description": "The market value and price stability of assets eligible as collateral for margin and funding arrangements.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "derivatives_gross_exposu",
+      "name": "Derivatives gross exposure",
+      "description": "Aggregate notional or effective exposure in interest‑rate and credit derivatives that can amplify market moves.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "primary_auction_demand",
+      "name": "Primary auction demand",
+      "description": "The intensity and composition of bidding demand at sovereign debt auctions, including tail risk and stop‑out behavior.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "etf_product_flows",
+      "name": "ETF and index product flows",
+      "description": "Net inflows and outflows into bond ETFs and index‑tracking products that affect secondary‑market liquidity and price impact.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_risk_premia",
+      "name": "Market risk premia",
+      "description": "The aggregate compensation investors require for bearing systematic and idiosyncratic risks across asset classes.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_credibility",
+      "name": "Central bank credibility",
+      "description": "Market confidence in monetary authorities' willingness and ability to achieve policy objectives and to intervene when needed.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "The market‑implied anticipated path of official policy interest rates over relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_financing_needs",
+      "name": "Fiscal financing needs",
+      "description": "The ongoing government borrowing requirement and issuance flow needed to finance deficits and roll over maturing debt.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "cross_asset_spillovers",
+      "name": "Cross‑asset spillover intensity",
+      "description": "The magnitude and speed with which shocks in fixed income transmit to equities, credit, commodities and funding markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "The aggregate willingness of market participants to accept volatility and potential losses in pursuit of returns.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "sovereign_yield_level",
+    "corporate_credit_spread",
+    "bond_yield_volatility",
+    "market_liquidity_level",
+    "intermediary_funding_cos",
+    "investor_leverage",
+    "collateral_valuation",
+    "derivatives_gross_exposu",
+    "primary_auction_demand",
+    "etf_product_flows",
+    "market_risk_premia",
+    "central_bank_credibility",
+    "policy_rate_expectations",
+    "fiscal_financing_needs",
+    "cross_asset_spillovers",
+    "risk_appetite"
+  ],
+  "var_names": {
+    "sovereign_yield_level": "Sovereign yield level",
+    "corporate_credit_spread": "Corporate credit spread",
+    "bond_yield_volatility": "Bond yield volatility",
+    "market_liquidity_level": "Fixed-income market liquidity",
+    "intermediary_funding_cos": "Intermediary funding costs",
+    "investor_leverage": "Investor leverage",
+    "collateral_valuation": "Collateral valuation",
+    "derivatives_gross_exposu": "Derivatives gross exposure",
+    "primary_auction_demand": "Primary auction demand",
+    "etf_product_flows": "ETF and index product flows",
+    "market_risk_premia": "Market risk premia",
+    "central_bank_credibility": "Central bank credibility",
+    "policy_rate_expectations": "Policy rate expectations",
+    "fiscal_financing_needs": "Fiscal financing needs",
+    "cross_asset_spillovers": "Cross‑asset spillover intensity",
+    "risk_appetite": "Investor risk appetite"
+  },
+  "impact_matrix": {
+    "sovereign_yield_level": {
+      "sovereign_yield_level": 0,
+      "corporate_credit_spread": 3,
+      "bond_yield_volatility": 2,
+      "market_liquidity_level": 2,
+      "intermediary_funding_cos": 2,
+      "investor_leverage": 1,
+      "collateral_valuation": 3,
+      "derivatives_gross_exposu": 2,
+      "primary_auction_demand": 3,
+      "etf_product_flows": 2,
+      "market_risk_premia": 3,
+      "central_bank_credibility": 1,
+      "policy_rate_expectations": 2,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 3,
+      "risk_appetite": 2
+    },
+    "corporate_credit_spread": {
+      "sovereign_yield_level": 1,
+      "corporate_credit_spread": 0,
+      "bond_yield_volatility": 2,
+      "market_liquidity_level": 2,
+      "intermediary_funding_cos": 1,
+      "investor_leverage": 2,
+      "collateral_valuation": 2,
+      "derivatives_gross_exposu": 2,
+      "primary_auction_demand": 0,
+      "etf_product_flows": 2,
+      "market_risk_premia": 3,
+      "central_bank_credibility": 0,
+      "policy_rate_expectations": 0,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 2,
+      "risk_appetite": 2
+    },
+    "bond_yield_volatility": {
+      "sovereign_yield_level": 1,
+      "corporate_credit_spread": 2,
+      "bond_yield_volatility": 0,
+      "market_liquidity_level": 3,
+      "intermediary_funding_cos": 2,
+      "investor_leverage": 3,
+      "collateral_valuation": 2,
+      "derivatives_gross_exposu": 2,
+      "primary_auction_demand": 1,
+      "etf_product_flows": 2,
+      "market_risk_premia": 3,
+      "central_bank_credibility": 1,
+      "policy_rate_expectations": 1,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 3,
+      "risk_appetite": 3
+    },
+    "market_liquidity_level": {
+      "sovereign_yield_level": 2,
+      "corporate_credit_spread": 3,
+      "bond_yield_volatility": 3,
+      "market_liquidity_level": 0,
+      "intermediary_funding_cos": 2,
+      "investor_leverage": 2,
+      "collateral_valuation": 2,
+      "derivatives_gross_exposu": 2,
+      "primary_auction_demand": 2,
+      "etf_product_flows": 2,
+      "market_risk_premia": 3,
+      "central_bank_credibility": 1,
+      "policy_rate_expectations": 0,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 3,
+      "risk_appetite": 3
+    },
+    "intermediary_funding_cos": {
+      "sovereign_yield_level": 2,
+      "corporate_credit_spread": 2,
+      "bond_yield_volatility": 1,
+      "market_liquidity_level": 3,
+      "intermediary_funding_cos": 0,
+      "investor_leverage": 3,
+      "collateral_valuation": 1,
+      "derivatives_gross_exposu": 2,
+      "primary_auction_demand": 1,
+      "etf_product_flows": 1,
+      "market_risk_premia": 2,
+      "central_bank_credibility": 1,
+      "policy_rate_expectations": 1,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 2,
+      "risk_appetite": 2
+    },
+    "investor_leverage": {
+      "sovereign_yield_level": 2,
+      "corporate_credit_spread": 2,
+      "bond_yield_volatility": 2,
+      "market_liquidity_level": 3,
+      "intermediary_funding_cos": 2,
+      "investor_leverage": 0,
+      "collateral_valuation": 1,
+      "derivatives_gross_exposu": 3,
+      "primary_auction_demand": 1,
+      "etf_product_flows": 2,
+      "market_risk_premia": 2,
+      "central_bank_credibility": 0,
+      "policy_rate_expectations": 0,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 3,
+      "risk_appetite": 2
+    },
+    "collateral_valuation": {
+      "sovereign_yield_level": 2,
+      "corporate_credit_spread": 2,
+      "bond_yield_volatility": 2,
+      "market_liquidity_level": 2,
+      "intermediary_funding_cos": 3,
+      "investor_leverage": 3,
+      "collateral_valuation": 0,
+      "derivatives_gross_exposu": 2,
+      "primary_auction_demand": 1,
+      "etf_product_flows": 1,
+      "market_risk_premia": 2,
+      "central_bank_credibility": 0,
+      "policy_rate_expectations": 0,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 2,
+      "risk_appetite": 2
+    },
+    "derivatives_gross_exposu": {
+      "sovereign_yield_level": 2,
+      "corporate_credit_spread": 1,
+      "bond_yield_volatility": 3,
+      "market_liquidity_level": 2,
+      "intermediary_funding_cos": 2,
+      "investor_leverage": 2,
+      "collateral_valuation": 2,
+      "derivatives_gross_exposu": 0,
+      "primary_auction_demand": 0,
+      "etf_product_flows": 1,
+      "market_risk_premia": 2,
+      "central_bank_credibility": 0,
+      "policy_rate_expectations": 1,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 3,
+      "risk_appetite": 1
+    },
+    "primary_auction_demand": {
+      "sovereign_yield_level": 3,
+      "corporate_credit_spread": 1,
+      "bond_yield_volatility": 2,
+      "market_liquidity_level": 1,
+      "intermediary_funding_cos": 1,
+      "investor_leverage": 0,
+      "collateral_valuation": 0,
+      "derivatives_gross_exposu": 0,
+      "primary_auction_demand": 0,
+      "etf_product_flows": 1,
+      "market_risk_premia": 2,
+      "central_bank_credibility": 1,
+      "policy_rate_expectations": 1,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 2,
+      "risk_appetite": 1
+    },
+    "etf_product_flows": {
+      "sovereign_yield_level": 2,
+      "corporate_credit_spread": 1,
+      "bond_yield_volatility": 2,
+      "market_liquidity_level": 2,
+      "intermediary_funding_cos": 1,
+      "investor_leverage": 1,
+      "collateral_valuation": 1,
+      "derivatives_gross_exposu": 1,
+      "primary_auction_demand": 0,
+      "etf_product_flows": 0,
+      "market_risk_premia": 1,
+      "central_bank_credibility": 0,
+      "policy_rate_expectations": 0,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 2,
+      "risk_appetite": 1
+    },
+    "market_risk_premia": {
+      "sovereign_yield_level": 3,
+      "corporate_credit_spread": 3,
+      "bond_yield_volatility": 2,
+      "market_liquidity_level": 2,
+      "intermediary_funding_cos": 2,
+      "investor_leverage": 1,
+      "collateral_valuation": 1,
+      "derivatives_gross_exposu": 2,
+      "primary_auction_demand": 2,
+      "etf_product_flows": 1,
+      "market_risk_premia": 0,
+      "central_bank_credibility": 1,
+      "policy_rate_expectations": 1,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 3,
+      "risk_appetite": 3
+    },
+    "central_bank_credibility": {
+      "sovereign_yield_level": 3,
+      "corporate_credit_spread": 2,
+      "bond_yield_volatility": 2,
+      "market_liquidity_level": 2,
+      "intermediary_funding_cos": 2,
+      "investor_leverage": 1,
+      "collateral_valuation": 1,
+      "derivatives_gross_exposu": 1,
+      "primary_auction_demand": 2,
+      "etf_product_flows": 1,
+      "market_risk_premia": 3,
+      "central_bank_credibility": 0,
+      "policy_rate_expectations": 3,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 2,
+      "risk_appetite": 3
+    },
+    "policy_rate_expectations": {
+      "sovereign_yield_level": 3,
+      "corporate_credit_spread": 2,
+      "bond_yield_volatility": 2,
+      "market_liquidity_level": 1,
+      "intermediary_funding_cos": 2,
+      "investor_leverage": 1,
+      "collateral_valuation": 0,
+      "derivatives_gross_exposu": 2,
+      "primary_auction_demand": 1,
+      "etf_product_flows": 1,
+      "market_risk_premia": 2,
+      "central_bank_credibility": 0,
+      "policy_rate_expectations": 0,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 2,
+      "risk_appetite": 1
+    },
+    "fiscal_financing_needs": {
+      "sovereign_yield_level": 3,
+      "corporate_credit_spread": 1,
+      "bond_yield_volatility": 2,
+      "market_liquidity_level": 1,
+      "intermediary_funding_cos": 0,
+      "investor_leverage": 0,
+      "collateral_valuation": 0,
+      "derivatives_gross_exposu": 0,
+      "primary_auction_demand": 2,
+      "etf_product_flows": 0,
+      "market_risk_premia": 2,
+      "central_bank_credibility": 0,
+      "policy_rate_expectations": 0,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 1,
+      "risk_appetite": 0
+    },
+    "cross_asset_spillovers": {
+      "sovereign_yield_level": 3,
+      "corporate_credit_spread": 3,
+      "bond_yield_volatility": 3,
+      "market_liquidity_level": 3,
+      "intermediary_funding_cos": 2,
+      "investor_leverage": 2,
+      "collateral_valuation": 2,
+      "derivatives_gross_exposu": 2,
+      "primary_auction_demand": 1,
+      "etf_product_flows": 2,
+      "market_risk_premia": 3,
+      "central_bank_credibility": 1,
+      "policy_rate_expectations": 1,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 0,
+      "risk_appetite": 3
+    },
+    "risk_appetite": {
+      "sovereign_yield_level": 2,
+      "corporate_credit_spread": 3,
+      "bond_yield_volatility": 2,
+      "market_liquidity_level": 2,
+      "intermediary_funding_cos": 1,
+      "investor_leverage": 3,
+      "collateral_valuation": 1,
+      "derivatives_gross_exposu": 2,
+      "primary_auction_demand": 2,
+      "etf_product_flows": 2,
+      "market_risk_premia": 3,
+      "central_bank_credibility": 0,
+      "policy_rate_expectations": 0,
+      "fiscal_financing_needs": 0,
+      "cross_asset_spillovers": 3,
+      "risk_appetite": 0
+    }
+  },
+  "AS": {
+    "sovereign_yield_level": 31,
+    "corporate_credit_spread": 21,
+    "bond_yield_volatility": 29,
+    "market_liquidity_level": 30,
+    "intermediary_funding_cos": 24,
+    "investor_leverage": 25,
+    "collateral_valuation": 24,
+    "derivatives_gross_exposu": 22,
+    "primary_auction_demand": 16,
+    "etf_product_flows": 15,
+    "market_risk_premia": 27,
+    "central_bank_credibility": 28,
+    "policy_rate_expectations": 20,
+    "fiscal_financing_needs": 12,
+    "cross_asset_spillovers": 31,
+    "risk_appetite": 26
+  },
+  "PS": {
+    "sovereign_yield_level": 34,
+    "corporate_credit_spread": 31,
+    "bond_yield_volatility": 32,
+    "market_liquidity_level": 31,
+    "intermediary_funding_cos": 25,
+    "investor_leverage": 25,
+    "collateral_valuation": 19,
+    "derivatives_gross_exposu": 25,
+    "primary_auction_demand": 19,
+    "etf_product_flows": 21,
+    "market_risk_premia": 36,
+    "central_bank_credibility": 7,
+    "policy_rate_expectations": 11,
+    "fiscal_financing_needs": 0,
+    "cross_asset_spillovers": 36,
+    "risk_appetite": 29
+  },
+  "med_AS": 24.5,
+  "med_PS": 25.0,
+  "roles": [
+    {
+      "variable": "cross_asset_spillovers",
+      "name": "Cross‑asset spillover intensity",
+      "AS": 31,
+      "PS": 36,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 1116,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_yield_level",
+      "name": "Sovereign yield level",
+      "AS": 31,
+      "PS": 34,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 1054,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_risk_premia",
+      "name": "Market risk premia",
+      "AS": 27,
+      "PS": 36,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 972,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_liquidity_level",
+      "name": "Fixed-income market liquidity",
+      "AS": 30,
+      "PS": 31,
+      "Q=AS/PS": 0.97,
+      "P=AS*PS": 930,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_yield_volatility",
+      "name": "Bond yield volatility",
+      "AS": 29,
+      "PS": 32,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 928,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 26,
+      "PS": 29,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 754,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "corporate_credit_spread",
+      "name": "Corporate credit spread",
+      "AS": 21,
+      "PS": 31,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 651,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "investor_leverage",
+      "name": "Investor leverage",
+      "AS": 25,
+      "PS": 25,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 625,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "intermediary_funding_cos",
+      "name": "Intermediary funding costs",
+      "AS": 24,
+      "PS": 25,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 600,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "derivatives_gross_exposu",
+      "name": "Derivatives gross exposure",
+      "AS": 22,
+      "PS": 25,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 550,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "collateral_valuation",
+      "name": "Collateral valuation",
+      "AS": 24,
+      "PS": 19,
+      "Q=AS/PS": 1.26,
+      "P=AS*PS": 456,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "etf_product_flows",
+      "name": "ETF and index product flows",
+      "AS": 15,
+      "PS": 21,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 315,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "primary_auction_demand",
+      "name": "Primary auction demand",
+      "AS": 16,
+      "PS": 19,
+      "Q=AS/PS": 0.84,
+      "P=AS*PS": 304,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 20,
+      "PS": 11,
+      "Q=AS/PS": 1.82,
+      "P=AS*PS": 220,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "central_bank_credibility",
+      "name": "Central bank credibility",
+      "AS": 28,
+      "PS": 7,
+      "Q=AS/PS": 4.0,
+      "P=AS*PS": 196,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "fiscal_financing_needs",
+      "name": "Fiscal financing needs",
+      "AS": 12,
+      "PS": 0,
+      "Q=AS/PS": 12000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "sovereign_yield_level",
+        "name": "Sovereign yield level",
+        "kind": "driver",
+        "AS": 31,
+        "PS": 34
+      },
+      {
+        "id": "corporate_credit_spread",
+        "name": "Corporate credit spread",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 31
+      },
+      {
+        "id": "bond_yield_volatility",
+        "name": "Bond yield volatility",
+        "kind": "stock",
+        "AS": 29,
+        "PS": 32
+      },
+      {
+        "id": "market_liquidity_level",
+        "name": "Fixed-income market liquidity",
+        "kind": "stock",
+        "AS": 30,
+        "PS": 31
+      },
+      {
+        "id": "intermediary_funding_cos",
+        "name": "Intermediary funding costs",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 25
+      },
+      {
+        "id": "investor_leverage",
+        "name": "Investor leverage",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 25
+      },
+      {
+        "id": "collateral_valuation",
+        "name": "Collateral valuation",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 19
+      },
+      {
+        "id": "derivatives_gross_exposu",
+        "name": "Derivatives gross exposure",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 25
+      },
+      {
+        "id": "primary_auction_demand",
+        "name": "Primary auction demand",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 19
+      },
+      {
+        "id": "etf_product_flows",
+        "name": "ETF and index product flows",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 21
+      },
+      {
+        "id": "market_risk_premia",
+        "name": "Market risk premia",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 36
+      },
+      {
+        "id": "central_bank_credibility",
+        "name": "Central bank credibility",
+        "kind": "perception",
+        "AS": 28,
+        "PS": 7
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 11
+      },
+      {
+        "id": "fiscal_financing_needs",
+        "name": "Fiscal financing needs",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 0
+      },
+      {
+        "id": "cross_asset_spillovers",
+        "name": "Cross‑asset spillover intensity",
+        "kind": "flow",
+        "AS": 31,
+        "PS": 36
+      },
+      {
+        "id": "risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 26,
+        "PS": 29
+      }
+    ],
+    "edges": [
+      {
+        "source": "sovereign_yield_level",
+        "target": "corporate_credit_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "intermediary_funding_cos",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "collateral_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "derivatives_gross_exposu",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "primary_auction_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "etf_product_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "market_risk_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "cross_asset_spillovers",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_level",
+        "target": "risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "collateral_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "derivatives_gross_exposu",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "etf_product_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "market_risk_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "cross_asset_spillovers",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "market_liquidity_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "intermediary_funding_cos",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "collateral_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "derivatives_gross_exposu",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "etf_product_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "market_risk_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "cross_asset_spillovers",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield_volatility",
+        "target": "risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "corporate_credit_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "bond_yield_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "intermediary_funding_cos",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "collateral_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "derivatives_gross_exposu",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "primary_auction_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "etf_product_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "market_risk_premia",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "cross_asset_spillovers",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "risk_appetite",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "intermediary_funding_cos",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intermediary_funding_cos",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intermediary_funding_cos",
+        "target": "market_liquidity_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "intermediary_funding_cos",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "intermediary_funding_cos",
+        "target": "derivatives_gross_exposu",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "intermediary_funding_cos",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intermediary_funding_cos",
+        "target": "cross_asset_spillovers",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "intermediary_funding_cos",
+        "target": "risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "market_liquidity_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "intermediary_funding_cos",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "derivatives_gross_exposu",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "etf_product_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "cross_asset_spillovers",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_leverage",
+        "target": "risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "collateral_valuation",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "collateral_valuation",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "collateral_valuation",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "collateral_valuation",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "collateral_valuation",
+        "target": "intermediary_funding_cos",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "collateral_valuation",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "collateral_valuation",
+        "target": "derivatives_gross_exposu",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "collateral_valuation",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "collateral_valuation",
+        "target": "cross_asset_spillovers",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "collateral_valuation",
+        "target": "risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "derivatives_gross_exposu",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "derivatives_gross_exposu",
+        "target": "bond_yield_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "derivatives_gross_exposu",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "derivatives_gross_exposu",
+        "target": "intermediary_funding_cos",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "derivatives_gross_exposu",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "derivatives_gross_exposu",
+        "target": "collateral_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "derivatives_gross_exposu",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "derivatives_gross_exposu",
+        "target": "cross_asset_spillovers",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "primary_auction_demand",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "primary_auction_demand",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "primary_auction_demand",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "primary_auction_demand",
+        "target": "cross_asset_spillovers",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "etf_product_flows",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "etf_product_flows",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "etf_product_flows",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "etf_product_flows",
+        "target": "cross_asset_spillovers",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "corporate_credit_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "intermediary_funding_cos",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "derivatives_gross_exposu",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "primary_auction_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "cross_asset_spillovers",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_premia",
+        "target": "risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "intermediary_funding_cos",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "primary_auction_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "market_risk_premia",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "cross_asset_spillovers",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_credibility",
+        "target": "risk_appetite",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "intermediary_funding_cos",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "derivatives_gross_exposu",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cross_asset_spillovers",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_needs",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_needs",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_needs",
+        "target": "primary_auction_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_needs",
+        "target": "market_risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillovers",
+        "target": "sovereign_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillovers",
+        "target": "corporate_credit_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillovers",
+        "target": "bond_yield_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillovers",
+        "target": "market_liquidity_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_spillovers",
+        "target": "intermediary_funding_cos",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillovers",
+        "target": "investor_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_spillovers",
+        "target": "collateral_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_spillovers",
+        "target": "derivatives_gross_exposu",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillovers",
+        "target": "etf_product_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_asset_spillovers",
+        "target": "market_risk_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_asset_spillovers",
+        "target": "risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "sovereign_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "corporate_credit_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "bond_yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "investor_leverage",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "derivatives_gross_exposu",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "primary_auction_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "etf_product_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "market_risk_premia",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "risk_appetite",
+        "target": "cross_asset_spillovers",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "midterms_2026_us",
+      "title": "US 2026 midterm elections",
+      "description": "The November 2026 US midterm vote will alter fiscal and political risk perceptions, shifting policy expectations and safe‑asset demand.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-11-04",
+        "start": null,
+        "end": null,
+        "label": "Election day"
+      },
+      "probability": 0.99,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "risk_appetite",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_risk_premia",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'Treasury yields steady as Trump strikes diplomatic tone on Iran ahead of midterms' — midterms will move yields and risk pricing."
+    },
+    {
+      "id": "treasury_auctions_weekly",
+      "title": "Upcoming sovereign (Treasury) auctions",
+      "description": "Regular US sovereign auctions (and other sovereign issuance) over coming weeks will test primary demand and influence yields and liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-11",
+        "end": "2026-10-25",
+        "label": "next 2 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "primary_auction_demand",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_liquidity_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_yield_volatility",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Treasury yields steady after strong 10-year auction', 'Options traders... after \"bullet bid\" 10-year auction' — auctions will move yields/liquidity."
+    },
+    {
+      "id": "q3_earnings_banks",
+      "title": "Q3 earnings season, banks first",
+      "description": "Quarterly results (starting with major banks) will reveal how rising yields affect profitability, credit quality and market sentiment.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-11",
+        "end": "2026-10-25",
+        "label": "earnings kick‑off"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "risk_appetite",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_risk_premia",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "corporate_credit_spread",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "intermediary_funding_cos",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Bank earnings to shed the first light...' and 'earnings kick off as banks and chipmakers face big tests' — earnings will shift credit/risk pricing."
+    },
+    {
+      "id": "us_inflation_mid_oct",
+      "title": "Mid‑October US inflation releases",
+      "description": "Upcoming October inflation prints will reprice expectations for policy and long‑term yields if inflation remains sticky or surprises lower.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-10-20",
+        "label": "mid‑Oct releases"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "central_bank_credibility",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'Wall Street posts weekly gains with earnings, inflation data on tap' and 'Why Economists Think Higher Bond Yields Are Here to Stay.'"
+    },
+    {
+      "id": "eu_budget_supervision",
+      "title": "EU budget cuts and market‑supervision overhaul",
+      "description": "Ongoing EU budget negotiations and proposals to overhaul financial supervision may change fiscal backstops and cross‑border market rules.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-11",
+        "end": "2026-12-31",
+        "label": "by year‑end"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "fiscal_financing_needs",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "central_bank_credibility",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_risk_premia",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "primary_auction_demand",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'EU joint budget proposal slashed' and 'EU countries to overhaul financial market supervision' — fiscal/supervision changes affect sovereign markets."
+    },
+    {
+      "id": "france_bond_stress",
+      "title": "French fiscal/political stress on bond market",
+      "description": "Ongoing French fiscal strain and political tensions could widen yields and impair Eurozone secondary liquidity if stress intensifies.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-11",
+        "end": "2026-11-30",
+        "label": "weeks to months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "sovereign_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_financing_needs",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'France Is Discovering the Cost of Higher Yields', 'France: between the bond market and the barricades', 'debt bomb'."
+    },
+    {
+      "id": "india_rupee_defense",
+      "title": "India central bank FX defence and curbs",
+      "description": "RBI measures to support the rupee (curbs and intervention) will influence EM funding conditions and local market risk premia.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-11",
+        "end": "2026-10-25",
+        "label": "near term FX measures"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "market_risk_premia",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'India’s central bank tries to shore up rupee as it nears record lows' — FX defence will affect EM risk and liquidity."
+    },
+    {
+      "id": "tokenization_market_adoption",
+      "title": "Tokenized securities adoption and approvals",
+      "description": "Regulatory approvals and launches of tokenized stocks/ETFs could change product flows, market liquidity and collateral availability over coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-11",
+        "end": "2027-03-31",
+        "label": "next 3–6 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "etf_product_flows",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "collateral_valuation",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Tokenization could unleash tens of billions...' and 'Tokenized Stocks Bring ‘Radical Change’ to Markets'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "treasury_auctions_weekly",
+      "title": "Upcoming sovereign (Treasury) auctions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 weeks",
+      "date": null,
+      "start": "2026-10-11",
+      "end": "2026-10-25",
+      "probability": 0.9,
+      "impact_score": 259.0,
+      "expected_impact": 233.1,
+      "event_PS": 28.5,
+      "event_AS": 25.9,
+      "n_vars": 4,
+      "affected_ids": "primary_auction_demand, sovereign_yield_level, market_liquidity_level, bond_yield_volatility",
+      "rationale": "Headlines: 'Treasury yields steady after strong 10-year auction', 'Options traders... after \"bullet bid\" 10-year auction' — auctions will move yields/liquidity."
+    },
+    {
+      "id": "us_inflation_mid_oct",
+      "title": "Mid‑October US inflation releases",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid‑Oct releases",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-10-20",
+      "probability": 0.9,
+      "impact_score": 239.0,
+      "expected_impact": 215.1,
+      "event_PS": 22.889,
+      "event_AS": 26.556,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, sovereign_yield_level, bond_yield_volatility, central_bank_credibility",
+      "rationale": "Headline: 'Wall Street posts weekly gains with earnings, inflation data on tap' and 'Why Economists Think Higher Bond Yields Are Here to Stay.'"
+    },
+    {
+      "id": "midterms_2026_us",
+      "title": "US 2026 midterm elections",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "Election day",
+      "date": "2026-11-04",
+      "start": null,
+      "end": null,
+      "probability": 0.99,
+      "impact_score": 208.0,
+      "expected_impact": 205.92,
+      "event_PS": 27.5,
+      "event_AS": 26.0,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, sovereign_yield_level, risk_appetite, market_risk_premia",
+      "rationale": "Headline: 'Treasury yields steady as Trump strikes diplomatic tone on Iran ahead of midterms' — midterms will move yields and risk pricing."
+    },
+    {
+      "id": "france_bond_stress",
+      "title": "French fiscal/political stress on bond market",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks to months",
+      "date": null,
+      "start": "2026-10-11",
+      "end": "2026-11-30",
+      "probability": 0.75,
+      "impact_score": 199.0,
+      "expected_impact": 149.25,
+      "event_PS": 23.875,
+      "event_AS": 24.875,
+      "n_vars": 4,
+      "affected_ids": "sovereign_yield_level, fiscal_financing_needs, market_liquidity_level, risk_appetite",
+      "rationale": "Headlines: 'France Is Discovering the Cost of Higher Yields', 'France: between the bond market and the barricades', 'debt bomb'."
+    },
+    {
+      "id": "q3_earnings_banks",
+      "title": "Q3 earnings season, banks first",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "earnings kick‑off",
+      "date": null,
+      "start": "2026-10-11",
+      "end": "2026-10-25",
+      "probability": 0.95,
+      "impact_score": 198.0,
+      "expected_impact": 188.1,
+      "event_PS": 30.75,
+      "event_AS": 24.75,
+      "n_vars": 4,
+      "affected_ids": "risk_appetite, market_risk_premia, corporate_credit_spread, intermediary_funding_cos",
+      "rationale": "Headlines: 'Bank earnings to shed the first light...' and 'earnings kick off as banks and chipmakers face big tests' — earnings will shift credit/risk pricing."
+    },
+    {
+      "id": "india_rupee_defense",
+      "title": "India central bank FX defence and curbs",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near term FX measures",
+      "date": null,
+      "start": "2026-10-11",
+      "end": "2026-10-25",
+      "probability": 0.8,
+      "impact_score": 136.0,
+      "expected_impact": 108.8,
+      "event_PS": 32.2,
+      "event_AS": 27.2,
+      "n_vars": 3,
+      "affected_ids": "market_risk_premia, risk_appetite, market_liquidity_level",
+      "rationale": "Headline: 'India’s central bank tries to shore up rupee as it nears record lows' — FX defence will affect EM risk and liquidity."
+    },
+    {
+      "id": "tokenization_market_adoption",
+      "title": "Tokenized securities adoption and approvals",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3–6 months",
+      "date": null,
+      "start": "2026-10-11",
+      "end": "2027-03-31",
+      "probability": 0.6,
+      "impact_score": 114.0,
+      "expected_impact": 68.4,
+      "event_PS": 24.6,
+      "event_AS": 22.8,
+      "n_vars": 3,
+      "affected_ids": "etf_product_flows, market_liquidity_level, collateral_valuation",
+      "rationale": "Headlines: 'Tokenization could unleash tens of billions...' and 'Tokenized Stocks Bring ‘Radical Change’ to Markets'."
+    },
+    {
+      "id": "eu_budget_supervision",
+      "title": "EU budget cuts and market‑supervision overhaul",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by year‑end",
+      "date": null,
+      "start": "2026-10-11",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 95.0,
+      "expected_impact": 66.5,
+      "event_PS": 12.4,
+      "event_AS": 19.0,
+      "n_vars": 4,
+      "affected_ids": "fiscal_financing_needs, central_bank_credibility, market_risk_premia, primary_auction_demand",
+      "rationale": "Headlines: 'EU joint budget proposal slashed' and 'EU countries to overhaul financial market supervision' — fiscal/supervision changes affect sovereign markets."
+    }
+  ]
+}
