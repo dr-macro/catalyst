@@ -1,0 +1,1727 @@
+{
+  "label": "iran_proxy_escalation",
+  "as_of": "2026-10-13",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-13T03:45:01",
+  "system_description": {
+    "narrative_title": "Geopolitics Reshaping Global Energy Markets",
+    "narrative_summary": "A spike of geopolitical events — notably Trump's announced Russia-Ukraine 'energy ceasefire'/diesel deal and escalating Houthi strikes on Saudi airports — is driving volatility in oil and diesel markets, shipping rates, and aviation safety. Markets, policymakers and firms are responding in real time (price moves, advisories, IMF/central bank watchfulness), creating feedbacks between security incidents, fuel availability/prices, logistics costs and financial market sentiment. The story links political decisions and conflicts directly to energy flows and broader economic stability.",
+    "scope": "Global energy supply and trade flows (oil, diesel, LNG), related logistics (tankers, pipelines, refineries, aviation routes), market prices and financial impacts (oil/diesel prices, tanker rates, equities, bonds), key state and non-state actors influencing supply/security (Russia, Ukraine, US/Trump, Saudi Arabia, Iran-backed Houthis), and institutional responses (regulators, IMF, central banks, airlines).",
+    "super_system": "Global political-economic system (security, trade and finance)",
+    "adjacent_subsystems": [
+      "Global financial markets and investor sentiment",
+      "Middle East regional security complex",
+      "Maritime shipping and energy logistics",
+      "International aviation and travel security"
+    ],
+    "evidence_headlines": [
+      "Trump announces Ukraine energy ceasefire with Russia, surprising Zelenskiy",
+      "Oil falls on hopes Russia-Ukraine energy ceasefire will boost supplies",
+      "Houthi strike on Saudi airport kills 12, worst attack on kingdom in a decade",
+      "FAA tells US airlines to exercise caution in Saudi Arabia flights, citing safety risks",
+      "Oil Tanker Rates Surge Amid Rising Attacks, Longer Voyages",
+      "Diesel prices slip after Trump claims ‘energy ceasefire’ in Ukraine war"
+    ]
+  },
+  "variables": [
+    {
+      "id": "crude_production_rate",
+      "name": "Global crude oil production rate",
+      "description": "The aggregate rate at which crude oil is produced and released into global markets (barrels per day).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_supply_rate",
+      "name": "Global diesel (middle‑distillate) supply rate",
+      "description": "The net rate of production, refining and trade of middle‑distillate fuels available to global markets (barrels per day).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "lng_supply_rate",
+      "name": "Global LNG supply rate",
+      "description": "The volumetric rate at which liquefied natural gas is produced, loaded and delivered into international trade (tons or cubic meters per time).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "seaborne_shipment_rate",
+      "name": "Seaborne oil and refined product shipment rate",
+      "description": "The flow rate of oil and refined product tonnage moving by sea between origin and destination regions (voyages or barrels per day).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "pipeline_throughput_rate",
+      "name": "Interregional pipeline throughput rate",
+      "description": "The continuous rate of hydrocarbon volumes transported through pipelines across regions (barrels or cubic meters per day).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization",
+      "name": "Refinery capacity utilization rate",
+      "description": "The proportion of global refinery capacity actively processing crude into refined products at a given time (percent).",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "global_fuel_inventories",
+      "name": "Global crude and fuel inventories",
+      "description": "The accumulated stock of crude oil and refined fuel held in storage worldwide (barrels).",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_operational_cap",
+      "name": "Tanker fleet operational capacity",
+      "description": "The available carrying capacity of the tanker fleet not constrained by damage, rerouting or layup (deadweight tons or number of vessels).",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_freight_rate",
+      "name": "Tanker freight rate level",
+      "description": "The prevailing price level for seaborne oil/chemical tanker transportation (time charter or voyage rate indices).",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "aviation_route_risk",
+      "name": "Aviation route risk level",
+      "description": "The assessed level of safety and operational risk for commercial aviation corridors affecting route choices and costs (risk index).",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "security_incident_freq",
+      "name": "Security incident frequency affecting energy/logistics",
+      "description": "The rate of hostile or disruptive events (attacks, strikes, seizures) that directly impair energy production, transport or terminals (incidents per time).",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "logistics_cost_index",
+      "name": "Composite logistics cost index",
+      "description": "A composite measure of logistical costs for energy and goods including freight, insurance, rerouting and delays (cost per unit).",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_price_level",
+      "name": "Energy price level (oil and diesel)",
+      "description": "The market price level for benchmark crude and refined products that signals supply/demand balance (price per barrel or liter).",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_risk_sentiment",
+      "name": "Financial market risk sentiment",
+      "description": "The prevailing investor and trader risk appetite and volatility expectations related to energy and geopolitical developments (sentiment/volatility index).",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_stance",
+      "name": "Aggregate central bank monetary stance",
+      "description": "The combined monetary policy stance and liquidity provision of major central banks that affects financial conditions (tightening/loosening index).",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "trade_restrictions_level",
+      "name": "Trade and sanctions restriction level",
+      "description": "The overall severity and scope of trade measures, sanctions and export controls that constrain energy flows and commercial operations (restriction index).",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "crude_production_rate",
+    "diesel_supply_rate",
+    "lng_supply_rate",
+    "seaborne_shipment_rate",
+    "pipeline_throughput_rate",
+    "refinery_utilization",
+    "global_fuel_inventories",
+    "tanker_operational_cap",
+    "tanker_freight_rate",
+    "aviation_route_risk",
+    "security_incident_freq",
+    "logistics_cost_index",
+    "energy_price_level",
+    "market_risk_sentiment",
+    "central_bank_stance",
+    "trade_restrictions_level"
+  ],
+  "var_names": {
+    "crude_production_rate": "Global crude oil production rate",
+    "diesel_supply_rate": "Global diesel (middle‑distillate) supply rate",
+    "lng_supply_rate": "Global LNG supply rate",
+    "seaborne_shipment_rate": "Seaborne oil and refined product shipment rate",
+    "pipeline_throughput_rate": "Interregional pipeline throughput rate",
+    "refinery_utilization": "Refinery capacity utilization rate",
+    "global_fuel_inventories": "Global crude and fuel inventories",
+    "tanker_operational_cap": "Tanker fleet operational capacity",
+    "tanker_freight_rate": "Tanker freight rate level",
+    "aviation_route_risk": "Aviation route risk level",
+    "security_incident_freq": "Security incident frequency affecting energy/logistics",
+    "logistics_cost_index": "Composite logistics cost index",
+    "energy_price_level": "Energy price level (oil and diesel)",
+    "market_risk_sentiment": "Financial market risk sentiment",
+    "central_bank_stance": "Aggregate central bank monetary stance",
+    "trade_restrictions_level": "Trade and sanctions restriction level"
+  },
+  "impact_matrix": {
+    "crude_production_rate": {
+      "crude_production_rate": 0,
+      "diesel_supply_rate": 2,
+      "lng_supply_rate": 0,
+      "seaborne_shipment_rate": 2,
+      "pipeline_throughput_rate": 2,
+      "refinery_utilization": 2,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 1,
+      "tanker_freight_rate": 2,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 2,
+      "energy_price_level": 3,
+      "market_risk_sentiment": 1,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "diesel_supply_rate": {
+      "crude_production_rate": 1,
+      "diesel_supply_rate": 0,
+      "lng_supply_rate": 0,
+      "seaborne_shipment_rate": 2,
+      "pipeline_throughput_rate": 2,
+      "refinery_utilization": 1,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 1,
+      "tanker_freight_rate": 2,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 2,
+      "energy_price_level": 3,
+      "market_risk_sentiment": 1,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "lng_supply_rate": {
+      "crude_production_rate": 0,
+      "diesel_supply_rate": 0,
+      "lng_supply_rate": 0,
+      "seaborne_shipment_rate": 2,
+      "pipeline_throughput_rate": 1,
+      "refinery_utilization": 0,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 1,
+      "tanker_freight_rate": 1,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 1,
+      "energy_price_level": 0,
+      "market_risk_sentiment": 1,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "seaborne_shipment_rate": {
+      "crude_production_rate": 2,
+      "diesel_supply_rate": 2,
+      "lng_supply_rate": 0,
+      "seaborne_shipment_rate": 0,
+      "pipeline_throughput_rate": 1,
+      "refinery_utilization": 2,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 1,
+      "tanker_freight_rate": 3,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 1,
+      "logistics_cost_index": 2,
+      "energy_price_level": 2,
+      "market_risk_sentiment": 1,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "pipeline_throughput_rate": {
+      "crude_production_rate": 2,
+      "diesel_supply_rate": 2,
+      "lng_supply_rate": 1,
+      "seaborne_shipment_rate": 1,
+      "pipeline_throughput_rate": 0,
+      "refinery_utilization": 2,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 1,
+      "tanker_freight_rate": 1,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 2,
+      "energy_price_level": 2,
+      "market_risk_sentiment": 1,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "refinery_utilization": {
+      "crude_production_rate": 1,
+      "diesel_supply_rate": 3,
+      "lng_supply_rate": 0,
+      "seaborne_shipment_rate": 2,
+      "pipeline_throughput_rate": 2,
+      "refinery_utilization": 0,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 1,
+      "tanker_freight_rate": 2,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 2,
+      "energy_price_level": 3,
+      "market_risk_sentiment": 1,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "global_fuel_inventories": {
+      "crude_production_rate": 2,
+      "diesel_supply_rate": 3,
+      "lng_supply_rate": 2,
+      "seaborne_shipment_rate": 2,
+      "pipeline_throughput_rate": 1,
+      "refinery_utilization": 1,
+      "global_fuel_inventories": 0,
+      "tanker_operational_cap": 1,
+      "tanker_freight_rate": 2,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 2,
+      "logistics_cost_index": 2,
+      "energy_price_level": 3,
+      "market_risk_sentiment": 2,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "tanker_operational_cap": {
+      "crude_production_rate": 2,
+      "diesel_supply_rate": 2,
+      "lng_supply_rate": 0,
+      "seaborne_shipment_rate": 3,
+      "pipeline_throughput_rate": 0,
+      "refinery_utilization": 1,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 0,
+      "tanker_freight_rate": 3,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 2,
+      "energy_price_level": 2,
+      "market_risk_sentiment": 1,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "tanker_freight_rate": {
+      "crude_production_rate": 1,
+      "diesel_supply_rate": 2,
+      "lng_supply_rate": 0,
+      "seaborne_shipment_rate": 2,
+      "pipeline_throughput_rate": 0,
+      "refinery_utilization": 1,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 1,
+      "tanker_freight_rate": 0,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 3,
+      "energy_price_level": 2,
+      "market_risk_sentiment": 1,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "aviation_route_risk": {
+      "crude_production_rate": 0,
+      "diesel_supply_rate": 0,
+      "lng_supply_rate": 0,
+      "seaborne_shipment_rate": 0,
+      "pipeline_throughput_rate": 0,
+      "refinery_utilization": 0,
+      "global_fuel_inventories": 0,
+      "tanker_operational_cap": 0,
+      "tanker_freight_rate": 0,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 1,
+      "logistics_cost_index": 2,
+      "energy_price_level": 0,
+      "market_risk_sentiment": 1,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "security_incident_freq": {
+      "crude_production_rate": 3,
+      "diesel_supply_rate": 3,
+      "lng_supply_rate": 3,
+      "seaborne_shipment_rate": 3,
+      "pipeline_throughput_rate": 3,
+      "refinery_utilization": 3,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 3,
+      "tanker_freight_rate": 3,
+      "aviation_route_risk": 2,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 3,
+      "energy_price_level": 3,
+      "market_risk_sentiment": 3,
+      "central_bank_stance": 1,
+      "trade_restrictions_level": 2
+    },
+    "logistics_cost_index": {
+      "crude_production_rate": 1,
+      "diesel_supply_rate": 2,
+      "lng_supply_rate": 1,
+      "seaborne_shipment_rate": 2,
+      "pipeline_throughput_rate": 1,
+      "refinery_utilization": 1,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 1,
+      "tanker_freight_rate": 2,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 0,
+      "energy_price_level": 2,
+      "market_risk_sentiment": 1,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "energy_price_level": {
+      "crude_production_rate": 3,
+      "diesel_supply_rate": 2,
+      "lng_supply_rate": 1,
+      "seaborne_shipment_rate": 2,
+      "pipeline_throughput_rate": 2,
+      "refinery_utilization": 3,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 1,
+      "tanker_freight_rate": 1,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 2,
+      "energy_price_level": 0,
+      "market_risk_sentiment": 3,
+      "central_bank_stance": 1,
+      "trade_restrictions_level": 1
+    },
+    "market_risk_sentiment": {
+      "crude_production_rate": 1,
+      "diesel_supply_rate": 1,
+      "lng_supply_rate": 0,
+      "seaborne_shipment_rate": 0,
+      "pipeline_throughput_rate": 0,
+      "refinery_utilization": 1,
+      "global_fuel_inventories": 1,
+      "tanker_operational_cap": 0,
+      "tanker_freight_rate": 1,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 0,
+      "energy_price_level": 3,
+      "market_risk_sentiment": 0,
+      "central_bank_stance": 1,
+      "trade_restrictions_level": 0
+    },
+    "central_bank_stance": {
+      "crude_production_rate": 1,
+      "diesel_supply_rate": 0,
+      "lng_supply_rate": 0,
+      "seaborne_shipment_rate": 0,
+      "pipeline_throughput_rate": 0,
+      "refinery_utilization": 1,
+      "global_fuel_inventories": 1,
+      "tanker_operational_cap": 0,
+      "tanker_freight_rate": 0,
+      "aviation_route_risk": 0,
+      "security_incident_freq": 0,
+      "logistics_cost_index": 1,
+      "energy_price_level": 1,
+      "market_risk_sentiment": 2,
+      "central_bank_stance": 0,
+      "trade_restrictions_level": 0
+    },
+    "trade_restrictions_level": {
+      "crude_production_rate": 3,
+      "diesel_supply_rate": 3,
+      "lng_supply_rate": 3,
+      "seaborne_shipment_rate": 3,
+      "pipeline_throughput_rate": 3,
+      "refinery_utilization": 2,
+      "global_fuel_inventories": 2,
+      "tanker_operational_cap": 2,
+      "tanker_freight_rate": 3,
+      "aviation_route_risk": 1,
+      "security_incident_freq": 1,
+      "logistics_cost_index": 3,
+      "energy_price_level": 3,
+      "market_risk_sentiment": 3,
+      "central_bank_stance": 1,
+      "trade_restrictions_level": 0
+    }
+  },
+  "AS": {
+    "crude_production_rate": 19,
+    "diesel_supply_rate": 17,
+    "lng_supply_rate": 9,
+    "seaborne_shipment_rate": 19,
+    "pipeline_throughput_rate": 17,
+    "refinery_utilization": 19,
+    "global_fuel_inventories": 23,
+    "tanker_operational_cap": 18,
+    "tanker_freight_rate": 15,
+    "aviation_route_risk": 4,
+    "security_incident_freq": 40,
+    "logistics_cost_index": 16,
+    "energy_price_level": 24,
+    "market_risk_sentiment": 9,
+    "central_bank_stance": 7,
+    "trade_restrictions_level": 36
+  },
+  "PS": {
+    "crude_production_rate": 23,
+    "diesel_supply_rate": 27,
+    "lng_supply_rate": 11,
+    "seaborne_shipment_rate": 26,
+    "pipeline_throughput_rate": 18,
+    "refinery_utilization": 21,
+    "global_fuel_inventories": 26,
+    "tanker_operational_cap": 15,
+    "tanker_freight_rate": 26,
+    "aviation_route_risk": 3,
+    "security_incident_freq": 5,
+    "logistics_cost_index": 29,
+    "energy_price_level": 32,
+    "market_risk_sentiment": 23,
+    "central_bank_stance": 4,
+    "trade_restrictions_level": 3
+  },
+  "med_AS": 17.5,
+  "med_PS": 22.0,
+  "roles": [
+    {
+      "variable": "energy_price_level",
+      "name": "Energy price level (oil and diesel)",
+      "AS": 24,
+      "PS": 32,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 768,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "global_fuel_inventories",
+      "name": "Global crude and fuel inventories",
+      "AS": 23,
+      "PS": 26,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 598,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "seaborne_shipment_rate",
+      "name": "Seaborne oil and refined product shipment rate",
+      "AS": 19,
+      "PS": 26,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 494,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "logistics_cost_index",
+      "name": "Composite logistics cost index",
+      "AS": 16,
+      "PS": 29,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 464,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "diesel_supply_rate",
+      "name": "Global diesel (middle‑distillate) supply rate",
+      "AS": 17,
+      "PS": 27,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 459,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "crude_production_rate",
+      "name": "Global crude oil production rate",
+      "AS": 19,
+      "PS": 23,
+      "Q=AS/PS": 0.83,
+      "P=AS*PS": 437,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refinery_utilization",
+      "name": "Refinery capacity utilization rate",
+      "AS": 19,
+      "PS": 21,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 399,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "tanker_freight_rate",
+      "name": "Tanker freight rate level",
+      "AS": 15,
+      "PS": 26,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 390,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "pipeline_throughput_rate",
+      "name": "Interregional pipeline throughput rate",
+      "AS": 17,
+      "PS": 18,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 306,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "tanker_operational_cap",
+      "name": "Tanker fleet operational capacity",
+      "AS": 18,
+      "PS": 15,
+      "Q=AS/PS": 1.2,
+      "P=AS*PS": 270,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_risk_sentiment",
+      "name": "Financial market risk sentiment",
+      "AS": 9,
+      "PS": 23,
+      "Q=AS/PS": 0.39,
+      "P=AS*PS": 207,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "security_incident_freq",
+      "name": "Security incident frequency affecting energy/logistics",
+      "AS": 40,
+      "PS": 5,
+      "Q=AS/PS": 8.0,
+      "P=AS*PS": 200,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "trade_restrictions_level",
+      "name": "Trade and sanctions restriction level",
+      "AS": 36,
+      "PS": 3,
+      "Q=AS/PS": 12.0,
+      "P=AS*PS": 108,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "lng_supply_rate",
+      "name": "Global LNG supply rate",
+      "AS": 9,
+      "PS": 11,
+      "Q=AS/PS": 0.82,
+      "P=AS*PS": 99,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "central_bank_stance",
+      "name": "Aggregate central bank monetary stance",
+      "AS": 7,
+      "PS": 4,
+      "Q=AS/PS": 1.75,
+      "P=AS*PS": 28,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "aviation_route_risk",
+      "name": "Aviation route risk level",
+      "AS": 4,
+      "PS": 3,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 12,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "crude_production_rate",
+        "name": "Global crude oil production rate",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 23
+      },
+      {
+        "id": "diesel_supply_rate",
+        "name": "Global diesel (middle‑distillate) supply rate",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 27
+      },
+      {
+        "id": "lng_supply_rate",
+        "name": "Global LNG supply rate",
+        "kind": "flow",
+        "AS": 9,
+        "PS": 11
+      },
+      {
+        "id": "seaborne_shipment_rate",
+        "name": "Seaborne oil and refined product shipment rate",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 26
+      },
+      {
+        "id": "pipeline_throughput_rate",
+        "name": "Interregional pipeline throughput rate",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 18
+      },
+      {
+        "id": "refinery_utilization",
+        "name": "Refinery capacity utilization rate",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 21
+      },
+      {
+        "id": "global_fuel_inventories",
+        "name": "Global crude and fuel inventories",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 26
+      },
+      {
+        "id": "tanker_operational_cap",
+        "name": "Tanker fleet operational capacity",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 15
+      },
+      {
+        "id": "tanker_freight_rate",
+        "name": "Tanker freight rate level",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 26
+      },
+      {
+        "id": "aviation_route_risk",
+        "name": "Aviation route risk level",
+        "kind": "environment",
+        "AS": 4,
+        "PS": 3
+      },
+      {
+        "id": "security_incident_freq",
+        "name": "Security incident frequency affecting energy/logistics",
+        "kind": "driver",
+        "AS": 40,
+        "PS": 5
+      },
+      {
+        "id": "logistics_cost_index",
+        "name": "Composite logistics cost index",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 29
+      },
+      {
+        "id": "energy_price_level",
+        "name": "Energy price level (oil and diesel)",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 32
+      },
+      {
+        "id": "market_risk_sentiment",
+        "name": "Financial market risk sentiment",
+        "kind": "perception",
+        "AS": 9,
+        "PS": 23
+      },
+      {
+        "id": "central_bank_stance",
+        "name": "Aggregate central bank monetary stance",
+        "kind": "institution_field",
+        "AS": 7,
+        "PS": 4
+      },
+      {
+        "id": "trade_restrictions_level",
+        "name": "Trade and sanctions restriction level",
+        "kind": "institution_field",
+        "AS": 36,
+        "PS": 3
+      }
+    ],
+    "edges": [
+      {
+        "source": "crude_production_rate",
+        "target": "diesel_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "seaborne_shipment_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "pipeline_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "logistics_cost_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_supply_rate",
+        "target": "seaborne_shipment_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_supply_rate",
+        "target": "pipeline_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_supply_rate",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_supply_rate",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_supply_rate",
+        "target": "logistics_cost_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_supply_rate",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "lng_supply_rate",
+        "target": "seaborne_shipment_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "lng_supply_rate",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_shipment_rate",
+        "target": "crude_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_shipment_rate",
+        "target": "diesel_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_shipment_rate",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_shipment_rate",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_shipment_rate",
+        "target": "tanker_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_shipment_rate",
+        "target": "logistics_cost_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_shipment_rate",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_throughput_rate",
+        "target": "crude_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "pipeline_throughput_rate",
+        "target": "diesel_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "pipeline_throughput_rate",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "pipeline_throughput_rate",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "pipeline_throughput_rate",
+        "target": "logistics_cost_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "pipeline_throughput_rate",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "diesel_supply_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "seaborne_shipment_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "pipeline_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "logistics_cost_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_fuel_inventories",
+        "target": "crude_production_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_fuel_inventories",
+        "target": "diesel_supply_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_fuel_inventories",
+        "target": "lng_supply_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_fuel_inventories",
+        "target": "seaborne_shipment_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_fuel_inventories",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_fuel_inventories",
+        "target": "security_incident_freq",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "global_fuel_inventories",
+        "target": "logistics_cost_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_fuel_inventories",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_fuel_inventories",
+        "target": "market_risk_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_operational_cap",
+        "target": "crude_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_operational_cap",
+        "target": "diesel_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_operational_cap",
+        "target": "seaborne_shipment_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_operational_cap",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_operational_cap",
+        "target": "tanker_freight_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_operational_cap",
+        "target": "logistics_cost_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_operational_cap",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_freight_rate",
+        "target": "diesel_supply_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_freight_rate",
+        "target": "seaborne_shipment_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_freight_rate",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_freight_rate",
+        "target": "logistics_cost_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rate",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "aviation_route_risk",
+        "target": "logistics_cost_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "crude_production_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "diesel_supply_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "lng_supply_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "seaborne_shipment_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "pipeline_throughput_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "tanker_operational_cap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "tanker_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "aviation_route_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "logistics_cost_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "market_risk_sentiment",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "security_incident_freq",
+        "target": "trade_restrictions_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "logistics_cost_index",
+        "target": "diesel_supply_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "logistics_cost_index",
+        "target": "seaborne_shipment_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "logistics_cost_index",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "logistics_cost_index",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "logistics_cost_index",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "crude_production_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "diesel_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "seaborne_shipment_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "pipeline_throughput_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "logistics_cost_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "market_risk_sentiment",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_risk_sentiment",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_stance",
+        "target": "market_risk_sentiment",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "crude_production_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "diesel_supply_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "lng_supply_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "seaborne_shipment_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "pipeline_throughput_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "global_fuel_inventories",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "tanker_operational_cap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "tanker_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "logistics_cost_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "market_risk_sentiment",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "russian_diesel_export_rollout",
+      "title": "Ramp-up of Russian diesel exports under announced deal",
+      "description": "Implementation and shipping of diesel volumes from Russia following the announced US-mediated deal, altering regional diesel flows and inventories.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-11-30",
+        "label": "next 6-8 weeks"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "diesel_supply_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "seaborne_shipment_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_freight_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_fuel_inventories",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_sentiment",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Trump announces Ukraine energy ceasefire...' ; 'Russia says its diesel exports may exceed volumes announced by Trump'."
+    },
+    {
+      "id": "houthi_attacks_escalation_red_sea",
+      "title": "Escalation of Houthi strikes affecting Gulf-Red Sea shipping",
+      "description": "Continued Houthi attacks and missile strikes in the Gulf/Red Sea region that raise risk to oil shipping and force longer voyages/rerouting.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-12-31",
+        "label": "weeks to months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "tanker_freight_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_operational_cap",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "seaborne_shipment_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "security_incident_freq",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "logistics_cost_index",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Houthi strike on Saudi airport kills 12'; 'Oil Tanker Rates Surge Amid Rising Attacks, Longer Voyages'; 'Houthis attack Riyadh airport'."
+    },
+    {
+      "id": "saud_airport_closure_continuation",
+      "title": "Riyadh airport closure and sustained aviation disruption",
+      "description": "Extended shutdown of Saudi capital's airport and airline cancellations, sustaining elevated aviation-route risk and near-term logistical strain.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-10-19",
+        "label": "this week"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "aviation_route_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "security_incident_freq",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "logistics_cost_index",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Saudi capital's airport to remain shut this week as airlines cancel services'."
+    },
+    {
+      "id": "saudi_iran_diplomatic_dialogue_progress",
+      "title": "Progress (or setback) in Saudi–Iran diplomatic talks",
+      "description": "Ongoing high‑level talks between Saudi and Iranian foreign ministers that could de‑escalate or fail to restrain regional security risks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-11-30",
+        "label": "weeks"
+      },
+      "probability": 0.45,
+      "affected": [
+        {
+          "variable_id": "security_incident_freq",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_freight_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_sentiment",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Saudi, Iranian foreign ministers discuss regional tensions, state news agency says'."
+    },
+    {
+      "id": "freight_squeeze_persistent_heavy_oil_glut",
+      "title": "Persistent freight squeeze causing regional heavy‑oil gluts",
+      "description": "Ongoing freight capacity constraints that leave the Americas with heavy‑oil gluts while Asia and Europe scramble for barrels.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-12-31",
+        "label": "months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "seaborne_shipment_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_freight_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_fuel_inventories",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "logistics_cost_index",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Americas have glut of heavy oil due to freight squeeze; Asia, Europe scramble for barrels'."
+    },
+    {
+      "id": "eu_oil_gas_windfall_tax_consideration",
+      "title": "EU consideration of windfall profit tax on oil & gas",
+      "description": "EU officials are examining a windfall profits tax on energy firms as prices rise, which could alter investor sentiment and policy risk.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "market_risk_sentiment",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "trade_restrictions_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'EU looking at oil and gas windfall profit tax, as energy prices soar'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "houthi_attacks_escalation_red_sea",
+      "title": "Escalation of Houthi strikes affecting Gulf-Red Sea shipping",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks to months",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-12-31",
+      "probability": 0.85,
+      "impact_score": 335.0,
+      "expected_impact": 284.75,
+      "event_PS": 21.733,
+      "event_AS": 22.333,
+      "n_vars": 6,
+      "affected_ids": "tanker_freight_rate, tanker_operational_cap, seaborne_shipment_rate, security_incident_freq, logistics_cost_index, energy_price_level",
+      "rationale": "Headlines: 'Houthi strike on Saudi airport kills 12'; 'Oil Tanker Rates Surge Amid Rising Attacks, Longer Voyages'; 'Houthis attack Riyadh airport'."
+    },
+    {
+      "id": "russian_diesel_export_rollout",
+      "title": "Ramp-up of Russian diesel exports under announced deal",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6-8 weeks",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-11-30",
+      "probability": 0.75,
+      "impact_score": 222.0,
+      "expected_impact": 166.5,
+      "event_PS": 27.0,
+      "event_AS": 18.5,
+      "n_vars": 6,
+      "affected_ids": "diesel_supply_rate, seaborne_shipment_rate, tanker_freight_rate, global_fuel_inventories, energy_price_level, market_risk_sentiment",
+      "rationale": "Headlines: 'Trump announces Ukraine energy ceasefire...' ; 'Russia says its diesel exports may exceed volumes announced by Trump'."
+    },
+    {
+      "id": "freight_squeeze_persistent_heavy_oil_glut",
+      "title": "Persistent freight squeeze causing regional heavy‑oil gluts",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 147.0,
+      "expected_impact": 102.9,
+      "event_PS": 27.5,
+      "event_AS": 18.375,
+      "n_vars": 5,
+      "affected_ids": "seaborne_shipment_rate, tanker_freight_rate, global_fuel_inventories, logistics_cost_index, energy_price_level",
+      "rationale": "Headline: 'Americas have glut of heavy oil due to freight squeeze; Asia, Europe scramble for barrels'."
+    },
+    {
+      "id": "saudi_iran_diplomatic_dialogue_progress",
+      "title": "Progress (or setback) in Saudi–Iran diplomatic talks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-11-30",
+      "probability": 0.45,
+      "impact_score": 128.0,
+      "expected_impact": 57.6,
+      "event_PS": 18.2,
+      "event_AS": 25.6,
+      "n_vars": 4,
+      "affected_ids": "security_incident_freq, tanker_freight_rate, energy_price_level, market_risk_sentiment",
+      "rationale": "Headline: 'Saudi, Iranian foreign ministers discuss regional tensions, state news agency says'."
+    },
+    {
+      "id": "saud_airport_closure_continuation",
+      "title": "Riyadh airport closure and sustained aviation disruption",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-10-19",
+      "probability": 0.9,
+      "impact_score": 92.0,
+      "expected_impact": 82.8,
+      "event_PS": 12.5,
+      "event_AS": 15.333,
+      "n_vars": 4,
+      "affected_ids": "aviation_route_risk, security_incident_freq, logistics_cost_index, energy_price_level",
+      "rationale": "Headline: 'Saudi capital's airport to remain shut this week as airlines cancel services'."
+    },
+    {
+      "id": "eu_oil_gas_windfall_tax_consideration",
+      "title": "EU consideration of windfall profit tax on oil & gas",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-12-31",
+      "probability": 0.5,
+      "impact_score": 45.0,
+      "expected_impact": 22.5,
+      "event_PS": 13.0,
+      "event_AS": 22.5,
+      "n_vars": 2,
+      "affected_ids": "market_risk_sentiment, trade_restrictions_level",
+      "rationale": "Headline: 'EU looking at oil and gas windfall profit tax, as energy prices soar'."
+    }
+  ]
+}

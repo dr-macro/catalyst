@@ -1,0 +1,1919 @@
+{
+  "label": "russia_ukraine_war",
+  "as_of": "2026-10-13",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-13T03:41:36",
+  "system_description": {
+    "narrative_title": "Geopolitical shocks rewire global energy supply and market volatility",
+    "narrative_summary": "A cluster of geopolitical events — Middle East attacks on energy and transport infrastructure and sudden diplomatic moves over Russia-Ukraine energy supplies — is driving sharp uncertainty in oil, diesel and related markets. That uncertainty propagates through shipping routes, insurance and airline operations, commodity prices, and financial markets, while prompting policy responses from central banks and governments. The system is open: supply-side shocks, strategic deals, and security risks interact with market expectations, creating reinforcing and balancing feedbacks that affect inflation, capital flows, and energy-transition decisions.",
+    "scope": "Global crude, diesel and LNG supply chains (production, storage, shipping, refineries), physical chokepoints and transport nodes (airports, tankers, routes), market mechanisms (spot/futures prices, tanker rates, insurers), major state and non-state actors affecting supply (Russia, Gulf states, Iran-backed Houthis), traders and refiners, and financial and policy actors responding (central banks, finance ministers, IMF/World Bank, airlines).",
+    "super_system": "The international geopolitical-economic system (global security architecture integrated with the world economy and energy-transition dynamics).",
+    "adjacent_subsystems": [
+      "Global financial markets and monetary policy",
+      "Maritime logistics, insurance and freight markets",
+      "Energy transition and clean-energy investment",
+      "Regional security architectures (Middle East; Russia–Ukraine/Eastern Europe)"
+    ],
+    "evidence_headlines": [
+      "Oil falls on hopes Russia-Ukraine energy ceasefire will boost supplies",
+      "Trump announces Ukraine energy ceasefire with Russia, surprising Zelenskiy",
+      "Houthi strike on Saudi airport kills 12, worst attack on kingdom in a decade",
+      "FAA tells US airlines to exercise caution in Saudi Arabia flights, citing safety risks",
+      "Oil Tanker Rates Surge Amid Rising Attacks, Longer Voyages",
+      "Oil Prices Fall as Traders Weigh Russian Diesel Deal, Middle East Supply Risks"
+    ]
+  },
+  "variables": [
+    {
+      "id": "hydrocarbon_supply_flow",
+      "name": "Hydrocarbon supply flow",
+      "description": "Net physical flow rate of crude oil, diesel and LNG delivered into global markets (e.g., barrels or tonnes per day).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "spare_prod_capacity",
+      "name": "Spare production capacity",
+      "description": "Available additional upstream production capacity that can be brought online within a definable short-to-medium timeframe.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refined_fuel_inventory",
+      "name": "Refined fuel inventories",
+      "description": "Aggregate stock of refined petroleum products held in commercial and strategic storage globally.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_util_rate",
+      "name": "Refinery utilization rate",
+      "description": "Proportion of global refining capacity that is operational and processing feedstock at a given time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_transit_delay",
+      "name": "Maritime transit delay rate",
+      "description": "Average voyage time delays for energy shipments across key sea routes relative to baseline transit times.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_route_risk",
+      "name": "Shipping-route security risk",
+      "description": "Level of security risk (theft, attack, interdiction, interdiction risk) perceived along maritime and chokepoint routes used for energy transport.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_freight_rate",
+      "name": "Tanker freight rates",
+      "description": "Market price level for shipping crude and refined products (e.g., $/ton or $/voyage) reflecting transport costs.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_premium_index",
+      "name": "Insurance premium index",
+      "description": "Average insurance premium level charged for covering energy cargoes and vessels on relevant routes.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_infra_attack_rate",
+      "name": "Energy infrastructure attack rate",
+      "description": "Frequency of successful or attempted kinetic or disruptive attacks on production, refining, storage or transport nodes per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_price_volatility",
+      "name": "Market price volatility",
+      "description": "Short- to medium-term variability (variance) of wholesale prices for crude oil, diesel and related energy commodities.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_uncertainty",
+      "name": "Market uncertainty perception",
+      "description": "Degree of collective uncertainty or ambiguity among market participants about future supply, demand and policy conditions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "capital_flow_volatility",
+      "name": "Capital flow volatility",
+      "description": "Variability in cross-border and sectoral financial flows into and out of energy markets and related assets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "policy_response_level",
+      "name": "Policy response level",
+      "description": "Magnitude and intensity of monetary, fiscal and regulatory actions directed at energy markets and macroeconomic stabilization.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflationary_pressure",
+      "name": "Inflationary pressure",
+      "description": "Broad upward pressure on consumer and producer prices attributable in part to changes in energy costs and supply disruptions.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "transition_invest_rate",
+      "name": "Energy-transition investment rate",
+      "description": "Flow of capital deployed into low-carbon energy technologies, infrastructure and related transition activities per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserve_level",
+      "name": "Strategic reserve level",
+      "description": "Quantity held in strategic petroleum or fuel reserves available for deliberate release to stabilize markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "hydrocarbon_supply_flow",
+    "spare_prod_capacity",
+    "refined_fuel_inventory",
+    "refinery_util_rate",
+    "maritime_transit_delay",
+    "shipping_route_risk",
+    "tanker_freight_rate",
+    "insurance_premium_index",
+    "energy_infra_attack_rate",
+    "market_price_volatility",
+    "market_uncertainty",
+    "capital_flow_volatility",
+    "policy_response_level",
+    "inflationary_pressure",
+    "transition_invest_rate",
+    "strategic_reserve_level"
+  ],
+  "var_names": {
+    "hydrocarbon_supply_flow": "Hydrocarbon supply flow",
+    "spare_prod_capacity": "Spare production capacity",
+    "refined_fuel_inventory": "Refined fuel inventories",
+    "refinery_util_rate": "Refinery utilization rate",
+    "maritime_transit_delay": "Maritime transit delay rate",
+    "shipping_route_risk": "Shipping-route security risk",
+    "tanker_freight_rate": "Tanker freight rates",
+    "insurance_premium_index": "Insurance premium index",
+    "energy_infra_attack_rate": "Energy infrastructure attack rate",
+    "market_price_volatility": "Market price volatility",
+    "market_uncertainty": "Market uncertainty perception",
+    "capital_flow_volatility": "Capital flow volatility",
+    "policy_response_level": "Policy response level",
+    "inflationary_pressure": "Inflationary pressure",
+    "transition_invest_rate": "Energy-transition investment rate",
+    "strategic_reserve_level": "Strategic reserve level"
+  },
+  "impact_matrix": {
+    "hydrocarbon_supply_flow": {
+      "hydrocarbon_supply_flow": 0,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 3,
+      "refinery_util_rate": 2,
+      "maritime_transit_delay": 1,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 2,
+      "insurance_premium_index": 1,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 3,
+      "market_uncertainty": 2,
+      "capital_flow_volatility": 2,
+      "policy_response_level": 2,
+      "inflationary_pressure": 2,
+      "transition_invest_rate": 1,
+      "strategic_reserve_level": 1
+    },
+    "spare_prod_capacity": {
+      "hydrocarbon_supply_flow": 3,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 2,
+      "refinery_util_rate": 2,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 1,
+      "insurance_premium_index": 0,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 3,
+      "market_uncertainty": 2,
+      "capital_flow_volatility": 2,
+      "policy_response_level": 2,
+      "inflationary_pressure": 2,
+      "transition_invest_rate": 1,
+      "strategic_reserve_level": 1
+    },
+    "refined_fuel_inventory": {
+      "hydrocarbon_supply_flow": 2,
+      "spare_prod_capacity": 1,
+      "refined_fuel_inventory": 0,
+      "refinery_util_rate": 2,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 1,
+      "insurance_premium_index": 0,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 3,
+      "market_uncertainty": 3,
+      "capital_flow_volatility": 2,
+      "policy_response_level": 2,
+      "inflationary_pressure": 2,
+      "transition_invest_rate": 1,
+      "strategic_reserve_level": 2
+    },
+    "refinery_util_rate": {
+      "hydrocarbon_supply_flow": 2,
+      "spare_prod_capacity": 1,
+      "refined_fuel_inventory": 3,
+      "refinery_util_rate": 0,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 1,
+      "insurance_premium_index": 0,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 2,
+      "market_uncertainty": 2,
+      "capital_flow_volatility": 1,
+      "policy_response_level": 2,
+      "inflationary_pressure": 2,
+      "transition_invest_rate": 1,
+      "strategic_reserve_level": 1
+    },
+    "maritime_transit_delay": {
+      "hydrocarbon_supply_flow": 3,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 2,
+      "refinery_util_rate": 2,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 1,
+      "tanker_freight_rate": 3,
+      "insurance_premium_index": 2,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 3,
+      "market_uncertainty": 3,
+      "capital_flow_volatility": 2,
+      "policy_response_level": 2,
+      "inflationary_pressure": 2,
+      "transition_invest_rate": 1,
+      "strategic_reserve_level": 2
+    },
+    "shipping_route_risk": {
+      "hydrocarbon_supply_flow": 3,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 2,
+      "refinery_util_rate": 1,
+      "maritime_transit_delay": 3,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 3,
+      "insurance_premium_index": 3,
+      "energy_infra_attack_rate": 1,
+      "market_price_volatility": 3,
+      "market_uncertainty": 3,
+      "capital_flow_volatility": 2,
+      "policy_response_level": 2,
+      "inflationary_pressure": 2,
+      "transition_invest_rate": 1,
+      "strategic_reserve_level": 2
+    },
+    "tanker_freight_rate": {
+      "hydrocarbon_supply_flow": 1,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 1,
+      "refinery_util_rate": 1,
+      "maritime_transit_delay": 1,
+      "shipping_route_risk": 1,
+      "tanker_freight_rate": 0,
+      "insurance_premium_index": 1,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 2,
+      "market_uncertainty": 2,
+      "capital_flow_volatility": 2,
+      "policy_response_level": 1,
+      "inflationary_pressure": 2,
+      "transition_invest_rate": 1,
+      "strategic_reserve_level": 1
+    },
+    "insurance_premium_index": {
+      "hydrocarbon_supply_flow": 1,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 0,
+      "refinery_util_rate": 0,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 2,
+      "insurance_premium_index": 0,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 1,
+      "market_uncertainty": 2,
+      "capital_flow_volatility": 1,
+      "policy_response_level": 1,
+      "inflationary_pressure": 1,
+      "transition_invest_rate": 1,
+      "strategic_reserve_level": 0
+    },
+    "energy_infra_attack_rate": {
+      "hydrocarbon_supply_flow": 3,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 2,
+      "refinery_util_rate": 2,
+      "maritime_transit_delay": 3,
+      "shipping_route_risk": 3,
+      "tanker_freight_rate": 3,
+      "insurance_premium_index": 3,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 3,
+      "market_uncertainty": 3,
+      "capital_flow_volatility": 3,
+      "policy_response_level": 3,
+      "inflationary_pressure": 2,
+      "transition_invest_rate": 2,
+      "strategic_reserve_level": 2
+    },
+    "market_price_volatility": {
+      "hydrocarbon_supply_flow": 1,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 1,
+      "refinery_util_rate": 1,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 1,
+      "insurance_premium_index": 1,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 0,
+      "market_uncertainty": 3,
+      "capital_flow_volatility": 3,
+      "policy_response_level": 2,
+      "inflationary_pressure": 1,
+      "transition_invest_rate": 2,
+      "strategic_reserve_level": 2
+    },
+    "market_uncertainty": {
+      "hydrocarbon_supply_flow": 1,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 1,
+      "refinery_util_rate": 1,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 1,
+      "insurance_premium_index": 1,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 3,
+      "market_uncertainty": 0,
+      "capital_flow_volatility": 3,
+      "policy_response_level": 3,
+      "inflationary_pressure": 2,
+      "transition_invest_rate": 2,
+      "strategic_reserve_level": 2
+    },
+    "capital_flow_volatility": {
+      "hydrocarbon_supply_flow": 1,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 1,
+      "refinery_util_rate": 1,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 1,
+      "insurance_premium_index": 0,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 2,
+      "market_uncertainty": 2,
+      "capital_flow_volatility": 0,
+      "policy_response_level": 2,
+      "inflationary_pressure": 1,
+      "transition_invest_rate": 3,
+      "strategic_reserve_level": 1
+    },
+    "policy_response_level": {
+      "hydrocarbon_supply_flow": 2,
+      "spare_prod_capacity": 2,
+      "refined_fuel_inventory": 2,
+      "refinery_util_rate": 2,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 1,
+      "tanker_freight_rate": 1,
+      "insurance_premium_index": 1,
+      "energy_infra_attack_rate": 1,
+      "market_price_volatility": 2,
+      "market_uncertainty": 2,
+      "capital_flow_volatility": 2,
+      "policy_response_level": 0,
+      "inflationary_pressure": 2,
+      "transition_invest_rate": 3,
+      "strategic_reserve_level": 3
+    },
+    "inflationary_pressure": {
+      "hydrocarbon_supply_flow": 0,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 0,
+      "refinery_util_rate": 0,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 0,
+      "insurance_premium_index": 0,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 1,
+      "market_uncertainty": 2,
+      "capital_flow_volatility": 2,
+      "policy_response_level": 3,
+      "inflationary_pressure": 0,
+      "transition_invest_rate": 1,
+      "strategic_reserve_level": 0
+    },
+    "transition_invest_rate": {
+      "hydrocarbon_supply_flow": 1,
+      "spare_prod_capacity": 1,
+      "refined_fuel_inventory": 0,
+      "refinery_util_rate": 0,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 0,
+      "insurance_premium_index": 0,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 1,
+      "market_uncertainty": 2,
+      "capital_flow_volatility": 1,
+      "policy_response_level": 1,
+      "inflationary_pressure": 0,
+      "transition_invest_rate": 0,
+      "strategic_reserve_level": 0
+    },
+    "strategic_reserve_level": {
+      "hydrocarbon_supply_flow": 2,
+      "spare_prod_capacity": 0,
+      "refined_fuel_inventory": 2,
+      "refinery_util_rate": 1,
+      "maritime_transit_delay": 0,
+      "shipping_route_risk": 0,
+      "tanker_freight_rate": 0,
+      "insurance_premium_index": 0,
+      "energy_infra_attack_rate": 0,
+      "market_price_volatility": 3,
+      "market_uncertainty": 3,
+      "capital_flow_volatility": 1,
+      "policy_response_level": 1,
+      "inflationary_pressure": 2,
+      "transition_invest_rate": 0,
+      "strategic_reserve_level": 0
+    }
+  },
+  "AS": {
+    "hydrocarbon_supply_flow": 22,
+    "spare_prod_capacity": 21,
+    "refined_fuel_inventory": 21,
+    "refinery_util_rate": 18,
+    "maritime_transit_delay": 28,
+    "shipping_route_risk": 31,
+    "tanker_freight_rate": 17,
+    "insurance_premium_index": 10,
+    "energy_infra_attack_rate": 37,
+    "market_price_volatility": 18,
+    "market_uncertainty": 20,
+    "capital_flow_volatility": 15,
+    "policy_response_level": 26,
+    "inflationary_pressure": 9,
+    "transition_invest_rate": 7,
+    "strategic_reserve_level": 15
+  },
+  "PS": {
+    "hydrocarbon_supply_flow": 26,
+    "spare_prod_capacity": 5,
+    "refined_fuel_inventory": 22,
+    "refinery_util_rate": 18,
+    "maritime_transit_delay": 8,
+    "shipping_route_risk": 6,
+    "tanker_freight_rate": 20,
+    "insurance_premium_index": 13,
+    "energy_infra_attack_rate": 2,
+    "market_price_volatility": 35,
+    "market_uncertainty": 36,
+    "capital_flow_volatility": 29,
+    "policy_response_level": 29,
+    "inflationary_pressure": 25,
+    "transition_invest_rate": 21,
+    "strategic_reserve_level": 20
+  },
+  "med_AS": 19.0,
+  "med_PS": 20.5,
+  "roles": [
+    {
+      "variable": "policy_response_level",
+      "name": "Policy response level",
+      "AS": 26,
+      "PS": 29,
+      "Q=AS/PS": 0.9,
+      "P=AS*PS": 754,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_uncertainty",
+      "name": "Market uncertainty perception",
+      "AS": 20,
+      "PS": 36,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 720,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_price_volatility",
+      "name": "Market price volatility",
+      "AS": 18,
+      "PS": 35,
+      "Q=AS/PS": 0.51,
+      "P=AS*PS": 630,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "hydrocarbon_supply_flow",
+      "name": "Hydrocarbon supply flow",
+      "AS": 22,
+      "PS": 26,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 572,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refined_fuel_inventory",
+      "name": "Refined fuel inventories",
+      "AS": 21,
+      "PS": 22,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 462,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "capital_flow_volatility",
+      "name": "Capital flow volatility",
+      "AS": 15,
+      "PS": 29,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 435,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tanker_freight_rate",
+      "name": "Tanker freight rates",
+      "AS": 17,
+      "PS": 20,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 340,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "refinery_util_rate",
+      "name": "Refinery utilization rate",
+      "AS": 18,
+      "PS": 18,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 324,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "strategic_reserve_level",
+      "name": "Strategic reserve level",
+      "AS": 15,
+      "PS": 20,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 300,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflationary_pressure",
+      "name": "Inflationary pressure",
+      "AS": 9,
+      "PS": 25,
+      "Q=AS/PS": 0.36,
+      "P=AS*PS": 225,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "maritime_transit_delay",
+      "name": "Maritime transit delay rate",
+      "AS": 28,
+      "PS": 8,
+      "Q=AS/PS": 3.5,
+      "P=AS*PS": 224,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "shipping_route_risk",
+      "name": "Shipping-route security risk",
+      "AS": 31,
+      "PS": 6,
+      "Q=AS/PS": 5.17,
+      "P=AS*PS": 186,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "transition_invest_rate",
+      "name": "Energy-transition investment rate",
+      "AS": 7,
+      "PS": 21,
+      "Q=AS/PS": 0.33,
+      "P=AS*PS": 147,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "insurance_premium_index",
+      "name": "Insurance premium index",
+      "AS": 10,
+      "PS": 13,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 130,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "spare_prod_capacity",
+      "name": "Spare production capacity",
+      "AS": 21,
+      "PS": 5,
+      "Q=AS/PS": 4.2,
+      "P=AS*PS": 105,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "energy_infra_attack_rate",
+      "name": "Energy infrastructure attack rate",
+      "AS": 37,
+      "PS": 2,
+      "Q=AS/PS": 18.5,
+      "P=AS*PS": 74,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "hydrocarbon_supply_flow",
+        "name": "Hydrocarbon supply flow",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 26
+      },
+      {
+        "id": "spare_prod_capacity",
+        "name": "Spare production capacity",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 5
+      },
+      {
+        "id": "refined_fuel_inventory",
+        "name": "Refined fuel inventories",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 22
+      },
+      {
+        "id": "refinery_util_rate",
+        "name": "Refinery utilization rate",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 18
+      },
+      {
+        "id": "maritime_transit_delay",
+        "name": "Maritime transit delay rate",
+        "kind": "flow",
+        "AS": 28,
+        "PS": 8
+      },
+      {
+        "id": "shipping_route_risk",
+        "name": "Shipping-route security risk",
+        "kind": "environment",
+        "AS": 31,
+        "PS": 6
+      },
+      {
+        "id": "tanker_freight_rate",
+        "name": "Tanker freight rates",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 20
+      },
+      {
+        "id": "insurance_premium_index",
+        "name": "Insurance premium index",
+        "kind": "driver",
+        "AS": 10,
+        "PS": 13
+      },
+      {
+        "id": "energy_infra_attack_rate",
+        "name": "Energy infrastructure attack rate",
+        "kind": "flow",
+        "AS": 37,
+        "PS": 2
+      },
+      {
+        "id": "market_price_volatility",
+        "name": "Market price volatility",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 35
+      },
+      {
+        "id": "market_uncertainty",
+        "name": "Market uncertainty perception",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 36
+      },
+      {
+        "id": "capital_flow_volatility",
+        "name": "Capital flow volatility",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 29
+      },
+      {
+        "id": "policy_response_level",
+        "name": "Policy response level",
+        "kind": "institution_field",
+        "AS": 26,
+        "PS": 29
+      },
+      {
+        "id": "inflationary_pressure",
+        "name": "Inflationary pressure",
+        "kind": "driver",
+        "AS": 9,
+        "PS": 25
+      },
+      {
+        "id": "transition_invest_rate",
+        "name": "Energy-transition investment rate",
+        "kind": "flow",
+        "AS": 7,
+        "PS": 21
+      },
+      {
+        "id": "strategic_reserve_level",
+        "name": "Strategic reserve level",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 20
+      }
+    ],
+    "edges": [
+      {
+        "source": "hydrocarbon_supply_flow",
+        "target": "refined_fuel_inventory",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "hydrocarbon_supply_flow",
+        "target": "refinery_util_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hydrocarbon_supply_flow",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hydrocarbon_supply_flow",
+        "target": "market_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "hydrocarbon_supply_flow",
+        "target": "market_uncertainty",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hydrocarbon_supply_flow",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hydrocarbon_supply_flow",
+        "target": "policy_response_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hydrocarbon_supply_flow",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "hydrocarbon_supply_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "refined_fuel_inventory",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "refinery_util_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "market_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "market_uncertainty",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "policy_response_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "spare_prod_capacity",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "hydrocarbon_supply_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "refinery_util_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "market_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "market_uncertainty",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "policy_response_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_fuel_inventory",
+        "target": "strategic_reserve_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "refinery_util_rate",
+        "target": "hydrocarbon_supply_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_util_rate",
+        "target": "refined_fuel_inventory",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_util_rate",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_util_rate",
+        "target": "market_uncertainty",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_util_rate",
+        "target": "policy_response_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_util_rate",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_delay",
+        "target": "hydrocarbon_supply_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_delay",
+        "target": "refined_fuel_inventory",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_delay",
+        "target": "refinery_util_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_transit_delay",
+        "target": "tanker_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_delay",
+        "target": "insurance_premium_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_delay",
+        "target": "market_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_delay",
+        "target": "market_uncertainty",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_delay",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_delay",
+        "target": "policy_response_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_delay",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_transit_delay",
+        "target": "strategic_reserve_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_risk",
+        "target": "hydrocarbon_supply_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_risk",
+        "target": "refined_fuel_inventory",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_route_risk",
+        "target": "maritime_transit_delay",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_risk",
+        "target": "tanker_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_risk",
+        "target": "insurance_premium_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_risk",
+        "target": "market_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_risk",
+        "target": "market_uncertainty",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_risk",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_risk",
+        "target": "policy_response_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_risk",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_route_risk",
+        "target": "strategic_reserve_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rate",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rate",
+        "target": "market_uncertainty",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rate",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rate",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premium_index",
+        "target": "tanker_freight_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premium_index",
+        "target": "market_uncertainty",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "hydrocarbon_supply_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "refined_fuel_inventory",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "refinery_util_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "maritime_transit_delay",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "shipping_route_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "tanker_freight_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "insurance_premium_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "market_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "market_uncertainty",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "capital_flow_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "policy_response_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "transition_invest_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_infra_attack_rate",
+        "target": "strategic_reserve_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_price_volatility",
+        "target": "market_uncertainty",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_volatility",
+        "target": "capital_flow_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_volatility",
+        "target": "policy_response_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_volatility",
+        "target": "transition_invest_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_price_volatility",
+        "target": "strategic_reserve_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_uncertainty",
+        "target": "market_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_uncertainty",
+        "target": "capital_flow_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_uncertainty",
+        "target": "policy_response_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_uncertainty",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_uncertainty",
+        "target": "transition_invest_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_uncertainty",
+        "target": "strategic_reserve_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_volatility",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_volatility",
+        "target": "market_uncertainty",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_volatility",
+        "target": "policy_response_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_volatility",
+        "target": "transition_invest_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_response_level",
+        "target": "hydrocarbon_supply_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_response_level",
+        "target": "spare_prod_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_response_level",
+        "target": "refined_fuel_inventory",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_response_level",
+        "target": "refinery_util_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_response_level",
+        "target": "market_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_response_level",
+        "target": "market_uncertainty",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_response_level",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_response_level",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_response_level",
+        "target": "transition_invest_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_response_level",
+        "target": "strategic_reserve_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "market_uncertainty",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "policy_response_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "transition_invest_rate",
+        "target": "market_uncertainty",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "hydrocarbon_supply_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "refined_fuel_inventory",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "market_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "market_uncertainty",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_level",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "russia_ukraine_ceasefire_fraying",
+      "title": "Fraying Russia–Ukraine 'energy ceasefire'",
+      "description": "Reports that the announced Russia‑Ukraine energy ceasefire is breaking down, undermining promised fuel flows and raising market uncertainty.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-11-15",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "hydrocarbon_supply_flow",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refined_fuel_inventory",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_uncertainty",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Trump announces Ukraine energy ceasefire'; reports the ceasefire 'frays' and 'collides with real‑world problems.'"
+    },
+    {
+      "id": "russian_diesel_export_increase",
+      "title": "Potential surge in Russian diesel exports",
+      "description": "Russian claims and US statements about a diesel supply deal point to higher Russian diesel volumes entering markets in the near term.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-11-15",
+        "label": "weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "hydrocarbon_supply_flow",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_fuel_inventory",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_price_volatility",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_uncertainty",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Trump’s diesel‑supply deal with Russia'; 'Russia says its diesel exports may exceed volumes announced.'"
+    },
+    {
+      "id": "houthi_red_sea_attacks_and_airport_shutdowns",
+      "title": "Houthi strikes and Saudi airport disruptions",
+      "description": "Continued Houthi attacks (including Riyadh airport strikes) and related airport shutdowns raise transport risks and disrupt regional energy logistics.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-10-20",
+        "label": "this week"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "shipping_route_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_transit_delay",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_freight_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premium_index",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_infra_attack_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "hydrocarbon_supply_flow",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Houthi strike on Saudi airport kills 12'; 'Saudi capital's airport to remain shut this week'; 'Attacks on Saudi airports threaten...'."
+    },
+    {
+      "id": "tanker_freight_squeeze_and_regional_barrel_imbalance",
+      "title": "Tanker freight squeeze and regional heavy‑oil glut",
+      "description": "Rising attacks and longer voyages are pushing tanker rates up, creating a heavy‑oil glut in the Americas and barrel shortages in Asia/Europe.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-11-15",
+        "label": "weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "tanker_freight_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_transit_delay",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "hydrocarbon_supply_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refined_fuel_inventory",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Oil tanker rates surge amid rising attacks, longer voyages'; 'Americas have glut of heavy oil; Asia, Europe scramble for barrels.'"
+    },
+    {
+      "id": "panama_earthquake_canal_disruption_risk",
+      "title": "Panama quakes risk canal disruption",
+      "description": "A series of powerful earthquakes and aftershocks in Panama raises the risk of canal disruption and wider shipping delays for energy cargoes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-11-05",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.35,
+      "affected": [
+        {
+          "variable_id": "maritime_transit_delay",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_freight_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_route_risk",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "hydrocarbon_supply_flow",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Panama suffers over 200 aftershocks after Friday's 7.7‑magnitude earthquake'; 'Magnitude 6 earthquake strikes Panama.'"
+    },
+    {
+      "id": "eu_oil_gas_windfall_tax_push",
+      "title": "EU investigates oil & gas windfall tax",
+      "description": "EU consideration of a windfall profits tax on oil and gas could trigger regulatory action, market repricing and capital flow responses in energy sectors.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-12-31",
+        "label": "weeks‑months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "policy_response_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_uncertainty",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "capital_flow_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'EU looking at oil and gas windfall profit tax, as energy prices soar.'"
+    },
+    {
+      "id": "cop31_eu_climate_push",
+      "title": "EU pushes climate ambition ahead of COP31",
+      "description": "EU efforts to accelerate CO2 cuts at COP31 may spur near‑term policy signaling and shift investment toward low‑carbon projects.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-11-30",
+        "label": "by COP31"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "transition_invest_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_response_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_uncertainty",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'EU eyes COP31 climate deal to accelerate CO2 cuts.'"
+    },
+    {
+      "id": "saudi_iran_diplomatic_talks",
+      "title": "Saudi‑Iran diplomatic engagement",
+      "description": "Foreign‑minister level talks between Saudi Arabia and Iran could ease regional tensions, lowering transport risks and market uncertainty if sustained.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-11-30",
+        "label": "weeks‑months"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "shipping_route_risk",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_uncertainty",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "energy_infra_attack_rate",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Saudi, Iranian foreign ministers discuss regional tensions, state news agency says.'"
+    },
+    {
+      "id": "middle_east_and_ukraine_fighting_escalation",
+      "title": "Escalation in Middle East and Ukraine",
+      "description": "Renewed fighting in the Middle East and strikes in Ukraine are likely to increase attacks on energy assets and raise price volatility and insurance costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-13",
+        "end": "2026-11-15",
+        "label": "weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "energy_infra_attack_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "hydrocarbon_supply_flow",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_uncertainty",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premium_index",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Oil Climbs as Fighting Flares in Middle East, Ukraine'; 'Russian strike on Kyiv...'; 'Oil Futures Extend Gains on Persistent Supply Concerns.'"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "houthi_red_sea_attacks_and_airport_shutdowns",
+      "title": "Houthi strikes and Saudi airport disruptions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-10-20",
+      "probability": 0.9,
+      "impact_score": 348.0,
+      "expected_impact": 313.2,
+      "event_PS": 12.6,
+      "event_AS": 23.2,
+      "n_vars": 6,
+      "affected_ids": "shipping_route_risk, maritime_transit_delay, tanker_freight_rate, insurance_premium_index, energy_infra_attack_rate, hydrocarbon_supply_flow",
+      "rationale": "Headlines: 'Houthi strike on Saudi airport kills 12'; 'Saudi capital's airport to remain shut this week'; 'Attacks on Saudi airports threaten...'."
+    },
+    {
+      "id": "middle_east_and_ukraine_fighting_escalation",
+      "title": "Escalation in Middle East and Ukraine",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-11-15",
+      "probability": 0.65,
+      "impact_score": 311.0,
+      "expected_impact": 202.15,
+      "event_PS": 23.071,
+      "event_AS": 22.214,
+      "n_vars": 5,
+      "affected_ids": "energy_infra_attack_rate, hydrocarbon_supply_flow, market_price_volatility, market_uncertainty, insurance_premium_index",
+      "rationale": "Headlines: 'Oil Climbs as Fighting Flares in Middle East, Ukraine'; 'Russian strike on Kyiv...'; 'Oil Futures Extend Gains on Persistent Supply Concerns.'"
+    },
+    {
+      "id": "panama_earthquake_canal_disruption_risk",
+      "title": "Panama quakes risk canal disruption",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-11-05",
+      "probability": 0.35,
+      "impact_score": 224.0,
+      "expected_impact": 78.4,
+      "event_PS": 14.222,
+      "event_AS": 24.889,
+      "n_vars": 4,
+      "affected_ids": "maritime_transit_delay, tanker_freight_rate, shipping_route_risk, hydrocarbon_supply_flow",
+      "rationale": "Headlines: 'Panama suffers over 200 aftershocks after Friday's 7.7‑magnitude earthquake'; 'Magnitude 6 earthquake strikes Panama.'"
+    },
+    {
+      "id": "russia_ukraine_ceasefire_fraying",
+      "title": "Fraying Russia–Ukraine 'energy ceasefire'",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-11-15",
+      "probability": 0.7,
+      "impact_score": 222.0,
+      "expected_impact": 155.4,
+      "event_PS": 30.455,
+      "event_AS": 20.182,
+      "n_vars": 4,
+      "affected_ids": "hydrocarbon_supply_flow, refined_fuel_inventory, market_uncertainty, market_price_volatility",
+      "rationale": "Headlines: 'Trump announces Ukraine energy ceasefire'; reports the ceasefire 'frays' and 'collides with real‑world problems.'"
+    },
+    {
+      "id": "tanker_freight_squeeze_and_regional_barrel_imbalance",
+      "title": "Tanker freight squeeze and regional heavy‑oil glut",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-11-15",
+      "probability": 0.85,
+      "impact_score": 193.0,
+      "expected_impact": 164.05,
+      "event_PS": 19.111,
+      "event_AS": 21.444,
+      "n_vars": 4,
+      "affected_ids": "tanker_freight_rate, maritime_transit_delay, hydrocarbon_supply_flow, refined_fuel_inventory",
+      "rationale": "Headlines: 'Oil tanker rates surge amid rising attacks, longer voyages'; 'Americas have glut of heavy oil; Asia, Europe scramble for barrels.'"
+    },
+    {
+      "id": "saudi_iran_diplomatic_talks",
+      "title": "Saudi‑Iran diplomatic engagement",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks‑months",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-11-30",
+      "probability": 0.5,
+      "impact_score": 176.0,
+      "expected_impact": 88.0,
+      "event_PS": 14.667,
+      "event_AS": 29.333,
+      "n_vars": 3,
+      "affected_ids": "shipping_route_risk, market_uncertainty, energy_infra_attack_rate",
+      "rationale": "Headline: 'Saudi, Iranian foreign ministers discuss regional tensions, state news agency says.'"
+    },
+    {
+      "id": "eu_oil_gas_windfall_tax_push",
+      "title": "EU investigates oil & gas windfall tax",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks‑months",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 148.0,
+      "expected_impact": 88.8,
+      "event_PS": 31.0,
+      "event_AS": 21.143,
+      "n_vars": 3,
+      "affected_ids": "policy_response_level, market_uncertainty, capital_flow_volatility",
+      "rationale": "Headline: 'EU looking at oil and gas windfall profit tax, as energy prices soar.'"
+    },
+    {
+      "id": "russian_diesel_export_increase",
+      "title": "Potential surge in Russian diesel exports",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-11-15",
+      "probability": 0.6,
+      "impact_score": 146.0,
+      "expected_impact": 87.6,
+      "event_PS": 27.571,
+      "event_AS": 20.857,
+      "n_vars": 4,
+      "affected_ids": "hydrocarbon_supply_flow, refined_fuel_inventory, market_price_volatility, market_uncertainty",
+      "rationale": "Headlines: 'Trump’s diesel‑supply deal with Russia'; 'Russia says its diesel exports may exceed volumes announced.'"
+    },
+    {
+      "id": "cop31_eu_climate_push",
+      "title": "EU pushes climate ambition ahead of COP31",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by COP31",
+      "date": null,
+      "start": "2026-10-13",
+      "end": "2026-11-30",
+      "probability": 0.5,
+      "impact_score": 60.0,
+      "expected_impact": 30.0,
+      "event_PS": 26.75,
+      "event_AS": 15.0,
+      "n_vars": 3,
+      "affected_ids": "transition_invest_rate, policy_response_level, market_uncertainty",
+      "rationale": "Headline: 'EU eyes COP31 climate deal to accelerate CO2 cuts.'"
+    }
+  ]
+}
