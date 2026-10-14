@@ -1,0 +1,1587 @@
+{
+  "label": "global_energy_volatility",
+  "as_of": "2026-10-14",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-14T02:15:39",
+  "system_description": {
+    "narrative_title": "Macro-driven gold price volatility",
+    "narrative_summary": "The dominant narrative is that gold prices are being driven by intersecting macro forces — dollar strength, oil-price moves, US inflation/CPI signals, and Middle East geopolitical tensions — together with changing structural demand (e.g., China buying, new refineries). The system is open: capital, commodities and information flow across markets creating feedbacks between FX, interest rates, energy prices and safe-haven demand for gold. Short-term catalysts (CPI prints, regional conflicts) interact with longer-term structural shifts to generate price volatility and reprice risk across asset classes.",
+    "scope": "The spot and futures gold market (price formation), the physical supply chain (mining, refining, inventories), investor demand (central banks, funds, private wealth) and the immediate macro drivers: oil markets, US dollar/FX movements, bond yields/monetary policy expectations, and geopolitical risk events.",
+    "super_system": "Global financial and commodity market system — the world macroeconomy including central banks, FX markets, energy markets, and geopolitical risk dynamics.",
+    "adjacent_subsystems": [
+      "Energy markets (crude oil supply/demand and geopolitical drivers)",
+      "Foreign exchange markets (US dollar and major currencies, including sterling)",
+      "Fixed-income and monetary policy (bond yields, central bank rate expectations)",
+      "Geopolitical/security subsystem (Middle East tensions, regional conflicts)"
+    ],
+    "evidence_headlines": [
+      "Why China is importing a record amount of gold — and what it means for prices",
+      "Gold slips near $4,160 as Middle East tensions fuel rate-hike concerns",
+      "Gold eases on strong dollar, oil prices; US inflation data eyed",
+      "Gold Futures Settle Lower on Rising Dollar, Oil",
+      "Paul Tudor Jones is bullish on oil, says it could rally another $20-$25 because of Iran conflict",
+      "Ethiopia launches its first gold refinery, Prime Minister says"
+    ]
+  },
+  "variables": [
+    {
+      "id": "gold_spot_price",
+      "name": "Gold spot price",
+      "description": "The prevailing market price for immediate (spot) delivery of gold across trading venues.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "gold_price_volatility",
+      "name": "Gold price volatility",
+      "description": "The short- to medium-term variability (standard deviation / implied volatility) of gold prices.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "physical_gold_supply",
+      "name": "Physical gold supply (flow)",
+      "description": "The rate of physical gold entering the market from mining, recycling, and other sources per period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "gold_inventories",
+      "name": "Physical gold inventories",
+      "description": "The stock of tradable and warehouse-housed physical gold available in market channels and strategic stores.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization",
+      "name": "Refinery utilization",
+      "description": "The percentage of refining capacity currently in use, reflecting processing throughput constraints and lead times.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "official_gold_demand",
+      "name": "Official-sector gold demand (flow)",
+      "description": "The flow of net gold purchases or sales by official public-sector actors over time (positive for net buying).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "investment_gold_demand",
+      "name": "Investment gold demand (flow)",
+      "description": "The rate of net investment-oriented gold purchases and sales (ETFs, funds, private investment) per period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "jewellery_demand",
+      "name": "Jewellery and industrial demand (flow)",
+      "description": "The flow of gold demand for jewellery, technology, and industrial uses across consuming sectors per period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "reserve_currency_index",
+      "name": "Major reserve currency strength",
+      "description": "A composite measure of the strength/movement of dominant reserve currency(s) versus a basket of currencies, influencing FX valuation pressure.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "nominal_bond_yield",
+      "name": "Nominal bond yield level",
+      "description": "The prevailing nominal interest rate/yield across benchmark government debt maturities that influences opportunity cost of holding gold.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "real_interest_rate",
+      "name": "Real interest rate level",
+      "description": "The inflation-adjusted short- to medium-term interest rate that determines the real opportunity cost of non-yielding assets like gold.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Market and surveyed expectations for future inflation that influence hedging demand and real-rate calculations.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "macro_surprise_index",
+      "name": "Macroeconomic data surprise intensity",
+      "description": "The frequency and magnitude of macroeconomic data releases surprising consensus (positive or negative), driving rapid re-pricing.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price",
+      "name": "Oil price level",
+      "description": "The current market price level of crude oil and energy commodities, reflecting energy-cost-driven inflation and trade impacts.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "geopolitical_tension",
+      "name": "Geopolitical tension level",
+      "description": "The prevailing intensity of geopolitical risk and regional conflict perceptions that elevate safe-haven demand and risk premia.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity (gold markets)",
+      "description": "The ease of transacting large gold positions with minimal price impact across spot, futures, and physical settlement channels.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "gold_spot_price",
+    "gold_price_volatility",
+    "physical_gold_supply",
+    "gold_inventories",
+    "refinery_utilization",
+    "official_gold_demand",
+    "investment_gold_demand",
+    "jewellery_demand",
+    "reserve_currency_index",
+    "nominal_bond_yield",
+    "real_interest_rate",
+    "inflation_expectations",
+    "macro_surprise_index",
+    "oil_price",
+    "geopolitical_tension",
+    "market_liquidity"
+  ],
+  "var_names": {
+    "gold_spot_price": "Gold spot price",
+    "gold_price_volatility": "Gold price volatility",
+    "physical_gold_supply": "Physical gold supply (flow)",
+    "gold_inventories": "Physical gold inventories",
+    "refinery_utilization": "Refinery utilization",
+    "official_gold_demand": "Official-sector gold demand (flow)",
+    "investment_gold_demand": "Investment gold demand (flow)",
+    "jewellery_demand": "Jewellery and industrial demand (flow)",
+    "reserve_currency_index": "Major reserve currency strength",
+    "nominal_bond_yield": "Nominal bond yield level",
+    "real_interest_rate": "Real interest rate level",
+    "inflation_expectations": "Inflation expectations",
+    "macro_surprise_index": "Macroeconomic data surprise intensity",
+    "oil_price": "Oil price level",
+    "geopolitical_tension": "Geopolitical tension level",
+    "market_liquidity": "Market liquidity (gold markets)"
+  },
+  "impact_matrix": {
+    "gold_spot_price": {
+      "gold_spot_price": 0,
+      "gold_price_volatility": 1,
+      "physical_gold_supply": 1,
+      "gold_inventories": 1,
+      "refinery_utilization": 1,
+      "official_gold_demand": 1,
+      "investment_gold_demand": 1,
+      "jewellery_demand": 1,
+      "reserve_currency_index": 0,
+      "nominal_bond_yield": 0,
+      "real_interest_rate": 0,
+      "inflation_expectations": 0,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 1
+    },
+    "gold_price_volatility": {
+      "gold_spot_price": 1,
+      "gold_price_volatility": 0,
+      "physical_gold_supply": 1,
+      "gold_inventories": 1,
+      "refinery_utilization": 1,
+      "official_gold_demand": 1,
+      "investment_gold_demand": 3,
+      "jewellery_demand": 1,
+      "reserve_currency_index": 0,
+      "nominal_bond_yield": 0,
+      "real_interest_rate": 0,
+      "inflation_expectations": 0,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 3
+    },
+    "physical_gold_supply": {
+      "gold_spot_price": 3,
+      "gold_price_volatility": 3,
+      "physical_gold_supply": 0,
+      "gold_inventories": 3,
+      "refinery_utilization": 2,
+      "official_gold_demand": 0,
+      "investment_gold_demand": 1,
+      "jewellery_demand": 0,
+      "reserve_currency_index": 0,
+      "nominal_bond_yield": 0,
+      "real_interest_rate": 0,
+      "inflation_expectations": 0,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 2
+    },
+    "gold_inventories": {
+      "gold_spot_price": 3,
+      "gold_price_volatility": 3,
+      "physical_gold_supply": 1,
+      "gold_inventories": 0,
+      "refinery_utilization": 1,
+      "official_gold_demand": 1,
+      "investment_gold_demand": 2,
+      "jewellery_demand": 1,
+      "reserve_currency_index": 0,
+      "nominal_bond_yield": 0,
+      "real_interest_rate": 0,
+      "inflation_expectations": 0,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 3
+    },
+    "refinery_utilization": {
+      "gold_spot_price": 2,
+      "gold_price_volatility": 2,
+      "physical_gold_supply": 2,
+      "gold_inventories": 2,
+      "refinery_utilization": 0,
+      "official_gold_demand": 1,
+      "investment_gold_demand": 1,
+      "jewellery_demand": 1,
+      "reserve_currency_index": 0,
+      "nominal_bond_yield": 0,
+      "real_interest_rate": 0,
+      "inflation_expectations": 0,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 2
+    },
+    "official_gold_demand": {
+      "gold_spot_price": 3,
+      "gold_price_volatility": 2,
+      "physical_gold_supply": 2,
+      "gold_inventories": 3,
+      "refinery_utilization": 1,
+      "official_gold_demand": 0,
+      "investment_gold_demand": 1,
+      "jewellery_demand": 0,
+      "reserve_currency_index": 1,
+      "nominal_bond_yield": 0,
+      "real_interest_rate": 0,
+      "inflation_expectations": 1,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 2
+    },
+    "investment_gold_demand": {
+      "gold_spot_price": 3,
+      "gold_price_volatility": 3,
+      "physical_gold_supply": 1,
+      "gold_inventories": 2,
+      "refinery_utilization": 1,
+      "official_gold_demand": 0,
+      "investment_gold_demand": 0,
+      "jewellery_demand": 0,
+      "reserve_currency_index": 1,
+      "nominal_bond_yield": 0,
+      "real_interest_rate": 0,
+      "inflation_expectations": 0,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 3
+    },
+    "jewellery_demand": {
+      "gold_spot_price": 2,
+      "gold_price_volatility": 1,
+      "physical_gold_supply": 1,
+      "gold_inventories": 2,
+      "refinery_utilization": 2,
+      "official_gold_demand": 0,
+      "investment_gold_demand": 0,
+      "jewellery_demand": 0,
+      "reserve_currency_index": 0,
+      "nominal_bond_yield": 0,
+      "real_interest_rate": 0,
+      "inflation_expectations": 0,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 1
+    },
+    "reserve_currency_index": {
+      "gold_spot_price": 3,
+      "gold_price_volatility": 3,
+      "physical_gold_supply": 0,
+      "gold_inventories": 0,
+      "refinery_utilization": 0,
+      "official_gold_demand": 2,
+      "investment_gold_demand": 3,
+      "jewellery_demand": 1,
+      "reserve_currency_index": 0,
+      "nominal_bond_yield": 2,
+      "real_interest_rate": 1,
+      "inflation_expectations": 2,
+      "macro_surprise_index": 0,
+      "oil_price": 2,
+      "geopolitical_tension": 0,
+      "market_liquidity": 2
+    },
+    "nominal_bond_yield": {
+      "gold_spot_price": 3,
+      "gold_price_volatility": 3,
+      "physical_gold_supply": 0,
+      "gold_inventories": 0,
+      "refinery_utilization": 0,
+      "official_gold_demand": 1,
+      "investment_gold_demand": 3,
+      "jewellery_demand": 0,
+      "reserve_currency_index": 2,
+      "nominal_bond_yield": 0,
+      "real_interest_rate": 3,
+      "inflation_expectations": 2,
+      "macro_surprise_index": 0,
+      "oil_price": 1,
+      "geopolitical_tension": 0,
+      "market_liquidity": 2
+    },
+    "real_interest_rate": {
+      "gold_spot_price": 3,
+      "gold_price_volatility": 3,
+      "physical_gold_supply": 0,
+      "gold_inventories": 0,
+      "refinery_utilization": 0,
+      "official_gold_demand": 1,
+      "investment_gold_demand": 3,
+      "jewellery_demand": 0,
+      "reserve_currency_index": 2,
+      "nominal_bond_yield": 2,
+      "real_interest_rate": 0,
+      "inflation_expectations": 1,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 2
+    },
+    "inflation_expectations": {
+      "gold_spot_price": 3,
+      "gold_price_volatility": 3,
+      "physical_gold_supply": 0,
+      "gold_inventories": 0,
+      "refinery_utilization": 0,
+      "official_gold_demand": 1,
+      "investment_gold_demand": 3,
+      "jewellery_demand": 1,
+      "reserve_currency_index": 2,
+      "nominal_bond_yield": 3,
+      "real_interest_rate": 2,
+      "inflation_expectations": 0,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 1
+    },
+    "macro_surprise_index": {
+      "gold_spot_price": 3,
+      "gold_price_volatility": 3,
+      "physical_gold_supply": 0,
+      "gold_inventories": 0,
+      "refinery_utilization": 0,
+      "official_gold_demand": 0,
+      "investment_gold_demand": 3,
+      "jewellery_demand": 0,
+      "reserve_currency_index": 3,
+      "nominal_bond_yield": 3,
+      "real_interest_rate": 3,
+      "inflation_expectations": 3,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 3
+    },
+    "oil_price": {
+      "gold_spot_price": 1,
+      "gold_price_volatility": 2,
+      "physical_gold_supply": 1,
+      "gold_inventories": 0,
+      "refinery_utilization": 0,
+      "official_gold_demand": 0,
+      "investment_gold_demand": 1,
+      "jewellery_demand": 0,
+      "reserve_currency_index": 2,
+      "nominal_bond_yield": 2,
+      "real_interest_rate": 1,
+      "inflation_expectations": 2,
+      "macro_surprise_index": 0,
+      "oil_price": 0,
+      "geopolitical_tension": 0,
+      "market_liquidity": 0
+    },
+    "geopolitical_tension": {
+      "gold_spot_price": 3,
+      "gold_price_volatility": 3,
+      "physical_gold_supply": 2,
+      "gold_inventories": 2,
+      "refinery_utilization": 2,
+      "official_gold_demand": 2,
+      "investment_gold_demand": 3,
+      "jewellery_demand": 1,
+      "reserve_currency_index": 2,
+      "nominal_bond_yield": 2,
+      "real_interest_rate": 1,
+      "inflation_expectations": 1,
+      "macro_surprise_index": 0,
+      "oil_price": 2,
+      "geopolitical_tension": 0,
+      "market_liquidity": 3
+    },
+    "market_liquidity": {
+      "gold_spot_price": 3,
+      "gold_price_volatility": 3,
+      "physical_gold_supply": 1,
+      "gold_inventories": 2,
+      "refinery_utilization": 1,
+      "official_gold_demand": 1,
+      "investment_gold_demand": 2,
+      "jewellery_demand": 0,
+      "reserve_currency_index": 2,
+      "nominal_bond_yield": 2,
+      "real_interest_rate": 1,
+      "inflation_expectations": 0,
+      "macro_surprise_index": 0,
+      "oil_price": 1,
+      "geopolitical_tension": 0,
+      "market_liquidity": 0
+    }
+  },
+  "AS": {
+    "gold_spot_price": 8,
+    "gold_price_volatility": 12,
+    "physical_gold_supply": 14,
+    "gold_inventories": 15,
+    "refinery_utilization": 13,
+    "official_gold_demand": 16,
+    "investment_gold_demand": 14,
+    "jewellery_demand": 9,
+    "reserve_currency_index": 21,
+    "nominal_bond_yield": 20,
+    "real_interest_rate": 17,
+    "inflation_expectations": 19,
+    "macro_surprise_index": 24,
+    "oil_price": 12,
+    "geopolitical_tension": 29,
+    "market_liquidity": 19
+  },
+  "PS": {
+    "gold_spot_price": 39,
+    "gold_price_volatility": 38,
+    "physical_gold_supply": 13,
+    "gold_inventories": 18,
+    "refinery_utilization": 12,
+    "official_gold_demand": 12,
+    "investment_gold_demand": 30,
+    "jewellery_demand": 7,
+    "reserve_currency_index": 17,
+    "nominal_bond_yield": 16,
+    "real_interest_rate": 12,
+    "inflation_expectations": 12,
+    "macro_surprise_index": 0,
+    "oil_price": 6,
+    "geopolitical_tension": 0,
+    "market_liquidity": 30
+  },
+  "med_AS": 15.5,
+  "med_PS": 12.5,
+  "roles": [
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity (gold markets)",
+      "AS": 19,
+      "PS": 30,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 570,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "gold_price_volatility",
+      "name": "Gold price volatility",
+      "AS": 12,
+      "PS": 38,
+      "Q=AS/PS": 0.32,
+      "P=AS*PS": 456,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "investment_gold_demand",
+      "name": "Investment gold demand (flow)",
+      "AS": 14,
+      "PS": 30,
+      "Q=AS/PS": 0.47,
+      "P=AS*PS": 420,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "reserve_currency_index",
+      "name": "Major reserve currency strength",
+      "AS": 21,
+      "PS": 17,
+      "Q=AS/PS": 1.24,
+      "P=AS*PS": 357,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "nominal_bond_yield",
+      "name": "Nominal bond yield level",
+      "AS": 20,
+      "PS": 16,
+      "Q=AS/PS": 1.25,
+      "P=AS*PS": 320,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "gold_spot_price",
+      "name": "Gold spot price",
+      "AS": 8,
+      "PS": 39,
+      "Q=AS/PS": 0.21,
+      "P=AS*PS": 312,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "gold_inventories",
+      "name": "Physical gold inventories",
+      "AS": 15,
+      "PS": 18,
+      "Q=AS/PS": 0.83,
+      "P=AS*PS": 270,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 19,
+      "PS": 12,
+      "Q=AS/PS": 1.58,
+      "P=AS*PS": 228,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "real_interest_rate",
+      "name": "Real interest rate level",
+      "AS": 17,
+      "PS": 12,
+      "Q=AS/PS": 1.42,
+      "P=AS*PS": 204,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "official_gold_demand",
+      "name": "Official-sector gold demand (flow)",
+      "AS": 16,
+      "PS": 12,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 192,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "physical_gold_supply",
+      "name": "Physical gold supply (flow)",
+      "AS": 14,
+      "PS": 13,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 182,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refinery_utilization",
+      "name": "Refinery utilization",
+      "AS": 13,
+      "PS": 12,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 156,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "oil_price",
+      "name": "Oil price level",
+      "AS": 12,
+      "PS": 6,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 72,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "jewellery_demand",
+      "name": "Jewellery and industrial demand (flow)",
+      "AS": 9,
+      "PS": 7,
+      "Q=AS/PS": 1.29,
+      "P=AS*PS": 63,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "macro_surprise_index",
+      "name": "Macroeconomic data surprise intensity",
+      "AS": 24,
+      "PS": 0,
+      "Q=AS/PS": 24000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "geopolitical_tension",
+      "name": "Geopolitical tension level",
+      "AS": 29,
+      "PS": 0,
+      "Q=AS/PS": 29000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "gold_spot_price",
+        "name": "Gold spot price",
+        "kind": "driver",
+        "AS": 8,
+        "PS": 39
+      },
+      {
+        "id": "gold_price_volatility",
+        "name": "Gold price volatility",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 38
+      },
+      {
+        "id": "physical_gold_supply",
+        "name": "Physical gold supply (flow)",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 13
+      },
+      {
+        "id": "gold_inventories",
+        "name": "Physical gold inventories",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 18
+      },
+      {
+        "id": "refinery_utilization",
+        "name": "Refinery utilization",
+        "kind": "environment",
+        "AS": 13,
+        "PS": 12
+      },
+      {
+        "id": "official_gold_demand",
+        "name": "Official-sector gold demand (flow)",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 12
+      },
+      {
+        "id": "investment_gold_demand",
+        "name": "Investment gold demand (flow)",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 30
+      },
+      {
+        "id": "jewellery_demand",
+        "name": "Jewellery and industrial demand (flow)",
+        "kind": "flow",
+        "AS": 9,
+        "PS": 7
+      },
+      {
+        "id": "reserve_currency_index",
+        "name": "Major reserve currency strength",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 17
+      },
+      {
+        "id": "nominal_bond_yield",
+        "name": "Nominal bond yield level",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 16
+      },
+      {
+        "id": "real_interest_rate",
+        "name": "Real interest rate level",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 12
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 19,
+        "PS": 12
+      },
+      {
+        "id": "macro_surprise_index",
+        "name": "Macroeconomic data surprise intensity",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 0
+      },
+      {
+        "id": "oil_price",
+        "name": "Oil price level",
+        "kind": "environment",
+        "AS": 12,
+        "PS": 6
+      },
+      {
+        "id": "geopolitical_tension",
+        "name": "Geopolitical tension level",
+        "kind": "perception",
+        "AS": 29,
+        "PS": 0
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity (gold markets)",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 30
+      }
+    ],
+    "edges": [
+      {
+        "source": "gold_price_volatility",
+        "target": "investment_gold_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "gold_price_volatility",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "physical_gold_supply",
+        "target": "gold_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "physical_gold_supply",
+        "target": "gold_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "physical_gold_supply",
+        "target": "gold_inventories",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "physical_gold_supply",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "physical_gold_supply",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "gold_inventories",
+        "target": "gold_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "gold_inventories",
+        "target": "gold_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "gold_inventories",
+        "target": "investment_gold_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "gold_inventories",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "gold_spot_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "gold_price_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "physical_gold_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "gold_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "official_gold_demand",
+        "target": "gold_spot_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "official_gold_demand",
+        "target": "gold_price_volatility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "official_gold_demand",
+        "target": "physical_gold_supply",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "official_gold_demand",
+        "target": "gold_inventories",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "official_gold_demand",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investment_gold_demand",
+        "target": "gold_spot_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investment_gold_demand",
+        "target": "gold_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investment_gold_demand",
+        "target": "gold_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investment_gold_demand",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "jewellery_demand",
+        "target": "gold_spot_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "jewellery_demand",
+        "target": "gold_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "jewellery_demand",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "reserve_currency_index",
+        "target": "gold_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_currency_index",
+        "target": "gold_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_currency_index",
+        "target": "official_gold_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_currency_index",
+        "target": "investment_gold_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_currency_index",
+        "target": "nominal_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_currency_index",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_currency_index",
+        "target": "oil_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "reserve_currency_index",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_bond_yield",
+        "target": "gold_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_bond_yield",
+        "target": "gold_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_bond_yield",
+        "target": "investment_gold_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_bond_yield",
+        "target": "reserve_currency_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_bond_yield",
+        "target": "real_interest_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_bond_yield",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_bond_yield",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_interest_rate",
+        "target": "gold_spot_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "real_interest_rate",
+        "target": "gold_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "real_interest_rate",
+        "target": "investment_gold_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "real_interest_rate",
+        "target": "reserve_currency_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_interest_rate",
+        "target": "nominal_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_interest_rate",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "gold_spot_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "gold_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "investment_gold_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "reserve_currency_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "nominal_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "real_interest_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "macro_surprise_index",
+        "target": "gold_spot_price",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "macro_surprise_index",
+        "target": "gold_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "macro_surprise_index",
+        "target": "investment_gold_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "macro_surprise_index",
+        "target": "reserve_currency_index",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "macro_surprise_index",
+        "target": "nominal_bond_yield",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "macro_surprise_index",
+        "target": "real_interest_rate",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "macro_surprise_index",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "macro_surprise_index",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price",
+        "target": "gold_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price",
+        "target": "reserve_currency_index",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "oil_price",
+        "target": "nominal_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "gold_spot_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "gold_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "physical_gold_supply",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "gold_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "official_gold_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "investment_gold_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "reserve_currency_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "nominal_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "oil_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "gold_spot_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "gold_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "gold_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investment_gold_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "reserve_currency_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "nominal_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_cpi_release_2026_10_14",
+      "title": "U.S. CPI release",
+      "description": "Mid-month U.S. consumer price index print expected to re-price inflation expectations, yields, the dollar and trigger near-term gold moves.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-10-14",
+        "start": null,
+        "end": null,
+        "label": "on 2026-10-14"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "gold_spot_price",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "gold_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "real_interest_rate",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "nominal_bond_yield",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "macro_surprise_index",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "reserve_currency_index",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Multiple headlines flagged markets 'eying' US inflation data and gold slipping ahead of US CPI (2026-10-13/14)."
+    },
+    {
+      "id": "china_record_imports_ongoing",
+      "title": "Sustained record Chinese gold imports",
+      "description": "Ongoing elevated Chinese import flows that increase investment/official demand and draw down available tradable inventories.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2027-01-31",
+        "label": "1–4 months"
+      },
+      "probability": 0.88,
+      "affected": [
+        {
+          "variable_id": "investment_gold_demand",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "official_gold_demand",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gold_inventories",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "gold_spot_price",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Why China is importing a record amount of gold — and what it means for prices' (2026-10-12)."
+    },
+    {
+      "id": "middle_east_tension_oil_risk",
+      "title": "Middle East tensions / Iran-related oil risk",
+      "description": "Ongoing Iran/conflict risk that can push oil higher, raise inflation expectations and safe-haven flows, increasing gold volatility and price pressure.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-01",
+        "end": "2026-12-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "geopolitical_tension",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gold_spot_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gold_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_bond_yield",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines link Middle East tensions and Iran conflict to oil upside and gold moves (2026-10-13; PTJ bullish oil 2026-10-13)."
+    },
+    {
+      "id": "ethiopia_refinery_capacity",
+      "title": "Ethiopia's first gold refinery (regional capacity)",
+      "description": "New regional refining capacity coming online will raise local processing throughput and gradually affect physical supply channels and inventories.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-12",
+        "end": "2027-06-30",
+        "label": "months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "refinery_utilization",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "physical_gold_supply",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gold_inventories",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Ethiopia launches its first gold refinery, Prime Minister says' (2026-10-12) implies increased regional refining throughput."
+    },
+    {
+      "id": "usd_strength_on_rate_expectations",
+      "title": "Near-term U.S. dollar strength driven by rate expectations",
+      "description": "Persistent dollar strength tied to shifting Fed/rate expectations that can suppress gold and raise near-term volatility around data releases.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2026-11-30",
+        "label": "2–7 weeks"
+      },
+      "probability": 0.72,
+      "affected": [
+        {
+          "variable_id": "reserve_currency_index",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "gold_spot_price",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "gold_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines note gold 'slips' as a firm US dollar weighs and futures slip ahead of US CPI (2026-10-12/14)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_cpi_release_2026_10_14",
+      "title": "U.S. CPI release",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "on 2026-10-14",
+      "date": "2026-10-14",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 342.0,
+      "expected_impact": 324.9,
+      "event_PS": 19.25,
+      "event_AS": 17.1,
+      "n_vars": 7,
+      "affected_ids": "gold_spot_price, gold_price_volatility, real_interest_rate, nominal_bond_yield, inflation_expectations, macro_surprise_index, reserve_currency_index",
+      "rationale": "Multiple headlines flagged markets 'eying' US inflation data and gold slipping ahead of US CPI (2026-10-13/14)."
+    },
+    {
+      "id": "middle_east_tension_oil_risk",
+      "title": "Middle East tensions / Iran-related oil risk",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 253.0,
+      "expected_impact": 177.1,
+      "event_PS": 17.733,
+      "event_AS": 16.867,
+      "n_vars": 6,
+      "affected_ids": "geopolitical_tension, oil_price, inflation_expectations, gold_spot_price, gold_price_volatility, nominal_bond_yield",
+      "rationale": "Headlines link Middle East tensions and Iran conflict to oil upside and gold moves (2026-10-13; PTJ bullish oil 2026-10-13)."
+    },
+    {
+      "id": "usd_strength_on_rate_expectations",
+      "title": "Near-term U.S. dollar strength driven by rate expectations",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2–7 weeks",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2026-11-30",
+      "probability": 0.72,
+      "impact_score": 151.0,
+      "expected_impact": 108.72,
+      "event_PS": 27.6,
+      "event_AS": 15.1,
+      "n_vars": 4,
+      "affected_ids": "reserve_currency_index, gold_spot_price, gold_price_volatility, nominal_bond_yield",
+      "rationale": "Headlines note gold 'slips' as a firm US dollar weighs and futures slip ahead of US CPI (2026-10-12/14)."
+    },
+    {
+      "id": "china_record_imports_ongoing",
+      "title": "Sustained record Chinese gold imports",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1–4 months",
+      "date": null,
+      "start": "2026-10-01",
+      "end": "2027-01-31",
+      "probability": 0.88,
+      "impact_score": 120.0,
+      "expected_impact": 105.6,
+      "event_PS": 25.333,
+      "event_AS": 13.333,
+      "n_vars": 4,
+      "affected_ids": "investment_gold_demand, official_gold_demand, gold_inventories, gold_spot_price",
+      "rationale": "Headline: 'Why China is importing a record amount of gold — and what it means for prices' (2026-10-12)."
+    },
+    {
+      "id": "ethiopia_refinery_capacity",
+      "title": "Ethiopia's first gold refinery (regional capacity)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-10-12",
+      "end": "2027-06-30",
+      "probability": 0.75,
+      "impact_score": 69.0,
+      "expected_impact": 51.75,
+      "event_PS": 13.6,
+      "event_AS": 13.8,
+      "n_vars": 3,
+      "affected_ids": "refinery_utilization, physical_gold_supply, gold_inventories",
+      "rationale": "Headline: 'Ethiopia launches its first gold refinery, Prime Minister says' (2026-10-12) implies increased regional refining throughput."
+    }
+  ]
+}

@@ -1,0 +1,1941 @@
+{
+  "label": "bond_market_stress",
+  "as_of": "2026-10-14",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-14T02:19:39",
+  "system_description": {
+    "narrative_title": "Global bond-market repricing and its macro-financial spillovers",
+    "narrative_summary": "A sustained revaluation of global fixed-income markets — rising nominal and real yields and recurrent volatility — is reshaping investor behaviour, testing central-bank credibility and prompting defensive policy moves (from FX interventions to hedging curbs). The repricing is amplifying risks to banks, mortgage markets, currencies and equities while multilateral institutions warn that this shock, combined with AI-driven disruption, war and debt strains, could trigger disorderly outcomes for growth and financial stability.",
+    "scope": "Global sovereign and corporate bond markets, yield curves and real yields; investor portfolio allocation and hedging activity; central bank policy rates, communications and exceptional interventions; short-term FX pressures and country-level currency defence measures; upstream inflation expectations and market-implied growth signals.",
+    "super_system": "Global macroeconomic and financial stability architecture (international monetary system, cross-border capital flows, and global growth dynamics).",
+    "adjacent_subsystems": [
+      "Central banking & monetary policy frameworks",
+      "Currency/FX markets and sovereign reserve management",
+      "Banking sector and fixed-income market intermediation",
+      "Technology-driven investment (AI) and real-economy demand"
+    ],
+    "evidence_headlines": [
+      "The bull market is turning 4 years old — but yields could crash the party",
+      "IMF warns bond yields could see a 'disorderly' spike as debt, inflation risks worsen",
+      "US 10-year Treasury yields risk hitting 6% for first time since 2000, Pimco says",
+      "Rupee Jumps After India Central Bank Unveils Currency-Defense Measures",
+      "US yield surge triggers mortgage hedging, adds to bond market pressure",
+      "Bond Vigilantes Find New Reasons to Worry"
+    ]
+  },
+  "variables": [
+    {
+      "id": "nominal_yield_level",
+      "name": "Nominal yield level",
+      "description": "The average market level of unadjusted interest rates on tradable fixed-income instruments across maturities.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "real_yield_level",
+      "name": "Real yield level",
+      "description": "The average inflation-adjusted return demanded by investors on fixed-income instruments.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield-curve slope",
+      "description": "The relative difference in yields between longer- and shorter-maturity debt reflecting term structure shape.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_volatility",
+      "name": "Yield volatility",
+      "description": "The magnitude and frequency of fluctuations in bond yields over time as measured by realized or implied volatility.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The additional compensation investors require for holding longer-duration bonds beyond expected short rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread_level",
+      "name": "Credit spread level",
+      "description": "The average yield premium that non-sovereign issuers pay over risk-free benchmarks reflecting credit risk pricing.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The depth and ease of transacting in fixed-income markets as reflected in bid-ask spreads, market depth and trading costs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "portfolio_duration",
+      "name": "Portfolio duration",
+      "description": "The average interest-rate sensitivity of aggregated investor fixed-income portfolios measured by duration.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "hedging_activity",
+      "name": "Hedging activity intensity",
+      "description": "The flow rate and volume of market transactions undertaken to hedge interest-rate, currency or credit exposures.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "The net flow of capital across borders into and out of fixed-income and related financial assets over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_policy_rate",
+      "name": "Official policy rate",
+      "description": "The short-term policy interest rate set within the monetary policy framework that anchors short-term funding costs.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "communication_clarity",
+      "name": "Central-bank communication clarity",
+      "description": "The perceived consistency and predictability of monetary authorities' forward guidance and public communications.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "currency_pressure_index",
+      "name": "Currency pressure",
+      "description": "The degree of depreciation pressure and volatility faced by exchange rates driven by market flows and fundamentals.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "currency_defence_rate",
+      "name": "Currency defence activity",
+      "description": "The frequency and intensity of discretionary market interventions and policy measures implemented to support exchange rates.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market-implied and survey-based anticipated path of consumer price inflation over various horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "systemic_credit_risk",
+      "name": "Systemic credit risk exposure",
+      "description": "The aggregate sensitivity of the financial sector to credit losses and funding stresses stemming from debt repricing.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "nominal_yield_level",
+    "real_yield_level",
+    "yield_curve_slope",
+    "yield_volatility",
+    "term_premium",
+    "credit_spread_level",
+    "bond_market_liquidity",
+    "portfolio_duration",
+    "hedging_activity",
+    "cross_border_flows",
+    "central_bank_policy_rate",
+    "communication_clarity",
+    "currency_pressure_index",
+    "currency_defence_rate",
+    "inflation_expectations",
+    "systemic_credit_risk"
+  ],
+  "var_names": {
+    "nominal_yield_level": "Nominal yield level",
+    "real_yield_level": "Real yield level",
+    "yield_curve_slope": "Yield-curve slope",
+    "yield_volatility": "Yield volatility",
+    "term_premium": "Term premium",
+    "credit_spread_level": "Credit spread level",
+    "bond_market_liquidity": "Bond market liquidity",
+    "portfolio_duration": "Portfolio duration",
+    "hedging_activity": "Hedging activity intensity",
+    "cross_border_flows": "Cross-border capital flows",
+    "central_bank_policy_rate": "Official policy rate",
+    "communication_clarity": "Central-bank communication clarity",
+    "currency_pressure_index": "Currency pressure",
+    "currency_defence_rate": "Currency defence activity",
+    "inflation_expectations": "Inflation expectations",
+    "systemic_credit_risk": "Systemic credit risk exposure"
+  },
+  "impact_matrix": {
+    "nominal_yield_level": {
+      "nominal_yield_level": 0,
+      "real_yield_level": 1,
+      "yield_curve_slope": 1,
+      "yield_volatility": 1,
+      "term_premium": 0,
+      "credit_spread_level": 0,
+      "bond_market_liquidity": 0,
+      "portfolio_duration": 1,
+      "hedging_activity": 2,
+      "cross_border_flows": 2,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 2,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 2
+    },
+    "real_yield_level": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 0,
+      "yield_curve_slope": 2,
+      "yield_volatility": 1,
+      "term_premium": 0,
+      "credit_spread_level": 1,
+      "bond_market_liquidity": 0,
+      "portfolio_duration": 1,
+      "hedging_activity": 2,
+      "cross_border_flows": 2,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 2,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 2
+    },
+    "yield_curve_slope": {
+      "nominal_yield_level": 1,
+      "real_yield_level": 1,
+      "yield_curve_slope": 0,
+      "yield_volatility": 1,
+      "term_premium": 0,
+      "credit_spread_level": 0,
+      "bond_market_liquidity": 1,
+      "portfolio_duration": 1,
+      "hedging_activity": 2,
+      "cross_border_flows": 1,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 1,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 1
+    },
+    "yield_volatility": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_curve_slope": 2,
+      "yield_volatility": 0,
+      "term_premium": 3,
+      "credit_spread_level": 2,
+      "bond_market_liquidity": 3,
+      "portfolio_duration": 1,
+      "hedging_activity": 3,
+      "cross_border_flows": 2,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 2,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 2
+    },
+    "term_premium": {
+      "nominal_yield_level": 3,
+      "real_yield_level": 2,
+      "yield_curve_slope": 3,
+      "yield_volatility": 1,
+      "term_premium": 0,
+      "credit_spread_level": 0,
+      "bond_market_liquidity": 0,
+      "portfolio_duration": 1,
+      "hedging_activity": 1,
+      "cross_border_flows": 2,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 2,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 1
+    },
+    "credit_spread_level": {
+      "nominal_yield_level": 0,
+      "real_yield_level": 0,
+      "yield_curve_slope": 0,
+      "yield_volatility": 1,
+      "term_premium": 0,
+      "credit_spread_level": 0,
+      "bond_market_liquidity": 2,
+      "portfolio_duration": 0,
+      "hedging_activity": 2,
+      "cross_border_flows": 2,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 1,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 3
+    },
+    "bond_market_liquidity": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_curve_slope": 2,
+      "yield_volatility": 3,
+      "term_premium": 2,
+      "credit_spread_level": 2,
+      "bond_market_liquidity": 0,
+      "portfolio_duration": 1,
+      "hedging_activity": 2,
+      "cross_border_flows": 2,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 1,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 3
+    },
+    "portfolio_duration": {
+      "nominal_yield_level": 0,
+      "real_yield_level": 0,
+      "yield_curve_slope": 1,
+      "yield_volatility": 1,
+      "term_premium": 1,
+      "credit_spread_level": 1,
+      "bond_market_liquidity": 1,
+      "portfolio_duration": 0,
+      "hedging_activity": 3,
+      "cross_border_flows": 1,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 0,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 0
+    },
+    "hedging_activity": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_curve_slope": 2,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "credit_spread_level": 1,
+      "bond_market_liquidity": 2,
+      "portfolio_duration": 3,
+      "hedging_activity": 0,
+      "cross_border_flows": 1,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 1,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 1
+    },
+    "cross_border_flows": {
+      "nominal_yield_level": 3,
+      "real_yield_level": 2,
+      "yield_curve_slope": 2,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "credit_spread_level": 2,
+      "bond_market_liquidity": 2,
+      "portfolio_duration": 1,
+      "hedging_activity": 2,
+      "cross_border_flows": 0,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 3,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 2
+    },
+    "central_bank_policy_rate": {
+      "nominal_yield_level": 3,
+      "real_yield_level": 3,
+      "yield_curve_slope": 3,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "credit_spread_level": 2,
+      "bond_market_liquidity": 2,
+      "portfolio_duration": 2,
+      "hedging_activity": 2,
+      "cross_border_flows": 3,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 3,
+      "currency_defence_rate": 2,
+      "inflation_expectations": 2,
+      "systemic_credit_risk": 2
+    },
+    "communication_clarity": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_curve_slope": 2,
+      "yield_volatility": 3,
+      "term_premium": 2,
+      "credit_spread_level": 1,
+      "bond_market_liquidity": 2,
+      "portfolio_duration": 1,
+      "hedging_activity": 2,
+      "cross_border_flows": 2,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 2,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 3,
+      "systemic_credit_risk": 2
+    },
+    "currency_pressure_index": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 2,
+      "yield_curve_slope": 1,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "credit_spread_level": 2,
+      "bond_market_liquidity": 2,
+      "portfolio_duration": 1,
+      "hedging_activity": 2,
+      "cross_border_flows": 2,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 0,
+      "currency_defence_rate": 3,
+      "inflation_expectations": 2,
+      "systemic_credit_risk": 3
+    },
+    "currency_defence_rate": {
+      "nominal_yield_level": 2,
+      "real_yield_level": 1,
+      "yield_curve_slope": 2,
+      "yield_volatility": 1,
+      "term_premium": 1,
+      "credit_spread_level": 1,
+      "bond_market_liquidity": 2,
+      "portfolio_duration": 1,
+      "hedging_activity": 2,
+      "cross_border_flows": 1,
+      "central_bank_policy_rate": 2,
+      "communication_clarity": 0,
+      "currency_pressure_index": 3,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 1,
+      "systemic_credit_risk": 2
+    },
+    "inflation_expectations": {
+      "nominal_yield_level": 3,
+      "real_yield_level": 2,
+      "yield_curve_slope": 3,
+      "yield_volatility": 2,
+      "term_premium": 2,
+      "credit_spread_level": 1,
+      "bond_market_liquidity": 1,
+      "portfolio_duration": 2,
+      "hedging_activity": 2,
+      "cross_border_flows": 2,
+      "central_bank_policy_rate": 3,
+      "communication_clarity": 0,
+      "currency_pressure_index": 2,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 2
+    },
+    "systemic_credit_risk": {
+      "nominal_yield_level": 1,
+      "real_yield_level": 1,
+      "yield_curve_slope": 1,
+      "yield_volatility": 3,
+      "term_premium": 2,
+      "credit_spread_level": 3,
+      "bond_market_liquidity": 3,
+      "portfolio_duration": 1,
+      "hedging_activity": 2,
+      "cross_border_flows": 2,
+      "central_bank_policy_rate": 0,
+      "communication_clarity": 0,
+      "currency_pressure_index": 2,
+      "currency_defence_rate": 0,
+      "inflation_expectations": 0,
+      "systemic_credit_risk": 0
+    }
+  },
+  "AS": {
+    "nominal_yield_level": 12,
+    "real_yield_level": 15,
+    "yield_curve_slope": 10,
+    "yield_volatility": 24,
+    "term_premium": 16,
+    "credit_spread_level": 11,
+    "bond_market_liquidity": 22,
+    "portfolio_duration": 9,
+    "hedging_activity": 19,
+    "cross_border_flows": 23,
+    "central_bank_policy_rate": 33,
+    "communication_clarity": 26,
+    "currency_pressure_index": 26,
+    "currency_defence_rate": 22,
+    "inflation_expectations": 27,
+    "systemic_credit_risk": 21
+  },
+  "PS": {
+    "nominal_yield_level": 28,
+    "real_yield_level": 23,
+    "yield_curve_slope": 27,
+    "yield_volatility": 26,
+    "term_premium": 21,
+    "credit_spread_level": 19,
+    "bond_market_liquidity": 23,
+    "portfolio_duration": 18,
+    "hedging_activity": 31,
+    "cross_border_flows": 27,
+    "central_bank_policy_rate": 5,
+    "communication_clarity": 0,
+    "currency_pressure_index": 27,
+    "currency_defence_rate": 5,
+    "inflation_expectations": 8,
+    "systemic_credit_risk": 28
+  },
+  "med_AS": 21.5,
+  "med_PS": 23.0,
+  "roles": [
+    {
+      "variable": "currency_pressure_index",
+      "name": "Currency pressure",
+      "AS": 26,
+      "PS": 27,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 702,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "yield_volatility",
+      "name": "Yield volatility",
+      "AS": 24,
+      "PS": 26,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 624,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 23,
+      "PS": 27,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 621,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "hedging_activity",
+      "name": "Hedging activity intensity",
+      "AS": 19,
+      "PS": 31,
+      "Q=AS/PS": 0.61,
+      "P=AS*PS": 589,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "systemic_credit_risk",
+      "name": "Systemic credit risk exposure",
+      "AS": 21,
+      "PS": 28,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 588,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 22,
+      "PS": 23,
+      "Q=AS/PS": 0.96,
+      "P=AS*PS": 506,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "real_yield_level",
+      "name": "Real yield level",
+      "AS": 15,
+      "PS": 23,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 345,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "nominal_yield_level",
+      "name": "Nominal yield level",
+      "AS": 12,
+      "PS": 28,
+      "Q=AS/PS": 0.43,
+      "P=AS*PS": 336,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 16,
+      "PS": 21,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 336,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield-curve slope",
+      "AS": 10,
+      "PS": 27,
+      "Q=AS/PS": 0.37,
+      "P=AS*PS": 270,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 27,
+      "PS": 8,
+      "Q=AS/PS": 3.37,
+      "P=AS*PS": 216,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "credit_spread_level",
+      "name": "Credit spread level",
+      "AS": 11,
+      "PS": 19,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 209,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "central_bank_policy_rate",
+      "name": "Official policy rate",
+      "AS": 33,
+      "PS": 5,
+      "Q=AS/PS": 6.6,
+      "P=AS*PS": 165,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "portfolio_duration",
+      "name": "Portfolio duration",
+      "AS": 9,
+      "PS": 18,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 162,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "currency_defence_rate",
+      "name": "Currency defence activity",
+      "AS": 22,
+      "PS": 5,
+      "Q=AS/PS": 4.4,
+      "P=AS*PS": 110,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "communication_clarity",
+      "name": "Central-bank communication clarity",
+      "AS": 26,
+      "PS": 0,
+      "Q=AS/PS": 26000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "nominal_yield_level",
+        "name": "Nominal yield level",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 28
+      },
+      {
+        "id": "real_yield_level",
+        "name": "Real yield level",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 23
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield-curve slope",
+        "kind": "driver",
+        "AS": 10,
+        "PS": 27
+      },
+      {
+        "id": "yield_volatility",
+        "name": "Yield volatility",
+        "kind": "environment",
+        "AS": 24,
+        "PS": 26
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 21
+      },
+      {
+        "id": "credit_spread_level",
+        "name": "Credit spread level",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 19
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 23
+      },
+      {
+        "id": "portfolio_duration",
+        "name": "Portfolio duration",
+        "kind": "stock",
+        "AS": 9,
+        "PS": 18
+      },
+      {
+        "id": "hedging_activity",
+        "name": "Hedging activity intensity",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 31
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 27
+      },
+      {
+        "id": "central_bank_policy_rate",
+        "name": "Official policy rate",
+        "kind": "institution_field",
+        "AS": 33,
+        "PS": 5
+      },
+      {
+        "id": "communication_clarity",
+        "name": "Central-bank communication clarity",
+        "kind": "perception",
+        "AS": 26,
+        "PS": 0
+      },
+      {
+        "id": "currency_pressure_index",
+        "name": "Currency pressure",
+        "kind": "environment",
+        "AS": 26,
+        "PS": 27
+      },
+      {
+        "id": "currency_defence_rate",
+        "name": "Currency defence activity",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 5
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 27,
+        "PS": 8
+      },
+      {
+        "id": "systemic_credit_risk",
+        "name": "Systemic credit risk exposure",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 28
+      }
+    ],
+    "edges": [
+      {
+        "source": "nominal_yield_level",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_yield_level",
+        "target": "systemic_credit_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "real_yield_level",
+        "target": "systemic_credit_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "term_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "hedging_activity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_volatility",
+        "target": "systemic_credit_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "nominal_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "systemic_credit_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "systemic_credit_risk",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_duration",
+        "target": "hedging_activity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "hedging_activity",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hedging_activity",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hedging_activity",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "hedging_activity",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hedging_activity",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "hedging_activity",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "hedging_activity",
+        "target": "portfolio_duration",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "nominal_yield_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "currency_pressure_index",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "systemic_credit_risk",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "nominal_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "real_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "portfolio_duration",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "currency_pressure_index",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "currency_defence_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_policy_rate",
+        "target": "systemic_credit_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "communication_clarity",
+        "target": "systemic_credit_risk",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "currency_defence_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "systemic_credit_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "currency_defence_rate",
+        "target": "nominal_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_defence_rate",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_defence_rate",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_defence_rate",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_defence_rate",
+        "target": "central_bank_policy_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_defence_rate",
+        "target": "currency_pressure_index",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "currency_defence_rate",
+        "target": "systemic_credit_risk",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "nominal_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "real_yield_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "portfolio_duration",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "central_bank_policy_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "systemic_credit_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_credit_risk",
+        "target": "yield_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_credit_risk",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_credit_risk",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_credit_risk",
+        "target": "bond_market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "systemic_credit_risk",
+        "target": "hedging_activity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_credit_risk",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "systemic_credit_risk",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_inflation_print_near_term",
+      "title": "U.S. inflation (CPI) print",
+      "description": "Market-sensitive U.S. inflation data due in the coming days that markets are explicitly 'looking to' and that can swing yields and expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-15",
+        "end": "2026-10-16",
+        "label": "next 1-2 days"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "real_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Markets looking to U.S. inflation data; headlines: 'Treasury, Eurozone Yields Decline as Markets Look to U.S. Inflation Data'."
+    },
+    {
+      "id": "us_treasury_auctions_and_issuance",
+      "title": "Ongoing US Treasury auctions / heavy issuance",
+      "description": "Large and regular Treasury auctions and ongoing net issuance that market commentary highlights as a driver of auction tails and yield pressure.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2026-11-14",
+        "label": "next 4 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "hedging_activity",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Coverage around auction tails and why bond auctions matter: 'Bond Market Daily: ...Watching the Auction Tail', 'Treasury Auctions Explained'."
+    },
+    {
+      "id": "rbi_currency_defence_measures",
+      "title": "India's RBI currency-defence measures (ongoing)",
+      "description": "New curbs and measures to redirect dollar demand and raise FX-hedge costs that are being actively applied to defend the rupee.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-12",
+        "end": "2026-11-30",
+        "label": "ongoing weeks"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "currency_defence_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_pressure_index",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "hedging_activity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Rupee jumps after RBI redirects oil dollar demand, raises cost of some FX hedges' and 'India unveils tough curbs on dollar demand to defend rupee'."
+    },
+    {
+      "id": "rbi_policy_reassessment",
+      "title": "RBI policy-rate reassessment / potential hikes",
+      "description": "Rising Indian inflation near the RBI's tolerance and market/bank pressure that could push the central bank toward further rate hikes or guidance changes.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-15",
+        "end": "2026-11-30",
+        "label": "by end of Nov"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "central_bank_policy_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_pressure_index",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'India Sept inflation nears RBI tolerance ceiling' and 'Banks seek RBI relief, clarity on India's latest rupee-defence measures'."
+    },
+    {
+      "id": "imf_worldbank_risk_advisories",
+      "title": "IMF/World Bank warnings and reports to central bankers",
+      "description": "IMF and World Bank public warnings and reports highlighting risks (AI shocks, spiking yields, debt) that focus central bankers and markets on tail risks.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-12",
+        "end": "2026-10-20",
+        "label": "this week"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "communication_clarity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'IMF and World Bank to warn central bankers of a gathering storm' and 'IMF warns bond yields could see a \"disorderly\" spike'."
+    },
+    {
+      "id": "boj_tightening_speculation",
+      "title": "BOJ policy-shift / tightening speculation",
+      "description": "Ongoing market speculation and inflation signals that keep the possibility of BOJ moves (away from easing/YCC) alive, affecting global duration and flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2027-01-14",
+        "label": "next 1-3 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Tokyo Bond Desks Say Sayonara as Japan Reconsiders...' and 'Japan's wholesale inflation remains elevated, keeps alive BOJ rate-hike view'."
+    },
+    {
+      "id": "mortgage_hedging_pressure_us",
+      "title": "U.S. mortgage hedging flows from yield surge",
+      "description": "Mortgage lenders' hedging activity triggered by higher U.S. yields that can amplify bond-market pressure and liquidity strains.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-12",
+        "end": "2026-10-28",
+        "label": "next 2 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "hedging_activity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "yield_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "portfolio_duration",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'US yield surge triggers mortgage hedging, adds to bond market pressure'."
+    },
+    {
+      "id": "municipal_spread_pressure_from_disasters",
+      "title": "Municipal bond spread pressure from disaster costs",
+      "description": "Rising natural-disaster costs increase loss risk and funding costs for municipal issuers, pressuring muni spreads and investor risk pricing.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2027-03-31",
+        "label": "seasonal months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "systemic_credit_risk",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Municipal Bond Investors Face Elevated Risks From Rising Costs Of Natural Disasters'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_treasury_auctions_and_issuance",
+      "title": "Ongoing US Treasury auctions / heavy issuance",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4 weeks",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2026-11-14",
+      "probability": 0.9,
+      "impact_score": 214.0,
+      "expected_impact": 192.6,
+      "event_PS": 25.583,
+      "event_AS": 17.833,
+      "n_vars": 5,
+      "affected_ids": "nominal_yield_level, term_premium, yield_volatility, bond_market_liquidity, hedging_activity",
+      "rationale": "Coverage around auction tails and why bond auctions matter: 'Bond Market Daily: ...Watching the Auction Tail', 'Treasury Auctions Explained'."
+    },
+    {
+      "id": "rbi_currency_defence_measures",
+      "title": "India's RBI currency-defence measures (ongoing)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "ongoing weeks",
+      "date": null,
+      "start": "2026-10-12",
+      "end": "2026-11-30",
+      "probability": 0.95,
+      "impact_score": 202.0,
+      "expected_impact": 191.9,
+      "event_PS": 20.556,
+      "event_AS": 22.444,
+      "n_vars": 4,
+      "affected_ids": "currency_defence_rate, currency_pressure_index, hedging_activity, cross_border_flows",
+      "rationale": "Headlines: 'Rupee jumps after RBI redirects oil dollar demand, raises cost of some FX hedges' and 'India unveils tough curbs on dollar demand to defend rupee'."
+    },
+    {
+      "id": "us_inflation_print_near_term",
+      "title": "U.S. inflation (CPI) print",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1-2 days",
+      "date": null,
+      "start": "2026-10-15",
+      "end": "2026-10-16",
+      "probability": 0.9,
+      "impact_score": 199.0,
+      "expected_impact": 179.1,
+      "event_PS": 19.9,
+      "event_AS": 19.9,
+      "n_vars": 5,
+      "affected_ids": "nominal_yield_level, real_yield_level, yield_volatility, inflation_expectations, term_premium",
+      "rationale": "Markets looking to U.S. inflation data; headlines: 'Treasury, Eurozone Yields Decline as Markets Look to U.S. Inflation Data'."
+    },
+    {
+      "id": "mortgage_hedging_pressure_us",
+      "title": "U.S. mortgage hedging flows from yield surge",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 weeks",
+      "date": null,
+      "start": "2026-10-12",
+      "end": "2026-10-28",
+      "probability": 0.8,
+      "impact_score": 158.0,
+      "expected_impact": 126.4,
+      "event_PS": 26.125,
+      "event_AS": 19.75,
+      "n_vars": 4,
+      "affected_ids": "hedging_activity, bond_market_liquidity, yield_volatility, portfolio_duration",
+      "rationale": "Headline: 'US yield surge triggers mortgage hedging, adds to bond market pressure'."
+    },
+    {
+      "id": "rbi_policy_reassessment",
+      "title": "RBI policy-rate reassessment / potential hikes",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of Nov",
+      "date": null,
+      "start": "2026-10-15",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 127.0,
+      "expected_impact": 76.2,
+      "event_PS": 18.667,
+      "event_AS": 21.167,
+      "n_vars": 4,
+      "affected_ids": "central_bank_policy_rate, nominal_yield_level, credit_spread_level, currency_pressure_index",
+      "rationale": "Headlines: 'India Sept inflation nears RBI tolerance ceiling' and 'Banks seek RBI relief, clarity on India's latest rupee-defence measures'."
+    },
+    {
+      "id": "imf_worldbank_risk_advisories",
+      "title": "IMF/World Bank warnings and reports to central bankers",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-10-12",
+      "end": "2026-10-20",
+      "probability": 0.85,
+      "impact_score": 101.0,
+      "expected_impact": 85.85,
+      "event_PS": 18.4,
+      "event_AS": 20.2,
+      "n_vars": 4,
+      "affected_ids": "yield_volatility, term_premium, credit_spread_level, communication_clarity",
+      "rationale": "Headlines: 'IMF and World Bank to warn central bankers of a gathering storm' and 'IMF warns bond yields could see a \"disorderly\" spike'."
+    },
+    {
+      "id": "boj_tightening_speculation",
+      "title": "BOJ policy-shift / tightening speculation",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 1-3 months",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2027-01-14",
+      "probability": 0.6,
+      "impact_score": 99.0,
+      "expected_impact": 59.4,
+      "event_PS": 25.571,
+      "event_AS": 14.143,
+      "n_vars": 4,
+      "affected_ids": "yield_curve_slope, nominal_yield_level, term_premium, cross_border_flows",
+      "rationale": "Headlines: 'Tokyo Bond Desks Say Sayonara as Japan Reconsiders...' and 'Japan's wholesale inflation remains elevated, keeps alive BOJ rate-hike view'."
+    },
+    {
+      "id": "municipal_spread_pressure_from_disasters",
+      "title": "Municipal bond spread pressure from disaster costs",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "seasonal months",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2027-03-31",
+      "probability": 0.6,
+      "impact_score": 65.0,
+      "expected_impact": 39.0,
+      "event_PS": 22.25,
+      "event_AS": 16.25,
+      "n_vars": 3,
+      "affected_ids": "credit_spread_level, bond_market_liquidity, systemic_credit_risk",
+      "rationale": "Headline: 'Municipal Bond Investors Face Elevated Risks From Rising Costs Of Natural Disasters'."
+    }
+  ]
+}
