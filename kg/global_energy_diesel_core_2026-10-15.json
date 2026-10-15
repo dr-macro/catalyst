@@ -1,0 +1,1939 @@
+{
+  "label": "global_energy_diesel",
+  "as_of": "2026-10-14",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-15T01:48:43",
+  "system_description": {
+    "narrative_title": "Diesel supply crisis: Trump-Russia deal amid Iran-driven shipping attacks",
+    "narrative_summary": "A sudden U.S.-Russia arrangement to inject Russian diesel into global markets — pushed by the Trump administration to blunt fuel pain ahead of midterms — has collided with escalating Iranian attacks on ships and chokepoints in the Gulf, producing political backlash and only limited market relief. The interaction of wartime disruptions to maritime routes, constrained refinery capacity, low inventories and fast-moving policy decisions is driving volatile oil and diesel prices, straining logistics, and provoking international and domestic political blowback.",
+    "scope": "Interactions among U.S. policy decisions to source Russian diesel, Russian export capacity, refinery and shipping logistics for refined products, Iran-led attacks and regional military responses around the Strait of Hormuz, global diesel inventories and refinery margins, oil and gas market pricing, OPEC+ output adjustments, and political reactions in the U.S. and allied capitals",
+    "super_system": "Global energy-geopolitical-economic system (fossil-fuel supply chains, international trade, and security dynamics)",
+    "adjacent_subsystems": [
+      "Middle East military conflict and maritime security",
+      "Global refined-products logistics and tanker markets (chokepoints, freight rates)",
+      "U.S. domestic politics and electoral timing (midterms)",
+      "European winter gas security and energy policy"
+    ],
+    "evidence_headlines": [
+      "Trump Strikes Deal With Putin for Russian Diesel",
+      "Trump defends Russia diesel deal as lawmakers from both parties complain",
+      "Trump’s Russian-Diesel Move Draws Pushback, Skepticism",
+      "Iran attacks tankers beyond Strait of Hormuz",
+      "Ships in Hormuz strait hit by worst spate of attacks since start of war",
+      "Global Diesel Squeeze to Drag Into 2027, IEA Says"
+    ]
+  },
+  "variables": [
+    {
+      "id": "diesel_inventory_level",
+      "name": "Global diesel inventory level",
+      "description": "The aggregate volume of stored finished diesel fuel available across commercial and strategic stockpiles worldwide.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization",
+      "name": "Refinery utilization rate",
+      "description": "The proportion of global refinery crude-processing capacity that is actively operating at a given time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_shipping_capacity",
+      "name": "Refined-product tanker availability",
+      "description": "The total available tanker carrying capacity and deployable tonnage for transporting refined products such as diesel.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_attack_frequenc",
+      "name": "Maritime attack frequency",
+      "description": "The rate of hostile incidents (attacks, strikes, boardings) affecting commercial shipping in key sea lanes per unit time.",
+      "kind": "environment",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_transit_delay",
+      "name": "Chokepoint transit delays",
+      "description": "Average additional transit time and queuing delays experienced by commercial vessels when transiting strategic straits and chokepoints.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_demand_rate",
+      "name": "Diesel consumption rate",
+      "description": "The flow rate of diesel fuel consumption across transport, industry, and agricultural sectors globally.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "crude_supply_rate",
+      "name": "Crude oil production rate",
+      "description": "The aggregate rate at which crude oil is produced and made available to markets for refining into products.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "heavy_crude_availability",
+      "name": "Heavy crude availability",
+      "description": "The accessible supply of heavy, sour, or high-density crude grades suitable for producing diesel and other middle distillates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_margin_level",
+      "name": "Refinery profit margins",
+      "description": "The average spread between refined-product prices (e.g., diesel) and input crude costs, reflecting refining profitability.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "freight_rate_level",
+      "name": "Refined-product freight rates",
+      "description": "The prevailing price level charged for shipping refined petroleum products by tanker on major trade routes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "import_policy_intensity",
+      "name": "Emergency import policy intensity",
+      "description": "The degree and frequency of policy interventions that authorize, incentivize, or mandate emergency imports or releases of fuel.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diplomatic_tension_level",
+      "name": "Diplomatic tension level",
+      "description": "The intensity of diplomatic friction, sanctions pressure, and official disputes among international actors over energy and security issues.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "military_response_level",
+      "name": "Military engagement intensity",
+      "description": "The scale and tempo of military operations and interdiction actions in regions that affect commercial shipping and infrastructure.",
+      "kind": "environment",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_sentiment_index",
+      "name": "Energy market risk sentiment",
+      "description": "The prevailing risk premium and confidence level among traders and market participants regarding near-term energy supply and price stability.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "political_backlash_level",
+      "name": "Domestic political pressure level",
+      "description": "The intensity of domestic political opposition, public scrutiny, and policy contestation related to energy decisions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "alt_fuel_adoption_rate",
+      "name": "Alternative transport fuel adoption rate",
+      "description": "The pace at which transport-sector alternatives to diesel (e.g., electric vehicles, biofuels) are being adopted and displacing diesel demand.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "diesel_inventory_level",
+    "refinery_utilization",
+    "tanker_shipping_capacity",
+    "shipping_attack_frequenc",
+    "chokepoint_transit_delay",
+    "diesel_demand_rate",
+    "crude_supply_rate",
+    "heavy_crude_availability",
+    "refinery_margin_level",
+    "freight_rate_level",
+    "import_policy_intensity",
+    "diplomatic_tension_level",
+    "military_response_level",
+    "market_sentiment_index",
+    "political_backlash_level",
+    "alt_fuel_adoption_rate"
+  ],
+  "var_names": {
+    "diesel_inventory_level": "Global diesel inventory level",
+    "refinery_utilization": "Refinery utilization rate",
+    "tanker_shipping_capacity": "Refined-product tanker availability",
+    "shipping_attack_frequenc": "Maritime attack frequency",
+    "chokepoint_transit_delay": "Chokepoint transit delays",
+    "diesel_demand_rate": "Diesel consumption rate",
+    "crude_supply_rate": "Crude oil production rate",
+    "heavy_crude_availability": "Heavy crude availability",
+    "refinery_margin_level": "Refinery profit margins",
+    "freight_rate_level": "Refined-product freight rates",
+    "import_policy_intensity": "Emergency import policy intensity",
+    "diplomatic_tension_level": "Diplomatic tension level",
+    "military_response_level": "Military engagement intensity",
+    "market_sentiment_index": "Energy market risk sentiment",
+    "political_backlash_level": "Domestic political pressure level",
+    "alt_fuel_adoption_rate": "Alternative transport fuel adoption rate"
+  },
+  "impact_matrix": {
+    "diesel_inventory_level": {
+      "diesel_inventory_level": 0,
+      "refinery_utilization": 2,
+      "tanker_shipping_capacity": 1,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 0,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 1,
+      "heavy_crude_availability": 0,
+      "refinery_margin_level": 3,
+      "freight_rate_level": 2,
+      "import_policy_intensity": 2,
+      "diplomatic_tension_level": 0,
+      "military_response_level": 0,
+      "market_sentiment_index": 3,
+      "political_backlash_level": 2,
+      "alt_fuel_adoption_rate": 0
+    },
+    "refinery_utilization": {
+      "diesel_inventory_level": 3,
+      "refinery_utilization": 0,
+      "tanker_shipping_capacity": 2,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 0,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 3,
+      "heavy_crude_availability": 1,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 2,
+      "import_policy_intensity": 2,
+      "diplomatic_tension_level": 0,
+      "military_response_level": 0,
+      "market_sentiment_index": 2,
+      "political_backlash_level": 2,
+      "alt_fuel_adoption_rate": 0
+    },
+    "tanker_shipping_capacity": {
+      "diesel_inventory_level": 2,
+      "refinery_utilization": 1,
+      "tanker_shipping_capacity": 0,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 1,
+      "diesel_demand_rate": 1,
+      "crude_supply_rate": 1,
+      "heavy_crude_availability": 0,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 3,
+      "import_policy_intensity": 2,
+      "diplomatic_tension_level": 0,
+      "military_response_level": 0,
+      "market_sentiment_index": 2,
+      "political_backlash_level": 1,
+      "alt_fuel_adoption_rate": 0
+    },
+    "shipping_attack_frequenc": {
+      "diesel_inventory_level": 2,
+      "refinery_utilization": 2,
+      "tanker_shipping_capacity": 2,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 3,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 2,
+      "heavy_crude_availability": 1,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 3,
+      "import_policy_intensity": 3,
+      "diplomatic_tension_level": 3,
+      "military_response_level": 3,
+      "market_sentiment_index": 3,
+      "political_backlash_level": 2,
+      "alt_fuel_adoption_rate": 1
+    },
+    "chokepoint_transit_delay": {
+      "diesel_inventory_level": 2,
+      "refinery_utilization": 2,
+      "tanker_shipping_capacity": 2,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 0,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 2,
+      "heavy_crude_availability": 1,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 3,
+      "import_policy_intensity": 2,
+      "diplomatic_tension_level": 1,
+      "military_response_level": 1,
+      "market_sentiment_index": 2,
+      "political_backlash_level": 2,
+      "alt_fuel_adoption_rate": 1
+    },
+    "diesel_demand_rate": {
+      "diesel_inventory_level": 3,
+      "refinery_utilization": 3,
+      "tanker_shipping_capacity": 2,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 0,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 2,
+      "heavy_crude_availability": 1,
+      "refinery_margin_level": 3,
+      "freight_rate_level": 2,
+      "import_policy_intensity": 2,
+      "diplomatic_tension_level": 1,
+      "military_response_level": 0,
+      "market_sentiment_index": 2,
+      "political_backlash_level": 1,
+      "alt_fuel_adoption_rate": 0
+    },
+    "crude_supply_rate": {
+      "diesel_inventory_level": 2,
+      "refinery_utilization": 3,
+      "tanker_shipping_capacity": 1,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 1,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 0,
+      "heavy_crude_availability": 1,
+      "refinery_margin_level": 3,
+      "freight_rate_level": 1,
+      "import_policy_intensity": 2,
+      "diplomatic_tension_level": 2,
+      "military_response_level": 0,
+      "market_sentiment_index": 3,
+      "political_backlash_level": 2,
+      "alt_fuel_adoption_rate": 1
+    },
+    "heavy_crude_availability": {
+      "diesel_inventory_level": 2,
+      "refinery_utilization": 2,
+      "tanker_shipping_capacity": 1,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 1,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 2,
+      "heavy_crude_availability": 0,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 1,
+      "import_policy_intensity": 1,
+      "diplomatic_tension_level": 1,
+      "military_response_level": 0,
+      "market_sentiment_index": 1,
+      "political_backlash_level": 1,
+      "alt_fuel_adoption_rate": 0
+    },
+    "refinery_margin_level": {
+      "diesel_inventory_level": 2,
+      "refinery_utilization": 3,
+      "tanker_shipping_capacity": 1,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 0,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 2,
+      "heavy_crude_availability": 1,
+      "refinery_margin_level": 0,
+      "freight_rate_level": 1,
+      "import_policy_intensity": 2,
+      "diplomatic_tension_level": 0,
+      "military_response_level": 0,
+      "market_sentiment_index": 2,
+      "political_backlash_level": 2,
+      "alt_fuel_adoption_rate": 0
+    },
+    "freight_rate_level": {
+      "diesel_inventory_level": 2,
+      "refinery_utilization": 1,
+      "tanker_shipping_capacity": 2,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 0,
+      "diesel_demand_rate": 1,
+      "crude_supply_rate": 1,
+      "heavy_crude_availability": 0,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 0,
+      "import_policy_intensity": 2,
+      "diplomatic_tension_level": 0,
+      "military_response_level": 0,
+      "market_sentiment_index": 2,
+      "political_backlash_level": 1,
+      "alt_fuel_adoption_rate": 1
+    },
+    "import_policy_intensity": {
+      "diesel_inventory_level": 3,
+      "refinery_utilization": 2,
+      "tanker_shipping_capacity": 2,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 1,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 2,
+      "heavy_crude_availability": 2,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 2,
+      "import_policy_intensity": 0,
+      "diplomatic_tension_level": 2,
+      "military_response_level": 1,
+      "market_sentiment_index": 2,
+      "political_backlash_level": 2,
+      "alt_fuel_adoption_rate": 0
+    },
+    "diplomatic_tension_level": {
+      "diesel_inventory_level": 2,
+      "refinery_utilization": 2,
+      "tanker_shipping_capacity": 2,
+      "shipping_attack_frequenc": 2,
+      "chokepoint_transit_delay": 2,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 2,
+      "heavy_crude_availability": 2,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 2,
+      "import_policy_intensity": 3,
+      "diplomatic_tension_level": 0,
+      "military_response_level": 2,
+      "market_sentiment_index": 3,
+      "political_backlash_level": 2,
+      "alt_fuel_adoption_rate": 1
+    },
+    "military_response_level": {
+      "diesel_inventory_level": 2,
+      "refinery_utilization": 2,
+      "tanker_shipping_capacity": 2,
+      "shipping_attack_frequenc": 3,
+      "chokepoint_transit_delay": 2,
+      "diesel_demand_rate": 1,
+      "crude_supply_rate": 2,
+      "heavy_crude_availability": 1,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 2,
+      "import_policy_intensity": 2,
+      "diplomatic_tension_level": 3,
+      "military_response_level": 0,
+      "market_sentiment_index": 3,
+      "political_backlash_level": 2,
+      "alt_fuel_adoption_rate": 1
+    },
+    "market_sentiment_index": {
+      "diesel_inventory_level": 2,
+      "refinery_utilization": 1,
+      "tanker_shipping_capacity": 1,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 0,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 1,
+      "heavy_crude_availability": 0,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 1,
+      "import_policy_intensity": 2,
+      "diplomatic_tension_level": 0,
+      "military_response_level": 0,
+      "market_sentiment_index": 0,
+      "political_backlash_level": 2,
+      "alt_fuel_adoption_rate": 1
+    },
+    "political_backlash_level": {
+      "diesel_inventory_level": 2,
+      "refinery_utilization": 1,
+      "tanker_shipping_capacity": 0,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 0,
+      "diesel_demand_rate": 0,
+      "crude_supply_rate": 1,
+      "heavy_crude_availability": 0,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 0,
+      "import_policy_intensity": 3,
+      "diplomatic_tension_level": 1,
+      "military_response_level": 0,
+      "market_sentiment_index": 2,
+      "political_backlash_level": 0,
+      "alt_fuel_adoption_rate": 1
+    },
+    "alt_fuel_adoption_rate": {
+      "diesel_inventory_level": 1,
+      "refinery_utilization": 2,
+      "tanker_shipping_capacity": 1,
+      "shipping_attack_frequenc": 0,
+      "chokepoint_transit_delay": 0,
+      "diesel_demand_rate": 3,
+      "crude_supply_rate": 1,
+      "heavy_crude_availability": 0,
+      "refinery_margin_level": 2,
+      "freight_rate_level": 1,
+      "import_policy_intensity": 1,
+      "diplomatic_tension_level": 0,
+      "military_response_level": 0,
+      "market_sentiment_index": 1,
+      "political_backlash_level": 0,
+      "alt_fuel_adoption_rate": 0
+    }
+  },
+  "AS": {
+    "diesel_inventory_level": 16,
+    "refinery_utilization": 19,
+    "tanker_shipping_capacity": 16,
+    "shipping_attack_frequenc": 32,
+    "chokepoint_transit_delay": 23,
+    "diesel_demand_rate": 22,
+    "crude_supply_rate": 22,
+    "heavy_crude_availability": 15,
+    "refinery_margin_level": 16,
+    "freight_rate_level": 15,
+    "import_policy_intensity": 23,
+    "diplomatic_tension_level": 29,
+    "military_response_level": 30,
+    "market_sentiment_index": 13,
+    "political_backlash_level": 13,
+    "alt_fuel_adoption_rate": 13
+  },
+  "PS": {
+    "diesel_inventory_level": 32,
+    "refinery_utilization": 29,
+    "tanker_shipping_capacity": 22,
+    "shipping_attack_frequenc": 5,
+    "chokepoint_transit_delay": 11,
+    "diesel_demand_rate": 6,
+    "crude_supply_rate": 25,
+    "heavy_crude_availability": 11,
+    "refinery_margin_level": 33,
+    "freight_rate_level": 26,
+    "import_policy_intensity": 31,
+    "diplomatic_tension_level": 14,
+    "military_response_level": 7,
+    "market_sentiment_index": 33,
+    "political_backlash_level": 24,
+    "alt_fuel_adoption_rate": 8
+  },
+  "med_AS": 17.5,
+  "med_PS": 23.0,
+  "roles": [
+    {
+      "variable": "import_policy_intensity",
+      "name": "Emergency import policy intensity",
+      "AS": 23,
+      "PS": 31,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 713,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refinery_utilization",
+      "name": "Refinery utilization rate",
+      "AS": 19,
+      "PS": 29,
+      "Q=AS/PS": 0.66,
+      "P=AS*PS": 551,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crude_supply_rate",
+      "name": "Crude oil production rate",
+      "AS": 22,
+      "PS": 25,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 550,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refinery_margin_level",
+      "name": "Refinery profit margins",
+      "AS": 16,
+      "PS": 33,
+      "Q=AS/PS": 0.48,
+      "P=AS*PS": 528,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "diesel_inventory_level",
+      "name": "Global diesel inventory level",
+      "AS": 16,
+      "PS": 32,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 512,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_sentiment_index",
+      "name": "Energy market risk sentiment",
+      "AS": 13,
+      "PS": 33,
+      "Q=AS/PS": 0.39,
+      "P=AS*PS": 429,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "diplomatic_tension_level",
+      "name": "Diplomatic tension level",
+      "AS": 29,
+      "PS": 14,
+      "Q=AS/PS": 2.07,
+      "P=AS*PS": 406,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "freight_rate_level",
+      "name": "Refined-product freight rates",
+      "AS": 15,
+      "PS": 26,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 390,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tanker_shipping_capacity",
+      "name": "Refined-product tanker availability",
+      "AS": 16,
+      "PS": 22,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 352,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "political_backlash_level",
+      "name": "Domestic political pressure level",
+      "AS": 13,
+      "PS": 24,
+      "Q=AS/PS": 0.54,
+      "P=AS*PS": 312,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "chokepoint_transit_delay",
+      "name": "Chokepoint transit delays",
+      "AS": 23,
+      "PS": 11,
+      "Q=AS/PS": 2.09,
+      "P=AS*PS": 253,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "military_response_level",
+      "name": "Military engagement intensity",
+      "AS": 30,
+      "PS": 7,
+      "Q=AS/PS": 4.29,
+      "P=AS*PS": 210,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "heavy_crude_availability",
+      "name": "Heavy crude availability",
+      "AS": 15,
+      "PS": 11,
+      "Q=AS/PS": 1.36,
+      "P=AS*PS": 165,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "shipping_attack_frequenc",
+      "name": "Maritime attack frequency",
+      "AS": 32,
+      "PS": 5,
+      "Q=AS/PS": 6.4,
+      "P=AS*PS": 160,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "diesel_demand_rate",
+      "name": "Diesel consumption rate",
+      "AS": 22,
+      "PS": 6,
+      "Q=AS/PS": 3.67,
+      "P=AS*PS": 132,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "alt_fuel_adoption_rate",
+      "name": "Alternative transport fuel adoption rate",
+      "AS": 13,
+      "PS": 8,
+      "Q=AS/PS": 1.62,
+      "P=AS*PS": 104,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "diesel_inventory_level",
+        "name": "Global diesel inventory level",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 32
+      },
+      {
+        "id": "refinery_utilization",
+        "name": "Refinery utilization rate",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 29
+      },
+      {
+        "id": "tanker_shipping_capacity",
+        "name": "Refined-product tanker availability",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 22
+      },
+      {
+        "id": "shipping_attack_frequenc",
+        "name": "Maritime attack frequency",
+        "kind": "environment",
+        "AS": 32,
+        "PS": 5
+      },
+      {
+        "id": "chokepoint_transit_delay",
+        "name": "Chokepoint transit delays",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 11
+      },
+      {
+        "id": "diesel_demand_rate",
+        "name": "Diesel consumption rate",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 6
+      },
+      {
+        "id": "crude_supply_rate",
+        "name": "Crude oil production rate",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 25
+      },
+      {
+        "id": "heavy_crude_availability",
+        "name": "Heavy crude availability",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 11
+      },
+      {
+        "id": "refinery_margin_level",
+        "name": "Refinery profit margins",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 33
+      },
+      {
+        "id": "freight_rate_level",
+        "name": "Refined-product freight rates",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 26
+      },
+      {
+        "id": "import_policy_intensity",
+        "name": "Emergency import policy intensity",
+        "kind": "driver",
+        "AS": 23,
+        "PS": 31
+      },
+      {
+        "id": "diplomatic_tension_level",
+        "name": "Diplomatic tension level",
+        "kind": "environment",
+        "AS": 29,
+        "PS": 14
+      },
+      {
+        "id": "military_response_level",
+        "name": "Military engagement intensity",
+        "kind": "environment",
+        "AS": 30,
+        "PS": 7
+      },
+      {
+        "id": "market_sentiment_index",
+        "name": "Energy market risk sentiment",
+        "kind": "perception",
+        "AS": 13,
+        "PS": 33
+      },
+      {
+        "id": "political_backlash_level",
+        "name": "Domestic political pressure level",
+        "kind": "perception",
+        "AS": 13,
+        "PS": 24
+      },
+      {
+        "id": "alt_fuel_adoption_rate",
+        "name": "Alternative transport fuel adoption rate",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 8
+      }
+    ],
+    "edges": [
+      {
+        "source": "diesel_inventory_level",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "refinery_margin_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "freight_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "import_policy_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "market_sentiment_index",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "political_backlash_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "diesel_inventory_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "tanker_shipping_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "crude_supply_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "freight_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "import_policy_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "market_sentiment_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "political_backlash_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_shipping_capacity",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_shipping_capacity",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_shipping_capacity",
+        "target": "freight_rate_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_shipping_capacity",
+        "target": "import_policy_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_shipping_capacity",
+        "target": "market_sentiment_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "tanker_shipping_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "chokepoint_transit_delay",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "crude_supply_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "freight_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "import_policy_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "diplomatic_tension_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "military_response_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "market_sentiment_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_attack_frequenc",
+        "target": "political_backlash_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_delay",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_delay",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_delay",
+        "target": "tanker_shipping_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_delay",
+        "target": "crude_supply_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_transit_delay",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_delay",
+        "target": "freight_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_delay",
+        "target": "import_policy_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_delay",
+        "target": "market_sentiment_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_transit_delay",
+        "target": "political_backlash_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "diesel_inventory_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "tanker_shipping_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "crude_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "refinery_margin_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "freight_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "import_policy_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_demand_rate",
+        "target": "market_sentiment_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_supply_rate",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_supply_rate",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_supply_rate",
+        "target": "refinery_margin_level",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "crude_supply_rate",
+        "target": "import_policy_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_supply_rate",
+        "target": "diplomatic_tension_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_supply_rate",
+        "target": "market_sentiment_index",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_supply_rate",
+        "target": "political_backlash_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "heavy_crude_availability",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "heavy_crude_availability",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "heavy_crude_availability",
+        "target": "crude_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "heavy_crude_availability",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "refinery_margin_level",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_margin_level",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_margin_level",
+        "target": "crude_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_margin_level",
+        "target": "import_policy_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_margin_level",
+        "target": "market_sentiment_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_margin_level",
+        "target": "political_backlash_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "freight_rate_level",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "freight_rate_level",
+        "target": "tanker_shipping_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "freight_rate_level",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "freight_rate_level",
+        "target": "import_policy_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "freight_rate_level",
+        "target": "market_sentiment_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "import_policy_intensity",
+        "target": "diesel_inventory_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "import_policy_intensity",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "import_policy_intensity",
+        "target": "tanker_shipping_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "import_policy_intensity",
+        "target": "crude_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "import_policy_intensity",
+        "target": "heavy_crude_availability",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "import_policy_intensity",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "import_policy_intensity",
+        "target": "freight_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "import_policy_intensity",
+        "target": "diplomatic_tension_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "import_policy_intensity",
+        "target": "market_sentiment_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "import_policy_intensity",
+        "target": "political_backlash_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "tanker_shipping_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "shipping_attack_frequenc",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "chokepoint_transit_delay",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "crude_supply_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "heavy_crude_availability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "freight_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "import_policy_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "military_response_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "market_sentiment_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_tension_level",
+        "target": "political_backlash_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_response_level",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_response_level",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_response_level",
+        "target": "tanker_shipping_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_response_level",
+        "target": "shipping_attack_frequenc",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "military_response_level",
+        "target": "chokepoint_transit_delay",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_response_level",
+        "target": "crude_supply_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_response_level",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "military_response_level",
+        "target": "freight_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "military_response_level",
+        "target": "import_policy_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "military_response_level",
+        "target": "diplomatic_tension_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_response_level",
+        "target": "market_sentiment_index",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "military_response_level",
+        "target": "political_backlash_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment_index",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment_index",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment_index",
+        "target": "import_policy_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_sentiment_index",
+        "target": "political_backlash_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_backlash_level",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_backlash_level",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_backlash_level",
+        "target": "import_policy_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "political_backlash_level",
+        "target": "market_sentiment_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "alt_fuel_adoption_rate",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "alt_fuel_adoption_rate",
+        "target": "diesel_demand_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "alt_fuel_adoption_rate",
+        "target": "refinery_margin_level",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "iran_shipping_attack_escalation",
+      "title": "Iran escalates attacks on commercial shipping",
+      "description": "Iran shifts tactics and steps up strikes on vessels transiting the Strait of Hormuz, increasing hostile incidents against commercial shipping.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2026-11-05",
+        "label": "next 3 weeks"
+      },
+      "probability": 0.78,
+      "affected": [
+        {
+          "variable_id": "shipping_attack_frequenc",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_shipping_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "chokepoint_transit_delay",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "freight_rate_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "military_response_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_inventory_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_sentiment_index",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Iran shifting tactics to step up attacks before US vote', 'Container ship sinks in Strait of Hormuz', 'Ships in Hormuz strait hit by worst spate of attacks'."
+    },
+    {
+      "id": "continued_us_blockade_of_iran_exports",
+      "title": "U.S. blockade keeps Iranian crude exports at zero",
+      "description": "U.S. interdiction and blockade operations maintain near-zero Iranian oil exports, constraining supply of crude grades relevant to diesel production.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2026-11-30",
+        "label": "weeks–month"
+      },
+      "probability": 0.86,
+      "affected": [
+        {
+          "variable_id": "crude_supply_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "heavy_crude_availability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_inventory_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refinery_utilization",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_sentiment_index",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'US blockade keeps Iranian crude exports at zero', 'US military says it disabled cargo vessel trying to run Iran blockade'."
+    },
+    {
+      "id": "russian_diesel_shipments_ramp_up",
+      "title": "Russia ramps diesel exports under US-Russia deal",
+      "description": "Russia increases diesel shipments onto U.S. and global markets following the Trump-Putin diesel agreement, partially offsetting other disruptions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2026-11-30",
+        "label": "weeks–month"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "diesel_inventory_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_shipping_capacity",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "freight_rate_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_tension_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_sentiment_index",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Trump says Russia to supply diesel', 'Russia says its diesel exports may exceed volumes announced by Trump', 'What’s in the diesel deal between Putin and Trump?'."
+    },
+    {
+      "id": "delek_texas_refinery_expansion_dpa",
+      "title": "DPA-backed Delek Texas refinery expansion",
+      "description": "U.S. administration uses the Defense Production Act to accelerate expansion of the Delek Texas refinery to increase diesel output.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2027-03-31",
+        "label": "within months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "refinery_utilization",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_inventory_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refinery_margin_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "political_backlash_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Trump administration to expand a Delek Texas refinery using Defense Production Act'."
+    },
+    {
+      "id": "freight_rates_surge_from_risk_premia",
+      "title": "Freight and tanker rates surge from risk premia",
+      "description": "Insurance and security premiums for product tankers spike as attacks and longer voyages raise costs and reduce deployable refined-product shipping capacity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2026-11-15",
+        "label": "2–4 weeks"
+      },
+      "probability": 0.82,
+      "affected": [
+        {
+          "variable_id": "freight_rate_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_shipping_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_inventory_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_sentiment_index",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Oil Tanker Rates Surge Amid Rising Attacks, Longer Voyages', 'Ships’ captains paid $100,000 a month to transit Strait of Hormuz', 'Freight rates for Russian Urals... hit fresh records'."
+    },
+    {
+      "id": "legislative_pushback_on_russian_deal",
+      "title": "Congressional/legal push to reverse Russian diesel deal",
+      "description": "Bipartisan congressional pressure and legal questions could force reversal, curbs, or restrictions on U.S. purchases of Russian diesel.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2026-11-04",
+        "label": "by midterms"
+      },
+      "probability": 0.52,
+      "affected": [
+        {
+          "variable_id": "diesel_inventory_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "political_backlash_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_tension_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_sentiment_index",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'US Republicans, Democrats want Trump to reverse course on Russia diesel', 'The Morning Risk Report: Trump’s Diesel Deal Faces Questions From Lawmakers on Legality'."
+    },
+    {
+      "id": "iea_warns_prolonged_diesel_squeeze",
+      "title": "IEA: global diesel squeeze persists into 2027",
+      "description": "IEA analysis projects diesel shortages and price pressure to persist well into 2027, sustaining supply tightness and market stress.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2027-12-31",
+        "label": "through 2027"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "diesel_inventory_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refinery_margin_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_sentiment_index",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_demand_rate",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Global Diesel Squeeze to Drag Into 2027, IEA Says', 'Diesel squeeze set to last well into 2027 as Iran war disrupts supply, IEA says'."
+    },
+    {
+      "id": "epa_biofuel_exemption_reallocation",
+      "title": "EPA proposes full reallocation of refinery biofuel exemptions",
+      "description": "EPA proposal to reallocate refinery biofuel exemptions could change refinery compliance costs and affect diesel supply economics if adopted.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-14",
+        "end": "2027-01-31",
+        "label": "months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "refinery_margin_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_inventory_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'EPA proposes full reallocation of refinery biofuel exemptions' (affects refining costs and diesel supply economics)."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "iran_shipping_attack_escalation",
+      "title": "Iran escalates attacks on commercial shipping",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 weeks",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2026-11-05",
+      "probability": 0.78,
+      "impact_score": 322.0,
+      "expected_impact": 251.16,
+      "event_PS": 18.467,
+      "event_AS": 21.467,
+      "n_vars": 7,
+      "affected_ids": "shipping_attack_frequenc, tanker_shipping_capacity, chokepoint_transit_delay, freight_rate_level, military_response_level, diesel_inventory_level, market_sentiment_index",
+      "rationale": "Headlines: 'Iran shifting tactics to step up attacks before US vote', 'Container ship sinks in Strait of Hormuz', 'Ships in Hormuz strait hit by worst spate of attacks'."
+    },
+    {
+      "id": "continued_us_blockade_of_iran_exports",
+      "title": "U.S. blockade keeps Iranian crude exports at zero",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–month",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2026-11-30",
+      "probability": 0.86,
+      "impact_score": 151.0,
+      "expected_impact": 129.86,
+      "event_PS": 25.667,
+      "event_AS": 16.778,
+      "n_vars": 5,
+      "affected_ids": "crude_supply_rate, heavy_crude_availability, diesel_inventory_level, refinery_utilization, market_sentiment_index",
+      "rationale": "Headlines: 'US blockade keeps Iranian crude exports at zero', 'US military says it disabled cargo vessel trying to run Iran blockade'."
+    },
+    {
+      "id": "iea_warns_prolonged_diesel_squeeze",
+      "title": "IEA: global diesel squeeze persists into 2027",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through 2027",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2027-12-31",
+      "probability": 0.7,
+      "impact_score": 128.0,
+      "expected_impact": 89.6,
+      "event_PS": 29.25,
+      "event_AS": 16.0,
+      "n_vars": 4,
+      "affected_ids": "diesel_inventory_level, refinery_margin_level, market_sentiment_index, diesel_demand_rate",
+      "rationale": "Headlines: 'Global Diesel Squeeze to Drag Into 2027, IEA Says', 'Diesel squeeze set to last well into 2027 as Iran war disrupts supply, IEA says'."
+    },
+    {
+      "id": "freight_rates_surge_from_risk_premia",
+      "title": "Freight and tanker rates surge from risk premia",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2–4 weeks",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2026-11-15",
+      "probability": 0.82,
+      "impact_score": 106.0,
+      "expected_impact": 86.92,
+      "event_PS": 26.714,
+      "event_AS": 15.143,
+      "n_vars": 4,
+      "affected_ids": "freight_rate_level, tanker_shipping_capacity, diesel_inventory_level, market_sentiment_index",
+      "rationale": "Headlines: 'Oil Tanker Rates Surge Amid Rising Attacks, Longer Voyages', 'Ships’ captains paid $100,000 a month to transit Strait of Hormuz', 'Freight rates for Russian Urals... hit fresh records'."
+    },
+    {
+      "id": "russian_diesel_shipments_ramp_up",
+      "title": "Russia ramps diesel exports under US-Russia deal",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–month",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2026-11-30",
+      "probability": 0.7,
+      "impact_score": 105.0,
+      "expected_impact": 73.5,
+      "event_PS": 26.5,
+      "event_AS": 17.5,
+      "n_vars": 5,
+      "affected_ids": "diesel_inventory_level, tanker_shipping_capacity, freight_rate_level, diplomatic_tension_level, market_sentiment_index",
+      "rationale": "Headlines: 'Trump says Russia to supply diesel', 'Russia says its diesel exports may exceed volumes announced by Trump', 'What’s in the diesel deal between Putin and Trump?'."
+    },
+    {
+      "id": "legislative_pushback_on_russian_deal",
+      "title": "Congressional/legal push to reverse Russian diesel deal",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by midterms",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2026-11-04",
+      "probability": 0.52,
+      "impact_score": 100.0,
+      "expected_impact": 52.0,
+      "event_PS": 26.5,
+      "event_AS": 16.667,
+      "n_vars": 4,
+      "affected_ids": "diesel_inventory_level, political_backlash_level, diplomatic_tension_level, market_sentiment_index",
+      "rationale": "Headlines: 'US Republicans, Democrats want Trump to reverse course on Russia diesel', 'The Morning Risk Report: Trump’s Diesel Deal Faces Questions From Lawmakers on Legality'."
+    },
+    {
+      "id": "delek_texas_refinery_expansion_dpa",
+      "title": "DPA-backed Delek Texas refinery expansion",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "within months",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2027-03-31",
+      "probability": 0.6,
+      "impact_score": 83.0,
+      "expected_impact": 49.8,
+      "event_PS": 29.4,
+      "event_AS": 16.6,
+      "n_vars": 4,
+      "affected_ids": "refinery_utilization, diesel_inventory_level, refinery_margin_level, political_backlash_level",
+      "rationale": "Headline: 'Trump administration to expand a Delek Texas refinery using Defense Production Act'."
+    },
+    {
+      "id": "epa_biofuel_exemption_reallocation",
+      "title": "EPA proposes full reallocation of refinery biofuel exemptions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-10-14",
+      "end": "2027-01-31",
+      "probability": 0.6,
+      "impact_score": 32.0,
+      "expected_impact": 19.2,
+      "event_PS": 32.5,
+      "event_AS": 16.0,
+      "n_vars": 2,
+      "affected_ids": "refinery_margin_level, diesel_inventory_level",
+      "rationale": "Headline: 'EPA proposes full reallocation of refinery biofuel exemptions' (affects refining costs and diesel supply economics)."
+    }
+  ]
+}
