@@ -1,0 +1,1628 @@
+{
+  "label": "global_economic_strain",
+  "as_of": "2026-10-16",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-17T01:41:17",
+  "system_description": {
+    "narrative_title": "Hot inflation rekindles rate-hike bets, tightening financial conditions",
+    "narrative_summary": "A surprise pickup in US inflation and hotter-than-expected price data has pushed up Treasury yields, revived Fed rate-hike odds and stoked market volatility, forcing investors and policymakers to reassess risk and positioning. As an open system, the story is driven by continual inflows of data (CPI/PPI, Fed speakers, IMF fiscal warnings) that alter expectations, capital flows (bond and equity reallocation), and policy signaling; outputs include yields, FX moves and equity performance which loop back into expectations and fiscal stress. Key feedbacks include higher yields increasing sovereign financing costs (and IMF alarm), market risk-off undermining trading revenues and equity valuations, and central-bank communication attempting to anchor expectations amid uncertainty.",
+    "scope": "Monetary policy expectations (Fed and major central banks), US inflation data, Treasury yield dynamics, investor positioning (equities, bonds, trading desks), market volatility and short-term capital flows; secondary effects on sovereign fiscal stress and global risk sentiment are included within this boundary.",
+    "super_system": "Global macro-financial system (world economy, cross-border capital flows, and major central banks operating within geopolitical and trade dynamics)",
+    "adjacent_subsystems": [
+      "Sovereign fiscal policy and public debt dynamics (IMF warnings, budget deficits)",
+      "Banking and capital markets structure (Wall Street trading desks, bond market liquidity)",
+      "Corporate earnings/real economy (growth, corporate investment and hiring)",
+      "International markets and FX (EM spillovers, currency moves, other central banks)"
+    ],
+    "evidence_headlines": [
+      "US inflation heats up in September; Fed rate hike this month back on table",
+      "10-year Treasury yield jumps as September core inflation comes in hotter than expected",
+      "Wall St opens lower after hot CPI data fuels rate-hike bets",
+      "Rising bond yields and higher inflation leave the Fed trapped in a rate-hike dilemma",
+      "IMF dials up calls for urgent fiscal consolidation",
+      "Fed rate hike call seen tight as inflation heats up"
+    ]
+  },
+  "variables": [
+    {
+      "id": "inflation_rate",
+      "name": "Headline inflation rate",
+      "description": "The current annualized pace of general consumer price change measured across the economy.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_momentum",
+      "name": "Inflation momentum",
+      "description": "The short-term acceleration or deceleration in price changes relative to recent trends.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The average market and household belief about future inflation over policy-relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Monetary policy rate expectations",
+      "description": "The market-implied expected path for short-term policy interest rates over the coming quarters.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_communicati",
+      "name": "Central bank communication intensity",
+      "description": "The frequency and clarity of forward guidance and public messaging from monetary authorities.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "treasury_yield_level",
+      "name": "Nominal government bond yield level",
+      "description": "The prevailing yields on benchmark government bonds at specific maturities, reflecting borrowing costs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The difference in yields between longer- and shorter-maturity government bonds, indicating term structure shape.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The additional yield investors require to hold longer-dated bonds beyond expected short rates.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Market volatility",
+      "description": "The realized and implied short-term variability of asset prices across equity and fixed-income markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "The collective willingness of investors to hold risky assets versus safe assets at a given time.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_positioning",
+      "name": "Aggregate investor positioning",
+      "description": "The net exposure across major asset classes held by leveraged and non-leveraged investors.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_capital_flo",
+      "name": "Cross-border capital flows",
+      "description": "The net volume and direction of short- and long-term capital moving across jurisdictions.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "liquidity_conditions",
+      "name": "Market liquidity conditions",
+      "description": "The ease with which large positions can be transacted without materially moving prices across markets.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_fiscal_stress",
+      "name": "Sovereign fiscal stress",
+      "description": "The degree of pressure on public finances measured by debt servicing burdens, financing gaps, and rollover risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation_levels",
+      "name": "Equity valuation levels",
+      "description": "Aggregate price-to-earnings and other valuation metrics that indicate how richly equities are priced relative to fundamentals.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "risk_premium_on_assets",
+      "name": "Risk premia on financial assets",
+      "description": "The extra expected return investors demand for holding risky assets over risk-free instruments across markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "inflation_rate",
+    "inflation_momentum",
+    "inflation_expectations",
+    "policy_rate_expectations",
+    "central_bank_communicati",
+    "treasury_yield_level",
+    "yield_curve_slope",
+    "term_premium",
+    "market_volatility",
+    "investor_risk_appetite",
+    "investor_positioning",
+    "cross_border_capital_flo",
+    "liquidity_conditions",
+    "sovereign_fiscal_stress",
+    "equity_valuation_levels",
+    "risk_premium_on_assets"
+  ],
+  "var_names": {
+    "inflation_rate": "Headline inflation rate",
+    "inflation_momentum": "Inflation momentum",
+    "inflation_expectations": "Inflation expectations",
+    "policy_rate_expectations": "Monetary policy rate expectations",
+    "central_bank_communicati": "Central bank communication intensity",
+    "treasury_yield_level": "Nominal government bond yield level",
+    "yield_curve_slope": "Yield curve slope",
+    "term_premium": "Term premium",
+    "market_volatility": "Market volatility",
+    "investor_risk_appetite": "Investor risk appetite",
+    "investor_positioning": "Aggregate investor positioning",
+    "cross_border_capital_flo": "Cross-border capital flows",
+    "liquidity_conditions": "Market liquidity conditions",
+    "sovereign_fiscal_stress": "Sovereign fiscal stress",
+    "equity_valuation_levels": "Equity valuation levels",
+    "risk_premium_on_assets": "Risk premia on financial assets"
+  },
+  "impact_matrix": {
+    "inflation_rate": {
+      "inflation_rate": 0,
+      "inflation_momentum": 2,
+      "inflation_expectations": 3,
+      "policy_rate_expectations": 3,
+      "central_bank_communicati": 2,
+      "treasury_yield_level": 3,
+      "yield_curve_slope": 2,
+      "term_premium": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 1,
+      "cross_border_capital_flo": 1,
+      "liquidity_conditions": 0,
+      "sovereign_fiscal_stress": 2,
+      "equity_valuation_levels": 2,
+      "risk_premium_on_assets": 2
+    },
+    "inflation_momentum": {
+      "inflation_rate": 3,
+      "inflation_momentum": 0,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 2,
+      "central_bank_communicati": 2,
+      "treasury_yield_level": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 1,
+      "cross_border_capital_flo": 1,
+      "liquidity_conditions": 0,
+      "sovereign_fiscal_stress": 1,
+      "equity_valuation_levels": 1,
+      "risk_premium_on_assets": 1
+    },
+    "inflation_expectations": {
+      "inflation_rate": 1,
+      "inflation_momentum": 1,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 3,
+      "central_bank_communicati": 2,
+      "treasury_yield_level": 3,
+      "yield_curve_slope": 2,
+      "term_premium": 2,
+      "market_volatility": 2,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 1,
+      "cross_border_capital_flo": 2,
+      "liquidity_conditions": 0,
+      "sovereign_fiscal_stress": 1,
+      "equity_valuation_levels": 2,
+      "risk_premium_on_assets": 2
+    },
+    "policy_rate_expectations": {
+      "inflation_rate": 1,
+      "inflation_momentum": 1,
+      "inflation_expectations": 2,
+      "policy_rate_expectations": 0,
+      "central_bank_communicati": 2,
+      "treasury_yield_level": 3,
+      "yield_curve_slope": 3,
+      "term_premium": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 2,
+      "cross_border_capital_flo": 2,
+      "liquidity_conditions": 1,
+      "sovereign_fiscal_stress": 1,
+      "equity_valuation_levels": 2,
+      "risk_premium_on_assets": 2
+    },
+    "central_bank_communicati": {
+      "inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 3,
+      "policy_rate_expectations": 3,
+      "central_bank_communicati": 0,
+      "treasury_yield_level": 2,
+      "yield_curve_slope": 2,
+      "term_premium": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 1,
+      "cross_border_capital_flo": 1,
+      "liquidity_conditions": 0,
+      "sovereign_fiscal_stress": 0,
+      "equity_valuation_levels": 1,
+      "risk_premium_on_assets": 1
+    },
+    "treasury_yield_level": {
+      "inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 2,
+      "central_bank_communicati": 1,
+      "treasury_yield_level": 0,
+      "yield_curve_slope": 2,
+      "term_premium": 2,
+      "market_volatility": 2,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 1,
+      "cross_border_capital_flo": 2,
+      "liquidity_conditions": 1,
+      "sovereign_fiscal_stress": 2,
+      "equity_valuation_levels": 2,
+      "risk_premium_on_assets": 2
+    },
+    "yield_curve_slope": {
+      "inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 2,
+      "central_bank_communicati": 1,
+      "treasury_yield_level": 1,
+      "yield_curve_slope": 0,
+      "term_premium": 1,
+      "market_volatility": 1,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 1,
+      "cross_border_capital_flo": 1,
+      "liquidity_conditions": 0,
+      "sovereign_fiscal_stress": 1,
+      "equity_valuation_levels": 1,
+      "risk_premium_on_assets": 1
+    },
+    "term_premium": {
+      "inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "central_bank_communicati": 0,
+      "treasury_yield_level": 3,
+      "yield_curve_slope": 2,
+      "term_premium": 0,
+      "market_volatility": 1,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 1,
+      "cross_border_capital_flo": 1,
+      "liquidity_conditions": 0,
+      "sovereign_fiscal_stress": 1,
+      "equity_valuation_levels": 1,
+      "risk_premium_on_assets": 2
+    },
+    "market_volatility": {
+      "inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "central_bank_communicati": 1,
+      "treasury_yield_level": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "market_volatility": 0,
+      "investor_risk_appetite": 3,
+      "investor_positioning": 2,
+      "cross_border_capital_flo": 2,
+      "liquidity_conditions": 2,
+      "sovereign_fiscal_stress": 1,
+      "equity_valuation_levels": 1,
+      "risk_premium_on_assets": 3
+    },
+    "investor_risk_appetite": {
+      "inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "central_bank_communicati": 0,
+      "treasury_yield_level": 1,
+      "yield_curve_slope": 0,
+      "term_premium": 1,
+      "market_volatility": 1,
+      "investor_risk_appetite": 0,
+      "investor_positioning": 3,
+      "cross_border_capital_flo": 2,
+      "liquidity_conditions": 1,
+      "sovereign_fiscal_stress": 1,
+      "equity_valuation_levels": 2,
+      "risk_premium_on_assets": 3
+    },
+    "investor_positioning": {
+      "inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "central_bank_communicati": 0,
+      "treasury_yield_level": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "investor_positioning": 0,
+      "cross_border_capital_flo": 2,
+      "liquidity_conditions": 2,
+      "sovereign_fiscal_stress": 1,
+      "equity_valuation_levels": 2,
+      "risk_premium_on_assets": 2
+    },
+    "cross_border_capital_flo": {
+      "inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 1,
+      "central_bank_communicati": 0,
+      "treasury_yield_level": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "market_volatility": 1,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 3,
+      "cross_border_capital_flo": 0,
+      "liquidity_conditions": 1,
+      "sovereign_fiscal_stress": 2,
+      "equity_valuation_levels": 1,
+      "risk_premium_on_assets": 1
+    },
+    "liquidity_conditions": {
+      "inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "central_bank_communicati": 0,
+      "treasury_yield_level": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 1,
+      "cross_border_capital_flo": 1,
+      "liquidity_conditions": 0,
+      "sovereign_fiscal_stress": 2,
+      "equity_valuation_levels": 1,
+      "risk_premium_on_assets": 2
+    },
+    "sovereign_fiscal_stress": {
+      "inflation_rate": 1,
+      "inflation_momentum": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "central_bank_communicati": 0,
+      "treasury_yield_level": 3,
+      "yield_curve_slope": 2,
+      "term_premium": 2,
+      "market_volatility": 2,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 1,
+      "cross_border_capital_flo": 2,
+      "liquidity_conditions": 1,
+      "sovereign_fiscal_stress": 0,
+      "equity_valuation_levels": 1,
+      "risk_premium_on_assets": 2
+    },
+    "equity_valuation_levels": {
+      "inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 0,
+      "policy_rate_expectations": 0,
+      "central_bank_communicati": 0,
+      "treasury_yield_level": 0,
+      "yield_curve_slope": 0,
+      "term_premium": 0,
+      "market_volatility": 1,
+      "investor_risk_appetite": 1,
+      "investor_positioning": 1,
+      "cross_border_capital_flo": 1,
+      "liquidity_conditions": 1,
+      "sovereign_fiscal_stress": 0,
+      "equity_valuation_levels": 0,
+      "risk_premium_on_assets": 1
+    },
+    "risk_premium_on_assets": {
+      "inflation_rate": 0,
+      "inflation_momentum": 0,
+      "inflation_expectations": 1,
+      "policy_rate_expectations": 1,
+      "central_bank_communicati": 0,
+      "treasury_yield_level": 2,
+      "yield_curve_slope": 1,
+      "term_premium": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "investor_positioning": 1,
+      "cross_border_capital_flo": 1,
+      "liquidity_conditions": 1,
+      "sovereign_fiscal_stress": 1,
+      "equity_valuation_levels": 2,
+      "risk_premium_on_assets": 0
+    }
+  },
+  "AS": {
+    "inflation_rate": 27,
+    "inflation_momentum": 21,
+    "inflation_expectations": 25,
+    "policy_rate_expectations": 26,
+    "central_bank_communicati": 18,
+    "treasury_yield_level": 21,
+    "yield_curve_slope": 13,
+    "term_premium": 15,
+    "market_volatility": 21,
+    "investor_risk_appetite": 15,
+    "investor_positioning": 17,
+    "cross_border_capital_flo": 15,
+    "liquidity_conditions": 14,
+    "sovereign_fiscal_stress": 20,
+    "equity_valuation_levels": 6,
+    "risk_premium_on_assets": 16
+  },
+  "PS": {
+    "inflation_rate": 6,
+    "inflation_momentum": 4,
+    "inflation_expectations": 16,
+    "policy_rate_expectations": 20,
+    "central_bank_communicati": 11,
+    "treasury_yield_level": 31,
+    "yield_curve_slope": 21,
+    "term_premium": 17,
+    "market_volatility": 25,
+    "investor_risk_appetite": 19,
+    "investor_positioning": 21,
+    "cross_border_capital_flo": 22,
+    "liquidity_conditions": 11,
+    "sovereign_fiscal_stress": 17,
+    "equity_valuation_levels": 22,
+    "risk_premium_on_assets": 27
+  },
+  "med_AS": 17.5,
+  "med_PS": 19.5,
+  "roles": [
+    {
+      "variable": "treasury_yield_level",
+      "name": "Nominal government bond yield level",
+      "AS": 21,
+      "PS": 31,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 651,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Market volatility",
+      "AS": 21,
+      "PS": 25,
+      "Q=AS/PS": 0.84,
+      "P=AS*PS": 525,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Monetary policy rate expectations",
+      "AS": 26,
+      "PS": 20,
+      "Q=AS/PS": 1.3,
+      "P=AS*PS": 520,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "risk_premium_on_assets",
+      "name": "Risk premia on financial assets",
+      "AS": 16,
+      "PS": 27,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 432,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 25,
+      "PS": 16,
+      "Q=AS/PS": 1.56,
+      "P=AS*PS": 400,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "investor_positioning",
+      "name": "Aggregate investor positioning",
+      "AS": 17,
+      "PS": 21,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 357,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "sovereign_fiscal_stress",
+      "name": "Sovereign fiscal stress",
+      "AS": 20,
+      "PS": 17,
+      "Q=AS/PS": 1.18,
+      "P=AS*PS": 340,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "cross_border_capital_flo",
+      "name": "Cross-border capital flows",
+      "AS": 15,
+      "PS": 22,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 330,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 15,
+      "PS": 19,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 285,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 13,
+      "PS": 21,
+      "Q=AS/PS": 0.62,
+      "P=AS*PS": 273,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 15,
+      "PS": 17,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 255,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "central_bank_communicati",
+      "name": "Central bank communication intensity",
+      "AS": 18,
+      "PS": 11,
+      "Q=AS/PS": 1.64,
+      "P=AS*PS": 198,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_rate",
+      "name": "Headline inflation rate",
+      "AS": 27,
+      "PS": 6,
+      "Q=AS/PS": 4.5,
+      "P=AS*PS": 162,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "liquidity_conditions",
+      "name": "Market liquidity conditions",
+      "AS": 14,
+      "PS": 11,
+      "Q=AS/PS": 1.27,
+      "P=AS*PS": 154,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "equity_valuation_levels",
+      "name": "Equity valuation levels",
+      "AS": 6,
+      "PS": 22,
+      "Q=AS/PS": 0.27,
+      "P=AS*PS": 132,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_momentum",
+      "name": "Inflation momentum",
+      "AS": 21,
+      "PS": 4,
+      "Q=AS/PS": 5.25,
+      "P=AS*PS": 84,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "inflation_rate",
+        "name": "Headline inflation rate",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 6
+      },
+      {
+        "id": "inflation_momentum",
+        "name": "Inflation momentum",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 4
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 25,
+        "PS": 16
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Monetary policy rate expectations",
+        "kind": "perception",
+        "AS": 26,
+        "PS": 20
+      },
+      {
+        "id": "central_bank_communicati",
+        "name": "Central bank communication intensity",
+        "kind": "institution_field",
+        "AS": 18,
+        "PS": 11
+      },
+      {
+        "id": "treasury_yield_level",
+        "name": "Nominal government bond yield level",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 31
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 21
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 17
+      },
+      {
+        "id": "market_volatility",
+        "name": "Market volatility",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 25
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 15,
+        "PS": 19
+      },
+      {
+        "id": "investor_positioning",
+        "name": "Aggregate investor positioning",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 21
+      },
+      {
+        "id": "cross_border_capital_flo",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 22
+      },
+      {
+        "id": "liquidity_conditions",
+        "name": "Market liquidity conditions",
+        "kind": "environment",
+        "AS": 14,
+        "PS": 11
+      },
+      {
+        "id": "sovereign_fiscal_stress",
+        "name": "Sovereign fiscal stress",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 17
+      },
+      {
+        "id": "equity_valuation_levels",
+        "name": "Equity valuation levels",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 22
+      },
+      {
+        "id": "risk_premium_on_assets",
+        "name": "Risk premia on financial assets",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 27
+      }
+    ],
+    "edges": [
+      {
+        "source": "inflation_rate",
+        "target": "inflation_momentum",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "central_bank_communicati",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "treasury_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "sovereign_fiscal_stress",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "risk_premium_on_assets",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "central_bank_communicati",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "treasury_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_momentum",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "central_bank_communicati",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "treasury_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "risk_premium_on_assets",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "central_bank_communicati",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "treasury_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "risk_premium_on_assets",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_bank_communicati",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "central_bank_communicati",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_communicati",
+        "target": "treasury_yield_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_communicati",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "central_bank_communicati",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "treasury_yield_level",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "treasury_yield_level",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "treasury_yield_level",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "treasury_yield_level",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "treasury_yield_level",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "treasury_yield_level",
+        "target": "sovereign_fiscal_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "treasury_yield_level",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "treasury_yield_level",
+        "target": "risk_premium_on_assets",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "treasury_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "risk_premium_on_assets",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "treasury_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "investor_positioning",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "liquidity_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "risk_premium_on_assets",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "risk_premium_on_assets",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "treasury_yield_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "liquidity_conditions",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_positioning",
+        "target": "risk_premium_on_assets",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "treasury_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "investor_positioning",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "sovereign_fiscal_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "liquidity_conditions",
+        "target": "treasury_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "liquidity_conditions",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "liquidity_conditions",
+        "target": "sovereign_fiscal_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "liquidity_conditions",
+        "target": "risk_premium_on_assets",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_fiscal_stress",
+        "target": "treasury_yield_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_fiscal_stress",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_fiscal_stress",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_fiscal_stress",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_fiscal_stress",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_fiscal_stress",
+        "target": "risk_premium_on_assets",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premium_on_assets",
+        "target": "treasury_yield_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premium_on_assets",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premium_on_assets",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premium_on_assets",
+        "target": "equity_valuation_levels",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "next_fed_meeting_oct",
+      "title": "Next Fed policy meeting (October window)",
+      "description": "Market decision at the upcoming Fed meeting that will resolve near-term rate-hike bets and set guidance for policy path.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-16",
+        "end": "2026-10-31",
+        "label": "by end of October"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "central_bank_communicati",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "treasury_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Fed rate hike this month back on table'; 'What to expect at the next Fed meeting now that rate-hike odds are rising'."
+    },
+    {
+      "id": "fed_officials_public_comments",
+      "title": "Ongoing Fed official commentary",
+      "description": "A sustained period of public remarks from Fed officials shaping market perceptions about policy timing and intent.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-16",
+        "end": "2026-11-15",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "central_bank_communicati",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple speaker headlines: 'Warsh Avoids Signal', 'Fed's Daly/Bowman/Collins/Williams' discussing policy guidance."
+    },
+    {
+      "id": "market_repricing_rate_odds",
+      "title": "Market re-pricing of rate-hike odds",
+      "description": "Continued market re-pricing that lifts short- and long-term rate expectations and bond yields in response to hot inflation signals.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-16",
+        "end": "2026-11-15",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "treasury_yield_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: '10-year Treasury yield jumps', 'Hot September CPI sends rate-hike bets soaring', 'Inflation concerns push 10-Year Yield'."
+    },
+    {
+      "id": "us_budget_deficit_pressure",
+      "title": "Large US budget gap and issuance pressure",
+      "description": "Rising US fiscal deficits and heavier Treasury issuance that could sustain upward pressure on yields and increase fiscal stress.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-16",
+        "end": "2027-01-31",
+        "label": "next 3 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "sovereign_fiscal_stress",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "treasury_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_capital_flo",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'US annual budget gap hits nearly $2 trillion'; IMF warnings on rising deficits and bond woes."
+    },
+    {
+      "id": "upcoming_inflation_releases_nov",
+      "title": "Next monthly US inflation releases (CPI/PPI)",
+      "description": "Upcoming CPI/PPI releases that will confirm whether recent hot readings persist and therefore influence policy and markets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2026-11-15",
+        "label": "mid-November"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_momentum",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "treasury_yield_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'US inflation heats up in September'; 'Economists: Hot PPI shows Fed's work is not done' — next prints matter."
+    },
+    {
+      "id": "equity_volatility_from_tech_rout",
+      "title": "Equity-market volatility spike from tech/AI correction",
+      "description": "A technology/AI-driven equity pullback that increases fear levels, reduces risk appetite and forces repositioning across asset managers.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-16",
+        "end": "2026-11-15",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "market_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_positioning",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "liquidity_conditions",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Wall Street's fear gauge is ripping'; 'Treasury yields slide as investors flee to safety amid tech rout'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "upcoming_inflation_releases_nov",
+      "title": "Next monthly US inflation releases (CPI/PPI)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-November",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2026-11-15",
+      "probability": 0.8,
+      "impact_score": 264.0,
+      "expected_impact": 211.2,
+      "event_PS": 13.818,
+      "event_AS": 24.0,
+      "n_vars": 4,
+      "affected_ids": "inflation_rate, inflation_momentum, policy_rate_expectations, treasury_yield_level",
+      "rationale": "Headlines: 'US inflation heats up in September'; 'Economists: Hot PPI shows Fed's work is not done' — next prints matter."
+    },
+    {
+      "id": "market_repricing_rate_odds",
+      "title": "Market re-pricing of rate-hike odds",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-10-16",
+      "end": "2026-11-15",
+      "probability": 0.85,
+      "impact_score": 239.0,
+      "expected_impact": 203.15,
+      "event_PS": 23.25,
+      "event_AS": 19.917,
+      "n_vars": 5,
+      "affected_ids": "policy_rate_expectations, treasury_yield_level, term_premium, yield_curve_slope, market_volatility",
+      "rationale": "Headlines: '10-year Treasury yield jumps', 'Hot September CPI sends rate-hike bets soaring', 'Inflation concerns push 10-Year Yield'."
+    },
+    {
+      "id": "next_fed_meeting_oct",
+      "title": "Next Fed policy meeting (October window)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of October",
+      "date": null,
+      "start": "2026-10-16",
+      "end": "2026-10-31",
+      "probability": 0.75,
+      "impact_score": 182.0,
+      "expected_impact": 136.5,
+      "event_PS": 20.667,
+      "event_AS": 20.222,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, central_bank_communicati, treasury_yield_level, yield_curve_slope",
+      "rationale": "Headlines: 'Fed rate hike this month back on table'; 'What to expect at the next Fed meeting now that rate-hike odds are rising'."
+    },
+    {
+      "id": "equity_volatility_from_tech_rout",
+      "title": "Equity-market volatility spike from tech/AI correction",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-10-16",
+      "end": "2026-11-15",
+      "probability": 0.6,
+      "impact_score": 141.0,
+      "expected_impact": 84.6,
+      "event_PS": 20.75,
+      "event_AS": 17.625,
+      "n_vars": 4,
+      "affected_ids": "market_volatility, investor_risk_appetite, investor_positioning, liquidity_conditions",
+      "rationale": "Headlines: 'Wall Street's fear gauge is ripping'; 'Treasury yields slide as investors flee to safety amid tech rout'."
+    },
+    {
+      "id": "us_budget_deficit_pressure",
+      "title": "Large US budget gap and issuance pressure",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-10-16",
+      "end": "2027-01-31",
+      "probability": 0.8,
+      "impact_score": 132.0,
+      "expected_impact": 105.6,
+      "event_PS": 21.714,
+      "event_AS": 18.857,
+      "n_vars": 4,
+      "affected_ids": "sovereign_fiscal_stress, treasury_yield_level, term_premium, cross_border_capital_flo",
+      "rationale": "Headlines: 'US annual budget gap hits nearly $2 trillion'; IMF warnings on rising deficits and bond woes."
+    },
+    {
+      "id": "fed_officials_public_comments",
+      "title": "Ongoing Fed official commentary",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-10-16",
+      "end": "2026-11-15",
+      "probability": 0.9,
+      "impact_score": 127.0,
+      "expected_impact": 114.3,
+      "event_PS": 16.333,
+      "event_AS": 21.167,
+      "n_vars": 3,
+      "affected_ids": "central_bank_communicati, policy_rate_expectations, market_volatility",
+      "rationale": "Multiple speaker headlines: 'Warsh Avoids Signal', 'Fed's Daly/Bowman/Collins/Williams' discussing policy guidance."
+    }
+  ]
+}
