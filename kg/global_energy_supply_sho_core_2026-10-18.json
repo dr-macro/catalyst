@@ -1,0 +1,1398 @@
+{
+  "label": "global_energy_supply_sho",
+  "as_of": "2026-10-17",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-18T01:23:25",
+  "system_description": {
+    "narrative_title": "Energy-driven inflation shock from Middle East conflict",
+    "narrative_summary": "A resurgence of Middle East hostilities and related shipping attacks has tightened global crude and refined-fuel supplies, driving oil and diesel prices sharply higher. The supply shock is feeding through to wholesale, producer and consumer prices, prompting large IEA and strategic reserve releases, squeezing refiner margins and creating political and monetary-policy pressure in advanced economies. The crisis is producing sectoral winners and losers (energy majors, shippers, food processors) and risks persistent diesel shortages into 2027.",
+    "scope": "Interacting global energy supply and refined-fuel markets (crude, diesel, gasoline), inventories and strategic reserves, refining and shipping logistics, commodity trading and financial markets, pass-through to wholesale/producer/consumer prices and policy responses (IEA releases, central banks, fiscal/political reactions).",
+    "super_system": "Global geopolitical-economic system (energy security, trade, and monetary policy)",
+    "adjacent_subsystems": [
+      "Global shipping and logistics",
+      "Food and agricultural supply chains",
+      "Financial and commodity markets",
+      "Domestic politics and election cycles"
+    ],
+    "evidence_headlines": [
+      "US inflation jumps to 3.7% as Iran war drives up prices",
+      "Global Diesel Squeeze to Drag Into 2027, IEA Says",
+      "IEA says total oil stock release will exceed 400 million barrels",
+      "Oil hits five-month high of $110 on new escalation in Middle East",
+      "Wholesale prices jumped 6.3% annually in September, biggest gain since 2022",
+      "Rising inflation piles pressure on US voters ahead of midterm elections"
+    ]
+  },
+  "variables": [
+    {
+      "id": "crude_production_rate",
+      "name": "Crude production rate",
+      "description": "The aggregated global rate at which crude oil is extracted and made available to markets (barrels per day).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refined_production_rate",
+      "name": "Refined fuel production rate",
+      "description": "The aggregated rate at which refineries convert crude into refined fuels (diesel, gasoline, fuel oil) available to markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fuel_inventories",
+      "name": "Commercial fuel inventories",
+      "description": "The stock level of commercially held refined-fuel inventories across storage facilities and distribution networks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "strategic_reserve_levels",
+      "name": "Strategic reserve levels",
+      "description": "The aggregated stock of government-held strategic crude and refined-fuel reserves available for release.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refining_utilization_rat",
+      "name": "Refining utilization rate",
+      "description": "The percentage of global refining capacity actively operating relative to total installed capacity.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_capacity",
+      "name": "Maritime transport capacity",
+      "description": "The effective available capacity and throughput of oil and product shipping logistics (tankers, freight availability, route throughput).",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_security_risk",
+      "name": "Maritime security risk",
+      "description": "The prevailing level of security risk affecting seaborne oil and product movements (probability and expected disruption severity).",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_financial_posi",
+      "name": "Commodity financial positioning",
+      "description": "The aggregated net speculative and hedged positions in oil and refined-fuel derivatives markets that influence price volatility and liquidity.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_price_level",
+      "name": "Crude price level",
+      "description": "The market price level of benchmark crude oil reflecting the marginal value of crude in global markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_price_level",
+      "name": "Diesel price level",
+      "description": "The market price level of diesel reflecting supply-demand balance and logistics premia in refined-product markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "wholesale_to_consumer_pa",
+      "name": "Wholesale-to-consumer pass-through rate",
+      "description": "The rate at which changes in wholesale or producer fuel prices are transmitted into retail and consumer price indices.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "central_bank_rate_level",
+      "name": "Monetary policy rate level",
+      "description": "The prevailing policy interest rate and stance that influences financing costs and inflation expectations in the economy.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "political_pressure_level",
+      "name": "Political pressure level",
+      "description": "The intensity of political and fiscal pressure on policymakers to respond to energy price changes (public concern, electoral incentives, calls for relief).",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refiner_margin_level",
+      "name": "Refiner margin level",
+      "description": "The average spread between refined-product prices and crude input costs, measuring profitability of refining operations.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_consumption_rate",
+      "name": "Diesel consumption rate",
+      "description": "The aggregated rate of diesel use across transport, industry and agriculture sectors.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fuel_substitution_rate",
+      "name": "Fuel substitution rate",
+      "description": "The rate at which consumers and industries switch between fuels or reduce fuel intensity in response to price or availability changes.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "crude_production_rate",
+    "refined_production_rate",
+    "fuel_inventories",
+    "strategic_reserve_levels",
+    "refining_utilization_rat",
+    "shipping_capacity",
+    "maritime_security_risk",
+    "commodity_financial_posi",
+    "crude_price_level",
+    "diesel_price_level",
+    "wholesale_to_consumer_pa",
+    "central_bank_rate_level",
+    "political_pressure_level",
+    "refiner_margin_level",
+    "diesel_consumption_rate",
+    "fuel_substitution_rate"
+  ],
+  "var_names": {
+    "crude_production_rate": "Crude production rate",
+    "refined_production_rate": "Refined fuel production rate",
+    "fuel_inventories": "Commercial fuel inventories",
+    "strategic_reserve_levels": "Strategic reserve levels",
+    "refining_utilization_rat": "Refining utilization rate",
+    "shipping_capacity": "Maritime transport capacity",
+    "maritime_security_risk": "Maritime security risk",
+    "commodity_financial_posi": "Commodity financial positioning",
+    "crude_price_level": "Crude price level",
+    "diesel_price_level": "Diesel price level",
+    "wholesale_to_consumer_pa": "Wholesale-to-consumer pass-through rate",
+    "central_bank_rate_level": "Monetary policy rate level",
+    "political_pressure_level": "Political pressure level",
+    "refiner_margin_level": "Refiner margin level",
+    "diesel_consumption_rate": "Diesel consumption rate",
+    "fuel_substitution_rate": "Fuel substitution rate"
+  },
+  "impact_matrix": {
+    "crude_production_rate": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 2,
+      "fuel_inventories": 1,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 1,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 1,
+      "crude_price_level": 3,
+      "diesel_price_level": 0,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 1,
+      "refiner_margin_level": 2,
+      "diesel_consumption_rate": 0,
+      "fuel_substitution_rate": 0
+    },
+    "refined_production_rate": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 0,
+      "fuel_inventories": 3,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 2,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 1,
+      "crude_price_level": 1,
+      "diesel_price_level": 3,
+      "wholesale_to_consumer_pa": 1,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 1,
+      "refiner_margin_level": 2,
+      "diesel_consumption_rate": 0,
+      "fuel_substitution_rate": 0
+    },
+    "fuel_inventories": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 2,
+      "fuel_inventories": 0,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 1,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 1,
+      "crude_price_level": 1,
+      "diesel_price_level": 2,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 1,
+      "refiner_margin_level": 1,
+      "diesel_consumption_rate": 0,
+      "fuel_substitution_rate": 0
+    },
+    "strategic_reserve_levels": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 0,
+      "fuel_inventories": 1,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 0,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 1,
+      "crude_price_level": 2,
+      "diesel_price_level": 1,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 1,
+      "refiner_margin_level": 0,
+      "diesel_consumption_rate": 0,
+      "fuel_substitution_rate": 0
+    },
+    "refining_utilization_rat": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 3,
+      "fuel_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 0,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 1,
+      "crude_price_level": 1,
+      "diesel_price_level": 2,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 1,
+      "refiner_margin_level": 2,
+      "diesel_consumption_rate": 0,
+      "fuel_substitution_rate": 0
+    },
+    "shipping_capacity": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 1,
+      "fuel_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 1,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 1,
+      "crude_price_level": 1,
+      "diesel_price_level": 2,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 1,
+      "refiner_margin_level": 1,
+      "diesel_consumption_rate": 1,
+      "fuel_substitution_rate": 0
+    },
+    "maritime_security_risk": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 1,
+      "fuel_inventories": 2,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 1,
+      "shipping_capacity": 3,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 2,
+      "crude_price_level": 3,
+      "diesel_price_level": 3,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 2,
+      "refiner_margin_level": 2,
+      "diesel_consumption_rate": 1,
+      "fuel_substitution_rate": 1
+    },
+    "commodity_financial_posi": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 0,
+      "fuel_inventories": 0,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 0,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 0,
+      "crude_price_level": 3,
+      "diesel_price_level": 2,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 0,
+      "refiner_margin_level": 1,
+      "diesel_consumption_rate": 0,
+      "fuel_substitution_rate": 0
+    },
+    "crude_price_level": {
+      "crude_production_rate": 1,
+      "refined_production_rate": 1,
+      "fuel_inventories": 1,
+      "strategic_reserve_levels": 1,
+      "refining_utilization_rat": 1,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 2,
+      "crude_price_level": 0,
+      "diesel_price_level": 2,
+      "wholesale_to_consumer_pa": 1,
+      "central_bank_rate_level": 1,
+      "political_pressure_level": 2,
+      "refiner_margin_level": 2,
+      "diesel_consumption_rate": 1,
+      "fuel_substitution_rate": 1
+    },
+    "diesel_price_level": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 0,
+      "fuel_inventories": 1,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 1,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 1,
+      "crude_price_level": 1,
+      "diesel_price_level": 0,
+      "wholesale_to_consumer_pa": 2,
+      "central_bank_rate_level": 1,
+      "political_pressure_level": 2,
+      "refiner_margin_level": 1,
+      "diesel_consumption_rate": 2,
+      "fuel_substitution_rate": 2
+    },
+    "wholesale_to_consumer_pa": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 0,
+      "fuel_inventories": 0,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 0,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 0,
+      "crude_price_level": 0,
+      "diesel_price_level": 1,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 1,
+      "political_pressure_level": 1,
+      "refiner_margin_level": 0,
+      "diesel_consumption_rate": 1,
+      "fuel_substitution_rate": 1
+    },
+    "central_bank_rate_level": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 0,
+      "fuel_inventories": 0,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 0,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 1,
+      "crude_price_level": 1,
+      "diesel_price_level": 0,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 0,
+      "refiner_margin_level": 0,
+      "diesel_consumption_rate": 0,
+      "fuel_substitution_rate": 0
+    },
+    "political_pressure_level": {
+      "crude_production_rate": 1,
+      "refined_production_rate": 1,
+      "fuel_inventories": 1,
+      "strategic_reserve_levels": 1,
+      "refining_utilization_rat": 1,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 0,
+      "crude_price_level": 0,
+      "diesel_price_level": 1,
+      "wholesale_to_consumer_pa": 1,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 0,
+      "refiner_margin_level": 1,
+      "diesel_consumption_rate": 0,
+      "fuel_substitution_rate": 0
+    },
+    "refiner_margin_level": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 1,
+      "fuel_inventories": 1,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 2,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 1,
+      "crude_price_level": 1,
+      "diesel_price_level": 1,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 0,
+      "refiner_margin_level": 0,
+      "diesel_consumption_rate": 0,
+      "fuel_substitution_rate": 0
+    },
+    "diesel_consumption_rate": {
+      "crude_production_rate": 1,
+      "refined_production_rate": 1,
+      "fuel_inventories": 1,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 1,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 0,
+      "crude_price_level": 1,
+      "diesel_price_level": 1,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 0,
+      "refiner_margin_level": 1,
+      "diesel_consumption_rate": 0,
+      "fuel_substitution_rate": 0
+    },
+    "fuel_substitution_rate": {
+      "crude_production_rate": 0,
+      "refined_production_rate": 0,
+      "fuel_inventories": 0,
+      "strategic_reserve_levels": 0,
+      "refining_utilization_rat": 0,
+      "shipping_capacity": 0,
+      "maritime_security_risk": 0,
+      "commodity_financial_posi": 0,
+      "crude_price_level": 1,
+      "diesel_price_level": 1,
+      "wholesale_to_consumer_pa": 0,
+      "central_bank_rate_level": 0,
+      "political_pressure_level": 0,
+      "refiner_margin_level": 1,
+      "diesel_consumption_rate": 3,
+      "fuel_substitution_rate": 0
+    }
+  },
+  "AS": {
+    "crude_production_rate": 11,
+    "refined_production_rate": 14,
+    "fuel_inventories": 9,
+    "strategic_reserve_levels": 6,
+    "refining_utilization_rat": 12,
+    "shipping_capacity": 11,
+    "maritime_security_risk": 21,
+    "commodity_financial_posi": 6,
+    "crude_price_level": 17,
+    "diesel_price_level": 14,
+    "wholesale_to_consumer_pa": 5,
+    "central_bank_rate_level": 2,
+    "political_pressure_level": 8,
+    "refiner_margin_level": 7,
+    "diesel_consumption_rate": 7,
+    "fuel_substitution_rate": 6
+  },
+  "PS": {
+    "crude_production_rate": 3,
+    "refined_production_rate": 13,
+    "fuel_inventories": 16,
+    "strategic_reserve_levels": 2,
+    "refining_utilization_rat": 12,
+    "shipping_capacity": 3,
+    "maritime_security_risk": 0,
+    "commodity_financial_posi": 13,
+    "crude_price_level": 20,
+    "diesel_price_level": 22,
+    "wholesale_to_consumer_pa": 5,
+    "central_bank_rate_level": 3,
+    "political_pressure_level": 13,
+    "refiner_margin_level": 17,
+    "diesel_consumption_rate": 9,
+    "fuel_substitution_rate": 5
+  },
+  "med_AS": 8.5,
+  "med_PS": 10.5,
+  "roles": [
+    {
+      "variable": "crude_price_level",
+      "name": "Crude price level",
+      "AS": 17,
+      "PS": 20,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 340,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_price_level",
+      "name": "Diesel price level",
+      "AS": 14,
+      "PS": 22,
+      "Q=AS/PS": 0.64,
+      "P=AS*PS": 308,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refined_production_rate",
+      "name": "Refined fuel production rate",
+      "AS": 14,
+      "PS": 13,
+      "Q=AS/PS": 1.08,
+      "P=AS*PS": 182,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "fuel_inventories",
+      "name": "Commercial fuel inventories",
+      "AS": 9,
+      "PS": 16,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 144,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refining_utilization_rat",
+      "name": "Refining utilization rate",
+      "AS": 12,
+      "PS": 12,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 144,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refiner_margin_level",
+      "name": "Refiner margin level",
+      "AS": 7,
+      "PS": 17,
+      "Q=AS/PS": 0.41,
+      "P=AS*PS": 119,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "political_pressure_level",
+      "name": "Political pressure level",
+      "AS": 8,
+      "PS": 13,
+      "Q=AS/PS": 0.62,
+      "P=AS*PS": 104,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "commodity_financial_posi",
+      "name": "Commodity financial positioning",
+      "AS": 6,
+      "PS": 13,
+      "Q=AS/PS": 0.46,
+      "P=AS*PS": 78,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "diesel_consumption_rate",
+      "name": "Diesel consumption rate",
+      "AS": 7,
+      "PS": 9,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 63,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "shipping_capacity",
+      "name": "Maritime transport capacity",
+      "AS": 11,
+      "PS": 3,
+      "Q=AS/PS": 3.67,
+      "P=AS*PS": 33,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "crude_production_rate",
+      "name": "Crude production rate",
+      "AS": 11,
+      "PS": 3,
+      "Q=AS/PS": 3.67,
+      "P=AS*PS": 33,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "fuel_substitution_rate",
+      "name": "Fuel substitution rate",
+      "AS": 6,
+      "PS": 5,
+      "Q=AS/PS": 1.2,
+      "P=AS*PS": 30,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "wholesale_to_consumer_pa",
+      "name": "Wholesale-to-consumer pass-through rate",
+      "AS": 5,
+      "PS": 5,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 25,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "strategic_reserve_levels",
+      "name": "Strategic reserve levels",
+      "AS": 6,
+      "PS": 2,
+      "Q=AS/PS": 3.0,
+      "P=AS*PS": 12,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "central_bank_rate_level",
+      "name": "Monetary policy rate level",
+      "AS": 2,
+      "PS": 3,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 6,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "maritime_security_risk",
+      "name": "Maritime security risk",
+      "AS": 21,
+      "PS": 0,
+      "Q=AS/PS": 21000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "crude_production_rate",
+        "name": "Crude production rate",
+        "kind": "flow",
+        "AS": 11,
+        "PS": 3
+      },
+      {
+        "id": "refined_production_rate",
+        "name": "Refined fuel production rate",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 13
+      },
+      {
+        "id": "fuel_inventories",
+        "name": "Commercial fuel inventories",
+        "kind": "stock",
+        "AS": 9,
+        "PS": 16
+      },
+      {
+        "id": "strategic_reserve_levels",
+        "name": "Strategic reserve levels",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 2
+      },
+      {
+        "id": "refining_utilization_rat",
+        "name": "Refining utilization rate",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 12
+      },
+      {
+        "id": "shipping_capacity",
+        "name": "Maritime transport capacity",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 3
+      },
+      {
+        "id": "maritime_security_risk",
+        "name": "Maritime security risk",
+        "kind": "environment",
+        "AS": 21,
+        "PS": 0
+      },
+      {
+        "id": "commodity_financial_posi",
+        "name": "Commodity financial positioning",
+        "kind": "driver",
+        "AS": 6,
+        "PS": 13
+      },
+      {
+        "id": "crude_price_level",
+        "name": "Crude price level",
+        "kind": "driver",
+        "AS": 17,
+        "PS": 20
+      },
+      {
+        "id": "diesel_price_level",
+        "name": "Diesel price level",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 22
+      },
+      {
+        "id": "wholesale_to_consumer_pa",
+        "name": "Wholesale-to-consumer pass-through rate",
+        "kind": "flow",
+        "AS": 5,
+        "PS": 5
+      },
+      {
+        "id": "central_bank_rate_level",
+        "name": "Monetary policy rate level",
+        "kind": "institution_field",
+        "AS": 2,
+        "PS": 3
+      },
+      {
+        "id": "political_pressure_level",
+        "name": "Political pressure level",
+        "kind": "perception",
+        "AS": 8,
+        "PS": 13
+      },
+      {
+        "id": "refiner_margin_level",
+        "name": "Refiner margin level",
+        "kind": "driver",
+        "AS": 7,
+        "PS": 17
+      },
+      {
+        "id": "diesel_consumption_rate",
+        "name": "Diesel consumption rate",
+        "kind": "flow",
+        "AS": 7,
+        "PS": 9
+      },
+      {
+        "id": "fuel_substitution_rate",
+        "name": "Fuel substitution rate",
+        "kind": "flow",
+        "AS": 6,
+        "PS": 5
+      }
+    ],
+    "edges": [
+      {
+        "source": "crude_production_rate",
+        "target": "refined_production_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "crude_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_production_rate",
+        "target": "refiner_margin_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_production_rate",
+        "target": "fuel_inventories",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_production_rate",
+        "target": "refining_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_production_rate",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refined_production_rate",
+        "target": "refiner_margin_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_inventories",
+        "target": "refined_production_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_inventories",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "strategic_reserve_levels",
+        "target": "crude_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_utilization_rat",
+        "target": "refined_production_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_utilization_rat",
+        "target": "fuel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_utilization_rat",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_utilization_rat",
+        "target": "refiner_margin_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_capacity",
+        "target": "fuel_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_capacity",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "fuel_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "shipping_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "commodity_financial_posi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "crude_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "diesel_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "political_pressure_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_security_risk",
+        "target": "refiner_margin_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "commodity_financial_posi",
+        "target": "crude_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_financial_posi",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_price_level",
+        "target": "commodity_financial_posi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_price_level",
+        "target": "diesel_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_price_level",
+        "target": "political_pressure_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_price_level",
+        "target": "refiner_margin_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "wholesale_to_consumer_pa",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "political_pressure_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "diesel_consumption_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_price_level",
+        "target": "fuel_substitution_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refiner_margin_level",
+        "target": "refining_utilization_rat",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_substitution_rate",
+        "target": "diesel_consumption_rate",
+        "strength": 3,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "iea_coordinated_stock_release",
+      "title": "IEA coordinated oil and diesel releases",
+      "description": "IEA will accelerate releases of crude and diesel stocks (IEA says total releases will exceed 400m barrels, including >20m diesel) to ease shortages.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-15",
+        "end": "2027-01-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "strategic_reserve_levels",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fuel_inventories",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_price_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refiner_margin_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "commodity_financial_posi",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "IEA to speed up releases; IEA says total stock release will exceed 400 million barrels; >20m barrels of diesel."
+    },
+    {
+      "id": "us_spr_exchange_program",
+      "title": "US SPR exchange solicitation (up to 17m bbl)",
+      "description": "U.S. solicits exchanges of up to 17 million barrels from the strategic reserve to add near-term supply to markets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-16",
+        "end": "2026-11-30",
+        "label": "2–6 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "strategic_reserve_levels",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fuel_inventories",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "commodity_financial_posi",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_capacity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "US solicits exchange of up to 17 million barrels of oil from strategic reserve (headline)."
+    },
+    {
+      "id": "continued_hormuz_shipping_attacks",
+      "title": "Continued Strait of Hormuz attacks and shipping threats",
+      "description": "Ongoing attacks/incidents in the Gulf (Hormuz, Saudi Aramco report) elevate maritime risk and can disrupt seaborne oil flows and costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-15",
+        "end": "2027-03-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "maritime_security_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_production_rate",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines cite Hormuz attacks, Saudi Aramco attack report, and shipping-cost spikes lifting pump-to-grocery prices."
+    },
+    {
+      "id": "persistent_global_diesel_squeeze",
+      "title": "Persistent global diesel shortage into 2027",
+      "description": "IEA warns diesel shortages could persist well into 2027, keeping product markets tight and prices elevated.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-15",
+        "end": "2027-06-30",
+        "label": "into 2027"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fuel_inventories",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refining_utilization_rat",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refiner_margin_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_consumption_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fuel_substitution_rate",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Global diesel shortages could persist well into 2027, IEA says; diesel squeeze to drag into 2027."
+    },
+    {
+      "id": "shipping_costs_spike_and_transport_inflation",
+      "title": "Spike in oil shipping costs and transport inflation",
+      "description": "Higher tanker and freight costs are lifting transport and wholesale costs, increasing pass-through to consumer prices.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-15",
+        "end": "2027-01-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "wholesale_to_consumer_pa",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_price_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_capacity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: oil shipping costs spike, lifting prices from pump to grocery; shipping-related inflation increases pass-through."
+    },
+    {
+      "id": "monetary_policy_tightening_risk",
+      "title": "Monetary tightening risk from energy-driven inflation",
+      "description": "Central banks (Fed, BoC) consider rate hikes as oil-driven inflation rises, raising policy rates and tightening conditions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-15",
+        "end": "2026-12-31",
+        "label": "by year-end"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "central_bank_rate_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_price_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "wholesale_to_consumer_pa",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: US inflation heats up and Fed rate hike back on table; Bank of Canada sees sharply higher inflation outlook."
+    },
+    {
+      "id": "rising_political_pressure_ahead_of_midterms",
+      "title": "Rising political pressure for energy relief ahead of midterms",
+      "description": "Elevated inflation and fuel prices increase political pressure on policymakers to act (subsidies, reserve releases) before elections.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-15",
+        "end": "2026-11-08",
+        "label": "pre-midterms"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "political_pressure_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "strategic_reserve_levels",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: rising inflation piles pressure on US voters ahead of midterm elections; political pressure to respond to energy prices."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "continued_hormuz_shipping_attacks",
+      "title": "Continued Strait of Hormuz attacks and shipping threats",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-15",
+      "end": "2027-03-31",
+      "probability": 0.7,
+      "impact_score": 175.0,
+      "expected_impact": 122.5,
+      "event_PS": 10.273,
+      "event_AS": 15.909,
+      "n_vars": 5,
+      "affected_ids": "maritime_security_risk, shipping_capacity, crude_price_level, diesel_price_level, crude_production_rate",
+      "rationale": "Headlines cite Hormuz attacks, Saudi Aramco attack report, and shipping-cost spikes lifting pump-to-grocery prices."
+    },
+    {
+      "id": "iea_coordinated_stock_release",
+      "title": "IEA coordinated oil and diesel releases",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-15",
+      "end": "2027-01-31",
+      "probability": 0.85,
+      "impact_score": 149.0,
+      "expected_impact": 126.65,
+      "event_PS": 15.071,
+      "event_AS": 10.643,
+      "n_vars": 6,
+      "affected_ids": "strategic_reserve_levels, fuel_inventories, crude_price_level, diesel_price_level, refiner_margin_level, commodity_financial_posi",
+      "rationale": "IEA to speed up releases; IEA says total stock release will exceed 400 million barrels; >20m barrels of diesel."
+    },
+    {
+      "id": "persistent_global_diesel_squeeze",
+      "title": "Persistent global diesel shortage into 2027",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "into 2027",
+      "date": null,
+      "start": "2026-10-15",
+      "end": "2027-06-30",
+      "probability": 0.75,
+      "impact_score": 106.0,
+      "expected_impact": 79.5,
+      "event_PS": 15.182,
+      "event_AS": 9.636,
+      "n_vars": 6,
+      "affected_ids": "diesel_price_level, fuel_inventories, refining_utilization_rat, refiner_margin_level, diesel_consumption_rate, fuel_substitution_rate",
+      "rationale": "Global diesel shortages could persist well into 2027, IEA says; diesel squeeze to drag into 2027."
+    },
+    {
+      "id": "us_spr_exchange_program",
+      "title": "US SPR exchange solicitation (up to 17m bbl)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2–6 weeks",
+      "date": null,
+      "start": "2026-10-16",
+      "end": "2026-11-30",
+      "probability": 0.8,
+      "impact_score": 81.0,
+      "expected_impact": 64.8,
+      "event_PS": 11.5,
+      "event_AS": 10.125,
+      "n_vars": 5,
+      "affected_ids": "strategic_reserve_levels, fuel_inventories, crude_price_level, commodity_financial_posi, shipping_capacity",
+      "rationale": "US solicits exchange of up to 17 million barrels of oil from strategic reserve (headline)."
+    },
+    {
+      "id": "shipping_costs_spike_and_transport_inflation",
+      "title": "Spike in oil shipping costs and transport inflation",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-15",
+      "end": "2027-01-31",
+      "probability": 0.8,
+      "impact_score": 66.0,
+      "expected_impact": 52.8,
+      "event_PS": 12.833,
+      "event_AS": 11.0,
+      "n_vars": 4,
+      "affected_ids": "wholesale_to_consumer_pa, diesel_price_level, crude_price_level, shipping_capacity",
+      "rationale": "Headline: oil shipping costs spike, lifting prices from pump to grocery; shipping-related inflation increases pass-through."
+    },
+    {
+      "id": "rising_political_pressure_ahead_of_midterms",
+      "title": "Rising political pressure for energy relief ahead of midterms",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "pre-midterms",
+      "date": null,
+      "start": "2026-10-15",
+      "end": "2026-11-08",
+      "probability": 0.9,
+      "impact_score": 36.0,
+      "expected_impact": 32.4,
+      "event_PS": 8.6,
+      "event_AS": 7.2,
+      "n_vars": 2,
+      "affected_ids": "political_pressure_level, strategic_reserve_levels",
+      "rationale": "Headlines: rising inflation piles pressure on US voters ahead of midterm elections; political pressure to respond to energy prices."
+    },
+    {
+      "id": "monetary_policy_tightening_risk",
+      "title": "Monetary tightening risk from energy-driven inflation",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by year-end",
+      "date": null,
+      "start": "2026-10-15",
+      "end": "2026-12-31",
+      "probability": 0.6,
+      "impact_score": 28.0,
+      "expected_impact": 16.8,
+      "event_PS": 6.8,
+      "event_AS": 5.6,
+      "n_vars": 3,
+      "affected_ids": "central_bank_rate_level, crude_price_level, wholesale_to_consumer_pa",
+      "rationale": "Headlines: US inflation heats up and Fed rate hike back on table; Bank of Canada sees sharply higher inflation outlook."
+    }
+  ]
+}
