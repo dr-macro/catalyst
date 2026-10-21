@@ -1,0 +1,1770 @@
+{
+  "label": "global_financial_fragili",
+  "as_of": "2026-10-21",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-21T02:11:35",
+  "system_description": {
+    "narrative_title": "Rate-driven volatility and an MSCI-triggered rout in Indonesian markets",
+    "narrative_summary": "Global financial markets are being reshaped by a confluence of elevated interest‑rate expectations and an index‑provider (MSCI) review that has threatened major Indonesian listings. The MSCI actions and downgrade warnings have produced sharp capital outflows, market routs and pressure on Bank Indonesia to respond, while higher rates are simultaneously pinching housing demand and shifting flows into bonds and safe havens like gold. These dynamics form interacting feedback loops — index rebalancing → outflows → FX/asset stress → policy response — with potential for regional contagion and broader repricing of risk. ",
+    "scope": "Equity market structure (index provider actions, index composition, exchange operations), capital flows into/out of Indonesia and similar EMs, central bank policy response (Bank Indonesia and global rate expectations), bond/yield and safe‑haven price moves (gold, Treasuries), and real‑economy transmission via mortgage rates and housing activity observed over the news window.",
+    "super_system": "Global financial and macroeconomic system (cross‑border capital flows, global monetary policy regime, investor risk appetite)",
+    "adjacent_subsystems": [
+      "Indonesian domestic politics and regulatory/market governance",
+      "Global monetary policy and central banks (Fed, peers)",
+      "Housing and mortgage markets in developed economies",
+      "Commodity and safe‑haven markets (gold, copper, energy)"
+    ],
+    "evidence_headlines": [
+      "Explainer: MSCI's case against Indonesian stocks and the $65 billion fallout",
+      "Indonesia expels tightly held companies from Jakarta index in bid to avoid MSCI downgrade",
+      "Indonesia stock exchange to meet MSCI on Monday, seeking clarification on downgrade warning",
+      "Bank Indonesia faces mounting pressure to hike after MSCI threat fuels market rout",
+      "Indonesia’s market is dysfunctional, not uninvestable",
+      "Pending home sales sink to 25-year low as buyers flee high mortgage rates"
+    ]
+  },
+  "variables": [
+    {
+      "id": "global_rate_expectations",
+      "name": "Global interest‑rate expectations",
+      "description": "The market‑implied consensus about the future path and terminal level of policy interest rates across major advanced economies.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "index_rebalancing_rate",
+      "name": "Index rebalancing activity",
+      "description": "The frequency and magnitude of systematic adjustments to index compositions and weights by benchmark providers.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_cap_concentration",
+      "name": "Market‑capitalization concentration",
+      "description": "The degree to which equity market capitalization is concentrated in a small number of listings or sectors.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "net_crossborder_flows",
+      "name": "Net cross‑border capital flows",
+      "description": "The net inflow or outflow of portfolio capital across borders into the domestic financial markets per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "nonresident_equity_share",
+      "name": "Nonresident equity ownership share",
+      "description": "The proportion of domestic equity market capitalization owned by nonresident (foreign) investors.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "currency_pressure_index",
+      "name": "Exchange‑rate pressure",
+      "description": "The net downward or upward pressure on the local currency measured by depreciation pressure indicators and FX order flow imbalance.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_bond_yields",
+      "name": "Sovereign bond yields",
+      "description": "The prevailing yields on benchmark government bonds across maturities, reflecting funding costs and risk pricing.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_stance",
+      "name": "Monetary policy stance",
+      "description": "The current posture of domestic monetary policy expressed through policy rates, forward guidance and the range of permitted interventions.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "mortgage_rate_level",
+      "name": "Mortgage interest rate level",
+      "description": "The prevailing interest rates charged on new residential mortgage loans in the domestic market.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "housing_transaction_rate",
+      "name": "Housing transaction activity",
+      "description": "The rate of housing market transactions and new home sales per unit time, reflecting demand and market turnover.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "equity_risk_premium",
+      "name": "Equity risk premium",
+      "description": "The additional expected return demanded by investors for holding equities rather than risk‑free assets, as priced by markets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "emerging_market_sentimen",
+      "name": "Emerging‑market investor sentiment",
+      "description": "Aggregate investor attitudes and confidence towards emerging markets, captured by positioning, flows and survey indicators.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_demand",
+      "name": "Safe‑haven asset demand",
+      "description": "The flow of investor purchases into assets perceived as safe (e.g., precious metals, high‑quality sovereigns) per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "equity_market_liquidity",
+      "name": "Equity market liquidity",
+      "description": "The depth and immediacy of the equity market measured by bid‑ask spreads, market depth and price impact for given trade sizes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "etf_net_flow_rate",
+      "name": "ETF/trackers net flow rate",
+      "description": "The net inflow or outflow into exchange‑traded funds and index trackers that replicate benchmark indices per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "asset_price_volatility",
+      "name": "Asset price volatility",
+      "description": "The realized and implied volatility of financial asset prices across equities, bonds and FX, indicating market uncertainty.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "global_rate_expectations",
+    "index_rebalancing_rate",
+    "market_cap_concentration",
+    "net_crossborder_flows",
+    "nonresident_equity_share",
+    "currency_pressure_index",
+    "sovereign_bond_yields",
+    "monetary_policy_stance",
+    "mortgage_rate_level",
+    "housing_transaction_rate",
+    "equity_risk_premium",
+    "emerging_market_sentimen",
+    "safe_haven_demand",
+    "equity_market_liquidity",
+    "etf_net_flow_rate",
+    "asset_price_volatility"
+  ],
+  "var_names": {
+    "global_rate_expectations": "Global interest‑rate expectations",
+    "index_rebalancing_rate": "Index rebalancing activity",
+    "market_cap_concentration": "Market‑capitalization concentration",
+    "net_crossborder_flows": "Net cross‑border capital flows",
+    "nonresident_equity_share": "Nonresident equity ownership share",
+    "currency_pressure_index": "Exchange‑rate pressure",
+    "sovereign_bond_yields": "Sovereign bond yields",
+    "monetary_policy_stance": "Monetary policy stance",
+    "mortgage_rate_level": "Mortgage interest rate level",
+    "housing_transaction_rate": "Housing transaction activity",
+    "equity_risk_premium": "Equity risk premium",
+    "emerging_market_sentimen": "Emerging‑market investor sentiment",
+    "safe_haven_demand": "Safe‑haven asset demand",
+    "equity_market_liquidity": "Equity market liquidity",
+    "etf_net_flow_rate": "ETF/trackers net flow rate",
+    "asset_price_volatility": "Asset price volatility"
+  },
+  "impact_matrix": {
+    "global_rate_expectations": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 3,
+      "nonresident_equity_share": 2,
+      "currency_pressure_index": 3,
+      "sovereign_bond_yields": 3,
+      "monetary_policy_stance": 1,
+      "mortgage_rate_level": 2,
+      "housing_transaction_rate": 1,
+      "equity_risk_premium": 2,
+      "emerging_market_sentimen": 3,
+      "safe_haven_demand": 3,
+      "equity_market_liquidity": 1,
+      "etf_net_flow_rate": 1,
+      "asset_price_volatility": 2
+    },
+    "index_rebalancing_rate": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 1,
+      "net_crossborder_flows": 3,
+      "nonresident_equity_share": 2,
+      "currency_pressure_index": 2,
+      "sovereign_bond_yields": 1,
+      "monetary_policy_stance": 0,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 2,
+      "emerging_market_sentimen": 2,
+      "safe_haven_demand": 1,
+      "equity_market_liquidity": 3,
+      "etf_net_flow_rate": 3,
+      "asset_price_volatility": 3
+    },
+    "market_cap_concentration": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 1,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 1,
+      "nonresident_equity_share": 1,
+      "currency_pressure_index": 1,
+      "sovereign_bond_yields": 0,
+      "monetary_policy_stance": 0,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 2,
+      "emerging_market_sentimen": 2,
+      "safe_haven_demand": 0,
+      "equity_market_liquidity": 2,
+      "etf_net_flow_rate": 1,
+      "asset_price_volatility": 2
+    },
+    "net_crossborder_flows": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 1,
+      "market_cap_concentration": 1,
+      "net_crossborder_flows": 0,
+      "nonresident_equity_share": 3,
+      "currency_pressure_index": 3,
+      "sovereign_bond_yields": 2,
+      "monetary_policy_stance": 1,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 2,
+      "emerging_market_sentimen": 3,
+      "safe_haven_demand": 2,
+      "equity_market_liquidity": 2,
+      "etf_net_flow_rate": 3,
+      "asset_price_volatility": 3
+    },
+    "nonresident_equity_share": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 1,
+      "market_cap_concentration": 1,
+      "net_crossborder_flows": 2,
+      "nonresident_equity_share": 0,
+      "currency_pressure_index": 2,
+      "sovereign_bond_yields": 1,
+      "monetary_policy_stance": 1,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 2,
+      "emerging_market_sentimen": 2,
+      "safe_haven_demand": 1,
+      "equity_market_liquidity": 2,
+      "etf_net_flow_rate": 2,
+      "asset_price_volatility": 2
+    },
+    "currency_pressure_index": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 2,
+      "nonresident_equity_share": 1,
+      "currency_pressure_index": 0,
+      "sovereign_bond_yields": 2,
+      "monetary_policy_stance": 2,
+      "mortgage_rate_level": 1,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 2,
+      "emerging_market_sentimen": 3,
+      "safe_haven_demand": 3,
+      "equity_market_liquidity": 1,
+      "etf_net_flow_rate": 2,
+      "asset_price_volatility": 3
+    },
+    "sovereign_bond_yields": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 2,
+      "nonresident_equity_share": 1,
+      "currency_pressure_index": 2,
+      "sovereign_bond_yields": 0,
+      "monetary_policy_stance": 2,
+      "mortgage_rate_level": 2,
+      "housing_transaction_rate": 1,
+      "equity_risk_premium": 2,
+      "emerging_market_sentimen": 2,
+      "safe_haven_demand": 1,
+      "equity_market_liquidity": 1,
+      "etf_net_flow_rate": 1,
+      "asset_price_volatility": 2
+    },
+    "monetary_policy_stance": {
+      "global_rate_expectations": 1,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 3,
+      "nonresident_equity_share": 2,
+      "currency_pressure_index": 3,
+      "sovereign_bond_yields": 3,
+      "monetary_policy_stance": 0,
+      "mortgage_rate_level": 3,
+      "housing_transaction_rate": 1,
+      "equity_risk_premium": 2,
+      "emerging_market_sentimen": 3,
+      "safe_haven_demand": 2,
+      "equity_market_liquidity": 1,
+      "etf_net_flow_rate": 2,
+      "asset_price_volatility": 2
+    },
+    "mortgage_rate_level": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 0,
+      "nonresident_equity_share": 0,
+      "currency_pressure_index": 0,
+      "sovereign_bond_yields": 0,
+      "monetary_policy_stance": 0,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 3,
+      "equity_risk_premium": 0,
+      "emerging_market_sentimen": 1,
+      "safe_haven_demand": 0,
+      "equity_market_liquidity": 0,
+      "etf_net_flow_rate": 0,
+      "asset_price_volatility": 0
+    },
+    "housing_transaction_rate": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 0,
+      "nonresident_equity_share": 0,
+      "currency_pressure_index": 0,
+      "sovereign_bond_yields": 0,
+      "monetary_policy_stance": 0,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 0,
+      "emerging_market_sentimen": 1,
+      "safe_haven_demand": 0,
+      "equity_market_liquidity": 0,
+      "etf_net_flow_rate": 0,
+      "asset_price_volatility": 0
+    },
+    "equity_risk_premium": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 2,
+      "nonresident_equity_share": 1,
+      "currency_pressure_index": 1,
+      "sovereign_bond_yields": 1,
+      "monetary_policy_stance": 1,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 0,
+      "emerging_market_sentimen": 3,
+      "safe_haven_demand": 2,
+      "equity_market_liquidity": 1,
+      "etf_net_flow_rate": 2,
+      "asset_price_volatility": 3
+    },
+    "emerging_market_sentimen": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 3,
+      "nonresident_equity_share": 2,
+      "currency_pressure_index": 2,
+      "sovereign_bond_yields": 2,
+      "monetary_policy_stance": 0,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 3,
+      "emerging_market_sentimen": 0,
+      "safe_haven_demand": 3,
+      "equity_market_liquidity": 2,
+      "etf_net_flow_rate": 3,
+      "asset_price_volatility": 3
+    },
+    "safe_haven_demand": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 2,
+      "nonresident_equity_share": 1,
+      "currency_pressure_index": 2,
+      "sovereign_bond_yields": 2,
+      "monetary_policy_stance": 0,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 2,
+      "emerging_market_sentimen": 2,
+      "safe_haven_demand": 0,
+      "equity_market_liquidity": 1,
+      "etf_net_flow_rate": 1,
+      "asset_price_volatility": 3
+    },
+    "equity_market_liquidity": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 1,
+      "net_crossborder_flows": 2,
+      "nonresident_equity_share": 1,
+      "currency_pressure_index": 0,
+      "sovereign_bond_yields": 0,
+      "monetary_policy_stance": 0,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 2,
+      "emerging_market_sentimen": 1,
+      "safe_haven_demand": 0,
+      "equity_market_liquidity": 0,
+      "etf_net_flow_rate": 2,
+      "asset_price_volatility": 3
+    },
+    "etf_net_flow_rate": {
+      "global_rate_expectations": 0,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 3,
+      "nonresident_equity_share": 2,
+      "currency_pressure_index": 2,
+      "sovereign_bond_yields": 1,
+      "monetary_policy_stance": 0,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 2,
+      "emerging_market_sentimen": 2,
+      "safe_haven_demand": 1,
+      "equity_market_liquidity": 3,
+      "etf_net_flow_rate": 0,
+      "asset_price_volatility": 3
+    },
+    "asset_price_volatility": {
+      "global_rate_expectations": 1,
+      "index_rebalancing_rate": 0,
+      "market_cap_concentration": 0,
+      "net_crossborder_flows": 2,
+      "nonresident_equity_share": 1,
+      "currency_pressure_index": 2,
+      "sovereign_bond_yields": 2,
+      "monetary_policy_stance": 1,
+      "mortgage_rate_level": 0,
+      "housing_transaction_rate": 0,
+      "equity_risk_premium": 3,
+      "emerging_market_sentimen": 3,
+      "safe_haven_demand": 3,
+      "equity_market_liquidity": 2,
+      "etf_net_flow_rate": 2,
+      "asset_price_volatility": 0
+    }
+  },
+  "AS": {
+    "global_rate_expectations": 27,
+    "index_rebalancing_rate": 23,
+    "market_cap_concentration": 13,
+    "net_crossborder_flows": 26,
+    "nonresident_equity_share": 19,
+    "currency_pressure_index": 22,
+    "sovereign_bond_yields": 19,
+    "monetary_policy_stance": 28,
+    "mortgage_rate_level": 4,
+    "housing_transaction_rate": 1,
+    "equity_risk_premium": 17,
+    "emerging_market_sentimen": 23,
+    "safe_haven_demand": 16,
+    "equity_market_liquidity": 12,
+    "etf_net_flow_rate": 19,
+    "asset_price_volatility": 22
+  },
+  "PS": {
+    "global_rate_expectations": 2,
+    "index_rebalancing_rate": 3,
+    "market_cap_concentration": 4,
+    "net_crossborder_flows": 30,
+    "nonresident_equity_share": 20,
+    "currency_pressure_index": 25,
+    "sovereign_bond_yields": 20,
+    "monetary_policy_stance": 9,
+    "mortgage_rate_level": 8,
+    "housing_transaction_rate": 6,
+    "equity_risk_premium": 28,
+    "emerging_market_sentimen": 33,
+    "safe_haven_demand": 22,
+    "equity_market_liquidity": 22,
+    "etf_net_flow_rate": 25,
+    "asset_price_volatility": 34
+  },
+  "med_AS": 19.0,
+  "med_PS": 21.0,
+  "roles": [
+    {
+      "variable": "net_crossborder_flows",
+      "name": "Net cross‑border capital flows",
+      "AS": 26,
+      "PS": 30,
+      "Q=AS/PS": 0.87,
+      "P=AS*PS": 780,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "emerging_market_sentimen",
+      "name": "Emerging‑market investor sentiment",
+      "AS": 23,
+      "PS": 33,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 759,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "asset_price_volatility",
+      "name": "Asset price volatility",
+      "AS": 22,
+      "PS": 34,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 748,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "currency_pressure_index",
+      "name": "Exchange‑rate pressure",
+      "AS": 22,
+      "PS": 25,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 550,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "equity_risk_premium",
+      "name": "Equity risk premium",
+      "AS": 17,
+      "PS": 28,
+      "Q=AS/PS": 0.61,
+      "P=AS*PS": 476,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "etf_net_flow_rate",
+      "name": "ETF/trackers net flow rate",
+      "AS": 19,
+      "PS": 25,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 475,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "nonresident_equity_share",
+      "name": "Nonresident equity ownership share",
+      "AS": 19,
+      "PS": 20,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 380,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sovereign_bond_yields",
+      "name": "Sovereign bond yields",
+      "AS": 19,
+      "PS": 20,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 380,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "safe_haven_demand",
+      "name": "Safe‑haven asset demand",
+      "AS": 16,
+      "PS": 22,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 352,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "equity_market_liquidity",
+      "name": "Equity market liquidity",
+      "AS": 12,
+      "PS": 22,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 264,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "monetary_policy_stance",
+      "name": "Monetary policy stance",
+      "AS": 28,
+      "PS": 9,
+      "Q=AS/PS": 3.11,
+      "P=AS*PS": 252,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "index_rebalancing_rate",
+      "name": "Index rebalancing activity",
+      "AS": 23,
+      "PS": 3,
+      "Q=AS/PS": 7.67,
+      "P=AS*PS": 69,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "global_rate_expectations",
+      "name": "Global interest‑rate expectations",
+      "AS": 27,
+      "PS": 2,
+      "Q=AS/PS": 13.5,
+      "P=AS*PS": 54,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_cap_concentration",
+      "name": "Market‑capitalization concentration",
+      "AS": 13,
+      "PS": 4,
+      "Q=AS/PS": 3.25,
+      "P=AS*PS": 52,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "mortgage_rate_level",
+      "name": "Mortgage interest rate level",
+      "AS": 4,
+      "PS": 8,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 32,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "housing_transaction_rate",
+      "name": "Housing transaction activity",
+      "AS": 1,
+      "PS": 6,
+      "Q=AS/PS": 0.17,
+      "P=AS*PS": 6,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "global_rate_expectations",
+        "name": "Global interest‑rate expectations",
+        "kind": "perception",
+        "AS": 27,
+        "PS": 2
+      },
+      {
+        "id": "index_rebalancing_rate",
+        "name": "Index rebalancing activity",
+        "kind": "driver",
+        "AS": 23,
+        "PS": 3
+      },
+      {
+        "id": "market_cap_concentration",
+        "name": "Market‑capitalization concentration",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 4
+      },
+      {
+        "id": "net_crossborder_flows",
+        "name": "Net cross‑border capital flows",
+        "kind": "flow",
+        "AS": 26,
+        "PS": 30
+      },
+      {
+        "id": "nonresident_equity_share",
+        "name": "Nonresident equity ownership share",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 20
+      },
+      {
+        "id": "currency_pressure_index",
+        "name": "Exchange‑rate pressure",
+        "kind": "environment",
+        "AS": 22,
+        "PS": 25
+      },
+      {
+        "id": "sovereign_bond_yields",
+        "name": "Sovereign bond yields",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 20
+      },
+      {
+        "id": "monetary_policy_stance",
+        "name": "Monetary policy stance",
+        "kind": "institution_field",
+        "AS": 28,
+        "PS": 9
+      },
+      {
+        "id": "mortgage_rate_level",
+        "name": "Mortgage interest rate level",
+        "kind": "environment",
+        "AS": 4,
+        "PS": 8
+      },
+      {
+        "id": "housing_transaction_rate",
+        "name": "Housing transaction activity",
+        "kind": "flow",
+        "AS": 1,
+        "PS": 6
+      },
+      {
+        "id": "equity_risk_premium",
+        "name": "Equity risk premium",
+        "kind": "perception",
+        "AS": 17,
+        "PS": 28
+      },
+      {
+        "id": "emerging_market_sentimen",
+        "name": "Emerging‑market investor sentiment",
+        "kind": "perception",
+        "AS": 23,
+        "PS": 33
+      },
+      {
+        "id": "safe_haven_demand",
+        "name": "Safe‑haven asset demand",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 22
+      },
+      {
+        "id": "equity_market_liquidity",
+        "name": "Equity market liquidity",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 22
+      },
+      {
+        "id": "etf_net_flow_rate",
+        "name": "ETF/trackers net flow rate",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 25
+      },
+      {
+        "id": "asset_price_volatility",
+        "name": "Asset price volatility",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 34
+      }
+    ],
+    "edges": [
+      {
+        "source": "global_rate_expectations",
+        "target": "net_crossborder_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_rate_expectations",
+        "target": "nonresident_equity_share",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_rate_expectations",
+        "target": "currency_pressure_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_rate_expectations",
+        "target": "sovereign_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_rate_expectations",
+        "target": "mortgage_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_rate_expectations",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_rate_expectations",
+        "target": "emerging_market_sentimen",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_rate_expectations",
+        "target": "safe_haven_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_rate_expectations",
+        "target": "asset_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "index_rebalancing_rate",
+        "target": "net_crossborder_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "index_rebalancing_rate",
+        "target": "nonresident_equity_share",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "index_rebalancing_rate",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "index_rebalancing_rate",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "index_rebalancing_rate",
+        "target": "emerging_market_sentimen",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "index_rebalancing_rate",
+        "target": "equity_market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "index_rebalancing_rate",
+        "target": "etf_net_flow_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "index_rebalancing_rate",
+        "target": "asset_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_cap_concentration",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_cap_concentration",
+        "target": "emerging_market_sentimen",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_cap_concentration",
+        "target": "equity_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_cap_concentration",
+        "target": "asset_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "nonresident_equity_share",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "currency_pressure_index",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "emerging_market_sentimen",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "equity_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "etf_net_flow_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "asset_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "nonresident_equity_share",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonresident_equity_share",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonresident_equity_share",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonresident_equity_share",
+        "target": "emerging_market_sentimen",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonresident_equity_share",
+        "target": "equity_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonresident_equity_share",
+        "target": "etf_net_flow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonresident_equity_share",
+        "target": "asset_price_volatility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "emerging_market_sentimen",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "safe_haven_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "etf_net_flow_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_pressure_index",
+        "target": "asset_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "mortgage_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "emerging_market_sentimen",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "asset_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "net_crossborder_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "nonresident_equity_share",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "currency_pressure_index",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "sovereign_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "mortgage_rate_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "emerging_market_sentimen",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "etf_net_flow_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "asset_price_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "mortgage_rate_level",
+        "target": "housing_transaction_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "emerging_market_sentimen",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "etf_net_flow_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_risk_premium",
+        "target": "asset_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "emerging_market_sentimen",
+        "target": "net_crossborder_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "emerging_market_sentimen",
+        "target": "nonresident_equity_share",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "emerging_market_sentimen",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "emerging_market_sentimen",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "emerging_market_sentimen",
+        "target": "equity_risk_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "emerging_market_sentimen",
+        "target": "safe_haven_demand",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "emerging_market_sentimen",
+        "target": "equity_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "emerging_market_sentimen",
+        "target": "etf_net_flow_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "emerging_market_sentimen",
+        "target": "asset_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "emerging_market_sentimen",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "asset_price_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "equity_market_liquidity",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_market_liquidity",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_market_liquidity",
+        "target": "etf_net_flow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_market_liquidity",
+        "target": "asset_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "etf_net_flow_rate",
+        "target": "net_crossborder_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "etf_net_flow_rate",
+        "target": "nonresident_equity_share",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "etf_net_flow_rate",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "etf_net_flow_rate",
+        "target": "equity_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "etf_net_flow_rate",
+        "target": "emerging_market_sentimen",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "etf_net_flow_rate",
+        "target": "equity_market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "etf_net_flow_rate",
+        "target": "asset_price_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "asset_price_volatility",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "asset_price_volatility",
+        "target": "currency_pressure_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_price_volatility",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_price_volatility",
+        "target": "equity_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "asset_price_volatility",
+        "target": "emerging_market_sentimen",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "asset_price_volatility",
+        "target": "safe_haven_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "asset_price_volatility",
+        "target": "equity_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "asset_price_volatility",
+        "target": "etf_net_flow_rate",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "msci_final_review_decision",
+      "title": "MSCI review / downgrade decision",
+      "description": "MSCI's forthcoming determination on Indonesia's index treatment or classification, likely following recent meetings and warnings, will trigger passive reweights and investor reassessment.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-21",
+        "end": "2026-11-07",
+        "label": "within 2 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "index_rebalancing_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "etf_net_flow_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "net_crossborder_flows",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "nonresident_equity_share",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "asset_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "emerging_market_sentimen",
+          "intensity": 3,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Indonesia stock exchange to meet MSCI...' ; 'Indonesian stocks plunge... as MSCI downgrade fears mount'; 'Explainer: MSCI's case...'"
+    },
+    {
+      "id": "domestic_index_reconstitution",
+      "title": "Domestic index expulsions / reconstitution",
+      "description": "Jakarta Exchange's moves to remove tightly held listings and reconstitute domestic indices to avoid an MSCI downgrade, altering benchmark composition.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-19",
+        "end": "2026-11-30",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "index_rebalancing_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_cap_concentration",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "equity_market_liquidity",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'Indonesia expels tightly held companies from Jakarta index in bid to avoid MSCI downgrade'"
+    },
+    {
+      "id": "bank_indonesia_hike_pressure",
+      "title": "Pressure on Bank Indonesia to tighten policy",
+      "description": "Market rout and MSCI threat increase calls for Bank Indonesia to raise rates or tighten stance to stabilise FX and markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-21",
+        "end": "2026-11-30",
+        "label": "next policy meetings"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_stance",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "currency_pressure_index",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "net_crossborder_flows",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "asset_price_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "emerging_market_sentimen",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Bank Indonesia faces mounting pressure to hike after MSCI threat fuels market rout'"
+    },
+    {
+      "id": "etf_passive_outflows_indonesia",
+      "title": "ETF and passive tracker outflows",
+      "description": "Passive funds and ETFs tracking MSCI/benchmarks may trigger sizable outflows and reweights from Indonesian exposures as index risk crystallises.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-19",
+        "end": "2026-11-15",
+        "label": "2–4 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "etf_net_flow_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "net_crossborder_flows",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "asset_price_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "nonresident_equity_share",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Explainer: MSCI's case...' ; 'Indonesian stocks plunge...' ; 'ETFs Often Cost More Than They Should' (passive impact)"
+    },
+    {
+      "id": "us_housing_employment_releases",
+      "title": "US housing and employment data releases",
+      "description": "Upcoming US housing and jobs data will shift Treasury yields and global rate expectations, influencing EM flows and volatility.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-21",
+        "end": "2026-10-30",
+        "label": "next week"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "global_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "asset_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "net_crossborder_flows",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'U.S. Treasury yields move lower as investors await housing, employment data' ; 'Treasury Yields Fall on String of Weak Housing Data'"
+    },
+    {
+      "id": "fed_december_hike_expectation",
+      "title": "Market pricing of Fed December rate hike",
+      "description": "Broad market expectations that the Fed will raise rates in December are reshaping global rates and EM funding conditions.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2026-12-31",
+        "label": "by end of Dec"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "global_rate_expectations",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "net_crossborder_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "asset_price_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "emerging_market_sentimen",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'Fed to skip October but raise rates again in December, nearly all economists say'"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "msci_final_review_decision",
+      "title": "MSCI review / downgrade decision",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "within 2 weeks",
+      "date": null,
+      "start": "2026-10-21",
+      "end": "2026-11-07",
+      "probability": 0.6,
+      "impact_score": 401.0,
+      "expected_impact": 240.6,
+      "event_PS": 24.158,
+      "event_AS": 21.105,
+      "n_vars": 7,
+      "affected_ids": "index_rebalancing_rate, etf_net_flow_rate, net_crossborder_flows, nonresident_equity_share, asset_price_volatility, equity_market_liquidity, emerging_market_sentimen",
+      "rationale": "Headlines: 'Indonesia stock exchange to meet MSCI...' ; 'Indonesian stocks plunge... as MSCI downgrade fears mount'; 'Explainer: MSCI's case...'"
+    },
+    {
+      "id": "fed_december_hike_expectation",
+      "title": "Market pricing of Fed December rate hike",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of Dec",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2026-12-31",
+      "probability": 0.65,
+      "impact_score": 293.0,
+      "expected_impact": 190.45,
+      "event_PS": 21.846,
+      "event_AS": 22.538,
+      "n_vars": 6,
+      "affected_ids": "global_rate_expectations, sovereign_bond_yields, net_crossborder_flows, asset_price_volatility, safe_haven_demand, emerging_market_sentimen",
+      "rationale": "Headline: 'Fed to skip October but raise rates again in December, nearly all economists say'"
+    },
+    {
+      "id": "etf_passive_outflows_indonesia",
+      "title": "ETF and passive tracker outflows",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2–4 weeks",
+      "date": null,
+      "start": "2026-10-19",
+      "end": "2026-11-15",
+      "probability": 0.85,
+      "impact_score": 263.0,
+      "expected_impact": 223.55,
+      "event_PS": 27.0,
+      "event_AS": 20.231,
+      "n_vars": 5,
+      "affected_ids": "etf_net_flow_rate, net_crossborder_flows, asset_price_volatility, equity_market_liquidity, nonresident_equity_share",
+      "rationale": "Headlines: 'Explainer: MSCI's case...' ; 'Indonesian stocks plunge...' ; 'ETFs Often Cost More Than They Should' (passive impact)"
+    },
+    {
+      "id": "bank_indonesia_hike_pressure",
+      "title": "Pressure on Bank Indonesia to tighten policy",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next policy meetings",
+      "date": null,
+      "start": "2026-10-21",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 231.0,
+      "expected_impact": 138.6,
+      "event_PS": 23.9,
+      "event_AS": 23.1,
+      "n_vars": 6,
+      "affected_ids": "monetary_policy_stance, sovereign_bond_yields, currency_pressure_index, net_crossborder_flows, asset_price_volatility, emerging_market_sentimen",
+      "rationale": "Headline: 'Bank Indonesia faces mounting pressure to hike after MSCI threat fuels market rout'"
+    },
+    {
+      "id": "us_housing_employment_releases",
+      "title": "US housing and employment data releases",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next week",
+      "date": null,
+      "start": "2026-10-21",
+      "end": "2026-10-30",
+      "probability": 0.8,
+      "impact_score": 178.0,
+      "expected_impact": 142.4,
+      "event_PS": 20.5,
+      "event_AS": 22.25,
+      "n_vars": 5,
+      "affected_ids": "global_rate_expectations, sovereign_bond_yields, asset_price_volatility, net_crossborder_flows, safe_haven_demand",
+      "rationale": "Headline: 'U.S. Treasury yields move lower as investors await housing, employment data' ; 'Treasury Yields Fall on String of Weak Housing Data'"
+    },
+    {
+      "id": "domestic_index_reconstitution",
+      "title": "Domestic index expulsions / reconstitution",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-19",
+      "end": "2026-11-30",
+      "probability": 0.7,
+      "impact_score": 94.0,
+      "expected_impact": 65.8,
+      "event_PS": 7.0,
+      "event_AS": 18.8,
+      "n_vars": 3,
+      "affected_ids": "index_rebalancing_rate, market_cap_concentration, equity_market_liquidity",
+      "rationale": "Headline: 'Indonesia expels tightly held companies from Jakarta index in bid to avoid MSCI downgrade'"
+    }
+  ]
+}
