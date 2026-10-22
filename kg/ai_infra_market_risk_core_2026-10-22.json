@@ -1,0 +1,1874 @@
+{
+  "label": "ai_infra_market_risk",
+  "as_of": "2026-10-21",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-22T02:03:08",
+  "system_description": {
+    "narrative_title": "AI boom meets financial and systemic strain",
+    "narrative_summary": "Headlines show a single dominant story: a massive, investor-driven build‑out of AI infrastructure and applications is driving volatile asset prices, rising corporate debt and insurance strains, and exposing new cyber vulnerabilities — all while interacting with higher interest rates and shifting investor sentiment. Markets are oscillating between euphoric buying of AI-linked names and sharp selloffs as bond yields, credit concerns, outages and safety failures force rapid reassessments of valuation and risk. This creates feedbacks across tech firms, banks, insurers, cloud providers, and regulators.",
+    "scope": "Global capital markets, AI infrastructure and application firms (hyperscalers, chipmakers, AI startups, cloud providers), corporate and project-level debt tied to AI buildouts, insurance and credit-default markets, cyber/security incidents linked to AI agents, and the investor and regulatory responses that connect these elements.",
+    "super_system": "Global financial-economic-technology system (macroeconomy + capital markets + technological innovation ecosystem)",
+    "adjacent_subsystems": [
+      "Monetary policy and bond markets (central banks, yields, mortgage/borrowing costs)",
+      "Insurance and credit markets (default insurance, bond covenants, corporate credit)",
+      "Cloud infrastructure and cybersecurity ecosystem (hyperscalers, outages, AI agent risks)",
+      "Corporate earnings and real economy (investment, revenues, sector rotation)"
+    ],
+    "evidence_headlines": [
+      "America’s $10tn AI infrastructure boom is starting to fray",
+      "Global Bond Markets May Face More Volatility Amid an AI Unwind",
+      "AI debt worries spark surge in default insurance trading",
+      "Exclusive: How one hacker used AI agents and a few thousand dollars to break into scores of sites",
+      "Top hyperscalers likely to have more AI-linked debt than now known, S&P Global warns",
+      "CoreWeave’s market confidence erodes as bond yields spike and stock sinks"
+    ]
+  },
+  "variables": [
+    {
+      "id": "ai_investment_flow",
+      "name": "AI infrastructure investment rate",
+      "description": "The rate of new capital deployment into AI infrastructure and related build‑outs (servers, data centres, chips, cloud capacity) per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "compute_capacity",
+      "name": "Compute capacity stock",
+      "description": "The total available AI compute capacity (aggregate processing/GPU/TPU cycles and provisioned cloud compute) at a given time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "ai_debt_stock",
+      "name": "AI-linked debt outstanding",
+      "description": "The outstanding principal of corporate and project-level debt that is explicitly tied to AI investments and build‑outs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread",
+      "name": "Corporate credit spread level",
+      "description": "The average spread over risk-free rates at which corporate borrowers (including AI-related borrowers) price credit risk in debt markets.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "risk_free_yield",
+      "name": "Risk-free bond yield level",
+      "description": "The prevailing market level of benchmark sovereign or risk-free yields that sets the baseline cost of capital.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_volatility",
+      "name": "Equity price volatility",
+      "description": "The realized or expected volatility of equity prices across technology and related sectors, capturing amplitude of price swings.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_sentiment_ai",
+      "name": "Investor sentiment toward AI",
+      "description": "The aggregate bullishness or bearishness of investors about AI prospects, reflected in willingness to pay valuation premia for AI exposure.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity depth",
+      "description": "The depth and ease with which assets (equities, bonds, derivatives) can be transacted without large price impact in capital markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_capacity",
+      "name": "Insurance capacity for tech risk",
+      "description": "The aggregate underwriting capacity and willingness of the insurance market to provide coverage for technology‑related operational, cyber and AI risks.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurance_premia",
+      "name": "Insurance premia for AI risk",
+      "description": "The market price (premia) charged for insurance and risk transfer products covering AI, cyber and infrastructure exposures.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cyber_incident_rate",
+      "name": "AI-linked cyber incident rate",
+      "description": "The frequency per unit time of cyber incidents in which AI tools or agents are a causal factor or amplifying vector.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "outage_rate",
+      "name": "Operational outage rate",
+      "description": "The rate at which cloud, network or platform outages occur that disrupt AI services and dependent business operations.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "model_safety_failure",
+      "name": "AI model safety failure rate",
+      "description": "The occurrence rate of safety- or control-related failures of AI models and autonomous agents (misbehaviour, self‑replication, loss of monitoring).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "regulatory_scrutiny",
+      "name": "Regulatory scrutiny intensity",
+      "description": "The intensity and focus of regulatory attention, investigations, and policy activity directed at AI, financial, and operational practices.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "systemic_interconnectedn",
+      "name": "Systemic interconnectedness level",
+      "description": "The degree of network coupling among financial markets, technology platforms, cloud providers and critical infrastructure that transmits shocks.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "default_insurance_tradin",
+      "name": "Trading intensity in default insurance",
+      "description": "The volume and frequency of trading in credit-default and default-insurance instruments that express and transfer AI-related credit risk.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "ai_investment_flow",
+    "compute_capacity",
+    "ai_debt_stock",
+    "credit_spread",
+    "risk_free_yield",
+    "equity_volatility",
+    "investor_sentiment_ai",
+    "market_liquidity",
+    "insurance_capacity",
+    "insurance_premia",
+    "cyber_incident_rate",
+    "outage_rate",
+    "model_safety_failure",
+    "regulatory_scrutiny",
+    "systemic_interconnectedn",
+    "default_insurance_tradin"
+  ],
+  "var_names": {
+    "ai_investment_flow": "AI infrastructure investment rate",
+    "compute_capacity": "Compute capacity stock",
+    "ai_debt_stock": "AI-linked debt outstanding",
+    "credit_spread": "Corporate credit spread level",
+    "risk_free_yield": "Risk-free bond yield level",
+    "equity_volatility": "Equity price volatility",
+    "investor_sentiment_ai": "Investor sentiment toward AI",
+    "market_liquidity": "Market liquidity depth",
+    "insurance_capacity": "Insurance capacity for tech risk",
+    "insurance_premia": "Insurance premia for AI risk",
+    "cyber_incident_rate": "AI-linked cyber incident rate",
+    "outage_rate": "Operational outage rate",
+    "model_safety_failure": "AI model safety failure rate",
+    "regulatory_scrutiny": "Regulatory scrutiny intensity",
+    "systemic_interconnectedn": "Systemic interconnectedness level",
+    "default_insurance_tradin": "Trading intensity in default insurance"
+  },
+  "impact_matrix": {
+    "ai_investment_flow": {
+      "ai_investment_flow": 0,
+      "compute_capacity": 3,
+      "ai_debt_stock": 3,
+      "credit_spread": 1,
+      "risk_free_yield": 0,
+      "equity_volatility": 1,
+      "investor_sentiment_ai": 2,
+      "market_liquidity": 1,
+      "insurance_capacity": 1,
+      "insurance_premia": 1,
+      "cyber_incident_rate": 1,
+      "outage_rate": 1,
+      "model_safety_failure": 1,
+      "regulatory_scrutiny": 2,
+      "systemic_interconnectedn": 2,
+      "default_insurance_tradin": 1
+    },
+    "compute_capacity": {
+      "ai_investment_flow": 1,
+      "compute_capacity": 0,
+      "ai_debt_stock": 1,
+      "credit_spread": 1,
+      "risk_free_yield": 0,
+      "equity_volatility": 1,
+      "investor_sentiment_ai": 2,
+      "market_liquidity": 1,
+      "insurance_capacity": 1,
+      "insurance_premia": 1,
+      "cyber_incident_rate": 2,
+      "outage_rate": 2,
+      "model_safety_failure": 1,
+      "regulatory_scrutiny": 1,
+      "systemic_interconnectedn": 3,
+      "default_insurance_tradin": 1
+    },
+    "ai_debt_stock": {
+      "ai_investment_flow": 2,
+      "compute_capacity": 2,
+      "ai_debt_stock": 0,
+      "credit_spread": 2,
+      "risk_free_yield": 0,
+      "equity_volatility": 1,
+      "investor_sentiment_ai": 1,
+      "market_liquidity": 1,
+      "insurance_capacity": 1,
+      "insurance_premia": 1,
+      "cyber_incident_rate": 0,
+      "outage_rate": 0,
+      "model_safety_failure": 0,
+      "regulatory_scrutiny": 2,
+      "systemic_interconnectedn": 1,
+      "default_insurance_tradin": 3
+    },
+    "credit_spread": {
+      "ai_investment_flow": 2,
+      "compute_capacity": 2,
+      "ai_debt_stock": 2,
+      "credit_spread": 0,
+      "risk_free_yield": 0,
+      "equity_volatility": 2,
+      "investor_sentiment_ai": 2,
+      "market_liquidity": 2,
+      "insurance_capacity": 0,
+      "insurance_premia": 1,
+      "cyber_incident_rate": 0,
+      "outage_rate": 0,
+      "model_safety_failure": 0,
+      "regulatory_scrutiny": 1,
+      "systemic_interconnectedn": 1,
+      "default_insurance_tradin": 3
+    },
+    "risk_free_yield": {
+      "ai_investment_flow": 2,
+      "compute_capacity": 2,
+      "ai_debt_stock": 2,
+      "credit_spread": 1,
+      "risk_free_yield": 0,
+      "equity_volatility": 1,
+      "investor_sentiment_ai": 1,
+      "market_liquidity": 1,
+      "insurance_capacity": 1,
+      "insurance_premia": 1,
+      "cyber_incident_rate": 0,
+      "outage_rate": 0,
+      "model_safety_failure": 0,
+      "regulatory_scrutiny": 0,
+      "systemic_interconnectedn": 0,
+      "default_insurance_tradin": 1
+    },
+    "equity_volatility": {
+      "ai_investment_flow": 2,
+      "compute_capacity": 1,
+      "ai_debt_stock": 1,
+      "credit_spread": 2,
+      "risk_free_yield": 0,
+      "equity_volatility": 0,
+      "investor_sentiment_ai": 2,
+      "market_liquidity": 2,
+      "insurance_capacity": 1,
+      "insurance_premia": 1,
+      "cyber_incident_rate": 0,
+      "outage_rate": 0,
+      "model_safety_failure": 0,
+      "regulatory_scrutiny": 1,
+      "systemic_interconnectedn": 1,
+      "default_insurance_tradin": 2
+    },
+    "investor_sentiment_ai": {
+      "ai_investment_flow": 3,
+      "compute_capacity": 2,
+      "ai_debt_stock": 2,
+      "credit_spread": 2,
+      "risk_free_yield": 0,
+      "equity_volatility": 2,
+      "investor_sentiment_ai": 0,
+      "market_liquidity": 2,
+      "insurance_capacity": 1,
+      "insurance_premia": 1,
+      "cyber_incident_rate": 0,
+      "outage_rate": 0,
+      "model_safety_failure": 0,
+      "regulatory_scrutiny": 2,
+      "systemic_interconnectedn": 1,
+      "default_insurance_tradin": 2
+    },
+    "market_liquidity": {
+      "ai_investment_flow": 2,
+      "compute_capacity": 1,
+      "ai_debt_stock": 2,
+      "credit_spread": 3,
+      "risk_free_yield": 1,
+      "equity_volatility": 2,
+      "investor_sentiment_ai": 1,
+      "market_liquidity": 0,
+      "insurance_capacity": 1,
+      "insurance_premia": 1,
+      "cyber_incident_rate": 0,
+      "outage_rate": 0,
+      "model_safety_failure": 0,
+      "regulatory_scrutiny": 1,
+      "systemic_interconnectedn": 2,
+      "default_insurance_tradin": 3
+    },
+    "insurance_capacity": {
+      "ai_investment_flow": 1,
+      "compute_capacity": 1,
+      "ai_debt_stock": 1,
+      "credit_spread": 1,
+      "risk_free_yield": 0,
+      "equity_volatility": 0,
+      "investor_sentiment_ai": 1,
+      "market_liquidity": 0,
+      "insurance_capacity": 0,
+      "insurance_premia": 3,
+      "cyber_incident_rate": 0,
+      "outage_rate": 0,
+      "model_safety_failure": 0,
+      "regulatory_scrutiny": 1,
+      "systemic_interconnectedn": 1,
+      "default_insurance_tradin": 2
+    },
+    "insurance_premia": {
+      "ai_investment_flow": 2,
+      "compute_capacity": 1,
+      "ai_debt_stock": 1,
+      "credit_spread": 1,
+      "risk_free_yield": 0,
+      "equity_volatility": 1,
+      "investor_sentiment_ai": 1,
+      "market_liquidity": 0,
+      "insurance_capacity": 2,
+      "insurance_premia": 0,
+      "cyber_incident_rate": 0,
+      "outage_rate": 0,
+      "model_safety_failure": 0,
+      "regulatory_scrutiny": 1,
+      "systemic_interconnectedn": 0,
+      "default_insurance_tradin": 2
+    },
+    "cyber_incident_rate": {
+      "ai_investment_flow": 2,
+      "compute_capacity": 1,
+      "ai_debt_stock": 1,
+      "credit_spread": 2,
+      "risk_free_yield": 0,
+      "equity_volatility": 2,
+      "investor_sentiment_ai": 3,
+      "market_liquidity": 1,
+      "insurance_capacity": 2,
+      "insurance_premia": 3,
+      "cyber_incident_rate": 0,
+      "outage_rate": 2,
+      "model_safety_failure": 2,
+      "regulatory_scrutiny": 3,
+      "systemic_interconnectedn": 2,
+      "default_insurance_tradin": 1
+    },
+    "outage_rate": {
+      "ai_investment_flow": 2,
+      "compute_capacity": 2,
+      "ai_debt_stock": 1,
+      "credit_spread": 2,
+      "risk_free_yield": 0,
+      "equity_volatility": 2,
+      "investor_sentiment_ai": 2,
+      "market_liquidity": 1,
+      "insurance_capacity": 1,
+      "insurance_premia": 2,
+      "cyber_incident_rate": 1,
+      "outage_rate": 0,
+      "model_safety_failure": 1,
+      "regulatory_scrutiny": 2,
+      "systemic_interconnectedn": 2,
+      "default_insurance_tradin": 1
+    },
+    "model_safety_failure": {
+      "ai_investment_flow": 3,
+      "compute_capacity": 1,
+      "ai_debt_stock": 1,
+      "credit_spread": 2,
+      "risk_free_yield": 0,
+      "equity_volatility": 3,
+      "investor_sentiment_ai": 3,
+      "market_liquidity": 1,
+      "insurance_capacity": 2,
+      "insurance_premia": 3,
+      "cyber_incident_rate": 1,
+      "outage_rate": 1,
+      "model_safety_failure": 0,
+      "regulatory_scrutiny": 3,
+      "systemic_interconnectedn": 2,
+      "default_insurance_tradin": 2
+    },
+    "regulatory_scrutiny": {
+      "ai_investment_flow": 2,
+      "compute_capacity": 1,
+      "ai_debt_stock": 1,
+      "credit_spread": 2,
+      "risk_free_yield": 0,
+      "equity_volatility": 2,
+      "investor_sentiment_ai": 2,
+      "market_liquidity": 1,
+      "insurance_capacity": 1,
+      "insurance_premia": 2,
+      "cyber_incident_rate": 1,
+      "outage_rate": 1,
+      "model_safety_failure": 1,
+      "regulatory_scrutiny": 0,
+      "systemic_interconnectedn": 1,
+      "default_insurance_tradin": 1
+    },
+    "systemic_interconnectedn": {
+      "ai_investment_flow": 1,
+      "compute_capacity": 1,
+      "ai_debt_stock": 1,
+      "credit_spread": 2,
+      "risk_free_yield": 0,
+      "equity_volatility": 2,
+      "investor_sentiment_ai": 1,
+      "market_liquidity": 2,
+      "insurance_capacity": 1,
+      "insurance_premia": 2,
+      "cyber_incident_rate": 1,
+      "outage_rate": 2,
+      "model_safety_failure": 1,
+      "regulatory_scrutiny": 2,
+      "systemic_interconnectedn": 0,
+      "default_insurance_tradin": 2
+    },
+    "default_insurance_tradin": {
+      "ai_investment_flow": 1,
+      "compute_capacity": 1,
+      "ai_debt_stock": 1,
+      "credit_spread": 3,
+      "risk_free_yield": 0,
+      "equity_volatility": 1,
+      "investor_sentiment_ai": 1,
+      "market_liquidity": 2,
+      "insurance_capacity": 1,
+      "insurance_premia": 2,
+      "cyber_incident_rate": 0,
+      "outage_rate": 0,
+      "model_safety_failure": 0,
+      "regulatory_scrutiny": 1,
+      "systemic_interconnectedn": 2,
+      "default_insurance_tradin": 0
+    }
+  },
+  "AS": {
+    "ai_investment_flow": 21,
+    "compute_capacity": 19,
+    "ai_debt_stock": 17,
+    "credit_spread": 18,
+    "risk_free_yield": 13,
+    "equity_volatility": 16,
+    "investor_sentiment_ai": 20,
+    "market_liquidity": 20,
+    "insurance_capacity": 12,
+    "insurance_premia": 12,
+    "cyber_incident_rate": 27,
+    "outage_rate": 22,
+    "model_safety_failure": 28,
+    "regulatory_scrutiny": 19,
+    "systemic_interconnectedn": 21,
+    "default_insurance_tradin": 16
+  },
+  "PS": {
+    "ai_investment_flow": 28,
+    "compute_capacity": 22,
+    "ai_debt_stock": 21,
+    "credit_spread": 27,
+    "risk_free_yield": 1,
+    "equity_volatility": 23,
+    "investor_sentiment_ai": 25,
+    "market_liquidity": 18,
+    "insurance_capacity": 17,
+    "insurance_premia": 25,
+    "cyber_incident_rate": 7,
+    "outage_rate": 9,
+    "model_safety_failure": 7,
+    "regulatory_scrutiny": 23,
+    "systemic_interconnectedn": 21,
+    "default_insurance_tradin": 27
+  },
+  "med_AS": 19.0,
+  "med_PS": 21.5,
+  "roles": [
+    {
+      "variable": "ai_investment_flow",
+      "name": "AI infrastructure investment rate",
+      "AS": 21,
+      "PS": 28,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 588,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_sentiment_ai",
+      "name": "Investor sentiment toward AI",
+      "AS": 20,
+      "PS": 25,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 500,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "credit_spread",
+      "name": "Corporate credit spread level",
+      "AS": 18,
+      "PS": 27,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 486,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "systemic_interconnectedn",
+      "name": "Systemic interconnectedness level",
+      "AS": 21,
+      "PS": 21,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 441,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "regulatory_scrutiny",
+      "name": "Regulatory scrutiny intensity",
+      "AS": 19,
+      "PS": 23,
+      "Q=AS/PS": 0.83,
+      "P=AS*PS": 437,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "default_insurance_tradin",
+      "name": "Trading intensity in default insurance",
+      "AS": 16,
+      "PS": 27,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 432,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "compute_capacity",
+      "name": "Compute capacity stock",
+      "AS": 19,
+      "PS": 22,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 418,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "equity_volatility",
+      "name": "Equity price volatility",
+      "AS": 16,
+      "PS": 23,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 368,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity depth",
+      "AS": 20,
+      "PS": 18,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 360,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "ai_debt_stock",
+      "name": "AI-linked debt outstanding",
+      "AS": 17,
+      "PS": 21,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 357,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "insurance_premia",
+      "name": "Insurance premia for AI risk",
+      "AS": 12,
+      "PS": 25,
+      "Q=AS/PS": 0.48,
+      "P=AS*PS": 300,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "insurance_capacity",
+      "name": "Insurance capacity for tech risk",
+      "AS": 12,
+      "PS": 17,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 204,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "outage_rate",
+      "name": "Operational outage rate",
+      "AS": 22,
+      "PS": 9,
+      "Q=AS/PS": 2.44,
+      "P=AS*PS": 198,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "model_safety_failure",
+      "name": "AI model safety failure rate",
+      "AS": 28,
+      "PS": 7,
+      "Q=AS/PS": 4.0,
+      "P=AS*PS": 196,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "cyber_incident_rate",
+      "name": "AI-linked cyber incident rate",
+      "AS": 27,
+      "PS": 7,
+      "Q=AS/PS": 3.86,
+      "P=AS*PS": 189,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "risk_free_yield",
+      "name": "Risk-free bond yield level",
+      "AS": 13,
+      "PS": 1,
+      "Q=AS/PS": 13.0,
+      "P=AS*PS": 13,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "ai_investment_flow",
+        "name": "AI infrastructure investment rate",
+        "kind": "flow",
+        "AS": 21,
+        "PS": 28
+      },
+      {
+        "id": "compute_capacity",
+        "name": "Compute capacity stock",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 22
+      },
+      {
+        "id": "ai_debt_stock",
+        "name": "AI-linked debt outstanding",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 21
+      },
+      {
+        "id": "credit_spread",
+        "name": "Corporate credit spread level",
+        "kind": "environment",
+        "AS": 18,
+        "PS": 27
+      },
+      {
+        "id": "risk_free_yield",
+        "name": "Risk-free bond yield level",
+        "kind": "environment",
+        "AS": 13,
+        "PS": 1
+      },
+      {
+        "id": "equity_volatility",
+        "name": "Equity price volatility",
+        "kind": "environment",
+        "AS": 16,
+        "PS": 23
+      },
+      {
+        "id": "investor_sentiment_ai",
+        "name": "Investor sentiment toward AI",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 25
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity depth",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 18
+      },
+      {
+        "id": "insurance_capacity",
+        "name": "Insurance capacity for tech risk",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 17
+      },
+      {
+        "id": "insurance_premia",
+        "name": "Insurance premia for AI risk",
+        "kind": "environment",
+        "AS": 12,
+        "PS": 25
+      },
+      {
+        "id": "cyber_incident_rate",
+        "name": "AI-linked cyber incident rate",
+        "kind": "flow",
+        "AS": 27,
+        "PS": 7
+      },
+      {
+        "id": "outage_rate",
+        "name": "Operational outage rate",
+        "kind": "flow",
+        "AS": 22,
+        "PS": 9
+      },
+      {
+        "id": "model_safety_failure",
+        "name": "AI model safety failure rate",
+        "kind": "flow",
+        "AS": 28,
+        "PS": 7
+      },
+      {
+        "id": "regulatory_scrutiny",
+        "name": "Regulatory scrutiny intensity",
+        "kind": "institution_field",
+        "AS": 19,
+        "PS": 23
+      },
+      {
+        "id": "systemic_interconnectedn",
+        "name": "Systemic interconnectedness level",
+        "kind": "environment",
+        "AS": 21,
+        "PS": 21
+      },
+      {
+        "id": "default_insurance_tradin",
+        "name": "Trading intensity in default insurance",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 27
+      }
+    ],
+    "edges": [
+      {
+        "source": "ai_investment_flow",
+        "target": "compute_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "ai_investment_flow",
+        "target": "ai_debt_stock",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "ai_investment_flow",
+        "target": "investor_sentiment_ai",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ai_investment_flow",
+        "target": "regulatory_scrutiny",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ai_investment_flow",
+        "target": "systemic_interconnectedn",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "compute_capacity",
+        "target": "investor_sentiment_ai",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "compute_capacity",
+        "target": "cyber_incident_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "compute_capacity",
+        "target": "outage_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "compute_capacity",
+        "target": "systemic_interconnectedn",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "ai_debt_stock",
+        "target": "ai_investment_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "ai_debt_stock",
+        "target": "compute_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ai_debt_stock",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ai_debt_stock",
+        "target": "regulatory_scrutiny",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ai_debt_stock",
+        "target": "default_insurance_tradin",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread",
+        "target": "ai_investment_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "compute_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "ai_debt_stock",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "equity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread",
+        "target": "investor_sentiment_ai",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "default_insurance_tradin",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "risk_free_yield",
+        "target": "ai_investment_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_free_yield",
+        "target": "compute_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_free_yield",
+        "target": "ai_debt_stock",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_volatility",
+        "target": "ai_investment_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_volatility",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_volatility",
+        "target": "investor_sentiment_ai",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_volatility",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_volatility",
+        "target": "default_insurance_tradin",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment_ai",
+        "target": "ai_investment_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment_ai",
+        "target": "compute_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment_ai",
+        "target": "ai_debt_stock",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment_ai",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_sentiment_ai",
+        "target": "equity_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_sentiment_ai",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment_ai",
+        "target": "regulatory_scrutiny",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment_ai",
+        "target": "default_insurance_tradin",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "ai_investment_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "ai_debt_stock",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "equity_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "systemic_interconnectedn",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "default_insurance_tradin",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_capacity",
+        "target": "insurance_premia",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_capacity",
+        "target": "default_insurance_tradin",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premia",
+        "target": "ai_investment_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "insurance_premia",
+        "target": "insurance_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "insurance_premia",
+        "target": "default_insurance_tradin",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cyber_incident_rate",
+        "target": "ai_investment_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cyber_incident_rate",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cyber_incident_rate",
+        "target": "equity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cyber_incident_rate",
+        "target": "investor_sentiment_ai",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cyber_incident_rate",
+        "target": "insurance_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cyber_incident_rate",
+        "target": "insurance_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cyber_incident_rate",
+        "target": "outage_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cyber_incident_rate",
+        "target": "model_safety_failure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cyber_incident_rate",
+        "target": "regulatory_scrutiny",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cyber_incident_rate",
+        "target": "systemic_interconnectedn",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "outage_rate",
+        "target": "ai_investment_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "outage_rate",
+        "target": "compute_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "outage_rate",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "outage_rate",
+        "target": "equity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "outage_rate",
+        "target": "investor_sentiment_ai",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "outage_rate",
+        "target": "insurance_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "outage_rate",
+        "target": "regulatory_scrutiny",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "outage_rate",
+        "target": "systemic_interconnectedn",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "model_safety_failure",
+        "target": "ai_investment_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "model_safety_failure",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "model_safety_failure",
+        "target": "equity_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "model_safety_failure",
+        "target": "investor_sentiment_ai",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "model_safety_failure",
+        "target": "insurance_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "model_safety_failure",
+        "target": "insurance_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "model_safety_failure",
+        "target": "regulatory_scrutiny",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "model_safety_failure",
+        "target": "systemic_interconnectedn",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "model_safety_failure",
+        "target": "default_insurance_tradin",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regulatory_scrutiny",
+        "target": "ai_investment_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "regulatory_scrutiny",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regulatory_scrutiny",
+        "target": "equity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regulatory_scrutiny",
+        "target": "investor_sentiment_ai",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "regulatory_scrutiny",
+        "target": "insurance_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_interconnectedn",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_interconnectedn",
+        "target": "equity_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_interconnectedn",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "systemic_interconnectedn",
+        "target": "insurance_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_interconnectedn",
+        "target": "outage_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_interconnectedn",
+        "target": "regulatory_scrutiny",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "systemic_interconnectedn",
+        "target": "default_insurance_tradin",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "default_insurance_tradin",
+        "target": "credit_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "default_insurance_tradin",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "default_insurance_tradin",
+        "target": "insurance_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "default_insurance_tradin",
+        "target": "systemic_interconnectedn",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "q3_earnings_season",
+      "title": "Q3 earnings season reset",
+      "description": "Near-term quarterly reports (tech, AI suppliers, banks) that will reprice AI bets and affect market volatility.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-20",
+        "end": "2026-11-05",
+        "label": "next 2 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "investor_sentiment_ai",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_volatility",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "ai_investment_flow",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'earnings this week will determine if it's for real'; SpaceX, IBM, Super Micro, GM earnings cited."
+    },
+    {
+      "id": "default_insurance_trading_surge",
+      "title": "Surge in default-insurance trading",
+      "description": "Heightened trading in default-insurance instruments as market reassesses AI‑linked credit risk.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-20",
+        "end": "2026-11-30",
+        "label": "weeks–month"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "default_insurance_tradin",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_sentiment_ai",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'AI debt worries spark surge in default insurance trading'; 'FirstFT: AI debt fears spark default insurance trading surge.'"
+    },
+    {
+      "id": "google_cloud_outage_inquiry",
+      "title": "Regulatory inquiry and fallout from Google Cloud outage",
+      "description": "European/regulatory probes and remediation after Google Cloud outage that disrupted banks and public services.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-20",
+        "end": "2026-12-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "regulatory_scrutiny",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "outage_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "systemic_interconnectedn",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "insurance_premia",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Google Cloud outage hits U.K. banks'; 'Europe's financial regulators query Google over cloud outage.'"
+    },
+    {
+      "id": "php_vulnerability_patch_cycle",
+      "title": "PHP critical vulnerability patching & outage risk",
+      "description": "Rollout of PHP fixes and possible exploit waves that could take sites and services offline.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-21",
+        "end": "2026-11-05",
+        "label": "2 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "cyber_incident_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "outage_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "regulatory_scrutiny",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Exclusive | AI Just Found a Bug...' and 'PHP developers issue new version to fix critical vulnerabilities.'"
+    },
+    {
+      "id": "model_safety_disclosures",
+      "title": "New AI safety disclosures and incidents",
+      "description": "Public admissions and warnings (self‑replication, disabled monitors) that intensify safety scrutiny and risk repricing.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-20",
+        "end": "2027-01-31",
+        "label": "3–14 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "model_safety_failure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "regulatory_scrutiny",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_sentiment_ai",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premia",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Anthropic warns AI models may soon self-replicate'; 'OpenAI agents disabled their own monitoring systems.'"
+    },
+    {
+      "id": "fed_policy_rate_path_pressure",
+      "title": "Fed policy and bond‑market repricing",
+      "description": "Ongoing rate policy that can materially raise risk‑free yields and compress the AI build‑out economics.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-21",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "risk_free_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "ai_investment_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_sentiment_ai",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Yes, the Fed Can Kill the AI Boom'; 'Are Bonds Pricing in a Fed Policy Mistake?'"
+    },
+    {
+      "id": "hyperscaler_debt_reassessment",
+      "title": "Reassessment of hyperscalers' AI‑linked debt",
+      "description": "Ratings, disclosures or analyst re‑estimates that reveal larger AI‑funded debt loads at cloud/hyperscaler firms.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-21",
+        "end": "2027-03-31",
+        "label": "months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "ai_debt_stock",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spread",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "regulatory_scrutiny",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "default_insurance_tradin",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Top hyperscalers likely to have more AI-linked debt than now known, S&P Global warns.'"
+    },
+    {
+      "id": "insurance_capacity_squeeze",
+      "title": "Insurance squeeze for AI build‑outs",
+      "description": "Insurers retreat or restrict coverage for AI/cloud projects, pushing up premia and constraining financing options.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-19",
+        "end": "2027-02-28",
+        "label": "months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "insurance_capacity",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "insurance_premia",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "ai_investment_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_sentiment_ai",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'AI Runs Into Its Next Big Obstacle: Insurance'; 'CoreWeave targets ‘unlimited’ insurance money to fund AI build-out.'"
+    },
+    {
+      "id": "neoclouds_business_model_scrutiny",
+      "title": "Neoclouds revenue/performance checks",
+      "description": "Investor scrutiny and guidance revisions at neocloud/data‑centre operators following missed revenue and outlook cuts.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-21",
+        "end": "2026-11-30",
+        "label": "next 6 weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "ai_investment_flow",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "compute_capacity",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_sentiment_ai",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "ai_debt_stock",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Investors are questioning neoclouds' business model'; 'NextDC shares plunge after outlook cut.'"
+    },
+    {
+      "id": "vc_funding_and_valuations_continue",
+      "title": "Ongoing VC funding and startup valuations",
+      "description": "New financings and high valuations in AI chip and startup rounds that sustain build‑out spending.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-19",
+        "end": "2027-02-28",
+        "label": "months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "ai_investment_flow",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "compute_capacity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_sentiment_ai",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Tenstorrent more than doubles valuation'; 'AI startup ASI valued at $3 billion'; multiple funding stories."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "model_safety_disclosures",
+      "title": "New AI safety disclosures and incidents",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3–14 weeks",
+      "date": null,
+      "start": "2026-10-20",
+      "end": "2027-01-31",
+      "probability": 0.85,
+      "impact_score": 205.0,
+      "expected_impact": 174.25,
+      "event_PS": 19.0,
+      "event_AS": 20.5,
+      "n_vars": 4,
+      "affected_ids": "model_safety_failure, regulatory_scrutiny, investor_sentiment_ai, insurance_premia",
+      "rationale": "Headlines: 'Anthropic warns AI models may soon self-replicate'; 'OpenAI agents disabled their own monitoring systems.'"
+    },
+    {
+      "id": "fed_policy_rate_path_pressure",
+      "title": "Fed policy and bond‑market repricing",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-10-21",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 157.0,
+      "expected_impact": 109.9,
+      "event_PS": 18.111,
+      "event_AS": 17.444,
+      "n_vars": 4,
+      "affected_ids": "risk_free_yield, credit_spread, ai_investment_flow, investor_sentiment_ai",
+      "rationale": "Headlines: 'Yes, the Fed Can Kill the AI Boom'; 'Are Bonds Pricing in a Fed Policy Mistake?'"
+    },
+    {
+      "id": "google_cloud_outage_inquiry",
+      "title": "Regulatory inquiry and fallout from Google Cloud outage",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-20",
+      "end": "2026-12-31",
+      "probability": 0.8,
+      "impact_score": 155.0,
+      "expected_impact": 124.0,
+      "event_PS": 19.25,
+      "event_AS": 19.375,
+      "n_vars": 4,
+      "affected_ids": "regulatory_scrutiny, outage_rate, systemic_interconnectedn, insurance_premia",
+      "rationale": "Headlines: 'Google Cloud outage hits U.K. banks'; 'Europe's financial regulators query Google over cloud outage.'"
+    },
+    {
+      "id": "vc_funding_and_valuations_continue",
+      "title": "Ongoing VC funding and startup valuations",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-10-19",
+      "end": "2027-02-28",
+      "probability": 0.7,
+      "impact_score": 141.0,
+      "expected_impact": 98.7,
+      "event_PS": 25.429,
+      "event_AS": 20.143,
+      "n_vars": 3,
+      "affected_ids": "ai_investment_flow, compute_capacity, investor_sentiment_ai",
+      "rationale": "Headlines: 'Tenstorrent more than doubles valuation'; 'AI startup ASI valued at $3 billion'; multiple funding stories."
+    },
+    {
+      "id": "insurance_capacity_squeeze",
+      "title": "Insurance squeeze for AI build‑outs",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-10-19",
+      "end": "2027-02-28",
+      "probability": 0.75,
+      "impact_score": 134.0,
+      "expected_impact": 100.5,
+      "event_PS": 23.0,
+      "event_AS": 14.889,
+      "n_vars": 4,
+      "affected_ids": "insurance_capacity, insurance_premia, ai_investment_flow, investor_sentiment_ai",
+      "rationale": "Headlines: 'AI Runs Into Its Next Big Obstacle: Insurance'; 'CoreWeave targets ‘unlimited’ insurance money to fund AI build-out.'"
+    },
+    {
+      "id": "q3_earnings_season",
+      "title": "Q3 earnings season reset",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 weeks",
+      "date": null,
+      "start": "2026-10-20",
+      "end": "2026-11-05",
+      "probability": 0.9,
+      "impact_score": 131.0,
+      "expected_impact": 117.9,
+      "event_PS": 25.143,
+      "event_AS": 18.714,
+      "n_vars": 4,
+      "affected_ids": "investor_sentiment_ai, equity_volatility, ai_investment_flow, credit_spread",
+      "rationale": "Headlines: 'earnings this week will determine if it's for real'; SpaceX, IBM, Super Micro, GM earnings cited."
+    },
+    {
+      "id": "default_insurance_trading_surge",
+      "title": "Surge in default-insurance trading",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–month",
+      "date": null,
+      "start": "2026-10-20",
+      "end": "2026-11-30",
+      "probability": 0.85,
+      "impact_score": 124.0,
+      "expected_impact": 105.4,
+      "event_PS": 25.429,
+      "event_AS": 17.714,
+      "n_vars": 4,
+      "affected_ids": "default_insurance_tradin, credit_spread, market_liquidity, investor_sentiment_ai",
+      "rationale": "Headlines: 'AI debt worries spark surge in default insurance trading'; 'FirstFT: AI debt fears spark default insurance trading surge.'"
+    },
+    {
+      "id": "hyperscaler_debt_reassessment",
+      "title": "Reassessment of hyperscalers' AI‑linked debt",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-10-21",
+      "end": "2027-03-31",
+      "probability": 0.6,
+      "impact_score": 122.0,
+      "expected_impact": 73.2,
+      "event_PS": 23.857,
+      "event_AS": 17.429,
+      "n_vars": 4,
+      "affected_ids": "ai_debt_stock, credit_spread, regulatory_scrutiny, default_insurance_tradin",
+      "rationale": "Headline: 'Top hyperscalers likely to have more AI-linked debt than now known, S&P Global warns.'"
+    },
+    {
+      "id": "neoclouds_business_model_scrutiny",
+      "title": "Neoclouds revenue/performance checks",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 weeks",
+      "date": null,
+      "start": "2026-10-21",
+      "end": "2026-11-30",
+      "probability": 0.65,
+      "impact_score": 118.0,
+      "expected_impact": 76.7,
+      "event_PS": 24.833,
+      "event_AS": 19.667,
+      "n_vars": 4,
+      "affected_ids": "ai_investment_flow, compute_capacity, investor_sentiment_ai, ai_debt_stock",
+      "rationale": "Headlines: 'Investors are questioning neoclouds' business model'; 'NextDC shares plunge after outlook cut.'"
+    },
+    {
+      "id": "php_vulnerability_patch_cycle",
+      "title": "PHP critical vulnerability patching & outage risk",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-10-21",
+      "end": "2026-11-05",
+      "probability": 0.7,
+      "impact_score": 117.0,
+      "expected_impact": 81.9,
+      "event_PS": 11.0,
+      "event_AS": 23.4,
+      "n_vars": 3,
+      "affected_ids": "cyber_incident_rate, outage_rate, regulatory_scrutiny",
+      "rationale": "Headlines: 'Exclusive | AI Just Found a Bug...' and 'PHP developers issue new version to fix critical vulnerabilities.'"
+    }
+  ]
+}
