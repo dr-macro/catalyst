@@ -1,0 +1,1674 @@
+{
+  "label": "eurozone_bond_stress",
+  "as_of": "2026-10-23",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-23T01:53:35",
+  "system_description": {
+    "narrative_title": "French unrest triggers eurozone bond stress and political spillovers",
+    "narrative_summary": "Widespread protests and violent unrest in France are driving a sharp repricing of French sovereign debt and wider eurozone bond markets, while damaging consumer-facing firms and provoking heavy-handed political responses. The situation functions as an open system: flows of capital, information (including disinformation), policy measures and social grievance interact through reinforcing feedbacks—rising yields worsen government financing and banking risk, which amplifies political instability and investor flight. Cross-border transmissions (investor reallocations, election polling shifts, and contagion to other European protests) turn a national crisis into a regional financial‑political event.",
+    "scope": "Inside the system boundary: French social unrest and protests, domestic security and political responses (curfews, troop deployments, anti-riot laws), French sovereign bond yields and spreads, eurozone sovereign debt and bank-sovereign linkages, investor safe‑haven flows (Treasuries, FX), corporate impacts on French retailers/luxury firms and insurers, media and disinformation campaigns, and short-term election/political polling dynamics.",
+    "super_system": "Global financial markets and geopolitical-risk complex (global capital flows, sovereign debt markets, and international political dynamics)",
+    "adjacent_subsystems": [
+      "Eurozone sovereign debt and banking sector (spreads, doom-loop dynamics)",
+      "European domestic politics and elections (rise of populist/far-right forces, protest movements)",
+      "Global safe-haven markets and US Treasuries (capital flight, yield shifts)",
+      "Corporate sector exposure and insurance/real-economy transmission (retail, luxury, logistics)"
+    ],
+    "evidence_headlines": [
+      "French 10-year bond yield hits 5% for first time since 2002 amid unrest",
+      "French supermarket giant's shares plunge 14% after warning ‘unprecedented’ unrest will hit business",
+      "French bond sell-off intensifies after riots and looting",
+      "France to deploy troops, admits to failures over weekend unrest",
+      "Bond selloff revives debate about euro zone banks' 'doom loop'",
+      "Prediction-market odds rise for Marine Le Pen in France 2027 presidential race as protests roil nation"
+    ]
+  },
+  "variables": [
+    {
+      "id": "social_unrest_intensity",
+      "name": "Social unrest intensity",
+      "description": "Measures the aggregate frequency, scale and violence level of public protests and civil disorder.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "security_response_level",
+      "name": "Security response level",
+      "description": "Measures the intensity and restrictiveness of public‑order measures such as curfews, troop deployments and emergency policing.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_bond_yields",
+      "name": "Sovereign bond yields",
+      "description": "Measures the prevailing long‑term nominal interest rate demanded by investors on government debt.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_spread",
+      "name": "Sovereign spread",
+      "description": "Measures the yield premium of a given sovereign's debt over a benchmark sovereign or reference rate.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "banking_solvency_risk",
+      "name": "Banking solvency risk",
+      "description": "Measures the probability and expected magnitude of capital shortfalls across the banking sector due to asset losses or funding stress.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "capital_outflow_rate",
+      "name": "Capital outflow rate",
+      "description": "Measures the net rate at which financial capital is withdrawn from domestic assets and transferred abroad.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_demand",
+      "name": "Safe‑haven demand",
+      "description": "Measures the net flow of investor demand into assets perceived as safe stores of value (e.g., high‑quality sovereigns, safe currencies).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Market volatility",
+      "description": "Measures the realised or expected short‑term price variability across financial markets (bonds, equities, FX).",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "currency_pressure_rate",
+      "name": "Currency pressure rate",
+      "description": "Measures the rate of depreciation/appreciation pressure on a currency driven by capital flows and market sentiment.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_disruption_lev",
+      "name": "Corporate disruption level",
+      "description": "Measures the extent of operational, revenue and asset disruptions experienced by consumer‑facing firms due to unrest and security measures.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "insurer_loss_exposure",
+      "name": "Insurer loss exposure",
+      "description": "Measures the expected scale of insurance claims and balance‑sheet losses arising from property damage, business interruption and liability related to unrest.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "disinformation_prevalenc",
+      "name": "Disinformation prevalence",
+      "description": "Measures the volume and reach of false or manipulative information circulating through media and social channels.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "political_polarization",
+      "name": "Political polarization",
+      "description": "Measures the degree of ideological and affective division within the polity and among political actors.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crossborder_contagion",
+      "name": "Cross‑border contagion tendency",
+      "description": "Measures the propensity for social unrest, political shifts or financial stress to transmit from one jurisdiction to others.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_financing_pressur",
+      "name": "Fiscal financing pressure",
+      "description": "Measures the difficulty and cost profile of government debt rollover and fiscal funding needs relative to fiscal capacity.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "information_transparency",
+      "name": "Information transparency",
+      "description": "Measures the openness and reliability of official and market information available to the public and investors.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "social_unrest_intensity",
+    "security_response_level",
+    "sovereign_bond_yields",
+    "sovereign_spread",
+    "banking_solvency_risk",
+    "capital_outflow_rate",
+    "safe_haven_demand",
+    "market_volatility",
+    "currency_pressure_rate",
+    "corporate_disruption_lev",
+    "insurer_loss_exposure",
+    "disinformation_prevalenc",
+    "political_polarization",
+    "crossborder_contagion",
+    "fiscal_financing_pressur",
+    "information_transparency"
+  ],
+  "var_names": {
+    "social_unrest_intensity": "Social unrest intensity",
+    "security_response_level": "Security response level",
+    "sovereign_bond_yields": "Sovereign bond yields",
+    "sovereign_spread": "Sovereign spread",
+    "banking_solvency_risk": "Banking solvency risk",
+    "capital_outflow_rate": "Capital outflow rate",
+    "safe_haven_demand": "Safe‑haven demand",
+    "market_volatility": "Market volatility",
+    "currency_pressure_rate": "Currency pressure rate",
+    "corporate_disruption_lev": "Corporate disruption level",
+    "insurer_loss_exposure": "Insurer loss exposure",
+    "disinformation_prevalenc": "Disinformation prevalence",
+    "political_polarization": "Political polarization",
+    "crossborder_contagion": "Cross‑border contagion tendency",
+    "fiscal_financing_pressur": "Fiscal financing pressure",
+    "information_transparency": "Information transparency"
+  },
+  "impact_matrix": {
+    "social_unrest_intensity": {
+      "social_unrest_intensity": 0,
+      "security_response_level": 3,
+      "sovereign_bond_yields": 2,
+      "sovereign_spread": 2,
+      "banking_solvency_risk": 1,
+      "capital_outflow_rate": 2,
+      "safe_haven_demand": 2,
+      "market_volatility": 2,
+      "currency_pressure_rate": 2,
+      "corporate_disruption_lev": 3,
+      "insurer_loss_exposure": 2,
+      "disinformation_prevalenc": 2,
+      "political_polarization": 2,
+      "crossborder_contagion": 1,
+      "fiscal_financing_pressur": 1,
+      "information_transparency": 1
+    },
+    "security_response_level": {
+      "social_unrest_intensity": 2,
+      "security_response_level": 0,
+      "sovereign_bond_yields": 1,
+      "sovereign_spread": 1,
+      "banking_solvency_risk": 1,
+      "capital_outflow_rate": 1,
+      "safe_haven_demand": 1,
+      "market_volatility": 1,
+      "currency_pressure_rate": 1,
+      "corporate_disruption_lev": 2,
+      "insurer_loss_exposure": 1,
+      "disinformation_prevalenc": 2,
+      "political_polarization": 2,
+      "crossborder_contagion": 1,
+      "fiscal_financing_pressur": 1,
+      "information_transparency": 2
+    },
+    "sovereign_bond_yields": {
+      "social_unrest_intensity": 0,
+      "security_response_level": 0,
+      "sovereign_bond_yields": 0,
+      "sovereign_spread": 3,
+      "banking_solvency_risk": 1,
+      "capital_outflow_rate": 1,
+      "safe_haven_demand": 1,
+      "market_volatility": 2,
+      "currency_pressure_rate": 1,
+      "corporate_disruption_lev": 0,
+      "insurer_loss_exposure": 0,
+      "disinformation_prevalenc": 0,
+      "political_polarization": 0,
+      "crossborder_contagion": 1,
+      "fiscal_financing_pressur": 3,
+      "information_transparency": 0
+    },
+    "sovereign_spread": {
+      "social_unrest_intensity": 0,
+      "security_response_level": 0,
+      "sovereign_bond_yields": 3,
+      "sovereign_spread": 0,
+      "banking_solvency_risk": 1,
+      "capital_outflow_rate": 2,
+      "safe_haven_demand": 2,
+      "market_volatility": 2,
+      "currency_pressure_rate": 2,
+      "corporate_disruption_lev": 0,
+      "insurer_loss_exposure": 0,
+      "disinformation_prevalenc": 0,
+      "political_polarization": 0,
+      "crossborder_contagion": 2,
+      "fiscal_financing_pressur": 3,
+      "information_transparency": 0
+    },
+    "banking_solvency_risk": {
+      "social_unrest_intensity": 0,
+      "security_response_level": 0,
+      "sovereign_bond_yields": 2,
+      "sovereign_spread": 2,
+      "banking_solvency_risk": 0,
+      "capital_outflow_rate": 2,
+      "safe_haven_demand": 2,
+      "market_volatility": 3,
+      "currency_pressure_rate": 2,
+      "corporate_disruption_lev": 1,
+      "insurer_loss_exposure": 1,
+      "disinformation_prevalenc": 0,
+      "political_polarization": 1,
+      "crossborder_contagion": 2,
+      "fiscal_financing_pressur": 3,
+      "information_transparency": 1
+    },
+    "capital_outflow_rate": {
+      "social_unrest_intensity": 0,
+      "security_response_level": 0,
+      "sovereign_bond_yields": 3,
+      "sovereign_spread": 3,
+      "banking_solvency_risk": 2,
+      "capital_outflow_rate": 0,
+      "safe_haven_demand": 3,
+      "market_volatility": 2,
+      "currency_pressure_rate": 3,
+      "corporate_disruption_lev": 0,
+      "insurer_loss_exposure": 0,
+      "disinformation_prevalenc": 0,
+      "political_polarization": 0,
+      "crossborder_contagion": 2,
+      "fiscal_financing_pressur": 2,
+      "information_transparency": 0
+    },
+    "safe_haven_demand": {
+      "social_unrest_intensity": 0,
+      "security_response_level": 0,
+      "sovereign_bond_yields": 1,
+      "sovereign_spread": 2,
+      "banking_solvency_risk": 0,
+      "capital_outflow_rate": 2,
+      "safe_haven_demand": 0,
+      "market_volatility": 1,
+      "currency_pressure_rate": 2,
+      "corporate_disruption_lev": 0,
+      "insurer_loss_exposure": 0,
+      "disinformation_prevalenc": 0,
+      "political_polarization": 0,
+      "crossborder_contagion": 1,
+      "fiscal_financing_pressur": 1,
+      "information_transparency": 0
+    },
+    "market_volatility": {
+      "social_unrest_intensity": 0,
+      "security_response_level": 0,
+      "sovereign_bond_yields": 2,
+      "sovereign_spread": 2,
+      "banking_solvency_risk": 2,
+      "capital_outflow_rate": 2,
+      "safe_haven_demand": 2,
+      "market_volatility": 0,
+      "currency_pressure_rate": 1,
+      "corporate_disruption_lev": 0,
+      "insurer_loss_exposure": 1,
+      "disinformation_prevalenc": 0,
+      "political_polarization": 1,
+      "crossborder_contagion": 2,
+      "fiscal_financing_pressur": 1,
+      "information_transparency": 0
+    },
+    "currency_pressure_rate": {
+      "social_unrest_intensity": 0,
+      "security_response_level": 0,
+      "sovereign_bond_yields": 2,
+      "sovereign_spread": 2,
+      "banking_solvency_risk": 2,
+      "capital_outflow_rate": 2,
+      "safe_haven_demand": 2,
+      "market_volatility": 2,
+      "currency_pressure_rate": 0,
+      "corporate_disruption_lev": 1,
+      "insurer_loss_exposure": 0,
+      "disinformation_prevalenc": 0,
+      "political_polarization": 1,
+      "crossborder_contagion": 1,
+      "fiscal_financing_pressur": 2,
+      "information_transparency": 0
+    },
+    "corporate_disruption_lev": {
+      "social_unrest_intensity": 1,
+      "security_response_level": 0,
+      "sovereign_bond_yields": 1,
+      "sovereign_spread": 1,
+      "banking_solvency_risk": 1,
+      "capital_outflow_rate": 1,
+      "safe_haven_demand": 1,
+      "market_volatility": 1,
+      "currency_pressure_rate": 0,
+      "corporate_disruption_lev": 0,
+      "insurer_loss_exposure": 2,
+      "disinformation_prevalenc": 0,
+      "political_polarization": 1,
+      "crossborder_contagion": 0,
+      "fiscal_financing_pressur": 1,
+      "information_transparency": 0
+    },
+    "insurer_loss_exposure": {
+      "social_unrest_intensity": 0,
+      "security_response_level": 0,
+      "sovereign_bond_yields": 0,
+      "sovereign_spread": 0,
+      "banking_solvency_risk": 1,
+      "capital_outflow_rate": 0,
+      "safe_haven_demand": 0,
+      "market_volatility": 1,
+      "currency_pressure_rate": 0,
+      "corporate_disruption_lev": 0,
+      "insurer_loss_exposure": 0,
+      "disinformation_prevalenc": 0,
+      "political_polarization": 0,
+      "crossborder_contagion": 0,
+      "fiscal_financing_pressur": 1,
+      "information_transparency": 0
+    },
+    "disinformation_prevalenc": {
+      "social_unrest_intensity": 2,
+      "security_response_level": 1,
+      "sovereign_bond_yields": 0,
+      "sovereign_spread": 0,
+      "banking_solvency_risk": 0,
+      "capital_outflow_rate": 0,
+      "safe_haven_demand": 0,
+      "market_volatility": 1,
+      "currency_pressure_rate": 0,
+      "corporate_disruption_lev": 1,
+      "insurer_loss_exposure": 0,
+      "disinformation_prevalenc": 0,
+      "political_polarization": 3,
+      "crossborder_contagion": 1,
+      "fiscal_financing_pressur": 0,
+      "information_transparency": 3
+    },
+    "political_polarization": {
+      "social_unrest_intensity": 2,
+      "security_response_level": 1,
+      "sovereign_bond_yields": 1,
+      "sovereign_spread": 1,
+      "banking_solvency_risk": 0,
+      "capital_outflow_rate": 0,
+      "safe_haven_demand": 0,
+      "market_volatility": 1,
+      "currency_pressure_rate": 0,
+      "corporate_disruption_lev": 1,
+      "insurer_loss_exposure": 0,
+      "disinformation_prevalenc": 2,
+      "political_polarization": 0,
+      "crossborder_contagion": 1,
+      "fiscal_financing_pressur": 1,
+      "information_transparency": 1
+    },
+    "crossborder_contagion": {
+      "social_unrest_intensity": 1,
+      "security_response_level": 1,
+      "sovereign_bond_yields": 2,
+      "sovereign_spread": 2,
+      "banking_solvency_risk": 1,
+      "capital_outflow_rate": 2,
+      "safe_haven_demand": 1,
+      "market_volatility": 2,
+      "currency_pressure_rate": 1,
+      "corporate_disruption_lev": 0,
+      "insurer_loss_exposure": 0,
+      "disinformation_prevalenc": 1,
+      "political_polarization": 1,
+      "crossborder_contagion": 0,
+      "fiscal_financing_pressur": 1,
+      "information_transparency": 0
+    },
+    "fiscal_financing_pressur": {
+      "social_unrest_intensity": 1,
+      "security_response_level": 0,
+      "sovereign_bond_yields": 3,
+      "sovereign_spread": 3,
+      "banking_solvency_risk": 2,
+      "capital_outflow_rate": 2,
+      "safe_haven_demand": 1,
+      "market_volatility": 2,
+      "currency_pressure_rate": 2,
+      "corporate_disruption_lev": 0,
+      "insurer_loss_exposure": 0,
+      "disinformation_prevalenc": 0,
+      "political_polarization": 1,
+      "crossborder_contagion": 1,
+      "fiscal_financing_pressur": 0,
+      "information_transparency": 0
+    },
+    "information_transparency": {
+      "social_unrest_intensity": 2,
+      "security_response_level": 1,
+      "sovereign_bond_yields": 1,
+      "sovereign_spread": 1,
+      "banking_solvency_risk": 1,
+      "capital_outflow_rate": 1,
+      "safe_haven_demand": 1,
+      "market_volatility": 1,
+      "currency_pressure_rate": 1,
+      "corporate_disruption_lev": 1,
+      "insurer_loss_exposure": 0,
+      "disinformation_prevalenc": 3,
+      "political_polarization": 1,
+      "crossborder_contagion": 1,
+      "fiscal_financing_pressur": 1,
+      "information_transparency": 0
+    }
+  },
+  "AS": {
+    "social_unrest_intensity": 28,
+    "security_response_level": 20,
+    "sovereign_bond_yields": 13,
+    "sovereign_spread": 17,
+    "banking_solvency_risk": 22,
+    "capital_outflow_rate": 20,
+    "safe_haven_demand": 10,
+    "market_volatility": 16,
+    "currency_pressure_rate": 17,
+    "corporate_disruption_lev": 11,
+    "insurer_loss_exposure": 3,
+    "disinformation_prevalenc": 12,
+    "political_polarization": 12,
+    "crossborder_contagion": 16,
+    "fiscal_financing_pressur": 18,
+    "information_transparency": 17
+  },
+  "PS": {
+    "social_unrest_intensity": 11,
+    "security_response_level": 7,
+    "sovereign_bond_yields": 24,
+    "sovereign_spread": 25,
+    "banking_solvency_risk": 16,
+    "capital_outflow_rate": 20,
+    "safe_haven_demand": 19,
+    "market_volatility": 24,
+    "currency_pressure_rate": 18,
+    "corporate_disruption_lev": 10,
+    "insurer_loss_exposure": 7,
+    "disinformation_prevalenc": 10,
+    "political_polarization": 14,
+    "crossborder_contagion": 17,
+    "fiscal_financing_pressur": 22,
+    "information_transparency": 8
+  },
+  "med_AS": 16.5,
+  "med_PS": 16.5,
+  "roles": [
+    {
+      "variable": "sovereign_spread",
+      "name": "Sovereign spread",
+      "AS": 17,
+      "PS": 25,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 425,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "capital_outflow_rate",
+      "name": "Capital outflow rate",
+      "AS": 20,
+      "PS": 20,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 400,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "fiscal_financing_pressur",
+      "name": "Fiscal financing pressure",
+      "AS": 18,
+      "PS": 22,
+      "Q=AS/PS": 0.82,
+      "P=AS*PS": 396,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Market volatility",
+      "AS": 16,
+      "PS": 24,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 384,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "banking_solvency_risk",
+      "name": "Banking solvency risk",
+      "AS": 22,
+      "PS": 16,
+      "Q=AS/PS": 1.37,
+      "P=AS*PS": 352,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sovereign_bond_yields",
+      "name": "Sovereign bond yields",
+      "AS": 13,
+      "PS": 24,
+      "Q=AS/PS": 0.54,
+      "P=AS*PS": 312,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "social_unrest_intensity",
+      "name": "Social unrest intensity",
+      "AS": 28,
+      "PS": 11,
+      "Q=AS/PS": 2.55,
+      "P=AS*PS": 308,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "currency_pressure_rate",
+      "name": "Currency pressure rate",
+      "AS": 17,
+      "PS": 18,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 306,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crossborder_contagion",
+      "name": "Cross‑border contagion tendency",
+      "AS": 16,
+      "PS": 17,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 272,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "safe_haven_demand",
+      "name": "Safe‑haven demand",
+      "AS": 10,
+      "PS": 19,
+      "Q=AS/PS": 0.53,
+      "P=AS*PS": 190,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "political_polarization",
+      "name": "Political polarization",
+      "AS": 12,
+      "PS": 14,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 168,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "security_response_level",
+      "name": "Security response level",
+      "AS": 20,
+      "PS": 7,
+      "Q=AS/PS": 2.86,
+      "P=AS*PS": 140,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "information_transparency",
+      "name": "Information transparency",
+      "AS": 17,
+      "PS": 8,
+      "Q=AS/PS": 2.12,
+      "P=AS*PS": 136,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "disinformation_prevalenc",
+      "name": "Disinformation prevalence",
+      "AS": 12,
+      "PS": 10,
+      "Q=AS/PS": 1.2,
+      "P=AS*PS": 120,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "corporate_disruption_lev",
+      "name": "Corporate disruption level",
+      "AS": 11,
+      "PS": 10,
+      "Q=AS/PS": 1.1,
+      "P=AS*PS": 110,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "insurer_loss_exposure",
+      "name": "Insurer loss exposure",
+      "AS": 3,
+      "PS": 7,
+      "Q=AS/PS": 0.43,
+      "P=AS*PS": 21,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "social_unrest_intensity",
+        "name": "Social unrest intensity",
+        "kind": "stock",
+        "AS": 28,
+        "PS": 11
+      },
+      {
+        "id": "security_response_level",
+        "name": "Security response level",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 7
+      },
+      {
+        "id": "sovereign_bond_yields",
+        "name": "Sovereign bond yields",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 24
+      },
+      {
+        "id": "sovereign_spread",
+        "name": "Sovereign spread",
+        "kind": "stock",
+        "AS": 17,
+        "PS": 25
+      },
+      {
+        "id": "banking_solvency_risk",
+        "name": "Banking solvency risk",
+        "kind": "institution_field",
+        "AS": 22,
+        "PS": 16
+      },
+      {
+        "id": "capital_outflow_rate",
+        "name": "Capital outflow rate",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 20
+      },
+      {
+        "id": "safe_haven_demand",
+        "name": "Safe‑haven demand",
+        "kind": "flow",
+        "AS": 10,
+        "PS": 19
+      },
+      {
+        "id": "market_volatility",
+        "name": "Market volatility",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 24
+      },
+      {
+        "id": "currency_pressure_rate",
+        "name": "Currency pressure rate",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 18
+      },
+      {
+        "id": "corporate_disruption_lev",
+        "name": "Corporate disruption level",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 10
+      },
+      {
+        "id": "insurer_loss_exposure",
+        "name": "Insurer loss exposure",
+        "kind": "stock",
+        "AS": 3,
+        "PS": 7
+      },
+      {
+        "id": "disinformation_prevalenc",
+        "name": "Disinformation prevalence",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 10
+      },
+      {
+        "id": "political_polarization",
+        "name": "Political polarization",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 14
+      },
+      {
+        "id": "crossborder_contagion",
+        "name": "Cross‑border contagion tendency",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 17
+      },
+      {
+        "id": "fiscal_financing_pressur",
+        "name": "Fiscal financing pressure",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 22
+      },
+      {
+        "id": "information_transparency",
+        "name": "Information transparency",
+        "kind": "environment",
+        "AS": 17,
+        "PS": 8
+      }
+    ],
+    "edges": [
+      {
+        "source": "social_unrest_intensity",
+        "target": "security_response_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "currency_pressure_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "corporate_disruption_lev",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "insurer_loss_exposure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "disinformation_prevalenc",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "political_polarization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_response_level",
+        "target": "social_unrest_intensity",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "security_response_level",
+        "target": "corporate_disruption_lev",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_response_level",
+        "target": "disinformation_prevalenc",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_response_level",
+        "target": "political_polarization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "security_response_level",
+        "target": "information_transparency",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "sovereign_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yields",
+        "target": "fiscal_financing_pressur",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "sovereign_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "currency_pressure_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "crossborder_contagion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "fiscal_financing_pressur",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "banking_solvency_risk",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "banking_solvency_risk",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "banking_solvency_risk",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "banking_solvency_risk",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "banking_solvency_risk",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "banking_solvency_risk",
+        "target": "currency_pressure_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "banking_solvency_risk",
+        "target": "crossborder_contagion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "banking_solvency_risk",
+        "target": "fiscal_financing_pressur",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "sovereign_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "sovereign_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "banking_solvency_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "safe_haven_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "currency_pressure_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "crossborder_contagion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "fiscal_financing_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "currency_pressure_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "banking_solvency_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "crossborder_contagion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_rate",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_rate",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_rate",
+        "target": "banking_solvency_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_rate",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_rate",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_pressure_rate",
+        "target": "fiscal_financing_pressur",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_disruption_lev",
+        "target": "insurer_loss_exposure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "disinformation_prevalenc",
+        "target": "social_unrest_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "disinformation_prevalenc",
+        "target": "political_polarization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "disinformation_prevalenc",
+        "target": "information_transparency",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "political_polarization",
+        "target": "social_unrest_intensity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_polarization",
+        "target": "disinformation_prevalenc",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_contagion",
+        "target": "sovereign_bond_yields",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_contagion",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_contagion",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_contagion",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "sovereign_bond_yields",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "sovereign_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "banking_solvency_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_pressur",
+        "target": "currency_pressure_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "information_transparency",
+        "target": "social_unrest_intensity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "information_transparency",
+        "target": "disinformation_prevalenc",
+        "strength": 3,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "weekend_fresh_unrest_france",
+      "title": "Fresh weekend unrest in France",
+      "description": "Anticipated renewed protests and clashes across French cities over the coming weekend as authorities brace for demonstrations following ongoing riots.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-24",
+        "end": "2026-10-25",
+        "label": "this weekend"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "social_unrest_intensity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "security_response_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yields",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "corporate_disruption_lev",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'France to deploy military as it braces for fresh unrest this weekend'; ongoing riot coverage."
+    },
+    {
+      "id": "troop_deployment_france",
+      "title": "French military deployment to support policing",
+      "description": "Short‑term deployment of troops to support domestic security operations, announced as authorities respond to riots and looting.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-24",
+        "end": "2026-10-31",
+        "label": "days–week"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "security_response_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "social_unrest_intensity",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_spread",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'France to deploy military as it braces for fresh unrest this weekend' and 'France to deploy troops, admits to failures...'"
+    },
+    {
+      "id": "expanded_protest_bans_and_curfews",
+      "title": "Expanded protest bans and curfews in France",
+      "description": "Government moves to ban some protests and extend curfews in targeted cities, tightening restrictions on public gatherings.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-22",
+        "end": "2026-11-07",
+        "label": "2 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "security_response_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "social_unrest_intensity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "political_polarization",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "information_transparency",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Macron warns some protests will be banned' and 'France extends curfews in some cities...'"
+    },
+    {
+      "id": "eu_disinformation_probe",
+      "title": "EU probe into pro‑Kremlin disinformation",
+      "description": "European Commission/authorities investigate and counter pro‑Kremlin amplification of unrest narratives, with potential takedowns or sanctions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-21",
+        "end": "2027-01-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "disinformation_prevalenc",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "information_transparency",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crossborder_contagion",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'EU probes pro‑Kremlin disinformation around French riots'."
+    },
+    {
+      "id": "french_debt_auctions_and_refinancing",
+      "title": "French sovereign bond auctions and refinancing stress",
+      "description": "Scheduled French debt auctions and upcoming refinancing needs will test investor demand amid elevated yields and outflows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-23",
+        "end": "2027-01-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "fiscal_financing_pressur",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yields",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_spread",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "capital_outflow_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'French 10‑year bond yield hits 5%...', 'France’s Debt Crisis Deepens...' and 'Treasury Auctions Explained...'."
+    },
+    {
+      "id": "safe_haven_flight_to_treasuries",
+      "title": "Continued flight to US Treasuries / safe havens",
+      "description": "Investors shift into US Treasuries and other safe assets, drawing demand away from eurozone sovereigns and increasing spreads.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-22",
+        "end": "2026-11-30",
+        "label": "weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_spread",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'U.S. 10‑Year Treasury Yield Falls... as French Turmoil Fuels Flight for Safety' and related coverage."
+    },
+    {
+      "id": "far_right_election_momentum",
+      "title": "Far‑right momentum ahead of 2027 French election",
+      "description": "Rising prediction‑market odds and political traction for far‑right candidates as unrest reshapes the pre‑electoral landscape through next year's vote.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-23",
+        "end": "2027-05-08",
+        "label": "through election"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "political_polarization",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crossborder_contagion",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_spread",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Prediction‑market odds rise for Marine Le Pen in France 2027 presidential race as protests roil nation'."
+    },
+    {
+      "id": "insurer_claims_and_reinsurance_pressure",
+      "title": "Insurer claims and reinsurance pressure from riots",
+      "description": "Rising property, business‑interruption and liability claims from looting and violence prompt insurer loss assessments and reinsurance market stress.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-21",
+        "end": "2027-01-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "insurer_loss_exposure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "corporate_disruption_lev",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "banking_solvency_risk",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Insurers face losses as riots in France become ‘like natural catastrophes’' and reports of retail looting."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "french_debt_auctions_and_refinancing",
+      "title": "French sovereign bond auctions and refinancing stress",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-23",
+      "end": "2027-01-31",
+      "probability": 0.9,
+      "impact_score": 216.0,
+      "expected_impact": 194.4,
+      "event_PS": 23.154,
+      "event_AS": 16.615,
+      "n_vars": 5,
+      "affected_ids": "fiscal_financing_pressur, sovereign_bond_yields, sovereign_spread, capital_outflow_rate, market_volatility",
+      "rationale": "Headlines: 'French 10‑year bond yield hits 5%...', 'France’s Debt Crisis Deepens...' and 'Treasury Auctions Explained...'."
+    },
+    {
+      "id": "weekend_fresh_unrest_france",
+      "title": "Fresh weekend unrest in France",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this weekend",
+      "date": null,
+      "start": "2026-10-24",
+      "end": "2026-10-25",
+      "probability": 0.8,
+      "impact_score": 204.0,
+      "expected_impact": 163.2,
+      "event_PS": 14.818,
+      "event_AS": 18.545,
+      "n_vars": 5,
+      "affected_ids": "social_unrest_intensity, security_response_level, sovereign_bond_yields, market_volatility, corporate_disruption_lev",
+      "rationale": "Headline: 'France to deploy military as it braces for fresh unrest this weekend'; ongoing riot coverage."
+    },
+    {
+      "id": "troop_deployment_france",
+      "title": "French military deployment to support policing",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–week",
+      "date": null,
+      "start": "2026-10-24",
+      "end": "2026-10-31",
+      "probability": 0.85,
+      "impact_score": 182.0,
+      "expected_impact": 154.7,
+      "event_PS": 15.667,
+      "event_AS": 20.222,
+      "n_vars": 4,
+      "affected_ids": "security_response_level, social_unrest_intensity, sovereign_spread, market_volatility",
+      "rationale": "Headline: 'France to deploy military as it braces for fresh unrest this weekend' and 'France to deploy troops, admits to failures...'"
+    },
+    {
+      "id": "expanded_protest_bans_and_curfews",
+      "title": "Expanded protest bans and curfews in France",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-10-22",
+      "end": "2026-11-07",
+      "probability": 0.8,
+      "impact_score": 157.0,
+      "expected_impact": 125.6,
+      "event_PS": 9.875,
+      "event_AS": 19.625,
+      "n_vars": 4,
+      "affected_ids": "security_response_level, social_unrest_intensity, political_polarization, information_transparency",
+      "rationale": "Headlines: 'Macron warns some protests will be banned' and 'France extends curfews in some cities...'"
+    },
+    {
+      "id": "safe_haven_flight_to_treasuries",
+      "title": "Continued flight to US Treasuries / safe havens",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-10-22",
+      "end": "2026-11-30",
+      "probability": 0.8,
+      "impact_score": 96.0,
+      "expected_impact": 76.8,
+      "event_PS": 22.143,
+      "event_AS": 13.714,
+      "n_vars": 3,
+      "affected_ids": "safe_haven_demand, sovereign_spread, market_volatility",
+      "rationale": "Headlines: 'U.S. 10‑Year Treasury Yield Falls... as French Turmoil Fuels Flight for Safety' and related coverage."
+    },
+    {
+      "id": "eu_disinformation_probe",
+      "title": "EU probe into pro‑Kremlin disinformation",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-21",
+      "end": "2027-01-31",
+      "probability": 0.7,
+      "impact_score": 74.0,
+      "expected_impact": 51.8,
+      "event_PS": 10.6,
+      "event_AS": 14.8,
+      "n_vars": 3,
+      "affected_ids": "disinformation_prevalenc, information_transparency, crossborder_contagion",
+      "rationale": "Headline: 'EU probes pro‑Kremlin disinformation around French riots'."
+    },
+    {
+      "id": "far_right_election_momentum",
+      "title": "Far‑right momentum ahead of 2027 French election",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "through election",
+      "date": null,
+      "start": "2026-10-23",
+      "end": "2027-05-08",
+      "probability": 0.6,
+      "impact_score": 69.0,
+      "expected_impact": 41.4,
+      "event_PS": 16.8,
+      "event_AS": 13.8,
+      "n_vars": 3,
+      "affected_ids": "political_polarization, crossborder_contagion, sovereign_spread",
+      "rationale": "Headline: 'Prediction‑market odds rise for Marine Le Pen in France 2027 presidential race as protests roil nation'."
+    },
+    {
+      "id": "insurer_claims_and_reinsurance_pressure",
+      "title": "Insurer claims and reinsurance pressure from riots",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-21",
+      "end": "2027-01-31",
+      "probability": 0.75,
+      "impact_score": 53.0,
+      "expected_impact": 39.75,
+      "event_PS": 9.5,
+      "event_AS": 8.833,
+      "n_vars": 3,
+      "affected_ids": "insurer_loss_exposure, corporate_disruption_lev, banking_solvency_risk",
+      "rationale": "Headline: 'Insurers face losses as riots in France become ‘like natural catastrophes’' and reports of retail looting."
+    }
+  ]
+}
