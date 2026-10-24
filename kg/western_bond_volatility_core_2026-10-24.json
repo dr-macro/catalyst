@@ -1,0 +1,1970 @@
+{
+  "label": "western_bond_volatility",
+  "as_of": "2026-10-24",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-24T02:08:32",
+  "system_description": {
+    "narrative_title": "France unrest triggers sovereign bond stress and global safe‑haven flows",
+    "narrative_summary": "Widespread protests and political turmoil in France are reframing sovereign‑risk perceptions, pushing French 10‑year yields to multi‑decade highs and prompting foreign investors to exit. That domestic shock is propagating through the euro‑area and global bond markets, driving flight‑to‑quality flows into U.S. Treasuries, FX shifts and heightened volatility as ratings, policy and market feedbacks respond. Treated as an open system, the crisis links social unrest, political decisions, investor behavior and macro financial variables in recursive feedback loops that can amplify contagion.",
+    "scope": "Inside the boundary: French domestic unrest and protest dynamics; French sovereign debt and bond yields; foreign investor flows out of French bonds; eurozone risk premia and intra‑euro bond spreads; global safe‑haven flows (U.S. Treasuries); FX reactions (euro, yen); ratings agencies and sovereign credit actions; market volatility and liquidity in global bond markets.",
+    "super_system": "Global financial system / international political‑economy (cross‑border capital flows, sovereign credit markets, central bank policy environment).",
+    "adjacent_subsystems": [
+      "Eurozone sovereign debt dynamics and intra‑EU fiscal/monetary coordination",
+      "Global bond market and U.S. Treasury market as safe haven",
+      "Foreign investor behavior and international portfolio flows",
+      "Domestic political stability and public order in EU states"
+    ],
+    "evidence_headlines": [
+      "France’s Debt Crisis Deepens as Foreign Investors Look for the Exit",
+      "French 10-year bond yields hit 5%, highest since 2002",
+      "U.S. 10-Year Treasury Yield Falls Under 5% as French Turmoil Fuels Flight for Safety",
+      "France protests: Macron condemns 'stupid' comments from Trump, others as bond market pressure builds",
+      "French bond pain puts euro zone's weak links on notice",
+      "Is France spinning out of control?"
+    ]
+  },
+  "variables": [
+    {
+      "id": "protest_intensity",
+      "name": "Protest intensity",
+      "description": "Magnitude and frequency of domestic protest activities and civil unrest affecting public order.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "political_stability",
+      "name": "Political stability",
+      "description": "Degree of government cohesion and institutional control over domestic political processes.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_financing_need",
+      "name": "Fiscal financing need",
+      "description": "Net financing required by the government over a given horizon to meet expenditures and maturing debt.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_bond_yield",
+      "name": "Sovereign bond yield",
+      "description": "Yield on the domestic sovereign long-term bonds reflecting compensation investors demand.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_risk_premium",
+      "name": "Sovereign risk premium",
+      "description": "Additional yield demanded by investors over a risk-free benchmark to hold domestic sovereign debt.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "nonresident_holdings",
+      "name": "Nonresident holdings",
+      "description": "Stock of domestic sovereign bonds held by nonresident investors.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "capital_outflow_rate",
+      "name": "Capital outflow rate",
+      "description": "Flow rate of financial capital leaving the domestic market towards foreign assets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_spread",
+      "name": "Sovereign spread",
+      "description": "Spread between domestic sovereign yields and a comparable benchmark sovereign yield.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_asset_demand",
+      "name": "Safe-haven asset demand",
+      "description": "Aggregate demand for globally perceived high-quality liquid assets during risk-off episodes.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "high_quality_bond_yield",
+      "name": "High-quality bond yield",
+      "description": "Yield level on globally benchmark high-credit-quality sovereign bonds.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_pressure",
+      "name": "Exchange rate pressure",
+      "description": "Net pressure on the domestic currency's exchange rate resulting from capital flows and market sentiment.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "Depth and ease of transacting in sovereign bond markets as measured by bid-ask spreads and market depth.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_volatility",
+      "name": "Bond market volatility",
+      "description": "Short-term variability in sovereign bond prices and yields.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "rating_change_expect",
+      "name": "Credit rating change expectation",
+      "description": "Market-implied probability or expectation of a sovereign credit-rating downgrade or upgrade.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "central_policy_expect",
+      "name": "Central bank policy expectations",
+      "description": "Market expectations about future central bank policy rates and actions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "debt_rollover_risk",
+      "name": "Debt rollover risk",
+      "description": "Risk that the government will face difficulty refinancing maturing debt at acceptable cost.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "protest_intensity",
+    "political_stability",
+    "fiscal_financing_need",
+    "sovereign_bond_yield",
+    "sovereign_risk_premium",
+    "nonresident_holdings",
+    "capital_outflow_rate",
+    "sovereign_spread",
+    "safe_haven_asset_demand",
+    "high_quality_bond_yield",
+    "exchange_rate_pressure",
+    "bond_market_liquidity",
+    "bond_market_volatility",
+    "rating_change_expect",
+    "central_policy_expect",
+    "debt_rollover_risk"
+  ],
+  "var_names": {
+    "protest_intensity": "Protest intensity",
+    "political_stability": "Political stability",
+    "fiscal_financing_need": "Fiscal financing need",
+    "sovereign_bond_yield": "Sovereign bond yield",
+    "sovereign_risk_premium": "Sovereign risk premium",
+    "nonresident_holdings": "Nonresident holdings",
+    "capital_outflow_rate": "Capital outflow rate",
+    "sovereign_spread": "Sovereign spread",
+    "safe_haven_asset_demand": "Safe-haven asset demand",
+    "high_quality_bond_yield": "High-quality bond yield",
+    "exchange_rate_pressure": "Exchange rate pressure",
+    "bond_market_liquidity": "Bond market liquidity",
+    "bond_market_volatility": "Bond market volatility",
+    "rating_change_expect": "Credit rating change expectation",
+    "central_policy_expect": "Central bank policy expectations",
+    "debt_rollover_risk": "Debt rollover risk"
+  },
+  "impact_matrix": {
+    "protest_intensity": {
+      "protest_intensity": 0,
+      "political_stability": 3,
+      "fiscal_financing_need": 1,
+      "sovereign_bond_yield": 2,
+      "sovereign_risk_premium": 2,
+      "nonresident_holdings": 1,
+      "capital_outflow_rate": 1,
+      "sovereign_spread": 2,
+      "safe_haven_asset_demand": 1,
+      "high_quality_bond_yield": 1,
+      "exchange_rate_pressure": 2,
+      "bond_market_liquidity": 2,
+      "bond_market_volatility": 3,
+      "rating_change_expect": 1,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 2
+    },
+    "political_stability": {
+      "protest_intensity": 3,
+      "political_stability": 0,
+      "fiscal_financing_need": 1,
+      "sovereign_bond_yield": 2,
+      "sovereign_risk_premium": 2,
+      "nonresident_holdings": 2,
+      "capital_outflow_rate": 2,
+      "sovereign_spread": 2,
+      "safe_haven_asset_demand": 1,
+      "high_quality_bond_yield": 1,
+      "exchange_rate_pressure": 2,
+      "bond_market_liquidity": 2,
+      "bond_market_volatility": 2,
+      "rating_change_expect": 2,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 2
+    },
+    "fiscal_financing_need": {
+      "protest_intensity": 0,
+      "political_stability": 1,
+      "fiscal_financing_need": 0,
+      "sovereign_bond_yield": 3,
+      "sovereign_risk_premium": 3,
+      "nonresident_holdings": 2,
+      "capital_outflow_rate": 1,
+      "sovereign_spread": 3,
+      "safe_haven_asset_demand": 0,
+      "high_quality_bond_yield": 0,
+      "exchange_rate_pressure": 1,
+      "bond_market_liquidity": 1,
+      "bond_market_volatility": 2,
+      "rating_change_expect": 2,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 3
+    },
+    "sovereign_bond_yield": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_bond_yield": 0,
+      "sovereign_risk_premium": 3,
+      "nonresident_holdings": 2,
+      "capital_outflow_rate": 2,
+      "sovereign_spread": 3,
+      "safe_haven_asset_demand": 0,
+      "high_quality_bond_yield": 1,
+      "exchange_rate_pressure": 2,
+      "bond_market_liquidity": 1,
+      "bond_market_volatility": 3,
+      "rating_change_expect": 1,
+      "central_policy_expect": 2,
+      "debt_rollover_risk": 2
+    },
+    "sovereign_risk_premium": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_bond_yield": 3,
+      "sovereign_risk_premium": 0,
+      "nonresident_holdings": 2,
+      "capital_outflow_rate": 2,
+      "sovereign_spread": 3,
+      "safe_haven_asset_demand": 0,
+      "high_quality_bond_yield": 0,
+      "exchange_rate_pressure": 2,
+      "bond_market_liquidity": 1,
+      "bond_market_volatility": 2,
+      "rating_change_expect": 2,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 2
+    },
+    "nonresident_holdings": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_bond_yield": 2,
+      "sovereign_risk_premium": 2,
+      "nonresident_holdings": 0,
+      "capital_outflow_rate": 3,
+      "sovereign_spread": 2,
+      "safe_haven_asset_demand": 1,
+      "high_quality_bond_yield": 1,
+      "exchange_rate_pressure": 2,
+      "bond_market_liquidity": 2,
+      "bond_market_volatility": 2,
+      "rating_change_expect": 0,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 1
+    },
+    "capital_outflow_rate": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 1,
+      "sovereign_bond_yield": 3,
+      "sovereign_risk_premium": 3,
+      "nonresident_holdings": 3,
+      "capital_outflow_rate": 0,
+      "sovereign_spread": 3,
+      "safe_haven_asset_demand": 2,
+      "high_quality_bond_yield": 2,
+      "exchange_rate_pressure": 3,
+      "bond_market_liquidity": 2,
+      "bond_market_volatility": 3,
+      "rating_change_expect": 1,
+      "central_policy_expect": 2,
+      "debt_rollover_risk": 2
+    },
+    "sovereign_spread": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_bond_yield": 3,
+      "sovereign_risk_premium": 3,
+      "nonresident_holdings": 2,
+      "capital_outflow_rate": 2,
+      "sovereign_spread": 0,
+      "safe_haven_asset_demand": 0,
+      "high_quality_bond_yield": 1,
+      "exchange_rate_pressure": 2,
+      "bond_market_liquidity": 1,
+      "bond_market_volatility": 2,
+      "rating_change_expect": 2,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 2
+    },
+    "safe_haven_asset_demand": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_bond_yield": 1,
+      "sovereign_risk_premium": 0,
+      "nonresident_holdings": 2,
+      "capital_outflow_rate": 2,
+      "sovereign_spread": 1,
+      "safe_haven_asset_demand": 0,
+      "high_quality_bond_yield": 3,
+      "exchange_rate_pressure": 1,
+      "bond_market_liquidity": 1,
+      "bond_market_volatility": 2,
+      "rating_change_expect": 0,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 0
+    },
+    "high_quality_bond_yield": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_bond_yield": 2,
+      "sovereign_risk_premium": 1,
+      "nonresident_holdings": 1,
+      "capital_outflow_rate": 1,
+      "sovereign_spread": 2,
+      "safe_haven_asset_demand": 1,
+      "high_quality_bond_yield": 0,
+      "exchange_rate_pressure": 1,
+      "bond_market_liquidity": 0,
+      "bond_market_volatility": 1,
+      "rating_change_expect": 0,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 1
+    },
+    "exchange_rate_pressure": {
+      "protest_intensity": 0,
+      "political_stability": 1,
+      "fiscal_financing_need": 2,
+      "sovereign_bond_yield": 2,
+      "sovereign_risk_premium": 2,
+      "nonresident_holdings": 2,
+      "capital_outflow_rate": 3,
+      "sovereign_spread": 2,
+      "safe_haven_asset_demand": 1,
+      "high_quality_bond_yield": 1,
+      "exchange_rate_pressure": 0,
+      "bond_market_liquidity": 1,
+      "bond_market_volatility": 2,
+      "rating_change_expect": 1,
+      "central_policy_expect": 2,
+      "debt_rollover_risk": 2
+    },
+    "bond_market_liquidity": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_bond_yield": 2,
+      "sovereign_risk_premium": 2,
+      "nonresident_holdings": 2,
+      "capital_outflow_rate": 1,
+      "sovereign_spread": 2,
+      "safe_haven_asset_demand": 0,
+      "high_quality_bond_yield": 0,
+      "exchange_rate_pressure": 1,
+      "bond_market_liquidity": 0,
+      "bond_market_volatility": 3,
+      "rating_change_expect": 0,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 2
+    },
+    "bond_market_volatility": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 0,
+      "sovereign_bond_yield": 2,
+      "sovereign_risk_premium": 2,
+      "nonresident_holdings": 2,
+      "capital_outflow_rate": 2,
+      "sovereign_spread": 2,
+      "safe_haven_asset_demand": 1,
+      "high_quality_bond_yield": 1,
+      "exchange_rate_pressure": 1,
+      "bond_market_liquidity": 2,
+      "bond_market_volatility": 0,
+      "rating_change_expect": 1,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 1
+    },
+    "rating_change_expect": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 1,
+      "sovereign_bond_yield": 3,
+      "sovereign_risk_premium": 3,
+      "nonresident_holdings": 2,
+      "capital_outflow_rate": 2,
+      "sovereign_spread": 3,
+      "safe_haven_asset_demand": 0,
+      "high_quality_bond_yield": 1,
+      "exchange_rate_pressure": 2,
+      "bond_market_liquidity": 1,
+      "bond_market_volatility": 2,
+      "rating_change_expect": 0,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 2
+    },
+    "central_policy_expect": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 1,
+      "sovereign_bond_yield": 3,
+      "sovereign_risk_premium": 1,
+      "nonresident_holdings": 1,
+      "capital_outflow_rate": 2,
+      "sovereign_spread": 2,
+      "safe_haven_asset_demand": 1,
+      "high_quality_bond_yield": 2,
+      "exchange_rate_pressure": 2,
+      "bond_market_liquidity": 1,
+      "bond_market_volatility": 1,
+      "rating_change_expect": 1,
+      "central_policy_expect": 0,
+      "debt_rollover_risk": 1
+    },
+    "debt_rollover_risk": {
+      "protest_intensity": 0,
+      "political_stability": 0,
+      "fiscal_financing_need": 2,
+      "sovereign_bond_yield": 3,
+      "sovereign_risk_premium": 3,
+      "nonresident_holdings": 2,
+      "capital_outflow_rate": 2,
+      "sovereign_spread": 3,
+      "safe_haven_asset_demand": 0,
+      "high_quality_bond_yield": 0,
+      "exchange_rate_pressure": 2,
+      "bond_market_liquidity": 1,
+      "bond_market_volatility": 2,
+      "rating_change_expect": 2,
+      "central_policy_expect": 1,
+      "debt_rollover_risk": 0
+    }
+  },
+  "AS": {
+    "protest_intensity": 25,
+    "political_stability": 27,
+    "fiscal_financing_need": 23,
+    "sovereign_bond_yield": 22,
+    "sovereign_risk_premium": 20,
+    "nonresident_holdings": 19,
+    "capital_outflow_rate": 30,
+    "sovereign_spread": 21,
+    "safe_haven_asset_demand": 14,
+    "high_quality_bond_yield": 12,
+    "exchange_rate_pressure": 24,
+    "bond_market_liquidity": 16,
+    "bond_market_volatility": 18,
+    "rating_change_expect": 23,
+    "central_policy_expect": 19,
+    "debt_rollover_risk": 23
+  },
+  "PS": {
+    "protest_intensity": 3,
+    "political_stability": 5,
+    "fiscal_financing_need": 9,
+    "sovereign_bond_yield": 36,
+    "sovereign_risk_premium": 32,
+    "nonresident_holdings": 28,
+    "capital_outflow_rate": 28,
+    "sovereign_spread": 35,
+    "safe_haven_asset_demand": 9,
+    "high_quality_bond_yield": 15,
+    "exchange_rate_pressure": 26,
+    "bond_market_liquidity": 19,
+    "bond_market_volatility": 32,
+    "rating_change_expect": 16,
+    "central_policy_expect": 18,
+    "debt_rollover_risk": 25
+  },
+  "med_AS": 21.5,
+  "med_PS": 22.0,
+  "roles": [
+    {
+      "variable": "capital_outflow_rate",
+      "name": "Capital outflow rate",
+      "AS": 30,
+      "PS": 28,
+      "Q=AS/PS": 1.07,
+      "P=AS*PS": 840,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_bond_yield",
+      "name": "Sovereign bond yield",
+      "AS": 22,
+      "PS": 36,
+      "Q=AS/PS": 0.61,
+      "P=AS*PS": 792,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_spread",
+      "name": "Sovereign spread",
+      "AS": 21,
+      "PS": 35,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 735,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "sovereign_risk_premium",
+      "name": "Sovereign risk premium",
+      "AS": 20,
+      "PS": 32,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 640,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "exchange_rate_pressure",
+      "name": "Exchange rate pressure",
+      "AS": 24,
+      "PS": 26,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 624,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bond_market_volatility",
+      "name": "Bond market volatility",
+      "AS": 18,
+      "PS": 32,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 576,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "debt_rollover_risk",
+      "name": "Debt rollover risk",
+      "AS": 23,
+      "PS": 25,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 575,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "nonresident_holdings",
+      "name": "Nonresident holdings",
+      "AS": 19,
+      "PS": 28,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 532,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "rating_change_expect",
+      "name": "Credit rating change expectation",
+      "AS": 23,
+      "PS": 16,
+      "Q=AS/PS": 1.44,
+      "P=AS*PS": 368,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "central_policy_expect",
+      "name": "Central bank policy expectations",
+      "AS": 19,
+      "PS": 18,
+      "Q=AS/PS": 1.06,
+      "P=AS*PS": 342,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 16,
+      "PS": 19,
+      "Q=AS/PS": 0.84,
+      "P=AS*PS": 304,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fiscal_financing_need",
+      "name": "Fiscal financing need",
+      "AS": 23,
+      "PS": 9,
+      "Q=AS/PS": 2.56,
+      "P=AS*PS": 207,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "high_quality_bond_yield",
+      "name": "High-quality bond yield",
+      "AS": 12,
+      "PS": 15,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 180,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "political_stability",
+      "name": "Political stability",
+      "AS": 27,
+      "PS": 5,
+      "Q=AS/PS": 5.4,
+      "P=AS*PS": 135,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "safe_haven_asset_demand",
+      "name": "Safe-haven asset demand",
+      "AS": 14,
+      "PS": 9,
+      "Q=AS/PS": 1.56,
+      "P=AS*PS": 126,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "protest_intensity",
+      "name": "Protest intensity",
+      "AS": 25,
+      "PS": 3,
+      "Q=AS/PS": 8.33,
+      "P=AS*PS": 75,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "protest_intensity",
+        "name": "Protest intensity",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 3
+      },
+      {
+        "id": "political_stability",
+        "name": "Political stability",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 5
+      },
+      {
+        "id": "fiscal_financing_need",
+        "name": "Fiscal financing need",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 9
+      },
+      {
+        "id": "sovereign_bond_yield",
+        "name": "Sovereign bond yield",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 36
+      },
+      {
+        "id": "sovereign_risk_premium",
+        "name": "Sovereign risk premium",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 32
+      },
+      {
+        "id": "nonresident_holdings",
+        "name": "Nonresident holdings",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 28
+      },
+      {
+        "id": "capital_outflow_rate",
+        "name": "Capital outflow rate",
+        "kind": "flow",
+        "AS": 30,
+        "PS": 28
+      },
+      {
+        "id": "sovereign_spread",
+        "name": "Sovereign spread",
+        "kind": "stock",
+        "AS": 21,
+        "PS": 35
+      },
+      {
+        "id": "safe_haven_asset_demand",
+        "name": "Safe-haven asset demand",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 9
+      },
+      {
+        "id": "high_quality_bond_yield",
+        "name": "High-quality bond yield",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 15
+      },
+      {
+        "id": "exchange_rate_pressure",
+        "name": "Exchange rate pressure",
+        "kind": "environment",
+        "AS": 24,
+        "PS": 26
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "environment",
+        "AS": 16,
+        "PS": 19
+      },
+      {
+        "id": "bond_market_volatility",
+        "name": "Bond market volatility",
+        "kind": "environment",
+        "AS": 18,
+        "PS": 32
+      },
+      {
+        "id": "rating_change_expect",
+        "name": "Credit rating change expectation",
+        "kind": "perception",
+        "AS": 23,
+        "PS": 16
+      },
+      {
+        "id": "central_policy_expect",
+        "name": "Central bank policy expectations",
+        "kind": "perception",
+        "AS": 19,
+        "PS": 18
+      },
+      {
+        "id": "debt_rollover_risk",
+        "name": "Debt rollover risk",
+        "kind": "driver",
+        "AS": 23,
+        "PS": 25
+      }
+    ],
+    "edges": [
+      {
+        "source": "protest_intensity",
+        "target": "political_stability",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "protest_intensity",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "protest_intensity",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "protest_intensity",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "protest_intensity",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "protest_intensity",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "protest_intensity",
+        "target": "bond_market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "protest_intensity",
+        "target": "debt_rollover_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_stability",
+        "target": "protest_intensity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "political_stability",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_stability",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_stability",
+        "target": "nonresident_holdings",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_stability",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_stability",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_stability",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_stability",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_stability",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_stability",
+        "target": "rating_change_expect",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_stability",
+        "target": "debt_rollover_risk",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "sovereign_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "sovereign_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "nonresident_holdings",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "sovereign_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "rating_change_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_financing_need",
+        "target": "debt_rollover_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "sovereign_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "nonresident_holdings",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "sovereign_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "bond_market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "central_policy_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "debt_rollover_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "sovereign_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "nonresident_holdings",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "sovereign_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "rating_change_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "debt_rollover_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonresident_holdings",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonresident_holdings",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonresident_holdings",
+        "target": "capital_outflow_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "nonresident_holdings",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonresident_holdings",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nonresident_holdings",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nonresident_holdings",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "sovereign_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "sovereign_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "nonresident_holdings",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "sovereign_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "safe_haven_asset_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "high_quality_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "exchange_rate_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "bond_market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "central_policy_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_outflow_rate",
+        "target": "debt_rollover_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "sovereign_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "sovereign_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "nonresident_holdings",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "rating_change_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread",
+        "target": "debt_rollover_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_asset_demand",
+        "target": "nonresident_holdings",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_asset_demand",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_asset_demand",
+        "target": "high_quality_bond_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_asset_demand",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "high_quality_bond_yield",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "high_quality_bond_yield",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "fiscal_financing_need",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "nonresident_holdings",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "capital_outflow_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "central_policy_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "exchange_rate_pressure",
+        "target": "debt_rollover_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "nonresident_holdings",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "bond_market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "debt_rollover_risk",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "nonresident_holdings",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_market_volatility",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rating_change_expect",
+        "target": "sovereign_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rating_change_expect",
+        "target": "sovereign_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rating_change_expect",
+        "target": "nonresident_holdings",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rating_change_expect",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rating_change_expect",
+        "target": "sovereign_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rating_change_expect",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rating_change_expect",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rating_change_expect",
+        "target": "debt_rollover_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "central_policy_expect",
+        "target": "sovereign_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "central_policy_expect",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_policy_expect",
+        "target": "sovereign_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "central_policy_expect",
+        "target": "high_quality_bond_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "central_policy_expect",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_rollover_risk",
+        "target": "fiscal_financing_need",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_rollover_risk",
+        "target": "sovereign_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_rollover_risk",
+        "target": "sovereign_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_rollover_risk",
+        "target": "nonresident_holdings",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_rollover_risk",
+        "target": "capital_outflow_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_rollover_risk",
+        "target": "sovereign_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_rollover_risk",
+        "target": "exchange_rate_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_rollover_risk",
+        "target": "bond_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_rollover_risk",
+        "target": "rating_change_expect",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "saturday_mass_protest_2026_10_24",
+      "title": "Saturday mass protest (70,000 security forces mobilised)",
+      "description": "A large planned Saturday protest for which authorities mobilised 70,000 security personnel — likely to drive near-term unrest and market reaction.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-10-24",
+        "start": null,
+        "end": null,
+        "label": "on 2026-10-24"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "protest_intensity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "political_stability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "safe_haven_asset_demand",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“France to mobilise 70,000 security forces for Saturday protest” — scheduled large protest likely to spike unrest and market stress."
+    },
+    {
+      "id": "recurring_weekend_protests",
+      "title": "Recurring weekend protests",
+      "description": "Expectations of repeated weekend protests and business closures create an ongoing risk of sustained unrest and investor flight over coming weeks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-24",
+        "end": "2026-11-07",
+        "label": "2 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "protest_intensity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "political_stability",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nonresident_holdings",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "capital_outflow_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "safe_haven_asset_demand",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“French businesses, events to close with more weekend protests expected” — repeated weekends of disruption could sustain capital flight and market stress."
+    },
+    {
+      "id": "government_crackdown_measures",
+      "title": "Government tightening of protest curbs",
+      "description": "Macron's administration tightening curbs and banning some protests is an active policy process that may suppress or inflame unrest and market sentiment.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-24",
+        "end": "2026-11-07",
+        "label": "days–weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "protest_intensity",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "political_stability",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_risk_premium",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_market_volatility",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“Macron tightens curbs on protests” and “Macron warns some protests will be banned” — policy clampdown could stabilise or escalate unrest, unclear market impact."
+    },
+    {
+      "id": "continued_nonresident_selling",
+      "title": "Continued nonresident bond selling",
+      "description": "Foreign investors continuing to sell French/foreign bonds (e.g., Japanese outflows) could materially reduce nonresident holdings and widen funding stress.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-24",
+        "end": "2026-11-07",
+        "label": "2 weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "nonresident_holdings",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "capital_outflow_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_spread",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“France’s Debt Crisis Deepens as Foreign Investors Look for the Exit” and “Japanese investors sell foreign bonds for fifth straight week.”"
+    },
+    {
+      "id": "global_safe_haven_flows",
+      "title": "Sustained global safe‑haven flows into high‑quality bonds",
+      "description": "Risk-off driven by French turmoil and other shocks continues to boost demand for high‑quality bonds (US Treasuries, yen), pressuring global yields.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-24",
+        "end": "2026-11-07",
+        "label": "2 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "safe_haven_asset_demand",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "high_quality_bond_yield",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "capital_outflow_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple headlines: “Treasury Yields Fall as Investors Seek Safe Haven”, “U.S. 10-Year Treasury Yield Falls… as French Turmoil Fuels Flight for Safety.”"
+    },
+    {
+      "id": "bank_of_canada_rate_decision_2026_10_28",
+      "title": "Bank of Canada rate decision",
+      "description": "Reuters poll expects Bank of Canada rate rise on Oct 28; central‑bank moves and surprises will influence global policy expectations and benchmark yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-10-28",
+        "start": null,
+        "end": null,
+        "label": "2026-10-28"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "central_policy_expect",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "high_quality_bond_yield",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_haven_asset_demand",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“Bank of Canada to raise rates to 2.50% on October 28” — regional policy moves shift global rate expectations and benchmark yields."
+    },
+    {
+      "id": "eu_disinformation_probe",
+      "title": "EU probe of pro‑Kremlin disinformation",
+      "description": "An EU investigation into disinformation around the riots could amplify political tensions and narrative-driven market uncertainty.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-24",
+        "end": "2026-11-07",
+        "label": "days–weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "political_stability",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "protest_intensity",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_risk_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“EU probes pro-Kremlin disinformation around French riots” — disinformation probe could heighten tensions and uncertainty."
+    },
+    {
+      "id": "insurer_losses_and_claims",
+      "title": "Insurers' riot-related losses and claims",
+      "description": "Rising insurer claims from riots, described as 'like natural catastrophes', may force asset sales or reserve pressure, affecting bond market liquidity and spreads.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-24",
+        "end": "2026-11-21",
+        "label": "3–4 weeks"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yield",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Insurers face losses as riots in France become ‘like natural catastrophes’” — insurance sector pain could trigger asset reallocation and sales."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "recurring_weekend_protests",
+      "title": "Recurring weekend protests",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-10-24",
+      "end": "2026-11-07",
+      "probability": 0.85,
+      "impact_score": 407.0,
+      "expected_impact": 345.95,
+      "event_PS": 20.368,
+      "event_AS": 21.421,
+      "n_vars": 9,
+      "affected_ids": "protest_intensity, political_stability, sovereign_risk_premium, sovereign_bond_yield, nonresident_holdings, capital_outflow_rate, bond_market_volatility, bond_market_liquidity, safe_haven_asset_demand",
+      "rationale": "“French businesses, events to close with more weekend protests expected” — repeated weekends of disruption could sustain capital flight and market stress."
+    },
+    {
+      "id": "saturday_mass_protest_2026_10_24",
+      "title": "Saturday mass protest (70,000 security forces mobilised)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "on 2026-10-24",
+      "date": "2026-10-24",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 309.0,
+      "expected_impact": 293.55,
+      "event_PS": 18.333,
+      "event_AS": 20.6,
+      "n_vars": 7,
+      "affected_ids": "protest_intensity, political_stability, sovereign_bond_yield, sovereign_risk_premium, bond_market_volatility, bond_market_liquidity, safe_haven_asset_demand",
+      "rationale": "“France to mobilise 70,000 security forces for Saturday protest” — scheduled large protest likely to spike unrest and market stress."
+    },
+    {
+      "id": "continued_nonresident_selling",
+      "title": "Continued nonresident bond selling",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-10-24",
+      "end": "2026-11-07",
+      "probability": 0.7,
+      "impact_score": 305.0,
+      "expected_impact": 213.5,
+      "event_PS": 29.429,
+      "event_AS": 21.786,
+      "n_vars": 6,
+      "affected_ids": "nonresident_holdings, capital_outflow_rate, sovereign_bond_yield, sovereign_risk_premium, bond_market_liquidity, sovereign_spread",
+      "rationale": "“France’s Debt Crisis Deepens as Foreign Investors Look for the Exit” and “Japanese investors sell foreign bonds for fifth straight week.”"
+    },
+    {
+      "id": "global_safe_haven_flows",
+      "title": "Sustained global safe‑haven flows into high‑quality bonds",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2 weeks",
+      "date": null,
+      "start": "2026-10-24",
+      "end": "2026-11-07",
+      "probability": 0.8,
+      "impact_score": 210.0,
+      "expected_impact": 168.0,
+      "event_PS": 22.636,
+      "event_AS": 19.091,
+      "n_vars": 5,
+      "affected_ids": "safe_haven_asset_demand, high_quality_bond_yield, capital_outflow_rate, sovereign_bond_yield, sovereign_risk_premium",
+      "rationale": "Multiple headlines: “Treasury Yields Fall as Investors Seek Safe Haven”, “U.S. 10-Year Treasury Yield Falls… as French Turmoil Fuels Flight for Safety.”"
+    },
+    {
+      "id": "government_crackdown_measures",
+      "title": "Government tightening of protest curbs",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–weeks",
+      "date": null,
+      "start": "2026-10-24",
+      "end": "2026-11-07",
+      "probability": 0.8,
+      "impact_score": 162.0,
+      "expected_impact": 129.6,
+      "event_PS": 16.0,
+      "event_AS": 23.143,
+      "n_vars": 4,
+      "affected_ids": "protest_intensity, political_stability, sovereign_risk_premium, bond_market_volatility",
+      "rationale": "“Macron tightens curbs on protests” and “Macron warns some protests will be banned” — policy clampdown could stabilise or escalate unrest, unclear market impact."
+    },
+    {
+      "id": "insurer_losses_and_claims",
+      "title": "Insurers' riot-related losses and claims",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3–4 weeks",
+      "date": null,
+      "start": "2026-10-24",
+      "end": "2026-11-21",
+      "probability": 0.5,
+      "impact_score": 94.0,
+      "expected_impact": 47.0,
+      "event_PS": 27.6,
+      "event_AS": 18.8,
+      "n_vars": 3,
+      "affected_ids": "bond_market_liquidity, sovereign_risk_premium, sovereign_bond_yield",
+      "rationale": "“Insurers face losses as riots in France become ‘like natural catastrophes’” — insurance sector pain could trigger asset reallocation and sales."
+    },
+    {
+      "id": "eu_disinformation_probe",
+      "title": "EU probe of pro‑Kremlin disinformation",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–weeks",
+      "date": null,
+      "start": "2026-10-24",
+      "end": "2026-11-07",
+      "probability": 0.6,
+      "impact_score": 72.0,
+      "expected_impact": 43.2,
+      "event_PS": 13.333,
+      "event_AS": 24.0,
+      "n_vars": 3,
+      "affected_ids": "political_stability, protest_intensity, sovereign_risk_premium",
+      "rationale": "“EU probes pro-Kremlin disinformation around French riots” — disinformation probe could heighten tensions and uncertainty."
+    },
+    {
+      "id": "bank_of_canada_rate_decision_2026_10_28",
+      "title": "Bank of Canada rate decision",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-10-28",
+      "date": "2026-10-28",
+      "start": null,
+      "end": null,
+      "probability": 0.9,
+      "impact_score": 64.0,
+      "expected_impact": 57.6,
+      "event_PS": 15.0,
+      "event_AS": 16.0,
+      "n_vars": 3,
+      "affected_ids": "central_policy_expect, high_quality_bond_yield, safe_haven_asset_demand",
+      "rationale": "“Bank of Canada to raise rates to 2.50% on October 28” — regional policy moves shift global rate expectations and benchmark yields."
+    }
+  ]
+}
