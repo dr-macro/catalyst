@@ -1,0 +1,1728 @@
+{
+  "label": "us_iran_standoff",
+  "as_of": "2026-10-25",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-25T01:20:43",
+  "system_description": {
+    "narrative_title": "Iran-war risk driving a global energy-price shock and regional escalation",
+    "narrative_summary": "News across the window coalesce around a single dynamic: heightened U.S.–Iran tensions and proxy attacks in the Gulf are disrupting shipping and energy flows, triggering sharp rises in oil and gas prices and prompting security, corporate and policy reactions. The situation functions as an open system with cross-cutting feedbacks — violence elevates transport risk and tanker rates, which raises energy prices and inflation, which in turn drives political pressure and military/diplomatic responses that can further escalate disruption. Markets, logistics, and state behavior continuously exchange information, capital and material flows, producing nonlinear and time-dependent outcomes (price spikes, rerouting, evacuations, alliance maneuvers).",
+    "scope": "Inside the system boundary: military and proxy actions involving Iran and Gulf actors; attacks on shipping and energy infrastructure (tankers, ports, undersea cables); oil and gas production, exports, tanker rates, insurance and logistics; commodity price formation (Brent, WTI, LNG contracts) and market responses; corporate impacts and supply-chain adjustments (airlines, manufacturers, refiners); diplomatic and security responses by the U.S., Gulf states and allies; near-term political catalysts (U.S. midterms, leadership maneuvering).",
+    "super_system": "Global geopolitical-economic system centered on energy security, international trade and financial markets",
+    "adjacent_subsystems": [
+      "Global commodities and financial markets (oil futures, equities, inflation expectations)",
+      "Maritime shipping, insurance and logistics (Strait of Hormuz traffic, tanker rates, rerouting)",
+      "Regional security architectures and alliances (Gulf states, U.S. forces, proxy networks)",
+      "Energy infrastructure and supply chain (LNG contracts, storage, pipelines, undersea cables)"
+    ],
+    "evidence_headlines": [
+      "Oil prices approach Iran-war highs as soaring tanker rates trigger a second energy squeeze",
+      "U.S. oil holds above $100, Brent at five-month high as Iran says it’s prepared for warfare",
+      "Iran has detailed plans to hit Gulf undersea cables if war resumes, officials say",
+      "Ship attacks in Strait of Hormuz hit record high in October",
+      "Trump says US may do another military operation against Iran",
+      "Qatar deal to buy U.S. natural gas shows how Iran war has redrawn global energy markets"
+    ]
+  },
+  "variables": [
+    {
+      "id": "military_proxy_violence",
+      "name": "Military and proxy violence intensity",
+      "description": "Measures the intensity and frequency of armed clashes, strikes, and proxy actions in the region affecting security conditions.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_disruption",
+      "name": "Maritime shipping disruption",
+      "description": "Measures the degree of interruption to maritime transport and port operations, including route closures and transits delays.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "tanker_freight_rates",
+      "name": "Tanker freight rates",
+      "description": "Measures the prevailing cost per voyage or ton for oil and gas tankers, reflecting transport risk and capacity tightness.",
+      "kind": "flow",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "maritime_insurance_rate",
+      "name": "Maritime insurance premiums",
+      "description": "Measures the level of insurance premiums and war-risk surcharges for shipping and tankers operating in the region.",
+      "kind": "flow",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_price_level",
+      "name": "Energy price level",
+      "description": "Measures market prices for crude oil and natural gas aggregated into an overall energy-price index.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_gas_production_rate",
+      "name": "Oil and gas production rate",
+      "description": "Measures the rate of hydrocarbon extraction and processing output over time across the region.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "export_capacity",
+      "name": "Hydrocarbon export capacity",
+      "description": "Measures the available physical capacity to load and export oil and gas (terminals, pipelines, shipping tonnage) at a point in time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "undersea_vulnerability",
+      "name": "Undersea infrastructure vulnerability",
+      "description": "Measures susceptibility of undersea cables, pipelines and related infrastructure to disruption or attack.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_trade_flow_volume",
+      "name": "Energy trade flow volumes",
+      "description": "Measures the volumetric flows of oil and gas traded and shipped internationally through the region.",
+      "kind": "flow",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "supply_reroute_rate",
+      "name": "Supply-chain rerouting rate",
+      "description": "Measures the pace at which firms and logistics operators shift routes, suppliers, and transport modes in response to disruption.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "inflationary_pressure",
+      "name": "Inflationary pressure",
+      "description": "Measures upward pressure on consumer and producer price indices driven by energy and transport cost changes.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Market volatility and sentiment",
+      "description": "Measures financial market volatility and risk sentiment reflecting uncertainty about supply, prices and geopolitical risk.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diplomatic_pressure",
+      "name": "Diplomatic de‑escalation pressure",
+      "description": "Measures the level of diplomatic and political pressure toward negotiation, restraint or escalation among actors.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "military_readiness",
+      "name": "Military response readiness",
+      "description": "Measures the preparedness and posture of military forces and operational capacity to conduct strikes or defensive actions.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "air_travel_disruption",
+      "name": "Air travel disruption level",
+      "description": "Measures the extent of airline route cancellations, airspace closures, and increased fares due to regional risk.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "capital_flow_volatility",
+      "name": "Capital flow volatility",
+      "description": "Measures fluctuations in cross-border capital movements, hedging flows and portfolio reallocations in response to risk.",
+      "kind": "flow",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "military_proxy_violence",
+    "shipping_disruption",
+    "tanker_freight_rates",
+    "maritime_insurance_rate",
+    "energy_price_level",
+    "oil_gas_production_rate",
+    "export_capacity",
+    "undersea_vulnerability",
+    "energy_trade_flow_volume",
+    "supply_reroute_rate",
+    "inflationary_pressure",
+    "market_volatility",
+    "diplomatic_pressure",
+    "military_readiness",
+    "air_travel_disruption",
+    "capital_flow_volatility"
+  ],
+  "var_names": {
+    "military_proxy_violence": "Military and proxy violence intensity",
+    "shipping_disruption": "Maritime shipping disruption",
+    "tanker_freight_rates": "Tanker freight rates",
+    "maritime_insurance_rate": "Maritime insurance premiums",
+    "energy_price_level": "Energy price level",
+    "oil_gas_production_rate": "Oil and gas production rate",
+    "export_capacity": "Hydrocarbon export capacity",
+    "undersea_vulnerability": "Undersea infrastructure vulnerability",
+    "energy_trade_flow_volume": "Energy trade flow volumes",
+    "supply_reroute_rate": "Supply-chain rerouting rate",
+    "inflationary_pressure": "Inflationary pressure",
+    "market_volatility": "Market volatility and sentiment",
+    "diplomatic_pressure": "Diplomatic de‑escalation pressure",
+    "military_readiness": "Military response readiness",
+    "air_travel_disruption": "Air travel disruption level",
+    "capital_flow_volatility": "Capital flow volatility"
+  },
+  "impact_matrix": {
+    "military_proxy_violence": {
+      "military_proxy_violence": 0,
+      "shipping_disruption": 3,
+      "tanker_freight_rates": 2,
+      "maritime_insurance_rate": 3,
+      "energy_price_level": 3,
+      "oil_gas_production_rate": 2,
+      "export_capacity": 2,
+      "undersea_vulnerability": 2,
+      "energy_trade_flow_volume": 3,
+      "supply_reroute_rate": 3,
+      "inflationary_pressure": 1,
+      "market_volatility": 3,
+      "diplomatic_pressure": 3,
+      "military_readiness": 3,
+      "air_travel_disruption": 2,
+      "capital_flow_volatility": 3
+    },
+    "shipping_disruption": {
+      "military_proxy_violence": 1,
+      "shipping_disruption": 0,
+      "tanker_freight_rates": 3,
+      "maritime_insurance_rate": 3,
+      "energy_price_level": 3,
+      "oil_gas_production_rate": 1,
+      "export_capacity": 2,
+      "undersea_vulnerability": 1,
+      "energy_trade_flow_volume": 3,
+      "supply_reroute_rate": 3,
+      "inflationary_pressure": 1,
+      "market_volatility": 2,
+      "diplomatic_pressure": 1,
+      "military_readiness": 1,
+      "air_travel_disruption": 1,
+      "capital_flow_volatility": 2
+    },
+    "tanker_freight_rates": {
+      "military_proxy_violence": 0,
+      "shipping_disruption": 1,
+      "tanker_freight_rates": 0,
+      "maritime_insurance_rate": 1,
+      "energy_price_level": 2,
+      "oil_gas_production_rate": 0,
+      "export_capacity": 1,
+      "undersea_vulnerability": 0,
+      "energy_trade_flow_volume": 2,
+      "supply_reroute_rate": 2,
+      "inflationary_pressure": 1,
+      "market_volatility": 2,
+      "diplomatic_pressure": 0,
+      "military_readiness": 0,
+      "air_travel_disruption": 0,
+      "capital_flow_volatility": 2
+    },
+    "maritime_insurance_rate": {
+      "military_proxy_violence": 0,
+      "shipping_disruption": 2,
+      "tanker_freight_rates": 2,
+      "maritime_insurance_rate": 0,
+      "energy_price_level": 2,
+      "oil_gas_production_rate": 0,
+      "export_capacity": 1,
+      "undersea_vulnerability": 1,
+      "energy_trade_flow_volume": 2,
+      "supply_reroute_rate": 3,
+      "inflationary_pressure": 1,
+      "market_volatility": 2,
+      "diplomatic_pressure": 1,
+      "military_readiness": 0,
+      "air_travel_disruption": 1,
+      "capital_flow_volatility": 1
+    },
+    "energy_price_level": {
+      "military_proxy_violence": 0,
+      "shipping_disruption": 0,
+      "tanker_freight_rates": 1,
+      "maritime_insurance_rate": 0,
+      "energy_price_level": 0,
+      "oil_gas_production_rate": 1,
+      "export_capacity": 0,
+      "undersea_vulnerability": 0,
+      "energy_trade_flow_volume": 1,
+      "supply_reroute_rate": 1,
+      "inflationary_pressure": 3,
+      "market_volatility": 3,
+      "diplomatic_pressure": 1,
+      "military_readiness": 0,
+      "air_travel_disruption": 0,
+      "capital_flow_volatility": 2
+    },
+    "oil_gas_production_rate": {
+      "military_proxy_violence": 0,
+      "shipping_disruption": 0,
+      "tanker_freight_rates": 0,
+      "maritime_insurance_rate": 0,
+      "energy_price_level": 3,
+      "oil_gas_production_rate": 0,
+      "export_capacity": 3,
+      "undersea_vulnerability": 0,
+      "energy_trade_flow_volume": 3,
+      "supply_reroute_rate": 1,
+      "inflationary_pressure": 2,
+      "market_volatility": 2,
+      "diplomatic_pressure": 1,
+      "military_readiness": 0,
+      "air_travel_disruption": 0,
+      "capital_flow_volatility": 1
+    },
+    "export_capacity": {
+      "military_proxy_violence": 0,
+      "shipping_disruption": 1,
+      "tanker_freight_rates": 1,
+      "maritime_insurance_rate": 1,
+      "energy_price_level": 3,
+      "oil_gas_production_rate": 1,
+      "export_capacity": 0,
+      "undersea_vulnerability": 1,
+      "energy_trade_flow_volume": 3,
+      "supply_reroute_rate": 2,
+      "inflationary_pressure": 2,
+      "market_volatility": 2,
+      "diplomatic_pressure": 1,
+      "military_readiness": 0,
+      "air_travel_disruption": 0,
+      "capital_flow_volatility": 1
+    },
+    "undersea_vulnerability": {
+      "military_proxy_violence": 1,
+      "shipping_disruption": 2,
+      "tanker_freight_rates": 1,
+      "maritime_insurance_rate": 2,
+      "energy_price_level": 2,
+      "oil_gas_production_rate": 2,
+      "export_capacity": 2,
+      "undersea_vulnerability": 0,
+      "energy_trade_flow_volume": 2,
+      "supply_reroute_rate": 2,
+      "inflationary_pressure": 1,
+      "market_volatility": 2,
+      "diplomatic_pressure": 2,
+      "military_readiness": 1,
+      "air_travel_disruption": 0,
+      "capital_flow_volatility": 1
+    },
+    "energy_trade_flow_volume": {
+      "military_proxy_violence": 0,
+      "shipping_disruption": 1,
+      "tanker_freight_rates": 1,
+      "maritime_insurance_rate": 0,
+      "energy_price_level": 3,
+      "oil_gas_production_rate": 0,
+      "export_capacity": 1,
+      "undersea_vulnerability": 0,
+      "energy_trade_flow_volume": 0,
+      "supply_reroute_rate": 2,
+      "inflationary_pressure": 2,
+      "market_volatility": 2,
+      "diplomatic_pressure": 1,
+      "military_readiness": 0,
+      "air_travel_disruption": 0,
+      "capital_flow_volatility": 1
+    },
+    "supply_reroute_rate": {
+      "military_proxy_violence": 0,
+      "shipping_disruption": 1,
+      "tanker_freight_rates": 2,
+      "maritime_insurance_rate": 1,
+      "energy_price_level": 2,
+      "oil_gas_production_rate": 0,
+      "export_capacity": 1,
+      "undersea_vulnerability": 0,
+      "energy_trade_flow_volume": 2,
+      "supply_reroute_rate": 0,
+      "inflationary_pressure": 1,
+      "market_volatility": 1,
+      "diplomatic_pressure": 0,
+      "military_readiness": 0,
+      "air_travel_disruption": 0,
+      "capital_flow_volatility": 1
+    },
+    "inflationary_pressure": {
+      "military_proxy_violence": 0,
+      "shipping_disruption": 0,
+      "tanker_freight_rates": 0,
+      "maritime_insurance_rate": 0,
+      "energy_price_level": 0,
+      "oil_gas_production_rate": 0,
+      "export_capacity": 0,
+      "undersea_vulnerability": 0,
+      "energy_trade_flow_volume": 0,
+      "supply_reroute_rate": 0,
+      "inflationary_pressure": 0,
+      "market_volatility": 2,
+      "diplomatic_pressure": 0,
+      "military_readiness": 0,
+      "air_travel_disruption": 0,
+      "capital_flow_volatility": 2
+    },
+    "market_volatility": {
+      "military_proxy_violence": 1,
+      "shipping_disruption": 1,
+      "tanker_freight_rates": 1,
+      "maritime_insurance_rate": 1,
+      "energy_price_level": 2,
+      "oil_gas_production_rate": 0,
+      "export_capacity": 0,
+      "undersea_vulnerability": 0,
+      "energy_trade_flow_volume": 1,
+      "supply_reroute_rate": 1,
+      "inflationary_pressure": 1,
+      "market_volatility": 0,
+      "diplomatic_pressure": 1,
+      "military_readiness": 0,
+      "air_travel_disruption": 0,
+      "capital_flow_volatility": 3
+    },
+    "diplomatic_pressure": {
+      "military_proxy_violence": 2,
+      "shipping_disruption": 1,
+      "tanker_freight_rates": 1,
+      "maritime_insurance_rate": 1,
+      "energy_price_level": 1,
+      "oil_gas_production_rate": 0,
+      "export_capacity": 1,
+      "undersea_vulnerability": 1,
+      "energy_trade_flow_volume": 1,
+      "supply_reroute_rate": 1,
+      "inflationary_pressure": 0,
+      "market_volatility": 1,
+      "diplomatic_pressure": 0,
+      "military_readiness": 1,
+      "air_travel_disruption": 1,
+      "capital_flow_volatility": 1
+    },
+    "military_readiness": {
+      "military_proxy_violence": 2,
+      "shipping_disruption": 1,
+      "tanker_freight_rates": 2,
+      "maritime_insurance_rate": 2,
+      "energy_price_level": 2,
+      "oil_gas_production_rate": 0,
+      "export_capacity": 1,
+      "undersea_vulnerability": 1,
+      "energy_trade_flow_volume": 1,
+      "supply_reroute_rate": 1,
+      "inflationary_pressure": 0,
+      "market_volatility": 2,
+      "diplomatic_pressure": 1,
+      "military_readiness": 0,
+      "air_travel_disruption": 2,
+      "capital_flow_volatility": 2
+    },
+    "air_travel_disruption": {
+      "military_proxy_violence": 0,
+      "shipping_disruption": 0,
+      "tanker_freight_rates": 0,
+      "maritime_insurance_rate": 1,
+      "energy_price_level": 0,
+      "oil_gas_production_rate": 0,
+      "export_capacity": 0,
+      "undersea_vulnerability": 0,
+      "energy_trade_flow_volume": 0,
+      "supply_reroute_rate": 0,
+      "inflationary_pressure": 0,
+      "market_volatility": 1,
+      "diplomatic_pressure": 1,
+      "military_readiness": 1,
+      "air_travel_disruption": 0,
+      "capital_flow_volatility": 1
+    },
+    "capital_flow_volatility": {
+      "military_proxy_violence": 1,
+      "shipping_disruption": 1,
+      "tanker_freight_rates": 1,
+      "maritime_insurance_rate": 1,
+      "energy_price_level": 1,
+      "oil_gas_production_rate": 0,
+      "export_capacity": 0,
+      "undersea_vulnerability": 0,
+      "energy_trade_flow_volume": 0,
+      "supply_reroute_rate": 0,
+      "inflationary_pressure": 1,
+      "market_volatility": 3,
+      "diplomatic_pressure": 0,
+      "military_readiness": 0,
+      "air_travel_disruption": 0,
+      "capital_flow_volatility": 0
+    }
+  },
+  "AS": {
+    "military_proxy_violence": 38,
+    "shipping_disruption": 28,
+    "tanker_freight_rates": 14,
+    "maritime_insurance_rate": 19,
+    "energy_price_level": 13,
+    "oil_gas_production_rate": 16,
+    "export_capacity": 19,
+    "undersea_vulnerability": 23,
+    "energy_trade_flow_volume": 14,
+    "supply_reroute_rate": 12,
+    "inflationary_pressure": 4,
+    "market_volatility": 13,
+    "diplomatic_pressure": 14,
+    "military_readiness": 20,
+    "air_travel_disruption": 5,
+    "capital_flow_volatility": 9
+  },
+  "PS": {
+    "military_proxy_violence": 8,
+    "shipping_disruption": 15,
+    "tanker_freight_rates": 18,
+    "maritime_insurance_rate": 17,
+    "energy_price_level": 29,
+    "oil_gas_production_rate": 7,
+    "export_capacity": 15,
+    "undersea_vulnerability": 7,
+    "energy_trade_flow_volume": 24,
+    "supply_reroute_rate": 22,
+    "inflationary_pressure": 17,
+    "market_volatility": 30,
+    "diplomatic_pressure": 14,
+    "military_readiness": 7,
+    "air_travel_disruption": 7,
+    "capital_flow_volatility": 24
+  },
+  "med_AS": 14.0,
+  "med_PS": 16.0,
+  "roles": [
+    {
+      "variable": "shipping_disruption",
+      "name": "Maritime shipping disruption",
+      "AS": 28,
+      "PS": 15,
+      "Q=AS/PS": 1.87,
+      "P=AS*PS": 420,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Market volatility and sentiment",
+      "AS": 13,
+      "PS": 30,
+      "Q=AS/PS": 0.43,
+      "P=AS*PS": 390,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "energy_price_level",
+      "name": "Energy price level",
+      "AS": 13,
+      "PS": 29,
+      "Q=AS/PS": 0.45,
+      "P=AS*PS": 377,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "energy_trade_flow_volume",
+      "name": "Energy trade flow volumes",
+      "AS": 14,
+      "PS": 24,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 336,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "maritime_insurance_rate",
+      "name": "Maritime insurance premiums",
+      "AS": 19,
+      "PS": 17,
+      "Q=AS/PS": 1.12,
+      "P=AS*PS": 323,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "military_proxy_violence",
+      "name": "Military and proxy violence intensity",
+      "AS": 38,
+      "PS": 8,
+      "Q=AS/PS": 4.75,
+      "P=AS*PS": 304,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "export_capacity",
+      "name": "Hydrocarbon export capacity",
+      "AS": 19,
+      "PS": 15,
+      "Q=AS/PS": 1.27,
+      "P=AS*PS": 285,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "supply_reroute_rate",
+      "name": "Supply-chain rerouting rate",
+      "AS": 12,
+      "PS": 22,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 264,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "tanker_freight_rates",
+      "name": "Tanker freight rates",
+      "AS": 14,
+      "PS": 18,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 252,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "capital_flow_volatility",
+      "name": "Capital flow volatility",
+      "AS": 9,
+      "PS": 24,
+      "Q=AS/PS": 0.38,
+      "P=AS*PS": 216,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "diplomatic_pressure",
+      "name": "Diplomatic de‑escalation pressure",
+      "AS": 14,
+      "PS": 14,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 196,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "undersea_vulnerability",
+      "name": "Undersea infrastructure vulnerability",
+      "AS": 23,
+      "PS": 7,
+      "Q=AS/PS": 3.29,
+      "P=AS*PS": 161,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "military_readiness",
+      "name": "Military response readiness",
+      "AS": 20,
+      "PS": 7,
+      "Q=AS/PS": 2.86,
+      "P=AS*PS": 140,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "oil_gas_production_rate",
+      "name": "Oil and gas production rate",
+      "AS": 16,
+      "PS": 7,
+      "Q=AS/PS": 2.29,
+      "P=AS*PS": 112,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflationary_pressure",
+      "name": "Inflationary pressure",
+      "AS": 4,
+      "PS": 17,
+      "Q=AS/PS": 0.24,
+      "P=AS*PS": 68,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "air_travel_disruption",
+      "name": "Air travel disruption level",
+      "AS": 5,
+      "PS": 7,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 35,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "military_proxy_violence",
+        "name": "Military and proxy violence intensity",
+        "kind": "driver",
+        "AS": 38,
+        "PS": 8
+      },
+      {
+        "id": "shipping_disruption",
+        "name": "Maritime shipping disruption",
+        "kind": "environment",
+        "AS": 28,
+        "PS": 15
+      },
+      {
+        "id": "tanker_freight_rates",
+        "name": "Tanker freight rates",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 18
+      },
+      {
+        "id": "maritime_insurance_rate",
+        "name": "Maritime insurance premiums",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 17
+      },
+      {
+        "id": "energy_price_level",
+        "name": "Energy price level",
+        "kind": "driver",
+        "AS": 13,
+        "PS": 29
+      },
+      {
+        "id": "oil_gas_production_rate",
+        "name": "Oil and gas production rate",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 7
+      },
+      {
+        "id": "export_capacity",
+        "name": "Hydrocarbon export capacity",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 15
+      },
+      {
+        "id": "undersea_vulnerability",
+        "name": "Undersea infrastructure vulnerability",
+        "kind": "environment",
+        "AS": 23,
+        "PS": 7
+      },
+      {
+        "id": "energy_trade_flow_volume",
+        "name": "Energy trade flow volumes",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 24
+      },
+      {
+        "id": "supply_reroute_rate",
+        "name": "Supply-chain rerouting rate",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 22
+      },
+      {
+        "id": "inflationary_pressure",
+        "name": "Inflationary pressure",
+        "kind": "driver",
+        "AS": 4,
+        "PS": 17
+      },
+      {
+        "id": "market_volatility",
+        "name": "Market volatility and sentiment",
+        "kind": "perception",
+        "AS": 13,
+        "PS": 30
+      },
+      {
+        "id": "diplomatic_pressure",
+        "name": "Diplomatic de‑escalation pressure",
+        "kind": "perception",
+        "AS": 14,
+        "PS": 14
+      },
+      {
+        "id": "military_readiness",
+        "name": "Military response readiness",
+        "kind": "driver",
+        "AS": 20,
+        "PS": 7
+      },
+      {
+        "id": "air_travel_disruption",
+        "name": "Air travel disruption level",
+        "kind": "environment",
+        "AS": 5,
+        "PS": 7
+      },
+      {
+        "id": "capital_flow_volatility",
+        "name": "Capital flow volatility",
+        "kind": "flow",
+        "AS": 9,
+        "PS": 24
+      }
+    ],
+    "edges": [
+      {
+        "source": "military_proxy_violence",
+        "target": "shipping_disruption",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "tanker_freight_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "maritime_insurance_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "oil_gas_production_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "export_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "undersea_vulnerability",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "energy_trade_flow_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "supply_reroute_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "diplomatic_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "military_readiness",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "air_travel_disruption",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_proxy_violence",
+        "target": "capital_flow_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_disruption",
+        "target": "tanker_freight_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_disruption",
+        "target": "maritime_insurance_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_disruption",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_disruption",
+        "target": "export_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_disruption",
+        "target": "energy_trade_flow_volume",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_disruption",
+        "target": "supply_reroute_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_disruption",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_disruption",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rates",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rates",
+        "target": "energy_trade_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "tanker_freight_rates",
+        "target": "supply_reroute_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rates",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "tanker_freight_rates",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_insurance_rate",
+        "target": "shipping_disruption",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_insurance_rate",
+        "target": "tanker_freight_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_insurance_rate",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_insurance_rate",
+        "target": "energy_trade_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "maritime_insurance_rate",
+        "target": "supply_reroute_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "maritime_insurance_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "inflationary_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_gas_production_rate",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "oil_gas_production_rate",
+        "target": "export_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_gas_production_rate",
+        "target": "energy_trade_flow_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_gas_production_rate",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_gas_production_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_capacity",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "export_capacity",
+        "target": "energy_trade_flow_volume",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "export_capacity",
+        "target": "supply_reroute_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_capacity",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_capacity",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "undersea_vulnerability",
+        "target": "shipping_disruption",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "undersea_vulnerability",
+        "target": "maritime_insurance_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "undersea_vulnerability",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "undersea_vulnerability",
+        "target": "oil_gas_production_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "undersea_vulnerability",
+        "target": "export_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "undersea_vulnerability",
+        "target": "energy_trade_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "undersea_vulnerability",
+        "target": "supply_reroute_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "undersea_vulnerability",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "undersea_vulnerability",
+        "target": "diplomatic_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_trade_flow_volume",
+        "target": "energy_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "energy_trade_flow_volume",
+        "target": "supply_reroute_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_trade_flow_volume",
+        "target": "inflationary_pressure",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_trade_flow_volume",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "supply_reroute_rate",
+        "target": "tanker_freight_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_reroute_rate",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "supply_reroute_rate",
+        "target": "energy_trade_flow_volume",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflationary_pressure",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "capital_flow_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diplomatic_pressure",
+        "target": "military_proxy_violence",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "military_readiness",
+        "target": "military_proxy_violence",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_readiness",
+        "target": "tanker_freight_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_readiness",
+        "target": "maritime_insurance_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_readiness",
+        "target": "energy_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_readiness",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_readiness",
+        "target": "air_travel_disruption",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "military_readiness",
+        "target": "capital_flow_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "capital_flow_volatility",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_midterm_elections_2026",
+      "title": "U.S. midterm elections (2026)",
+      "description": "U.S. midterm vote likely alters Washington's Iran policy stance and market sentiment, affecting risk appetite and policy signaling toward the region.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-11-04",
+        "start": null,
+        "end": null,
+        "label": "Nov 4, 2026"
+      },
+      "probability": 0.99,
+      "affected": [
+        {
+          "variable_id": "market_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_pressure",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "military_readiness",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'Oil markets are on edge ahead of the weekend, as midterm elections near...' (2026-10-23)"
+    },
+    {
+      "id": "predicted_us_strikes_on_iran",
+      "title": "Fresh U.S. strikes on Iran (predicted)",
+      "description": "Predicted U.S. military operations against Iran would heighten regional violence and disrupt energy flows and shipping risk assessments.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-25",
+        "end": "2026-11-30",
+        "label": "2-6 weeks"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "military_proxy_violence",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_disruption",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_freight_rates",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_insurance_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "military_readiness",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_pressure",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Trump says US may do another military operation against Iran' and 'fresh U.S. strikes on Iran are predicted' (2026-10-23)"
+    },
+    {
+      "id": "continued_houthi_attacks_in_strait",
+      "title": "Continued Houthi attacks in Strait of Hormuz",
+      "description": "Persistent Houthi strikes on ships and regional targets sustain shipping risk, raise freight/insurance costs, and pressure energy markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-25",
+        "end": "2027-01-25",
+        "label": "weeks–months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "shipping_disruption",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_freight_rates",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_insurance_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "military_proxy_violence",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "air_travel_disruption",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Ship attacks in Strait of Hormuz hit record high in October' and 'Houthis say they targeted Saudi oil sites' (2026-10-23/10-25)"
+    },
+    {
+      "id": "iran_undersea_cables_targeting",
+      "title": "Threats to Gulf undersea cables/pipelines",
+      "description": "Iranian plans to target undersea cables/pipelines raise risk to seafloor infrastructure, threatening flows and lifting market risk premia.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-25",
+        "end": "2027-02-25",
+        "label": "1–4 months"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "undersea_vulnerability",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_trade_flow_volume",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "export_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "shipping_disruption",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Iran has detailed plans to hit Gulf undersea cables if war resumes' (2026-10-23)"
+    },
+    {
+      "id": "accelerated_supply_rerouting_by_importers",
+      "title": "Accelerated supply-chain rerouting by buyers",
+      "description": "Importers and traders increasingly reroute LNG/oil purchases (delivered basis, alternative suppliers), reshaping flows and reducing regional transit volumes.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-25",
+        "end": "2027-03-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "supply_reroute_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_trade_flow_volume",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "tanker_freight_rates",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Qatar deal to buy U.S. natural gas...' and 'Freight discounts prompt India's HPCL to buy oil on delivered basis' (2026-10-23)"
+    },
+    {
+      "id": "attacks_on_gulf_oil_sites_by_houthis",
+      "title": "Direct attacks on Gulf oil facilities",
+      "description": "New strikes on oil facilities or terminals in the Gulf would cut production/export capacity and spike prices and transport risk premiums.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-25",
+        "end": "2026-11-30",
+        "label": "days–weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "oil_gas_production_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "export_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "tanker_freight_rates",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_insurance_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "military_proxy_violence",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Houthis say they targeted Saudi oil sites; attacks reported in Aden' and 'Oil prices jump $3 on Houthi attacks' (2026-10-25/10-24)"
+    },
+    {
+      "id": "spike_in_tanker_freight_and_insurance_rates",
+      "title": "Sustained spike in tanker freight and marine insurance",
+      "description": "Market reaction to regional risk pushes tanker freight and war-risk insurance sharply higher, amplifying energy price pressures.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-25",
+        "end": "2027-01-25",
+        "label": "weeks–months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "tanker_freight_rates",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "maritime_insurance_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_disruption",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "supply_reroute_rate",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'soaring tanker rates trigger a second energy squeeze', 'Oil prices approach Iran-war highs' (2026-10-23)"
+    },
+    {
+      "id": "evacuations_and_embassy_security_escalation",
+      "title": "Further evacuations and embassy security escalations",
+      "description": "Continued evacuations and tightened embassy security raise short-term operational risk and influence investor sentiment and capital flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-25",
+        "end": "2027-01-25",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "military_readiness",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diplomatic_pressure",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "capital_flow_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "air_travel_disruption",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'American embassies tighten security...' and 'U.S. Evacuates Mideast Outposts After Suspected Iranian Plot' (2026-10-24/10-24)"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "predicted_us_strikes_on_iran",
+      "title": "Fresh U.S. strikes on Iran (predicted)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-6 weeks",
+      "date": null,
+      "start": "2026-10-25",
+      "end": "2026-11-30",
+      "probability": 0.4,
+      "impact_score": 396.0,
+      "expected_impact": 158.4,
+      "event_PS": 15.526,
+      "event_AS": 20.842,
+      "n_vars": 7,
+      "affected_ids": "military_proxy_violence, shipping_disruption, tanker_freight_rates, maritime_insurance_rate, energy_price_level, military_readiness, diplomatic_pressure",
+      "rationale": "Headlines: 'Trump says US may do another military operation against Iran' and 'fresh U.S. strikes on Iran are predicted' (2026-10-23)"
+    },
+    {
+      "id": "continued_houthi_attacks_in_strait",
+      "title": "Continued Houthi attacks in Strait of Hormuz",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-25",
+      "end": "2027-01-25",
+      "probability": 0.85,
+      "impact_score": 295.0,
+      "expected_impact": 250.75,
+      "event_PS": 15.867,
+      "event_AS": 19.667,
+      "n_vars": 6,
+      "affected_ids": "shipping_disruption, tanker_freight_rates, maritime_insurance_rate, energy_price_level, military_proxy_violence, air_travel_disruption",
+      "rationale": "Headlines: 'Ship attacks in Strait of Hormuz hit record high in October' and 'Houthis say they targeted Saudi oil sites' (2026-10-23/10-25)"
+    },
+    {
+      "id": "attacks_on_gulf_oil_sites_by_houthis",
+      "title": "Direct attacks on Gulf oil facilities",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "days–weeks",
+      "date": null,
+      "start": "2026-10-25",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 251.0,
+      "expected_impact": 150.6,
+      "event_PS": 16.692,
+      "event_AS": 19.308,
+      "n_vars": 6,
+      "affected_ids": "oil_gas_production_rate, export_capacity, energy_price_level, tanker_freight_rates, maritime_insurance_rate, military_proxy_violence",
+      "rationale": "Headlines: 'Houthis say they targeted Saudi oil sites; attacks reported in Aden' and 'Oil prices jump $3 on Houthi attacks' (2026-10-25/10-24)"
+    },
+    {
+      "id": "spike_in_tanker_freight_and_insurance_rates",
+      "title": "Sustained spike in tanker freight and marine insurance",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-25",
+      "end": "2027-01-25",
+      "probability": 0.8,
+      "impact_score": 218.0,
+      "expected_impact": 174.4,
+      "event_PS": 20.462,
+      "event_AS": 16.769,
+      "n_vars": 5,
+      "affected_ids": "tanker_freight_rates, maritime_insurance_rate, energy_price_level, shipping_disruption, supply_reroute_rate",
+      "rationale": "Headlines: 'soaring tanker rates trigger a second energy squeeze', 'Oil prices approach Iran-war highs' (2026-10-23)"
+    },
+    {
+      "id": "iran_undersea_cables_targeting",
+      "title": "Threats to Gulf undersea cables/pipelines",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1–4 months",
+      "date": null,
+      "start": "2026-10-25",
+      "end": "2027-02-25",
+      "probability": 0.5,
+      "impact_score": 189.0,
+      "expected_impact": 94.5,
+      "event_PS": 17.4,
+      "event_AS": 18.9,
+      "n_vars": 5,
+      "affected_ids": "undersea_vulnerability, energy_trade_flow_volume, export_capacity, shipping_disruption, market_volatility",
+      "rationale": "Headline: 'Iran has detailed plans to hit Gulf undersea cables if war resumes' (2026-10-23)"
+    },
+    {
+      "id": "evacuations_and_embassy_security_escalation",
+      "title": "Further evacuations and embassy security escalations",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-25",
+      "end": "2027-01-25",
+      "probability": 0.7,
+      "impact_score": 117.0,
+      "expected_impact": 81.9,
+      "event_PS": 17.444,
+      "event_AS": 13.0,
+      "n_vars": 5,
+      "affected_ids": "military_readiness, diplomatic_pressure, capital_flow_volatility, market_volatility, air_travel_disruption",
+      "rationale": "Headlines: 'American embassies tighten security...' and 'U.S. Evacuates Mideast Outposts After Suspected Iranian Plot' (2026-10-24/10-24)"
+    },
+    {
+      "id": "us_midterm_elections_2026",
+      "title": "U.S. midterm elections (2026)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "Nov 4, 2026",
+      "date": "2026-11-04",
+      "start": null,
+      "end": null,
+      "probability": 0.99,
+      "impact_score": 107.0,
+      "expected_impact": 105.93,
+      "event_PS": 18.857,
+      "event_AS": 15.286,
+      "n_vars": 3,
+      "affected_ids": "market_volatility, diplomatic_pressure, military_readiness",
+      "rationale": "Headline: 'Oil markets are on edge ahead of the weekend, as midterm elections near...' (2026-10-23)"
+    },
+    {
+      "id": "accelerated_supply_rerouting_by_importers",
+      "title": "Accelerated supply-chain rerouting by buyers",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-10-25",
+      "end": "2027-03-31",
+      "probability": 0.75,
+      "impact_score": 104.0,
+      "expected_impact": 78.0,
+      "event_PS": 23.875,
+      "event_AS": 13.0,
+      "n_vars": 5,
+      "affected_ids": "supply_reroute_rate, energy_trade_flow_volume, tanker_freight_rates, energy_price_level, market_volatility",
+      "rationale": "Headlines: 'Qatar deal to buy U.S. natural gas...' and 'Freight discounts prompt India's HPCL to buy oil on delivered basis' (2026-10-23)"
+    }
+  ]
+}
