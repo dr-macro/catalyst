@@ -1,0 +1,2117 @@
+{
+  "label": "france_euro_bond_crisis",
+  "as_of": "2026-10-25",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-26T01:43:03",
+  "system_description": {
+    "narrative_title": "France's unrest and sovereign stress destabilize global bond markets",
+    "narrative_summary": "Widespread protests and political turmoil in France are raising sovereign-risk premia, driving French yields sharply higher and prompting ratings scrutiny. That domestic shock is transmitting through open financial channels to FX and global bond markets — investors pivot to perceived safe havens (US Treasuries, yen), creating volatility and forcing reassessments by central banks and market participants. The system is open: domestic political events alter investor expectations and cross-border capital flows, which in turn feed back into funding costs, currency moves, and policy signaling across jurisdictions.",
+    "scope": "Within the boundary: French political stability and protest dynamics; France sovereign and corporate debt markets (yields, spreads, ratings reviews); investor flows into/out of French and eurozone debt; contagion effects on eurozone sovereigns; FX moves involving euro, yen, dollar; reactions in global bond markets and short-term central bank policy signaling.",
+    "super_system": "Global financial system and macroeconomic environment (cross-border capital markets, international monetary policy, global risk sentiment)",
+    "adjacent_subsystems": [
+      "Eurozone sovereign debt dynamics (Italy, Spain, peripheral spreads)",
+      "US Treasury market and dollar safe-haven flows",
+      "Foreign-exchange (EUR, JPY) and capital flows",
+      "Central bank policy decisions and global interest-rate expectations"
+    ],
+    "evidence_headlines": [
+      "France is flashing euro crisis signals. This time, the fault lines are different",
+      "France's borrowing costs hit 5% for first time since 2002",
+      "Hundreds of Thousands Protest Across France as Clashes Erupt in Paris",
+      "France's Debt Crisis Deepens as Foreign Investors Look for the Exit",
+      "U.S. 10-Year Treasury Yield Falls Under 5% as French Turmoil Fuels Flight for Safety",
+      "Treasury yields log biggest drop since the 2023 banking crisis. Here’s what’s going on."
+    ]
+  },
+  "variables": [
+    {
+      "id": "political_unrest",
+      "name": "Political unrest intensity",
+      "description": "Measures the scale, frequency, and severity of domestic protests and civil disturbances affecting public order.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_risk_premium",
+      "name": "Sovereign risk premium",
+      "description": "Measures the additional yield investors demand over a benchmark for holding a sovereign's debt, reflecting perceived default and political risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_bond_yield",
+      "name": "Sovereign bond yield level",
+      "description": "Level of long-term sovereign government bond yields as priced by markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_credit_spread",
+      "name": "Corporate credit spreads",
+      "description": "Average spread between corporate bond yields and comparable sovereign yields, capturing corporate credit risk and liquidity premia.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "description": "Net flow of capital moving across borders into or out of sovereign and corporate debt markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_demand",
+      "name": "Safe-haven asset demand",
+      "description": "Investor demand for assets perceived as safe that drives reallocations away from riskier holdings.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "major_fx_rates",
+      "name": "Major currency exchange rates",
+      "description": "Relative values and movements of major currencies against one another, reflecting capital flows and risk sentiment.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "global_bond_volatility",
+      "name": "Global bond market volatility",
+      "description": "Realized and implied volatility in global sovereign and corporate bond markets indicating uncertainty and price swings.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "description": "Market-implied expectations of future central bank policy rates across major jurisdictions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_rating_pressure",
+      "name": "Credit rating pressure",
+      "description": "Market-implied likelihood and upward/downward pressure on sovereign credit ratings and associated perceptions of creditworthiness.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "Depth and ease of executing trades in bond markets, reflected in bid-ask spreads, market depth, and trade impact.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_funding_sprea",
+      "name": "Short-term funding spreads",
+      "description": "Spreads and costs in short-term wholesale funding markets that determine banks' and intermediaries' borrowing costs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_aversion",
+      "name": "Investor risk aversion",
+      "description": "Degree to which investors prefer lower-risk assets, influencing demand across asset classes and premium levels.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "contagion_transmission",
+      "name": "Contagion transmission intensity",
+      "description": "Speed and intensity with which financial stress or risk perception spreads between sovereign debt markets and across borders.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "Difference between long-term and short-term sovereign yields, capturing term-premia and expectations about future rates and growth.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "portfolio_rebalancing_ra",
+      "name": "Portfolio rebalancing rate",
+      "description": "Rate at which investors adjust allocations between domestic and foreign bonds and between risk tiers in response to shocks.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "political_unrest",
+    "sovereign_risk_premium",
+    "sovereign_bond_yield",
+    "corporate_credit_spread",
+    "cross_border_flows",
+    "safe_haven_demand",
+    "major_fx_rates",
+    "global_bond_volatility",
+    "policy_rate_expectations",
+    "credit_rating_pressure",
+    "market_liquidity",
+    "short_term_funding_sprea",
+    "investor_risk_aversion",
+    "contagion_transmission",
+    "yield_curve_slope",
+    "portfolio_rebalancing_ra"
+  ],
+  "var_names": {
+    "political_unrest": "Political unrest intensity",
+    "sovereign_risk_premium": "Sovereign risk premium",
+    "sovereign_bond_yield": "Sovereign bond yield level",
+    "corporate_credit_spread": "Corporate credit spreads",
+    "cross_border_flows": "Cross-border capital flows",
+    "safe_haven_demand": "Safe-haven asset demand",
+    "major_fx_rates": "Major currency exchange rates",
+    "global_bond_volatility": "Global bond market volatility",
+    "policy_rate_expectations": "Policy rate expectations",
+    "credit_rating_pressure": "Credit rating pressure",
+    "market_liquidity": "Market liquidity",
+    "short_term_funding_sprea": "Short-term funding spreads",
+    "investor_risk_aversion": "Investor risk aversion",
+    "contagion_transmission": "Contagion transmission intensity",
+    "yield_curve_slope": "Yield curve slope",
+    "portfolio_rebalancing_ra": "Portfolio rebalancing rate"
+  },
+  "impact_matrix": {
+    "political_unrest": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 3,
+      "sovereign_bond_yield": 3,
+      "corporate_credit_spread": 2,
+      "cross_border_flows": 2,
+      "safe_haven_demand": 2,
+      "major_fx_rates": 2,
+      "global_bond_volatility": 2,
+      "policy_rate_expectations": 1,
+      "credit_rating_pressure": 2,
+      "market_liquidity": 1,
+      "short_term_funding_sprea": 1,
+      "investor_risk_aversion": 2,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 1,
+      "portfolio_rebalancing_ra": 2
+    },
+    "sovereign_risk_premium": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 0,
+      "sovereign_bond_yield": 3,
+      "corporate_credit_spread": 2,
+      "cross_border_flows": 2,
+      "safe_haven_demand": 2,
+      "major_fx_rates": 2,
+      "global_bond_volatility": 2,
+      "policy_rate_expectations": 1,
+      "credit_rating_pressure": 2,
+      "market_liquidity": 1,
+      "short_term_funding_sprea": 2,
+      "investor_risk_aversion": 1,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 2,
+      "portfolio_rebalancing_ra": 2
+    },
+    "sovereign_bond_yield": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 3,
+      "sovereign_bond_yield": 0,
+      "corporate_credit_spread": 2,
+      "cross_border_flows": 2,
+      "safe_haven_demand": 1,
+      "major_fx_rates": 2,
+      "global_bond_volatility": 2,
+      "policy_rate_expectations": 2,
+      "credit_rating_pressure": 1,
+      "market_liquidity": 1,
+      "short_term_funding_sprea": 1,
+      "investor_risk_aversion": 1,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 3,
+      "portfolio_rebalancing_ra": 2
+    },
+    "corporate_credit_spread": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 1,
+      "sovereign_bond_yield": 1,
+      "corporate_credit_spread": 0,
+      "cross_border_flows": 2,
+      "safe_haven_demand": 1,
+      "major_fx_rates": 1,
+      "global_bond_volatility": 2,
+      "policy_rate_expectations": 0,
+      "credit_rating_pressure": 1,
+      "market_liquidity": 2,
+      "short_term_funding_sprea": 2,
+      "investor_risk_aversion": 2,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 1,
+      "portfolio_rebalancing_ra": 2
+    },
+    "cross_border_flows": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 2,
+      "sovereign_bond_yield": 2,
+      "corporate_credit_spread": 2,
+      "cross_border_flows": 0,
+      "safe_haven_demand": 2,
+      "major_fx_rates": 3,
+      "global_bond_volatility": 2,
+      "policy_rate_expectations": 2,
+      "credit_rating_pressure": 0,
+      "market_liquidity": 2,
+      "short_term_funding_sprea": 2,
+      "investor_risk_aversion": 1,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 1,
+      "portfolio_rebalancing_ra": 2
+    },
+    "safe_haven_demand": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 2,
+      "sovereign_bond_yield": 2,
+      "corporate_credit_spread": 2,
+      "cross_border_flows": 3,
+      "safe_haven_demand": 0,
+      "major_fx_rates": 2,
+      "global_bond_volatility": 2,
+      "policy_rate_expectations": 1,
+      "credit_rating_pressure": 1,
+      "market_liquidity": 2,
+      "short_term_funding_sprea": 1,
+      "investor_risk_aversion": 1,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 1,
+      "portfolio_rebalancing_ra": 3
+    },
+    "major_fx_rates": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 2,
+      "sovereign_bond_yield": 2,
+      "corporate_credit_spread": 2,
+      "cross_border_flows": 3,
+      "safe_haven_demand": 2,
+      "major_fx_rates": 0,
+      "global_bond_volatility": 2,
+      "policy_rate_expectations": 2,
+      "credit_rating_pressure": 0,
+      "market_liquidity": 1,
+      "short_term_funding_sprea": 2,
+      "investor_risk_aversion": 1,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 1,
+      "portfolio_rebalancing_ra": 2
+    },
+    "global_bond_volatility": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 2,
+      "sovereign_bond_yield": 2,
+      "corporate_credit_spread": 2,
+      "cross_border_flows": 2,
+      "safe_haven_demand": 2,
+      "major_fx_rates": 2,
+      "global_bond_volatility": 0,
+      "policy_rate_expectations": 2,
+      "credit_rating_pressure": 1,
+      "market_liquidity": 2,
+      "short_term_funding_sprea": 2,
+      "investor_risk_aversion": 2,
+      "contagion_transmission": 3,
+      "yield_curve_slope": 1,
+      "portfolio_rebalancing_ra": 2
+    },
+    "policy_rate_expectations": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 2,
+      "sovereign_bond_yield": 3,
+      "corporate_credit_spread": 1,
+      "cross_border_flows": 2,
+      "safe_haven_demand": 1,
+      "major_fx_rates": 2,
+      "global_bond_volatility": 1,
+      "policy_rate_expectations": 0,
+      "credit_rating_pressure": 0,
+      "market_liquidity": 1,
+      "short_term_funding_sprea": 2,
+      "investor_risk_aversion": 1,
+      "contagion_transmission": 1,
+      "yield_curve_slope": 3,
+      "portfolio_rebalancing_ra": 2
+    },
+    "credit_rating_pressure": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 2,
+      "sovereign_bond_yield": 2,
+      "corporate_credit_spread": 1,
+      "cross_border_flows": 1,
+      "safe_haven_demand": 1,
+      "major_fx_rates": 1,
+      "global_bond_volatility": 1,
+      "policy_rate_expectations": 0,
+      "credit_rating_pressure": 0,
+      "market_liquidity": 1,
+      "short_term_funding_sprea": 2,
+      "investor_risk_aversion": 1,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 1,
+      "portfolio_rebalancing_ra": 1
+    },
+    "market_liquidity": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 2,
+      "sovereign_bond_yield": 2,
+      "corporate_credit_spread": 2,
+      "cross_border_flows": 1,
+      "safe_haven_demand": 1,
+      "major_fx_rates": 1,
+      "global_bond_volatility": 2,
+      "policy_rate_expectations": 0,
+      "credit_rating_pressure": 0,
+      "market_liquidity": 0,
+      "short_term_funding_sprea": 2,
+      "investor_risk_aversion": 1,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 1,
+      "portfolio_rebalancing_ra": 2
+    },
+    "short_term_funding_sprea": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 2,
+      "sovereign_bond_yield": 1,
+      "corporate_credit_spread": 2,
+      "cross_border_flows": 1,
+      "safe_haven_demand": 1,
+      "major_fx_rates": 1,
+      "global_bond_volatility": 1,
+      "policy_rate_expectations": 1,
+      "credit_rating_pressure": 1,
+      "market_liquidity": 2,
+      "short_term_funding_sprea": 0,
+      "investor_risk_aversion": 1,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 2,
+      "portfolio_rebalancing_ra": 1
+    },
+    "investor_risk_aversion": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 2,
+      "sovereign_bond_yield": 2,
+      "corporate_credit_spread": 3,
+      "cross_border_flows": 2,
+      "safe_haven_demand": 3,
+      "major_fx_rates": 2,
+      "global_bond_volatility": 2,
+      "policy_rate_expectations": 1,
+      "credit_rating_pressure": 0,
+      "market_liquidity": 2,
+      "short_term_funding_sprea": 2,
+      "investor_risk_aversion": 0,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 1,
+      "portfolio_rebalancing_ra": 3
+    },
+    "contagion_transmission": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 2,
+      "sovereign_bond_yield": 2,
+      "corporate_credit_spread": 2,
+      "cross_border_flows": 2,
+      "safe_haven_demand": 2,
+      "major_fx_rates": 2,
+      "global_bond_volatility": 3,
+      "policy_rate_expectations": 1,
+      "credit_rating_pressure": 2,
+      "market_liquidity": 2,
+      "short_term_funding_sprea": 2,
+      "investor_risk_aversion": 2,
+      "contagion_transmission": 0,
+      "yield_curve_slope": 1,
+      "portfolio_rebalancing_ra": 2
+    },
+    "yield_curve_slope": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 1,
+      "sovereign_bond_yield": 3,
+      "corporate_credit_spread": 1,
+      "cross_border_flows": 1,
+      "safe_haven_demand": 1,
+      "major_fx_rates": 1,
+      "global_bond_volatility": 1,
+      "policy_rate_expectations": 3,
+      "credit_rating_pressure": 0,
+      "market_liquidity": 0,
+      "short_term_funding_sprea": 2,
+      "investor_risk_aversion": 1,
+      "contagion_transmission": 1,
+      "yield_curve_slope": 0,
+      "portfolio_rebalancing_ra": 2
+    },
+    "portfolio_rebalancing_ra": {
+      "political_unrest": 0,
+      "sovereign_risk_premium": 2,
+      "sovereign_bond_yield": 2,
+      "corporate_credit_spread": 2,
+      "cross_border_flows": 3,
+      "safe_haven_demand": 2,
+      "major_fx_rates": 2,
+      "global_bond_volatility": 2,
+      "policy_rate_expectations": 1,
+      "credit_rating_pressure": 0,
+      "market_liquidity": 2,
+      "short_term_funding_sprea": 1,
+      "investor_risk_aversion": 1,
+      "contagion_transmission": 2,
+      "yield_curve_slope": 1,
+      "portfolio_rebalancing_ra": 0
+    }
+  },
+  "AS": {
+    "political_unrest": 28,
+    "sovereign_risk_premium": 26,
+    "sovereign_bond_yield": 25,
+    "corporate_credit_spread": 20,
+    "cross_border_flows": 25,
+    "safe_haven_demand": 25,
+    "major_fx_rates": 24,
+    "global_bond_volatility": 27,
+    "policy_rate_expectations": 22,
+    "credit_rating_pressure": 17,
+    "market_liquidity": 19,
+    "short_term_funding_sprea": 19,
+    "investor_risk_aversion": 27,
+    "contagion_transmission": 27,
+    "yield_curve_slope": 18,
+    "portfolio_rebalancing_ra": 23
+  },
+  "PS": {
+    "political_unrest": 0,
+    "sovereign_risk_premium": 30,
+    "sovereign_bond_yield": 32,
+    "corporate_credit_spread": 28,
+    "cross_border_flows": 29,
+    "safe_haven_demand": 24,
+    "major_fx_rates": 26,
+    "global_bond_volatility": 27,
+    "policy_rate_expectations": 18,
+    "credit_rating_pressure": 11,
+    "market_liquidity": 22,
+    "short_term_funding_sprea": 26,
+    "investor_risk_aversion": 19,
+    "contagion_transmission": 29,
+    "yield_curve_slope": 21,
+    "portfolio_rebalancing_ra": 30
+  },
+  "med_AS": 24.5,
+  "med_PS": 26.0,
+  "roles": [
+    {
+      "variable": "sovereign_bond_yield",
+      "name": "Sovereign bond yield level",
+      "AS": 25,
+      "PS": 32,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 800,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "contagion_transmission",
+      "name": "Contagion transmission intensity",
+      "AS": 27,
+      "PS": 29,
+      "Q=AS/PS": 0.93,
+      "P=AS*PS": 783,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "sovereign_risk_premium",
+      "name": "Sovereign risk premium",
+      "AS": 26,
+      "PS": 30,
+      "Q=AS/PS": 0.87,
+      "P=AS*PS": 780,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "global_bond_volatility",
+      "name": "Global bond market volatility",
+      "AS": 27,
+      "PS": 27,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 729,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross-border capital flows",
+      "AS": 25,
+      "PS": 29,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 725,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "portfolio_rebalancing_ra",
+      "name": "Portfolio rebalancing rate",
+      "AS": 23,
+      "PS": 30,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 690,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "major_fx_rates",
+      "name": "Major currency exchange rates",
+      "AS": 24,
+      "PS": 26,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 624,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "safe_haven_demand",
+      "name": "Safe-haven asset demand",
+      "AS": 25,
+      "PS": 24,
+      "Q=AS/PS": 1.04,
+      "P=AS*PS": 600,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "corporate_credit_spread",
+      "name": "Corporate credit spreads",
+      "AS": 20,
+      "PS": 28,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 560,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "investor_risk_aversion",
+      "name": "Investor risk aversion",
+      "AS": 27,
+      "PS": 19,
+      "Q=AS/PS": 1.42,
+      "P=AS*PS": 513,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "short_term_funding_sprea",
+      "name": "Short-term funding spreads",
+      "AS": 19,
+      "PS": 26,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 494,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 19,
+      "PS": 22,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 418,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "policy_rate_expectations",
+      "name": "Policy rate expectations",
+      "AS": 22,
+      "PS": 18,
+      "Q=AS/PS": 1.22,
+      "P=AS*PS": 396,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 18,
+      "PS": 21,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 378,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "credit_rating_pressure",
+      "name": "Credit rating pressure",
+      "AS": 17,
+      "PS": 11,
+      "Q=AS/PS": 1.55,
+      "P=AS*PS": 187,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "political_unrest",
+      "name": "Political unrest intensity",
+      "AS": 28,
+      "PS": 0,
+      "Q=AS/PS": 28000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "political_unrest",
+        "name": "Political unrest intensity",
+        "kind": "driver",
+        "AS": 28,
+        "PS": 0
+      },
+      {
+        "id": "sovereign_risk_premium",
+        "name": "Sovereign risk premium",
+        "kind": "stock",
+        "AS": 26,
+        "PS": 30
+      },
+      {
+        "id": "sovereign_bond_yield",
+        "name": "Sovereign bond yield level",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 32
+      },
+      {
+        "id": "corporate_credit_spread",
+        "name": "Corporate credit spreads",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 28
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 25,
+        "PS": 29
+      },
+      {
+        "id": "safe_haven_demand",
+        "name": "Safe-haven asset demand",
+        "kind": "flow",
+        "AS": 25,
+        "PS": 24
+      },
+      {
+        "id": "major_fx_rates",
+        "name": "Major currency exchange rates",
+        "kind": "stock",
+        "AS": 24,
+        "PS": 26
+      },
+      {
+        "id": "global_bond_volatility",
+        "name": "Global bond market volatility",
+        "kind": "stock",
+        "AS": 27,
+        "PS": 27
+      },
+      {
+        "id": "policy_rate_expectations",
+        "name": "Policy rate expectations",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 18
+      },
+      {
+        "id": "credit_rating_pressure",
+        "name": "Credit rating pressure",
+        "kind": "perception",
+        "AS": 17,
+        "PS": 11
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 22
+      },
+      {
+        "id": "short_term_funding_sprea",
+        "name": "Short-term funding spreads",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 26
+      },
+      {
+        "id": "investor_risk_aversion",
+        "name": "Investor risk aversion",
+        "kind": "perception",
+        "AS": 27,
+        "PS": 19
+      },
+      {
+        "id": "contagion_transmission",
+        "name": "Contagion transmission intensity",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 29
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 21
+      },
+      {
+        "id": "portfolio_rebalancing_ra",
+        "name": "Portfolio rebalancing rate",
+        "kind": "flow",
+        "AS": 23,
+        "PS": 30
+      }
+    ],
+    "edges": [
+      {
+        "source": "political_unrest",
+        "target": "sovereign_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "political_unrest",
+        "target": "sovereign_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "political_unrest",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_unrest",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_unrest",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_unrest",
+        "target": "major_fx_rates",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "political_unrest",
+        "target": "global_bond_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_unrest",
+        "target": "credit_rating_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_unrest",
+        "target": "investor_risk_aversion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_unrest",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_unrest",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "sovereign_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "major_fx_rates",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "global_bond_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "credit_rating_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "short_term_funding_sprea",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_risk_premium",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "sovereign_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "major_fx_rates",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "global_bond_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_bond_yield",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "global_bond_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "short_term_funding_sprea",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "investor_risk_aversion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_credit_spread",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "major_fx_rates",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "global_bond_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "short_term_funding_sprea",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "major_fx_rates",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "global_bond_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_demand",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "major_fx_rates",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "major_fx_rates",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "major_fx_rates",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "major_fx_rates",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "major_fx_rates",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "major_fx_rates",
+        "target": "global_bond_volatility",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "major_fx_rates",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "major_fx_rates",
+        "target": "short_term_funding_sprea",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "major_fx_rates",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "major_fx_rates",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "major_fx_rates",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "policy_rate_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "short_term_funding_sprea",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "investor_risk_aversion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "contagion_transmission",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_bond_volatility",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "sovereign_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "major_fx_rates",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "short_term_funding_sprea",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_rate_expectations",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_rating_pressure",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_rating_pressure",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_rating_pressure",
+        "target": "short_term_funding_sprea",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_rating_pressure",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "global_bond_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "short_term_funding_sprea",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_funding_sprea",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_funding_sprea",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_funding_sprea",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_funding_sprea",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_funding_sprea",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "corporate_credit_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "safe_haven_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "major_fx_rates",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "global_bond_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "short_term_funding_sprea",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_aversion",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "major_fx_rates",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "global_bond_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "credit_rating_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "short_term_funding_sprea",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "investor_risk_aversion",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "contagion_transmission",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "sovereign_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "policy_rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "short_term_funding_sprea",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "portfolio_rebalancing_ra",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "sovereign_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "sovereign_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "corporate_credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "safe_haven_demand",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "major_fx_rates",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "global_bond_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "portfolio_rebalancing_ra",
+        "target": "contagion_transmission",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "france_saturday_protests_2026_10_25",
+      "title": "Saturday mass protests with 70,000 police",
+      "description": "Nationwide demonstrations with a 70,000-security-force deployment expected on Saturday, likely to spike unrest and market attention.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-10-25",
+        "start": null,
+        "end": null,
+        "label": "on 2026-10-25"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "political_unrest",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_bond_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_aversion",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"France to mobilise 70,000 security forces for Saturday protest\"; \"Hundreds of Thousands Protest...\""
+    },
+    {
+      "id": "continued_weekly_protests_process",
+      "title": "Ongoing weekend protests and rally calls",
+      "description": "Protest groups are calling for more rallies; repeated mass demonstrations are likely to persist over coming weeks, sustaining instability.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-25",
+        "end": "2026-11-15",
+        "label": "2-3 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "political_unrest",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "contagion_transmission",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_aversion",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "\"French protest groups demand more rallies\"; \"France is looking ungovernable\""
+    },
+    {
+      "id": "central_bank_decisions_week",
+      "title": "Fed and other central bank decisions (week ahead)",
+      "description": "Multiple central-bank policy decisions and guidance in the coming week will shift rate expectations and global bond flows.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-26",
+        "end": "2026-10-31",
+        "label": "this week"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "sovereign_bond_yield",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "global_bond_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "\"Week Ahead for FX, Bonds: Decisions From Fed, Other Central Banks in Focus\"; \"Are Bonds Pricing in a Fed Policy Mistake?\""
+    },
+    {
+      "id": "bank_of_canada_oct28_rate_hike",
+      "title": "Bank of Canada expected rate hike (Oct 28)",
+      "description": "Polls expect the Bank of Canada to raise rates to 2.50% on Oct 28, which will nudge global rate expectations and yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-10-28",
+        "start": null,
+        "end": null,
+        "label": "2026-10-28"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "policy_rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yield",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_bond_volatility",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"POLL Bank of Canada to raise rates to 2.50% on October 28\""
+    },
+    {
+      "id": "treasury_auctions_and_supply",
+      "title": "Near-term US Treasury auctions and supply dynamics",
+      "description": "Scheduled Treasury supply and auction outcomes over the next fortnight will impact safe-haven flows, yields and liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-25",
+        "end": "2026-11-08",
+        "label": "next 2 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "sovereign_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_bond_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "portfolio_rebalancing_ra",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"Treasury Auctions Explained\"; \"Treasury Yields Fall as Investors Seek Safe Haven\""
+    },
+    {
+      "id": "eu_disinfo_probe_riots",
+      "title": "EU probe into pro‑Kremlin disinformation around riots",
+      "description": "An EU investigation into disinformation around French riots may amplify polarization and risk perception over coming weeks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-23",
+        "end": "2026-11-30",
+        "label": "weeks-months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "political_unrest",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "contagion_transmission",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_aversion",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_risk_premium",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_rating_pressure",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"EU probes pro-Kremlin disinformation around French riots\""
+    },
+    {
+      "id": "potential_ratings_actions_france",
+      "title": "Continued credit‑rating scrutiny of France",
+      "description": "Ongoing monitoring or future rating reviews by agencies could change market perceptions and sovereign premia within weeks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-25",
+        "end": "2026-11-30",
+        "label": "by end of month+"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "credit_rating_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_aversion",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"France is getting its credit rating reviewed\"; \"Unrest-hit France poised for Moody's ratings verdict\""
+    },
+    {
+      "id": "nfl_paris_event_disruption",
+      "title": "Paris NFL game amid unrest",
+      "description": "A high-profile NFL game in Paris could be disrupted or heightened by nearby demonstrations, attracting media and market attention.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-10-25",
+        "start": null,
+        "end": null,
+        "label": "on 2026-10-25"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "political_unrest",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "safe_haven_demand",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_bond_volatility",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "\"Paris NFL game set to kick off in calm atmosphere after fresh demonstrations\""
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "continued_weekly_protests_process",
+      "title": "Ongoing weekend protests and rally calls",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 weeks",
+      "date": null,
+      "start": "2026-10-25",
+      "end": "2026-11-15",
+      "probability": 0.85,
+      "impact_score": 413.0,
+      "expected_impact": 351.05,
+      "event_PS": 21.75,
+      "event_AS": 25.812,
+      "n_vars": 8,
+      "affected_ids": "political_unrest, sovereign_risk_premium, sovereign_bond_yield, contagion_transmission, investor_risk_aversion, cross_border_flows, safe_haven_demand, market_liquidity",
+      "rationale": "\"French protest groups demand more rallies\"; \"France is looking ungovernable\""
+    },
+    {
+      "id": "france_saturday_protests_2026_10_25",
+      "title": "Saturday mass protests with 70,000 police",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "on 2026-10-25",
+      "date": "2026-10-25",
+      "start": null,
+      "end": null,
+      "probability": 0.9,
+      "impact_score": 409.0,
+      "expected_impact": 368.1,
+      "event_PS": 20.938,
+      "event_AS": 25.562,
+      "n_vars": 7,
+      "affected_ids": "political_unrest, sovereign_risk_premium, sovereign_bond_yield, global_bond_volatility, safe_haven_demand, market_liquidity, investor_risk_aversion",
+      "rationale": "\"France to mobilise 70,000 security forces for Saturday protest\"; \"Hundreds of Thousands Protest...\""
+    },
+    {
+      "id": "treasury_auctions_and_supply",
+      "title": "Near-term US Treasury auctions and supply dynamics",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 weeks",
+      "date": null,
+      "start": "2026-10-25",
+      "end": "2026-11-08",
+      "probability": 0.8,
+      "impact_score": 288.0,
+      "expected_impact": 230.4,
+      "event_PS": 27.333,
+      "event_AS": 24.0,
+      "n_vars": 6,
+      "affected_ids": "sovereign_bond_yield, market_liquidity, cross_border_flows, safe_haven_demand, global_bond_volatility, portfolio_rebalancing_ra",
+      "rationale": "\"Treasury Auctions Explained\"; \"Treasury Yields Fall as Investors Seek Safe Haven\""
+    },
+    {
+      "id": "potential_ratings_actions_france",
+      "title": "Continued credit‑rating scrutiny of France",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of month+",
+      "date": null,
+      "start": "2026-10-25",
+      "end": "2026-11-30",
+      "probability": 0.5,
+      "impact_score": 257.0,
+      "expected_impact": 128.5,
+      "event_PS": 23.0,
+      "event_AS": 23.364,
+      "n_vars": 5,
+      "affected_ids": "credit_rating_pressure, sovereign_risk_premium, sovereign_bond_yield, cross_border_flows, investor_risk_aversion",
+      "rationale": "\"France is getting its credit rating reviewed\"; \"Unrest-hit France poised for Moody's ratings verdict\""
+    },
+    {
+      "id": "central_bank_decisions_week",
+      "title": "Fed and other central bank decisions (week ahead)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "this week",
+      "date": null,
+      "start": "2026-10-26",
+      "end": "2026-10-31",
+      "probability": 0.8,
+      "impact_score": 195.0,
+      "expected_impact": 156.0,
+      "event_PS": 25.125,
+      "event_AS": 24.375,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, sovereign_bond_yield, global_bond_volatility, cross_border_flows",
+      "rationale": "\"Week Ahead for FX, Bonds: Decisions From Fed, Other Central Banks in Focus\"; \"Are Bonds Pricing in a Fed Policy Mistake?\""
+    },
+    {
+      "id": "eu_disinfo_probe_riots",
+      "title": "EU probe into pro‑Kremlin disinformation around riots",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks-months",
+      "date": null,
+      "start": "2026-10-23",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 125.0,
+      "expected_impact": 75.0,
+      "event_PS": 17.8,
+      "event_AS": 25.0,
+      "n_vars": 5,
+      "affected_ids": "political_unrest, contagion_transmission, investor_risk_aversion, sovereign_risk_premium, credit_rating_pressure",
+      "rationale": "\"EU probes pro-Kremlin disinformation around French riots\""
+    },
+    {
+      "id": "bank_of_canada_oct28_rate_hike",
+      "title": "Bank of Canada expected rate hike (Oct 28)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-10-28",
+      "date": "2026-10-28",
+      "start": null,
+      "end": null,
+      "probability": 0.75,
+      "impact_score": 121.0,
+      "expected_impact": 90.75,
+      "event_PS": 24.8,
+      "event_AS": 24.2,
+      "n_vars": 4,
+      "affected_ids": "policy_rate_expectations, sovereign_bond_yield, global_bond_volatility, cross_border_flows",
+      "rationale": "\"POLL Bank of Canada to raise rates to 2.50% on October 28\""
+    },
+    {
+      "id": "nfl_paris_event_disruption",
+      "title": "Paris NFL game amid unrest",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "on 2026-10-25",
+      "date": "2026-10-25",
+      "start": null,
+      "end": null,
+      "probability": 0.4,
+      "impact_score": 99.0,
+      "expected_impact": 39.6,
+      "event_PS": 18.25,
+      "event_AS": 24.75,
+      "n_vars": 4,
+      "affected_ids": "political_unrest, market_liquidity, safe_haven_demand, global_bond_volatility",
+      "rationale": "\"Paris NFL game set to kick off in calm atmosphere after fresh demonstrations\""
+    }
+  ]
+}
