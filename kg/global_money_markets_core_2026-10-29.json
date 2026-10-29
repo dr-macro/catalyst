@@ -1,0 +1,1714 @@
+{
+  "label": "global_money_markets",
+  "as_of": "2026-10-29",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-10-29T05:04:26",
+  "system_description": {
+    "narrative_title": "Rate‑Pause Uncertainty and Market Ripples",
+    "narrative_summary": "Central banks — led by the U.S. Federal Reserve — are pausing rate hikes while signalling vigilance, producing uncertainty about the future path of monetary policy. That uncertainty is propagating through bond yields, gold and equity markets and coupling with corporate responses (cost cuts, buyouts, buybacks) as firms and investors reprice risk and returns. The interaction of policy guidance, inflation data and earnings news is the single dominant force shaping the headlines in this window.",
+    "scope": "Monetary policy decisions and guidance (primarily the Fed), short- and long-term interest rates and bond markets, safe-haven and commodity price responses (gold, oil), equity market movements (earnings-driven and sectoral), and corporate financial adjustments (buyouts, buybacks, cost cuts) that respond to changing financing and demand conditions.",
+    "super_system": "Global macro-financial system / global economy",
+    "adjacent_subsystems": [
+      "Technology sector and AI-driven productivity/cost dynamics",
+      "Corporate finance and labour markets (buyouts, layoffs, buybacks)",
+      "Sovereign debt and fiscal policy (government bond markets, ratings)",
+      "Commodity and safe-haven markets (oil, gold)"
+    ],
+    "evidence_headlines": [
+      "Fed holds rates steady despite concerns over inflation",
+      "Why the Fed Is Expected to Hold Rates Steady Despite a Case for Raising Them",
+      "Treasury Yields Little Changed, French Bonds Outperform",
+      "Gold rises as lower oil prices ease inflation fears ahead of Fed meeting",
+      "Microsoft offers buyouts to 60,000 staff",
+      "Fed to hit pause on rate hikes, but maybe not for long"
+    ]
+  },
+  "variables": [
+    {
+      "id": "short_term_policy_rate",
+      "name": "Short-term policy interest rate",
+      "description": "The prevailing central bank overnight/short-term policy interest rate that sets the immediate cost of policy-sensitive funding.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_guidance",
+      "name": "Monetary policy guidance intensity",
+      "description": "The degree, clarity and aggressiveness of forward guidance communicated about future monetary policy paths and conditionality.",
+      "kind": "driver",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "rate_expectations",
+      "name": "Market-implied rate expectations",
+      "description": "The market consensus or implied probability distribution for future short-term policy rates over various horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "description": "The difference between long- and short-term nominal interest rates capturing the term structure shape and its changes.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "long_term_interest_rates",
+      "name": "Long-term interest rate level",
+      "description": "The prevailing level of long-duration sovereign and benchmark interest rates that influence discounting and long-term financing costs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "description": "The ease, depth and cost of transacting in fixed-income markets as reflected in bid-ask spreads, depth and execution impact.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Market volatility",
+      "description": "The amplitude and frequency of price fluctuations across financial markets as measured by implied or realised volatility metrics.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "risk_premia",
+      "name": "Risk premia",
+      "description": "The additional expected return investors demand above risk-free rates to hold credit, equity and other risky assets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_rate",
+      "name": "Inflation rate",
+      "description": "The rate of change in the general price level of goods and services over time as measured by headline or core indices.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The expected path of future inflation embedded in surveys, market instruments and forecasting models.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_price_level",
+      "name": "Energy price level",
+      "description": "The prevailing price level of energy commodities (e.g., crude oil and related fuels) that feeds into costs and inflation.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_asset_price",
+      "name": "Safe-haven asset price level",
+      "description": "The price level of assets regarded as havens (e.g., precious metals or government bonds) that respond to risk and policy shifts.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corp_fin_responses",
+      "name": "Corporate financial responses",
+      "description": "The flow of corporate actions adjusting balance sheets and income (buybacks, restructurings, cost cuts, buyouts, dividend changes) in response to financing and demand conditions.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_leverage",
+      "name": "Corporate leverage",
+      "description": "The aggregated ratio of corporate debt to equity or cashflow indicating indebtedness and balance-sheet vulnerability across firms.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_profitability",
+      "name": "Corporate profitability and cash flow",
+      "description": "The level and trend of corporate operating profits and free cash flow that determine capacity for investment, payouts and deleveraging.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation",
+      "name": "Equity valuation level",
+      "description": "The average market valuation of equities (e.g., price multiples or discounted cash flow-implied levels) reflecting priced future earnings and risk premia.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "short_term_policy_rate",
+    "monetary_policy_guidance",
+    "rate_expectations",
+    "yield_curve_slope",
+    "long_term_interest_rates",
+    "bond_market_liquidity",
+    "market_volatility",
+    "risk_premia",
+    "inflation_rate",
+    "inflation_expectations",
+    "energy_price_level",
+    "safe_haven_asset_price",
+    "corp_fin_responses",
+    "corporate_leverage",
+    "corporate_profitability",
+    "equity_valuation"
+  ],
+  "var_names": {
+    "short_term_policy_rate": "Short-term policy interest rate",
+    "monetary_policy_guidance": "Monetary policy guidance intensity",
+    "rate_expectations": "Market-implied rate expectations",
+    "yield_curve_slope": "Yield curve slope",
+    "long_term_interest_rates": "Long-term interest rate level",
+    "bond_market_liquidity": "Bond market liquidity",
+    "market_volatility": "Market volatility",
+    "risk_premia": "Risk premia",
+    "inflation_rate": "Inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "energy_price_level": "Energy price level",
+    "safe_haven_asset_price": "Safe-haven asset price level",
+    "corp_fin_responses": "Corporate financial responses",
+    "corporate_leverage": "Corporate leverage",
+    "corporate_profitability": "Corporate profitability and cash flow",
+    "equity_valuation": "Equity valuation level"
+  },
+  "impact_matrix": {
+    "short_term_policy_rate": {
+      "short_term_policy_rate": 0,
+      "monetary_policy_guidance": 2,
+      "rate_expectations": 3,
+      "yield_curve_slope": 3,
+      "long_term_interest_rates": 2,
+      "bond_market_liquidity": 1,
+      "market_volatility": 2,
+      "risk_premia": 2,
+      "inflation_rate": 1,
+      "inflation_expectations": 2,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 2,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 1,
+      "corporate_profitability": 1,
+      "equity_valuation": 2
+    },
+    "monetary_policy_guidance": {
+      "short_term_policy_rate": 2,
+      "monetary_policy_guidance": 0,
+      "rate_expectations": 3,
+      "yield_curve_slope": 2,
+      "long_term_interest_rates": 2,
+      "bond_market_liquidity": 1,
+      "market_volatility": 2,
+      "risk_premia": 2,
+      "inflation_rate": 1,
+      "inflation_expectations": 3,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 2,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 1,
+      "corporate_profitability": 1,
+      "equity_valuation": 2
+    },
+    "rate_expectations": {
+      "short_term_policy_rate": 1,
+      "monetary_policy_guidance": 1,
+      "rate_expectations": 0,
+      "yield_curve_slope": 3,
+      "long_term_interest_rates": 3,
+      "bond_market_liquidity": 1,
+      "market_volatility": 2,
+      "risk_premia": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 2,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 2,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 1,
+      "corporate_profitability": 0,
+      "equity_valuation": 3
+    },
+    "yield_curve_slope": {
+      "short_term_policy_rate": 0,
+      "monetary_policy_guidance": 1,
+      "rate_expectations": 2,
+      "yield_curve_slope": 0,
+      "long_term_interest_rates": 3,
+      "bond_market_liquidity": 1,
+      "market_volatility": 1,
+      "risk_premia": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 1,
+      "corp_fin_responses": 1,
+      "corporate_leverage": 0,
+      "corporate_profitability": 0,
+      "equity_valuation": 2
+    },
+    "long_term_interest_rates": {
+      "short_term_policy_rate": 0,
+      "monetary_policy_guidance": 1,
+      "rate_expectations": 2,
+      "yield_curve_slope": 3,
+      "long_term_interest_rates": 0,
+      "bond_market_liquidity": 1,
+      "market_volatility": 2,
+      "risk_premia": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 2,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 1,
+      "corporate_profitability": 0,
+      "equity_valuation": 3
+    },
+    "bond_market_liquidity": {
+      "short_term_policy_rate": 0,
+      "monetary_policy_guidance": 1,
+      "rate_expectations": 1,
+      "yield_curve_slope": 1,
+      "long_term_interest_rates": 1,
+      "bond_market_liquidity": 0,
+      "market_volatility": 2,
+      "risk_premia": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 1,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 1,
+      "corporate_profitability": 1,
+      "equity_valuation": 1
+    },
+    "market_volatility": {
+      "short_term_policy_rate": 0,
+      "monetary_policy_guidance": 1,
+      "rate_expectations": 2,
+      "yield_curve_slope": 1,
+      "long_term_interest_rates": 1,
+      "bond_market_liquidity": 2,
+      "market_volatility": 0,
+      "risk_premia": 3,
+      "inflation_rate": 2,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 2,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 1,
+      "corporate_profitability": 0,
+      "equity_valuation": 2
+    },
+    "risk_premia": {
+      "short_term_policy_rate": 0,
+      "monetary_policy_guidance": 1,
+      "rate_expectations": 1,
+      "yield_curve_slope": 2,
+      "long_term_interest_rates": 2,
+      "bond_market_liquidity": 1,
+      "market_volatility": 2,
+      "risk_premia": 0,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 2,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 2,
+      "corporate_profitability": 1,
+      "equity_valuation": 3
+    },
+    "inflation_rate": {
+      "short_term_policy_rate": 3,
+      "monetary_policy_guidance": 2,
+      "rate_expectations": 3,
+      "yield_curve_slope": 2,
+      "long_term_interest_rates": 3,
+      "bond_market_liquidity": 0,
+      "market_volatility": 2,
+      "risk_premia": 2,
+      "inflation_rate": 0,
+      "inflation_expectations": 3,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 2,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 1,
+      "corporate_profitability": 2,
+      "equity_valuation": 2
+    },
+    "inflation_expectations": {
+      "short_term_policy_rate": 3,
+      "monetary_policy_guidance": 2,
+      "rate_expectations": 3,
+      "yield_curve_slope": 2,
+      "long_term_interest_rates": 2,
+      "bond_market_liquidity": 0,
+      "market_volatility": 2,
+      "risk_premia": 2,
+      "inflation_rate": 1,
+      "inflation_expectations": 0,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 2,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 1,
+      "corporate_profitability": 1,
+      "equity_valuation": 2
+    },
+    "energy_price_level": {
+      "short_term_policy_rate": 1,
+      "monetary_policy_guidance": 1,
+      "rate_expectations": 2,
+      "yield_curve_slope": 1,
+      "long_term_interest_rates": 1,
+      "bond_market_liquidity": 0,
+      "market_volatility": 1,
+      "risk_premia": 1,
+      "inflation_rate": 3,
+      "inflation_expectations": 2,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 1,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 0,
+      "corporate_profitability": 2,
+      "equity_valuation": 1
+    },
+    "safe_haven_asset_price": {
+      "short_term_policy_rate": 0,
+      "monetary_policy_guidance": 1,
+      "rate_expectations": 1,
+      "yield_curve_slope": 1,
+      "long_term_interest_rates": 1,
+      "bond_market_liquidity": 1,
+      "market_volatility": 1,
+      "risk_premia": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 0,
+      "corp_fin_responses": 1,
+      "corporate_leverage": 0,
+      "corporate_profitability": 0,
+      "equity_valuation": 1
+    },
+    "corp_fin_responses": {
+      "short_term_policy_rate": 0,
+      "monetary_policy_guidance": 0,
+      "rate_expectations": 0,
+      "yield_curve_slope": 0,
+      "long_term_interest_rates": 0,
+      "bond_market_liquidity": 1,
+      "market_volatility": 1,
+      "risk_premia": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 0,
+      "corp_fin_responses": 0,
+      "corporate_leverage": 3,
+      "corporate_profitability": 2,
+      "equity_valuation": 2
+    },
+    "corporate_leverage": {
+      "short_term_policy_rate": 0,
+      "monetary_policy_guidance": 0,
+      "rate_expectations": 0,
+      "yield_curve_slope": 0,
+      "long_term_interest_rates": 0,
+      "bond_market_liquidity": 0,
+      "market_volatility": 1,
+      "risk_premia": 2,
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 0,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 0,
+      "corporate_profitability": 0,
+      "equity_valuation": 1
+    },
+    "corporate_profitability": {
+      "short_term_policy_rate": 0,
+      "monetary_policy_guidance": 0,
+      "rate_expectations": 0,
+      "yield_curve_slope": 0,
+      "long_term_interest_rates": 0,
+      "bond_market_liquidity": 0,
+      "market_volatility": 0,
+      "risk_premia": 1,
+      "inflation_rate": 1,
+      "inflation_expectations": 1,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 0,
+      "corp_fin_responses": 3,
+      "corporate_leverage": 2,
+      "corporate_profitability": 0,
+      "equity_valuation": 3
+    },
+    "equity_valuation": {
+      "short_term_policy_rate": 0,
+      "monetary_policy_guidance": 0,
+      "rate_expectations": 0,
+      "yield_curve_slope": 0,
+      "long_term_interest_rates": 0,
+      "bond_market_liquidity": 1,
+      "market_volatility": 1,
+      "risk_premia": 1,
+      "inflation_rate": 0,
+      "inflation_expectations": 0,
+      "energy_price_level": 0,
+      "safe_haven_asset_price": 0,
+      "corp_fin_responses": 2,
+      "corporate_leverage": 1,
+      "corporate_profitability": 0,
+      "equity_valuation": 0
+    }
+  },
+  "AS": {
+    "short_term_policy_rate": 26,
+    "monetary_policy_guidance": 26,
+    "rate_expectations": 23,
+    "yield_curve_slope": 14,
+    "long_term_interest_rates": 20,
+    "bond_market_liquidity": 14,
+    "market_volatility": 20,
+    "risk_premia": 19,
+    "inflation_rate": 29,
+    "inflation_expectations": 25,
+    "energy_price_level": 19,
+    "safe_haven_asset_price": 9,
+    "corp_fin_responses": 10,
+    "corporate_leverage": 8,
+    "corporate_profitability": 11,
+    "equity_valuation": 6
+  },
+  "PS": {
+    "short_term_policy_rate": 10,
+    "monetary_policy_guidance": 14,
+    "rate_expectations": 23,
+    "yield_curve_slope": 21,
+    "long_term_interest_rates": 21,
+    "bond_market_liquidity": 11,
+    "market_volatility": 22,
+    "risk_premia": 25,
+    "inflation_rate": 10,
+    "inflation_expectations": 17,
+    "energy_price_level": 0,
+    "safe_haven_asset_price": 19,
+    "corp_fin_responses": 29,
+    "corporate_leverage": 16,
+    "corporate_profitability": 11,
+    "equity_valuation": 30
+  },
+  "med_AS": 19.0,
+  "med_PS": 18.0,
+  "roles": [
+    {
+      "variable": "rate_expectations",
+      "name": "Market-implied rate expectations",
+      "AS": 23,
+      "PS": 23,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 529,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "risk_premia",
+      "name": "Risk premia",
+      "AS": 19,
+      "PS": 25,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 475,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Market volatility",
+      "AS": 20,
+      "PS": 22,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 440,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 25,
+      "PS": 17,
+      "Q=AS/PS": 1.47,
+      "P=AS*PS": 425,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "long_term_interest_rates",
+      "name": "Long-term interest rate level",
+      "AS": 20,
+      "PS": 21,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 420,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "monetary_policy_guidance",
+      "name": "Monetary policy guidance intensity",
+      "AS": 26,
+      "PS": 14,
+      "Q=AS/PS": 1.86,
+      "P=AS*PS": 364,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "yield_curve_slope",
+      "name": "Yield curve slope",
+      "AS": 14,
+      "PS": 21,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 294,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "inflation_rate",
+      "name": "Inflation rate",
+      "AS": 29,
+      "PS": 10,
+      "Q=AS/PS": 2.9,
+      "P=AS*PS": 290,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "corp_fin_responses",
+      "name": "Corporate financial responses",
+      "AS": 10,
+      "PS": 29,
+      "Q=AS/PS": 0.34,
+      "P=AS*PS": 290,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "short_term_policy_rate",
+      "name": "Short-term policy interest rate",
+      "AS": 26,
+      "PS": 10,
+      "Q=AS/PS": 2.6,
+      "P=AS*PS": 260,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "equity_valuation",
+      "name": "Equity valuation level",
+      "AS": 6,
+      "PS": 30,
+      "Q=AS/PS": 0.2,
+      "P=AS*PS": 180,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "safe_haven_asset_price",
+      "name": "Safe-haven asset price level",
+      "AS": 9,
+      "PS": 19,
+      "Q=AS/PS": 0.47,
+      "P=AS*PS": 171,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "bond_market_liquidity",
+      "name": "Bond market liquidity",
+      "AS": 14,
+      "PS": 11,
+      "Q=AS/PS": 1.27,
+      "P=AS*PS": 154,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "corporate_leverage",
+      "name": "Corporate leverage",
+      "AS": 8,
+      "PS": 16,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 128,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "corporate_profitability",
+      "name": "Corporate profitability and cash flow",
+      "AS": 11,
+      "PS": 11,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 121,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "energy_price_level",
+      "name": "Energy price level",
+      "AS": 19,
+      "PS": 0,
+      "Q=AS/PS": 19000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "short_term_policy_rate",
+        "name": "Short-term policy interest rate",
+        "kind": "driver",
+        "AS": 26,
+        "PS": 10
+      },
+      {
+        "id": "monetary_policy_guidance",
+        "name": "Monetary policy guidance intensity",
+        "kind": "driver",
+        "AS": 26,
+        "PS": 14
+      },
+      {
+        "id": "rate_expectations",
+        "name": "Market-implied rate expectations",
+        "kind": "perception",
+        "AS": 23,
+        "PS": 23
+      },
+      {
+        "id": "yield_curve_slope",
+        "name": "Yield curve slope",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 21
+      },
+      {
+        "id": "long_term_interest_rates",
+        "name": "Long-term interest rate level",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 21
+      },
+      {
+        "id": "bond_market_liquidity",
+        "name": "Bond market liquidity",
+        "kind": "environment",
+        "AS": 14,
+        "PS": 11
+      },
+      {
+        "id": "market_volatility",
+        "name": "Market volatility",
+        "kind": "perception",
+        "AS": 20,
+        "PS": 22
+      },
+      {
+        "id": "risk_premia",
+        "name": "Risk premia",
+        "kind": "stock",
+        "AS": 19,
+        "PS": 25
+      },
+      {
+        "id": "inflation_rate",
+        "name": "Inflation rate",
+        "kind": "environment",
+        "AS": 29,
+        "PS": 10
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 25,
+        "PS": 17
+      },
+      {
+        "id": "energy_price_level",
+        "name": "Energy price level",
+        "kind": "environment",
+        "AS": 19,
+        "PS": 0
+      },
+      {
+        "id": "safe_haven_asset_price",
+        "name": "Safe-haven asset price level",
+        "kind": "environment",
+        "AS": 9,
+        "PS": 19
+      },
+      {
+        "id": "corp_fin_responses",
+        "name": "Corporate financial responses",
+        "kind": "flow",
+        "AS": 10,
+        "PS": 29
+      },
+      {
+        "id": "corporate_leverage",
+        "name": "Corporate leverage",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 16
+      },
+      {
+        "id": "corporate_profitability",
+        "name": "Corporate profitability and cash flow",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 11
+      },
+      {
+        "id": "equity_valuation",
+        "name": "Equity valuation level",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 30
+      }
+    ],
+    "edges": [
+      {
+        "source": "short_term_policy_rate",
+        "target": "monetary_policy_guidance",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "long_term_interest_rates",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "safe_haven_asset_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_policy_rate",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_guidance",
+        "target": "short_term_policy_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_guidance",
+        "target": "rate_expectations",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_guidance",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_guidance",
+        "target": "long_term_interest_rates",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_guidance",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_guidance",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_guidance",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_guidance",
+        "target": "safe_haven_asset_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_guidance",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_guidance",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "long_term_interest_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "safe_haven_asset_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_expectations",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "long_term_interest_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "yield_curve_slope",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_interest_rates",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_interest_rates",
+        "target": "yield_curve_slope",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_interest_rates",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_interest_rates",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_interest_rates",
+        "target": "safe_haven_asset_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_interest_rates",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_interest_rates",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_market_liquidity",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "market_volatility",
+        "target": "bond_market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "risk_premia",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "market_volatility",
+        "target": "safe_haven_asset_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premia",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia",
+        "target": "long_term_interest_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia",
+        "target": "safe_haven_asset_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "risk_premia",
+        "target": "corporate_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "risk_premia",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "short_term_policy_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "monetary_policy_guidance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "long_term_interest_rates",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "safe_haven_asset_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "corporate_profitability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_term_policy_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "monetary_policy_guidance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "rate_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "yield_curve_slope",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_interest_rates",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "safe_haven_asset_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "rate_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "corporate_profitability",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corp_fin_responses",
+        "target": "corporate_leverage",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "corp_fin_responses",
+        "target": "corporate_profitability",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corp_fin_responses",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "corporate_leverage",
+        "target": "risk_premia",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_leverage",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_profitability",
+        "target": "corp_fin_responses",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_profitability",
+        "target": "corporate_leverage",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_profitability",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation",
+        "target": "corp_fin_responses",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "pce_price_release",
+      "title": "Personal Consumption Expenditures (PCE) inflation release",
+      "description": "Scheduled PCE inflation reading (market focus after Fed pause) likely to move inflation metrics and rate expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-30",
+        "end": "2026-11-12",
+        "label": "next 2 weeks"
+      },
+      "probability": 1.0,
+      "affected": [
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_policy_rate",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Gold slips after Fed holds rates, PCE inflation data in focus' — PCE will drive inflation and rate expectations."
+    },
+    {
+      "id": "fed_meeting_format_changes",
+      "title": "Fed procedural changes and new meeting guidance",
+      "description": "New FOMC meeting format and Warsh's announced changes will alter how guidance is communicated and how markets interpret Fed signalling.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-29",
+        "end": "2027-01-29",
+        "label": "next 3 months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_guidance",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "rate_expectations",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Fed's Warsh announces changes in how future FOMC meetings will go' and 'Fed leaves rates unchanged...awaits accumulation of more information.'"
+    },
+    {
+      "id": "large_corporate_buyout_wave",
+      "title": "Wave of voluntary buyouts/cost cutting at large corporates",
+      "description": "Major firms offering voluntary buyouts and layoffs (Microsoft, Mercedes, Skydance) create an ongoing corporate cost‑cutting trend affecting balance sheets and margins.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-27",
+        "end": "2027-01-27",
+        "label": "next 3 months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "corp_fin_responses",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "corporate_leverage",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "corporate_profitability",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_valuation",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Microsoft offers buyouts to 60,000 staff' and similar reports on Mercedes, Skydance cutting costs."
+    },
+    {
+      "id": "uk_budget_statement_early_nov",
+      "title": "UK budget statement / fiscal announcement",
+      "description": "Upcoming UK budget/fiscal statement expected to move gilt yields and risk premia as markets price fiscal direction.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2026-11-15",
+        "label": "early Nov"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "long_term_interest_rates",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "risk_premia",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline context: 'Global Government Bond Yields Rise Ahead of Fed Decision, U.K. Budget' — UK budget will shift gilt pricing."
+    },
+    {
+      "id": "sk_hynix_shareholder_returns",
+      "title": "SK Hynix large shareholder return program",
+      "description": "Announced $75bn shareholder returns (buybacks/dividends) will redistribute cash and influence equity and leverage metrics over coming quarters.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-28",
+        "end": "2027-04-28",
+        "label": "next 6 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "equity_valuation",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "corp_fin_responses",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "corporate_leverage",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "risk_premia",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'SK Hynix Plans $75 Billion in Shareholder Returns After Blockbuster Earnings' — buybacks affect equity supply and metrics."
+    },
+    {
+      "id": "france_sovereign_credit_dynamics",
+      "title": "French sovereign credit swing and bond market focus",
+      "description": "Moodys' reprieve and ongoing French bond moves will continue to drive European sovereign bond flows and liquidity dynamics.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-27",
+        "end": "2026-11-30",
+        "label": "next month"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "bond_market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "long_term_interest_rates",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "risk_premia",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "yield_curve_slope",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'French bonds rally after Moody’s rating reprieve' and 'ECB Expected to Leave Key Rate Unchanged Amid French Bond Drama.'"
+    },
+    {
+      "id": "earnings_season_continuing",
+      "title": "Ongoing corporate earnings season and guidance updates",
+      "description": "Active earnings reports (Microsoft, Alphabet, FedEx, Ford, others) will keep moving equity valuations, volatility and profit expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-10-28",
+        "end": "2026-11-15",
+        "label": "earnings window"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "equity_valuation",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "corporate_profitability",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Many headlines: 'Microsoft earnings', 'Alphabet set to report', 'FedEx beats', 'Ford to report' — earnings will shift valuations and volatility."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "pce_price_release",
+      "title": "Personal Consumption Expenditures (PCE) inflation release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2 weeks",
+      "date": null,
+      "start": "2026-10-30",
+      "end": "2026-11-12",
+      "probability": 1.0,
+      "impact_score": 249.0,
+      "expected_impact": 249.0,
+      "event_PS": 16.4,
+      "event_AS": 24.9,
+      "n_vars": 5,
+      "affected_ids": "inflation_rate, inflation_expectations, rate_expectations, market_volatility, short_term_policy_rate",
+      "rationale": "Headline: 'Gold slips after Fed holds rates, PCE inflation data in focus' — PCE will drive inflation and rate expectations."
+    },
+    {
+      "id": "fed_meeting_format_changes",
+      "title": "Fed procedural changes and new meeting guidance",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-10-29",
+      "end": "2027-01-29",
+      "probability": 0.9,
+      "impact_score": 164.0,
+      "expected_impact": 147.6,
+      "event_PS": 18.857,
+      "event_AS": 23.429,
+      "n_vars": 3,
+      "affected_ids": "monetary_policy_guidance, rate_expectations, market_volatility",
+      "rationale": "Headlines: 'Fed's Warsh announces changes in how future FOMC meetings will go' and 'Fed leaves rates unchanged...awaits accumulation of more information.'"
+    },
+    {
+      "id": "france_sovereign_credit_dynamics",
+      "title": "French sovereign credit swing and bond market focus",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next month",
+      "date": null,
+      "start": "2026-10-27",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 120.0,
+      "expected_impact": 72.0,
+      "event_PS": 19.286,
+      "event_AS": 17.143,
+      "n_vars": 4,
+      "affected_ids": "bond_market_liquidity, long_term_interest_rates, risk_premia, yield_curve_slope",
+      "rationale": "Headlines: 'French bonds rally after Moody’s rating reprieve' and 'ECB Expected to Leave Key Rate Unchanged Amid French Bond Drama.'"
+    },
+    {
+      "id": "uk_budget_statement_early_nov",
+      "title": "UK budget statement / fiscal announcement",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "early Nov",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2026-11-15",
+      "probability": 0.7,
+      "impact_score": 87.0,
+      "expected_impact": 60.9,
+      "event_PS": 19.8,
+      "event_AS": 17.4,
+      "n_vars": 4,
+      "affected_ids": "long_term_interest_rates, yield_curve_slope, bond_market_liquidity, risk_premia",
+      "rationale": "Headline context: 'Global Government Bond Yields Rise Ahead of Fed Decision, U.K. Budget' — UK budget will shift gilt pricing."
+    },
+    {
+      "id": "large_corporate_buyout_wave",
+      "title": "Wave of voluntary buyouts/cost cutting at large corporates",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-10-27",
+      "end": "2027-01-27",
+      "probability": 0.85,
+      "impact_score": 74.0,
+      "expected_impact": 62.9,
+      "event_PS": 21.375,
+      "event_AS": 9.25,
+      "n_vars": 4,
+      "affected_ids": "corp_fin_responses, corporate_leverage, corporate_profitability, equity_valuation",
+      "rationale": "Headlines: 'Microsoft offers buyouts to 60,000 staff' and similar reports on Mercedes, Skydance cutting costs."
+    },
+    {
+      "id": "earnings_season_continuing",
+      "title": "Ongoing corporate earnings season and guidance updates",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "earnings window",
+      "date": null,
+      "start": "2026-10-28",
+      "end": "2026-11-15",
+      "probability": 0.95,
+      "impact_score": 74.0,
+      "expected_impact": 70.3,
+      "event_PS": 21.0,
+      "event_AS": 12.333,
+      "n_vars": 3,
+      "affected_ids": "equity_valuation, corporate_profitability, market_volatility",
+      "rationale": "Many headlines: 'Microsoft earnings', 'Alphabet set to report', 'FedEx beats', 'Ford to report' — earnings will shift valuations and volatility."
+    },
+    {
+      "id": "sk_hynix_shareholder_returns",
+      "title": "SK Hynix large shareholder return program",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 months",
+      "date": null,
+      "start": "2026-10-28",
+      "end": "2027-04-28",
+      "probability": 0.8,
+      "impact_score": 49.0,
+      "expected_impact": 39.2,
+      "event_PS": 26.0,
+      "event_AS": 9.8,
+      "n_vars": 4,
+      "affected_ids": "equity_valuation, corp_fin_responses, corporate_leverage, risk_premia",
+      "rationale": "Headline: 'SK Hynix Plans $75 Billion in Shareholder Returns After Blockbuster Earnings' — buybacks affect equity supply and metrics."
+    }
+  ]
+}
