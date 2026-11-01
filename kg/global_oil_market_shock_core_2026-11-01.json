@@ -1,0 +1,1497 @@
+{
+  "label": "global_oil_market_shock",
+  "as_of": "2026-10-31",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-11-01T02:35:14",
+  "system_description": {
+    "narrative_title": "War-driven fuel crunch boosts refiners' profits and market tensions",
+    "narrative_summary": "Regional conflicts (notably in the Middle East and Ukraine) plus OPEC+ output restraint have tightened crude and diesel markets, sending refining margins and fuel prices sharply higher and producing record profits for major oil companies. The situation is an open system: it draws inputs from geopolitics, crude supply, OPEC+/national producer decisions and global fuel demand, and it emits higher refined-product prices, corporate earnings, market volatility and political backlash. Reinforcing and balancing feedbacks are visible — windfall profits and buybacks affect investor and policy behavior, while high fuel costs cause demand destruction, corporate cost-cutting in fuel-intensive sectors and increased regulatory/political scrutiny.",
+    "scope": "The global crude and refined-products value chain (upstream production, trading, refining, distribution), major oil companies and refiners, OPEC+ and national producers, transport- and fuel-consuming sectors (airlines, shipping, trucking, cruise), financial markets and investor responses, and the geopolitical conflicts and security events materially affecting supply.",
+    "super_system": "Global political-economic-energy-financial system (international security, trade flows, commodity markets and macro-finance)",
+    "adjacent_subsystems": [
+      "Global transportation and logistics (airlines, shipping, trucking, cruise)",
+      "Financial markets & investors (equities, bond markets, commodity traders)",
+      "OPEC+ and national oil company policy formation",
+      "Energy transition and renewable investment/policy"
+    ],
+    "evidence_headlines": [
+      "BP’s profits surge to record on high fuel prices",
+      "ExxonMobil beats third-quarter profit estimates on refining boom",
+      "Brent 2026 view tops $90 for first time since May as MidEast stability remains elusive",
+      "Exxon, Chevron earnings propelled by war-driven refining surge",
+      "OPEC+ set to hold December oil output steady, Reuters reports",
+      "ExxonMobil boss pulls out of Gulf energy conference over security concerns"
+    ]
+  },
+  "variables": [
+    {
+      "id": "crude_prod_rate",
+      "name": "Crude production rate",
+      "description": "The volumetric rate at which crude oil is produced across global upstream sources.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refined_output_rate",
+      "name": "Refined product output rate",
+      "description": "The rate at which refineries produce finished fuels and refined products.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refining_utilization",
+      "name": "Refining capacity utilization",
+      "description": "The proportion of available refinery capacity actually being operated for production.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_inventories",
+      "name": "Crude oil inventories",
+      "description": "The aggregate stockpile level of crude oil held across commercial and strategic storage.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "product_inventories",
+      "name": "Refined product inventories",
+      "description": "The aggregate stock levels of gasoline, diesel, jet fuel and other refined products in storage.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "product_price_level",
+      "name": "Refined product price level",
+      "description": "The market price level for refined fuels (e.g., gasoline, diesel, jet fuel) adjusted for regional differentials.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_supply_gap",
+      "name": "Diesel supply gap",
+      "description": "The difference between diesel supply and diesel demand, positive when supply exceeds demand and negative when there is a shortfall.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "transport_fuel_demand",
+      "name": "Transport sector fuel demand",
+      "description": "The aggregate rate of fuel consumption by transportation sectors including road, air, and maritime transport.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "fuel_price_elasticity",
+      "name": "Fuel demand price elasticity",
+      "description": "The responsiveness of fuel consumption rates to changes in fuel prices (degree of demand destruction or conservation).",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "geo_conflict_intensity",
+      "name": "Geopolitical conflict intensity",
+      "description": "The overall intensity and frequency of geopolitical and security events that can disrupt energy production and logistics.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "producer_output_policy",
+      "name": "Producer output policy",
+      "description": "The collective stance and operational decisions by oil-producing actors regarding planned crude output levels and quotas.",
+      "kind": "institution_field",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refining_margin_level",
+      "name": "Refining margin level",
+      "description": "The spread between refined-product prices and crude feedstock costs that determines refinery operating profit per unit processed.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refining_profit_level",
+      "name": "Aggregate refining profitability",
+      "description": "The total profitability earned by the refining sector over a given period, reflecting margins, volumes and costs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_sentiment_oil",
+      "name": "Investor sentiment toward oil sector",
+      "description": "The prevailing market perception and risk appetite among investors for oil- and refining-related assets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "regulatory_scrutiny_leve",
+      "name": "Regulatory and political scrutiny level",
+      "description": "The intensity of regulatory, fiscal and political pressures applied to energy producers and refiners (e.g., taxation, investigations, policy interventions).",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fuel_substitution_rate",
+      "name": "Fuel substitution rate",
+      "description": "The rate at which end-users switch from liquid fossil fuels to alternative energy sources or efficiency measures.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "crude_prod_rate",
+    "refined_output_rate",
+    "refining_utilization",
+    "crude_inventories",
+    "product_inventories",
+    "product_price_level",
+    "diesel_supply_gap",
+    "transport_fuel_demand",
+    "fuel_price_elasticity",
+    "geo_conflict_intensity",
+    "producer_output_policy",
+    "refining_margin_level",
+    "refining_profit_level",
+    "investor_sentiment_oil",
+    "regulatory_scrutiny_leve",
+    "fuel_substitution_rate"
+  ],
+  "var_names": {
+    "crude_prod_rate": "Crude production rate",
+    "refined_output_rate": "Refined product output rate",
+    "refining_utilization": "Refining capacity utilization",
+    "crude_inventories": "Crude oil inventories",
+    "product_inventories": "Refined product inventories",
+    "product_price_level": "Refined product price level",
+    "diesel_supply_gap": "Diesel supply gap",
+    "transport_fuel_demand": "Transport sector fuel demand",
+    "fuel_price_elasticity": "Fuel demand price elasticity",
+    "geo_conflict_intensity": "Geopolitical conflict intensity",
+    "producer_output_policy": "Producer output policy",
+    "refining_margin_level": "Refining margin level",
+    "refining_profit_level": "Aggregate refining profitability",
+    "investor_sentiment_oil": "Investor sentiment toward oil sector",
+    "regulatory_scrutiny_leve": "Regulatory and political scrutiny level",
+    "fuel_substitution_rate": "Fuel substitution rate"
+  },
+  "impact_matrix": {
+    "crude_prod_rate": {
+      "crude_prod_rate": 0,
+      "refined_output_rate": 2,
+      "refining_utilization": 2,
+      "crude_inventories": 2,
+      "product_inventories": 1,
+      "product_price_level": 1,
+      "diesel_supply_gap": 1,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 1,
+      "refining_margin_level": 2,
+      "refining_profit_level": 2,
+      "investor_sentiment_oil": 1,
+      "regulatory_scrutiny_leve": 1,
+      "fuel_substitution_rate": 0
+    },
+    "refined_output_rate": {
+      "crude_prod_rate": 0,
+      "refined_output_rate": 0,
+      "refining_utilization": 2,
+      "crude_inventories": 2,
+      "product_inventories": 2,
+      "product_price_level": 1,
+      "diesel_supply_gap": 2,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 0,
+      "refining_margin_level": 1,
+      "refining_profit_level": 2,
+      "investor_sentiment_oil": 1,
+      "regulatory_scrutiny_leve": 1,
+      "fuel_substitution_rate": 0
+    },
+    "refining_utilization": {
+      "crude_prod_rate": 0,
+      "refined_output_rate": 3,
+      "refining_utilization": 0,
+      "crude_inventories": 1,
+      "product_inventories": 2,
+      "product_price_level": 1,
+      "diesel_supply_gap": 2,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 0,
+      "refining_margin_level": 2,
+      "refining_profit_level": 3,
+      "investor_sentiment_oil": 1,
+      "regulatory_scrutiny_leve": 1,
+      "fuel_substitution_rate": 0
+    },
+    "crude_inventories": {
+      "crude_prod_rate": 1,
+      "refined_output_rate": 1,
+      "refining_utilization": 1,
+      "crude_inventories": 0,
+      "product_inventories": 1,
+      "product_price_level": 1,
+      "diesel_supply_gap": 1,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 1,
+      "refining_margin_level": 1,
+      "refining_profit_level": 1,
+      "investor_sentiment_oil": 1,
+      "regulatory_scrutiny_leve": 1,
+      "fuel_substitution_rate": 0
+    },
+    "product_inventories": {
+      "crude_prod_rate": 0,
+      "refined_output_rate": 1,
+      "refining_utilization": 1,
+      "crude_inventories": 0,
+      "product_inventories": 0,
+      "product_price_level": 3,
+      "diesel_supply_gap": 2,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 0,
+      "refining_margin_level": 2,
+      "refining_profit_level": 2,
+      "investor_sentiment_oil": 1,
+      "regulatory_scrutiny_leve": 1,
+      "fuel_substitution_rate": 0
+    },
+    "product_price_level": {
+      "crude_prod_rate": 1,
+      "refined_output_rate": 1,
+      "refining_utilization": 1,
+      "crude_inventories": 1,
+      "product_inventories": 1,
+      "product_price_level": 0,
+      "diesel_supply_gap": 1,
+      "transport_fuel_demand": 2,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 1,
+      "refining_margin_level": 2,
+      "refining_profit_level": 2,
+      "investor_sentiment_oil": 2,
+      "regulatory_scrutiny_leve": 1,
+      "fuel_substitution_rate": 2
+    },
+    "diesel_supply_gap": {
+      "crude_prod_rate": 1,
+      "refined_output_rate": 2,
+      "refining_utilization": 2,
+      "crude_inventories": 1,
+      "product_inventories": 2,
+      "product_price_level": 2,
+      "diesel_supply_gap": 0,
+      "transport_fuel_demand": 1,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 1,
+      "refining_margin_level": 2,
+      "refining_profit_level": 2,
+      "investor_sentiment_oil": 1,
+      "regulatory_scrutiny_leve": 2,
+      "fuel_substitution_rate": 1
+    },
+    "transport_fuel_demand": {
+      "crude_prod_rate": 0,
+      "refined_output_rate": 0,
+      "refining_utilization": 0,
+      "crude_inventories": 0,
+      "product_inventories": 0,
+      "product_price_level": 2,
+      "diesel_supply_gap": 2,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 0,
+      "refining_margin_level": 1,
+      "refining_profit_level": 1,
+      "investor_sentiment_oil": 0,
+      "regulatory_scrutiny_leve": 0,
+      "fuel_substitution_rate": 1
+    },
+    "fuel_price_elasticity": {
+      "crude_prod_rate": 0,
+      "refined_output_rate": 0,
+      "refining_utilization": 0,
+      "crude_inventories": 0,
+      "product_inventories": 0,
+      "product_price_level": 0,
+      "diesel_supply_gap": 0,
+      "transport_fuel_demand": 2,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 1,
+      "refining_margin_level": 1,
+      "refining_profit_level": 1,
+      "investor_sentiment_oil": 1,
+      "regulatory_scrutiny_leve": 0,
+      "fuel_substitution_rate": 2
+    },
+    "geo_conflict_intensity": {
+      "crude_prod_rate": 3,
+      "refined_output_rate": 2,
+      "refining_utilization": 2,
+      "crude_inventories": 2,
+      "product_inventories": 2,
+      "product_price_level": 3,
+      "diesel_supply_gap": 3,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 2,
+      "refining_margin_level": 3,
+      "refining_profit_level": 3,
+      "investor_sentiment_oil": 3,
+      "regulatory_scrutiny_leve": 2,
+      "fuel_substitution_rate": 1
+    },
+    "producer_output_policy": {
+      "crude_prod_rate": 3,
+      "refined_output_rate": 0,
+      "refining_utilization": 0,
+      "crude_inventories": 1,
+      "product_inventories": 0,
+      "product_price_level": 2,
+      "diesel_supply_gap": 2,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 0,
+      "refining_margin_level": 1,
+      "refining_profit_level": 1,
+      "investor_sentiment_oil": 2,
+      "regulatory_scrutiny_leve": 0,
+      "fuel_substitution_rate": 0
+    },
+    "refining_margin_level": {
+      "crude_prod_rate": 1,
+      "refined_output_rate": 2,
+      "refining_utilization": 2,
+      "crude_inventories": 1,
+      "product_inventories": 1,
+      "product_price_level": 1,
+      "diesel_supply_gap": 2,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 0,
+      "refining_margin_level": 0,
+      "refining_profit_level": 3,
+      "investor_sentiment_oil": 2,
+      "regulatory_scrutiny_leve": 1,
+      "fuel_substitution_rate": 0
+    },
+    "refining_profit_level": {
+      "crude_prod_rate": 0,
+      "refined_output_rate": 1,
+      "refining_utilization": 1,
+      "crude_inventories": 0,
+      "product_inventories": 0,
+      "product_price_level": 1,
+      "diesel_supply_gap": 0,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 0,
+      "refining_margin_level": 2,
+      "refining_profit_level": 0,
+      "investor_sentiment_oil": 2,
+      "regulatory_scrutiny_leve": 1,
+      "fuel_substitution_rate": 0
+    },
+    "investor_sentiment_oil": {
+      "crude_prod_rate": 1,
+      "refined_output_rate": 0,
+      "refining_utilization": 0,
+      "crude_inventories": 0,
+      "product_inventories": 0,
+      "product_price_level": 1,
+      "diesel_supply_gap": 0,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 1,
+      "refining_margin_level": 1,
+      "refining_profit_level": 1,
+      "investor_sentiment_oil": 0,
+      "regulatory_scrutiny_leve": 0,
+      "fuel_substitution_rate": 1
+    },
+    "regulatory_scrutiny_leve": {
+      "crude_prod_rate": 1,
+      "refined_output_rate": 1,
+      "refining_utilization": 1,
+      "crude_inventories": 1,
+      "product_inventories": 1,
+      "product_price_level": 1,
+      "diesel_supply_gap": 1,
+      "transport_fuel_demand": 0,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 1,
+      "refining_margin_level": 1,
+      "refining_profit_level": 1,
+      "investor_sentiment_oil": 1,
+      "regulatory_scrutiny_leve": 0,
+      "fuel_substitution_rate": 1
+    },
+    "fuel_substitution_rate": {
+      "crude_prod_rate": 1,
+      "refined_output_rate": 1,
+      "refining_utilization": 1,
+      "crude_inventories": 0,
+      "product_inventories": 1,
+      "product_price_level": 1,
+      "diesel_supply_gap": 0,
+      "transport_fuel_demand": 2,
+      "fuel_price_elasticity": 0,
+      "geo_conflict_intensity": 0,
+      "producer_output_policy": 0,
+      "refining_margin_level": 1,
+      "refining_profit_level": 1,
+      "investor_sentiment_oil": 1,
+      "regulatory_scrutiny_leve": 0,
+      "fuel_substitution_rate": 0
+    }
+  },
+  "AS": {
+    "crude_prod_rate": 16,
+    "refined_output_rate": 14,
+    "refining_utilization": 16,
+    "crude_inventories": 11,
+    "product_inventories": 13,
+    "product_price_level": 18,
+    "diesel_supply_gap": 20,
+    "transport_fuel_demand": 7,
+    "fuel_price_elasticity": 8,
+    "geo_conflict_intensity": 31,
+    "producer_output_policy": 12,
+    "refining_margin_level": 16,
+    "refining_profit_level": 8,
+    "investor_sentiment_oil": 6,
+    "regulatory_scrutiny_leve": 12,
+    "fuel_substitution_rate": 10
+  },
+  "PS": {
+    "crude_prod_rate": 13,
+    "refined_output_rate": 17,
+    "refining_utilization": 16,
+    "crude_inventories": 12,
+    "product_inventories": 14,
+    "product_price_level": 21,
+    "diesel_supply_gap": 19,
+    "transport_fuel_demand": 7,
+    "fuel_price_elasticity": 0,
+    "geo_conflict_intensity": 0,
+    "producer_output_policy": 9,
+    "refining_margin_level": 23,
+    "refining_profit_level": 26,
+    "investor_sentiment_oil": 20,
+    "regulatory_scrutiny_leve": 12,
+    "fuel_substitution_rate": 9
+  },
+  "med_AS": 12.5,
+  "med_PS": 13.5,
+  "roles": [
+    {
+      "variable": "diesel_supply_gap",
+      "name": "Diesel supply gap",
+      "AS": 20,
+      "PS": 19,
+      "Q=AS/PS": 1.05,
+      "P=AS*PS": 380,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "product_price_level",
+      "name": "Refined product price level",
+      "AS": 18,
+      "PS": 21,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 378,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refining_margin_level",
+      "name": "Refining margin level",
+      "AS": 16,
+      "PS": 23,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 368,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refining_utilization",
+      "name": "Refining capacity utilization",
+      "AS": 16,
+      "PS": 16,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 256,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refined_output_rate",
+      "name": "Refined product output rate",
+      "AS": 14,
+      "PS": 17,
+      "Q=AS/PS": 0.82,
+      "P=AS*PS": 238,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crude_prod_rate",
+      "name": "Crude production rate",
+      "AS": 16,
+      "PS": 13,
+      "Q=AS/PS": 1.23,
+      "P=AS*PS": 208,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refining_profit_level",
+      "name": "Aggregate refining profitability",
+      "AS": 8,
+      "PS": 26,
+      "Q=AS/PS": 0.31,
+      "P=AS*PS": 208,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "product_inventories",
+      "name": "Refined product inventories",
+      "AS": 13,
+      "PS": 14,
+      "Q=AS/PS": 0.93,
+      "P=AS*PS": 182,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "regulatory_scrutiny_leve",
+      "name": "Regulatory and political scrutiny level",
+      "AS": 12,
+      "PS": 12,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 144,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "crude_inventories",
+      "name": "Crude oil inventories",
+      "AS": 11,
+      "PS": 12,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 132,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "investor_sentiment_oil",
+      "name": "Investor sentiment toward oil sector",
+      "AS": 6,
+      "PS": 20,
+      "Q=AS/PS": 0.3,
+      "P=AS*PS": 120,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "producer_output_policy",
+      "name": "Producer output policy",
+      "AS": 12,
+      "PS": 9,
+      "Q=AS/PS": 1.33,
+      "P=AS*PS": 108,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fuel_substitution_rate",
+      "name": "Fuel substitution rate",
+      "AS": 10,
+      "PS": 9,
+      "Q=AS/PS": 1.11,
+      "P=AS*PS": 90,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "transport_fuel_demand",
+      "name": "Transport sector fuel demand",
+      "AS": 7,
+      "PS": 7,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 49,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fuel_price_elasticity",
+      "name": "Fuel demand price elasticity",
+      "AS": 8,
+      "PS": 0,
+      "Q=AS/PS": 8000001.0,
+      "P=AS*PS": 0,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "geo_conflict_intensity",
+      "name": "Geopolitical conflict intensity",
+      "AS": 31,
+      "PS": 0,
+      "Q=AS/PS": 31000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "crude_prod_rate",
+        "name": "Crude production rate",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 13
+      },
+      {
+        "id": "refined_output_rate",
+        "name": "Refined product output rate",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 17
+      },
+      {
+        "id": "refining_utilization",
+        "name": "Refining capacity utilization",
+        "kind": "stock",
+        "AS": 16,
+        "PS": 16
+      },
+      {
+        "id": "crude_inventories",
+        "name": "Crude oil inventories",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 12
+      },
+      {
+        "id": "product_inventories",
+        "name": "Refined product inventories",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 14
+      },
+      {
+        "id": "product_price_level",
+        "name": "Refined product price level",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 21
+      },
+      {
+        "id": "diesel_supply_gap",
+        "name": "Diesel supply gap",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 19
+      },
+      {
+        "id": "transport_fuel_demand",
+        "name": "Transport sector fuel demand",
+        "kind": "flow",
+        "AS": 7,
+        "PS": 7
+      },
+      {
+        "id": "fuel_price_elasticity",
+        "name": "Fuel demand price elasticity",
+        "kind": "environment",
+        "AS": 8,
+        "PS": 0
+      },
+      {
+        "id": "geo_conflict_intensity",
+        "name": "Geopolitical conflict intensity",
+        "kind": "environment",
+        "AS": 31,
+        "PS": 0
+      },
+      {
+        "id": "producer_output_policy",
+        "name": "Producer output policy",
+        "kind": "institution_field",
+        "AS": 12,
+        "PS": 9
+      },
+      {
+        "id": "refining_margin_level",
+        "name": "Refining margin level",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 23
+      },
+      {
+        "id": "refining_profit_level",
+        "name": "Aggregate refining profitability",
+        "kind": "stock",
+        "AS": 8,
+        "PS": 26
+      },
+      {
+        "id": "investor_sentiment_oil",
+        "name": "Investor sentiment toward oil sector",
+        "kind": "perception",
+        "AS": 6,
+        "PS": 20
+      },
+      {
+        "id": "regulatory_scrutiny_leve",
+        "name": "Regulatory and political scrutiny level",
+        "kind": "institution_field",
+        "AS": 12,
+        "PS": 12
+      },
+      {
+        "id": "fuel_substitution_rate",
+        "name": "Fuel substitution rate",
+        "kind": "flow",
+        "AS": 10,
+        "PS": 9
+      }
+    ],
+    "edges": [
+      {
+        "source": "crude_prod_rate",
+        "target": "refined_output_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "refining_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "crude_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "refining_margin_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "refining_profit_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_output_rate",
+        "target": "refining_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_output_rate",
+        "target": "crude_inventories",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refined_output_rate",
+        "target": "product_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_output_rate",
+        "target": "diesel_supply_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_output_rate",
+        "target": "refining_profit_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_utilization",
+        "target": "refined_output_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_utilization",
+        "target": "product_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_utilization",
+        "target": "diesel_supply_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_utilization",
+        "target": "refining_margin_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_utilization",
+        "target": "refining_profit_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "product_inventories",
+        "target": "product_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "product_inventories",
+        "target": "diesel_supply_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "product_inventories",
+        "target": "refining_margin_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "product_inventories",
+        "target": "refining_profit_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "product_price_level",
+        "target": "transport_fuel_demand",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "product_price_level",
+        "target": "refining_margin_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "product_price_level",
+        "target": "refining_profit_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "product_price_level",
+        "target": "investor_sentiment_oil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "product_price_level",
+        "target": "fuel_substitution_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_supply_gap",
+        "target": "refined_output_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_supply_gap",
+        "target": "refining_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_supply_gap",
+        "target": "product_inventories",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_supply_gap",
+        "target": "product_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_supply_gap",
+        "target": "refining_margin_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_supply_gap",
+        "target": "refining_profit_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_supply_gap",
+        "target": "regulatory_scrutiny_leve",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "transport_fuel_demand",
+        "target": "product_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "transport_fuel_demand",
+        "target": "diesel_supply_gap",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fuel_price_elasticity",
+        "target": "transport_fuel_demand",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "fuel_price_elasticity",
+        "target": "fuel_substitution_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "crude_prod_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "refined_output_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "refining_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "crude_inventories",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "product_inventories",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "product_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "diesel_supply_gap",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "producer_output_policy",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "refining_margin_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "refining_profit_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "investor_sentiment_oil",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "geo_conflict_intensity",
+        "target": "regulatory_scrutiny_leve",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "producer_output_policy",
+        "target": "crude_prod_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "producer_output_policy",
+        "target": "product_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "producer_output_policy",
+        "target": "diesel_supply_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "producer_output_policy",
+        "target": "investor_sentiment_oil",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_margin_level",
+        "target": "refined_output_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margin_level",
+        "target": "refining_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margin_level",
+        "target": "diesel_supply_gap",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margin_level",
+        "target": "refining_profit_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margin_level",
+        "target": "investor_sentiment_oil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_profit_level",
+        "target": "refining_margin_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_profit_level",
+        "target": "investor_sentiment_oil",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fuel_substitution_rate",
+        "target": "transport_fuel_demand",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "opec_plus_hold_december",
+      "title": "OPEC+ likely holds December output steady",
+      "description": "OPEC+ is reported set to keep December targets unchanged, constraining additional crude supply into Q4 and affecting markets and refinery economics.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2026-12-31",
+        "label": "December 2026"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "producer_output_policy",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_prod_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_inventories",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "product_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refining_margin_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refining_profit_level",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"OPEC+ set to hold December oil output steady\"; \"OPEC+ agrees in principle to keep oil output steady in December\"."
+    },
+    {
+      "id": "sustained_iran_ukraine_conflict",
+      "title": "Ongoing Iran & Ukraine conflicts sustain market stress",
+      "description": "Persistent military tensions in the Middle East and Ukraine continue to disrupt supply perceptions and bolster fuel price and refining margin pressures.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-01-31",
+        "label": "next 3 months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "geo_conflict_intensity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_prod_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "product_price_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refining_margin_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refining_profit_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_supply_gap",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refining_utilization",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_output_rate",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"wars crimp energy supplies\", \"refining margins surge during wars\", \"Brent view tops $90 as MidEast stability remains elusive.\""
+    },
+    {
+      "id": "refiners_maximise_diesel",
+      "title": "Refiners shift yields to maximize diesel",
+      "description": "Refineries are actively increasing diesel output to respond to a diesel crunch, altering product supply balances and utilization patterns.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-01-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "refined_output_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refining_utilization",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_supply_gap",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "product_inventories",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refining_margin_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refining_profit_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Shell Maximizes Diesel Production During Supply Crunch\" and majors warn on diesel supplies."
+    },
+    {
+      "id": "adipec_attendance_cancellations",
+      "title": "Executive cancellations disrupt ADIPEC participation",
+      "description": "Major oil executives cancelling travel to ADIPEC (security concerns) may reduce market dialogue, heighten risk perceptions, and dent investor confidence.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2026-11-07",
+        "label": "early Nov"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "investor_sentiment_oil",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "geo_conflict_intensity",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "regulatory_scrutiny_leve",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"Exxon, Chevron cancel executive trips to UAE's ADIPEC\"; \"boss pulls out of Gulf energy conference over security concerns.\""
+    },
+    {
+      "id": "political_backlash_windfall_profits",
+      "title": "Political pressure and scrutiny over windfall profits",
+      "description": "Public and political backlash against record refining profits may spur regulatory proposals, investigations, or taxation measures affecting sector returns.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-02-28",
+        "label": "3 months"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "regulatory_scrutiny_leve",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_sentiment_oil",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refining_profit_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"Trump called out Big Oil profits\"; \"majors lift buybacks as Iran war drives bumper profits.\""
+    },
+    {
+      "id": "transport_demand_pressure",
+      "title": "Transport fuel demand weakens from high fuel costs",
+      "description": "High fuel prices squeeze airlines and other transport operators, prompting job cuts and cost-saving measures that reduce near-term transport fuel demand.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-02-28",
+        "label": "3 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "transport_fuel_demand",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "fuel_price_elasticity",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_supply_gap",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: \"Alaska Air to cut about 200 jobs as fuel shock squeezes earnings\"; \"Cruise companies aim to keep fuel costs down.\""
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "sustained_iran_ukraine_conflict",
+      "title": "Ongoing Iran & Ukraine conflicts sustain market stress",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-01-31",
+      "probability": 0.85,
+      "impact_score": 371.0,
+      "expected_impact": 315.35,
+      "event_PS": 17.095,
+      "event_AS": 17.667,
+      "n_vars": 8,
+      "affected_ids": "geo_conflict_intensity, crude_prod_rate, product_price_level, refining_margin_level, refining_profit_level, diesel_supply_gap, refining_utilization, refined_output_rate",
+      "rationale": "Headlines: \"wars crimp energy supplies\", \"refining margins surge during wars\", \"Brent view tops $90 as MidEast stability remains elusive.\""
+    },
+    {
+      "id": "opec_plus_hold_december",
+      "title": "OPEC+ likely holds December output steady",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "December 2026",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2026-12-31",
+      "probability": 0.85,
+      "impact_score": 181.0,
+      "expected_impact": 153.85,
+      "event_PS": 17.385,
+      "event_AS": 13.923,
+      "n_vars": 6,
+      "affected_ids": "producer_output_policy, crude_prod_rate, crude_inventories, product_price_level, refining_margin_level, refining_profit_level",
+      "rationale": "Headlines: \"OPEC+ set to hold December oil output steady\"; \"OPEC+ agrees in principle to keep oil output steady in December\"."
+    },
+    {
+      "id": "refiners_maximise_diesel",
+      "title": "Refiners shift yields to maximize diesel",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-01-31",
+      "probability": 0.9,
+      "impact_score": 151.0,
+      "expected_impact": 135.9,
+      "event_PS": 18.4,
+      "event_AS": 15.1,
+      "n_vars": 6,
+      "affected_ids": "refined_output_rate, refining_utilization, diesel_supply_gap, product_inventories, refining_margin_level, refining_profit_level",
+      "rationale": "Headline: \"Shell Maximizes Diesel Production During Supply Crunch\" and majors warn on diesel supplies."
+    },
+    {
+      "id": "political_backlash_windfall_profits",
+      "title": "Political pressure and scrutiny over windfall profits",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3 months",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-02-28",
+      "probability": 0.6,
+      "impact_score": 56.0,
+      "expected_impact": 33.6,
+      "event_PS": 17.0,
+      "event_AS": 9.333,
+      "n_vars": 3,
+      "affected_ids": "regulatory_scrutiny_leve, investor_sentiment_oil, refining_profit_level",
+      "rationale": "Headlines: \"Trump called out Big Oil profits\"; \"majors lift buybacks as Iran war drives bumper profits.\""
+    },
+    {
+      "id": "adipec_attendance_cancellations",
+      "title": "Executive cancellations disrupt ADIPEC participation",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "early Nov",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2026-11-07",
+      "probability": 0.7,
+      "impact_score": 55.0,
+      "expected_impact": 38.5,
+      "event_PS": 13.0,
+      "event_AS": 13.75,
+      "n_vars": 3,
+      "affected_ids": "investor_sentiment_oil, geo_conflict_intensity, regulatory_scrutiny_leve",
+      "rationale": "Headlines: \"Exxon, Chevron cancel executive trips to UAE's ADIPEC\"; \"boss pulls out of Gulf energy conference over security concerns.\""
+    },
+    {
+      "id": "transport_demand_pressure",
+      "title": "Transport fuel demand weakens from high fuel costs",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3 months",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-02-28",
+      "probability": 0.7,
+      "impact_score": 49.0,
+      "expected_impact": 34.3,
+      "event_PS": 8.0,
+      "event_AS": 9.8,
+      "n_vars": 3,
+      "affected_ids": "transport_fuel_demand, fuel_price_elasticity, diesel_supply_gap",
+      "rationale": "Headlines: \"Alaska Air to cut about 200 jobs as fuel shock squeezes earnings\"; \"Cruise companies aim to keep fuel costs down.\""
+    }
+  ]
+}
