@@ -1,0 +1,2135 @@
+{
+  "label": "monetary_policy_shock",
+  "as_of": "2026-11-01",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-11-02T03:05:28",
+  "system_description": {
+    "narrative_title": "Eurozone fragility: France, the ECB transition, and market fallout",
+    "narrative_summary": "News in this window is dominated by a feedback loop between weak French growth and fiscal metrics, mounting sovereign-debt concerns (and rating actions), and the sudden ECB leadership transition — all of which amplify market volatility and political risk across the euro area. The ECB succession and policy continuity uncertainty act as a catalyst that transmits France-specific problems into broader eurozone financial stress and investor re-pricing.",
+    "scope": "The eurozone macro-financial-political system: French macro performance and fiscal position, sovereign bond markets, credit-rating agencies, the European Central Bank (leadership and policy stance), major European banks and corporate sectors, EU institutions, and related market reactions (equities, rates).",
+    "super_system": "Global financial system and world economy (cross-border capital flows, international investors, and geopolitical risk transmission).",
+    "adjacent_subsystems": [
+      "US equity and technology markets (market sentiment, cross-listed stocks, and AI/earnings-driven flows)",
+      "Global sovereign bond and credit-ratings market (ratings actions, yield spillovers)",
+      "European political and electoral dynamics (national elections, coalition instability, migration politics)"
+    ],
+    "evidence_headlines": [
+      "Christine Lagarde to Resign Early as ECB President",
+      "Euro zone economy slows to 0.4% growth in Q3 as crisis-hit France contracts",
+      "French economy shrinks 0.1% in third quarter",
+      "Fitch Cuts France’s Outlook to Negative on Weaker Growth, Widening Deficit",
+      "Lagarde’s early departure triggers race to solve three-way ECB puzzle",
+      "ECB Leaves Rates Unchanged as Challenges Mount for Lagarde’s Successor"
+    ]
+  },
+  "variables": [
+    {
+      "id": "aggregate_growth_rate",
+      "name": "Aggregate economic growth rate",
+      "description": "The prevailing rate of real economic output growth across the macro-area, measured as a continuous percent change in aggregate production.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_balance_ratio",
+      "name": "Government fiscal balance ratio",
+      "description": "Net government primary balance (deficit or surplus) expressed as a share of aggregate GDP, varying continuously with revenues and expenditures.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_spread_level",
+      "name": "Sovereign bond spread level",
+      "description": "The average risk premium on sovereign debt relative to a risk‑free benchmark, measured as a continuously varying yield spread.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "debt_sustainability_risk",
+      "name": "Debt sustainability risk",
+      "description": "The perceived pressure on public debt trajectories reflecting rollover needs, debt-to-GDP dynamics, and financing constraints, measured on a continuous risk scale.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_rating_outlook",
+      "name": "Sovereign credit‑rating outlook",
+      "description": "The market and analyst appraisal of the future trajectory of sovereign credit assessments, represented as a continuous tilt from improving to deteriorating.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_interest_rate",
+      "name": "Policy interest rate",
+      "description": "The prevailing short-term policy interest rate set by the monetary authority, serving as a continuously varying anchor for financial conditions.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "transition_uncertainty",
+      "name": "Leadership transition uncertainty",
+      "description": "The degree of uncertainty about continuity of monetary-policy leadership and strategic direction, evolving continuously during leadership change processes.",
+      "kind": "perception",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_uncert",
+      "name": "Monetary policy uncertainty",
+      "description": "The uncertainty around future monetary policy stance and transmission effectiveness, measured as a continuous intensity of unpredictability.",
+      "kind": "perception",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Market volatility",
+      "description": "The realized short‑term volatility of financial markets (equities, bonds) measured as a continuously varying dispersion metric.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "The aggregate willingness of investors to accept risk in asset allocation, ranging continuously from risk‑seeking to risk‑averse.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bank_funding_stress",
+      "name": "Bank funding stress",
+      "description": "The extent of stress in bank wholesale and short‑term funding markets, measured by spreads, roll‑over rates and liquidity usage as a continuous variable.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corp_credit_conditions",
+      "name": "Corporate credit conditions",
+      "description": "The cost and availability of credit to non‑financial firms, reflected in continuous measures such as lending spreads and credit volume growth.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_flows",
+      "name": "Cross‑border capital flows",
+      "description": "Net financial capital movements into or out of the macro-area, measured as a continuous flow rate of cross‑border investment and funding.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "political_polarization",
+      "name": "Political polarization intensity",
+      "description": "The degree of political fragmentation and ideological polarization in the polity, measured continuously by electoral fragmentation and partisan distance metrics.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "social_unrest_intensity",
+      "name": "Social unrest intensity",
+      "description": "The frequency and scale of public protests, strikes and civil disruption, represented as a continuously varying intensity index.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_rate",
+      "name": "Inflation rate",
+      "description": "The continuously measured rate of change in the general price level for the macro-area, typically expressed as a year‑over‑year percentage.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "aggregate_growth_rate",
+    "fiscal_balance_ratio",
+    "sovereign_spread_level",
+    "debt_sustainability_risk",
+    "credit_rating_outlook",
+    "policy_interest_rate",
+    "transition_uncertainty",
+    "monetary_policy_uncert",
+    "market_volatility",
+    "investor_risk_appetite",
+    "bank_funding_stress",
+    "corp_credit_conditions",
+    "cross_border_flows",
+    "political_polarization",
+    "social_unrest_intensity",
+    "inflation_rate"
+  ],
+  "var_names": {
+    "aggregate_growth_rate": "Aggregate economic growth rate",
+    "fiscal_balance_ratio": "Government fiscal balance ratio",
+    "sovereign_spread_level": "Sovereign bond spread level",
+    "debt_sustainability_risk": "Debt sustainability risk",
+    "credit_rating_outlook": "Sovereign credit‑rating outlook",
+    "policy_interest_rate": "Policy interest rate",
+    "transition_uncertainty": "Leadership transition uncertainty",
+    "monetary_policy_uncert": "Monetary policy uncertainty",
+    "market_volatility": "Market volatility",
+    "investor_risk_appetite": "Investor risk appetite",
+    "bank_funding_stress": "Bank funding stress",
+    "corp_credit_conditions": "Corporate credit conditions",
+    "cross_border_flows": "Cross‑border capital flows",
+    "political_polarization": "Political polarization intensity",
+    "social_unrest_intensity": "Social unrest intensity",
+    "inflation_rate": "Inflation rate"
+  },
+  "impact_matrix": {
+    "aggregate_growth_rate": {
+      "aggregate_growth_rate": 0,
+      "fiscal_balance_ratio": 3,
+      "sovereign_spread_level": 2,
+      "debt_sustainability_risk": 3,
+      "credit_rating_outlook": 2,
+      "policy_interest_rate": 2,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "bank_funding_stress": 2,
+      "corp_credit_conditions": 3,
+      "cross_border_flows": 2,
+      "political_polarization": 0,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 2
+    },
+    "fiscal_balance_ratio": {
+      "aggregate_growth_rate": 2,
+      "fiscal_balance_ratio": 0,
+      "sovereign_spread_level": 3,
+      "debt_sustainability_risk": 3,
+      "credit_rating_outlook": 3,
+      "policy_interest_rate": 1,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "bank_funding_stress": 2,
+      "corp_credit_conditions": 2,
+      "cross_border_flows": 2,
+      "political_polarization": 1,
+      "social_unrest_intensity": 1,
+      "inflation_rate": 2
+    },
+    "sovereign_spread_level": {
+      "aggregate_growth_rate": 2,
+      "fiscal_balance_ratio": 3,
+      "sovereign_spread_level": 0,
+      "debt_sustainability_risk": 3,
+      "credit_rating_outlook": 2,
+      "policy_interest_rate": 1,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 2,
+      "market_volatility": 3,
+      "investor_risk_appetite": 2,
+      "bank_funding_stress": 3,
+      "corp_credit_conditions": 2,
+      "cross_border_flows": 3,
+      "political_polarization": 1,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 0
+    },
+    "debt_sustainability_risk": {
+      "aggregate_growth_rate": 2,
+      "fiscal_balance_ratio": 3,
+      "sovereign_spread_level": 3,
+      "debt_sustainability_risk": 0,
+      "credit_rating_outlook": 3,
+      "policy_interest_rate": 1,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 2,
+      "market_volatility": 3,
+      "investor_risk_appetite": 3,
+      "bank_funding_stress": 3,
+      "corp_credit_conditions": 2,
+      "cross_border_flows": 3,
+      "political_polarization": 2,
+      "social_unrest_intensity": 1,
+      "inflation_rate": 0
+    },
+    "credit_rating_outlook": {
+      "aggregate_growth_rate": 1,
+      "fiscal_balance_ratio": 1,
+      "sovereign_spread_level": 3,
+      "debt_sustainability_risk": 2,
+      "credit_rating_outlook": 0,
+      "policy_interest_rate": 1,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "bank_funding_stress": 2,
+      "corp_credit_conditions": 2,
+      "cross_border_flows": 2,
+      "political_polarization": 0,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 0
+    },
+    "policy_interest_rate": {
+      "aggregate_growth_rate": 3,
+      "fiscal_balance_ratio": 2,
+      "sovereign_spread_level": 2,
+      "debt_sustainability_risk": 3,
+      "credit_rating_outlook": 1,
+      "policy_interest_rate": 0,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 3,
+      "market_volatility": 3,
+      "investor_risk_appetite": 2,
+      "bank_funding_stress": 2,
+      "corp_credit_conditions": 3,
+      "cross_border_flows": 3,
+      "political_polarization": 1,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 2
+    },
+    "transition_uncertainty": {
+      "aggregate_growth_rate": 1,
+      "fiscal_balance_ratio": 1,
+      "sovereign_spread_level": 3,
+      "debt_sustainability_risk": 2,
+      "credit_rating_outlook": 2,
+      "policy_interest_rate": 3,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 3,
+      "market_volatility": 3,
+      "investor_risk_appetite": 3,
+      "bank_funding_stress": 2,
+      "corp_credit_conditions": 2,
+      "cross_border_flows": 3,
+      "political_polarization": 1,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 0
+    },
+    "monetary_policy_uncert": {
+      "aggregate_growth_rate": 2,
+      "fiscal_balance_ratio": 1,
+      "sovereign_spread_level": 3,
+      "debt_sustainability_risk": 2,
+      "credit_rating_outlook": 2,
+      "policy_interest_rate": 2,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 0,
+      "market_volatility": 3,
+      "investor_risk_appetite": 3,
+      "bank_funding_stress": 3,
+      "corp_credit_conditions": 2,
+      "cross_border_flows": 3,
+      "political_polarization": 0,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 2
+    },
+    "market_volatility": {
+      "aggregate_growth_rate": 2,
+      "fiscal_balance_ratio": 1,
+      "sovereign_spread_level": 2,
+      "debt_sustainability_risk": 2,
+      "credit_rating_outlook": 2,
+      "policy_interest_rate": 1,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 2,
+      "market_volatility": 0,
+      "investor_risk_appetite": 3,
+      "bank_funding_stress": 3,
+      "corp_credit_conditions": 2,
+      "cross_border_flows": 3,
+      "political_polarization": 0,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 0
+    },
+    "investor_risk_appetite": {
+      "aggregate_growth_rate": 2,
+      "fiscal_balance_ratio": 2,
+      "sovereign_spread_level": 3,
+      "debt_sustainability_risk": 2,
+      "credit_rating_outlook": 1,
+      "policy_interest_rate": 1,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 1,
+      "market_volatility": 3,
+      "investor_risk_appetite": 0,
+      "bank_funding_stress": 3,
+      "corp_credit_conditions": 3,
+      "cross_border_flows": 3,
+      "political_polarization": 0,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 0
+    },
+    "bank_funding_stress": {
+      "aggregate_growth_rate": 3,
+      "fiscal_balance_ratio": 2,
+      "sovereign_spread_level": 3,
+      "debt_sustainability_risk": 2,
+      "credit_rating_outlook": 2,
+      "policy_interest_rate": 2,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 1,
+      "market_volatility": 3,
+      "investor_risk_appetite": 3,
+      "bank_funding_stress": 0,
+      "corp_credit_conditions": 3,
+      "cross_border_flows": 3,
+      "political_polarization": 0,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 1
+    },
+    "corp_credit_conditions": {
+      "aggregate_growth_rate": 3,
+      "fiscal_balance_ratio": 1,
+      "sovereign_spread_level": 1,
+      "debt_sustainability_risk": 1,
+      "credit_rating_outlook": 1,
+      "policy_interest_rate": 1,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 1,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "bank_funding_stress": 3,
+      "corp_credit_conditions": 0,
+      "cross_border_flows": 1,
+      "political_polarization": 0,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 1
+    },
+    "cross_border_flows": {
+      "aggregate_growth_rate": 2,
+      "fiscal_balance_ratio": 1,
+      "sovereign_spread_level": 3,
+      "debt_sustainability_risk": 2,
+      "credit_rating_outlook": 2,
+      "policy_interest_rate": 3,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 1,
+      "market_volatility": 3,
+      "investor_risk_appetite": 1,
+      "bank_funding_stress": 3,
+      "corp_credit_conditions": 2,
+      "cross_border_flows": 0,
+      "political_polarization": 0,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 1
+    },
+    "political_polarization": {
+      "aggregate_growth_rate": 2,
+      "fiscal_balance_ratio": 3,
+      "sovereign_spread_level": 3,
+      "debt_sustainability_risk": 2,
+      "credit_rating_outlook": 2,
+      "policy_interest_rate": 1,
+      "transition_uncertainty": 2,
+      "monetary_policy_uncert": 2,
+      "market_volatility": 2,
+      "investor_risk_appetite": 2,
+      "bank_funding_stress": 2,
+      "corp_credit_conditions": 1,
+      "cross_border_flows": 2,
+      "political_polarization": 0,
+      "social_unrest_intensity": 3,
+      "inflation_rate": 1
+    },
+    "social_unrest_intensity": {
+      "aggregate_growth_rate": 3,
+      "fiscal_balance_ratio": 2,
+      "sovereign_spread_level": 2,
+      "debt_sustainability_risk": 2,
+      "credit_rating_outlook": 2,
+      "policy_interest_rate": 1,
+      "transition_uncertainty": 2,
+      "monetary_policy_uncert": 2,
+      "market_volatility": 3,
+      "investor_risk_appetite": 3,
+      "bank_funding_stress": 2,
+      "corp_credit_conditions": 2,
+      "cross_border_flows": 2,
+      "political_polarization": 2,
+      "social_unrest_intensity": 0,
+      "inflation_rate": 1
+    },
+    "inflation_rate": {
+      "aggregate_growth_rate": 2,
+      "fiscal_balance_ratio": 3,
+      "sovereign_spread_level": 2,
+      "debt_sustainability_risk": 2,
+      "credit_rating_outlook": 2,
+      "policy_interest_rate": 3,
+      "transition_uncertainty": 0,
+      "monetary_policy_uncert": 2,
+      "market_volatility": 3,
+      "investor_risk_appetite": 2,
+      "bank_funding_stress": 1,
+      "corp_credit_conditions": 2,
+      "cross_border_flows": 2,
+      "political_polarization": 2,
+      "social_unrest_intensity": 2,
+      "inflation_rate": 0
+    }
+  },
+  "AS": {
+    "aggregate_growth_rate": 26,
+    "fiscal_balance_ratio": 27,
+    "sovereign_spread_level": 27,
+    "debt_sustainability_risk": 31,
+    "credit_rating_outlook": 19,
+    "policy_interest_rate": 30,
+    "transition_uncertainty": 29,
+    "monetary_policy_uncert": 28,
+    "market_volatility": 23,
+    "investor_risk_appetite": 24,
+    "bank_funding_stress": 28,
+    "corp_credit_conditions": 18,
+    "cross_border_flows": 24,
+    "political_polarization": 30,
+    "social_unrest_intensity": 31,
+    "inflation_rate": 30
+  },
+  "PS": {
+    "aggregate_growth_rate": 32,
+    "fiscal_balance_ratio": 29,
+    "sovereign_spread_level": 38,
+    "debt_sustainability_risk": 33,
+    "credit_rating_outlook": 29,
+    "policy_interest_rate": 24,
+    "transition_uncertainty": 4,
+    "monetary_policy_uncert": 25,
+    "market_volatility": 40,
+    "investor_risk_appetite": 35,
+    "bank_funding_stress": 36,
+    "corp_credit_conditions": 33,
+    "cross_border_flows": 37,
+    "political_polarization": 10,
+    "social_unrest_intensity": 7,
+    "inflation_rate": 13
+  },
+  "med_AS": 27.5,
+  "med_PS": 30.5,
+  "roles": [
+    {
+      "variable": "sovereign_spread_level",
+      "name": "Sovereign bond spread level",
+      "AS": 27,
+      "PS": 38,
+      "Q=AS/PS": 0.71,
+      "P=AS*PS": 1026,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "debt_sustainability_risk",
+      "name": "Debt sustainability risk",
+      "AS": 31,
+      "PS": 33,
+      "Q=AS/PS": 0.94,
+      "P=AS*PS": 1023,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "bank_funding_stress",
+      "name": "Bank funding stress",
+      "AS": 28,
+      "PS": 36,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 1008,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Market volatility",
+      "AS": 23,
+      "PS": 40,
+      "Q=AS/PS": 0.58,
+      "P=AS*PS": 920,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "cross_border_flows",
+      "name": "Cross‑border capital flows",
+      "AS": 24,
+      "PS": 37,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 888,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 24,
+      "PS": 35,
+      "Q=AS/PS": 0.69,
+      "P=AS*PS": 840,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "aggregate_growth_rate",
+      "name": "Aggregate economic growth rate",
+      "AS": 26,
+      "PS": 32,
+      "Q=AS/PS": 0.81,
+      "P=AS*PS": 832,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "fiscal_balance_ratio",
+      "name": "Government fiscal balance ratio",
+      "AS": 27,
+      "PS": 29,
+      "Q=AS/PS": 0.93,
+      "P=AS*PS": 783,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "policy_interest_rate",
+      "name": "Policy interest rate",
+      "AS": 30,
+      "PS": 24,
+      "Q=AS/PS": 1.25,
+      "P=AS*PS": 720,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "monetary_policy_uncert",
+      "name": "Monetary policy uncertainty",
+      "AS": 28,
+      "PS": 25,
+      "Q=AS/PS": 1.12,
+      "P=AS*PS": 700,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "corp_credit_conditions",
+      "name": "Corporate credit conditions",
+      "AS": 18,
+      "PS": 33,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 594,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "credit_rating_outlook",
+      "name": "Sovereign credit‑rating outlook",
+      "AS": 19,
+      "PS": 29,
+      "Q=AS/PS": 0.66,
+      "P=AS*PS": 551,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "inflation_rate",
+      "name": "Inflation rate",
+      "AS": 30,
+      "PS": 13,
+      "Q=AS/PS": 2.31,
+      "P=AS*PS": 390,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "political_polarization",
+      "name": "Political polarization intensity",
+      "AS": 30,
+      "PS": 10,
+      "Q=AS/PS": 3.0,
+      "P=AS*PS": 300,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "social_unrest_intensity",
+      "name": "Social unrest intensity",
+      "AS": 31,
+      "PS": 7,
+      "Q=AS/PS": 4.43,
+      "P=AS*PS": 217,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "transition_uncertainty",
+      "name": "Leadership transition uncertainty",
+      "AS": 29,
+      "PS": 4,
+      "Q=AS/PS": 7.25,
+      "P=AS*PS": 116,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "aggregate_growth_rate",
+        "name": "Aggregate economic growth rate",
+        "kind": "stock",
+        "AS": 26,
+        "PS": 32
+      },
+      {
+        "id": "fiscal_balance_ratio",
+        "name": "Government fiscal balance ratio",
+        "kind": "stock",
+        "AS": 27,
+        "PS": 29
+      },
+      {
+        "id": "sovereign_spread_level",
+        "name": "Sovereign bond spread level",
+        "kind": "stock",
+        "AS": 27,
+        "PS": 38
+      },
+      {
+        "id": "debt_sustainability_risk",
+        "name": "Debt sustainability risk",
+        "kind": "perception",
+        "AS": 31,
+        "PS": 33
+      },
+      {
+        "id": "credit_rating_outlook",
+        "name": "Sovereign credit‑rating outlook",
+        "kind": "perception",
+        "AS": 19,
+        "PS": 29
+      },
+      {
+        "id": "policy_interest_rate",
+        "name": "Policy interest rate",
+        "kind": "driver",
+        "AS": 30,
+        "PS": 24
+      },
+      {
+        "id": "transition_uncertainty",
+        "name": "Leadership transition uncertainty",
+        "kind": "perception",
+        "AS": 29,
+        "PS": 4
+      },
+      {
+        "id": "monetary_policy_uncert",
+        "name": "Monetary policy uncertainty",
+        "kind": "perception",
+        "AS": 28,
+        "PS": 25
+      },
+      {
+        "id": "market_volatility",
+        "name": "Market volatility",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 40
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 24,
+        "PS": 35
+      },
+      {
+        "id": "bank_funding_stress",
+        "name": "Bank funding stress",
+        "kind": "stock",
+        "AS": 28,
+        "PS": 36
+      },
+      {
+        "id": "corp_credit_conditions",
+        "name": "Corporate credit conditions",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 33
+      },
+      {
+        "id": "cross_border_flows",
+        "name": "Cross‑border capital flows",
+        "kind": "flow",
+        "AS": 24,
+        "PS": 37
+      },
+      {
+        "id": "political_polarization",
+        "name": "Political polarization intensity",
+        "kind": "environment",
+        "AS": 30,
+        "PS": 10
+      },
+      {
+        "id": "social_unrest_intensity",
+        "name": "Social unrest intensity",
+        "kind": "environment",
+        "AS": 31,
+        "PS": 7
+      },
+      {
+        "id": "inflation_rate",
+        "name": "Inflation rate",
+        "kind": "stock",
+        "AS": 30,
+        "PS": 13
+      }
+    ],
+    "edges": [
+      {
+        "source": "aggregate_growth_rate",
+        "target": "fiscal_balance_ratio",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "aggregate_growth_rate",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "aggregate_growth_rate",
+        "target": "debt_sustainability_risk",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "aggregate_growth_rate",
+        "target": "credit_rating_outlook",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "aggregate_growth_rate",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "aggregate_growth_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "aggregate_growth_rate",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "aggregate_growth_rate",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "aggregate_growth_rate",
+        "target": "corp_credit_conditions",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "aggregate_growth_rate",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "aggregate_growth_rate",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance_ratio",
+        "target": "aggregate_growth_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "fiscal_balance_ratio",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance_ratio",
+        "target": "debt_sustainability_risk",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance_ratio",
+        "target": "credit_rating_outlook",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance_ratio",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance_ratio",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance_ratio",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_balance_ratio",
+        "target": "corp_credit_conditions",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance_ratio",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_balance_ratio",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "aggregate_growth_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "fiscal_balance_ratio",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "debt_sustainability_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "credit_rating_outlook",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "monetary_policy_uncert",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "bank_funding_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "corp_credit_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sovereign_spread_level",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "debt_sustainability_risk",
+        "target": "aggregate_growth_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_sustainability_risk",
+        "target": "fiscal_balance_ratio",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "debt_sustainability_risk",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_sustainability_risk",
+        "target": "credit_rating_outlook",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_sustainability_risk",
+        "target": "monetary_policy_uncert",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "debt_sustainability_risk",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_sustainability_risk",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "debt_sustainability_risk",
+        "target": "bank_funding_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "debt_sustainability_risk",
+        "target": "corp_credit_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "debt_sustainability_risk",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "debt_sustainability_risk",
+        "target": "political_polarization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_rating_outlook",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "credit_rating_outlook",
+        "target": "debt_sustainability_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_rating_outlook",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_rating_outlook",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_rating_outlook",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_rating_outlook",
+        "target": "corp_credit_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_rating_outlook",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "aggregate_growth_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "fiscal_balance_ratio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "debt_sustainability_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "monetary_policy_uncert",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "corp_credit_conditions",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "transition_uncertainty",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "transition_uncertainty",
+        "target": "debt_sustainability_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "transition_uncertainty",
+        "target": "credit_rating_outlook",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "transition_uncertainty",
+        "target": "policy_interest_rate",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "transition_uncertainty",
+        "target": "monetary_policy_uncert",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "transition_uncertainty",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "transition_uncertainty",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "transition_uncertainty",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "transition_uncertainty",
+        "target": "corp_credit_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "transition_uncertainty",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_uncert",
+        "target": "aggregate_growth_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_uncert",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_uncert",
+        "target": "debt_sustainability_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_uncert",
+        "target": "credit_rating_outlook",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_uncert",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_uncert",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_uncert",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_uncert",
+        "target": "bank_funding_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_uncert",
+        "target": "corp_credit_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_uncert",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_uncert",
+        "target": "inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "aggregate_growth_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "debt_sustainability_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "credit_rating_outlook",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "monetary_policy_uncert",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "bank_funding_stress",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "corp_credit_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "aggregate_growth_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "fiscal_balance_ratio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "debt_sustainability_risk",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "bank_funding_stress",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "corp_credit_conditions",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "aggregate_growth_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "fiscal_balance_ratio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "debt_sustainability_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "credit_rating_outlook",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "corp_credit_conditions",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bank_funding_stress",
+        "target": "cross_border_flows",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "corp_credit_conditions",
+        "target": "aggregate_growth_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "corp_credit_conditions",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corp_credit_conditions",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corp_credit_conditions",
+        "target": "bank_funding_stress",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "aggregate_growth_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "debt_sustainability_risk",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "credit_rating_outlook",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "policy_interest_rate",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "bank_funding_stress",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_flows",
+        "target": "corp_credit_conditions",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_polarization",
+        "target": "aggregate_growth_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_polarization",
+        "target": "fiscal_balance_ratio",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "political_polarization",
+        "target": "sovereign_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "political_polarization",
+        "target": "debt_sustainability_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_polarization",
+        "target": "credit_rating_outlook",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_polarization",
+        "target": "transition_uncertainty",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_polarization",
+        "target": "monetary_policy_uncert",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_polarization",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_polarization",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_polarization",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "political_polarization",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "political_polarization",
+        "target": "social_unrest_intensity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "aggregate_growth_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "fiscal_balance_ratio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "debt_sustainability_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "credit_rating_outlook",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "transition_uncertainty",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "monetary_policy_uncert",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "bank_funding_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "corp_credit_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "social_unrest_intensity",
+        "target": "political_polarization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "aggregate_growth_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "fiscal_balance_ratio",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "sovereign_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "debt_sustainability_risk",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "credit_rating_outlook",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "policy_interest_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "monetary_policy_uncert",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "corp_credit_conditions",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "cross_border_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "political_polarization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_rate",
+        "target": "social_unrest_intensity",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "ecb_leadership_transition",
+      "title": "ECB leadership transition (Lagarde departure)",
+      "description": "Christine Lagarde's announced early resignation and the ensuing leadership contest through her February exit, raising policy and signalling uncertainty.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-02-28",
+        "label": "by Feb"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "transition_uncertainty",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "monetary_policy_uncert",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Christine Lagarde to step down in February', 'Lagarde’s early departure triggers race'."
+    },
+    {
+      "id": "france_political_fragmentation",
+      "title": "Rising French political polarization and instability",
+      "description": "Escalating feuds among centrists, electoral runoff risk and commentary that France is ungovernable, implying growing political fragmentation.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-03-31",
+        "label": "next 4–5 months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "political_polarization",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "social_unrest_intensity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_balance_ratio",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "aggregate_growth_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'French centrists' feuding...', 'France is looking ungovernable', 'Le Pen-Melenchon runoff'."
+    },
+    {
+      "id": "france_spread_widening",
+      "title": "Continued French sovereign bond sell‑off and spread widening",
+      "description": "Ongoing investor pressure and sell‑offs in French bonds following negative outlooks, likely to push spreads wider over the near term.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-02-28",
+        "label": "1–4 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "sovereign_spread_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "debt_sustainability_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_rating_outlook",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bank_funding_stress",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Why the sell-off in French bonds...', 'Fitch revises France's outlook to negative'."
+    },
+    {
+      "id": "fitch_downgrade_risk",
+      "title": "Risk of a sovereign rating downgrade for France",
+      "description": "With agencies already marking a negative outlook, a formal downgrade by Fitch or peers is possible within the coming months.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-02-28",
+        "label": "by Feb"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "credit_rating_outlook",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "sovereign_spread_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "debt_sustainability_risk",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Fitch Cuts France’s Outlook to Negative', 'unscheduled outlook downgrade'."
+    },
+    {
+      "id": "eu_growth_inflation_mismatch",
+      "title": "Slowing Eurozone growth alongside rising inflation",
+      "description": "Q3 data show slower GDP and accelerating inflation in France, suggesting continued growth/inflation divergence across the Eurozone.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-01-31",
+        "label": "next quarter"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "aggregate_growth_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "inflation_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_balance_ratio",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "debt_sustainability_risk",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Euro zone economy slows to 0.4% growth', 'French output shrinks and inflation accelerates'."
+    },
+    {
+      "id": "earnings_tech_volatility",
+      "title": "Elevated market volatility from tech earnings season",
+      "description": "Volatility driven by major tech earnings and weak days for large caps could spill into broader markets and risk sentiment.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2026-11-30",
+        "label": "weeks"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "market_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "cross_border_flows",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "corp_credit_conditions",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Expect more volatility as tech earnings... loom', 'Alphabet’s brutal day', 'Amazon and Intel stocks set to plunge'."
+    },
+    {
+      "id": "france_unrest_spike",
+      "title": "Fresh waves of protests and unrest in France",
+      "description": "Government warnings and recent protest impacts on banks point to likely recurring or intensified demonstrations in coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-02-28",
+        "label": "months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "social_unrest_intensity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bank_funding_stress",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "fiscal_balance_ratio",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "political_polarization",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'France braces for fresh unrest', 'French protests show BNP Paribas what’s in a name'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "ecb_leadership_transition",
+      "title": "ECB leadership transition (Lagarde departure)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by Feb",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-02-28",
+      "probability": 0.95,
+      "impact_score": 301.0,
+      "expected_impact": 285.95,
+      "event_PS": 22.727,
+      "event_AS": 27.364,
+      "n_vars": 5,
+      "affected_ids": "transition_uncertainty, monetary_policy_uncert, policy_interest_rate, market_volatility, investor_risk_appetite",
+      "rationale": "Headlines: 'Christine Lagarde to step down in February', 'Lagarde’s early departure triggers race'."
+    },
+    {
+      "id": "france_spread_widening",
+      "title": "Continued French sovereign bond sell‑off and spread widening",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1–4 months",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-02-28",
+      "probability": 0.8,
+      "impact_score": 288.0,
+      "expected_impact": 230.4,
+      "event_PS": 34.273,
+      "event_AS": 26.182,
+      "n_vars": 5,
+      "affected_ids": "sovereign_spread_level, debt_sustainability_risk, credit_rating_outlook, investor_risk_appetite, bank_funding_stress",
+      "rationale": "Headlines: 'Why the sell-off in French bonds...', 'Fitch revises France's outlook to negative'."
+    },
+    {
+      "id": "france_political_fragmentation",
+      "title": "Rising French political polarization and instability",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4–5 months",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-03-31",
+      "probability": 0.85,
+      "impact_score": 256.0,
+      "expected_impact": 217.6,
+      "event_PS": 18.778,
+      "event_AS": 28.444,
+      "n_vars": 5,
+      "affected_ids": "political_polarization, social_unrest_intensity, fiscal_balance_ratio, aggregate_growth_rate, investor_risk_appetite",
+      "rationale": "Headlines: 'French centrists' feuding...', 'France is looking ungovernable', 'Le Pen-Melenchon runoff'."
+    },
+    {
+      "id": "france_unrest_spike",
+      "title": "Fresh waves of protests and unrest in France",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "months",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-02-28",
+      "probability": 0.7,
+      "impact_score": 208.0,
+      "expected_impact": 145.6,
+      "event_PS": 15.143,
+      "event_AS": 29.714,
+      "n_vars": 4,
+      "affected_ids": "social_unrest_intensity, bank_funding_stress, fiscal_balance_ratio, political_polarization",
+      "rationale": "Headlines: 'France braces for fresh unrest', 'French protests show BNP Paribas what’s in a name'."
+    },
+    {
+      "id": "fitch_downgrade_risk",
+      "title": "Risk of a sovereign rating downgrade for France",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by Feb",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-02-28",
+      "probability": 0.6,
+      "impact_score": 197.0,
+      "expected_impact": 118.2,
+      "event_PS": 33.0,
+      "event_AS": 24.625,
+      "n_vars": 4,
+      "affected_ids": "credit_rating_outlook, sovereign_spread_level, debt_sustainability_risk, investor_risk_appetite",
+      "rationale": "Headlines: 'Fitch Cuts France’s Outlook to Negative', 'unscheduled outlook downgrade'."
+    },
+    {
+      "id": "eu_growth_inflation_mismatch",
+      "title": "Slowing Eurozone growth alongside rising inflation",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next quarter",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-01-31",
+      "probability": 0.75,
+      "impact_score": 197.0,
+      "expected_impact": 147.75,
+      "event_PS": 25.857,
+      "event_AS": 28.143,
+      "n_vars": 4,
+      "affected_ids": "aggregate_growth_rate, inflation_rate, fiscal_balance_ratio, debt_sustainability_risk",
+      "rationale": "Headlines: 'Euro zone economy slows to 0.4% growth', 'French output shrinks and inflation accelerates'."
+    },
+    {
+      "id": "earnings_tech_volatility",
+      "title": "Elevated market volatility from tech earnings season",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2026-11-30",
+      "probability": 0.7,
+      "impact_score": 159.0,
+      "expected_impact": 111.3,
+      "event_PS": 37.143,
+      "event_AS": 22.714,
+      "n_vars": 4,
+      "affected_ids": "market_volatility, investor_risk_appetite, cross_border_flows, corp_credit_conditions",
+      "rationale": "Headlines: 'Expect more volatility as tech earnings... loom', 'Alphabet’s brutal day', 'Amazon and Intel stocks set to plunge'."
+    }
+  ]
+}

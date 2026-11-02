@@ -1,0 +1,1493 @@
+{
+  "label": "global_energy_shock",
+  "as_of": "2026-11-01",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-11-02T02:58:03",
+  "system_description": {
+    "narrative_title": "War-driven energy shock: soaring fuel profits, supply risk, social spillovers",
+    "narrative_summary": "An open system in which Middle East conflict(s), constrained upstream output decisions (OPEC+), and winter demand intersect with refineries, storage, and shipping to drive crude and refined-fuel price spikes. Those price dynamics transmit to corporate profits and financial flows (buybacks, investor gains) while feeding inflationary pressure, industrial stress, and social unrest in energy-importing economies; security responses and military logistics further couple back into market risk and supply availability. The system continuously exchanges material (oil, refined products, coal, electricity), information (price signals, policy decisions), and influence (military presence, sanctions, strikes) with a larger geopolitical-economic environment.",
+    "scope": "International oil and refined-fuels market dynamics (production, OPEC+ quotas, shipping security, refining margins, storage levels), major oil & gas firms' financial responses (profits, buybacks, investment choices), regional gas storage and winter demand in Europe, and short-term social/political reactions in affected economies (strikes, protests, price-sensitive unrest).",
+    "super_system": "Global geopolitical-economic-energy security system",
+    "adjacent_subsystems": [
+      "Global financial markets and investor behavior",
+      "Domestic politics and social stability (strikes, protests, wage pressures)",
+      "Shipping, logistics, and strategic storage infrastructure"
+    ],
+    "evidence_headlines": [
+      "BP’s profits surge to record on high fuel prices",
+      "ExxonMobil beats third-quarter profit estimates on refining boom",
+      "OPEC+ set to hold December oil output steady, Reuters reports",
+      "Brent 2026 view tops $90 for first time since May as MidEast stability remains elusive",
+      "Germany fails to meet gas storage target as winter approaches",
+      "Exclusive | Inside the U.S. Military’s Open-Ended Mission to Keep Gulf Oil Flowing"
+    ]
+  },
+  "variables": [
+    {
+      "id": "crude_oil_price",
+      "name": "Crude oil price",
+      "description": "The market price per barrel for crude oil measured as an aggregate market-level price index.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refined_fuel_price",
+      "name": "Refined fuel price",
+      "description": "The market price index for refined liquid fuels (gasoline, diesel, jet) at wholesale/retail levels.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refining_margin",
+      "name": "Refining margin",
+      "description": "The average spread between refined-fuel prices and crude feedstock costs across the refining system.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "upstream_prod_rate",
+      "name": "Upstream production rate",
+      "description": "The volumetric flow rate of crude oil (and associated liquids) produced per unit time across upstream supply.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "oil_storage_level",
+      "name": "Oil storage level",
+      "description": "The aggregated stock of crude oil held in commercial and strategic storage measured in volumetric units.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "gas_storage_level",
+      "name": "Gas storage level",
+      "description": "The aggregated stock of natural gas held in underground and commercial storage measured in energy or volumetric units.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_security_risk",
+      "name": "Shipping security risk",
+      "description": "The prevailing risk level to maritime energy logistics from hostile actions, interdictions, or physical threats.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refining_util_rate",
+      "name": "Refining capacity utilization rate",
+      "description": "The percentage of available refining capacity currently in operation across the refining fleet.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "winter_heating_demand",
+      "name": "Winter heating demand",
+      "description": "Seasonal aggregated demand for heating fuels and related energy services measured as load or fuel consumption.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "coal_supply_rate",
+      "name": "Coal supply rate",
+      "description": "The flow rate of coal delivered to markets and power generation measured over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refining_cash_flow",
+      "name": "Refining cash flow",
+      "description": "Aggregate net cash generated by refining activities per unit time, including margins and operating cash receipts.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "share_buyback_rate",
+      "name": "Share buyback rate (energy firms)",
+      "description": "The aggregate monetary rate at which energy-sector firms repurchase their equity from investors per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "upstream_investment_rate",
+      "name": "Upstream investment rate",
+      "description": "The flow of capital allocated to exploration and upstream production capacity expansion per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "energy_price_inflation",
+      "name": "Energy price inflation component",
+      "description": "The contribution of energy price changes to the overall consumer price inflation rate measured as an index component.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "industrial_energy_stress",
+      "name": "Industrial energy stress",
+      "description": "The level of operational constraint on industrial production due to energy cost increases or supply shortfalls.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "social_unrest_intensity",
+      "name": "Social unrest intensity",
+      "description": "The aggregated frequency and severity of protests, strikes, and disruptive public actions tied to economic or price shocks.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "crude_oil_price",
+    "refined_fuel_price",
+    "refining_margin",
+    "upstream_prod_rate",
+    "oil_storage_level",
+    "gas_storage_level",
+    "shipping_security_risk",
+    "refining_util_rate",
+    "winter_heating_demand",
+    "coal_supply_rate",
+    "refining_cash_flow",
+    "share_buyback_rate",
+    "upstream_investment_rate",
+    "energy_price_inflation",
+    "industrial_energy_stress",
+    "social_unrest_intensity"
+  ],
+  "var_names": {
+    "crude_oil_price": "Crude oil price",
+    "refined_fuel_price": "Refined fuel price",
+    "refining_margin": "Refining margin",
+    "upstream_prod_rate": "Upstream production rate",
+    "oil_storage_level": "Oil storage level",
+    "gas_storage_level": "Gas storage level",
+    "shipping_security_risk": "Shipping security risk",
+    "refining_util_rate": "Refining capacity utilization rate",
+    "winter_heating_demand": "Winter heating demand",
+    "coal_supply_rate": "Coal supply rate",
+    "refining_cash_flow": "Refining cash flow",
+    "share_buyback_rate": "Share buyback rate (energy firms)",
+    "upstream_investment_rate": "Upstream investment rate",
+    "energy_price_inflation": "Energy price inflation component",
+    "industrial_energy_stress": "Industrial energy stress",
+    "social_unrest_intensity": "Social unrest intensity"
+  },
+  "impact_matrix": {
+    "crude_oil_price": {
+      "crude_oil_price": 0,
+      "refined_fuel_price": 3,
+      "refining_margin": 2,
+      "upstream_prod_rate": 2,
+      "oil_storage_level": 2,
+      "gas_storage_level": 1,
+      "shipping_security_risk": 1,
+      "refining_util_rate": 2,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 1,
+      "refining_cash_flow": 3,
+      "share_buyback_rate": 2,
+      "upstream_investment_rate": 2,
+      "energy_price_inflation": 3,
+      "industrial_energy_stress": 2,
+      "social_unrest_intensity": 1
+    },
+    "refined_fuel_price": {
+      "crude_oil_price": 2,
+      "refined_fuel_price": 0,
+      "refining_margin": 3,
+      "upstream_prod_rate": 1,
+      "oil_storage_level": 1,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 1,
+      "refining_util_rate": 3,
+      "winter_heating_demand": 1,
+      "coal_supply_rate": 1,
+      "refining_cash_flow": 3,
+      "share_buyback_rate": 2,
+      "upstream_investment_rate": 1,
+      "energy_price_inflation": 3,
+      "industrial_energy_stress": 2,
+      "social_unrest_intensity": 1
+    },
+    "refining_margin": {
+      "crude_oil_price": 1,
+      "refined_fuel_price": 3,
+      "refining_margin": 0,
+      "upstream_prod_rate": 1,
+      "oil_storage_level": 1,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 3,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 0,
+      "refining_cash_flow": 3,
+      "share_buyback_rate": 2,
+      "upstream_investment_rate": 1,
+      "energy_price_inflation": 2,
+      "industrial_energy_stress": 1,
+      "social_unrest_intensity": 0
+    },
+    "upstream_prod_rate": {
+      "crude_oil_price": 2,
+      "refined_fuel_price": 1,
+      "refining_margin": 1,
+      "upstream_prod_rate": 0,
+      "oil_storage_level": 2,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 1,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 0,
+      "refining_cash_flow": 1,
+      "share_buyback_rate": 0,
+      "upstream_investment_rate": 1,
+      "energy_price_inflation": 1,
+      "industrial_energy_stress": 1,
+      "social_unrest_intensity": 0
+    },
+    "oil_storage_level": {
+      "crude_oil_price": 2,
+      "refined_fuel_price": 1,
+      "refining_margin": 1,
+      "upstream_prod_rate": 1,
+      "oil_storage_level": 0,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 1,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 0,
+      "refining_cash_flow": 0,
+      "share_buyback_rate": 0,
+      "upstream_investment_rate": 1,
+      "energy_price_inflation": 2,
+      "industrial_energy_stress": 1,
+      "social_unrest_intensity": 1
+    },
+    "gas_storage_level": {
+      "crude_oil_price": 0,
+      "refined_fuel_price": 0,
+      "refining_margin": 0,
+      "upstream_prod_rate": 0,
+      "oil_storage_level": 0,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 0,
+      "winter_heating_demand": 1,
+      "coal_supply_rate": 1,
+      "refining_cash_flow": 0,
+      "share_buyback_rate": 0,
+      "upstream_investment_rate": 1,
+      "energy_price_inflation": 1,
+      "industrial_energy_stress": 1,
+      "social_unrest_intensity": 1
+    },
+    "shipping_security_risk": {
+      "crude_oil_price": 2,
+      "refined_fuel_price": 2,
+      "refining_margin": 1,
+      "upstream_prod_rate": 2,
+      "oil_storage_level": 1,
+      "gas_storage_level": 1,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 1,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 1,
+      "refining_cash_flow": 2,
+      "share_buyback_rate": 1,
+      "upstream_investment_rate": 1,
+      "energy_price_inflation": 2,
+      "industrial_energy_stress": 2,
+      "social_unrest_intensity": 1
+    },
+    "refining_util_rate": {
+      "crude_oil_price": 1,
+      "refined_fuel_price": 2,
+      "refining_margin": 2,
+      "upstream_prod_rate": 1,
+      "oil_storage_level": 1,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 0,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 0,
+      "refining_cash_flow": 3,
+      "share_buyback_rate": 1,
+      "upstream_investment_rate": 0,
+      "energy_price_inflation": 1,
+      "industrial_energy_stress": 0,
+      "social_unrest_intensity": 0
+    },
+    "winter_heating_demand": {
+      "crude_oil_price": 1,
+      "refined_fuel_price": 2,
+      "refining_margin": 1,
+      "upstream_prod_rate": 1,
+      "oil_storage_level": 1,
+      "gas_storage_level": 2,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 1,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 1,
+      "refining_cash_flow": 1,
+      "share_buyback_rate": 0,
+      "upstream_investment_rate": 0,
+      "energy_price_inflation": 2,
+      "industrial_energy_stress": 1,
+      "social_unrest_intensity": 0
+    },
+    "coal_supply_rate": {
+      "crude_oil_price": 1,
+      "refined_fuel_price": 1,
+      "refining_margin": 0,
+      "upstream_prod_rate": 0,
+      "oil_storage_level": 0,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 0,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 0,
+      "refining_cash_flow": 0,
+      "share_buyback_rate": 0,
+      "upstream_investment_rate": 0,
+      "energy_price_inflation": 1,
+      "industrial_energy_stress": 1,
+      "social_unrest_intensity": 0
+    },
+    "refining_cash_flow": {
+      "crude_oil_price": 0,
+      "refined_fuel_price": 0,
+      "refining_margin": 0,
+      "upstream_prod_rate": 1,
+      "oil_storage_level": 0,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 0,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 0,
+      "refining_cash_flow": 0,
+      "share_buyback_rate": 3,
+      "upstream_investment_rate": 2,
+      "energy_price_inflation": 0,
+      "industrial_energy_stress": 0,
+      "social_unrest_intensity": 0
+    },
+    "share_buyback_rate": {
+      "crude_oil_price": 0,
+      "refined_fuel_price": 0,
+      "refining_margin": 0,
+      "upstream_prod_rate": 0,
+      "oil_storage_level": 0,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 0,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 0,
+      "refining_cash_flow": 0,
+      "share_buyback_rate": 0,
+      "upstream_investment_rate": 1,
+      "energy_price_inflation": 0,
+      "industrial_energy_stress": 0,
+      "social_unrest_intensity": 0
+    },
+    "upstream_investment_rate": {
+      "crude_oil_price": 1,
+      "refined_fuel_price": 0,
+      "refining_margin": 0,
+      "upstream_prod_rate": 2,
+      "oil_storage_level": 0,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 0,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 0,
+      "refining_cash_flow": 0,
+      "share_buyback_rate": 0,
+      "upstream_investment_rate": 0,
+      "energy_price_inflation": 0,
+      "industrial_energy_stress": 0,
+      "social_unrest_intensity": 0
+    },
+    "energy_price_inflation": {
+      "crude_oil_price": 1,
+      "refined_fuel_price": 1,
+      "refining_margin": 0,
+      "upstream_prod_rate": 0,
+      "oil_storage_level": 0,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 0,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 0,
+      "refining_cash_flow": 0,
+      "share_buyback_rate": 1,
+      "upstream_investment_rate": 1,
+      "energy_price_inflation": 0,
+      "industrial_energy_stress": 1,
+      "social_unrest_intensity": 1
+    },
+    "industrial_energy_stress": {
+      "crude_oil_price": 1,
+      "refined_fuel_price": 1,
+      "refining_margin": 1,
+      "upstream_prod_rate": 0,
+      "oil_storage_level": 0,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 0,
+      "refining_util_rate": 1,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 0,
+      "refining_cash_flow": 0,
+      "share_buyback_rate": 0,
+      "upstream_investment_rate": 0,
+      "energy_price_inflation": 1,
+      "industrial_energy_stress": 0,
+      "social_unrest_intensity": 1
+    },
+    "social_unrest_intensity": {
+      "crude_oil_price": 1,
+      "refined_fuel_price": 1,
+      "refining_margin": 0,
+      "upstream_prod_rate": 1,
+      "oil_storage_level": 1,
+      "gas_storage_level": 0,
+      "shipping_security_risk": 1,
+      "refining_util_rate": 1,
+      "winter_heating_demand": 0,
+      "coal_supply_rate": 0,
+      "refining_cash_flow": 1,
+      "share_buyback_rate": 0,
+      "upstream_investment_rate": 0,
+      "energy_price_inflation": 1,
+      "industrial_energy_stress": 1,
+      "social_unrest_intensity": 0
+    }
+  },
+  "AS": {
+    "crude_oil_price": 27,
+    "refined_fuel_price": 25,
+    "refining_margin": 18,
+    "upstream_prod_rate": 11,
+    "oil_storage_level": 11,
+    "gas_storage_level": 6,
+    "shipping_security_risk": 20,
+    "refining_util_rate": 12,
+    "winter_heating_demand": 14,
+    "coal_supply_rate": 4,
+    "refining_cash_flow": 6,
+    "share_buyback_rate": 1,
+    "upstream_investment_rate": 3,
+    "energy_price_inflation": 6,
+    "industrial_energy_stress": 6,
+    "social_unrest_intensity": 9
+  },
+  "PS": {
+    "crude_oil_price": 16,
+    "refined_fuel_price": 18,
+    "refining_margin": 12,
+    "upstream_prod_rate": 13,
+    "oil_storage_level": 10,
+    "gas_storage_level": 4,
+    "shipping_security_risk": 3,
+    "refining_util_rate": 14,
+    "winter_heating_demand": 2,
+    "coal_supply_rate": 5,
+    "refining_cash_flow": 17,
+    "share_buyback_rate": 12,
+    "upstream_investment_rate": 12,
+    "energy_price_inflation": 20,
+    "industrial_energy_stress": 14,
+    "social_unrest_intensity": 7
+  },
+  "med_AS": 10.0,
+  "med_PS": 12.0,
+  "roles": [
+    {
+      "variable": "refined_fuel_price",
+      "name": "Refined fuel price",
+      "AS": 25,
+      "PS": 18,
+      "Q=AS/PS": 1.39,
+      "P=AS*PS": 450,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crude_oil_price",
+      "name": "Crude oil price",
+      "AS": 27,
+      "PS": 16,
+      "Q=AS/PS": 1.69,
+      "P=AS*PS": 432,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refining_margin",
+      "name": "Refining margin",
+      "AS": 18,
+      "PS": 12,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 216,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "refining_util_rate",
+      "name": "Refining capacity utilization rate",
+      "AS": 12,
+      "PS": 14,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 168,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "upstream_prod_rate",
+      "name": "Upstream production rate",
+      "AS": 11,
+      "PS": 13,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 143,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "energy_price_inflation",
+      "name": "Energy price inflation component",
+      "AS": 6,
+      "PS": 20,
+      "Q=AS/PS": 0.3,
+      "P=AS*PS": 120,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "oil_storage_level",
+      "name": "Oil storage level",
+      "AS": 11,
+      "PS": 10,
+      "Q=AS/PS": 1.1,
+      "P=AS*PS": 110,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "refining_cash_flow",
+      "name": "Refining cash flow",
+      "AS": 6,
+      "PS": 17,
+      "Q=AS/PS": 0.35,
+      "P=AS*PS": 102,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "industrial_energy_stress",
+      "name": "Industrial energy stress",
+      "AS": 6,
+      "PS": 14,
+      "Q=AS/PS": 0.43,
+      "P=AS*PS": 84,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "social_unrest_intensity",
+      "name": "Social unrest intensity",
+      "AS": 9,
+      "PS": 7,
+      "Q=AS/PS": 1.29,
+      "P=AS*PS": 63,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "shipping_security_risk",
+      "name": "Shipping security risk",
+      "AS": 20,
+      "PS": 3,
+      "Q=AS/PS": 6.67,
+      "P=AS*PS": 60,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "upstream_investment_rate",
+      "name": "Upstream investment rate",
+      "AS": 3,
+      "PS": 12,
+      "Q=AS/PS": 0.25,
+      "P=AS*PS": 36,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "winter_heating_demand",
+      "name": "Winter heating demand",
+      "AS": 14,
+      "PS": 2,
+      "Q=AS/PS": 7.0,
+      "P=AS*PS": 28,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "gas_storage_level",
+      "name": "Gas storage level",
+      "AS": 6,
+      "PS": 4,
+      "Q=AS/PS": 1.5,
+      "P=AS*PS": 24,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "coal_supply_rate",
+      "name": "Coal supply rate",
+      "AS": 4,
+      "PS": 5,
+      "Q=AS/PS": 0.8,
+      "P=AS*PS": 20,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "share_buyback_rate",
+      "name": "Share buyback rate (energy firms)",
+      "AS": 1,
+      "PS": 12,
+      "Q=AS/PS": 0.08,
+      "P=AS*PS": 12,
+      "role": "reactive (sensor)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "crude_oil_price",
+        "name": "Crude oil price",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 16
+      },
+      {
+        "id": "refined_fuel_price",
+        "name": "Refined fuel price",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 18
+      },
+      {
+        "id": "refining_margin",
+        "name": "Refining margin",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 12
+      },
+      {
+        "id": "upstream_prod_rate",
+        "name": "Upstream production rate",
+        "kind": "flow",
+        "AS": 11,
+        "PS": 13
+      },
+      {
+        "id": "oil_storage_level",
+        "name": "Oil storage level",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 10
+      },
+      {
+        "id": "gas_storage_level",
+        "name": "Gas storage level",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 4
+      },
+      {
+        "id": "shipping_security_risk",
+        "name": "Shipping security risk",
+        "kind": "environment",
+        "AS": 20,
+        "PS": 3
+      },
+      {
+        "id": "refining_util_rate",
+        "name": "Refining capacity utilization rate",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 14
+      },
+      {
+        "id": "winter_heating_demand",
+        "name": "Winter heating demand",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 2
+      },
+      {
+        "id": "coal_supply_rate",
+        "name": "Coal supply rate",
+        "kind": "flow",
+        "AS": 4,
+        "PS": 5
+      },
+      {
+        "id": "refining_cash_flow",
+        "name": "Refining cash flow",
+        "kind": "flow",
+        "AS": 6,
+        "PS": 17
+      },
+      {
+        "id": "share_buyback_rate",
+        "name": "Share buyback rate (energy firms)",
+        "kind": "flow",
+        "AS": 1,
+        "PS": 12
+      },
+      {
+        "id": "upstream_investment_rate",
+        "name": "Upstream investment rate",
+        "kind": "flow",
+        "AS": 3,
+        "PS": 12
+      },
+      {
+        "id": "energy_price_inflation",
+        "name": "Energy price inflation component",
+        "kind": "driver",
+        "AS": 6,
+        "PS": 20
+      },
+      {
+        "id": "industrial_energy_stress",
+        "name": "Industrial energy stress",
+        "kind": "driver",
+        "AS": 6,
+        "PS": 14
+      },
+      {
+        "id": "social_unrest_intensity",
+        "name": "Social unrest intensity",
+        "kind": "perception",
+        "AS": 9,
+        "PS": 7
+      }
+    ],
+    "edges": [
+      {
+        "source": "crude_oil_price",
+        "target": "refined_fuel_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_oil_price",
+        "target": "refining_margin",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_oil_price",
+        "target": "upstream_prod_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_oil_price",
+        "target": "oil_storage_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_oil_price",
+        "target": "refining_util_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_oil_price",
+        "target": "refining_cash_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_oil_price",
+        "target": "share_buyback_rate",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "crude_oil_price",
+        "target": "upstream_investment_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_oil_price",
+        "target": "energy_price_inflation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_oil_price",
+        "target": "industrial_energy_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_price",
+        "target": "crude_oil_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_price",
+        "target": "refining_margin",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_price",
+        "target": "refining_util_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_price",
+        "target": "refining_cash_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_price",
+        "target": "share_buyback_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_price",
+        "target": "energy_price_inflation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_fuel_price",
+        "target": "industrial_energy_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margin",
+        "target": "refined_fuel_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refining_margin",
+        "target": "refining_util_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margin",
+        "target": "refining_cash_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margin",
+        "target": "share_buyback_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_margin",
+        "target": "energy_price_inflation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_prod_rate",
+        "target": "crude_oil_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "upstream_prod_rate",
+        "target": "oil_storage_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_storage_level",
+        "target": "crude_oil_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_storage_level",
+        "target": "energy_price_inflation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_security_risk",
+        "target": "crude_oil_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_security_risk",
+        "target": "refined_fuel_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_security_risk",
+        "target": "upstream_prod_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_security_risk",
+        "target": "refining_cash_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_security_risk",
+        "target": "energy_price_inflation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_security_risk",
+        "target": "industrial_energy_stress",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_util_rate",
+        "target": "refined_fuel_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_util_rate",
+        "target": "refining_margin",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_util_rate",
+        "target": "refining_cash_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "winter_heating_demand",
+        "target": "refined_fuel_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "winter_heating_demand",
+        "target": "gas_storage_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "winter_heating_demand",
+        "target": "energy_price_inflation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_cash_flow",
+        "target": "share_buyback_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_cash_flow",
+        "target": "upstream_investment_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "upstream_investment_rate",
+        "target": "upstream_prod_rate",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "opec_plus_december_output_steady",
+      "title": "OPEC+ keeps December output steady",
+      "description": "OPEC+ decision to hold December quotas steady will sustain constrained incremental supply into winter, supporting prices and refining margins.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2026-12-31",
+        "label": "by end of Dec"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "crude_oil_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "upstream_prod_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refining_margin",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_inflation",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'OPEC+ agrees in principle to keep oil output targets steady in December', 'OPEC+ set to hold December oil output steady'."
+    },
+    {
+      "id": "opec_plus_2027_output_decision",
+      "title": "OPEC+ tougher 2027 output decision",
+      "description": "Upcoming OPEC+ deliberation on 2027 production targets could reframe longer-term supply expectations and upstream planning.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2027-03-31",
+        "label": "Dec–Mar window"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "upstream_prod_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "crude_oil_price",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "energy_price_inflation",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'OPEC+ keeps December oil output targets steady ahead of tougher call for 2027'."
+    },
+    {
+      "id": "gulf_shipping_security_risk_escalation",
+      "title": "Escalating Gulf shipping security risk",
+      "description": "Ongoing threats to Gulf shipping and open-ended military missions raise the chance of maritime disruptions to crude and refined fuel flows.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-02-28",
+        "label": "near term"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "shipping_security_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_oil_price",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "oil_storage_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refining_util_rate",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'U.S. Military’s Open-Ended Mission to Keep Gulf Oil Flowing', 'Gulf shipping remains under threat'."
+    },
+    {
+      "id": "majors_expand_overseas_storage",
+      "title": "Oil majors expand overseas storage",
+      "description": "Majors expanding overseas crude/refined storage increases strategic stocks, altering short-term shipments and smoothing availability risks.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-03-31",
+        "label": "next 4–6 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "oil_storage_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refining_cash_flow",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Gulf Oil Giants Work to Expand Overseas Storage As War Exposes Supply Risks'."
+    },
+    {
+      "id": "europe_gas_storage_shortfall_winter",
+      "title": "European gas storage shortfall into winter",
+      "description": "Missed storage targets in Germany and across Europe heading into winter increase price vulnerability and energy stress for industry and households.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-03-31",
+        "label": "winter season"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "gas_storage_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "winter_heating_demand",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_inflation",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "industrial_energy_stress",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Germany fails to meet gas storage target as winter approaches', 'Germany must do more to boost gas reserves'."
+    },
+    {
+      "id": "refinery_profit_buybacks_and_returns",
+      "title": "Majors lift buybacks and capital returns",
+      "description": "Record refining profits drive higher cash generation and elevated share buybacks/returns, reducing reinvestment into capacity expansion.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-03-31",
+        "label": "Q4–Q1 reporting"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "refining_cash_flow",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "share_buyback_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "upstream_investment_rate",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'European oil majors lift buybacks', 'BP’s profits surge', 'Big Oil earnings are set to surge.'"
+    },
+    {
+      "id": "coal_supply_shortage_winter_pressure",
+      "title": "Coal supply struggles amid winter demand",
+      "description": "Coal deliveries failing to keep pace with rising demand (and higher coal-fired generation) will tighten thermal fuel availability and push prices up.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-02-28",
+        "label": "winter months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "coal_supply_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "industrial_energy_stress",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "energy_price_inflation",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Coal supply is struggling to keep pace with demand', 'India's October coal-fired power output jumps'."
+    },
+    {
+      "id": "europe_labor_and_protest_spike",
+      "title": "Escalating strikes and protests in Europe",
+      "description": "Wage strikes and large protests across Europe driven by costs and politics could disrupt logistics, production and local energy services.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-01-31",
+        "label": "near term"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "social_unrest_intensity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "industrial_energy_stress",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refining_util_rate",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Mass protests sweep Italy during nationwide strike', 'German engineering industry workers begin wage strikes', 'Gen Z protests turn violent in Germany'."
+    },
+    {
+      "id": "airline_capacity_cuts_from_fuel_shock",
+      "title": "Airlines cut capacity due to fuel shock",
+      "description": "Sustained high jet fuel prices prompt airlines to reduce capacity and staffing, lowering jet-fuel demand growth and altering refined-fuel markets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-01",
+        "end": "2027-02-28",
+        "label": "next 3 months"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "refined_fuel_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refining_util_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "industrial_energy_stress",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Alaska Air to cut about 200 jobs as fuel shock squeezes earnings' indicating airline responses to high fuel."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "gulf_shipping_security_risk_escalation",
+      "title": "Escalating Gulf shipping security risk",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near term",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-02-28",
+      "probability": 0.75,
+      "impact_score": 175.0,
+      "expected_impact": 131.25,
+      "event_PS": 10.111,
+      "event_AS": 19.444,
+      "n_vars": 4,
+      "affected_ids": "shipping_security_risk, crude_oil_price, oil_storage_level, refining_util_rate",
+      "rationale": "Headlines: 'U.S. Military’s Open-Ended Mission to Keep Gulf Oil Flowing', 'Gulf shipping remains under threat'."
+    },
+    {
+      "id": "opec_plus_december_output_steady",
+      "title": "OPEC+ keeps December output steady",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of Dec",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2026-12-31",
+      "probability": 0.9,
+      "impact_score": 140.0,
+      "expected_impact": 126.0,
+      "event_PS": 15.625,
+      "event_AS": 17.5,
+      "n_vars": 4,
+      "affected_ids": "crude_oil_price, upstream_prod_rate, refining_margin, energy_price_inflation",
+      "rationale": "Headlines: 'OPEC+ agrees in principle to keep oil output targets steady in December', 'OPEC+ set to hold December oil output steady'."
+    },
+    {
+      "id": "europe_gas_storage_shortfall_winter",
+      "title": "European gas storage shortfall into winter",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "winter season",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-03-31",
+      "probability": 0.95,
+      "impact_score": 90.0,
+      "expected_impact": 85.5,
+      "event_PS": 9.636,
+      "event_AS": 8.182,
+      "n_vars": 4,
+      "affected_ids": "gas_storage_level, winter_heating_demand, energy_price_inflation, industrial_energy_stress",
+      "rationale": "Headlines: 'Germany fails to meet gas storage target as winter approaches', 'Germany must do more to boost gas reserves'."
+    },
+    {
+      "id": "opec_plus_2027_output_decision",
+      "title": "OPEC+ tougher 2027 output decision",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "Dec–Mar window",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2027-03-31",
+      "probability": 0.6,
+      "impact_score": 82.0,
+      "expected_impact": 49.2,
+      "event_PS": 15.6,
+      "event_AS": 16.4,
+      "n_vars": 3,
+      "affected_ids": "upstream_prod_rate, crude_oil_price, energy_price_inflation",
+      "rationale": "Headline: 'OPEC+ keeps December oil output targets steady ahead of tougher call for 2027'."
+    },
+    {
+      "id": "airline_capacity_cuts_from_fuel_shock",
+      "title": "Airlines cut capacity due to fuel shock",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-02-28",
+      "probability": 0.5,
+      "impact_score": 68.0,
+      "expected_impact": 34.0,
+      "event_PS": 16.0,
+      "event_AS": 17.0,
+      "n_vars": 3,
+      "affected_ids": "refined_fuel_price, refining_util_rate, industrial_energy_stress",
+      "rationale": "Headline: 'Alaska Air to cut about 200 jobs as fuel shock squeezes earnings' indicating airline responses to high fuel."
+    },
+    {
+      "id": "europe_labor_and_protest_spike",
+      "title": "Escalating strikes and protests in Europe",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near term",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-01-31",
+      "probability": 0.75,
+      "impact_score": 51.0,
+      "expected_impact": 38.25,
+      "event_PS": 10.5,
+      "event_AS": 8.5,
+      "n_vars": 3,
+      "affected_ids": "social_unrest_intensity, industrial_energy_stress, refining_util_rate",
+      "rationale": "Headlines: 'Mass protests sweep Italy during nationwide strike', 'German engineering industry workers begin wage strikes', 'Gen Z protests turn violent in Germany'."
+    },
+    {
+      "id": "majors_expand_overseas_storage",
+      "title": "Oil majors expand overseas storage",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4–6 months",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-03-31",
+      "probability": 0.7,
+      "impact_score": 39.0,
+      "expected_impact": 27.3,
+      "event_PS": 11.75,
+      "event_AS": 9.75,
+      "n_vars": 2,
+      "affected_ids": "oil_storage_level, refining_cash_flow",
+      "rationale": "Headline: 'Gulf Oil Giants Work to Expand Overseas Storage As War Exposes Supply Risks'."
+    },
+    {
+      "id": "coal_supply_shortage_winter_pressure",
+      "title": "Coal supply struggles amid winter demand",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "winter months",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-02-28",
+      "probability": 0.7,
+      "impact_score": 30.0,
+      "expected_impact": 21.0,
+      "event_PS": 10.5,
+      "event_AS": 5.0,
+      "n_vars": 3,
+      "affected_ids": "coal_supply_rate, industrial_energy_stress, energy_price_inflation",
+      "rationale": "Headlines: 'Coal supply is struggling to keep pace with demand', 'India's October coal-fired power output jumps'."
+    },
+    {
+      "id": "refinery_profit_buybacks_and_returns",
+      "title": "Majors lift buybacks and capital returns",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "Q4–Q1 reporting",
+      "date": null,
+      "start": "2026-11-01",
+      "end": "2027-03-31",
+      "probability": 0.85,
+      "impact_score": 27.0,
+      "expected_impact": 22.95,
+      "event_PS": 13.875,
+      "event_AS": 3.375,
+      "n_vars": 3,
+      "affected_ids": "refining_cash_flow, share_buyback_rate, upstream_investment_rate",
+      "rationale": "Headlines: 'European oil majors lift buybacks', 'BP’s profits surge', 'Big Oil earnings are set to surge.'"
+    }
+  ]
+}
