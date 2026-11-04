@@ -1,0 +1,1626 @@
+{
+  "label": "global_energy_supply_sho",
+  "as_of": "2026-11-04",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-11-04T03:26:52",
+  "system_description": {
+    "narrative_title": "AI buildout drives markets amid electoral and Middle East risk",
+    "narrative_summary": "Investment and corporate activity around a rapid, capital-intensive AI buildout is the dominant thread: data‑centre projects, M&A and security acquisitions, and financing strains are reshaping asset allocation. That dynamic is interacting with short‑term shocks — US midterms and Iran‑related conflict/diplomacy — producing volatile oil, bond and equity moves and prompting calls for more equity, tighter cybersecurity and regulatory attention. Feedbacks between capital flows, energy demand, credit risk and political risk are the system’s main drivers.",
+    "scope": "Capital allocation to AI infrastructure and services (data centres, chips, software, security), corporate financing and earnings for tech and industrial firms, investor positioning and market volatility, and near‑term political/geopolitical events (US midterms, Iran war developments) that alter risk premia and commodity prices.",
+    "super_system": "Global political‑economy and financial markets (capital flows, commodity markets, geopolitics, and cross‑border regulation).",
+    "adjacent_subsystems": [
+      "Energy and commodities markets (oil, gas, power)",
+      "Electoral and geopolitical risk (US midterms, Iran war, great‑power diplomacy)",
+      "Cybersecurity and critical infrastructure",
+      "Corporate credit and private capital markets (debt vs equity funding for AI buildout)"
+    ],
+    "evidence_headlines": [
+      "America’s Multi-Trillion-Dollar AI Buildout Is on the Ballot—and Wall Street Is Watching",
+      "Brookfield plans for a $27 billion AI data center at UK power station",
+      "Blackstone president calls for more equity to fund AI buildout as debt risks mount",
+      "Anthropic revenue growth slows, compute financing risks mount ahead of IPO",
+      "U.S. Strikes Iran’s Qeshm Island as Trump Talks Down War Risks",
+      "Oil Futures Sell Off on Middle East Diplomatic Progress"
+    ]
+  },
+  "variables": [
+    {
+      "id": "ai_investment_rate",
+      "name": "AI infrastructure investment rate",
+      "description": "The pace of capital allocation into AI-related physical and service infrastructure (e.g., data centres, servers, networking, and related projects) measured per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "data_center_capacity",
+      "name": "Data-centre compute capacity",
+      "description": "The aggregate installed compute and storage capacity available in data-centre infrastructure across the system.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "chip_production_capacity",
+      "name": "Semiconductor production capacity",
+      "description": "The aggregate manufacturing capacity for compute chips and related components available to supply AI hardware demand.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_leverage_ratio",
+      "name": "Corporate sector leverage ratio",
+      "description": "The average debt-to-equity (or debt-to-assets) ratio across corporations relevant to the AI buildout and capital markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread_level",
+      "name": "Credit spread level",
+      "description": "The average premium lenders demand over risk-free rates to lend to corporates and other borrowers, reflecting perceived credit risk.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_volatility_level",
+      "name": "Equity market volatility",
+      "description": "The prevailing level of short- to medium-term price volatility in equity markets, reflecting uncertainty and repricing dynamics.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "description": "The collective willingness of investors to take on risk, influencing asset allocation toward growth, leveraged, or speculative positions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "interest_rate_level",
+      "name": "Interest rate level",
+      "description": "The prevailing short- and medium-term interest rate environment as reflected in policy rates and benchmark yields.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity_level",
+      "name": "Market liquidity level",
+      "description": "The ease with which assets can be bought or sold in markets without large price impact, across credit, equity, and debt markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "compute_energy_demand_ra",
+      "name": "Compute energy demand growth rate",
+      "description": "The rate of increase in electricity consumption driven by compute workloads and AI operations over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "power_supply_capacity",
+      "name": "Power supply capacity",
+      "description": "The available electricity generation and transmission capacity that can be allocated to industrial and data-centre loads.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "geopolitical_tension_lev",
+      "name": "Geopolitical tension level",
+      "description": "The overall intensity of international political and military tensions that can affect trade, energy flows, and cross-border investment.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_supply_risk",
+      "name": "Oil supply disruption risk",
+      "description": "The probability-weighted risk of interruptions or constraints in global oil supply that influence commodity prices and energy costs.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "election_uncertainty_lev",
+      "name": "Election-related uncertainty",
+      "description": "The degree of uncertainty about electoral outcomes and their policy implications as perceived by market participants.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "cybersecurity_threat_lev",
+      "name": "Cybersecurity threat level",
+      "description": "The prevailing frequency and severity of cyber threats to critical infrastructure, corporate networks, and digital services.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "ai_regulatory_pressure",
+      "name": "Regulatory pressure on AI",
+      "description": "The cumulative strictness and enforcement intensity of regulations, oversight, and compliance expectations targeting AI development and deployment.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "ai_investment_rate",
+    "data_center_capacity",
+    "chip_production_capacity",
+    "corporate_leverage_ratio",
+    "credit_spread_level",
+    "equity_volatility_level",
+    "investor_risk_appetite",
+    "interest_rate_level",
+    "market_liquidity_level",
+    "compute_energy_demand_ra",
+    "power_supply_capacity",
+    "geopolitical_tension_lev",
+    "oil_supply_risk",
+    "election_uncertainty_lev",
+    "cybersecurity_threat_lev",
+    "ai_regulatory_pressure"
+  ],
+  "var_names": {
+    "ai_investment_rate": "AI infrastructure investment rate",
+    "data_center_capacity": "Data-centre compute capacity",
+    "chip_production_capacity": "Semiconductor production capacity",
+    "corporate_leverage_ratio": "Corporate sector leverage ratio",
+    "credit_spread_level": "Credit spread level",
+    "equity_volatility_level": "Equity market volatility",
+    "investor_risk_appetite": "Investor risk appetite",
+    "interest_rate_level": "Interest rate level",
+    "market_liquidity_level": "Market liquidity level",
+    "compute_energy_demand_ra": "Compute energy demand growth rate",
+    "power_supply_capacity": "Power supply capacity",
+    "geopolitical_tension_lev": "Geopolitical tension level",
+    "oil_supply_risk": "Oil supply disruption risk",
+    "election_uncertainty_lev": "Election-related uncertainty",
+    "cybersecurity_threat_lev": "Cybersecurity threat level",
+    "ai_regulatory_pressure": "Regulatory pressure on AI"
+  },
+  "impact_matrix": {
+    "ai_investment_rate": {
+      "ai_investment_rate": 0,
+      "data_center_capacity": 3,
+      "chip_production_capacity": 2,
+      "corporate_leverage_ratio": 2,
+      "credit_spread_level": 1,
+      "equity_volatility_level": 2,
+      "investor_risk_appetite": 1,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 1,
+      "compute_energy_demand_ra": 3,
+      "power_supply_capacity": 0,
+      "geopolitical_tension_lev": 0,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 1,
+      "ai_regulatory_pressure": 2
+    },
+    "data_center_capacity": {
+      "ai_investment_rate": 1,
+      "data_center_capacity": 0,
+      "chip_production_capacity": 1,
+      "corporate_leverage_ratio": 1,
+      "credit_spread_level": 1,
+      "equity_volatility_level": 1,
+      "investor_risk_appetite": 1,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 1,
+      "compute_energy_demand_ra": 3,
+      "power_supply_capacity": 1,
+      "geopolitical_tension_lev": 0,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 1,
+      "ai_regulatory_pressure": 1
+    },
+    "chip_production_capacity": {
+      "ai_investment_rate": 2,
+      "data_center_capacity": 2,
+      "chip_production_capacity": 0,
+      "corporate_leverage_ratio": 1,
+      "credit_spread_level": 1,
+      "equity_volatility_level": 1,
+      "investor_risk_appetite": 1,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 1,
+      "compute_energy_demand_ra": 1,
+      "power_supply_capacity": 1,
+      "geopolitical_tension_lev": 1,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 1,
+      "ai_regulatory_pressure": 1
+    },
+    "corporate_leverage_ratio": {
+      "ai_investment_rate": 2,
+      "data_center_capacity": 1,
+      "chip_production_capacity": 1,
+      "corporate_leverage_ratio": 0,
+      "credit_spread_level": 2,
+      "equity_volatility_level": 2,
+      "investor_risk_appetite": 1,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 1,
+      "compute_energy_demand_ra": 0,
+      "power_supply_capacity": 0,
+      "geopolitical_tension_lev": 0,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 0,
+      "ai_regulatory_pressure": 1
+    },
+    "credit_spread_level": {
+      "ai_investment_rate": 2,
+      "data_center_capacity": 1,
+      "chip_production_capacity": 1,
+      "corporate_leverage_ratio": 2,
+      "credit_spread_level": 0,
+      "equity_volatility_level": 2,
+      "investor_risk_appetite": 2,
+      "interest_rate_level": 1,
+      "market_liquidity_level": 2,
+      "compute_energy_demand_ra": 0,
+      "power_supply_capacity": 0,
+      "geopolitical_tension_lev": 0,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 0,
+      "ai_regulatory_pressure": 0
+    },
+    "equity_volatility_level": {
+      "ai_investment_rate": 2,
+      "data_center_capacity": 1,
+      "chip_production_capacity": 1,
+      "corporate_leverage_ratio": 1,
+      "credit_spread_level": 2,
+      "equity_volatility_level": 0,
+      "investor_risk_appetite": 3,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 2,
+      "compute_energy_demand_ra": 0,
+      "power_supply_capacity": 0,
+      "geopolitical_tension_lev": 0,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 0,
+      "ai_regulatory_pressure": 1
+    },
+    "investor_risk_appetite": {
+      "ai_investment_rate": 3,
+      "data_center_capacity": 2,
+      "chip_production_capacity": 2,
+      "corporate_leverage_ratio": 1,
+      "credit_spread_level": 2,
+      "equity_volatility_level": 2,
+      "investor_risk_appetite": 0,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 3,
+      "compute_energy_demand_ra": 1,
+      "power_supply_capacity": 0,
+      "geopolitical_tension_lev": 0,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 0,
+      "ai_regulatory_pressure": 1
+    },
+    "interest_rate_level": {
+      "ai_investment_rate": 3,
+      "data_center_capacity": 2,
+      "chip_production_capacity": 2,
+      "corporate_leverage_ratio": 3,
+      "credit_spread_level": 2,
+      "equity_volatility_level": 2,
+      "investor_risk_appetite": 2,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 2,
+      "compute_energy_demand_ra": 0,
+      "power_supply_capacity": 0,
+      "geopolitical_tension_lev": 0,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 0,
+      "ai_regulatory_pressure": 0
+    },
+    "market_liquidity_level": {
+      "ai_investment_rate": 3,
+      "data_center_capacity": 2,
+      "chip_production_capacity": 2,
+      "corporate_leverage_ratio": 1,
+      "credit_spread_level": 2,
+      "equity_volatility_level": 2,
+      "investor_risk_appetite": 2,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 0,
+      "compute_energy_demand_ra": 0,
+      "power_supply_capacity": 0,
+      "geopolitical_tension_lev": 0,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 0,
+      "ai_regulatory_pressure": 0
+    },
+    "compute_energy_demand_ra": {
+      "ai_investment_rate": 1,
+      "data_center_capacity": 1,
+      "chip_production_capacity": 1,
+      "corporate_leverage_ratio": 0,
+      "credit_spread_level": 1,
+      "equity_volatility_level": 1,
+      "investor_risk_appetite": 0,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 0,
+      "compute_energy_demand_ra": 0,
+      "power_supply_capacity": 3,
+      "geopolitical_tension_lev": 0,
+      "oil_supply_risk": 1,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 0,
+      "ai_regulatory_pressure": 1
+    },
+    "power_supply_capacity": {
+      "ai_investment_rate": 2,
+      "data_center_capacity": 3,
+      "chip_production_capacity": 1,
+      "corporate_leverage_ratio": 0,
+      "credit_spread_level": 1,
+      "equity_volatility_level": 1,
+      "investor_risk_appetite": 0,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 0,
+      "compute_energy_demand_ra": 1,
+      "power_supply_capacity": 0,
+      "geopolitical_tension_lev": 1,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 0,
+      "ai_regulatory_pressure": 1
+    },
+    "geopolitical_tension_lev": {
+      "ai_investment_rate": 2,
+      "data_center_capacity": 1,
+      "chip_production_capacity": 2,
+      "corporate_leverage_ratio": 0,
+      "credit_spread_level": 3,
+      "equity_volatility_level": 3,
+      "investor_risk_appetite": 3,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 2,
+      "compute_energy_demand_ra": 0,
+      "power_supply_capacity": 1,
+      "geopolitical_tension_lev": 0,
+      "oil_supply_risk": 3,
+      "election_uncertainty_lev": 1,
+      "cybersecurity_threat_lev": 3,
+      "ai_regulatory_pressure": 2
+    },
+    "oil_supply_risk": {
+      "ai_investment_rate": 1,
+      "data_center_capacity": 1,
+      "chip_production_capacity": 1,
+      "corporate_leverage_ratio": 1,
+      "credit_spread_level": 2,
+      "equity_volatility_level": 2,
+      "investor_risk_appetite": 1,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 1,
+      "compute_energy_demand_ra": 0,
+      "power_supply_capacity": 1,
+      "geopolitical_tension_lev": 1,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 0,
+      "ai_regulatory_pressure": 0
+    },
+    "election_uncertainty_lev": {
+      "ai_investment_rate": 2,
+      "data_center_capacity": 1,
+      "chip_production_capacity": 0,
+      "corporate_leverage_ratio": 0,
+      "credit_spread_level": 2,
+      "equity_volatility_level": 3,
+      "investor_risk_appetite": 2,
+      "interest_rate_level": 1,
+      "market_liquidity_level": 1,
+      "compute_energy_demand_ra": 0,
+      "power_supply_capacity": 0,
+      "geopolitical_tension_lev": 1,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 1,
+      "ai_regulatory_pressure": 2
+    },
+    "cybersecurity_threat_lev": {
+      "ai_investment_rate": 1,
+      "data_center_capacity": 2,
+      "chip_production_capacity": 1,
+      "corporate_leverage_ratio": 0,
+      "credit_spread_level": 1,
+      "equity_volatility_level": 1,
+      "investor_risk_appetite": 1,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 0,
+      "compute_energy_demand_ra": 0,
+      "power_supply_capacity": 1,
+      "geopolitical_tension_lev": 2,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 1,
+      "cybersecurity_threat_lev": 0,
+      "ai_regulatory_pressure": 3
+    },
+    "ai_regulatory_pressure": {
+      "ai_investment_rate": 3,
+      "data_center_capacity": 2,
+      "chip_production_capacity": 1,
+      "corporate_leverage_ratio": 0,
+      "credit_spread_level": 1,
+      "equity_volatility_level": 2,
+      "investor_risk_appetite": 2,
+      "interest_rate_level": 0,
+      "market_liquidity_level": 1,
+      "compute_energy_demand_ra": 1,
+      "power_supply_capacity": 1,
+      "geopolitical_tension_lev": 1,
+      "oil_supply_risk": 0,
+      "election_uncertainty_lev": 0,
+      "cybersecurity_threat_lev": 2,
+      "ai_regulatory_pressure": 0
+    }
+  },
+  "AS": {
+    "ai_investment_rate": 18,
+    "data_center_capacity": 13,
+    "chip_production_capacity": 14,
+    "corporate_leverage_ratio": 11,
+    "credit_spread_level": 13,
+    "equity_volatility_level": 13,
+    "investor_risk_appetite": 17,
+    "interest_rate_level": 18,
+    "market_liquidity_level": 14,
+    "compute_energy_demand_ra": 10,
+    "power_supply_capacity": 11,
+    "geopolitical_tension_lev": 26,
+    "oil_supply_risk": 12,
+    "election_uncertainty_lev": 16,
+    "cybersecurity_threat_lev": 14,
+    "ai_regulatory_pressure": 17
+  },
+  "PS": {
+    "ai_investment_rate": 30,
+    "data_center_capacity": 25,
+    "chip_production_capacity": 19,
+    "corporate_leverage_ratio": 13,
+    "credit_spread_level": 24,
+    "equity_volatility_level": 27,
+    "investor_risk_appetite": 22,
+    "interest_rate_level": 2,
+    "market_liquidity_level": 18,
+    "compute_energy_demand_ra": 10,
+    "power_supply_capacity": 9,
+    "geopolitical_tension_lev": 7,
+    "oil_supply_risk": 4,
+    "election_uncertainty_lev": 2,
+    "cybersecurity_threat_lev": 9,
+    "ai_regulatory_pressure": 16
+  },
+  "med_AS": 14.0,
+  "med_PS": 14.5,
+  "roles": [
+    {
+      "variable": "ai_investment_rate",
+      "name": "AI infrastructure investment rate",
+      "AS": 18,
+      "PS": 30,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 540,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "investor_risk_appetite",
+      "name": "Investor risk appetite",
+      "AS": 17,
+      "PS": 22,
+      "Q=AS/PS": 0.77,
+      "P=AS*PS": 374,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "equity_volatility_level",
+      "name": "Equity market volatility",
+      "AS": 13,
+      "PS": 27,
+      "Q=AS/PS": 0.48,
+      "P=AS*PS": 351,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "data_center_capacity",
+      "name": "Data-centre compute capacity",
+      "AS": 13,
+      "PS": 25,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 325,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "credit_spread_level",
+      "name": "Credit spread level",
+      "AS": 13,
+      "PS": 24,
+      "Q=AS/PS": 0.54,
+      "P=AS*PS": 312,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "ai_regulatory_pressure",
+      "name": "Regulatory pressure on AI",
+      "AS": 17,
+      "PS": 16,
+      "Q=AS/PS": 1.06,
+      "P=AS*PS": 272,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "chip_production_capacity",
+      "name": "Semiconductor production capacity",
+      "AS": 14,
+      "PS": 19,
+      "Q=AS/PS": 0.74,
+      "P=AS*PS": 266,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_liquidity_level",
+      "name": "Market liquidity level",
+      "AS": 14,
+      "PS": 18,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 252,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "geopolitical_tension_lev",
+      "name": "Geopolitical tension level",
+      "AS": 26,
+      "PS": 7,
+      "Q=AS/PS": 3.71,
+      "P=AS*PS": 182,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "corporate_leverage_ratio",
+      "name": "Corporate sector leverage ratio",
+      "AS": 11,
+      "PS": 13,
+      "Q=AS/PS": 0.85,
+      "P=AS*PS": 143,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "cybersecurity_threat_lev",
+      "name": "Cybersecurity threat level",
+      "AS": 14,
+      "PS": 9,
+      "Q=AS/PS": 1.56,
+      "P=AS*PS": 126,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "compute_energy_demand_ra",
+      "name": "Compute energy demand growth rate",
+      "AS": 10,
+      "PS": 10,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 100,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "power_supply_capacity",
+      "name": "Power supply capacity",
+      "AS": 11,
+      "PS": 9,
+      "Q=AS/PS": 1.22,
+      "P=AS*PS": 99,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "oil_supply_risk",
+      "name": "Oil supply disruption risk",
+      "AS": 12,
+      "PS": 4,
+      "Q=AS/PS": 3.0,
+      "P=AS*PS": 48,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "interest_rate_level",
+      "name": "Interest rate level",
+      "AS": 18,
+      "PS": 2,
+      "Q=AS/PS": 9.0,
+      "P=AS*PS": 36,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "election_uncertainty_lev",
+      "name": "Election-related uncertainty",
+      "AS": 16,
+      "PS": 2,
+      "Q=AS/PS": 8.0,
+      "P=AS*PS": 32,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "ai_investment_rate",
+        "name": "AI infrastructure investment rate",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 30
+      },
+      {
+        "id": "data_center_capacity",
+        "name": "Data-centre compute capacity",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 25
+      },
+      {
+        "id": "chip_production_capacity",
+        "name": "Semiconductor production capacity",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 19
+      },
+      {
+        "id": "corporate_leverage_ratio",
+        "name": "Corporate sector leverage ratio",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 13
+      },
+      {
+        "id": "credit_spread_level",
+        "name": "Credit spread level",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 24
+      },
+      {
+        "id": "equity_volatility_level",
+        "name": "Equity market volatility",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 27
+      },
+      {
+        "id": "investor_risk_appetite",
+        "name": "Investor risk appetite",
+        "kind": "perception",
+        "AS": 17,
+        "PS": 22
+      },
+      {
+        "id": "interest_rate_level",
+        "name": "Interest rate level",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 2
+      },
+      {
+        "id": "market_liquidity_level",
+        "name": "Market liquidity level",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 18
+      },
+      {
+        "id": "compute_energy_demand_ra",
+        "name": "Compute energy demand growth rate",
+        "kind": "flow",
+        "AS": 10,
+        "PS": 10
+      },
+      {
+        "id": "power_supply_capacity",
+        "name": "Power supply capacity",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 9
+      },
+      {
+        "id": "geopolitical_tension_lev",
+        "name": "Geopolitical tension level",
+        "kind": "environment",
+        "AS": 26,
+        "PS": 7
+      },
+      {
+        "id": "oil_supply_risk",
+        "name": "Oil supply disruption risk",
+        "kind": "environment",
+        "AS": 12,
+        "PS": 4
+      },
+      {
+        "id": "election_uncertainty_lev",
+        "name": "Election-related uncertainty",
+        "kind": "perception",
+        "AS": 16,
+        "PS": 2
+      },
+      {
+        "id": "cybersecurity_threat_lev",
+        "name": "Cybersecurity threat level",
+        "kind": "environment",
+        "AS": 14,
+        "PS": 9
+      },
+      {
+        "id": "ai_regulatory_pressure",
+        "name": "Regulatory pressure on AI",
+        "kind": "institution_field",
+        "AS": 17,
+        "PS": 16
+      }
+    ],
+    "edges": [
+      {
+        "source": "ai_investment_rate",
+        "target": "data_center_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "ai_investment_rate",
+        "target": "chip_production_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ai_investment_rate",
+        "target": "corporate_leverage_ratio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ai_investment_rate",
+        "target": "equity_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ai_investment_rate",
+        "target": "compute_energy_demand_ra",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "ai_investment_rate",
+        "target": "ai_regulatory_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "data_center_capacity",
+        "target": "compute_energy_demand_ra",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chip_production_capacity",
+        "target": "ai_investment_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "chip_production_capacity",
+        "target": "data_center_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_leverage_ratio",
+        "target": "ai_investment_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_leverage_ratio",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_leverage_ratio",
+        "target": "equity_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "ai_investment_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "corporate_leverage_ratio",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "equity_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread_level",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_volatility_level",
+        "target": "ai_investment_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_volatility_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_volatility_level",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "equity_volatility_level",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "ai_investment_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "data_center_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "chip_production_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "equity_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "investor_risk_appetite",
+        "target": "market_liquidity_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "interest_rate_level",
+        "target": "ai_investment_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "interest_rate_level",
+        "target": "data_center_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "interest_rate_level",
+        "target": "chip_production_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "interest_rate_level",
+        "target": "corporate_leverage_ratio",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "interest_rate_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "interest_rate_level",
+        "target": "equity_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "interest_rate_level",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "interest_rate_level",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "ai_investment_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "data_center_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "chip_production_capacity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "equity_volatility_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity_level",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "compute_energy_demand_ra",
+        "target": "power_supply_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "power_supply_capacity",
+        "target": "ai_investment_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "power_supply_capacity",
+        "target": "data_center_capacity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension_lev",
+        "target": "ai_investment_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension_lev",
+        "target": "chip_production_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension_lev",
+        "target": "credit_spread_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension_lev",
+        "target": "equity_volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension_lev",
+        "target": "investor_risk_appetite",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension_lev",
+        "target": "market_liquidity_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "geopolitical_tension_lev",
+        "target": "oil_supply_risk",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension_lev",
+        "target": "cybersecurity_threat_lev",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "geopolitical_tension_lev",
+        "target": "ai_regulatory_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "equity_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "election_uncertainty_lev",
+        "target": "ai_investment_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "election_uncertainty_lev",
+        "target": "credit_spread_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "election_uncertainty_lev",
+        "target": "equity_volatility_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "election_uncertainty_lev",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "election_uncertainty_lev",
+        "target": "ai_regulatory_pressure",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cybersecurity_threat_lev",
+        "target": "data_center_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cybersecurity_threat_lev",
+        "target": "geopolitical_tension_lev",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cybersecurity_threat_lev",
+        "target": "ai_regulatory_pressure",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "ai_regulatory_pressure",
+        "target": "ai_investment_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "ai_regulatory_pressure",
+        "target": "data_center_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "ai_regulatory_pressure",
+        "target": "equity_volatility_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ai_regulatory_pressure",
+        "target": "investor_risk_appetite",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "ai_regulatory_pressure",
+        "target": "cybersecurity_threat_lev",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_midterm_results_2026",
+      "title": "U.S. midterm election results",
+      "description": "Election outcomes and control of Congress announced, resolving near-term political uncertainty that markets have been pricing.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-11-04",
+        "start": null,
+        "end": null,
+        "label": "election day"
+      },
+      "probability": 1.0,
+      "affected": [
+        {
+          "variable_id": "election_uncertainty_lev",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_volatility_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "ai_investment_rate",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Americans vote with control of Congress at stake', 'Investors ready for possible shake‑up in Congress', 'Stocks wobble as investors watch US midterm elections'."
+    },
+    {
+      "id": "abu_dhabi_trilateral_talks",
+      "title": "Abu Dhabi trilateral talks (US mediation)",
+      "description": "Planned U.S.-mediated talks between Ukraine, Russia (and US involvement) could alter European conflict dynamics and market risk pricing.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-09",
+        "end": "2026-11-15",
+        "label": "week of Nov 9-15"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "geopolitical_tension_lev",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "equity_volatility_level",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'US to mediate trilateral talks with Ukraine, Russia in Abu Dhabi next week' and concurrent reports of renewed Russian strikes."
+    },
+    {
+      "id": "iran_conflict_mediation",
+      "title": "Iran‑US peace/diplomacy process",
+      "description": "Qatar- and mediator-led negotiations and intermittent strikes in the region continue, with outcomes likely to move oil and risk sentiment.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-04",
+        "end": "2027-01-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "geopolitical_tension_lev",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "oil_supply_risk",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "equity_volatility_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "interest_rate_level",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Iran, US still far apart on deal', 'U.S. strikes Iran’s Qeshm Island', 'Oil Futures Sell Off on Middle East Diplomatic Progress', 'IEA: Iran war threatens LNG supply drop'."
+    },
+    {
+      "id": "ai_data_center_buildout_pipeline",
+      "title": "Acceleration of AI data‑centre construction",
+      "description": "Large announced projects and booming server demand point to an accelerating buildout of AI data‑centre capacity over the coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-04",
+        "end": "2027-06-30",
+        "label": "6–9 months"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "ai_investment_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "data_center_capacity",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "compute_energy_demand_ra",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "power_supply_capacity",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Brookfield plans for a $27 billion AI data center', 'Super Micro Computer Revenue Surges on AI Infrastructure Demand', 'AMD data‑center revenue nearly doubles'."
+    },
+    {
+      "id": "anthropic_ipo_process",
+      "title": "Anthropic IPO (compute‑financing test)",
+      "description": "High‑profile AI IPO that will test compute financing appetite and sentiment toward AI-native public listings.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-04",
+        "end": "2027-03-31",
+        "label": "by Q1 2027"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "ai_investment_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "equity_volatility_level",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Anthropic revenue growth slows, compute financing risks mount ahead of IPO', 'Anthropic’s IPO is a high‑stakes referendum on Big Tech'."
+    },
+    {
+      "id": "ai_credit_market_tightening",
+      "title": "Tightening of AI credit markets / shift to equity funding",
+      "description": "Rising concern about debt risks for AI projects is prompting calls for more equity and cooling of AI credit appetite.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-04",
+        "end": "2027-02-28",
+        "label": "3–4 months"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "credit_spread_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "corporate_leverage_ratio",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_liquidity_level",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: 'Blackstone president calls for more equity to fund AI buildout as debt risks mount', 'A chill wind in the AI credit market', 'Apollo’s originations rise...as opportunities arise in AI'."
+    },
+    {
+      "id": "ai_regulatory_and_cyber_push",
+      "title": "Surge in AI regulation and cybersecurity initiatives",
+      "description": "Court advisers, government reports and corporate measures increase regulatory scrutiny and defensive cybersecurity actions related to AI.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-04",
+        "end": "2027-06-30",
+        "label": "6–9 months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "ai_regulatory_pressure",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "cybersecurity_threat_lev",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_risk_appetite",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_volatility_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Setback for Google as EU court adviser warns AI chatbot may breach copyright', 'UK must expect AI‑powered attack within two years', 'CrowdStrike buys AI security startups', 'OpenAI hires...to cybersecurity role'."
+    },
+    {
+      "id": "us_china_chip_restrictions",
+      "title": "Continuation / enforcement of US China chip restrictions",
+      "description": "Orders and regulatory constraints push clients and vendors to reduce China exposure, disrupting some chip expansion plans and capacity builds.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-04",
+        "end": "2027-04-30",
+        "label": "next 6 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "chip_production_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "ai_investment_rate",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "geopolitical_tension_lev",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Nvidia orders data centre clients to reduce China exposure', 'SK Hynix's New York chip plans hit snag over US restrictions on China'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "iran_conflict_mediation",
+      "title": "Iran‑US peace/diplomacy process",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-11-04",
+      "end": "2027-01-31",
+      "probability": 0.7,
+      "impact_score": 192.0,
+      "expected_impact": 134.4,
+      "event_PS": 12.091,
+      "event_AS": 17.455,
+      "n_vars": 5,
+      "affected_ids": "geopolitical_tension_lev, oil_supply_risk, equity_volatility_level, investor_risk_appetite, interest_rate_level",
+      "rationale": "Headlines: 'Iran, US still far apart on deal', 'U.S. strikes Iran’s Qeshm Island', 'Oil Futures Sell Off on Middle East Diplomatic Progress', 'IEA: Iran war threatens LNG supply drop'."
+    },
+    {
+      "id": "ai_data_center_buildout_pipeline",
+      "title": "Acceleration of AI data‑centre construction",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6–9 months",
+      "date": null,
+      "start": "2026-11-04",
+      "end": "2027-06-30",
+      "probability": 0.95,
+      "impact_score": 135.0,
+      "expected_impact": 128.25,
+      "event_PS": 20.3,
+      "event_AS": 13.5,
+      "n_vars": 4,
+      "affected_ids": "ai_investment_rate, data_center_capacity, compute_energy_demand_ra, power_supply_capacity",
+      "rationale": "Headlines: 'Brookfield plans for a $27 billion AI data center', 'Super Micro Computer Revenue Surges on AI Infrastructure Demand', 'AMD data‑center revenue nearly doubles'."
+    },
+    {
+      "id": "us_midterm_results_2026",
+      "title": "U.S. midterm election results",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "election day",
+      "date": "2026-11-04",
+      "start": null,
+      "end": null,
+      "probability": 1.0,
+      "impact_score": 126.0,
+      "expected_impact": 126.0,
+      "event_PS": 16.75,
+      "event_AS": 15.75,
+      "n_vars": 4,
+      "affected_ids": "election_uncertainty_lev, equity_volatility_level, investor_risk_appetite, ai_investment_rate",
+      "rationale": "Headlines: 'Americans vote with control of Congress at stake', 'Investors ready for possible shake‑up in Congress', 'Stocks wobble as investors watch US midterm elections'."
+    },
+    {
+      "id": "ai_regulatory_and_cyber_push",
+      "title": "Surge in AI regulation and cybersecurity initiatives",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6–9 months",
+      "date": null,
+      "start": "2026-11-04",
+      "end": "2027-06-30",
+      "probability": 0.85,
+      "impact_score": 109.0,
+      "expected_impact": 92.65,
+      "event_PS": 16.429,
+      "event_AS": 15.571,
+      "n_vars": 4,
+      "affected_ids": "ai_regulatory_pressure, cybersecurity_threat_lev, investor_risk_appetite, equity_volatility_level",
+      "rationale": "Headlines: 'Setback for Google as EU court adviser warns AI chatbot may breach copyright', 'UK must expect AI‑powered attack within two years', 'CrowdStrike buys AI security startups', 'OpenAI hires...to cybersecurity role'."
+    },
+    {
+      "id": "ai_credit_market_tightening",
+      "title": "Tightening of AI credit markets / shift to equity funding",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3–4 months",
+      "date": null,
+      "start": "2026-11-04",
+      "end": "2027-02-28",
+      "probability": 0.75,
+      "impact_score": 96.0,
+      "expected_impact": 72.0,
+      "event_PS": 19.429,
+      "event_AS": 13.714,
+      "n_vars": 4,
+      "affected_ids": "credit_spread_level, corporate_leverage_ratio, market_liquidity_level, investor_risk_appetite",
+      "rationale": "Headlines: 'Blackstone president calls for more equity to fund AI buildout as debt risks mount', 'A chill wind in the AI credit market', 'Apollo’s originations rise...as opportunities arise in AI'."
+    },
+    {
+      "id": "abu_dhabi_trilateral_talks",
+      "title": "Abu Dhabi trilateral talks (US mediation)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "week of Nov 9-15",
+      "date": null,
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "probability": 0.9,
+      "impact_score": 82.0,
+      "expected_impact": 73.8,
+      "event_PS": 15.75,
+      "event_AS": 20.5,
+      "n_vars": 3,
+      "affected_ids": "geopolitical_tension_lev, equity_volatility_level, investor_risk_appetite",
+      "rationale": "Headline: 'US to mediate trilateral talks with Ukraine, Russia in Abu Dhabi next week' and concurrent reports of renewed Russian strikes."
+    },
+    {
+      "id": "anthropic_ipo_process",
+      "title": "Anthropic IPO (compute‑financing test)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by Q1 2027",
+      "date": null,
+      "start": "2026-11-04",
+      "end": "2027-03-31",
+      "probability": 0.6,
+      "impact_score": 79.0,
+      "expected_impact": 47.4,
+      "event_PS": 27.2,
+      "event_AS": 15.8,
+      "n_vars": 3,
+      "affected_ids": "ai_investment_rate, equity_volatility_level, investor_risk_appetite",
+      "rationale": "Headlines: 'Anthropic revenue growth slows, compute financing risks mount ahead of IPO', 'Anthropic’s IPO is a high‑stakes referendum on Big Tech'."
+    },
+    {
+      "id": "us_china_chip_restrictions",
+      "title": "Continuation / enforcement of US China chip restrictions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 6 months",
+      "date": null,
+      "start": "2026-11-04",
+      "end": "2027-04-30",
+      "probability": 0.8,
+      "impact_score": 72.0,
+      "expected_impact": 57.6,
+      "event_PS": 18.75,
+      "event_AS": 18.0,
+      "n_vars": 3,
+      "affected_ids": "chip_production_capacity, ai_investment_rate, geopolitical_tension_lev",
+      "rationale": "Headlines: 'Nvidia orders data centre clients to reduce China exposure', 'SK Hynix's New York chip plans hit snag over US restrictions on China'."
+    }
+  ]
+}
