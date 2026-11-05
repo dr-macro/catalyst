@@ -1,0 +1,1791 @@
+{
+  "label": "russia_ukraine_war",
+  "as_of": "2026-11-05",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-11-05T03:58:27",
+  "system_description": {
+    "narrative_title": "Democratic midterm sweep re-prices markets and policy expectations",
+    "narrative_summary": "A decisive Democratic 'blue wave' in the U.S. midterms has become the dominant driver of market and policy narratives: equity, bond, currency and commodity markets are re-pricing around expectations of divided government, a lower risk of near-term pro-business deregulation, and altered foreign-policy dynamics (notably around Iran). The system is open — election returns, investor sentiment, corporate earnings and geopolitical shocks (e.g., Iran/Strait of Hormuz tensions) exchange information and capital flows constantly, producing rapid feedbacks that shift asset prices, sectoral demand (data centers, energy, healthcare) and corporate strategy. Markets are treating the political outcome as a persistent structural input into valuation, while firms and policymakers adapt through guidance, breakups, or shifts in investment focus.",
+    "scope": "U.S. midterm election results, immediate market reactions (equities, bonds, FX, commodities), sectoral re-pricing (data centers/AI, energy/oil, healthcare, consumer), corporate earnings/strategy responses, and near-term geopolitical risk signaling tied to U.S. politics.",
+    "super_system": "Global political-economy and international financial markets",
+    "adjacent_subsystems": [
+      "U.S. domestic politics and legislative agenda",
+      "Global energy & commodity markets",
+      "Technology & data-center/AI capital investment ecosystem",
+      "Corporate earnings and capital markets (M&A, restructurings)"
+    ],
+    "evidence_headlines": [
+      "Democrats projected to win majority control of US House, US media project",
+      "U.S. Stocks Rally on Divided Government as AI Wobbles Continue",
+      "Wall Street ends higher after Democrats win Congress; data center stocks tumble",
+      "AI data-center stocks slide, renewables rally after Democratic US midterm sweep",
+      "Dollar drops sharply on Democrats' early gains in US midterm election",
+      "Oil Prices Fall as U.S. Midterm Results Unfold"
+    ]
+  },
+  "variables": [
+    {
+      "id": "political_control_expect",
+      "name": "Political control expectation",
+      "description": "Market-aggregated expectation of the future configuration of political control across branches of government (probability-weighted outlook).",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_uncertainty",
+      "name": "Policy uncertainty level",
+      "description": "Degree of uncertainty about future fiscal, regulatory, and public-policy directions as perceived by market participants.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "regulatory_change_expect",
+      "name": "Regulatory change expectation",
+      "description": "Net expected direction and magnitude of regulatory change affecting business activity and market structure.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "investor_sentiment",
+      "name": "Investor sentiment",
+      "description": "Overall market risk appetite and confidence level among investors, reflecting willingness to buy risk assets.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation",
+      "name": "Equity valuation level",
+      "description": "Aggregate valuation metric for equities (e.g., market-level price/earnings or index-level valuation) representing equity price levels relative to fundamentals.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "bond_yield",
+      "name": "Bond yield level",
+      "description": "Prevailing sovereign and broad fixed-income yield levels that influence discount rates across financial assets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "currency_strength",
+      "name": "Currency strength index",
+      "description": "Relative valuation pressure on the domestic currency versus a basket of other currencies as reflected in FX markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_price",
+      "name": "Commodity price level",
+      "description": "Broad index of commodity prices (energy, metals, agricultural) that signals input-cost and inflation impulses to the economy.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "compute_infra_demand",
+      "name": "Compute infrastructure demand",
+      "description": "Rate of demand for large-scale compute and data-centre capacity driven by AI, cloud and enterprise workloads.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "oil_supply_risk",
+      "name": "Oil supply disruption risk",
+      "description": "Perceived probability and expected severity of disruptions to oil production and transport that affect energy availability.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crossborder_capital_flow",
+      "name": "Cross-border capital flows",
+      "description": "Net flow rate of international capital into or out of domestic financial assets and markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "corp_investment_alloc",
+      "name": "Corporate investment allocation",
+      "description": "Distribution and rate of change in corporate capital allocation across sectors and asset classes (e.g., tech, energy, healthcare).",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "earnings_expectations",
+      "name": "Corporate earnings expectations",
+      "description": "Market-consensus expected growth rate of corporate earnings across the listed universe over the near-to-medium term.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_risk_premium",
+      "name": "Market risk premium",
+      "description": "Additional return investors require over the risk-free rate to hold risky assets, reflecting perceived market risk and uncertainty.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "rate_path_expectation",
+      "name": "Interest-rate path expectation",
+      "description": "Market-implied expectation of the future trajectory of policy interest rates and short-term yields.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity and credit conditions",
+      "description": "Ease of trading and breadth/depth of market participation, including credit spreads and availability of financing.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "political_control_expect",
+    "policy_uncertainty",
+    "regulatory_change_expect",
+    "investor_sentiment",
+    "equity_valuation",
+    "bond_yield",
+    "currency_strength",
+    "commodity_price",
+    "compute_infra_demand",
+    "oil_supply_risk",
+    "crossborder_capital_flow",
+    "corp_investment_alloc",
+    "earnings_expectations",
+    "market_risk_premium",
+    "rate_path_expectation",
+    "market_liquidity"
+  ],
+  "var_names": {
+    "political_control_expect": "Political control expectation",
+    "policy_uncertainty": "Policy uncertainty level",
+    "regulatory_change_expect": "Regulatory change expectation",
+    "investor_sentiment": "Investor sentiment",
+    "equity_valuation": "Equity valuation level",
+    "bond_yield": "Bond yield level",
+    "currency_strength": "Currency strength index",
+    "commodity_price": "Commodity price level",
+    "compute_infra_demand": "Compute infrastructure demand",
+    "oil_supply_risk": "Oil supply disruption risk",
+    "crossborder_capital_flow": "Cross-border capital flows",
+    "corp_investment_alloc": "Corporate investment allocation",
+    "earnings_expectations": "Corporate earnings expectations",
+    "market_risk_premium": "Market risk premium",
+    "rate_path_expectation": "Interest-rate path expectation",
+    "market_liquidity": "Market liquidity and credit conditions"
+  },
+  "impact_matrix": {
+    "political_control_expect": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 3,
+      "regulatory_change_expect": 3,
+      "investor_sentiment": 2,
+      "equity_valuation": 2,
+      "bond_yield": 2,
+      "currency_strength": 1,
+      "commodity_price": 1,
+      "compute_infra_demand": 0,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 2,
+      "corp_investment_alloc": 2,
+      "earnings_expectations": 2,
+      "market_risk_premium": 2,
+      "rate_path_expectation": 2,
+      "market_liquidity": 1
+    },
+    "policy_uncertainty": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 0,
+      "regulatory_change_expect": 2,
+      "investor_sentiment": 3,
+      "equity_valuation": 3,
+      "bond_yield": 2,
+      "currency_strength": 2,
+      "commodity_price": 1,
+      "compute_infra_demand": 0,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 3,
+      "corp_investment_alloc": 3,
+      "earnings_expectations": 2,
+      "market_risk_premium": 3,
+      "rate_path_expectation": 2,
+      "market_liquidity": 3
+    },
+    "regulatory_change_expect": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 2,
+      "regulatory_change_expect": 0,
+      "investor_sentiment": 2,
+      "equity_valuation": 2,
+      "bond_yield": 1,
+      "currency_strength": 1,
+      "commodity_price": 1,
+      "compute_infra_demand": 1,
+      "oil_supply_risk": 1,
+      "crossborder_capital_flow": 2,
+      "corp_investment_alloc": 3,
+      "earnings_expectations": 2,
+      "market_risk_premium": 2,
+      "rate_path_expectation": 1,
+      "market_liquidity": 2
+    },
+    "investor_sentiment": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 0,
+      "regulatory_change_expect": 0,
+      "investor_sentiment": 0,
+      "equity_valuation": 3,
+      "bond_yield": 2,
+      "currency_strength": 2,
+      "commodity_price": 2,
+      "compute_infra_demand": 1,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 3,
+      "corp_investment_alloc": 1,
+      "earnings_expectations": 1,
+      "market_risk_premium": 3,
+      "rate_path_expectation": 1,
+      "market_liquidity": 3
+    },
+    "equity_valuation": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 0,
+      "regulatory_change_expect": 0,
+      "investor_sentiment": 1,
+      "equity_valuation": 0,
+      "bond_yield": 1,
+      "currency_strength": 1,
+      "commodity_price": 0,
+      "compute_infra_demand": 0,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 2,
+      "corp_investment_alloc": 1,
+      "earnings_expectations": 0,
+      "market_risk_premium": 0,
+      "rate_path_expectation": 0,
+      "market_liquidity": 1
+    },
+    "bond_yield": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 0,
+      "regulatory_change_expect": 0,
+      "investor_sentiment": 2,
+      "equity_valuation": 3,
+      "bond_yield": 0,
+      "currency_strength": 3,
+      "commodity_price": 1,
+      "compute_infra_demand": 1,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 3,
+      "corp_investment_alloc": 2,
+      "earnings_expectations": 1,
+      "market_risk_premium": 2,
+      "rate_path_expectation": 3,
+      "market_liquidity": 2
+    },
+    "currency_strength": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 0,
+      "regulatory_change_expect": 0,
+      "investor_sentiment": 1,
+      "equity_valuation": 1,
+      "bond_yield": 1,
+      "currency_strength": 0,
+      "commodity_price": 2,
+      "compute_infra_demand": 0,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 2,
+      "corp_investment_alloc": 1,
+      "earnings_expectations": 2,
+      "market_risk_premium": 1,
+      "rate_path_expectation": 1,
+      "market_liquidity": 1
+    },
+    "commodity_price": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 2,
+      "regulatory_change_expect": 1,
+      "investor_sentiment": 2,
+      "equity_valuation": 1,
+      "bond_yield": 2,
+      "currency_strength": 2,
+      "commodity_price": 0,
+      "compute_infra_demand": 0,
+      "oil_supply_risk": 2,
+      "crossborder_capital_flow": 2,
+      "corp_investment_alloc": 2,
+      "earnings_expectations": 2,
+      "market_risk_premium": 1,
+      "rate_path_expectation": 2,
+      "market_liquidity": 1
+    },
+    "compute_infra_demand": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 0,
+      "regulatory_change_expect": 1,
+      "investor_sentiment": 1,
+      "equity_valuation": 2,
+      "bond_yield": 0,
+      "currency_strength": 0,
+      "commodity_price": 1,
+      "compute_infra_demand": 0,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 1,
+      "corp_investment_alloc": 3,
+      "earnings_expectations": 2,
+      "market_risk_premium": 1,
+      "rate_path_expectation": 0,
+      "market_liquidity": 1
+    },
+    "oil_supply_risk": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 2,
+      "regulatory_change_expect": 2,
+      "investor_sentiment": 2,
+      "equity_valuation": 2,
+      "bond_yield": 2,
+      "currency_strength": 1,
+      "commodity_price": 3,
+      "compute_infra_demand": 0,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 2,
+      "corp_investment_alloc": 2,
+      "earnings_expectations": 2,
+      "market_risk_premium": 3,
+      "rate_path_expectation": 2,
+      "market_liquidity": 1
+    },
+    "crossborder_capital_flow": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 0,
+      "regulatory_change_expect": 0,
+      "investor_sentiment": 2,
+      "equity_valuation": 2,
+      "bond_yield": 3,
+      "currency_strength": 3,
+      "commodity_price": 1,
+      "compute_infra_demand": 0,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 0,
+      "corp_investment_alloc": 1,
+      "earnings_expectations": 0,
+      "market_risk_premium": 2,
+      "rate_path_expectation": 2,
+      "market_liquidity": 3
+    },
+    "corp_investment_alloc": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 0,
+      "regulatory_change_expect": 0,
+      "investor_sentiment": 2,
+      "equity_valuation": 2,
+      "bond_yield": 1,
+      "currency_strength": 0,
+      "commodity_price": 1,
+      "compute_infra_demand": 3,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 2,
+      "corp_investment_alloc": 0,
+      "earnings_expectations": 2,
+      "market_risk_premium": 1,
+      "rate_path_expectation": 1,
+      "market_liquidity": 1
+    },
+    "earnings_expectations": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 0,
+      "regulatory_change_expect": 0,
+      "investor_sentiment": 3,
+      "equity_valuation": 3,
+      "bond_yield": 2,
+      "currency_strength": 1,
+      "commodity_price": 0,
+      "compute_infra_demand": 1,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 2,
+      "corp_investment_alloc": 2,
+      "earnings_expectations": 0,
+      "market_risk_premium": 2,
+      "rate_path_expectation": 1,
+      "market_liquidity": 1
+    },
+    "market_risk_premium": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 0,
+      "regulatory_change_expect": 0,
+      "investor_sentiment": 3,
+      "equity_valuation": 3,
+      "bond_yield": 1,
+      "currency_strength": 2,
+      "commodity_price": 1,
+      "compute_infra_demand": 1,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 2,
+      "corp_investment_alloc": 2,
+      "earnings_expectations": 0,
+      "market_risk_premium": 0,
+      "rate_path_expectation": 1,
+      "market_liquidity": 2
+    },
+    "rate_path_expectation": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 0,
+      "regulatory_change_expect": 0,
+      "investor_sentiment": 2,
+      "equity_valuation": 3,
+      "bond_yield": 3,
+      "currency_strength": 3,
+      "commodity_price": 1,
+      "compute_infra_demand": 1,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 2,
+      "corp_investment_alloc": 2,
+      "earnings_expectations": 1,
+      "market_risk_premium": 2,
+      "rate_path_expectation": 0,
+      "market_liquidity": 2
+    },
+    "market_liquidity": {
+      "political_control_expect": 0,
+      "policy_uncertainty": 1,
+      "regulatory_change_expect": 0,
+      "investor_sentiment": 2,
+      "equity_valuation": 2,
+      "bond_yield": 2,
+      "currency_strength": 1,
+      "commodity_price": 1,
+      "compute_infra_demand": 0,
+      "oil_supply_risk": 0,
+      "crossborder_capital_flow": 2,
+      "corp_investment_alloc": 1,
+      "earnings_expectations": 0,
+      "market_risk_premium": 2,
+      "rate_path_expectation": 1,
+      "market_liquidity": 0
+    }
+  },
+  "AS": {
+    "political_control_expect": 25,
+    "policy_uncertainty": 29,
+    "regulatory_change_expect": 23,
+    "investor_sentiment": 22,
+    "equity_valuation": 7,
+    "bond_yield": 23,
+    "currency_strength": 13,
+    "commodity_price": 22,
+    "compute_infra_demand": 13,
+    "oil_supply_risk": 26,
+    "crossborder_capital_flow": 19,
+    "corp_investment_alloc": 16,
+    "earnings_expectations": 18,
+    "market_risk_premium": 18,
+    "rate_path_expectation": 22,
+    "market_liquidity": 15
+  },
+  "PS": {
+    "political_control_expect": 0,
+    "policy_uncertainty": 10,
+    "regulatory_change_expect": 9,
+    "investor_sentiment": 30,
+    "equity_valuation": 34,
+    "bond_yield": 25,
+    "currency_strength": 23,
+    "commodity_price": 17,
+    "compute_infra_demand": 9,
+    "oil_supply_risk": 3,
+    "crossborder_capital_flow": 32,
+    "corp_investment_alloc": 28,
+    "earnings_expectations": 19,
+    "market_risk_premium": 27,
+    "rate_path_expectation": 20,
+    "market_liquidity": 25
+  },
+  "med_AS": 20.5,
+  "med_PS": 21.5,
+  "roles": [
+    {
+      "variable": "investor_sentiment",
+      "name": "Investor sentiment",
+      "AS": 22,
+      "PS": 30,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 660,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crossborder_capital_flow",
+      "name": "Cross-border capital flows",
+      "AS": 19,
+      "PS": 32,
+      "Q=AS/PS": 0.59,
+      "P=AS*PS": 608,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "bond_yield",
+      "name": "Bond yield level",
+      "AS": 23,
+      "PS": 25,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 575,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_risk_premium",
+      "name": "Market risk premium",
+      "AS": 18,
+      "PS": 27,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 486,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "corp_investment_alloc",
+      "name": "Corporate investment allocation",
+      "AS": 16,
+      "PS": 28,
+      "Q=AS/PS": 0.57,
+      "P=AS*PS": 448,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "rate_path_expectation",
+      "name": "Interest-rate path expectation",
+      "AS": 22,
+      "PS": 20,
+      "Q=AS/PS": 1.1,
+      "P=AS*PS": 440,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity and credit conditions",
+      "AS": 15,
+      "PS": 25,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 375,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "commodity_price",
+      "name": "Commodity price level",
+      "AS": 22,
+      "PS": 17,
+      "Q=AS/PS": 1.29,
+      "P=AS*PS": 374,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "earnings_expectations",
+      "name": "Corporate earnings expectations",
+      "AS": 18,
+      "PS": 19,
+      "Q=AS/PS": 0.95,
+      "P=AS*PS": 342,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "currency_strength",
+      "name": "Currency strength index",
+      "AS": 13,
+      "PS": 23,
+      "Q=AS/PS": 0.57,
+      "P=AS*PS": 299,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_uncertainty",
+      "name": "Policy uncertainty level",
+      "AS": 29,
+      "PS": 10,
+      "Q=AS/PS": 2.9,
+      "P=AS*PS": 290,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "equity_valuation",
+      "name": "Equity valuation level",
+      "AS": 7,
+      "PS": 34,
+      "Q=AS/PS": 0.21,
+      "P=AS*PS": 238,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "regulatory_change_expect",
+      "name": "Regulatory change expectation",
+      "AS": 23,
+      "PS": 9,
+      "Q=AS/PS": 2.56,
+      "P=AS*PS": 207,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "compute_infra_demand",
+      "name": "Compute infrastructure demand",
+      "AS": 13,
+      "PS": 9,
+      "Q=AS/PS": 1.44,
+      "P=AS*PS": 117,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "oil_supply_risk",
+      "name": "Oil supply disruption risk",
+      "AS": 26,
+      "PS": 3,
+      "Q=AS/PS": 8.67,
+      "P=AS*PS": 78,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "political_control_expect",
+      "name": "Political control expectation",
+      "AS": 25,
+      "PS": 0,
+      "Q=AS/PS": 25000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "political_control_expect",
+        "name": "Political control expectation",
+        "kind": "driver",
+        "AS": 25,
+        "PS": 0
+      },
+      {
+        "id": "policy_uncertainty",
+        "name": "Policy uncertainty level",
+        "kind": "environment",
+        "AS": 29,
+        "PS": 10
+      },
+      {
+        "id": "regulatory_change_expect",
+        "name": "Regulatory change expectation",
+        "kind": "driver",
+        "AS": 23,
+        "PS": 9
+      },
+      {
+        "id": "investor_sentiment",
+        "name": "Investor sentiment",
+        "kind": "perception",
+        "AS": 22,
+        "PS": 30
+      },
+      {
+        "id": "equity_valuation",
+        "name": "Equity valuation level",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 34
+      },
+      {
+        "id": "bond_yield",
+        "name": "Bond yield level",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 25
+      },
+      {
+        "id": "currency_strength",
+        "name": "Currency strength index",
+        "kind": "stock",
+        "AS": 13,
+        "PS": 23
+      },
+      {
+        "id": "commodity_price",
+        "name": "Commodity price level",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 17
+      },
+      {
+        "id": "compute_infra_demand",
+        "name": "Compute infrastructure demand",
+        "kind": "flow",
+        "AS": 13,
+        "PS": 9
+      },
+      {
+        "id": "oil_supply_risk",
+        "name": "Oil supply disruption risk",
+        "kind": "environment",
+        "AS": 26,
+        "PS": 3
+      },
+      {
+        "id": "crossborder_capital_flow",
+        "name": "Cross-border capital flows",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 32
+      },
+      {
+        "id": "corp_investment_alloc",
+        "name": "Corporate investment allocation",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 28
+      },
+      {
+        "id": "earnings_expectations",
+        "name": "Corporate earnings expectations",
+        "kind": "perception",
+        "AS": 18,
+        "PS": 19
+      },
+      {
+        "id": "market_risk_premium",
+        "name": "Market risk premium",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 27
+      },
+      {
+        "id": "rate_path_expectation",
+        "name": "Interest-rate path expectation",
+        "kind": "driver",
+        "AS": 22,
+        "PS": 20
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity and credit conditions",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 25
+      }
+    ],
+    "edges": [
+      {
+        "source": "political_control_expect",
+        "target": "policy_uncertainty",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "political_control_expect",
+        "target": "regulatory_change_expect",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "political_control_expect",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "political_control_expect",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "political_control_expect",
+        "target": "bond_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "political_control_expect",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "political_control_expect",
+        "target": "corp_investment_alloc",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "political_control_expect",
+        "target": "earnings_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "political_control_expect",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "political_control_expect",
+        "target": "rate_path_expectation",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_uncertainty",
+        "target": "regulatory_change_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_uncertainty",
+        "target": "investor_sentiment",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_uncertainty",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_uncertainty",
+        "target": "bond_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_uncertainty",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_uncertainty",
+        "target": "crossborder_capital_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_uncertainty",
+        "target": "corp_investment_alloc",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "policy_uncertainty",
+        "target": "earnings_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_uncertainty",
+        "target": "market_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_uncertainty",
+        "target": "rate_path_expectation",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_uncertainty",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "regulatory_change_expect",
+        "target": "policy_uncertainty",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regulatory_change_expect",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "regulatory_change_expect",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "regulatory_change_expect",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "regulatory_change_expect",
+        "target": "corp_investment_alloc",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "regulatory_change_expect",
+        "target": "earnings_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "regulatory_change_expect",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "regulatory_change_expect",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "commodity_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "crossborder_capital_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "market_risk_premium",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "investor_sentiment",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "equity_valuation",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield",
+        "target": "currency_strength",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield",
+        "target": "crossborder_capital_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield",
+        "target": "corp_investment_alloc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "bond_yield",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield",
+        "target": "rate_path_expectation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "bond_yield",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength",
+        "target": "commodity_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "currency_strength",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "currency_strength",
+        "target": "earnings_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commodity_price",
+        "target": "policy_uncertainty",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "commodity_price",
+        "target": "bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "commodity_price",
+        "target": "oil_supply_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "commodity_price",
+        "target": "corp_investment_alloc",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_price",
+        "target": "earnings_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "commodity_price",
+        "target": "rate_path_expectation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "compute_infra_demand",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "compute_infra_demand",
+        "target": "corp_investment_alloc",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "compute_infra_demand",
+        "target": "earnings_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "policy_uncertainty",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "regulatory_change_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "commodity_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "corp_investment_alloc",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "earnings_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "market_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_supply_risk",
+        "target": "rate_path_expectation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "bond_yield",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "currency_strength",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "rate_path_expectation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crossborder_capital_flow",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "corp_investment_alloc",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corp_investment_alloc",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corp_investment_alloc",
+        "target": "compute_infra_demand",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "corp_investment_alloc",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corp_investment_alloc",
+        "target": "earnings_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "earnings_expectations",
+        "target": "investor_sentiment",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "earnings_expectations",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "earnings_expectations",
+        "target": "bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "earnings_expectations",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "earnings_expectations",
+        "target": "corp_investment_alloc",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "earnings_expectations",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_risk_premium",
+        "target": "investor_sentiment",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_risk_premium",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_risk_premium",
+        "target": "currency_strength",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_risk_premium",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_risk_premium",
+        "target": "corp_investment_alloc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_risk_premium",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rate_path_expectation",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rate_path_expectation",
+        "target": "equity_valuation",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "rate_path_expectation",
+        "target": "bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_path_expectation",
+        "target": "currency_strength",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "rate_path_expectation",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_path_expectation",
+        "target": "corp_investment_alloc",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "rate_path_expectation",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "rate_path_expectation",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "investor_sentiment",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "equity_valuation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "crossborder_capital_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "market_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_hearing_lisa_cook_dec14",
+      "title": "Lisa Cook Fed hearing (Dec 14)",
+      "description": "White House panel hearing for Fed nominee Lisa Cook is scheduled for Dec 14; outcome likely to shift markets' policy-rate expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2026-12-14",
+        "start": null,
+        "end": null,
+        "label": "2026-12-14"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "rate_path_expectation",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "policy_uncertainty",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "bond_yield",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "White House panel delays hearing on Fed's Lisa Cook to Dec. 14"
+    },
+    {
+      "id": "congressional_oversight_and_agenda",
+      "title": "Democratic House oversight and legislative agenda",
+      "description": "Incoming Democratic majority launches oversight, legislative initiatives and probes, reshaping regulatory and policy expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-05",
+        "end": "2027-02-28",
+        "label": "3 months"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "policy_uncertainty",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "regulatory_change_expect",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_sentiment",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Democrats projected to win majority; 'Impeachments, Iran and the presidency: what's next' signals oversight push"
+    },
+    {
+      "id": "data_center_investment_chill",
+      "title": "US data‑centre investment cooldown",
+      "description": "Voter backlash and political opposition to data centres cool permitting and AI-driven capex, reducing near‑term compute demand.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-05",
+        "end": "2027-02-05",
+        "label": "2-3 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "compute_infra_demand",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "corp_investment_alloc",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_valuation",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'Voters have put a helpful chill on the US data centre boom'; 'AI data center stocks slide'"
+    },
+    {
+      "id": "middle_east_supply_tension",
+      "title": "Middle East shipping incidents / Iran escalation risk",
+      "description": "Tankers hit and Iran actions near the Strait of Hormuz sustain oil‑supply disruption risk, pressuring energy prices and risk premia.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-05",
+        "end": "2026-12-05",
+        "label": "1 month"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "oil_supply_risk",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "commodity_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "bond_yield",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'Iran's IRGC says four tankers ablaze' and 'Oil rises on Iran war uncertainty'"
+    },
+    {
+      "id": "cvs_breakup_process",
+      "title": "CVS Health breakup and restructuring",
+      "description": "CVS's announced split of pharmacy and insurance units initiates a multi‑month restructuring and regulatory process affecting valuation and liquidity.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-05",
+        "end": "2027-05-05",
+        "label": "6 months"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "equity_valuation",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "regulatory_change_expect",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'CVS to break up $117 billion business' / 'CVS Will Break Off Its Namesake Pharmacies'"
+    },
+    {
+      "id": "potential_impeachment_inquiries",
+      "title": "Risk of House investigations / impeachment processes",
+      "description": "Democratic control raises the prospect of formal investigations or impeachment-related proceedings, elevating political risk and uncertainty.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-05",
+        "end": "2027-05-05",
+        "label": "6 months"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "policy_uncertainty",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "investor_sentiment",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_risk_premium",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'Impeachments, Iran and the presidency: what’s next' indicates inquiry/impeachment risk"
+    },
+    {
+      "id": "post_election_treasury_repricing",
+      "title": "Post‑election Treasury repricing",
+      "description": "Markets continue to reprice Treasuries lower following the Democratic sweep and cheaper oil, influencing discount rates and risk assets.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-05",
+        "end": "2026-12-05",
+        "label": "1 month"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "bond_yield",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "rate_path_expectation",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "investor_sentiment",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "'Treasury Yields Down Following Democrats Midterm Win' and 'Treasury Yields Fall on Election Results, Cheaper Oil'"
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "potential_impeachment_inquiries",
+      "title": "Risk of House investigations / impeachment processes",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6 months",
+      "date": null,
+      "start": "2026-11-05",
+      "end": "2027-05-05",
+      "probability": 0.4,
+      "impact_score": 167.0,
+      "expected_impact": 66.8,
+      "event_PS": 20.571,
+      "event_AS": 23.857,
+      "n_vars": 3,
+      "affected_ids": "policy_uncertainty, investor_sentiment, market_risk_premium",
+      "rationale": "'Impeachments, Iran and the presidency: what’s next' indicates inquiry/impeachment risk"
+    },
+    {
+      "id": "middle_east_supply_tension",
+      "title": "Middle East shipping incidents / Iran escalation risk",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1 month",
+      "date": null,
+      "start": "2026-11-05",
+      "end": "2026-12-05",
+      "probability": 0.6,
+      "impact_score": 145.0,
+      "expected_impact": 87.0,
+      "event_PS": 11.333,
+      "event_AS": 24.167,
+      "n_vars": 3,
+      "affected_ids": "oil_supply_risk, commodity_price, bond_yield",
+      "rationale": "'Iran's IRGC says four tankers ablaze' and 'Oil rises on Iran war uncertainty'"
+    },
+    {
+      "id": "post_election_treasury_repricing",
+      "title": "Post‑election Treasury repricing",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1 month",
+      "date": null,
+      "start": "2026-11-05",
+      "end": "2026-12-05",
+      "probability": 0.85,
+      "impact_score": 135.0,
+      "expected_impact": 114.75,
+      "event_PS": 24.167,
+      "event_AS": 22.5,
+      "n_vars": 3,
+      "affected_ids": "bond_yield, rate_path_expectation, investor_sentiment",
+      "rationale": "'Treasury Yields Down Following Democrats Midterm Win' and 'Treasury Yields Fall on Election Results, Cheaper Oil'"
+    },
+    {
+      "id": "congressional_oversight_and_agenda",
+      "title": "Democratic House oversight and legislative agenda",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3 months",
+      "date": null,
+      "start": "2026-11-05",
+      "end": "2027-02-28",
+      "probability": 0.9,
+      "impact_score": 126.0,
+      "expected_impact": 113.4,
+      "event_PS": 13.6,
+      "event_AS": 25.2,
+      "n_vars": 3,
+      "affected_ids": "policy_uncertainty, regulatory_change_expect, investor_sentiment",
+      "rationale": "Democrats projected to win majority; 'Impeachments, Iran and the presidency: what's next' signals oversight push"
+    },
+    {
+      "id": "fed_hearing_lisa_cook_dec14",
+      "title": "Lisa Cook Fed hearing (Dec 14)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "2026-12-14",
+      "date": "2026-12-14",
+      "start": null,
+      "end": null,
+      "probability": 0.95,
+      "impact_score": 96.0,
+      "expected_impact": 91.2,
+      "event_PS": 18.75,
+      "event_AS": 24.0,
+      "n_vars": 3,
+      "affected_ids": "rate_path_expectation, policy_uncertainty, bond_yield",
+      "rationale": "White House panel delays hearing on Fed's Lisa Cook to Dec. 14"
+    },
+    {
+      "id": "data_center_investment_chill",
+      "title": "US data‑centre investment cooldown",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-3 months",
+      "date": null,
+      "start": "2026-11-05",
+      "end": "2027-02-05",
+      "probability": 0.8,
+      "impact_score": 96.0,
+      "expected_impact": 76.8,
+      "event_PS": 20.571,
+      "event_AS": 13.714,
+      "n_vars": 4,
+      "affected_ids": "compute_infra_demand, corp_investment_alloc, equity_valuation, market_risk_premium",
+      "rationale": "'Voters have put a helpful chill on the US data centre boom'; 'AI data center stocks slide'"
+    },
+    {
+      "id": "cvs_breakup_process",
+      "title": "CVS Health breakup and restructuring",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6 months",
+      "date": null,
+      "start": "2026-11-05",
+      "end": "2027-05-05",
+      "probability": 0.85,
+      "impact_score": 52.0,
+      "expected_impact": 44.2,
+      "event_PS": 25.5,
+      "event_AS": 13.0,
+      "n_vars": 3,
+      "affected_ids": "equity_valuation, regulatory_change_expect, market_liquidity",
+      "rationale": "'CVS to break up $117 billion business' / 'CVS Will Break Off Its Namesake Pharmacies'"
+    }
+  ]
+}
