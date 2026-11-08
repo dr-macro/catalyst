@@ -1,0 +1,1719 @@
+{
+  "label": "global_market_repricing",
+  "as_of": "2026-11-08",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-11-08T02:59:24",
+  "system_description": {
+    "narrative_title": "Post‑midterms market and policy recalibration driven by jobs data",
+    "narrative_summary": "The dominant narrative is a rapid macro‑financial recalibration after the US midterms and a stronger‑than‑expected October jobs report: political shifts (a midterm backlash against Trump) and fresh payrolls data have together reset expectations for central banks, bond yields, currencies, oil and equity prices. As an open system, this news window links inputs (election outcomes, employment and inflation releases, Middle East risk) to processing nodes (market pricing, central‑bank decision‑making, corporate strategy) and outputs (rate decisions, yield moves, asset re‑pricing, layoffs and investment shifts). Fast feedback loops are evident: data and politics drive rate expectations which move yields and risk premia, changing corporate financing and hiring that then feed back into economic indicators and political sentiment.",
+    "scope": "Macro‑financial interactions across developed markets centered on the US and Europe: electoral shocks, labor market data, central‑bank policy expectations, bond/FX/equity/commodity price moves, and corporate sector responses (notably tech and energy).",
+    "super_system": "Global political‑economic system (international financial system intersecting with geopolitics and commodity supply chains).",
+    "adjacent_subsystems": [
+      "Domestic electoral politics and public sentiment (US, UK, EU)",
+      "Central banking and monetary policy",
+      "Energy and commodity markets (oil, gold)",
+      "Technology and corporate sector (tech stocks, layoffs, corporate capital allocation)"
+    ],
+    "evidence_headlines": [
+      "After tech-stock rout, October jobs report could bring relief — or more pain",
+      "U.S. economy added 165,000 jobs in October, way more than expected; unemployment rate slips to 4.1%",
+      "Fed seen sticking to December rate hike after jobs data",
+      "Oil set for sharp weekly drop after US midterms raise hopes of more Mideast crude exports",
+      "America’s ‘blue wave’: five takeaways from the midterm results",
+      "Bank of England raises rates for first time since 2023, warns more likely"
+    ]
+  },
+  "variables": [
+    {
+      "id": "labor_market_tightness",
+      "name": "Labor-market tightness",
+      "description": "The relative balance between available jobs and available workers, measured as the ratio of vacancies to unemployed persons or similar tightness indicators.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "unemployment_rate",
+      "name": "Unemployment rate",
+      "description": "The share of the labour force that is unemployed and actively seeking work at a given point in time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "wage_growth_rate",
+      "name": "Wage growth rate",
+      "description": "The pace of change in nominal wages or compensation per worker over time, typically expressed as a percentage rate.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "headline_inflation_rate",
+      "name": "Headline inflation rate",
+      "description": "The observed year-on-year change in a broad price index for goods and services, capturing current consumer price inflation.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The average expected future inflation rate held by market participants, firms, or consumers over relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_stance",
+      "name": "Monetary policy stance",
+      "description": "The current level and orientation of monetary policy settings, including policy interest rates and balance-sheet posture as a continuous state.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "interest_rate_expect",
+      "name": "Interest-rate expectations",
+      "description": "Market and agent expectations about the future path of short-term policy and money-market interest rates.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "nominal_govt_bond_yield",
+      "name": "Nominal government bond yield",
+      "description": "The current yield (market interest rate) on benchmark nominal government debt instruments across maturities.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium",
+      "name": "Term premium",
+      "description": "The component of long-term bond yields that compensates investors for interest-rate risk and uncertainty over the yield curve horizon.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spreads",
+      "name": "Credit spreads",
+      "description": "The yield differential between corporate (or non-sovereign) debt and risk-free government debt, reflecting credit risk and funding costs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_valuation_level",
+      "name": "Equity valuation level",
+      "description": "Aggregate market valuation of equities, as captured by metrics like price-to-earnings ratios or market-cap relative to fundamentals.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_market_volatility",
+      "name": "Equity market volatility",
+      "description": "The degree of short-term variability or uncertainty in equity prices, typically proxied by volatility indices or realized variance.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "exchange_rate_level",
+      "name": "Exchange rate level",
+      "description": "The market price of one currency relative to another or to a currency basket, reflecting relative valuations and capital flows.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "oil_price_level",
+      "name": "Oil price level",
+      "description": "The prevailing market price of crude oil per barrel, representing the price signal for energy markets.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "commodity_supply_risk",
+      "name": "Commodity supply risk",
+      "description": "The probability-weighted exposure of commodity markets to production, transportation, or geopolitical disruptions affecting supply availability.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "corporate_hiring_rate",
+      "name": "Corporate hiring rate",
+      "description": "The flow of new hires or net employment change within firms, capturing recruitment intensity and layoff frequency over time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "labor_market_tightness",
+    "unemployment_rate",
+    "wage_growth_rate",
+    "headline_inflation_rate",
+    "inflation_expectations",
+    "monetary_policy_stance",
+    "interest_rate_expect",
+    "nominal_govt_bond_yield",
+    "term_premium",
+    "credit_spreads",
+    "equity_valuation_level",
+    "equity_market_volatility",
+    "exchange_rate_level",
+    "oil_price_level",
+    "commodity_supply_risk",
+    "corporate_hiring_rate"
+  ],
+  "var_names": {
+    "labor_market_tightness": "Labor-market tightness",
+    "unemployment_rate": "Unemployment rate",
+    "wage_growth_rate": "Wage growth rate",
+    "headline_inflation_rate": "Headline inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "monetary_policy_stance": "Monetary policy stance",
+    "interest_rate_expect": "Interest-rate expectations",
+    "nominal_govt_bond_yield": "Nominal government bond yield",
+    "term_premium": "Term premium",
+    "credit_spreads": "Credit spreads",
+    "equity_valuation_level": "Equity valuation level",
+    "equity_market_volatility": "Equity market volatility",
+    "exchange_rate_level": "Exchange rate level",
+    "oil_price_level": "Oil price level",
+    "commodity_supply_risk": "Commodity supply risk",
+    "corporate_hiring_rate": "Corporate hiring rate"
+  },
+  "impact_matrix": {
+    "labor_market_tightness": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 3,
+      "wage_growth_rate": 3,
+      "headline_inflation_rate": 1,
+      "inflation_expectations": 1,
+      "monetary_policy_stance": 2,
+      "interest_rate_expect": 2,
+      "nominal_govt_bond_yield": 1,
+      "term_premium": 0,
+      "credit_spreads": 1,
+      "equity_valuation_level": 1,
+      "equity_market_volatility": 1,
+      "exchange_rate_level": 1,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 3
+    },
+    "unemployment_rate": {
+      "labor_market_tightness": 3,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 3,
+      "headline_inflation_rate": 2,
+      "inflation_expectations": 1,
+      "monetary_policy_stance": 2,
+      "interest_rate_expect": 2,
+      "nominal_govt_bond_yield": 2,
+      "term_premium": 0,
+      "credit_spreads": 2,
+      "equity_valuation_level": 2,
+      "equity_market_volatility": 2,
+      "exchange_rate_level": 1,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 3
+    },
+    "wage_growth_rate": {
+      "labor_market_tightness": 1,
+      "unemployment_rate": 1,
+      "wage_growth_rate": 0,
+      "headline_inflation_rate": 3,
+      "inflation_expectations": 2,
+      "monetary_policy_stance": 2,
+      "interest_rate_expect": 2,
+      "nominal_govt_bond_yield": 1,
+      "term_premium": 0,
+      "credit_spreads": 1,
+      "equity_valuation_level": 1,
+      "equity_market_volatility": 1,
+      "exchange_rate_level": 1,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 2
+    },
+    "headline_inflation_rate": {
+      "labor_market_tightness": 1,
+      "unemployment_rate": 1,
+      "wage_growth_rate": 2,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 3,
+      "monetary_policy_stance": 3,
+      "interest_rate_expect": 3,
+      "nominal_govt_bond_yield": 3,
+      "term_premium": 2,
+      "credit_spreads": 1,
+      "equity_valuation_level": 2,
+      "equity_market_volatility": 2,
+      "exchange_rate_level": 2,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 1
+    },
+    "inflation_expectations": {
+      "labor_market_tightness": 1,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 1,
+      "headline_inflation_rate": 2,
+      "inflation_expectations": 0,
+      "monetary_policy_stance": 3,
+      "interest_rate_expect": 3,
+      "nominal_govt_bond_yield": 3,
+      "term_premium": 2,
+      "credit_spreads": 1,
+      "equity_valuation_level": 2,
+      "equity_market_volatility": 2,
+      "exchange_rate_level": 2,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 1
+    },
+    "monetary_policy_stance": {
+      "labor_market_tightness": 2,
+      "unemployment_rate": 2,
+      "wage_growth_rate": 2,
+      "headline_inflation_rate": 2,
+      "inflation_expectations": 2,
+      "monetary_policy_stance": 0,
+      "interest_rate_expect": 3,
+      "nominal_govt_bond_yield": 3,
+      "term_premium": 2,
+      "credit_spreads": 2,
+      "equity_valuation_level": 3,
+      "equity_market_volatility": 3,
+      "exchange_rate_level": 2,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 2
+    },
+    "interest_rate_expect": {
+      "labor_market_tightness": 1,
+      "unemployment_rate": 1,
+      "wage_growth_rate": 1,
+      "headline_inflation_rate": 1,
+      "inflation_expectations": 1,
+      "monetary_policy_stance": 0,
+      "interest_rate_expect": 0,
+      "nominal_govt_bond_yield": 3,
+      "term_premium": 2,
+      "credit_spreads": 2,
+      "equity_valuation_level": 2,
+      "equity_market_volatility": 2,
+      "exchange_rate_level": 2,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 1
+    },
+    "nominal_govt_bond_yield": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "headline_inflation_rate": 1,
+      "inflation_expectations": 1,
+      "monetary_policy_stance": 0,
+      "interest_rate_expect": 0,
+      "nominal_govt_bond_yield": 0,
+      "term_premium": 1,
+      "credit_spreads": 2,
+      "equity_valuation_level": 2,
+      "equity_market_volatility": 1,
+      "exchange_rate_level": 2,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 1
+    },
+    "term_premium": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "headline_inflation_rate": 1,
+      "inflation_expectations": 0,
+      "monetary_policy_stance": 0,
+      "interest_rate_expect": 0,
+      "nominal_govt_bond_yield": 3,
+      "term_premium": 0,
+      "credit_spreads": 1,
+      "equity_valuation_level": 2,
+      "equity_market_volatility": 2,
+      "exchange_rate_level": 1,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 0
+    },
+    "credit_spreads": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 1,
+      "wage_growth_rate": 0,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_stance": 0,
+      "interest_rate_expect": 0,
+      "nominal_govt_bond_yield": 0,
+      "term_premium": 0,
+      "credit_spreads": 0,
+      "equity_valuation_level": 2,
+      "equity_market_volatility": 2,
+      "exchange_rate_level": 0,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 2
+    },
+    "equity_valuation_level": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "headline_inflation_rate": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_stance": 0,
+      "interest_rate_expect": 0,
+      "nominal_govt_bond_yield": 0,
+      "term_premium": 0,
+      "credit_spreads": 0,
+      "equity_valuation_level": 0,
+      "equity_market_volatility": 1,
+      "exchange_rate_level": 0,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 1
+    },
+    "equity_market_volatility": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 1,
+      "wage_growth_rate": 0,
+      "headline_inflation_rate": 1,
+      "inflation_expectations": 1,
+      "monetary_policy_stance": 1,
+      "interest_rate_expect": 1,
+      "nominal_govt_bond_yield": 2,
+      "term_premium": 1,
+      "credit_spreads": 2,
+      "equity_valuation_level": 2,
+      "equity_market_volatility": 0,
+      "exchange_rate_level": 1,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 1,
+      "corporate_hiring_rate": 1
+    },
+    "exchange_rate_level": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "headline_inflation_rate": 2,
+      "inflation_expectations": 1,
+      "monetary_policy_stance": 1,
+      "interest_rate_expect": 2,
+      "nominal_govt_bond_yield": 2,
+      "term_premium": 1,
+      "credit_spreads": 1,
+      "equity_valuation_level": 1,
+      "equity_market_volatility": 1,
+      "exchange_rate_level": 0,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 0
+    },
+    "oil_price_level": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "headline_inflation_rate": 3,
+      "inflation_expectations": 2,
+      "monetary_policy_stance": 2,
+      "interest_rate_expect": 0,
+      "nominal_govt_bond_yield": 1,
+      "term_premium": 0,
+      "credit_spreads": 1,
+      "equity_valuation_level": 2,
+      "equity_market_volatility": 2,
+      "exchange_rate_level": 2,
+      "oil_price_level": 0,
+      "commodity_supply_risk": 2,
+      "corporate_hiring_rate": 1
+    },
+    "commodity_supply_risk": {
+      "labor_market_tightness": 0,
+      "unemployment_rate": 0,
+      "wage_growth_rate": 0,
+      "headline_inflation_rate": 2,
+      "inflation_expectations": 1,
+      "monetary_policy_stance": 1,
+      "interest_rate_expect": 0,
+      "nominal_govt_bond_yield": 0,
+      "term_premium": 0,
+      "credit_spreads": 1,
+      "equity_valuation_level": 1,
+      "equity_market_volatility": 2,
+      "exchange_rate_level": 1,
+      "oil_price_level": 3,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 0
+    },
+    "corporate_hiring_rate": {
+      "labor_market_tightness": 3,
+      "unemployment_rate": 3,
+      "wage_growth_rate": 2,
+      "headline_inflation_rate": 1,
+      "inflation_expectations": 1,
+      "monetary_policy_stance": 2,
+      "interest_rate_expect": 1,
+      "nominal_govt_bond_yield": 1,
+      "term_premium": 0,
+      "credit_spreads": 2,
+      "equity_valuation_level": 1,
+      "equity_market_volatility": 1,
+      "exchange_rate_level": 0,
+      "oil_price_level": 1,
+      "commodity_supply_risk": 0,
+      "corporate_hiring_rate": 0
+    }
+  },
+  "AS": {
+    "labor_market_tightness": 20,
+    "unemployment_rate": 25,
+    "wage_growth_rate": 18,
+    "headline_inflation_rate": 26,
+    "inflation_expectations": 23,
+    "monetary_policy_stance": 30,
+    "interest_rate_expect": 19,
+    "nominal_govt_bond_yield": 11,
+    "term_premium": 10,
+    "credit_spreads": 7,
+    "equity_valuation_level": 2,
+    "equity_market_volatility": 15,
+    "exchange_rate_level": 12,
+    "oil_price_level": 18,
+    "commodity_supply_risk": 12,
+    "corporate_hiring_rate": 19
+  },
+  "PS": {
+    "labor_market_tightness": 12,
+    "unemployment_rate": 13,
+    "wage_growth_rate": 14,
+    "headline_inflation_rate": 22,
+    "inflation_expectations": 17,
+    "monetary_policy_stance": 19,
+    "interest_rate_expect": 19,
+    "nominal_govt_bond_yield": 25,
+    "term_premium": 11,
+    "credit_spreads": 20,
+    "equity_valuation_level": 26,
+    "equity_market_volatility": 25,
+    "exchange_rate_level": 18,
+    "oil_price_level": 4,
+    "commodity_supply_risk": 3,
+    "corporate_hiring_rate": 19
+  },
+  "med_AS": 18.0,
+  "med_PS": 18.5,
+  "roles": [
+    {
+      "variable": "headline_inflation_rate",
+      "name": "Headline inflation rate",
+      "AS": 26,
+      "PS": 22,
+      "Q=AS/PS": 1.18,
+      "P=AS*PS": 572,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "monetary_policy_stance",
+      "name": "Monetary policy stance",
+      "AS": 30,
+      "PS": 19,
+      "Q=AS/PS": 1.58,
+      "P=AS*PS": 570,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 23,
+      "PS": 17,
+      "Q=AS/PS": 1.35,
+      "P=AS*PS": 391,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "equity_market_volatility",
+      "name": "Equity market volatility",
+      "AS": 15,
+      "PS": 25,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 375,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "corporate_hiring_rate",
+      "name": "Corporate hiring rate",
+      "AS": 19,
+      "PS": 19,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 361,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "interest_rate_expect",
+      "name": "Interest-rate expectations",
+      "AS": 19,
+      "PS": 19,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 361,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "unemployment_rate",
+      "name": "Unemployment rate",
+      "AS": 25,
+      "PS": 13,
+      "Q=AS/PS": 1.92,
+      "P=AS*PS": 325,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "nominal_govt_bond_yield",
+      "name": "Nominal government bond yield",
+      "AS": 11,
+      "PS": 25,
+      "Q=AS/PS": 0.44,
+      "P=AS*PS": 275,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "wage_growth_rate",
+      "name": "Wage growth rate",
+      "AS": 18,
+      "PS": 14,
+      "Q=AS/PS": 1.29,
+      "P=AS*PS": 252,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "labor_market_tightness",
+      "name": "Labor-market tightness",
+      "AS": 20,
+      "PS": 12,
+      "Q=AS/PS": 1.67,
+      "P=AS*PS": 240,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "exchange_rate_level",
+      "name": "Exchange rate level",
+      "AS": 12,
+      "PS": 18,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 216,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "credit_spreads",
+      "name": "Credit spreads",
+      "AS": 7,
+      "PS": 20,
+      "Q=AS/PS": 0.35,
+      "P=AS*PS": 140,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium",
+      "name": "Term premium",
+      "AS": 10,
+      "PS": 11,
+      "Q=AS/PS": 0.91,
+      "P=AS*PS": 110,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "oil_price_level",
+      "name": "Oil price level",
+      "AS": 18,
+      "PS": 4,
+      "Q=AS/PS": 4.5,
+      "P=AS*PS": 72,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "equity_valuation_level",
+      "name": "Equity valuation level",
+      "AS": 2,
+      "PS": 26,
+      "Q=AS/PS": 0.08,
+      "P=AS*PS": 52,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "commodity_supply_risk",
+      "name": "Commodity supply risk",
+      "AS": 12,
+      "PS": 3,
+      "Q=AS/PS": 4.0,
+      "P=AS*PS": 36,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "labor_market_tightness",
+        "name": "Labor-market tightness",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 12
+      },
+      {
+        "id": "unemployment_rate",
+        "name": "Unemployment rate",
+        "kind": "stock",
+        "AS": 25,
+        "PS": 13
+      },
+      {
+        "id": "wage_growth_rate",
+        "name": "Wage growth rate",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 14
+      },
+      {
+        "id": "headline_inflation_rate",
+        "name": "Headline inflation rate",
+        "kind": "stock",
+        "AS": 26,
+        "PS": 22
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 23,
+        "PS": 17
+      },
+      {
+        "id": "monetary_policy_stance",
+        "name": "Monetary policy stance",
+        "kind": "driver",
+        "AS": 30,
+        "PS": 19
+      },
+      {
+        "id": "interest_rate_expect",
+        "name": "Interest-rate expectations",
+        "kind": "perception",
+        "AS": 19,
+        "PS": 19
+      },
+      {
+        "id": "nominal_govt_bond_yield",
+        "name": "Nominal government bond yield",
+        "kind": "stock",
+        "AS": 11,
+        "PS": 25
+      },
+      {
+        "id": "term_premium",
+        "name": "Term premium",
+        "kind": "stock",
+        "AS": 10,
+        "PS": 11
+      },
+      {
+        "id": "credit_spreads",
+        "name": "Credit spreads",
+        "kind": "stock",
+        "AS": 7,
+        "PS": 20
+      },
+      {
+        "id": "equity_valuation_level",
+        "name": "Equity valuation level",
+        "kind": "stock",
+        "AS": 2,
+        "PS": 26
+      },
+      {
+        "id": "equity_market_volatility",
+        "name": "Equity market volatility",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 25
+      },
+      {
+        "id": "exchange_rate_level",
+        "name": "Exchange rate level",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 18
+      },
+      {
+        "id": "oil_price_level",
+        "name": "Oil price level",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 4
+      },
+      {
+        "id": "commodity_supply_risk",
+        "name": "Commodity supply risk",
+        "kind": "environment",
+        "AS": 12,
+        "PS": 3
+      },
+      {
+        "id": "corporate_hiring_rate",
+        "name": "Corporate hiring rate",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 19
+      }
+    ],
+    "edges": [
+      {
+        "source": "labor_market_tightness",
+        "target": "unemployment_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "wage_growth_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "interest_rate_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "labor_market_tightness",
+        "target": "corporate_hiring_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "labor_market_tightness",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "wage_growth_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "headline_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "interest_rate_expect",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "nominal_govt_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "unemployment_rate",
+        "target": "corporate_hiring_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "headline_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "interest_rate_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "wage_growth_rate",
+        "target": "corporate_hiring_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "wage_growth_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "monetary_policy_stance",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "interest_rate_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "nominal_govt_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "headline_inflation_rate",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "headline_inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "monetary_policy_stance",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "interest_rate_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "nominal_govt_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "labor_market_tightness",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "unemployment_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "wage_growth_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "headline_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "interest_rate_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "nominal_govt_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "equity_valuation_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "equity_market_volatility",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_stance",
+        "target": "corporate_hiring_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "interest_rate_expect",
+        "target": "nominal_govt_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "interest_rate_expect",
+        "target": "term_premium",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "interest_rate_expect",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "interest_rate_expect",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "interest_rate_expect",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "interest_rate_expect",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_govt_bond_yield",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "nominal_govt_bond_yield",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "nominal_govt_bond_yield",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "nominal_govt_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_premium",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spreads",
+        "target": "corporate_hiring_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_market_volatility",
+        "target": "nominal_govt_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_market_volatility",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_market_volatility",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "headline_inflation_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "interest_rate_expect",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "exchange_rate_level",
+        "target": "nominal_govt_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "headline_inflation_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "equity_valuation_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "exchange_rate_level",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "oil_price_level",
+        "target": "commodity_supply_risk",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_supply_risk",
+        "target": "headline_inflation_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_supply_risk",
+        "target": "equity_market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "commodity_supply_risk",
+        "target": "oil_price_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_hiring_rate",
+        "target": "labor_market_tightness",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_hiring_rate",
+        "target": "unemployment_rate",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "corporate_hiring_rate",
+        "target": "wage_growth_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_hiring_rate",
+        "target": "monetary_policy_stance",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "corporate_hiring_rate",
+        "target": "credit_spreads",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_cpi_mid_nov",
+      "title": "U.S. inflation (CPI) release, mid‑November",
+      "description": "Monthly U.S. headline inflation print that markets will use to reassess Fed tightening prospects and rate pricing.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-10",
+        "end": "2026-11-18",
+        "label": "mid-November"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "headline_inflation_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "interest_rate_expect",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "monetary_policy_stance",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_govt_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "“Week Ahead…U.S. Inflation Data Could Give Clues…”; markets link CPI to Fed December call and recent jobs headlines."
+    },
+    {
+      "id": "fed_decision_december",
+      "title": "Federal Reserve policy decision (December meeting)",
+      "description": "FOMC decision likely to confirm or reverse market expectations of a December rate hike, shifting policy stance and yields.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2026-12-20",
+        "label": "early‑mid December"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_stance",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "interest_rate_expect",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_govt_bond_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_valuation_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Fed seen sticking to December rate hike after jobs data” and jobs/inflation pieces tying results to the December Fed call."
+    },
+    {
+      "id": "boe_rate_action",
+      "title": "Bank of England follow‑through (further hikes risk)",
+      "description": "BoE intentions and subsequent policy decisions after the recent hike will affect UK yields, exchange rate and global risk pricing.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-08",
+        "end": "2026-12-31",
+        "label": "by end of year"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_stance",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "interest_rate_expect",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_govt_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "exchange_rate_level",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“Bank of England raises rates…warns more likely” and “BoE leaves door open to further rate rises.”"
+    },
+    {
+      "id": "me_diplomacy_exports",
+      "title": "Middle East diplomacy and crude export normalization",
+      "description": "Post‑midterms diplomatic moves that could open more Mideast crude to markets, reducing oil risk premia and prices.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-06",
+        "end": "2026-12-31",
+        "label": "weeks–months"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "oil_price_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "commodity_supply_risk",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "nominal_govt_bond_yield",
+          "intensity": 1,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_market_volatility",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "“Oil set for sharp weekly fall after US midterms raise hopes of more Mideast crude exports” and related oil/diplomacy headlines."
+    },
+    {
+      "id": "weekly_jobless_claims",
+      "title": "Weekly U.S. initial jobless claims (recurring)",
+      "description": "Continued weekly claims releases will signal labour‑market momentum and influence tightness, wages and policy expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-08",
+        "end": "2026-12-31",
+        "label": "weekly"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "labor_market_tightness",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "unemployment_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "corporate_hiring_rate",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "wage_growth_rate",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“U.S. Jobless Claims Slide Lower Again” and “US weekly jobless claims at 57‑year lows.”"
+    },
+    {
+      "id": "november_payrolls",
+      "title": "U.S. November payrolls report (early December)",
+      "description": "Next monthly payrolls release that will update labour momentum and help set markets’ view of Fed timing and yield moves.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2026-12-07",
+        "label": "early December"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "labor_market_tightness",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "unemployment_rate",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "wage_growth_rate",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "interest_rate_expect",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "nominal_govt_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple headlines tie monthly payroll releases to market and Fed moves (e.g., “The October jobs report is out Friday. Here's everything to expect”)."
+    },
+    {
+      "id": "corp_post_midterms_recalibration",
+      "title": "Corporate post‑midterms strategy and hiring recalibration",
+      "description": "Companies reassessing hiring, investment and political engagement after midterms, affecting hiring flows and equity dynamics over coming months.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-08",
+        "end": "2027-02-08",
+        "label": "next 3 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "corporate_hiring_rate",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_valuation_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "credit_spreads",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "“The post‑midterms playbook for America Inc” and tech/market rout headlines signal corporate strategy and hiring shifts."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "us_cpi_mid_nov",
+      "title": "U.S. inflation (CPI) release, mid‑November",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-November",
+      "date": null,
+      "start": "2026-11-10",
+      "end": "2026-11-18",
+      "probability": 0.85,
+      "impact_score": 284.0,
+      "expected_impact": 241.4,
+      "event_PS": 20.5,
+      "event_AS": 20.286,
+      "n_vars": 7,
+      "affected_ids": "headline_inflation_rate, inflation_expectations, interest_rate_expect, monetary_policy_stance, nominal_govt_bond_yield, equity_market_volatility, term_premium",
+      "rationale": "“Week Ahead…U.S. Inflation Data Could Give Clues…”; markets link CPI to Fed December call and recent jobs headlines."
+    },
+    {
+      "id": "november_payrolls",
+      "title": "U.S. November payrolls report (early December)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "early December",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2026-12-07",
+      "probability": 0.9,
+      "impact_score": 206.0,
+      "expected_impact": 185.4,
+      "event_PS": 16.182,
+      "event_AS": 18.727,
+      "n_vars": 5,
+      "affected_ids": "labor_market_tightness, unemployment_rate, wage_growth_rate, interest_rate_expect, nominal_govt_bond_yield",
+      "rationale": "Multiple headlines tie monthly payroll releases to market and Fed moves (e.g., “The October jobs report is out Friday. Here's everything to expect”)."
+    },
+    {
+      "id": "fed_decision_december",
+      "title": "Federal Reserve policy decision (December meeting)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "early‑mid December",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2026-12-20",
+      "probability": 0.9,
+      "impact_score": 194.0,
+      "expected_impact": 174.6,
+      "event_PS": 21.0,
+      "event_AS": 16.167,
+      "n_vars": 5,
+      "affected_ids": "monetary_policy_stance, interest_rate_expect, nominal_govt_bond_yield, equity_valuation_level, term_premium",
+      "rationale": "“Fed seen sticking to December rate hike after jobs data” and jobs/inflation pieces tying results to the December Fed call."
+    },
+    {
+      "id": "boe_rate_action",
+      "title": "Bank of England follow‑through (further hikes risk)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of year",
+      "date": null,
+      "start": "2026-11-08",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 142.0,
+      "expected_impact": 99.4,
+      "event_PS": 19.375,
+      "event_AS": 17.75,
+      "n_vars": 5,
+      "affected_ids": "monetary_policy_stance, interest_rate_expect, nominal_govt_bond_yield, exchange_rate_level, term_premium",
+      "rationale": "“Bank of England raises rates…warns more likely” and “BoE leaves door open to further rate rises.”"
+    },
+    {
+      "id": "weekly_jobless_claims",
+      "title": "Weekly U.S. initial jobless claims (recurring)",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weekly",
+      "date": null,
+      "start": "2026-11-08",
+      "end": "2026-12-31",
+      "probability": 0.95,
+      "impact_score": 127.0,
+      "expected_impact": 120.65,
+      "event_PS": 13.833,
+      "event_AS": 21.167,
+      "n_vars": 4,
+      "affected_ids": "labor_market_tightness, unemployment_rate, corporate_hiring_rate, wage_growth_rate",
+      "rationale": "“U.S. Jobless Claims Slide Lower Again” and “US weekly jobless claims at 57‑year lows.”"
+    },
+    {
+      "id": "me_diplomacy_exports",
+      "title": "Middle East diplomacy and crude export normalization",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-11-06",
+      "end": "2026-12-31",
+      "probability": 0.5,
+      "impact_score": 116.0,
+      "expected_impact": 58.0,
+      "event_PS": 8.875,
+      "event_AS": 14.5,
+      "n_vars": 4,
+      "affected_ids": "oil_price_level, commodity_supply_risk, nominal_govt_bond_yield, equity_market_volatility",
+      "rationale": "“Oil set for sharp weekly fall after US midterms raise hopes of more Mideast crude exports” and related oil/diplomacy headlines."
+    },
+    {
+      "id": "corp_post_midterms_recalibration",
+      "title": "Corporate post‑midterms strategy and hiring recalibration",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 3 months",
+      "date": null,
+      "start": "2026-11-08",
+      "end": "2027-02-08",
+      "probability": 0.7,
+      "impact_score": 98.0,
+      "expected_impact": 68.6,
+      "event_PS": 22.375,
+      "event_AS": 12.25,
+      "n_vars": 4,
+      "affected_ids": "corporate_hiring_rate, equity_valuation_level, equity_market_volatility, credit_spreads",
+      "rationale": "“The post‑midterms playbook for America Inc” and tech/market rout headlines signal corporate strategy and hiring shifts."
+    }
+  ]
+}
