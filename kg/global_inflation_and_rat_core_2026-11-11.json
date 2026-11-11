@@ -1,0 +1,1828 @@
+{
+  "label": "global_inflation_and_rat",
+  "as_of": "2026-11-11",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-11-11T03:21:49",
+  "system_description": {
+    "narrative_title": "Hot inflation fuels Fed-hike bets; yields spike and markets reprice",
+    "narrative_summary": "Stronger-than-expected US inflation readings and hawkish comments from Fed officials have pushed market odds of further rate hikes higher, driving Treasury yields up (the 10-year back near/above 5%), strengthening the dollar and prompting equity and commodity repricing. The feedback loop between higher yields, tighter financial conditions and equity sell-offs is reshaping portfolio flows, pressuring cyclical assets and prompting central-bank reaction risk across advanced economies.",
+    "scope": "Price inflation data (esp. US CPI), central-bank policy signalling (Fed and other major central banks), Treasury/bond yields and term structure, risk-asset (equity) and safe-haven (gold, dollar) price moves, market volatility and portfolio reallocation decisions by investors and institutions.",
+    "super_system": "Global financial markets and the macroeconomic environment (global growth, inflation dynamics, and cross-border capital flows).",
+    "adjacent_subsystems": [
+      "Currency and FX markets (dollar strength, yuan management)",
+      "Commodities and safe-havens (gold, oil)",
+      "Corporate sector capital allocation (buybacks, asset sales, earnings)",
+      "Sovereign debt and fiscal conditions (Treasury issuance, debt sustainability)"
+    ],
+    "evidence_headlines": [
+      "Hot U.S. inflation hasn’t cooled off. Rising consumer prices to keep Fed rate hike on track.",
+      "US consumer prices rise briskly for third straight month",
+      "Higher-than-expected October inflation sparks Treasury sell-off",
+      "10-year Treasury yield races back to 5% as inflation data, Waller comments drive rate hike expectations",
+      "Fed’s Waller puts half-point rate hike into the mix for December",
+      "Stocks fall as the 10-year Treasury yield reclaims 5%"
+    ]
+  },
+  "variables": [
+    {
+      "id": "consumer_price_inflation",
+      "name": "Consumer price inflation rate",
+      "description": "The continuous rate of change in broad consumer price indexes reflecting general inflation in goods and services.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "The market and public's aggregated expected future inflation over relevant horizons.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_interest_rate",
+      "name": "Policy interest rate",
+      "description": "The prevailing short-term policy interest rate set by monetary authorities as commonly referenced in money markets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_signal_tone",
+      "name": "Monetary policy signal tone",
+      "description": "The aggregate hawkishness or dovishness of official communications and forward guidance about future policy actions.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "short_term_gov_yield",
+      "name": "Short-term government yield",
+      "description": "The prevailing yield on short-maturity government debt instruments reflecting short-run rate expectations and liquidity.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "long_term_gov_yield",
+      "name": "Long-term government yield",
+      "description": "The prevailing yield on long-maturity government debt instruments reflecting long-run inflation, growth expectations, and term premia.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_spread",
+      "name": "Yield curve term spread",
+      "description": "The differential between long-term and short-term government yields indicating expectations about future interest rates and growth.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_price_level",
+      "name": "Risk-asset price level",
+      "description": "The aggregated price level of equity and other risk-sensitive assets reflecting valuation and sentiment.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "safe_haven_price_level",
+      "name": "Safe-haven asset price level",
+      "description": "The aggregated price level of assets considered stores of value in stress (e.g., traditional safe havens) reflecting demand for safety.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility",
+      "name": "Market volatility",
+      "description": "The prevailing short-term volatility of financial asset returns as measured by option-implied or realized volatility metrics.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "credit_spread",
+      "name": "Credit spread",
+      "description": "The average premium demanded over government yields for non-government credit, capturing perceived default and liquidity risk.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_liquidity",
+      "name": "Market liquidity",
+      "description": "The ease and depth with which financial assets can be transacted without large price impact.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "portfolio_reallocation_r",
+      "name": "Portfolio reallocation flow rate",
+      "description": "The rate at which investors shift allocations across asset classes, geographies, or maturities.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "cross_border_capital_flo",
+      "name": "Net cross-border capital flow",
+      "description": "The net flow of capital across borders into or out of a currency area, measured per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "household_credit_stock",
+      "name": "Household credit stock",
+      "description": "The outstanding nominal stock of household borrowing across credit products at a point in time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "government_debt_ratio",
+      "name": "Government debt ratio",
+      "description": "The outstanding public debt stock measured relative to a macroeconomic denominator (e.g., GDP) indicating fiscal burden.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "consumer_price_inflation",
+    "inflation_expectations",
+    "policy_interest_rate",
+    "policy_signal_tone",
+    "short_term_gov_yield",
+    "long_term_gov_yield",
+    "term_spread",
+    "equity_price_level",
+    "safe_haven_price_level",
+    "market_volatility",
+    "credit_spread",
+    "market_liquidity",
+    "portfolio_reallocation_r",
+    "cross_border_capital_flo",
+    "household_credit_stock",
+    "government_debt_ratio"
+  ],
+  "var_names": {
+    "consumer_price_inflation": "Consumer price inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "policy_interest_rate": "Policy interest rate",
+    "policy_signal_tone": "Monetary policy signal tone",
+    "short_term_gov_yield": "Short-term government yield",
+    "long_term_gov_yield": "Long-term government yield",
+    "term_spread": "Yield curve term spread",
+    "equity_price_level": "Risk-asset price level",
+    "safe_haven_price_level": "Safe-haven asset price level",
+    "market_volatility": "Market volatility",
+    "credit_spread": "Credit spread",
+    "market_liquidity": "Market liquidity",
+    "portfolio_reallocation_r": "Portfolio reallocation flow rate",
+    "cross_border_capital_flo": "Net cross-border capital flow",
+    "household_credit_stock": "Household credit stock",
+    "government_debt_ratio": "Government debt ratio"
+  },
+  "impact_matrix": {
+    "consumer_price_inflation": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 3,
+      "policy_interest_rate": 2,
+      "policy_signal_tone": 1,
+      "short_term_gov_yield": 2,
+      "long_term_gov_yield": 2,
+      "term_spread": 2,
+      "equity_price_level": 1,
+      "safe_haven_price_level": 1,
+      "market_volatility": 2,
+      "credit_spread": 1,
+      "market_liquidity": 1,
+      "portfolio_reallocation_r": 1,
+      "cross_border_capital_flo": 1,
+      "household_credit_stock": 0,
+      "government_debt_ratio": 1
+    },
+    "inflation_expectations": {
+      "consumer_price_inflation": 1,
+      "inflation_expectations": 0,
+      "policy_interest_rate": 2,
+      "policy_signal_tone": 2,
+      "short_term_gov_yield": 3,
+      "long_term_gov_yield": 3,
+      "term_spread": 2,
+      "equity_price_level": 2,
+      "safe_haven_price_level": 2,
+      "market_volatility": 2,
+      "credit_spread": 2,
+      "market_liquidity": 1,
+      "portfolio_reallocation_r": 2,
+      "cross_border_capital_flo": 2,
+      "household_credit_stock": 1,
+      "government_debt_ratio": 1
+    },
+    "policy_interest_rate": {
+      "consumer_price_inflation": 1,
+      "inflation_expectations": 2,
+      "policy_interest_rate": 0,
+      "policy_signal_tone": 2,
+      "short_term_gov_yield": 3,
+      "long_term_gov_yield": 2,
+      "term_spread": 2,
+      "equity_price_level": 2,
+      "safe_haven_price_level": 2,
+      "market_volatility": 2,
+      "credit_spread": 2,
+      "market_liquidity": 2,
+      "portfolio_reallocation_r": 2,
+      "cross_border_capital_flo": 3,
+      "household_credit_stock": 1,
+      "government_debt_ratio": 2
+    },
+    "policy_signal_tone": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 2,
+      "policy_interest_rate": 2,
+      "policy_signal_tone": 0,
+      "short_term_gov_yield": 2,
+      "long_term_gov_yield": 2,
+      "term_spread": 2,
+      "equity_price_level": 2,
+      "safe_haven_price_level": 2,
+      "market_volatility": 2,
+      "credit_spread": 2,
+      "market_liquidity": 1,
+      "portfolio_reallocation_r": 2,
+      "cross_border_capital_flo": 2,
+      "household_credit_stock": 1,
+      "government_debt_ratio": 1
+    },
+    "short_term_gov_yield": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 2,
+      "policy_interest_rate": 2,
+      "policy_signal_tone": 1,
+      "short_term_gov_yield": 0,
+      "long_term_gov_yield": 2,
+      "term_spread": 3,
+      "equity_price_level": 2,
+      "safe_haven_price_level": 2,
+      "market_volatility": 2,
+      "credit_spread": 2,
+      "market_liquidity": 2,
+      "portfolio_reallocation_r": 2,
+      "cross_border_capital_flo": 3,
+      "household_credit_stock": 1,
+      "government_debt_ratio": 1
+    },
+    "long_term_gov_yield": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 2,
+      "policy_interest_rate": 1,
+      "policy_signal_tone": 1,
+      "short_term_gov_yield": 1,
+      "long_term_gov_yield": 0,
+      "term_spread": 3,
+      "equity_price_level": 3,
+      "safe_haven_price_level": 2,
+      "market_volatility": 2,
+      "credit_spread": 2,
+      "market_liquidity": 1,
+      "portfolio_reallocation_r": 3,
+      "cross_border_capital_flo": 2,
+      "household_credit_stock": 1,
+      "government_debt_ratio": 2
+    },
+    "term_spread": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 1,
+      "policy_interest_rate": 1,
+      "policy_signal_tone": 1,
+      "short_term_gov_yield": 1,
+      "long_term_gov_yield": 1,
+      "term_spread": 0,
+      "equity_price_level": 2,
+      "safe_haven_price_level": 2,
+      "market_volatility": 2,
+      "credit_spread": 1,
+      "market_liquidity": 1,
+      "portfolio_reallocation_r": 2,
+      "cross_border_capital_flo": 1,
+      "household_credit_stock": 0,
+      "government_debt_ratio": 0
+    },
+    "equity_price_level": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 1,
+      "policy_interest_rate": 1,
+      "policy_signal_tone": 1,
+      "short_term_gov_yield": 1,
+      "long_term_gov_yield": 2,
+      "term_spread": 1,
+      "equity_price_level": 0,
+      "safe_haven_price_level": 2,
+      "market_volatility": 3,
+      "credit_spread": 2,
+      "market_liquidity": 2,
+      "portfolio_reallocation_r": 3,
+      "cross_border_capital_flo": 2,
+      "household_credit_stock": 1,
+      "government_debt_ratio": 0
+    },
+    "safe_haven_price_level": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 1,
+      "policy_interest_rate": 1,
+      "policy_signal_tone": 1,
+      "short_term_gov_yield": 1,
+      "long_term_gov_yield": 1,
+      "term_spread": 1,
+      "equity_price_level": 2,
+      "safe_haven_price_level": 0,
+      "market_volatility": 2,
+      "credit_spread": 2,
+      "market_liquidity": 1,
+      "portfolio_reallocation_r": 2,
+      "cross_border_capital_flo": 2,
+      "household_credit_stock": 0,
+      "government_debt_ratio": 1
+    },
+    "market_volatility": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 1,
+      "policy_interest_rate": 1,
+      "policy_signal_tone": 1,
+      "short_term_gov_yield": 1,
+      "long_term_gov_yield": 1,
+      "term_spread": 1,
+      "equity_price_level": 2,
+      "safe_haven_price_level": 2,
+      "market_volatility": 0,
+      "credit_spread": 2,
+      "market_liquidity": 3,
+      "portfolio_reallocation_r": 3,
+      "cross_border_capital_flo": 2,
+      "household_credit_stock": 0,
+      "government_debt_ratio": 1
+    },
+    "credit_spread": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 1,
+      "policy_interest_rate": 1,
+      "policy_signal_tone": 1,
+      "short_term_gov_yield": 1,
+      "long_term_gov_yield": 1,
+      "term_spread": 1,
+      "equity_price_level": 2,
+      "safe_haven_price_level": 1,
+      "market_volatility": 2,
+      "credit_spread": 0,
+      "market_liquidity": 2,
+      "portfolio_reallocation_r": 2,
+      "cross_border_capital_flo": 1,
+      "household_credit_stock": 1,
+      "government_debt_ratio": 1
+    },
+    "market_liquidity": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 0,
+      "policy_interest_rate": 1,
+      "policy_signal_tone": 0,
+      "short_term_gov_yield": 1,
+      "long_term_gov_yield": 0,
+      "term_spread": 0,
+      "equity_price_level": 1,
+      "safe_haven_price_level": 0,
+      "market_volatility": 3,
+      "credit_spread": 2,
+      "market_liquidity": 0,
+      "portfolio_reallocation_r": 2,
+      "cross_border_capital_flo": 2,
+      "household_credit_stock": 2,
+      "government_debt_ratio": 1
+    },
+    "portfolio_reallocation_r": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 1,
+      "policy_interest_rate": 1,
+      "policy_signal_tone": 1,
+      "short_term_gov_yield": 2,
+      "long_term_gov_yield": 2,
+      "term_spread": 2,
+      "equity_price_level": 3,
+      "safe_haven_price_level": 3,
+      "market_volatility": 2,
+      "credit_spread": 2,
+      "market_liquidity": 2,
+      "portfolio_reallocation_r": 0,
+      "cross_border_capital_flo": 3,
+      "household_credit_stock": 0,
+      "government_debt_ratio": 1
+    },
+    "cross_border_capital_flo": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 1,
+      "policy_interest_rate": 2,
+      "policy_signal_tone": 1,
+      "short_term_gov_yield": 2,
+      "long_term_gov_yield": 2,
+      "term_spread": 1,
+      "equity_price_level": 2,
+      "safe_haven_price_level": 1,
+      "market_volatility": 1,
+      "credit_spread": 1,
+      "market_liquidity": 2,
+      "portfolio_reallocation_r": 2,
+      "cross_border_capital_flo": 0,
+      "household_credit_stock": 0,
+      "government_debt_ratio": 1
+    },
+    "household_credit_stock": {
+      "consumer_price_inflation": 1,
+      "inflation_expectations": 1,
+      "policy_interest_rate": 0,
+      "policy_signal_tone": 0,
+      "short_term_gov_yield": 0,
+      "long_term_gov_yield": 0,
+      "term_spread": 0,
+      "equity_price_level": 1,
+      "safe_haven_price_level": 0,
+      "market_volatility": 0,
+      "credit_spread": 1,
+      "market_liquidity": 0,
+      "portfolio_reallocation_r": 0,
+      "cross_border_capital_flo": 0,
+      "household_credit_stock": 0,
+      "government_debt_ratio": 0
+    },
+    "government_debt_ratio": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 0,
+      "policy_interest_rate": 1,
+      "policy_signal_tone": 0,
+      "short_term_gov_yield": 2,
+      "long_term_gov_yield": 2,
+      "term_spread": 1,
+      "equity_price_level": 1,
+      "safe_haven_price_level": 1,
+      "market_volatility": 1,
+      "credit_spread": 2,
+      "market_liquidity": 1,
+      "portfolio_reallocation_r": 1,
+      "cross_border_capital_flo": 1,
+      "household_credit_stock": 0,
+      "government_debt_ratio": 0
+    }
+  },
+  "AS": {
+    "consumer_price_inflation": 21,
+    "inflation_expectations": 28,
+    "policy_interest_rate": 30,
+    "policy_signal_tone": 25,
+    "short_term_gov_yield": 27,
+    "long_term_gov_yield": 26,
+    "term_spread": 16,
+    "equity_price_level": 22,
+    "safe_haven_price_level": 18,
+    "market_volatility": 21,
+    "credit_spread": 18,
+    "market_liquidity": 15,
+    "portfolio_reallocation_r": 25,
+    "cross_border_capital_flo": 19,
+    "household_credit_stock": 4,
+    "government_debt_ratio": 14
+  },
+  "PS": {
+    "consumer_price_inflation": 3,
+    "inflation_expectations": 19,
+    "policy_interest_rate": 19,
+    "policy_signal_tone": 14,
+    "short_term_gov_yield": 23,
+    "long_term_gov_yield": 23,
+    "term_spread": 22,
+    "equity_price_level": 28,
+    "safe_haven_price_level": 23,
+    "market_volatility": 28,
+    "credit_spread": 26,
+    "market_liquidity": 22,
+    "portfolio_reallocation_r": 29,
+    "cross_border_capital_flo": 27,
+    "household_credit_stock": 9,
+    "government_debt_ratio": 14
+  },
+  "med_AS": 21.0,
+  "med_PS": 22.5,
+  "roles": [
+    {
+      "variable": "portfolio_reallocation_r",
+      "name": "Portfolio reallocation flow rate",
+      "AS": 25,
+      "PS": 29,
+      "Q=AS/PS": 0.86,
+      "P=AS*PS": 725,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "short_term_gov_yield",
+      "name": "Short-term government yield",
+      "AS": 27,
+      "PS": 23,
+      "Q=AS/PS": 1.17,
+      "P=AS*PS": 621,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "equity_price_level",
+      "name": "Risk-asset price level",
+      "AS": 22,
+      "PS": 28,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 616,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "long_term_gov_yield",
+      "name": "Long-term government yield",
+      "AS": 26,
+      "PS": 23,
+      "Q=AS/PS": 1.13,
+      "P=AS*PS": 598,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "market_volatility",
+      "name": "Market volatility",
+      "AS": 21,
+      "PS": 28,
+      "Q=AS/PS": 0.75,
+      "P=AS*PS": 588,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "policy_interest_rate",
+      "name": "Policy interest rate",
+      "AS": 30,
+      "PS": 19,
+      "Q=AS/PS": 1.58,
+      "P=AS*PS": 570,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 28,
+      "PS": 19,
+      "Q=AS/PS": 1.47,
+      "P=AS*PS": 532,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "cross_border_capital_flo",
+      "name": "Net cross-border capital flow",
+      "AS": 19,
+      "PS": 27,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 513,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "credit_spread",
+      "name": "Credit spread",
+      "AS": 18,
+      "PS": 26,
+      "Q=AS/PS": 0.69,
+      "P=AS*PS": 468,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "safe_haven_price_level",
+      "name": "Safe-haven asset price level",
+      "AS": 18,
+      "PS": 23,
+      "Q=AS/PS": 0.78,
+      "P=AS*PS": 414,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_spread",
+      "name": "Yield curve term spread",
+      "AS": 16,
+      "PS": 22,
+      "Q=AS/PS": 0.73,
+      "P=AS*PS": 352,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "policy_signal_tone",
+      "name": "Monetary policy signal tone",
+      "AS": 25,
+      "PS": 14,
+      "Q=AS/PS": 1.79,
+      "P=AS*PS": 350,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_liquidity",
+      "name": "Market liquidity",
+      "AS": 15,
+      "PS": 22,
+      "Q=AS/PS": 0.68,
+      "P=AS*PS": 330,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "government_debt_ratio",
+      "name": "Government debt ratio",
+      "AS": 14,
+      "PS": 14,
+      "Q=AS/PS": 1.0,
+      "P=AS*PS": 196,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "consumer_price_inflation",
+      "name": "Consumer price inflation rate",
+      "AS": 21,
+      "PS": 3,
+      "Q=AS/PS": 7.0,
+      "P=AS*PS": 63,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "household_credit_stock",
+      "name": "Household credit stock",
+      "AS": 4,
+      "PS": 9,
+      "Q=AS/PS": 0.44,
+      "P=AS*PS": 36,
+      "role": "buffering (inert)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "consumer_price_inflation",
+        "name": "Consumer price inflation rate",
+        "kind": "driver",
+        "AS": 21,
+        "PS": 3
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 28,
+        "PS": 19
+      },
+      {
+        "id": "policy_interest_rate",
+        "name": "Policy interest rate",
+        "kind": "driver",
+        "AS": 30,
+        "PS": 19
+      },
+      {
+        "id": "policy_signal_tone",
+        "name": "Monetary policy signal tone",
+        "kind": "perception",
+        "AS": 25,
+        "PS": 14
+      },
+      {
+        "id": "short_term_gov_yield",
+        "name": "Short-term government yield",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 23
+      },
+      {
+        "id": "long_term_gov_yield",
+        "name": "Long-term government yield",
+        "kind": "driver",
+        "AS": 26,
+        "PS": 23
+      },
+      {
+        "id": "term_spread",
+        "name": "Yield curve term spread",
+        "kind": "driver",
+        "AS": 16,
+        "PS": 22
+      },
+      {
+        "id": "equity_price_level",
+        "name": "Risk-asset price level",
+        "kind": "driver",
+        "AS": 22,
+        "PS": 28
+      },
+      {
+        "id": "safe_haven_price_level",
+        "name": "Safe-haven asset price level",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 23
+      },
+      {
+        "id": "market_volatility",
+        "name": "Market volatility",
+        "kind": "environment",
+        "AS": 21,
+        "PS": 28
+      },
+      {
+        "id": "credit_spread",
+        "name": "Credit spread",
+        "kind": "driver",
+        "AS": 18,
+        "PS": 26
+      },
+      {
+        "id": "market_liquidity",
+        "name": "Market liquidity",
+        "kind": "environment",
+        "AS": 15,
+        "PS": 22
+      },
+      {
+        "id": "portfolio_reallocation_r",
+        "name": "Portfolio reallocation flow rate",
+        "kind": "flow",
+        "AS": 25,
+        "PS": 29
+      },
+      {
+        "id": "cross_border_capital_flo",
+        "name": "Net cross-border capital flow",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 27
+      },
+      {
+        "id": "household_credit_stock",
+        "name": "Household credit stock",
+        "kind": "stock",
+        "AS": 4,
+        "PS": 9
+      },
+      {
+        "id": "government_debt_ratio",
+        "name": "Government debt ratio",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 14
+      }
+    ],
+    "edges": [
+      {
+        "source": "consumer_price_inflation",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "short_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "term_spread",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_signal_tone",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "short_term_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "long_term_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "safe_haven_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "portfolio_reallocation_r",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "policy_signal_tone",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "short_term_gov_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "term_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "equity_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "safe_haven_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "portfolio_reallocation_r",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "cross_border_capital_flo",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "government_debt_ratio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "short_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "term_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "equity_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "safe_haven_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "portfolio_reallocation_r",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_signal_tone",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_gov_yield",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "short_term_gov_yield",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_gov_yield",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_gov_yield",
+        "target": "term_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_gov_yield",
+        "target": "equity_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_gov_yield",
+        "target": "safe_haven_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_gov_yield",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_gov_yield",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_gov_yield",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "short_term_gov_yield",
+        "target": "portfolio_reallocation_r",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "short_term_gov_yield",
+        "target": "cross_border_capital_flo",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "term_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "equity_price_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "safe_haven_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "portfolio_reallocation_r",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "long_term_gov_yield",
+        "target": "government_debt_ratio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_spread",
+        "target": "equity_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_spread",
+        "target": "safe_haven_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_spread",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "term_spread",
+        "target": "portfolio_reallocation_r",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_price_level",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_price_level",
+        "target": "safe_haven_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_price_level",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "equity_price_level",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_price_level",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_price_level",
+        "target": "portfolio_reallocation_r",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "equity_price_level",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_price_level",
+        "target": "equity_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "safe_haven_price_level",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_price_level",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_price_level",
+        "target": "portfolio_reallocation_r",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "safe_haven_price_level",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "equity_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "safe_haven_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "market_liquidity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility",
+        "target": "portfolio_reallocation_r",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "equity_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "credit_spread",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "credit_spread",
+        "target": "portfolio_reallocation_r",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "market_volatility",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "portfolio_reallocation_r",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "cross_border_capital_flo",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_liquidity",
+        "target": "household_credit_stock",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_reallocation_r",
+        "target": "short_term_gov_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "portfolio_reallocation_r",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "portfolio_reallocation_r",
+        "target": "term_spread",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "portfolio_reallocation_r",
+        "target": "equity_price_level",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "portfolio_reallocation_r",
+        "target": "safe_haven_price_level",
+        "strength": 3,
+        "sign": "?"
+      },
+      {
+        "source": "portfolio_reallocation_r",
+        "target": "market_volatility",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_reallocation_r",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "portfolio_reallocation_r",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "portfolio_reallocation_r",
+        "target": "cross_border_capital_flo",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "short_term_gov_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "equity_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "market_liquidity",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "cross_border_capital_flo",
+        "target": "portfolio_reallocation_r",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_debt_ratio",
+        "target": "short_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_debt_ratio",
+        "target": "long_term_gov_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "government_debt_ratio",
+        "target": "credit_spread",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_rate_decision_mid_dec",
+      "title": "Federal Reserve policy decision (December)",
+      "description": "FOMC decision in December that could raise the policy rate (including possibility of a 25–50bp hike) and update forward guidance.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2026-12-20",
+        "label": "by mid-December"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_signal_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_gov_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_spread",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "equity_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "portfolio_reallocation_r",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: Fed officials open door to half-point; Reuters poll and multiple stories point to a December hike."
+    },
+    {
+      "id": "us_cpi_release_nov",
+      "title": "Next US consumer-price (CPI) release",
+      "description": "Monthly U.S. CPI report (November data) that will be read for inflation momentum and influence Fed expectations and market pricing.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2026-12-15",
+        "label": "early–mid December"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "consumer_price_inflation",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_gov_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_price_level",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Multiple headlines highlight upcoming CPI importance and that hot October inflation keeps markets on edge."
+    },
+    {
+      "id": "fed_hawkish_communications",
+      "title": "Continued hawkish Fed commentary",
+      "description": "Ongoing series of hawkish public comments from Fed officials that raise the perceived odds of larger/earlier hikes and shift market pricing.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-11",
+        "end": "2026-12-20",
+        "label": "next 5–6 weeks"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "policy_signal_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "short_term_gov_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_price_level",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: Waller, Logan and other Fed officials publicly signal larger/earlier hikes after hot inflation prints."
+    },
+    {
+      "id": "global_central_bank_hiking",
+      "title": "Other central banks continue tightening",
+      "description": "Near-term additional rate hikes or hawkish signals from major central banks (e.g., BoE, BoC) that reinforce global tightening expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-11",
+        "end": "2026-12-31",
+        "label": "by end of December"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "policy_signal_tone",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_spread",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "equity_price_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: Bank of England likely to join hikes; Bank of Canada signals more hikes and minutes show tightening rationale."
+    },
+    {
+      "id": "sustained_10y_above_5pct",
+      "title": "Sustained 10-year Treasury yield at/above 5%",
+      "description": "Persistence of >~5% 10-year Treasury yields as markets reprice for higher terminal rates, pressuring risk assets and funding conditions.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-11",
+        "end": "2026-12-15",
+        "label": "next 4–5 weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "long_term_gov_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_spread",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "equity_price_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "portfolio_reallocation_r",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "safe_haven_price_level",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 10-year Treasury tops 5% and yields race back to 5% as hot inflation and Fed comments push rate expectations."
+    },
+    {
+      "id": "hedge_fund_deleveraging",
+      "title": "Hedge fund position dumps and deleveraging",
+      "description": "Accelerated selling by hedge funds and liquidations that reduce liquidity, amplify volatility and pressure risk-asset prices.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-11",
+        "end": "2026-11-30",
+        "label": "next 2–3 weeks"
+      },
+      "probability": 0.6,
+      "affected": [
+        {
+          "variable_id": "market_liquidity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_volatility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "equity_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "credit_spread",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: Exclusive — hedge funds dump positions and cut staff as selloff deepens, increasing market stress."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "fed_rate_decision_mid_dec",
+      "title": "Federal Reserve policy decision (December)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by mid-December",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2026-12-20",
+      "probability": 0.85,
+      "impact_score": 466.0,
+      "expected_impact": 396.1,
+      "event_PS": 22.526,
+      "event_AS": 24.526,
+      "n_vars": 8,
+      "affected_ids": "policy_interest_rate, policy_signal_tone, short_term_gov_yield, long_term_gov_yield, term_spread, equity_price_level, market_volatility, portfolio_reallocation_r",
+      "rationale": "Headlines: Fed officials open door to half-point; Reuters poll and multiple stories point to a December hike."
+    },
+    {
+      "id": "us_cpi_release_nov",
+      "title": "Next US consumer-price (CPI) release",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "early–mid December",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2026-12-15",
+      "probability": 0.95,
+      "impact_score": 311.0,
+      "expected_impact": 295.45,
+      "event_PS": 19.308,
+      "event_AS": 23.923,
+      "n_vars": 6,
+      "affected_ids": "consumer_price_inflation, inflation_expectations, short_term_gov_yield, long_term_gov_yield, market_volatility, equity_price_level",
+      "rationale": "Multiple headlines highlight upcoming CPI importance and that hot October inflation keeps markets on edge."
+    },
+    {
+      "id": "sustained_10y_above_5pct",
+      "title": "Sustained 10-year Treasury yield at/above 5%",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 4–5 weeks",
+      "date": null,
+      "start": "2026-11-11",
+      "end": "2026-12-15",
+      "probability": 0.65,
+      "impact_score": 307.0,
+      "expected_impact": 199.55,
+      "event_PS": 25.857,
+      "event_AS": 21.929,
+      "n_vars": 6,
+      "affected_ids": "long_term_gov_yield, term_spread, equity_price_level, market_volatility, portfolio_reallocation_r, safe_haven_price_level",
+      "rationale": "Headlines: 10-year Treasury tops 5% and yields race back to 5% as hot inflation and Fed comments push rate expectations."
+    },
+    {
+      "id": "fed_hawkish_communications",
+      "title": "Continued hawkish Fed commentary",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 5–6 weeks",
+      "date": null,
+      "start": "2026-11-11",
+      "end": "2026-12-20",
+      "probability": 0.9,
+      "impact_score": 243.0,
+      "expected_impact": 218.7,
+      "event_PS": 21.9,
+      "event_AS": 24.3,
+      "n_vars": 5,
+      "affected_ids": "policy_signal_tone, inflation_expectations, short_term_gov_yield, market_volatility, equity_price_level",
+      "rationale": "Headlines: Waller, Logan and other Fed officials publicly signal larger/earlier hikes after hot inflation prints."
+    },
+    {
+      "id": "global_central_bank_hiking",
+      "title": "Other central banks continue tightening",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of December",
+      "date": null,
+      "start": "2026-11-11",
+      "end": "2026-12-31",
+      "probability": 0.75,
+      "impact_score": 174.0,
+      "expected_impact": 130.5,
+      "event_PS": 19.857,
+      "event_AS": 24.857,
+      "n_vars": 5,
+      "affected_ids": "policy_interest_rate, policy_signal_tone, long_term_gov_yield, term_spread, equity_price_level",
+      "rationale": "Headlines: Bank of England likely to join hikes; Bank of Canada signals more hikes and minutes show tightening rationale."
+    },
+    {
+      "id": "hedge_fund_deleveraging",
+      "title": "Hedge fund position dumps and deleveraging",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "next 2–3 weeks",
+      "date": null,
+      "start": "2026-11-11",
+      "end": "2026-11-30",
+      "probability": 0.6,
+      "impact_score": 155.0,
+      "expected_impact": 93.0,
+      "event_PS": 26.25,
+      "event_AS": 19.375,
+      "n_vars": 4,
+      "affected_ids": "market_liquidity, market_volatility, equity_price_level, credit_spread",
+      "rationale": "Headline: Exclusive — hedge funds dump positions and cut staff as selloff deepens, increasing market stress."
+    }
+  ]
+}
