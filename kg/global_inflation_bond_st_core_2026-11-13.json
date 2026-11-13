@@ -1,0 +1,1646 @@
+{
+  "label": "global_inflation_bond_st",
+  "as_of": "2026-11-12",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-11-13T04:28:36",
+  "system_description": {
+    "narrative_title": "Hot US inflation pushes Fed hawkish, lifting yields and the dollar",
+    "narrative_summary": "Hotter‑than‑expected US consumer‑price readings have pushed Fed officials to signal further rate hikes (including the possibility of a half‑point move), prompting markets to reprice policy. That repricing has driven US Treasury yields sharply higher (10Y near/above 5%), a stronger dollar, and a selloff in risk assets and gold, with visible spillovers to other central banks, global bond markets and capital flows.",
+    "scope": "The open system covers US inflation data and expectations, Federal Reserve communications and policy path, market rate expectations, US Treasury yields, global sovereign bond yields, dollar FX moves, equity and commodity (gold, oil) price responses, cross‑border capital flows, and near‑term macro indicators (housing, fiscal deficits) that feed back into expectations and risk premia. Actors inside the boundary include central banks (Fed, BOE, BoC, BOJ, others), bond and FX investors, commercial banks, and major government fiscal accounts.",
+    "super_system": "Global macroeconomic and international financial stability regime (global growth, trade, cross‑border capital allocation and monetary policy coordination)",
+    "adjacent_subsystems": [
+      "Domestic real economy and housing markets (mortgages, home sales, household balance sheets)",
+      "Commodity markets (oil and gold pricing and hedging)",
+      "Emerging‑market currencies and sovereign bond markets",
+      "National fiscal policy and budget deficits (US federal fiscal position)"
+    ],
+    "evidence_headlines": [
+      "US consumer prices increase strongly for third straight month in October",
+      "10-year Treasury yield races back to 5% as inflation data, Waller comments drive rate hike expectations",
+      "Fed officials open door to a half-point hike after inflation beats expectations",
+      "Dollar Rises to 19-Month High on Fed Rate-Hike Bets",
+      "Stocks fall as the 10-year Treasury yield reclaims 5%",
+      "Gold drops 1% on hawkish Fed comments ahead of US inflation data"
+    ]
+  },
+  "variables": [
+    {
+      "id": "consumer_price_inflation",
+      "name": "Consumer price inflation rate",
+      "description": "Percentage change in a broad consumer price index measured over a specified rolling period.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "inflation_expectations",
+      "name": "Inflation expectations",
+      "description": "Average anticipated future inflation over the medium term as held by markets and economic agents.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "monetary_policy_tone",
+      "name": "Monetary policy communication tone",
+      "description": "Degree of hawkishness or dovishness signaled in monetary authority communications and guidance.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "policy_interest_rate",
+      "name": "Policy interest rate level",
+      "description": "Prevailing short-term benchmark interest rate that anchors short-term funding costs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_implied_path",
+      "name": "Market-implied policy path",
+      "description": "Market-implied trajectory of short-term policy rates over a forward horizon derived from market prices.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "ten_year_bond_yield",
+      "name": "Ten-year nominal bond yield",
+      "description": "Market yield on a representative ten-year sovereign-like nominal bond reflecting medium-term funding costs.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "term_premium_long",
+      "name": "Term premium on long bonds",
+      "description": "Extra yield investors demand for holding long-dated bonds versus the path of expected short rates.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sovereign_yield_dispersi",
+      "name": "Sovereign yield dispersion",
+      "description": "Cross-jurisdiction variation or divergence in sovereign bond yields across regions and tenors.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "broad_currency_index",
+      "name": "Broad currency exchange level",
+      "description": "Trade-weighted or broad index value representing the exchange-rate level of a major currency.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "equity_market_level",
+      "name": "Equity market price level",
+      "description": "Aggregate level or valuation metric of major equity markets reflecting share prices and valuations.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "precious_metal_price",
+      "name": "Precious metal price level",
+      "description": "Market price level of major precious metals (e.g., gold) expressed in currency terms.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "energy_price_level",
+      "name": "Energy price level",
+      "description": "Price level of key energy commodities, primarily crude oil benchmarks, in currency terms.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "net_crossborder_flows",
+      "name": "Net cross-border capital flows",
+      "description": "Net inflows or outflows of capital across borders to domestic assets measured per period.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "asset_risk_premium",
+      "name": "Asset risk premium",
+      "description": "Average additional return investors require to hold a broad set of risky assets over near-risk-free assets.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_volatility_exp",
+      "name": "Market volatility expectation",
+      "description": "Expected short- to medium-term volatility in financial markets as implied by option and derivative prices.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "fiscal_deficit_ratio",
+      "name": "Fiscal deficit ratio",
+      "description": "Government budget deficit measured as a percentage of GDP or an equivalent aggregate output measure.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "consumer_price_inflation",
+    "inflation_expectations",
+    "monetary_policy_tone",
+    "policy_interest_rate",
+    "market_implied_path",
+    "ten_year_bond_yield",
+    "term_premium_long",
+    "sovereign_yield_dispersi",
+    "broad_currency_index",
+    "equity_market_level",
+    "precious_metal_price",
+    "energy_price_level",
+    "net_crossborder_flows",
+    "asset_risk_premium",
+    "market_volatility_exp",
+    "fiscal_deficit_ratio"
+  ],
+  "var_names": {
+    "consumer_price_inflation": "Consumer price inflation rate",
+    "inflation_expectations": "Inflation expectations",
+    "monetary_policy_tone": "Monetary policy communication tone",
+    "policy_interest_rate": "Policy interest rate level",
+    "market_implied_path": "Market-implied policy path",
+    "ten_year_bond_yield": "Ten-year nominal bond yield",
+    "term_premium_long": "Term premium on long bonds",
+    "sovereign_yield_dispersi": "Sovereign yield dispersion",
+    "broad_currency_index": "Broad currency exchange level",
+    "equity_market_level": "Equity market price level",
+    "precious_metal_price": "Precious metal price level",
+    "energy_price_level": "Energy price level",
+    "net_crossborder_flows": "Net cross-border capital flows",
+    "asset_risk_premium": "Asset risk premium",
+    "market_volatility_exp": "Market volatility expectation",
+    "fiscal_deficit_ratio": "Fiscal deficit ratio"
+  },
+  "impact_matrix": {
+    "consumer_price_inflation": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 3,
+      "monetary_policy_tone": 3,
+      "policy_interest_rate": 2,
+      "market_implied_path": 3,
+      "ten_year_bond_yield": 2,
+      "term_premium_long": 2,
+      "sovereign_yield_dispersi": 1,
+      "broad_currency_index": 1,
+      "equity_market_level": 2,
+      "precious_metal_price": 2,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 1,
+      "asset_risk_premium": 2,
+      "market_volatility_exp": 2,
+      "fiscal_deficit_ratio": 1
+    },
+    "inflation_expectations": {
+      "consumer_price_inflation": 2,
+      "inflation_expectations": 0,
+      "monetary_policy_tone": 3,
+      "policy_interest_rate": 2,
+      "market_implied_path": 3,
+      "ten_year_bond_yield": 3,
+      "term_premium_long": 2,
+      "sovereign_yield_dispersi": 1,
+      "broad_currency_index": 2,
+      "equity_market_level": 2,
+      "precious_metal_price": 2,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 1,
+      "asset_risk_premium": 2,
+      "market_volatility_exp": 2,
+      "fiscal_deficit_ratio": 0
+    },
+    "monetary_policy_tone": {
+      "consumer_price_inflation": 1,
+      "inflation_expectations": 3,
+      "monetary_policy_tone": 0,
+      "policy_interest_rate": 2,
+      "market_implied_path": 3,
+      "ten_year_bond_yield": 2,
+      "term_premium_long": 1,
+      "sovereign_yield_dispersi": 1,
+      "broad_currency_index": 3,
+      "equity_market_level": 3,
+      "precious_metal_price": 2,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 2,
+      "asset_risk_premium": 2,
+      "market_volatility_exp": 2,
+      "fiscal_deficit_ratio": 0
+    },
+    "policy_interest_rate": {
+      "consumer_price_inflation": 2,
+      "inflation_expectations": 2,
+      "monetary_policy_tone": 2,
+      "policy_interest_rate": 0,
+      "market_implied_path": 3,
+      "ten_year_bond_yield": 2,
+      "term_premium_long": 1,
+      "sovereign_yield_dispersi": 1,
+      "broad_currency_index": 3,
+      "equity_market_level": 2,
+      "precious_metal_price": 2,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 3,
+      "asset_risk_premium": 2,
+      "market_volatility_exp": 2,
+      "fiscal_deficit_ratio": 2
+    },
+    "market_implied_path": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 1,
+      "monetary_policy_tone": 1,
+      "policy_interest_rate": 0,
+      "market_implied_path": 0,
+      "ten_year_bond_yield": 3,
+      "term_premium_long": 2,
+      "sovereign_yield_dispersi": 1,
+      "broad_currency_index": 2,
+      "equity_market_level": 2,
+      "precious_metal_price": 1,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 1,
+      "asset_risk_premium": 1,
+      "market_volatility_exp": 1,
+      "fiscal_deficit_ratio": 0
+    },
+    "ten_year_bond_yield": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 1,
+      "monetary_policy_tone": 1,
+      "policy_interest_rate": 0,
+      "market_implied_path": 2,
+      "ten_year_bond_yield": 0,
+      "term_premium_long": 0,
+      "sovereign_yield_dispersi": 2,
+      "broad_currency_index": 2,
+      "equity_market_level": 2,
+      "precious_metal_price": 2,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 2,
+      "asset_risk_premium": 1,
+      "market_volatility_exp": 1,
+      "fiscal_deficit_ratio": 2
+    },
+    "term_premium_long": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_tone": 0,
+      "policy_interest_rate": 0,
+      "market_implied_path": 1,
+      "ten_year_bond_yield": 3,
+      "term_premium_long": 0,
+      "sovereign_yield_dispersi": 2,
+      "broad_currency_index": 1,
+      "equity_market_level": 1,
+      "precious_metal_price": 0,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 1,
+      "asset_risk_premium": 1,
+      "market_volatility_exp": 1,
+      "fiscal_deficit_ratio": 1
+    },
+    "sovereign_yield_dispersi": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_tone": 1,
+      "policy_interest_rate": 0,
+      "market_implied_path": 1,
+      "ten_year_bond_yield": 1,
+      "term_premium_long": 1,
+      "sovereign_yield_dispersi": 0,
+      "broad_currency_index": 2,
+      "equity_market_level": 1,
+      "precious_metal_price": 0,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 2,
+      "asset_risk_premium": 1,
+      "market_volatility_exp": 1,
+      "fiscal_deficit_ratio": 0
+    },
+    "broad_currency_index": {
+      "consumer_price_inflation": 2,
+      "inflation_expectations": 2,
+      "monetary_policy_tone": 2,
+      "policy_interest_rate": 2,
+      "market_implied_path": 1,
+      "ten_year_bond_yield": 1,
+      "term_premium_long": 1,
+      "sovereign_yield_dispersi": 2,
+      "broad_currency_index": 0,
+      "equity_market_level": 1,
+      "precious_metal_price": 2,
+      "energy_price_level": 1,
+      "net_crossborder_flows": 2,
+      "asset_risk_premium": 1,
+      "market_volatility_exp": 1,
+      "fiscal_deficit_ratio": 1
+    },
+    "equity_market_level": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_tone": 1,
+      "policy_interest_rate": 1,
+      "market_implied_path": 1,
+      "ten_year_bond_yield": 1,
+      "term_premium_long": 1,
+      "sovereign_yield_dispersi": 1,
+      "broad_currency_index": 1,
+      "equity_market_level": 0,
+      "precious_metal_price": 1,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 2,
+      "asset_risk_premium": 2,
+      "market_volatility_exp": 3,
+      "fiscal_deficit_ratio": 0
+    },
+    "precious_metal_price": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 1,
+      "monetary_policy_tone": 0,
+      "policy_interest_rate": 0,
+      "market_implied_path": 0,
+      "ten_year_bond_yield": 0,
+      "term_premium_long": 0,
+      "sovereign_yield_dispersi": 0,
+      "broad_currency_index": 1,
+      "equity_market_level": 1,
+      "precious_metal_price": 0,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 1,
+      "asset_risk_premium": 1,
+      "market_volatility_exp": 1,
+      "fiscal_deficit_ratio": 0
+    },
+    "energy_price_level": {
+      "consumer_price_inflation": 3,
+      "inflation_expectations": 2,
+      "monetary_policy_tone": 2,
+      "policy_interest_rate": 1,
+      "market_implied_path": 1,
+      "ten_year_bond_yield": 1,
+      "term_premium_long": 1,
+      "sovereign_yield_dispersi": 1,
+      "broad_currency_index": 1,
+      "equity_market_level": 1,
+      "precious_metal_price": 1,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 1,
+      "asset_risk_premium": 1,
+      "market_volatility_exp": 2,
+      "fiscal_deficit_ratio": 1
+    },
+    "net_crossborder_flows": {
+      "consumer_price_inflation": 1,
+      "inflation_expectations": 1,
+      "monetary_policy_tone": 1,
+      "policy_interest_rate": 1,
+      "market_implied_path": 1,
+      "ten_year_bond_yield": 2,
+      "term_premium_long": 1,
+      "sovereign_yield_dispersi": 2,
+      "broad_currency_index": 3,
+      "equity_market_level": 2,
+      "precious_metal_price": 1,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 0,
+      "asset_risk_premium": 2,
+      "market_volatility_exp": 1,
+      "fiscal_deficit_ratio": 0
+    },
+    "asset_risk_premium": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_tone": 1,
+      "policy_interest_rate": 0,
+      "market_implied_path": 1,
+      "ten_year_bond_yield": 2,
+      "term_premium_long": 1,
+      "sovereign_yield_dispersi": 1,
+      "broad_currency_index": 1,
+      "equity_market_level": 2,
+      "precious_metal_price": 1,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 2,
+      "asset_risk_premium": 0,
+      "market_volatility_exp": 2,
+      "fiscal_deficit_ratio": 1
+    },
+    "market_volatility_exp": {
+      "consumer_price_inflation": 0,
+      "inflation_expectations": 0,
+      "monetary_policy_tone": 1,
+      "policy_interest_rate": 0,
+      "market_implied_path": 1,
+      "ten_year_bond_yield": 1,
+      "term_premium_long": 2,
+      "sovereign_yield_dispersi": 1,
+      "broad_currency_index": 1,
+      "equity_market_level": 1,
+      "precious_metal_price": 1,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 2,
+      "asset_risk_premium": 3,
+      "market_volatility_exp": 0,
+      "fiscal_deficit_ratio": 0
+    },
+    "fiscal_deficit_ratio": {
+      "consumer_price_inflation": 1,
+      "inflation_expectations": 1,
+      "monetary_policy_tone": 1,
+      "policy_interest_rate": 1,
+      "market_implied_path": 1,
+      "ten_year_bond_yield": 2,
+      "term_premium_long": 2,
+      "sovereign_yield_dispersi": 1,
+      "broad_currency_index": 1,
+      "equity_market_level": 1,
+      "precious_metal_price": 1,
+      "energy_price_level": 0,
+      "net_crossborder_flows": 2,
+      "asset_risk_premium": 2,
+      "market_volatility_exp": 1,
+      "fiscal_deficit_ratio": 0
+    }
+  },
+  "AS": {
+    "consumer_price_inflation": 27,
+    "inflation_expectations": 27,
+    "monetary_policy_tone": 27,
+    "policy_interest_rate": 29,
+    "market_implied_path": 16,
+    "ten_year_bond_yield": 18,
+    "term_premium_long": 12,
+    "sovereign_yield_dispersi": 11,
+    "broad_currency_index": 22,
+    "equity_market_level": 15,
+    "precious_metal_price": 6,
+    "energy_price_level": 20,
+    "net_crossborder_flows": 19,
+    "asset_risk_premium": 15,
+    "market_volatility_exp": 14,
+    "fiscal_deficit_ratio": 18
+  },
+  "PS": {
+    "consumer_price_inflation": 12,
+    "inflation_expectations": 17,
+    "monetary_policy_tone": 20,
+    "policy_interest_rate": 12,
+    "market_implied_path": 23,
+    "ten_year_bond_yield": 26,
+    "term_premium_long": 18,
+    "sovereign_yield_dispersi": 18,
+    "broad_currency_index": 25,
+    "equity_market_level": 24,
+    "precious_metal_price": 19,
+    "energy_price_level": 1,
+    "net_crossborder_flows": 25,
+    "asset_risk_premium": 24,
+    "market_volatility_exp": 23,
+    "fiscal_deficit_ratio": 9
+  },
+  "med_AS": 18.0,
+  "med_PS": 19.5,
+  "roles": [
+    {
+      "variable": "broad_currency_index",
+      "name": "Broad currency exchange level",
+      "AS": 22,
+      "PS": 25,
+      "Q=AS/PS": 0.88,
+      "P=AS*PS": 550,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "monetary_policy_tone",
+      "name": "Monetary policy communication tone",
+      "AS": 27,
+      "PS": 20,
+      "Q=AS/PS": 1.35,
+      "P=AS*PS": 540,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "net_crossborder_flows",
+      "name": "Net cross-border capital flows",
+      "AS": 19,
+      "PS": 25,
+      "Q=AS/PS": 0.76,
+      "P=AS*PS": 475,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "ten_year_bond_yield",
+      "name": "Ten-year nominal bond yield",
+      "AS": 18,
+      "PS": 26,
+      "Q=AS/PS": 0.69,
+      "P=AS*PS": 468,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "inflation_expectations",
+      "name": "Inflation expectations",
+      "AS": 27,
+      "PS": 17,
+      "Q=AS/PS": 1.59,
+      "P=AS*PS": 459,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_implied_path",
+      "name": "Market-implied policy path",
+      "AS": 16,
+      "PS": 23,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 368,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "equity_market_level",
+      "name": "Equity market price level",
+      "AS": 15,
+      "PS": 24,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 360,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "asset_risk_premium",
+      "name": "Asset risk premium",
+      "AS": 15,
+      "PS": 24,
+      "Q=AS/PS": 0.63,
+      "P=AS*PS": 360,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "policy_interest_rate",
+      "name": "Policy interest rate level",
+      "AS": 29,
+      "PS": 12,
+      "Q=AS/PS": 2.42,
+      "P=AS*PS": 348,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "consumer_price_inflation",
+      "name": "Consumer price inflation rate",
+      "AS": 27,
+      "PS": 12,
+      "Q=AS/PS": 2.25,
+      "P=AS*PS": 324,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "market_volatility_exp",
+      "name": "Market volatility expectation",
+      "AS": 14,
+      "PS": 23,
+      "Q=AS/PS": 0.61,
+      "P=AS*PS": 322,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "term_premium_long",
+      "name": "Term premium on long bonds",
+      "AS": 12,
+      "PS": 18,
+      "Q=AS/PS": 0.67,
+      "P=AS*PS": 216,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "sovereign_yield_dispersi",
+      "name": "Sovereign yield dispersion",
+      "AS": 11,
+      "PS": 18,
+      "Q=AS/PS": 0.61,
+      "P=AS*PS": 198,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "fiscal_deficit_ratio",
+      "name": "Fiscal deficit ratio",
+      "AS": 18,
+      "PS": 9,
+      "Q=AS/PS": 2.0,
+      "P=AS*PS": 162,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "precious_metal_price",
+      "name": "Precious metal price level",
+      "AS": 6,
+      "PS": 19,
+      "Q=AS/PS": 0.32,
+      "P=AS*PS": 114,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "energy_price_level",
+      "name": "Energy price level",
+      "AS": 20,
+      "PS": 1,
+      "Q=AS/PS": 20.0,
+      "P=AS*PS": 20,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "consumer_price_inflation",
+        "name": "Consumer price inflation rate",
+        "kind": "driver",
+        "AS": 27,
+        "PS": 12
+      },
+      {
+        "id": "inflation_expectations",
+        "name": "Inflation expectations",
+        "kind": "perception",
+        "AS": 27,
+        "PS": 17
+      },
+      {
+        "id": "monetary_policy_tone",
+        "name": "Monetary policy communication tone",
+        "kind": "perception",
+        "AS": 27,
+        "PS": 20
+      },
+      {
+        "id": "policy_interest_rate",
+        "name": "Policy interest rate level",
+        "kind": "stock",
+        "AS": 29,
+        "PS": 12
+      },
+      {
+        "id": "market_implied_path",
+        "name": "Market-implied policy path",
+        "kind": "perception",
+        "AS": 16,
+        "PS": 23
+      },
+      {
+        "id": "ten_year_bond_yield",
+        "name": "Ten-year nominal bond yield",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 26
+      },
+      {
+        "id": "term_premium_long",
+        "name": "Term premium on long bonds",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 18
+      },
+      {
+        "id": "sovereign_yield_dispersi",
+        "name": "Sovereign yield dispersion",
+        "kind": "environment",
+        "AS": 11,
+        "PS": 18
+      },
+      {
+        "id": "broad_currency_index",
+        "name": "Broad currency exchange level",
+        "kind": "stock",
+        "AS": 22,
+        "PS": 25
+      },
+      {
+        "id": "equity_market_level",
+        "name": "Equity market price level",
+        "kind": "stock",
+        "AS": 15,
+        "PS": 24
+      },
+      {
+        "id": "precious_metal_price",
+        "name": "Precious metal price level",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 19
+      },
+      {
+        "id": "energy_price_level",
+        "name": "Energy price level",
+        "kind": "stock",
+        "AS": 20,
+        "PS": 1
+      },
+      {
+        "id": "net_crossborder_flows",
+        "name": "Net cross-border capital flows",
+        "kind": "flow",
+        "AS": 19,
+        "PS": 25
+      },
+      {
+        "id": "asset_risk_premium",
+        "name": "Asset risk premium",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 24
+      },
+      {
+        "id": "market_volatility_exp",
+        "name": "Market volatility expectation",
+        "kind": "perception",
+        "AS": 14,
+        "PS": 23
+      },
+      {
+        "id": "fiscal_deficit_ratio",
+        "name": "Fiscal deficit ratio",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 9
+      }
+    ],
+    "edges": [
+      {
+        "source": "consumer_price_inflation",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "monetary_policy_tone",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "market_implied_path",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "ten_year_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "term_premium_long",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "equity_market_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "precious_metal_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "asset_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "consumer_price_inflation",
+        "target": "market_volatility_exp",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "consumer_price_inflation",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "monetary_policy_tone",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_implied_path",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "ten_year_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "term_premium_long",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "broad_currency_index",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "equity_market_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "precious_metal_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "asset_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "inflation_expectations",
+        "target": "market_volatility_exp",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "inflation_expectations",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "market_implied_path",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "ten_year_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "broad_currency_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "equity_market_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "precious_metal_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "asset_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "monetary_policy_tone",
+        "target": "market_volatility_exp",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "consumer_price_inflation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "monetary_policy_tone",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "market_implied_path",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "ten_year_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "broad_currency_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "equity_market_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "precious_metal_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "net_crossborder_flows",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "asset_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "market_volatility_exp",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "policy_interest_rate",
+        "target": "fiscal_deficit_ratio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_path",
+        "target": "ten_year_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_path",
+        "target": "term_premium_long",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "market_implied_path",
+        "target": "broad_currency_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_implied_path",
+        "target": "equity_market_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "ten_year_bond_yield",
+        "target": "market_implied_path",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ten_year_bond_yield",
+        "target": "sovereign_yield_dispersi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ten_year_bond_yield",
+        "target": "broad_currency_index",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ten_year_bond_yield",
+        "target": "equity_market_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "ten_year_bond_yield",
+        "target": "precious_metal_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "ten_year_bond_yield",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "ten_year_bond_yield",
+        "target": "fiscal_deficit_ratio",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_long",
+        "target": "ten_year_bond_yield",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "term_premium_long",
+        "target": "sovereign_yield_dispersi",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sovereign_yield_dispersi",
+        "target": "broad_currency_index",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "sovereign_yield_dispersi",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "broad_currency_index",
+        "target": "consumer_price_inflation",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "broad_currency_index",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "broad_currency_index",
+        "target": "monetary_policy_tone",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "broad_currency_index",
+        "target": "policy_interest_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "broad_currency_index",
+        "target": "sovereign_yield_dispersi",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "broad_currency_index",
+        "target": "precious_metal_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "broad_currency_index",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "equity_market_level",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "equity_market_level",
+        "target": "asset_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "equity_market_level",
+        "target": "market_volatility_exp",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "consumer_price_inflation",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "inflation_expectations",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "monetary_policy_tone",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "energy_price_level",
+        "target": "market_volatility_exp",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "ten_year_bond_yield",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "sovereign_yield_dispersi",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "broad_currency_index",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "equity_market_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "net_crossborder_flows",
+        "target": "asset_risk_premium",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "asset_risk_premium",
+        "target": "ten_year_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "asset_risk_premium",
+        "target": "equity_market_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "asset_risk_premium",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "asset_risk_premium",
+        "target": "market_volatility_exp",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_exp",
+        "target": "term_premium_long",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_volatility_exp",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_volatility_exp",
+        "target": "asset_risk_premium",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_ratio",
+        "target": "ten_year_bond_yield",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_ratio",
+        "target": "term_premium_long",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "fiscal_deficit_ratio",
+        "target": "net_crossborder_flows",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "fiscal_deficit_ratio",
+        "target": "asset_risk_premium",
+        "strength": 2,
+        "sign": "+"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "fed_decision_middec_2026",
+      "title": "Fed December meeting / rate decision",
+      "description": "FOMC decision in mid‑December likely to include another rate hike, possibly larger than 25bp, following hot inflation prints and officials' remarks.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-14",
+        "end": "2026-12-17",
+        "label": "mid-December"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "policy_interest_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "monetary_policy_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_implied_path",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "ten_year_bond_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "broad_currency_index",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Fed to raise rates once more in December'; officials open door to half-point hikes; Waller/others arguing for more hikes."
+    },
+    {
+      "id": "us_november_cpi_release",
+      "title": "Next US monthly CPI release (Nov)",
+      "description": "Monthly US CPI print for November will update headline and core inflation readings, influencing markets and Fed rate expectations.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-09",
+        "end": "2026-12-12",
+        "label": "early December release"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "consumer_price_inflation",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "inflation_expectations",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_implied_path",
+          "intensity": 3,
+          "sign": "?"
+        },
+        {
+          "variable_id": "ten_year_bond_yield",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: markets brace for fresh inflation data; prior hot October prints rattled markets and raised Fed hike bets."
+    },
+    {
+      "id": "ongoing_fed_hawkish_communications",
+      "title": "Sustained hawkish Fed communications",
+      "description": "Continued hawkish commentary from multiple Fed officials keeping higher‑for‑longer messaging and adding to tightening expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-12",
+        "end": "2026-12-31",
+        "label": "weeks"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "monetary_policy_tone",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "market_implied_path",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "broad_currency_index",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "ten_year_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: multiple Fed officials (Waller, Logan, Goolsbee, Paulson) opened door to more/sizeable hikes after hot CPI."
+    },
+    {
+      "id": "record_us_budget_deficit_persistence",
+      "title": "Ongoing large US fiscal deficits",
+      "description": "Elevated monthly budget deficits at start of fiscal 2027 imply sustained larger issuance pressure and potential upward yield pressure.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-12",
+        "end": "2027-01-31",
+        "label": "near-term quarter"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "fiscal_deficit_ratio",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "ten_year_bond_yield",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "net_crossborder_flows",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headline: 'US starts 2027 fiscal year with record October budget deficit of $404 billion' — implies ongoing larger issuance pressure."
+    },
+    {
+      "id": "housing_data_and_cpi_shelter_releases",
+      "title": "Housing data and CPI shelter component",
+      "description": "Upcoming housing indicators and shelter CPI components (rent/owners' equivalent rent) will affect core inflation dynamics and policy bets.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-20",
+        "end": "2026-12-10",
+        "label": "2-4 weeks"
+      },
+      "probability": 0.85,
+      "affected": [
+        {
+          "variable_id": "consumer_price_inflation",
+          "intensity": 2,
+          "sign": "?"
+        },
+        {
+          "variable_id": "market_implied_path",
+          "intensity": 1,
+          "sign": "?"
+        },
+        {
+          "variable_id": "ten_year_bond_yield",
+          "intensity": 1,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Treasury yields edge higher as investors await fresh inflation and housing data' and home sales slump could influence shelter inflation readings."
+    },
+    {
+      "id": "global_bond_repricing_nearterm",
+      "title": "Near-term global bond market repricing",
+      "description": "Ongoing repricing across sovereign bonds as inflation prints and Fed expectations drive yields and widen cross‑market dispersion.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-12",
+        "end": "2026-12-31",
+        "label": "near term"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "ten_year_bond_yield",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sovereign_yield_dispersi",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "term_premium_long",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "broad_currency_index",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Bond yields biggest surge since 2022', 'U.S. 10-Year Treasury Tops 5%', and Eurozone yield divides indicate continued repricing."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "fed_decision_middec_2026",
+      "title": "Fed December meeting / rate decision",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "mid-December",
+      "date": null,
+      "start": "2026-12-14",
+      "end": "2026-12-17",
+      "probability": 0.9,
+      "impact_score": 341.0,
+      "expected_impact": 306.9,
+      "event_PS": 20.667,
+      "event_AS": 22.733,
+      "n_vars": 6,
+      "affected_ids": "policy_interest_rate, monetary_policy_tone, market_implied_path, ten_year_bond_yield, broad_currency_index, inflation_expectations",
+      "rationale": "Headlines: 'Fed to raise rates once more in December'; officials open door to half-point hikes; Waller/others arguing for more hikes."
+    },
+    {
+      "id": "us_november_cpi_release",
+      "title": "Next US monthly CPI release (Nov)",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "early December release",
+      "date": null,
+      "start": "2026-12-09",
+      "end": "2026-12-12",
+      "probability": 0.95,
+      "impact_score": 246.0,
+      "expected_impact": 233.7,
+      "event_PS": 18.909,
+      "event_AS": 22.364,
+      "n_vars": 4,
+      "affected_ids": "consumer_price_inflation, inflation_expectations, market_implied_path, ten_year_bond_yield",
+      "rationale": "Headlines: markets brace for fresh inflation data; prior hot October prints rattled markets and raised Fed hike bets."
+    },
+    {
+      "id": "ongoing_fed_hawkish_communications",
+      "title": "Sustained hawkish Fed communications",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-11-12",
+      "end": "2026-12-31",
+      "probability": 0.95,
+      "impact_score": 193.0,
+      "expected_impact": 183.35,
+      "event_PS": 23.111,
+      "event_AS": 21.444,
+      "n_vars": 4,
+      "affected_ids": "monetary_policy_tone, market_implied_path, broad_currency_index, ten_year_bond_yield",
+      "rationale": "Headlines: multiple Fed officials (Waller, Logan, Goolsbee, Paulson) opened door to more/sizeable hikes after hot CPI."
+    },
+    {
+      "id": "record_us_budget_deficit_persistence",
+      "title": "Ongoing large US fiscal deficits",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near-term quarter",
+      "date": null,
+      "start": "2026-11-12",
+      "end": "2027-01-31",
+      "probability": 0.9,
+      "impact_score": 128.0,
+      "expected_impact": 115.2,
+      "event_PS": 18.429,
+      "event_AS": 18.286,
+      "n_vars": 3,
+      "affected_ids": "fiscal_deficit_ratio, ten_year_bond_yield, net_crossborder_flows",
+      "rationale": "Headline: 'US starts 2027 fiscal year with record October budget deficit of $404 billion' — implies ongoing larger issuance pressure."
+    },
+    {
+      "id": "global_bond_repricing_nearterm",
+      "title": "Near-term global bond market repricing",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near term",
+      "date": null,
+      "start": "2026-11-12",
+      "end": "2026-12-31",
+      "probability": 0.9,
+      "impact_score": 122.0,
+      "expected_impact": 109.8,
+      "event_PS": 21.875,
+      "event_AS": 15.25,
+      "n_vars": 4,
+      "affected_ids": "ten_year_bond_yield, sovereign_yield_dispersi, term_premium_long, broad_currency_index",
+      "rationale": "Headlines: 'Bond yields biggest surge since 2022', 'U.S. 10-Year Treasury Tops 5%', and Eurozone yield divides indicate continued repricing."
+    },
+    {
+      "id": "housing_data_and_cpi_shelter_releases",
+      "title": "Housing data and CPI shelter component",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "2-4 weeks",
+      "date": null,
+      "start": "2026-11-20",
+      "end": "2026-12-10",
+      "probability": 0.85,
+      "impact_score": 88.0,
+      "expected_impact": 74.8,
+      "event_PS": 18.25,
+      "event_AS": 22.0,
+      "n_vars": 3,
+      "affected_ids": "consumer_price_inflation, market_implied_path, ten_year_bond_yield",
+      "rationale": "Headlines: 'Treasury yields edge higher as investors await fresh inflation and housing data' and home sales slump could influence shelter inflation readings."
+    }
+  ]
+}
