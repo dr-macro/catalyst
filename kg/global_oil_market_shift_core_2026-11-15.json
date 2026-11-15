@@ -1,0 +1,1642 @@
+{
+  "label": "global_oil_market_shift",
+  "as_of": "2026-11-14",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-11-15T03:09:32",
+  "system_description": {
+    "narrative_title": "Geopolitics and policy reshaping global oil flows and refined-fuel bottlenecks",
+    "narrative_summary": "News across this window converge on a single dynamic: recent policy choices, sanctions shifts and logistical measures are rapidly reconfiguring global crude and refined-fuel flows. Gulf and Russian production rebounds and relaxed shipping/waiver decisions are driving a crude glut, even as diesel-specific shortages, rerouted exports and trade frictions (and failed import plans) create distribution bottlenecks and market dislocations. These interactions highlight how political decisions, shipping logistics and regional route changes translate into inventory swings, price volatility and industrial/producer responses.",
+    "scope": "The system includes global crude production and exports, refined-product (especially diesel) supply chains, inventories, shipping/logistics and legal waivers, sanctions and trade policies, key producer actions and regional export routes affecting market balances and prices.",
+    "super_system": "Global energy–economy and geopolitics system (interplay of energy markets, international trade and state policy)",
+    "adjacent_subsystems": [
+      "Maritime shipping and trade-law (waivers, tanker movements)",
+      "Refined-products markets and inland distribution (diesel, gasoline logistics)",
+      "Regional geopolitics and export routes (Middle East, Russia, North America)",
+      "Trade policy and sanctions regimes"
+    ],
+    "evidence_headlines": [
+      "Global oil markets swing to surplus as Gulf shipments rebound",
+      "Trump diesel deal with Russia falters as US fuel supplies hit 20-year low",
+      "Russian diesel exports double after Trump lifts sanctions, but US gets none",
+      "EXCLUSIVE: Iraq turns to trucks to export oil in overland Syrian route revival",
+      "US extends shipping law waiver 90 days, to allow freer movement of oil, commodities",
+      "Global Oil Market Set to Return to Surplus as Gulf Exports Recover, IEA Says"
+    ]
+  },
+  "variables": [
+    {
+      "id": "crude_prod_rate",
+      "name": "Crude production rate",
+      "description": "The continuous rate at which crude oil is produced across the system measured as volume per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_refinery_output",
+      "name": "Diesel refinery output rate",
+      "description": "The rate at which diesel-range refined fuel is produced by refineries measured as volume per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "crude_export_flow",
+      "name": "Crude export flow",
+      "description": "The volumetric flow of crude oil exported from producing regions to consuming regions per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_export_flow",
+      "name": "Diesel export flow",
+      "description": "The volumetric flow of diesel-range products moving between regions and markets per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "refinery_utilization",
+      "name": "Refinery utilization rate",
+      "description": "The fraction of refining capacity that is actively processing crude into refined products at any given time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_inventory_level",
+      "name": "Crude inventory level",
+      "description": "The on-hand stocks of crude oil held in storage across the system measured in volume.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_inventory_level",
+      "name": "Diesel inventory level",
+      "description": "The on-hand stocks of diesel-range refined products across the system measured in volume.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_capacity",
+      "name": "Shipping capacity",
+      "description": "The available transport capacity (tankers, trucks, barges) for moving crude and refined products measured as volume-moving capability per unit time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "waiver_flexibility",
+      "name": "Shipping waiver flexibility",
+      "description": "The degree of regulatory flexibility in shipping and waivers that allows movement of oil and commodities across legal constraints.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sanctions_enforcement",
+      "name": "Sanctions enforcement intensity",
+      "description": "The intensity and strictness of enforcement actions restricting trade in specified oil-related goods and services.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "trade_restrictions_level",
+      "name": "Trade restrictions level",
+      "description": "The overall level of trade policy barriers and restrictions affecting oil and refined-fuel trade flows.",
+      "kind": "institution_field",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "export_rerouting_rate",
+      "name": "Export rerouting rate",
+      "description": "The rate at which export shipments are redirected from one route or destination to another per unit time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "shipping_lead_time",
+      "name": "Shipping lead time",
+      "description": "The average transit and handling time required to move crude or refined products from origin to destination.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "transport_cost_level",
+      "name": "Transport cost level",
+      "description": "The prevailing per-unit costs of moving crude and refined products through available logistics channels.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "crude_price_level",
+      "name": "Crude market price level",
+      "description": "The prevailing market price of crude oil, reflecting the monetary cost per unit of crude.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "diesel_price_spread",
+      "name": "Diesel price spread",
+      "description": "The price differential between diesel-range refined products and a benchmark crude price, capturing refined-market tightness or margin.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "crude_prod_rate",
+    "diesel_refinery_output",
+    "crude_export_flow",
+    "diesel_export_flow",
+    "refinery_utilization",
+    "crude_inventory_level",
+    "diesel_inventory_level",
+    "shipping_capacity",
+    "waiver_flexibility",
+    "sanctions_enforcement",
+    "trade_restrictions_level",
+    "export_rerouting_rate",
+    "shipping_lead_time",
+    "transport_cost_level",
+    "crude_price_level",
+    "diesel_price_spread"
+  ],
+  "var_names": {
+    "crude_prod_rate": "Crude production rate",
+    "diesel_refinery_output": "Diesel refinery output rate",
+    "crude_export_flow": "Crude export flow",
+    "diesel_export_flow": "Diesel export flow",
+    "refinery_utilization": "Refinery utilization rate",
+    "crude_inventory_level": "Crude inventory level",
+    "diesel_inventory_level": "Diesel inventory level",
+    "shipping_capacity": "Shipping capacity",
+    "waiver_flexibility": "Shipping waiver flexibility",
+    "sanctions_enforcement": "Sanctions enforcement intensity",
+    "trade_restrictions_level": "Trade restrictions level",
+    "export_rerouting_rate": "Export rerouting rate",
+    "shipping_lead_time": "Shipping lead time",
+    "transport_cost_level": "Transport cost level",
+    "crude_price_level": "Crude market price level",
+    "diesel_price_spread": "Diesel price spread"
+  },
+  "impact_matrix": {
+    "crude_prod_rate": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 2,
+      "crude_export_flow": 3,
+      "diesel_export_flow": 1,
+      "refinery_utilization": 2,
+      "crude_inventory_level": 3,
+      "diesel_inventory_level": 0,
+      "shipping_capacity": 1,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 0,
+      "shipping_lead_time": 0,
+      "transport_cost_level": 1,
+      "crude_price_level": 2,
+      "diesel_price_spread": 0
+    },
+    "diesel_refinery_output": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 0,
+      "diesel_export_flow": 3,
+      "refinery_utilization": 0,
+      "crude_inventory_level": 2,
+      "diesel_inventory_level": 3,
+      "shipping_capacity": 1,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 0,
+      "shipping_lead_time": 0,
+      "transport_cost_level": 1,
+      "crude_price_level": 1,
+      "diesel_price_spread": 3
+    },
+    "crude_export_flow": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 0,
+      "diesel_export_flow": 0,
+      "refinery_utilization": 1,
+      "crude_inventory_level": 2,
+      "diesel_inventory_level": 0,
+      "shipping_capacity": 3,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 1,
+      "shipping_lead_time": 1,
+      "transport_cost_level": 2,
+      "crude_price_level": 2,
+      "diesel_price_spread": 0
+    },
+    "diesel_export_flow": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 0,
+      "diesel_export_flow": 0,
+      "refinery_utilization": 0,
+      "crude_inventory_level": 0,
+      "diesel_inventory_level": 2,
+      "shipping_capacity": 3,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 1,
+      "shipping_lead_time": 1,
+      "transport_cost_level": 2,
+      "crude_price_level": 0,
+      "diesel_price_spread": 3
+    },
+    "refinery_utilization": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 3,
+      "crude_export_flow": 0,
+      "diesel_export_flow": 2,
+      "refinery_utilization": 0,
+      "crude_inventory_level": 2,
+      "diesel_inventory_level": 2,
+      "shipping_capacity": 2,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 0,
+      "shipping_lead_time": 1,
+      "transport_cost_level": 2,
+      "crude_price_level": 1,
+      "diesel_price_spread": 3
+    },
+    "crude_inventory_level": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 2,
+      "diesel_export_flow": 0,
+      "refinery_utilization": 1,
+      "crude_inventory_level": 0,
+      "diesel_inventory_level": 0,
+      "shipping_capacity": 1,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 0,
+      "shipping_lead_time": 0,
+      "transport_cost_level": 0,
+      "crude_price_level": 2,
+      "diesel_price_spread": 0
+    },
+    "diesel_inventory_level": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 0,
+      "diesel_export_flow": 2,
+      "refinery_utilization": 0,
+      "crude_inventory_level": 0,
+      "diesel_inventory_level": 0,
+      "shipping_capacity": 1,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 0,
+      "shipping_lead_time": 0,
+      "transport_cost_level": 0,
+      "crude_price_level": 0,
+      "diesel_price_spread": 3
+    },
+    "shipping_capacity": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 3,
+      "diesel_export_flow": 3,
+      "refinery_utilization": 2,
+      "crude_inventory_level": 2,
+      "diesel_inventory_level": 2,
+      "shipping_capacity": 0,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 2,
+      "shipping_lead_time": 3,
+      "transport_cost_level": 3,
+      "crude_price_level": 1,
+      "diesel_price_spread": 2
+    },
+    "waiver_flexibility": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 2,
+      "diesel_export_flow": 2,
+      "refinery_utilization": 0,
+      "crude_inventory_level": 1,
+      "diesel_inventory_level": 1,
+      "shipping_capacity": 1,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 2,
+      "trade_restrictions_level": 2,
+      "export_rerouting_rate": 2,
+      "shipping_lead_time": 1,
+      "transport_cost_level": 1,
+      "crude_price_level": 1,
+      "diesel_price_spread": 1
+    },
+    "sanctions_enforcement": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 3,
+      "diesel_export_flow": 3,
+      "refinery_utilization": 1,
+      "crude_inventory_level": 2,
+      "diesel_inventory_level": 2,
+      "shipping_capacity": 2,
+      "waiver_flexibility": 2,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 3,
+      "export_rerouting_rate": 3,
+      "shipping_lead_time": 2,
+      "transport_cost_level": 2,
+      "crude_price_level": 2,
+      "diesel_price_spread": 2
+    },
+    "trade_restrictions_level": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 3,
+      "diesel_export_flow": 3,
+      "refinery_utilization": 1,
+      "crude_inventory_level": 2,
+      "diesel_inventory_level": 2,
+      "shipping_capacity": 1,
+      "waiver_flexibility": 2,
+      "sanctions_enforcement": 2,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 3,
+      "shipping_lead_time": 2,
+      "transport_cost_level": 2,
+      "crude_price_level": 2,
+      "diesel_price_spread": 2
+    },
+    "export_rerouting_rate": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 2,
+      "diesel_export_flow": 2,
+      "refinery_utilization": 1,
+      "crude_inventory_level": 1,
+      "diesel_inventory_level": 1,
+      "shipping_capacity": 2,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 1,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 0,
+      "shipping_lead_time": 3,
+      "transport_cost_level": 3,
+      "crude_price_level": 1,
+      "diesel_price_spread": 1
+    },
+    "shipping_lead_time": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 2,
+      "diesel_export_flow": 2,
+      "refinery_utilization": 2,
+      "crude_inventory_level": 2,
+      "diesel_inventory_level": 2,
+      "shipping_capacity": 3,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 2,
+      "shipping_lead_time": 0,
+      "transport_cost_level": 2,
+      "crude_price_level": 1,
+      "diesel_price_spread": 2
+    },
+    "transport_cost_level": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 0,
+      "crude_export_flow": 2,
+      "diesel_export_flow": 2,
+      "refinery_utilization": 1,
+      "crude_inventory_level": 1,
+      "diesel_inventory_level": 1,
+      "shipping_capacity": 0,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 1,
+      "shipping_lead_time": 0,
+      "transport_cost_level": 0,
+      "crude_price_level": 2,
+      "diesel_price_spread": 2
+    },
+    "crude_price_level": {
+      "crude_prod_rate": 2,
+      "diesel_refinery_output": 1,
+      "crude_export_flow": 1,
+      "diesel_export_flow": 1,
+      "refinery_utilization": 2,
+      "crude_inventory_level": 1,
+      "diesel_inventory_level": 0,
+      "shipping_capacity": 0,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 0,
+      "shipping_lead_time": 0,
+      "transport_cost_level": 0,
+      "crude_price_level": 0,
+      "diesel_price_spread": 1
+    },
+    "diesel_price_spread": {
+      "crude_prod_rate": 0,
+      "diesel_refinery_output": 3,
+      "crude_export_flow": 0,
+      "diesel_export_flow": 3,
+      "refinery_utilization": 3,
+      "crude_inventory_level": 0,
+      "diesel_inventory_level": 2,
+      "shipping_capacity": 1,
+      "waiver_flexibility": 0,
+      "sanctions_enforcement": 0,
+      "trade_restrictions_level": 0,
+      "export_rerouting_rate": 1,
+      "shipping_lead_time": 0,
+      "transport_cost_level": 1,
+      "crude_price_level": 0,
+      "diesel_price_spread": 0
+    }
+  },
+  "AS": {
+    "crude_prod_rate": 15,
+    "diesel_refinery_output": 14,
+    "crude_export_flow": 12,
+    "diesel_export_flow": 12,
+    "refinery_utilization": 18,
+    "crude_inventory_level": 6,
+    "diesel_inventory_level": 6,
+    "shipping_capacity": 23,
+    "waiver_flexibility": 17,
+    "sanctions_enforcement": 29,
+    "trade_restrictions_level": 27,
+    "export_rerouting_rate": 18,
+    "shipping_lead_time": 20,
+    "transport_cost_level": 12,
+    "crude_price_level": 9,
+    "diesel_price_spread": 14
+  },
+  "PS": {
+    "crude_prod_rate": 2,
+    "diesel_refinery_output": 9,
+    "crude_export_flow": 23,
+    "diesel_export_flow": 29,
+    "refinery_utilization": 17,
+    "crude_inventory_level": 21,
+    "diesel_inventory_level": 20,
+    "shipping_capacity": 22,
+    "waiver_flexibility": 4,
+    "sanctions_enforcement": 5,
+    "trade_restrictions_level": 5,
+    "export_rerouting_rate": 16,
+    "shipping_lead_time": 14,
+    "transport_cost_level": 22,
+    "crude_price_level": 18,
+    "diesel_price_spread": 25
+  },
+  "med_AS": 14.5,
+  "med_PS": 17.5,
+  "roles": [
+    {
+      "variable": "shipping_capacity",
+      "name": "Shipping capacity",
+      "AS": 23,
+      "PS": 22,
+      "Q=AS/PS": 1.05,
+      "P=AS*PS": 506,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "diesel_price_spread",
+      "name": "Diesel price spread",
+      "AS": 14,
+      "PS": 25,
+      "Q=AS/PS": 0.56,
+      "P=AS*PS": 350,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "diesel_export_flow",
+      "name": "Diesel export flow",
+      "AS": 12,
+      "PS": 29,
+      "Q=AS/PS": 0.41,
+      "P=AS*PS": 348,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refinery_utilization",
+      "name": "Refinery utilization rate",
+      "AS": 18,
+      "PS": 17,
+      "Q=AS/PS": 1.06,
+      "P=AS*PS": 306,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "export_rerouting_rate",
+      "name": "Export rerouting rate",
+      "AS": 18,
+      "PS": 16,
+      "Q=AS/PS": 1.12,
+      "P=AS*PS": 288,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "shipping_lead_time",
+      "name": "Shipping lead time",
+      "AS": 20,
+      "PS": 14,
+      "Q=AS/PS": 1.43,
+      "P=AS*PS": 280,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "crude_export_flow",
+      "name": "Crude export flow",
+      "AS": 12,
+      "PS": 23,
+      "Q=AS/PS": 0.52,
+      "P=AS*PS": 276,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "transport_cost_level",
+      "name": "Transport cost level",
+      "AS": 12,
+      "PS": 22,
+      "Q=AS/PS": 0.55,
+      "P=AS*PS": 264,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "crude_price_level",
+      "name": "Crude market price level",
+      "AS": 9,
+      "PS": 18,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 162,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "sanctions_enforcement",
+      "name": "Sanctions enforcement intensity",
+      "AS": 29,
+      "PS": 5,
+      "Q=AS/PS": 5.8,
+      "P=AS*PS": 145,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "trade_restrictions_level",
+      "name": "Trade restrictions level",
+      "AS": 27,
+      "PS": 5,
+      "Q=AS/PS": 5.4,
+      "P=AS*PS": 135,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "crude_inventory_level",
+      "name": "Crude inventory level",
+      "AS": 6,
+      "PS": 21,
+      "Q=AS/PS": 0.29,
+      "P=AS*PS": 126,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "diesel_refinery_output",
+      "name": "Diesel refinery output rate",
+      "AS": 14,
+      "PS": 9,
+      "Q=AS/PS": 1.56,
+      "P=AS*PS": 126,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "diesel_inventory_level",
+      "name": "Diesel inventory level",
+      "AS": 6,
+      "PS": 20,
+      "Q=AS/PS": 0.3,
+      "P=AS*PS": 120,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "waiver_flexibility",
+      "name": "Shipping waiver flexibility",
+      "AS": 17,
+      "PS": 4,
+      "Q=AS/PS": 4.25,
+      "P=AS*PS": 68,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "crude_prod_rate",
+      "name": "Crude production rate",
+      "AS": 15,
+      "PS": 2,
+      "Q=AS/PS": 7.5,
+      "P=AS*PS": 30,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "crude_prod_rate",
+        "name": "Crude production rate",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 2
+      },
+      {
+        "id": "diesel_refinery_output",
+        "name": "Diesel refinery output rate",
+        "kind": "flow",
+        "AS": 14,
+        "PS": 9
+      },
+      {
+        "id": "crude_export_flow",
+        "name": "Crude export flow",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 23
+      },
+      {
+        "id": "diesel_export_flow",
+        "name": "Diesel export flow",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 29
+      },
+      {
+        "id": "refinery_utilization",
+        "name": "Refinery utilization rate",
+        "kind": "stock",
+        "AS": 18,
+        "PS": 17
+      },
+      {
+        "id": "crude_inventory_level",
+        "name": "Crude inventory level",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 21
+      },
+      {
+        "id": "diesel_inventory_level",
+        "name": "Diesel inventory level",
+        "kind": "stock",
+        "AS": 6,
+        "PS": 20
+      },
+      {
+        "id": "shipping_capacity",
+        "name": "Shipping capacity",
+        "kind": "stock",
+        "AS": 23,
+        "PS": 22
+      },
+      {
+        "id": "waiver_flexibility",
+        "name": "Shipping waiver flexibility",
+        "kind": "institution_field",
+        "AS": 17,
+        "PS": 4
+      },
+      {
+        "id": "sanctions_enforcement",
+        "name": "Sanctions enforcement intensity",
+        "kind": "institution_field",
+        "AS": 29,
+        "PS": 5
+      },
+      {
+        "id": "trade_restrictions_level",
+        "name": "Trade restrictions level",
+        "kind": "institution_field",
+        "AS": 27,
+        "PS": 5
+      },
+      {
+        "id": "export_rerouting_rate",
+        "name": "Export rerouting rate",
+        "kind": "flow",
+        "AS": 18,
+        "PS": 16
+      },
+      {
+        "id": "shipping_lead_time",
+        "name": "Shipping lead time",
+        "kind": "flow",
+        "AS": 20,
+        "PS": 14
+      },
+      {
+        "id": "transport_cost_level",
+        "name": "Transport cost level",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 22
+      },
+      {
+        "id": "crude_price_level",
+        "name": "Crude market price level",
+        "kind": "driver",
+        "AS": 9,
+        "PS": 18
+      },
+      {
+        "id": "diesel_price_spread",
+        "name": "Diesel price spread",
+        "kind": "driver",
+        "AS": 14,
+        "PS": 25
+      }
+    ],
+    "edges": [
+      {
+        "source": "crude_prod_rate",
+        "target": "diesel_refinery_output",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "crude_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "crude_inventory_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "crude_prod_rate",
+        "target": "crude_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_refinery_output",
+        "target": "diesel_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_refinery_output",
+        "target": "crude_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_refinery_output",
+        "target": "diesel_inventory_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_refinery_output",
+        "target": "diesel_price_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_export_flow",
+        "target": "crude_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_export_flow",
+        "target": "shipping_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_export_flow",
+        "target": "transport_cost_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_export_flow",
+        "target": "crude_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_export_flow",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_export_flow",
+        "target": "shipping_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_export_flow",
+        "target": "transport_cost_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_export_flow",
+        "target": "diesel_price_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "diesel_refinery_output",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "diesel_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "crude_inventory_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "shipping_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "transport_cost_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refinery_utilization",
+        "target": "diesel_price_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_inventory_level",
+        "target": "crude_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_inventory_level",
+        "target": "crude_price_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "diesel_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_inventory_level",
+        "target": "diesel_price_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_capacity",
+        "target": "crude_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_capacity",
+        "target": "diesel_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_capacity",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_capacity",
+        "target": "crude_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_capacity",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_capacity",
+        "target": "export_rerouting_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_capacity",
+        "target": "shipping_lead_time",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_capacity",
+        "target": "transport_cost_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_capacity",
+        "target": "diesel_price_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "waiver_flexibility",
+        "target": "crude_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "waiver_flexibility",
+        "target": "diesel_export_flow",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "waiver_flexibility",
+        "target": "sanctions_enforcement",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "waiver_flexibility",
+        "target": "trade_restrictions_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "waiver_flexibility",
+        "target": "export_rerouting_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "crude_export_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "diesel_export_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "crude_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "shipping_capacity",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "waiver_flexibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "trade_restrictions_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "export_rerouting_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "shipping_lead_time",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "transport_cost_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "crude_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanctions_enforcement",
+        "target": "diesel_price_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "crude_export_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "diesel_export_flow",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "crude_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "waiver_flexibility",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "sanctions_enforcement",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "export_rerouting_rate",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "shipping_lead_time",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "transport_cost_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "crude_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "trade_restrictions_level",
+        "target": "diesel_price_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_rerouting_rate",
+        "target": "crude_export_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "export_rerouting_rate",
+        "target": "diesel_export_flow",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "export_rerouting_rate",
+        "target": "shipping_capacity",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "export_rerouting_rate",
+        "target": "shipping_lead_time",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "export_rerouting_rate",
+        "target": "transport_cost_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_lead_time",
+        "target": "crude_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_lead_time",
+        "target": "diesel_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_lead_time",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_lead_time",
+        "target": "crude_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_lead_time",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_lead_time",
+        "target": "shipping_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "shipping_lead_time",
+        "target": "export_rerouting_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_lead_time",
+        "target": "transport_cost_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "shipping_lead_time",
+        "target": "diesel_price_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "transport_cost_level",
+        "target": "crude_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "transport_cost_level",
+        "target": "diesel_export_flow",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "transport_cost_level",
+        "target": "crude_price_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "transport_cost_level",
+        "target": "diesel_price_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_price_level",
+        "target": "crude_prod_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_price_level",
+        "target": "refinery_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "diesel_price_spread",
+        "target": "diesel_refinery_output",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_price_spread",
+        "target": "diesel_export_flow",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_price_spread",
+        "target": "refinery_utilization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "diesel_price_spread",
+        "target": "diesel_inventory_level",
+        "strength": 2,
+        "sign": "?"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "us_shipping_waiver_90d",
+      "title": "U.S. extends 90-day shipping-law waiver",
+      "description": "A 90-day extension of a U.S. shipping-law waiver will legally ease movement of oil and commodities, enabling alternate routing and vessel use.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-14",
+        "end": "2027-02-12",
+        "label": "90 days"
+      },
+      "probability": 0.95,
+      "affected": [
+        {
+          "variable_id": "waiver_flexibility",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_capacity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "export_rerouting_rate",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "transport_cost_level",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'US extends shipping law waiver 90 days, to allow freer movement of oil, commodities'."
+    },
+    {
+      "id": "gulf_exports_recovery",
+      "title": "Gulf export rebound and market surplus forming",
+      "description": "Gulf shipments recovering are driving a return toward global crude surplus, pressuring crude prices while leaving diesel market tightness intact.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-13",
+        "end": "2027-02-28",
+        "label": "weeks–months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "crude_export_flow",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_price_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "crude_inventory_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "diesel_price_spread",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Global Oil Market Set to Return to Surplus as Gulf Exports Recover' and 'Why a crude glut won’t mean cheaper diesel.'"
+    },
+    {
+      "id": "iraq_overland_syria_route_revival",
+      "title": "Iraq shifts crude exports to overland Syrian trucking",
+      "description": "Iraq is reviving an overland route using trucks via Syria, creating an alternate crude export corridor and raising regional transport costs.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-13",
+        "end": "2027-03-31",
+        "label": "near-term months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "export_rerouting_rate",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_export_flow",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "transport_cost_level",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_capacity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: 'Iraq turns to trucks to export oil in overland Syrian route revival'."
+    },
+    {
+      "id": "russian_diesel_rerouting_and_exports",
+      "title": "Volatile Russian diesel export flows and tanker rerouting",
+      "description": "Russian diesel exports have surged after sanction changes, while U.S.-bound shipments are reportedly rerouting or stalling as tankers change course.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-11",
+        "end": "2027-01-15",
+        "label": "weeks"
+      },
+      "probability": 0.65,
+      "affected": [
+        {
+          "variable_id": "diesel_export_flow",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "export_rerouting_rate",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "shipping_lead_time",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "sanctions_enforcement",
+          "intensity": 2,
+          "sign": "?"
+        }
+      ],
+      "rationale": "Headlines: 'Russian diesel exports double after Trump lifts sanctions', 'Russian-Diesel Plan Founders as U.S.-Bound Tankers Change Course'."
+    },
+    {
+      "id": "us_crude_inventory_build_trend",
+      "title": "U.S. crude stock build trend continues",
+      "description": "Recent unexpected weekly crude builds may continue near-term, supporting inventories and weighing on crude prices.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-13",
+        "end": "2027-01-31",
+        "label": "1–2 months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "crude_inventory_level",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_price_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "refinery_utilization",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: 'U.S. Crude-Oil Stockpiles Post Unexpected Weekly Build' and IEA noting a shift to surplus."
+    },
+    {
+      "id": "us_diesel_supply_shortfall_persistence",
+      "title": "U.S. diesel supplies remain at multi-decade lows",
+      "description": "U.S. diesel inventories are at 20-year lows and recent import plans faltered, implying persistent limited diesel stocks and higher spreads.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-13",
+        "end": "2027-02-28",
+        "label": "near-term quarter"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "diesel_inventory_level",
+          "intensity": 3,
+          "sign": "-"
+        },
+        {
+          "variable_id": "diesel_price_spread",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refinery_utilization",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headlines: 'Trump diesel deal with Russia falters as US fuel supplies hit 20-year low' and 'Russian-Diesel Plan Founders...'."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "russian_diesel_rerouting_and_exports",
+      "title": "Volatile Russian diesel export flows and tanker rerouting",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks",
+      "date": null,
+      "start": "2026-11-11",
+      "end": "2027-01-15",
+      "probability": 0.65,
+      "impact_score": 168.0,
+      "expected_impact": 109.2,
+      "event_PS": 17.667,
+      "event_AS": 18.667,
+      "n_vars": 4,
+      "affected_ids": "diesel_export_flow, export_rerouting_rate, shipping_lead_time, sanctions_enforcement",
+      "rationale": "Headlines: 'Russian diesel exports double after Trump lifts sanctions', 'Russian-Diesel Plan Founders as U.S.-Bound Tankers Change Course'."
+    },
+    {
+      "id": "us_shipping_waiver_90d",
+      "title": "U.S. extends 90-day shipping-law waiver",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "90 days",
+      "date": null,
+      "start": "2026-11-14",
+      "end": "2027-02-12",
+      "probability": 0.95,
+      "impact_score": 127.0,
+      "expected_impact": 120.65,
+      "event_PS": 13.429,
+      "event_AS": 18.143,
+      "n_vars": 4,
+      "affected_ids": "waiver_flexibility, shipping_capacity, export_rerouting_rate, transport_cost_level",
+      "rationale": "Headline: 'US extends shipping law waiver 90 days, to allow freer movement of oil, commodities'."
+    },
+    {
+      "id": "iraq_overland_syria_route_revival",
+      "title": "Iraq shifts crude exports to overland Syrian trucking",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near-term months",
+      "date": null,
+      "start": "2026-11-13",
+      "end": "2027-03-31",
+      "probability": 0.7,
+      "impact_score": 107.0,
+      "expected_impact": 74.9,
+      "event_PS": 20.571,
+      "event_AS": 15.286,
+      "n_vars": 4,
+      "affected_ids": "export_rerouting_rate, crude_export_flow, transport_cost_level, shipping_capacity",
+      "rationale": "Headline: 'Iraq turns to trucks to export oil in overland Syrian route revival'."
+    },
+    {
+      "id": "gulf_exports_recovery",
+      "title": "Gulf export rebound and market surplus forming",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-11-13",
+      "end": "2027-02-28",
+      "probability": 0.8,
+      "impact_score": 103.0,
+      "expected_impact": 82.4,
+      "event_PS": 21.5,
+      "event_AS": 10.3,
+      "n_vars": 4,
+      "affected_ids": "crude_export_flow, crude_price_level, crude_inventory_level, diesel_price_spread",
+      "rationale": "Headlines: 'Global Oil Market Set to Return to Surplus as Gulf Exports Recover' and 'Why a crude glut won’t mean cheaper diesel.'"
+    },
+    {
+      "id": "us_diesel_supply_shortfall_persistence",
+      "title": "U.S. diesel supplies remain at multi-decade lows",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "near-term quarter",
+      "date": null,
+      "start": "2026-11-13",
+      "end": "2027-02-28",
+      "probability": 0.75,
+      "impact_score": 78.0,
+      "expected_impact": 58.5,
+      "event_PS": 21.714,
+      "event_AS": 11.143,
+      "n_vars": 3,
+      "affected_ids": "diesel_inventory_level, diesel_price_spread, refinery_utilization",
+      "rationale": "Headlines: 'Trump diesel deal with Russia falters as US fuel supplies hit 20-year low' and 'Russian-Diesel Plan Founders...'."
+    },
+    {
+      "id": "us_crude_inventory_build_trend",
+      "title": "U.S. crude stock build trend continues",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "1–2 months",
+      "date": null,
+      "start": "2026-11-13",
+      "end": "2027-01-31",
+      "probability": 0.7,
+      "impact_score": 54.0,
+      "expected_impact": 37.8,
+      "event_PS": 19.333,
+      "event_AS": 9.0,
+      "n_vars": 3,
+      "affected_ids": "crude_inventory_level, crude_price_level, refinery_utilization",
+      "rationale": "Headline: 'U.S. Crude-Oil Stockpiles Post Unexpected Weekly Build' and IEA noting a shift to surplus."
+    }
+  ]
+}
