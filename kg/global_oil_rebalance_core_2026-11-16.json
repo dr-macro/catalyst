@@ -1,0 +1,1681 @@
+{
+  "label": "global_oil_rebalance",
+  "as_of": "2026-11-16",
+  "model": "gpt-5-mini",
+  "generated_at": "2026-11-16T03:08:56",
+  "system_description": {
+    "narrative_title": "Global oil surplus vs. geopolitics: supply rebound and price volatility",
+    "narrative_summary": "The dominant narrative is a rapid swing toward a global oil oversupply driven by a rebound in Gulf exports, eased movement of cargoes, and alternative export routes, even as sanctions, policy shifts and local conflicts reshape who actually receives fuels. That supply rebound is producing downward pressure on crude futures and uneven effects on refined products (notably diesel/heating oil), generating price volatility and distributional stress. The system is characterized by feedbacks between export flows, shipping routes and chokepoints, policy/sanctions decisions, and local socio-political responses.",
+    "scope": "Global crude and refined-product markets (supply, demand, prices), Gulf export volumes and shipping routes, trade and sanction policies affecting oil flows, producer responses (exports, alternative routes), and local/community reactions to development and pricing.",
+    "super_system": "Global energy-economy and geopolitical system",
+    "adjacent_subsystems": [
+      "Maritime shipping and chokepoints (Strait of Hormuz, Red Sea routes)",
+      "International sanctions, trade and transport policy",
+      "Commodity financial markets (oil futures, traders)",
+      "Local land-use, resource politics and energy affordability"
+    ],
+    "evidence_headlines": [
+      "Global oil markets swing to surplus as Gulf shipments rebound",
+      "World oil market is returning to surplus as Gulf exports recover, IEA says",
+      "US extends shipping law waiver 90 days, to allow freer movement of oil, commodities",
+      "Russian diesel exports double after Trump lifts sanctions, but US gets none",
+      "EXCLUSIVE: Iraq turns to trucks to export oil in overland Syrian route revival",
+      "Heating oil prices are up 59% from last winter. The spike is 'crushing folks,' Maine nonprofit says"
+    ]
+  },
+  "variables": [
+    {
+      "id": "global_crude_supply",
+      "name": "Global crude supply",
+      "description": "The continuous rate at which crude oil enters the international market from production and exports.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "global_refined_supply",
+      "name": "Global refined-product supply",
+      "description": "The continuous rate at which refined fuels (e.g., diesel, heating oil) are supplied to international markets.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "crude_stock_level",
+      "name": "Crude inventory levels",
+      "description": "The volume of crude oil held in commercial and strategic stocks available to the market at any time.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refined_stock_level",
+      "name": "Refined-product inventory levels",
+      "description": "The volume of refined fuels (diesel, heating oil, etc.) held in storage buffers accessible to consumers and traders.",
+      "kind": "stock",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "seaborne_capacity",
+      "name": "Seaborne shipping capacity",
+      "description": "The available tonnage and shipping capability for moving oil and refined products along maritime routes.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "chokepoint_disruption",
+      "name": "Chokepoint disruption level",
+      "description": "The degree to which key maritime or transit chokepoints are impaired by interruptions, delays, or security incidents.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "alt_route_utilization",
+      "name": "Alternative route utilization",
+      "description": "The proportion and rate of oil and product flows that are routed via non-standard or substitute transport corridors.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "export_restriction_level",
+      "name": "Export policy restriction level",
+      "description": "The aggregate stringency of trade policies, sanctions and regulatory limits that constrain cross-border oil and product flows.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "sanction_evasion_level",
+      "name": "Sanction-evasion activity",
+      "description": "The intensity of market actors' efforts and success in circumventing trade restrictions to move oil and refined products.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "freight_insurance_cost",
+      "name": "Freight and insurance cost level",
+      "description": "The prevailing average costs of maritime freight and war/insurance premiums applied to oil and product shipments.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refining_util_rate",
+      "name": "Refining capacity utilization rate",
+      "description": "The share of refinery capacity that is actively processing crude into products at a given time.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    },
+    {
+      "id": "crude_futures_price",
+      "name": "Crude futures price level",
+      "description": "The market price level reflected in traded crude oil futures and forward contracts.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "refined_price_spread",
+      "name": "Refined-product price spread",
+      "description": "The differential between refined fuel prices (notably diesel/heating oil) and benchmark crude prices or alternative fuels.",
+      "kind": "driver",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "market_supply_expect",
+      "name": "Market supply expectations",
+      "description": "Traders' and market participants' aggregated expectations about future supply balance and availability.",
+      "kind": "perception",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "local_socio_response",
+      "name": "Local socio-political response intensity",
+      "description": "The intensity of community and local political reactions (protests, resistance, acceptance) to oil activity and price stress.",
+      "kind": "environment",
+      "ontology_type": "state",
+      "layer": "core"
+    },
+    {
+      "id": "seasonal_refined_demand",
+      "name": "Seasonal refined-fuel demand",
+      "description": "The cyclical and time-varying demand for refined fuels driven by seasonality (heating, transport) and economic activity.",
+      "kind": "flow",
+      "ontology_type": "process",
+      "layer": "core"
+    }
+  ],
+  "var_ids": [
+    "global_crude_supply",
+    "global_refined_supply",
+    "crude_stock_level",
+    "refined_stock_level",
+    "seaborne_capacity",
+    "chokepoint_disruption",
+    "alt_route_utilization",
+    "export_restriction_level",
+    "sanction_evasion_level",
+    "freight_insurance_cost",
+    "refining_util_rate",
+    "crude_futures_price",
+    "refined_price_spread",
+    "market_supply_expect",
+    "local_socio_response",
+    "seasonal_refined_demand"
+  ],
+  "var_names": {
+    "global_crude_supply": "Global crude supply",
+    "global_refined_supply": "Global refined-product supply",
+    "crude_stock_level": "Crude inventory levels",
+    "refined_stock_level": "Refined-product inventory levels",
+    "seaborne_capacity": "Seaborne shipping capacity",
+    "chokepoint_disruption": "Chokepoint disruption level",
+    "alt_route_utilization": "Alternative route utilization",
+    "export_restriction_level": "Export policy restriction level",
+    "sanction_evasion_level": "Sanction-evasion activity",
+    "freight_insurance_cost": "Freight and insurance cost level",
+    "refining_util_rate": "Refining capacity utilization rate",
+    "crude_futures_price": "Crude futures price level",
+    "refined_price_spread": "Refined-product price spread",
+    "market_supply_expect": "Market supply expectations",
+    "local_socio_response": "Local socio-political response intensity",
+    "seasonal_refined_demand": "Seasonal refined-fuel demand"
+  },
+  "impact_matrix": {
+    "global_crude_supply": {
+      "global_crude_supply": 0,
+      "global_refined_supply": 2,
+      "crude_stock_level": 3,
+      "refined_stock_level": 1,
+      "seaborne_capacity": 0,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 0,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 0,
+      "freight_insurance_cost": 1,
+      "refining_util_rate": 2,
+      "crude_futures_price": 2,
+      "refined_price_spread": 1,
+      "market_supply_expect": 3,
+      "local_socio_response": 0,
+      "seasonal_refined_demand": 0
+    },
+    "global_refined_supply": {
+      "global_crude_supply": 1,
+      "global_refined_supply": 0,
+      "crude_stock_level": 0,
+      "refined_stock_level": 3,
+      "seaborne_capacity": 0,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 0,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 0,
+      "freight_insurance_cost": 1,
+      "refining_util_rate": 1,
+      "crude_futures_price": 1,
+      "refined_price_spread": 3,
+      "market_supply_expect": 2,
+      "local_socio_response": 0,
+      "seasonal_refined_demand": 0
+    },
+    "crude_stock_level": {
+      "global_crude_supply": 2,
+      "global_refined_supply": 1,
+      "crude_stock_level": 0,
+      "refined_stock_level": 1,
+      "seaborne_capacity": 1,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 0,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 0,
+      "freight_insurance_cost": 1,
+      "refining_util_rate": 1,
+      "crude_futures_price": 3,
+      "refined_price_spread": 1,
+      "market_supply_expect": 3,
+      "local_socio_response": 0,
+      "seasonal_refined_demand": 0
+    },
+    "refined_stock_level": {
+      "global_crude_supply": 0,
+      "global_refined_supply": 2,
+      "crude_stock_level": 0,
+      "refined_stock_level": 0,
+      "seaborne_capacity": 1,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 0,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 0,
+      "freight_insurance_cost": 1,
+      "refining_util_rate": 1,
+      "crude_futures_price": 1,
+      "refined_price_spread": 3,
+      "market_supply_expect": 3,
+      "local_socio_response": 0,
+      "seasonal_refined_demand": 0
+    },
+    "seaborne_capacity": {
+      "global_crude_supply": 2,
+      "global_refined_supply": 2,
+      "crude_stock_level": 1,
+      "refined_stock_level": 1,
+      "seaborne_capacity": 0,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 2,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 1,
+      "freight_insurance_cost": 2,
+      "refining_util_rate": 1,
+      "crude_futures_price": 1,
+      "refined_price_spread": 1,
+      "market_supply_expect": 1,
+      "local_socio_response": 0,
+      "seasonal_refined_demand": 0
+    },
+    "chokepoint_disruption": {
+      "global_crude_supply": 3,
+      "global_refined_supply": 3,
+      "crude_stock_level": 2,
+      "refined_stock_level": 2,
+      "seaborne_capacity": 3,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 3,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 1,
+      "freight_insurance_cost": 3,
+      "refining_util_rate": 2,
+      "crude_futures_price": 3,
+      "refined_price_spread": 3,
+      "market_supply_expect": 3,
+      "local_socio_response": 2,
+      "seasonal_refined_demand": 0
+    },
+    "alt_route_utilization": {
+      "global_crude_supply": 2,
+      "global_refined_supply": 2,
+      "crude_stock_level": 1,
+      "refined_stock_level": 1,
+      "seaborne_capacity": 1,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 0,
+      "export_restriction_level": 1,
+      "sanction_evasion_level": 2,
+      "freight_insurance_cost": 1,
+      "refining_util_rate": 1,
+      "crude_futures_price": 1,
+      "refined_price_spread": 1,
+      "market_supply_expect": 2,
+      "local_socio_response": 1,
+      "seasonal_refined_demand": 0
+    },
+    "export_restriction_level": {
+      "global_crude_supply": 3,
+      "global_refined_supply": 3,
+      "crude_stock_level": 2,
+      "refined_stock_level": 2,
+      "seaborne_capacity": 0,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 2,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 2,
+      "freight_insurance_cost": 1,
+      "refining_util_rate": 1,
+      "crude_futures_price": 2,
+      "refined_price_spread": 2,
+      "market_supply_expect": 3,
+      "local_socio_response": 1,
+      "seasonal_refined_demand": 0
+    },
+    "sanction_evasion_level": {
+      "global_crude_supply": 2,
+      "global_refined_supply": 2,
+      "crude_stock_level": 1,
+      "refined_stock_level": 1,
+      "seaborne_capacity": 1,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 2,
+      "export_restriction_level": 1,
+      "sanction_evasion_level": 0,
+      "freight_insurance_cost": 1,
+      "refining_util_rate": 1,
+      "crude_futures_price": 1,
+      "refined_price_spread": 1,
+      "market_supply_expect": 2,
+      "local_socio_response": 1,
+      "seasonal_refined_demand": 0
+    },
+    "freight_insurance_cost": {
+      "global_crude_supply": 1,
+      "global_refined_supply": 1,
+      "crude_stock_level": 1,
+      "refined_stock_level": 1,
+      "seaborne_capacity": 0,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 1,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 1,
+      "freight_insurance_cost": 0,
+      "refining_util_rate": 1,
+      "crude_futures_price": 2,
+      "refined_price_spread": 2,
+      "market_supply_expect": 1,
+      "local_socio_response": 0,
+      "seasonal_refined_demand": 0
+    },
+    "refining_util_rate": {
+      "global_crude_supply": 1,
+      "global_refined_supply": 3,
+      "crude_stock_level": 2,
+      "refined_stock_level": 2,
+      "seaborne_capacity": 0,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 0,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 0,
+      "freight_insurance_cost": 0,
+      "refining_util_rate": 0,
+      "crude_futures_price": 2,
+      "refined_price_spread": 2,
+      "market_supply_expect": 2,
+      "local_socio_response": 1,
+      "seasonal_refined_demand": 0
+    },
+    "crude_futures_price": {
+      "global_crude_supply": 2,
+      "global_refined_supply": 1,
+      "crude_stock_level": 2,
+      "refined_stock_level": 1,
+      "seaborne_capacity": 0,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 1,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 1,
+      "freight_insurance_cost": 0,
+      "refining_util_rate": 1,
+      "crude_futures_price": 0,
+      "refined_price_spread": 2,
+      "market_supply_expect": 3,
+      "local_socio_response": 1,
+      "seasonal_refined_demand": 0
+    },
+    "refined_price_spread": {
+      "global_crude_supply": 0,
+      "global_refined_supply": 1,
+      "crude_stock_level": 0,
+      "refined_stock_level": 2,
+      "seaborne_capacity": 0,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 1,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 1,
+      "freight_insurance_cost": 0,
+      "refining_util_rate": 1,
+      "crude_futures_price": 1,
+      "refined_price_spread": 0,
+      "market_supply_expect": 1,
+      "local_socio_response": 1,
+      "seasonal_refined_demand": 0
+    },
+    "market_supply_expect": {
+      "global_crude_supply": 1,
+      "global_refined_supply": 1,
+      "crude_stock_level": 2,
+      "refined_stock_level": 2,
+      "seaborne_capacity": 0,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 1,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 1,
+      "freight_insurance_cost": 0,
+      "refining_util_rate": 1,
+      "crude_futures_price": 3,
+      "refined_price_spread": 2,
+      "market_supply_expect": 0,
+      "local_socio_response": 1,
+      "seasonal_refined_demand": 0
+    },
+    "local_socio_response": {
+      "global_crude_supply": 2,
+      "global_refined_supply": 2,
+      "crude_stock_level": 1,
+      "refined_stock_level": 1,
+      "seaborne_capacity": 1,
+      "chokepoint_disruption": 1,
+      "alt_route_utilization": 1,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 0,
+      "freight_insurance_cost": 1,
+      "refining_util_rate": 2,
+      "crude_futures_price": 1,
+      "refined_price_spread": 1,
+      "market_supply_expect": 1,
+      "local_socio_response": 0,
+      "seasonal_refined_demand": 0
+    },
+    "seasonal_refined_demand": {
+      "global_crude_supply": 1,
+      "global_refined_supply": 2,
+      "crude_stock_level": 2,
+      "refined_stock_level": 3,
+      "seaborne_capacity": 1,
+      "chokepoint_disruption": 0,
+      "alt_route_utilization": 0,
+      "export_restriction_level": 0,
+      "sanction_evasion_level": 0,
+      "freight_insurance_cost": 0,
+      "refining_util_rate": 2,
+      "crude_futures_price": 1,
+      "refined_price_spread": 2,
+      "market_supply_expect": 2,
+      "local_socio_response": 0,
+      "seasonal_refined_demand": 0
+    }
+  },
+  "AS": {
+    "global_crude_supply": 15,
+    "global_refined_supply": 12,
+    "crude_stock_level": 14,
+    "refined_stock_level": 12,
+    "seaborne_capacity": 15,
+    "chokepoint_disruption": 33,
+    "alt_route_utilization": 17,
+    "export_restriction_level": 24,
+    "sanction_evasion_level": 17,
+    "freight_insurance_cost": 12,
+    "refining_util_rate": 15,
+    "crude_futures_price": 15,
+    "refined_price_spread": 9,
+    "market_supply_expect": 15,
+    "local_socio_response": 15,
+    "seasonal_refined_demand": 16
+  },
+  "PS": {
+    "global_crude_supply": 23,
+    "global_refined_supply": 28,
+    "crude_stock_level": 20,
+    "refined_stock_level": 24,
+    "seaborne_capacity": 9,
+    "chokepoint_disruption": 1,
+    "alt_route_utilization": 14,
+    "export_restriction_level": 2,
+    "sanction_evasion_level": 10,
+    "freight_insurance_cost": 13,
+    "refining_util_rate": 19,
+    "crude_futures_price": 25,
+    "refined_price_spread": 27,
+    "market_supply_expect": 32,
+    "local_socio_response": 9,
+    "seasonal_refined_demand": 0
+  },
+  "med_AS": 15.0,
+  "med_PS": 16.5,
+  "roles": [
+    {
+      "variable": "market_supply_expect",
+      "name": "Market supply expectations",
+      "AS": 15,
+      "PS": 32,
+      "Q=AS/PS": 0.47,
+      "P=AS*PS": 480,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crude_futures_price",
+      "name": "Crude futures price level",
+      "AS": 15,
+      "PS": 25,
+      "Q=AS/PS": 0.6,
+      "P=AS*PS": 375,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "global_crude_supply",
+      "name": "Global crude supply",
+      "AS": 15,
+      "PS": 23,
+      "Q=AS/PS": 0.65,
+      "P=AS*PS": 345,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "global_refined_supply",
+      "name": "Global refined-product supply",
+      "AS": 12,
+      "PS": 28,
+      "Q=AS/PS": 0.43,
+      "P=AS*PS": 336,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refined_stock_level",
+      "name": "Refined-product inventory levels",
+      "AS": 12,
+      "PS": 24,
+      "Q=AS/PS": 0.5,
+      "P=AS*PS": 288,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refining_util_rate",
+      "name": "Refining capacity utilization rate",
+      "AS": 15,
+      "PS": 19,
+      "Q=AS/PS": 0.79,
+      "P=AS*PS": 285,
+      "role": "critical (risk)"
+    },
+    {
+      "variable": "crude_stock_level",
+      "name": "Crude inventory levels",
+      "AS": 14,
+      "PS": 20,
+      "Q=AS/PS": 0.7,
+      "P=AS*PS": 280,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "refined_price_spread",
+      "name": "Refined-product price spread",
+      "AS": 9,
+      "PS": 27,
+      "Q=AS/PS": 0.33,
+      "P=AS*PS": 243,
+      "role": "reactive (sensor)"
+    },
+    {
+      "variable": "alt_route_utilization",
+      "name": "Alternative route utilization",
+      "AS": 17,
+      "PS": 14,
+      "Q=AS/PS": 1.21,
+      "P=AS*PS": 238,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "sanction_evasion_level",
+      "name": "Sanction-evasion activity",
+      "AS": 17,
+      "PS": 10,
+      "Q=AS/PS": 1.7,
+      "P=AS*PS": 170,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "freight_insurance_cost",
+      "name": "Freight and insurance cost level",
+      "AS": 12,
+      "PS": 13,
+      "Q=AS/PS": 0.92,
+      "P=AS*PS": 156,
+      "role": "buffering (inert)"
+    },
+    {
+      "variable": "seaborne_capacity",
+      "name": "Seaborne shipping capacity",
+      "AS": 15,
+      "PS": 9,
+      "Q=AS/PS": 1.67,
+      "P=AS*PS": 135,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "local_socio_response",
+      "name": "Local socio-political response intensity",
+      "AS": 15,
+      "PS": 9,
+      "Q=AS/PS": 1.67,
+      "P=AS*PS": 135,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "export_restriction_level",
+      "name": "Export policy restriction level",
+      "AS": 24,
+      "PS": 2,
+      "Q=AS/PS": 12.0,
+      "P=AS*PS": 48,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "chokepoint_disruption",
+      "name": "Chokepoint disruption level",
+      "AS": 33,
+      "PS": 1,
+      "Q=AS/PS": 33.0,
+      "P=AS*PS": 33,
+      "role": "active (lever)"
+    },
+    {
+      "variable": "seasonal_refined_demand",
+      "name": "Seasonal refined-fuel demand",
+      "AS": 16,
+      "PS": 0,
+      "Q=AS/PS": 16000001.0,
+      "P=AS*PS": 0,
+      "role": "active (lever)"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "global_crude_supply",
+        "name": "Global crude supply",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 23
+      },
+      {
+        "id": "global_refined_supply",
+        "name": "Global refined-product supply",
+        "kind": "flow",
+        "AS": 12,
+        "PS": 28
+      },
+      {
+        "id": "crude_stock_level",
+        "name": "Crude inventory levels",
+        "kind": "stock",
+        "AS": 14,
+        "PS": 20
+      },
+      {
+        "id": "refined_stock_level",
+        "name": "Refined-product inventory levels",
+        "kind": "stock",
+        "AS": 12,
+        "PS": 24
+      },
+      {
+        "id": "seaborne_capacity",
+        "name": "Seaborne shipping capacity",
+        "kind": "environment",
+        "AS": 15,
+        "PS": 9
+      },
+      {
+        "id": "chokepoint_disruption",
+        "name": "Chokepoint disruption level",
+        "kind": "environment",
+        "AS": 33,
+        "PS": 1
+      },
+      {
+        "id": "alt_route_utilization",
+        "name": "Alternative route utilization",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 14
+      },
+      {
+        "id": "export_restriction_level",
+        "name": "Export policy restriction level",
+        "kind": "driver",
+        "AS": 24,
+        "PS": 2
+      },
+      {
+        "id": "sanction_evasion_level",
+        "name": "Sanction-evasion activity",
+        "kind": "flow",
+        "AS": 17,
+        "PS": 10
+      },
+      {
+        "id": "freight_insurance_cost",
+        "name": "Freight and insurance cost level",
+        "kind": "driver",
+        "AS": 12,
+        "PS": 13
+      },
+      {
+        "id": "refining_util_rate",
+        "name": "Refining capacity utilization rate",
+        "kind": "flow",
+        "AS": 15,
+        "PS": 19
+      },
+      {
+        "id": "crude_futures_price",
+        "name": "Crude futures price level",
+        "kind": "driver",
+        "AS": 15,
+        "PS": 25
+      },
+      {
+        "id": "refined_price_spread",
+        "name": "Refined-product price spread",
+        "kind": "driver",
+        "AS": 9,
+        "PS": 27
+      },
+      {
+        "id": "market_supply_expect",
+        "name": "Market supply expectations",
+        "kind": "perception",
+        "AS": 15,
+        "PS": 32
+      },
+      {
+        "id": "local_socio_response",
+        "name": "Local socio-political response intensity",
+        "kind": "environment",
+        "AS": 15,
+        "PS": 9
+      },
+      {
+        "id": "seasonal_refined_demand",
+        "name": "Seasonal refined-fuel demand",
+        "kind": "flow",
+        "AS": 16,
+        "PS": 0
+      }
+    ],
+    "edges": [
+      {
+        "source": "global_crude_supply",
+        "target": "global_refined_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_crude_supply",
+        "target": "crude_stock_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_crude_supply",
+        "target": "refining_util_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "global_crude_supply",
+        "target": "crude_futures_price",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "global_crude_supply",
+        "target": "market_supply_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_refined_supply",
+        "target": "refined_stock_level",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "global_refined_supply",
+        "target": "refined_price_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "global_refined_supply",
+        "target": "market_supply_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_stock_level",
+        "target": "global_crude_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_stock_level",
+        "target": "crude_futures_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "crude_stock_level",
+        "target": "market_supply_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_stock_level",
+        "target": "global_refined_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refined_stock_level",
+        "target": "refined_price_spread",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "refined_stock_level",
+        "target": "market_supply_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_capacity",
+        "target": "global_crude_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_capacity",
+        "target": "global_refined_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seaborne_capacity",
+        "target": "alt_route_utilization",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seaborne_capacity",
+        "target": "freight_insurance_cost",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "global_crude_supply",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "global_refined_supply",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "crude_stock_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "refined_stock_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "seaborne_capacity",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "alt_route_utilization",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "freight_insurance_cost",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "refining_util_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "crude_futures_price",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "refined_price_spread",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "market_supply_expect",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "chokepoint_disruption",
+        "target": "local_socio_response",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "alt_route_utilization",
+        "target": "global_crude_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "alt_route_utilization",
+        "target": "global_refined_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "alt_route_utilization",
+        "target": "sanction_evasion_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "alt_route_utilization",
+        "target": "market_supply_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "global_crude_supply",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "global_refined_supply",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "crude_stock_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "refined_stock_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "alt_route_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "sanction_evasion_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "crude_futures_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "refined_price_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "export_restriction_level",
+        "target": "market_supply_expect",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "sanction_evasion_level",
+        "target": "global_crude_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_evasion_level",
+        "target": "global_refined_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_evasion_level",
+        "target": "alt_route_utilization",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "sanction_evasion_level",
+        "target": "market_supply_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "freight_insurance_cost",
+        "target": "crude_futures_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "freight_insurance_cost",
+        "target": "refined_price_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_util_rate",
+        "target": "global_refined_supply",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refining_util_rate",
+        "target": "crude_stock_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_util_rate",
+        "target": "refined_stock_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_util_rate",
+        "target": "crude_futures_price",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "refining_util_rate",
+        "target": "refined_price_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "refining_util_rate",
+        "target": "market_supply_expect",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_futures_price",
+        "target": "global_crude_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "crude_futures_price",
+        "target": "crude_stock_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "crude_futures_price",
+        "target": "refined_price_spread",
+        "strength": 2,
+        "sign": "?"
+      },
+      {
+        "source": "crude_futures_price",
+        "target": "market_supply_expect",
+        "strength": 3,
+        "sign": "+"
+      },
+      {
+        "source": "refined_price_spread",
+        "target": "refined_stock_level",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "market_supply_expect",
+        "target": "crude_stock_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_supply_expect",
+        "target": "refined_stock_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "market_supply_expect",
+        "target": "crude_futures_price",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "market_supply_expect",
+        "target": "refined_price_spread",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "local_socio_response",
+        "target": "global_crude_supply",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "local_socio_response",
+        "target": "global_refined_supply",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "local_socio_response",
+        "target": "refining_util_rate",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seasonal_refined_demand",
+        "target": "global_refined_supply",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seasonal_refined_demand",
+        "target": "crude_stock_level",
+        "strength": 2,
+        "sign": "-"
+      },
+      {
+        "source": "seasonal_refined_demand",
+        "target": "refined_stock_level",
+        "strength": 3,
+        "sign": "-"
+      },
+      {
+        "source": "seasonal_refined_demand",
+        "target": "refining_util_rate",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seasonal_refined_demand",
+        "target": "refined_price_spread",
+        "strength": 2,
+        "sign": "+"
+      },
+      {
+        "source": "seasonal_refined_demand",
+        "target": "market_supply_expect",
+        "strength": 2,
+        "sign": "-"
+      }
+    ]
+  },
+  "catalysts": [
+    {
+      "id": "gulf_exports_recovery",
+      "title": "Gulf exports continue rebounding",
+      "description": "Sustained recovery of Gulf shipments into global markets as producers restore flows, further loosening crude markets and shifting trader expectations.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-16",
+        "end": "2027-02-16",
+        "label": "3 months"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "global_crude_supply",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_futures_price",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_supply_expect",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "seaborne_capacity",
+          "intensity": 1,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Multiple headlines: \"Global oil markets swing to surplus as Gulf shipments rebound\"; \"World oil market is returning to surplus as Gulf exports recover, IEA says\"."
+    },
+    {
+      "id": "iraq_overland_route_revival",
+      "title": "Iraq expands overland truck exports via Syria",
+      "description": "Iraq's revival of an overland trucking route to export oil shifts flows away from seaborne corridors and increases alternative route use.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-16",
+        "end": "2027-02-16",
+        "label": "weeks–months"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "alt_route_utilization",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "seaborne_capacity",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "global_crude_supply",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "freight_insurance_cost",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"EXCLUSIVE: Iraq turns to trucks to export oil in overland Syrian route revival.\""
+    },
+    {
+      "id": "us_shipping_waiver_renewal_decision",
+      "title": "U.S. shipping-law waiver decision (90-day expiry)",
+      "description": "Decision point when the 90‑day U.S. shipping-law waiver expires or is renewed, affecting how freely oil and commodities move by sea.",
+      "type": "event",
+      "timeline": {
+        "kind": "date",
+        "date": "2027-02-12",
+        "start": null,
+        "end": null,
+        "label": "waiver expiry date"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "seaborne_capacity",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "export_restriction_level",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "freight_insurance_cost",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"US extends shipping law waiver 90 days, to allow freer movement of oil, commodities\" — expiry implies a renewal decision point."
+    },
+    {
+      "id": "hormuz_houthi_tension_spikes",
+      "title": "Renewed Houthi strikes / Hormuz tensions",
+      "description": "Further Houthi strikes or escalated Hormuz tensions could intermittently disrupt routes, raise insurance and push prices higher.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-16",
+        "end": "2027-02-16",
+        "label": "3 months"
+      },
+      "probability": 0.4,
+      "affected": [
+        {
+          "variable_id": "chokepoint_disruption",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "freight_insurance_cost",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_futures_price",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "seaborne_capacity",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"Gulf bourses slide as Hormuz tensions and houthi strikes rattle traders\"; \"Oil Prices Rebound as Trump Questions Need for Iran Deal.\""
+    },
+    {
+      "id": "russian_diesel_export_surge",
+      "title": "Sustained surge in Russian diesel exports",
+      "description": "Post-sanctions export flows of Russian diesel to non‑U.S. markets continue to expand, altering refined-product supply balances regionally.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-16",
+        "end": "2027-01-31",
+        "label": "6–10 weeks"
+      },
+      "probability": 0.8,
+      "affected": [
+        {
+          "variable_id": "global_refined_supply",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_price_spread",
+          "intensity": 2,
+          "sign": "-"
+        },
+        {
+          "variable_id": "market_supply_expect",
+          "intensity": 2,
+          "sign": "+"
+        }
+      ],
+      "rationale": "Headline: \"Russian diesel exports double after Trump lifts sanctions, but US gets none.\""
+    },
+    {
+      "id": "permian_drilling_expansion",
+      "title": "Permian drilling expansion deal closes and ramps",
+      "description": "Diamondback's near‑$5bn deal to expand Permian drilling likely closes and triggers ramped output over coming months, adding crude supply.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-16",
+        "end": "2027-03-31",
+        "label": "quarter"
+      },
+      "probability": 0.75,
+      "affected": [
+        {
+          "variable_id": "global_crude_supply",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refining_util_rate",
+          "intensity": 1,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_futures_price",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"Diamondback nears $5bn deal to expand drilling in oil-rich Permian Basin.\""
+    },
+    {
+      "id": "winter_heating_demand_rise",
+      "title": "Northern winter heating demand spike",
+      "description": "Seasonal increase in heating-oil demand through winter raises refined‑product consumption and pressures inventories and spreads.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-16",
+        "end": "2027-03-15",
+        "label": "winter season"
+      },
+      "probability": 0.9,
+      "affected": [
+        {
+          "variable_id": "seasonal_refined_demand",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_price_spread",
+          "intensity": 2,
+          "sign": "+"
+        },
+        {
+          "variable_id": "refined_stock_level",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"Heating oil prices are up 59% from last winter...\" and seasonal timing in mid‑November."
+    },
+    {
+      "id": "alberta_anti_development_resistance",
+      "title": "Alberta landowner resistance to development",
+      "description": "Organized resistance by Alberta landowners could delay or constrain new oil development projects in the province, marginally reducing future supply.",
+      "type": "process",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-11-14",
+        "end": "2027-05-14",
+        "label": "6 months"
+      },
+      "probability": 0.5,
+      "affected": [
+        {
+          "variable_id": "local_socio_response",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "global_crude_supply",
+          "intensity": 1,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headline: \"Alberta landowners' group tells farmers, ranchers to resist oil development.\""
+    },
+    {
+      "id": "iea_monthly_report_confirm_surplus",
+      "title": "Next IEA/Others' monthly report confirms surplus",
+      "description": "Upcoming monthly agency reports that explicitly confirm a return to surplus will reinforce market expectations and sentiment toward lower prices.",
+      "type": "event",
+      "timeline": {
+        "kind": "horizon",
+        "date": null,
+        "start": "2026-12-01",
+        "end": "2026-12-31",
+        "label": "by end of Dec"
+      },
+      "probability": 0.7,
+      "affected": [
+        {
+          "variable_id": "market_supply_expect",
+          "intensity": 3,
+          "sign": "+"
+        },
+        {
+          "variable_id": "crude_futures_price",
+          "intensity": 2,
+          "sign": "-"
+        }
+      ],
+      "rationale": "Headlines: \"Global Oil Market Set to Return to Surplus as Gulf Exports Recover, IEA Says\" — implies scheduled monthly confirmations."
+    }
+  ],
+  "catalysts_scored": [
+    {
+      "id": "hormuz_houthi_tension_spikes",
+      "title": "Renewed Houthi strikes / Hormuz tensions",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3 months",
+      "date": null,
+      "start": "2026-11-16",
+      "end": "2027-02-16",
+      "probability": 0.4,
+      "impact_score": 195.0,
+      "expected_impact": 78.0,
+      "event_PS": 11.0,
+      "event_AS": 19.5,
+      "n_vars": 4,
+      "affected_ids": "chokepoint_disruption, freight_insurance_cost, crude_futures_price, seaborne_capacity",
+      "rationale": "Headline: \"Gulf bourses slide as Hormuz tensions and houthi strikes rattle traders\"; \"Oil Prices Rebound as Trump Questions Need for Iran Deal.\""
+    },
+    {
+      "id": "gulf_exports_recovery",
+      "title": "Gulf exports continue rebounding",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "3 months",
+      "date": null,
+      "start": "2026-11-16",
+      "end": "2027-02-16",
+      "probability": 0.8,
+      "impact_score": 135.0,
+      "expected_impact": 108.0,
+      "event_PS": 24.889,
+      "event_AS": 15.0,
+      "n_vars": 4,
+      "affected_ids": "global_crude_supply, crude_futures_price, market_supply_expect, seaborne_capacity",
+      "rationale": "Multiple headlines: \"Global oil markets swing to surplus as Gulf shipments rebound\"; \"World oil market is returning to surplus as Gulf exports recover, IEA says\"."
+    },
+    {
+      "id": "iraq_overland_route_revival",
+      "title": "Iraq expands overland truck exports via Syria",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "weeks–months",
+      "date": null,
+      "start": "2026-11-16",
+      "end": "2027-02-16",
+      "probability": 0.7,
+      "impact_score": 108.0,
+      "expected_impact": 75.6,
+      "event_PS": 13.714,
+      "event_AS": 15.429,
+      "n_vars": 4,
+      "affected_ids": "alt_route_utilization, seaborne_capacity, global_crude_supply, freight_insurance_cost",
+      "rationale": "Headline: \"EXCLUSIVE: Iraq turns to trucks to export oil in overland Syrian route revival.\""
+    },
+    {
+      "id": "us_shipping_waiver_renewal_decision",
+      "title": "U.S. shipping-law waiver decision (90-day expiry)",
+      "type": "event",
+      "timeline_kind": "date",
+      "timeline_label": "waiver expiry date",
+      "date": "2027-02-12",
+      "start": null,
+      "end": null,
+      "probability": 0.7,
+      "impact_score": 90.0,
+      "expected_impact": 63.0,
+      "event_PS": 7.0,
+      "event_AS": 18.0,
+      "n_vars": 3,
+      "affected_ids": "seaborne_capacity, export_restriction_level, freight_insurance_cost",
+      "rationale": "Headline: \"US extends shipping law waiver 90 days, to allow freer movement of oil, commodities\" — expiry implies a renewal decision point."
+    },
+    {
+      "id": "winter_heating_demand_rise",
+      "title": "Northern winter heating demand spike",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "winter season",
+      "date": null,
+      "start": "2026-11-16",
+      "end": "2027-03-15",
+      "probability": 0.9,
+      "impact_score": 90.0,
+      "expected_impact": 81.0,
+      "event_PS": 14.571,
+      "event_AS": 12.857,
+      "n_vars": 3,
+      "affected_ids": "seasonal_refined_demand, refined_price_spread, refined_stock_level",
+      "rationale": "Headline: \"Heating oil prices are up 59% from last winter...\" and seasonal timing in mid‑November."
+    },
+    {
+      "id": "russian_diesel_export_surge",
+      "title": "Sustained surge in Russian diesel exports",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6–10 weeks",
+      "date": null,
+      "start": "2026-11-16",
+      "end": "2027-01-31",
+      "probability": 0.8,
+      "impact_score": 84.0,
+      "expected_impact": 67.2,
+      "event_PS": 28.857,
+      "event_AS": 12.0,
+      "n_vars": 3,
+      "affected_ids": "global_refined_supply, refined_price_spread, market_supply_expect",
+      "rationale": "Headline: \"Russian diesel exports double after Trump lifts sanctions, but US gets none.\""
+    },
+    {
+      "id": "iea_monthly_report_confirm_surplus",
+      "title": "Next IEA/Others' monthly report confirms surplus",
+      "type": "event",
+      "timeline_kind": "horizon",
+      "timeline_label": "by end of Dec",
+      "date": null,
+      "start": "2026-12-01",
+      "end": "2026-12-31",
+      "probability": 0.7,
+      "impact_score": 75.0,
+      "expected_impact": 52.5,
+      "event_PS": 29.2,
+      "event_AS": 15.0,
+      "n_vars": 2,
+      "affected_ids": "market_supply_expect, crude_futures_price",
+      "rationale": "Headlines: \"Global Oil Market Set to Return to Surplus as Gulf Exports Recover, IEA Says\" — implies scheduled monthly confirmations."
+    },
+    {
+      "id": "permian_drilling_expansion",
+      "title": "Permian drilling expansion deal closes and ramps",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "quarter",
+      "date": null,
+      "start": "2026-11-16",
+      "end": "2027-03-31",
+      "probability": 0.75,
+      "impact_score": 60.0,
+      "expected_impact": 45.0,
+      "event_PS": 22.5,
+      "event_AS": 15.0,
+      "n_vars": 3,
+      "affected_ids": "global_crude_supply, refining_util_rate, crude_futures_price",
+      "rationale": "Headline: \"Diamondback nears $5bn deal to expand drilling in oil-rich Permian Basin.\""
+    },
+    {
+      "id": "alberta_anti_development_resistance",
+      "title": "Alberta landowner resistance to development",
+      "type": "process",
+      "timeline_kind": "horizon",
+      "timeline_label": "6 months",
+      "date": null,
+      "start": "2026-11-14",
+      "end": "2027-05-14",
+      "probability": 0.5,
+      "impact_score": 60.0,
+      "expected_impact": 30.0,
+      "event_PS": 12.5,
+      "event_AS": 15.0,
+      "n_vars": 2,
+      "affected_ids": "local_socio_response, global_crude_supply",
+      "rationale": "Headline: \"Alberta landowners' group tells farmers, ranchers to resist oil development.\""
+    }
+  ]
+}
